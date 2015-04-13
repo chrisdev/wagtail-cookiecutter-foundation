@@ -1,0 +1,14 @@
+{% raw %}{% extends "base.html" %}
+
+{% load static {% endraw %}{{ cookiecutter.repo_name }}{% raw %}_utils %}
+
+{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
+
+{% block content %}
+    <h1>Welcome to your new Wagtail site!</h1>
+
+    <p>You can access the admin interface <a href="{% url 'wagtailadmin_home' %}">here</a> (make sure you have run "dj createsuperuser" in the console first).
+
+    <p>If you haven't already given the documentation a read, head over to <a href="http://wagtail.readthedocs.org/">http://wagtail.readthedocs.org</a> to start building on Wagtail</p>
+{% endblock %}
+{% endraw %}
