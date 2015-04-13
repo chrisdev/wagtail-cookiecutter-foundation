@@ -1,0 +1,4 @@
+{
+    "project_name": "wagtail-cookiecutter-foundation",
+    "repo_name": "{{ cookiecutter.project_name|replace(' ', '')|lower }}"
+}
