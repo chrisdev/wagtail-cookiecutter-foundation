@@ -150,16 +150,16 @@ TEMPLATE_DIRS = (
 
 # Use Redis as the cache backend for extra performance
 
-CACHES = {
-    'default': {
-        'BACKEND': 'redis_cache.cache.RedisCache',
-        'LOCATION': '127.0.0.1:6379',
-        'KEY_PREFIX': '{{ cookiecutter.repo_name }}',
-        'OPTIONS': {
-            'CLIENT_CLASS': 'redis_cache.client.DefaultClient',
-        }
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'redis_cache.cache.RedisCache',
+#         'LOCATION': '127.0.0.1:6379',
+#         'KEY_PREFIX': '{{ cookiecutter.repo_name }}',
+#         'OPTIONS': {
+#             'CLIENT_CLASS': 'redis_cache.client.DefaultClient',
+#         }
+#     }
+# }
 
 
 # Wagtail settings
@@ -170,12 +170,12 @@ LOGIN_REDIRECT_URL = 'wagtailadmin_home'
 WAGTAIL_SITE_NAME = "{{ cookiecutter.project_name }}"
 
 # Use Elasticsearch as the search backend for extra performance and better search results
-WAGTAILSEARCH_BACKENDS = {
-    'default': {
-        'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',
-        'INDEX': '{{ cookiecutter.repo_name }}',
-    },
-}
+# WAGTAILSEARCH_BACKENDS = {
+#     'default': {
+#         'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',
+#         'INDEX': '{{ cookiecutter.repo_name }}',
+#     },
+# }
 
 # Celery settings
 # When you have multiple sites using the same Redis server,
