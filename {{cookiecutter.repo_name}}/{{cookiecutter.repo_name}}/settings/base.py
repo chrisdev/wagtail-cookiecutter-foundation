@@ -62,8 +62,8 @@ INSTALLED_APPS = (
     'wagtail.wagtailredirects',
     'wagtail.wagtailforms',
 
-    '{{ cookiecutter.repo_name }}.utils',
-    '{{ cookiecutter.repo_name }}.home',
+    'utils',
+    'home',
 )
 
 MIDDLEWARE_CLASSES = (
