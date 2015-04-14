@@ -13,8 +13,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {% compress css %}
-            <link rel="stylesheet" href="{% static 'css/foundation/scss/foundation.scss' %}" />
-            <link rel="stylesheet" href="{% static 'css/foundation/scss/normalize.scss' %}" />
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/foundation/scss/foundation.scss' %}" />
+            <link rel="stylesheet"  type="text/x-scss" href="{% static 'css/foundation/scss/normalize.scss' %}" />
             <link rel="stylesheet" type="text/x-scss" href="{% static 'css/{% endraw %}{{ cookiecutter.repo_name }}{% raw %}.scss' %}">
         {% endcompress %}
 
@@ -40,7 +40,7 @@
         {% endcompress %}
 
         {% block extra_js %}
-                
+
         {% endblock %}
     </body>
 </html>
