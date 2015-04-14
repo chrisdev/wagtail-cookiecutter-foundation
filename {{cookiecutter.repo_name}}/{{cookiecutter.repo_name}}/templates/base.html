@@ -19,7 +19,7 @@
         {% endcompress %}
 
         {% compress js %}
-            <script src="{% static 'js/vendor/modernizr.js' %}"></script>
+
         {% endcompress %}
 
         {% block extra_css %}
@@ -40,7 +40,7 @@
         {% endcompress %}
 
         {% block extra_js %}
-            
+            <script src="{% static 'js/vendor/modernizr.js' %}"></script>           
         {% endblock %}
     </body>
 </html>
