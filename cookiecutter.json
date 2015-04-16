@@ -1,4 +1,10 @@
 {
     "project_name": "wagtail-cookiecutter-foundation",
-    "repo_name": "{{ cookiecutter.project_name|replace(' ', '')|lower }}"
+    "repo_name": "{{ cookiecutter.project_name|replace(' ', '')|lower }}",
+    "author_name": "Your Name",
+    "email": "Your email",
+    "description": "A short description of the project.",
+    "timezone": "UTC",
+    "now": "2015/04/16",
+    "year": "{{ cookiecutter.now[:4] }}"
 }
