@@ -23,13 +23,31 @@
         {% endcompress %}
 
         {% block extra_css %}
-            
+
         {% endblock %}
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
+        <div class="contain-to-grid sticky">
+          <nav class="top-bar" data-topbar role="navigation">
+            <ul class="title-area">
+              <li class="name">
+                <h1><a href="#"> {{ cookiecutter.project_name }} </a></h1>
+              </li>
+              <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+            </ul>
 
+            <section class="top-bar-section">
+
+              <ul class="right">
+                <li class="active"><a href="#">Home</a></li>
+              </ul>
+
+            </section>
+
+          </nav>
+        </div>
         {% block content %}{% endblock %}
 
         {% compress js %}
@@ -40,7 +58,9 @@
         {% endcompress %}
 
         {% block extra_js %}
-
+        <script>
+          $(document).foundation();
+        </script>
         {% endblock %}
     </body>
 </html>
