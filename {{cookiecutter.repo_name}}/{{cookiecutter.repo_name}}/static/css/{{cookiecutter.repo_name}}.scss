@@ -16,6 +16,11 @@
     height: 100%;
 }
 
+body
+{
+  font-family: Lato, Helvetica, sans;
+}
+
 .contain-to-grid {
   width: 100%;
   background: #43b1b0;
@@ -27,4 +32,61 @@
     background: #43b1b0;
     overflow: visible;
   }
+}
+
+.intro
+{
+  background-color: #3299BB;
+  color: #fff;
+}
+
+.intro .row {
+  padding: 80px 150px;
+}
+
+.intro h1 {
+  font-size: 60px;
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 30px;
+  font-family: Lato, Helvetica, sans;
+  color: #fff;
+}
+
+h1, h2
+{
+  font-family: Lato, Helvetica, sans;
+  color: #555;
+}
+
+.welcome .row
+{
+  padding: 50px 150px; 
+  color: #555;
+}
+
+.section
+{
+  background-color: #A6DCFF;
+  padding: 20px 0px;
+  color: #fff;
+  text-align: center;
+}
+
+.section h1
+{
+  color: #fff;
+}
+
+.sitemap
+{
+  padding-bottom: 100px;
+  color: #555;
+}
+
+.copyright
+{
+  background-color: #43b1b0;
+  color: #fff;
+  padding-top: 10px;
 }

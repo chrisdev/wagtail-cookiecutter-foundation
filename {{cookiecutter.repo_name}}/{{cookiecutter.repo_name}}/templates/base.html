@@ -1,5 +1,4 @@
 {% raw %}{% load compress static wagtailuserbar %}
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -11,11 +10,11 @@
         <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
         {% compress css %}
             <link rel="stylesheet" type="text/x-scss" href="{% static 'css/foundation/scss/foundation.scss' %}" />
             <link rel="stylesheet"  type="text/x-scss" href="{% static 'css/foundation/scss/normalize.scss' %}" />
-            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/{% endraw %}{{ cookiecutter.repo_name }}{% raw %}.scss' %}">
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/wagtail-cookiecutter-foundation.scss' %}">
         {% endcompress %}
 
         {% compress js %}
@@ -33,7 +32,7 @@
           <nav class="top-bar" data-topbar role="navigation">
             <ul class="title-area">
               <li class="name">
-                <h1><a href="#"> {% endraw %}{{ cookiecutter.project_name }} {% raw %} </a></h1>
+                <h1><a href="#">{{ self.title }} </a></h1>
               </li>
               <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
             </ul>
@@ -50,11 +49,28 @@
         </div>
         {% block content %}{% endblock %}
 
+        <footer>
+            <div class="sitemap">
+                <div class="row">
+                    <div class="large-12 columns">
+                        <h1>Site Map</h1>
+                    </div>
+                </div>  
+            </div>
+            <div class="copyright">
+                <div class="row">
+                    <div class="large-6 columns">
+                        <p> Copyright {{ self.copyright_year }}, {{ self.title }}</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
         {% compress js %}
             <script src="{% static 'js/vendor/modernizr.js' %}"></script>
             <script src="{% static 'js/vendor/jquery.js' %}"></script>
             <script src="{% static 'js/foundation.min.js' %}"></script>
-            <script type="text/javascript" src="{% static 'js/{% endraw %}{{ cookiecutter.repo_name }}{% raw %}.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/wagtail-cookiecutter-foundation.js' %}"></script>
         {% endcompress %}
 
         {% block extra_js %}
