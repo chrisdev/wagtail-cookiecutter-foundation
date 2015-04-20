@@ -1,3 +1,21 @@
+@import "vendor/foundation/scss/components/global";
+
+// Colors
+$keppel: #43b1b0;
+$boston_blue: #3299BB;
+$white: #fff;
+$anakiwa: #A6DCFF;
+$emperor: #555;
+
+//Fonts
+$header-font-family: 'Lato', Helvetica, sans;
+$body-font-family: 'Lato', Helvetica, sans;
+$paragraph-font-family: 'Lato', Helvetica, sans;
+
+$header-font-color: #555 !default;
+
+@import "vendor/foundation/scss/foundation";
+
 /* Responsive image/video classes */
 .rich-text img {
     max-width: 100%;
@@ -16,28 +34,23 @@
     height: 100%;
 }
 
-body
-{
-  font-family: Lato, Helvetica, sans;
-}
-
 .contain-to-grid {
   width: 100%;
-  background: #43b1b0;
+  background: $keppel;
 }
 
 @media only screen and (min-width: 40.063em)
 {
   .top-bar {
-    background: #43b1b0;
+    background: $keppel;
     overflow: visible;
   }
 }
 
 .intro
 {
-  background-color: #3299BB;
-  color: #fff;
+  background-color: $boston_blue;
+  color: $white;
 }
 
 .intro .row {
@@ -49,44 +62,36 @@ body
   font-weight: 300;
   line-height: 1;
   margin-bottom: 30px;
-  font-family: Lato, Helvetica, sans;
-  color: #fff;
-}
-
-h1, h2, h3, h4
-{
-  font-family: Lato, Helvetica, sans;
-  color: #555;
+  color: $white;
 }
 
 .welcome .row
 {
-  padding: 50px 150px; 
-  color: #555;
+  padding: 50px 150px;
+  color: $emperor;
 }
 
 .section
 {
-  background-color: #A6DCFF;
+  background-color: $anakiwa;
   padding: 20px 0px;
-  color: #fff;
+  color: $white;
   text-align: center;
 }
 
 .section h1
 {
-  color: #fff;
+  color: $white;
 }
 
 .sitemap
 {
   padding-bottom: 100px;
-  color: #555;
 }
 
 .copyright
 {
-  background-color: #43b1b0;
-  color: #fff;
+  background-color: $keppel;
+  color: $white;
   padding-top: 10px;
 }

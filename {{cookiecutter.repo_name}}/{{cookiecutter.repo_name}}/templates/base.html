@@ -12,9 +12,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
         {% compress css %}
-            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/foundation/scss/foundation.scss' %}" />
-            <link rel="stylesheet"  type="text/x-scss" href="{% static 'css/foundation/scss/normalize.scss' %}" />
-            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/wagtail-cookiecutter-foundation.scss' %}">
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/app.scss' %}">
         {% endcompress %}
 
         {% compress js %}
@@ -53,9 +51,9 @@
             <div class="sitemap">
                 <div class="row">
                     <div class="large-12 columns">
-                        <h1>Site Map</h1>
+                        <h3>Site Map</h3>
                     </div>
-                </div>  
+                </div>
             </div>
             <div class="copyright">
                 <div class="row">
@@ -70,7 +68,7 @@
             <script src="{% static 'js/vendor/modernizr.js' %}"></script>
             <script src="{% static 'js/vendor/jquery.js' %}"></script>
             <script src="{% static 'js/foundation.min.js' %}"></script>
-            <script type="text/javascript" src="{% static 'js/wagtail-cookiecutter-foundation.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
         {% endcompress %}
 
         {% block extra_js %}
