@@ -16,7 +16,7 @@
         {% endcompress %}
 
         {% compress js %}
-
+            <script src="{% static 'js/vendor/modernizr.js' %}"></script>
         {% endcompress %}
 
         {% block extra_css %}
@@ -26,23 +26,20 @@
 
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
-        <div class="contain-to-grid sticky">
+        <div class="contain-to-grid fixed">
           <nav class="top-bar" data-topbar role="navigation">
             <ul class="title-area">
               <li class="name">
-                <h1><a href="#">{{ self.title }} </a></h1>
+                <h1><a href="#">{{ self.title }}</a></h1>
               </li>
               <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
             </ul>
 
             <section class="top-bar-section">
-
               <ul class="right">
                 <li class="active"><a href="#">Home</a></li>
               </ul>
-
             </section>
-
           </nav>
         </div>
         {% block content %}{% endblock %}
@@ -58,14 +55,13 @@
             <div class="copyright">
                 <div class="row">
                     <div class="large-6 columns">
-                        <p> Copyright {{ self.copyright_year }}, {{ self.title }}</p>
+                        <p> Copyright &copy; {{ self.copyright_year }}, {{ self.title }}</p>
                     </div>
                 </div>
             </div>
         </footer>
 
         {% compress js %}
-            <script src="{% static 'js/vendor/modernizr.js' %}"></script>
             <script src="{% static 'js/vendor/jquery.js' %}"></script>
             <script src="{% static 'js/foundation.min.js' %}"></script>
             <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
