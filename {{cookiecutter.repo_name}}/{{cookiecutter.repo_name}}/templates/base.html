@@ -16,7 +16,7 @@
         {% endcompress %}
 
         {% compress js %}
-
+            <script src="{% static 'js/vendor/modernizr.js' %}"></script>
         {% endcompress %}
 
         {% block extra_css %}
@@ -65,7 +65,6 @@
         </footer>
 
         {% compress js %}
-            <script src="{% static 'js/vendor/modernizr.js' %}"></script>
             <script src="{% static 'js/vendor/jquery.js' %}"></script>
             <script src="{% static 'js/foundation.min.js' %}"></script>
             <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
