@@ -1,3 +1,4 @@
+// Foundation Global settings
 @import "vendor/foundation/scss/components/global";
 
 // Colors
@@ -7,54 +8,43 @@ $white: #fff;
 $anakiwa: #A6DCFF;
 $emperor: #555;
 
-//Fonts
+// Background color for the top bar
+$topbar-bg-color: $keppel;
+$topbar-bg: $topbar-bg-color;
+
+// Fonts
 $header-font-family: 'Lato', Helvetica, sans;
 $body-font-family: 'Lato', Helvetica, sans;
 $paragraph-font-family: 'Lato', Helvetica, sans;
 
 $header-font-color: #555 !default;
 
+// Foundation scss import
 @import "vendor/foundation/scss/foundation";
 
-/* Responsive image/video classes */
+// Responsive image/video classes
 .rich-text img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 .responsive-object {
-    position: relative;
+  position: relative;
 }
 .responsive-object iframe,
 .responsive-object object,
 .responsive-object embed {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.contain-to-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  background: $keppel;
-}
-
-@media only screen and (min-width: 40.063em)
-{
-  .top-bar {
-    background: $keppel;
-    overflow: visible;
-  }
+  height: 100%;
 }
 
 .intro
 {
   background-color: $boston_blue;
   color: $white;
-}
-
-.intro .row {
-  padding: 80px 150px;
+  padding: 100px 0px;
 }
 
 .intro h1 {
@@ -65,16 +55,21 @@ $header-font-color: #555 !default;
   color: $white;
 }
 
-.welcome .row
+.welcome
 {
-  padding: 50px 150px;
+  padding: 50px 0px;
   color: $emperor;
+}
+
+.welcome p
+{
+  word-wrap: break-word;
 }
 
 .section
 {
   background-color: $anakiwa;
-  padding: 20px 0px;
+  padding: 20px 10px;
   color: $white;
   text-align: center;
 }
