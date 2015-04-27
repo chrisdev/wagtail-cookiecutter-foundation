@@ -1,0 +1,19 @@
+syntax: glob
+*.pyc
+.DS_Store
+dist
+MANIFEST
+_build
+*.swp*
+*.un*
+.vagrant
+.ropeproject
+settings/local.py
+media
+static/CACHE/*
+Vagrantfile.local
+docs/_build/
+db.sqlite3
+_birdsong.cfg
+ansible/group_vars/*
+ansible/host_vars/*
