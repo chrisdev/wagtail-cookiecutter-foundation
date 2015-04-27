@@ -1,5 +1,5 @@
 {
-    "project_name": "wagtail-cookiecutter-foundation",
+    "project_name": "Wagtail Project",
     "repo_name": "{{ cookiecutter.project_name|replace(' ', '')|lower }}",
     "author_name": "Your Name",
     "email": "Your email",
