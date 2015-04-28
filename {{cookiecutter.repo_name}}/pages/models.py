@@ -16,7 +16,7 @@ from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
 class LinkFields(models.Model):
     link_external = models.URLField("External link", blank=True)
     link_page = models.ForeignKey(
-        'wagtailpages.Page',
+        'wagtailcore.Page',
         null=True,
         blank=True,
         related_name='+'
