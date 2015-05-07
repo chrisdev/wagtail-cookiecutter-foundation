@@ -1,0 +1,25 @@
+{% raw %}
+{% extends "base.html" %}
+{% load wagtailcore_tags core_tags %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+    <div id="content" class="row">
+        <div class="large-9 medium-8 columns">
+            <div class="medium-12 columns">
+                
+                <h2>{{ self.title }}</h2>
+                <h3 class="subheader">{{ self.subtitle }}</h3>
+                <hr> 
+                {% include "pages/includes/intro.html" with intro=self.intro only %}
+            </div>
+        </div>
+        <div id="sidebar" class="large-3 medium-4 columns">
+            {% standard_index_listing calling_page=self %}
+            {% include "page/includes/sidebar.html" %}
+            {% include "page/includes/related_links.html" with related_links=self.related_links.all only %}
+        </div>
+    </div>
+{% endblock %}
+{% endraw %}
+

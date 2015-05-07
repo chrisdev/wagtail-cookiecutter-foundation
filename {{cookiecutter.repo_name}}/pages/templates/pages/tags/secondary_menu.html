@@ -1,0 +1,14 @@
+{% raw %}{% load wagtailcore_tags %}
+{% if pages %}
+<div class="row">
+    <div class="large-12 columns">
+        <h4 class="subheader"><small>Also in This Section</small></h4>
+        <ul class="side-nav">
+            {% for page in pages %}
+                <li><a href="{% pageurl page %}">{{ page.title }}</a></li>
+            {% endfor %}
+        </ul>
+      </hr>
+    </div>
+</div>
+{% endif %}{% endraw %}
