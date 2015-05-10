@@ -113,7 +113,7 @@ Getting up and running
 To The following steps assume the following dependencies
 
     * pip
-    * virtualenv/pyvenv
+    * virtualenv/pyvenv/virtualenvwrapper
     * PostgreSQL
 
 Firstly, open up a command line shell in your new projects directory.
@@ -136,12 +136,35 @@ Firstly, open up a command line shell in your new projects directory.
       pip install virtualenv
       virtualenv venv
 
+  **Virtualenvwrapper**
+
+  virtualenvwrapper_ provides a set of commands which makes working with virtual environments much more pleasant. It also places all your virtual environments in one place.
+
+  To install (make sure virtualenv is already installed):
+
+  .. code-block:: bash
+
+      pip install virtualenvwrapper
+      export WORKON_HOME=~/Envs
+      source /usr/local/bin/virtualenvwrapper.sh
+      mkvirtualenv venv
+
+  *Windows*:
+
+  .. code-block:: bash
+
+      pip install virtualenvwrapper-win
+      mkvirtualenv venv
+
+  .. _virtualenvwrapper: http://virtualenvwrapper.readthedocs.org/en/latest/index.html
+
 2. **Activate the virtual environment**
 
   **Linux/Mac OSX:** :code:`source venv/bin/activate`
 
   **Windows:** :code:`venv/Scripts/activate.bat`
 
+  **Virtualenvwrapper:** :code:`workon venv`
 
 3. **Install PIP requirements**
 
