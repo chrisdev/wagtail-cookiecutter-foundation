@@ -1,27 +1,197 @@
-Wagtail cookiecutter
-====================
+Wagtail cookiecutter Foundation
+================================
+A cookiecutter_ template for `Wagtail CMS`_ featuring `Zurb Foundation`_ front-end 
+framework.
 
-A [cookiecutter](https://github.com/audreyr/cookiecutter) template for Wagtail sites.
-
+.. _cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`Wagtail CMS`: https://wagtail.io
+.. _`Zurb Foundation`: https://foundation.zurb.com
 
 What's included
 ---------------
+- A Django project with Wagtail_ pre-installed with support for all the 
+  `Zurb Foundation`_ HTML and CSS UI components (typography, forms, buttons, 
+  navigation and other interface components)
 
- - A Django project with wagtail preinstalled
- - A ``core`` app including ``core_tags`` to get you going
- - Vagrant configuration (which uses the [torchbox/wagtail](https://github.com/torchbox/vagrant-wagtail-base) base box)
- - Asible deployemnt and provisioning
- - [Foundation 5](http://foundation.zurb.com/docs/index.html)
- 
+- A comprehensive suite of apps to use for building your site.
+  We take an approach similar to the `Wagtail Demo Project`_ but we use a 
+  modular approach so that can pick and choose the functionality you want to include
+  on you site. We provide invdividual modules for:
+
+    - ``pages`` - Hompage, Standard Pages, People Page, Contact Page, etc.
+    - ``blog`` - Blogging or site news
+    - ``events`` - Event management
+    - ``photo_gallery``- To facilitate easy  management of photo galleries  
+    - ``utils`` - utility functions, templatetags and filters
+
+.. _Wagtail: https://wagtail.io
+.. _`Wagtail Demo Project`: https://github.com/torchbox/wagtaildemo 
+
+
+- Templates and template tags to support Foundation ``HTML`` and ``CSS UI`` 
+  components including:
+
+    - Top bar including (sticky nav)
+    - Off canvas
+    - Bread crumbs
+    - SubNav
+    - Pagination
+
+- Full libsass_ Foundation Sass support through `django-compressor`_/`django-libsass`_ 
+
+- We also provide support for updating your Foundation framework through
+  Bower_ and provide support for an alternative front-end work flow based on 
+  using Bower_ and a task runner like Grunt_ or Gulp_ 
+
+- Support for Vagrant_ which uses the `torchbox/wagtail base box`_
+
+- Deployment and provisioning using Ansible_ that has been extensively tested on
+  Digital Ocean and Linode VPS but is should be easy to modified for hosting on 
+  EC2 etc..
+
+.. _`torchbox/wagtail base box`: https://github.com/torchbox/vagrant-wagtail-base
+.. _Ansible: https://http://www.ansible.com/home
+.. _libsass: https://github.com/sass/libsass
+.. _django-compressor: https://github.com/sass/libsass
+.. _django-libsass: https://github.com/torchbox/django-libsass
+.. _Bower: http://bower.io
+.. _Gulp: https://gulpjs.com
+.. _Grunt: https://gruntjs.com
+.. _Vagrant: https://www.vagrantup.com/
 
 Usage
 -----
 
-Firstly, make sure cookiecutter is installed: [Installation](http://cookiecutter.readthedocs.org/en/latest/installation.html)
+To create a new `Wagtail CMS`_ project. First, install cookiecutter ::
 
-Then run:
+    $ pip install cookiecutter
 
-     cookiecutter https://github.com/chrisdev/wagtail-cookiecutter-foundation.git
+Now run it against this repo::
+
+    $ cookiecutter https://github.com/chrisdev/wagtail-cookiecutte-foundation.git
+
+You'll be prompted for some questions, answer them, then it will create a Django project for you.
 
 
-Answer the questions and you're done!
+You will be prompted to answer the following questions. ::
+
+    Cloning into 'cookiecutter-django'...
+    remote: Counting objects: 550, done.
+    remote: Compressing objects: 100% (310/310), done.
+    remote: Total 550 (delta 283), reused 479 (delta 222)
+    Receiving objects: 100% (550/550), 127.66 KiB | 58 KiB/s, done.
+    Resolving deltas: 100% (283/283), done.
+    project_name (default is "Wagtail Project")? My CMS 
+    repo_name (default is "wagtailproject")? my_site  
+    author_name (default is "Your Name")? Chris Clarke 
+    email (default is "Your email")? cclarke@chrisdev.com 
+    description (default is "A short description of the project.")? My site.
+    domain_name (default is "example.com")? myreddit.com
+    version (default is "0.1.0")? 0.0.1
+    timezone (default is "UTC")?
+    now (default is "2015/01/13")? 2015/01/16
+    year (default is "2015")?
+
+
+Enter the project and take a look around::
+
+    $ cd my_site/
+    $ ls
+
+Create a GitHub, Bitbucket repo and push it there::
+
+    $ git init
+    $ git add .
+    $ git commit -m "first awesome commit"
+    $ git remote add origin git@github.com:cclarke/my_site.git
+    $ git push -u origin master
+
+Now take a look at your repo. Don't forget to carefully look at the generated README. Awesome, right?
+
+Getting up and running
+========================
+To The following steps assume the following dependencies
+
+    * pip
+    * virtualenv/pyvenv
+    * PostgreSQL
+
+Firstly, open up a command line shell in your new projects directory.
+
+
+1. **Create a virtual environment**
+
+
+  **Linux/Mac OSX:** :code:`pyvenv venv`
+
+  **Windows:** :code:`c:\Python34\python -m venv myenv`
+
+  **Python 2.7**
+
+  ``pyvenv`` is only included with Python 3.3 onwards. 
+  To get virtual environments on Python 2, use the ``virtualenv`` package:
+
+  .. code-block:: bash
+
+      pip install virtualenv
+      virtualenv venv
+
+2. **Activate the virtual environment**
+
+  **Linux/Mac OSX:** :code:`source venv/bin/activate`
+
+  **Windows:** :code:`venv/Scripts/activate.bat`
+
+
+3. **Install PIP requirements**
+
+  :code:`pip install -r requirements/dev.txt`
+
+4. **Create the database**
+
+  By default require ``PostgreSQL`` to be installed
+
+  :code: `createdb my_site`
+
+  :code:`python manage.py migrate`
+
+5. **Create an admin user**
+
+  :code:`python manage.py createsuperuser`
+
+6. **Run the development server**
+
+  :code:`python manage.py runserver`
+
+  Your site is now accessible at ``http://localhost:8000``,
+  with the admin backend available at ``http://localhost:8000/admin/``.
+
+
+Using Vagrant
+-------------
+Alternatively you may prefer to use Vagrant_ to run your project locally in
+is own virtual machine. This will you to use PostgreSQL, Elasticsearch 
+Redis etc.  in development without having to install them on your host machine. 
+To install Vagrant, see: `Installing Vagrant`_
+
+.. _`Installing Vagrant`: https://docs.vagrantup.com/v2/installation/
+
+
+To setup the Vagrant box, run the following commands
+
+ .. code-block:: bash
+
+    vagrant up # This may take some time on first run
+    vagrant ssh
+    # within the ssh session
+    dj createsuperuser
+    djrun
+
+
+If you now visit http://localhost:8000 you should see the default wagtail
+foundation site 
+
+You can browse the Wagtail admin interface at: http://localhost:8000/admin
+
+You can read more about how Vagrant works at: https://docs.vagrantup.com/v2/
+
