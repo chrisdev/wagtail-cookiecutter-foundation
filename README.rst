@@ -1,6 +1,6 @@
 Wagtail cookiecutter Foundation
 ================================
-A cookiecutter_ template for `Wagtail CMS`_ featuring `Zurb Foundation`_ front-end 
+A cookiecutter_ template for `Wagtail CMS`_ featuring `Zurb Foundation`_ front-end
 framework.
 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
@@ -9,26 +9,26 @@ framework.
 
 What's included
 ---------------
-- A Django project with Wagtail_ pre-installed with support for all the 
-  `Zurb Foundation`_ HTML and CSS UI components (typography, forms, buttons, 
+- A Django project with Wagtail_ pre-installed with support for all the
+  `Zurb Foundation`_ HTML and CSS UI components (typography, forms, buttons,
   navigation and other interface components)
 
 - A comprehensive suite of apps to use for building your site.
-  We take an approach similar to the `Wagtail Demo Project`_ but we use a 
+  We take an approach similar to the `Wagtail Demo Project`_ but we use a
   modular approach so that can pick and choose the functionality you want to include
-  on you site. We provide invdividual modules for:
+  on you site. We provide individual modules for:
 
     - ``pages`` - Hompage, Standard Pages, People Page, Contact Page, etc.
     - ``blog`` - Blogging or site news
     - ``events`` - Event management
-    - ``photo_gallery``- To facilitate easy  management of photo galleries  
+    - ``photo_gallery``- To facilitate easy  management of photo galleries
     - ``utils`` - utility functions, templatetags and filters
 
 .. _Wagtail: https://wagtail.io
-.. _`Wagtail Demo Project`: https://github.com/torchbox/wagtaildemo 
+.. _`Wagtail Demo Project`: https://github.com/torchbox/wagtaildemo
 
 
-- Templates and template tags to support Foundation ``HTML`` and ``CSS UI`` 
+- Templates and template tags to support Foundation ``HTML`` and ``CSS UI``
   components including:
 
     - Top bar including (sticky nav)
@@ -37,16 +37,16 @@ What's included
     - SubNav
     - Pagination
 
-- Full libsass_ Foundation Sass support through `django-compressor`_/`django-libsass`_ 
+- Full libsass_ Foundation Sass support through `django-compressor`_/`django-libsass`_
 
 - We also provide support for updating your Foundation framework through
-  Bower_ and provide support for an alternative front-end work flow based on 
-  using Bower_ and a task runner like Grunt_ or Gulp_ 
+  Bower_ and provide support for an alternative front-end work flow based on
+  using Bower_ and a task runner like Grunt_ or Gulp_
 
 - Support for Vagrant_ which uses the `torchbox/wagtail base box`_
 
 - Deployment and provisioning using Ansible_ that has been extensively tested on
-  Digital Ocean and Linode VPS but is should be easy to modified for hosting on 
+  Digital Ocean and Linode VPS but is should be easy to modified for hosting on
   EC2 etc..
 
 .. _`torchbox/wagtail base box`: https://github.com/torchbox/vagrant-wagtail-base
@@ -81,10 +81,10 @@ You will be prompted to answer the following questions. ::
     remote: Total 550 (delta 283), reused 479 (delta 222)
     Receiving objects: 100% (550/550), 127.66 KiB | 58 KiB/s, done.
     Resolving deltas: 100% (283/283), done.
-    project_name (default is "Wagtail Project")? My CMS 
-    repo_name (default is "wagtailproject")? my_site  
-    author_name (default is "Your Name")? Chris Clarke 
-    email (default is "Your email")? cclarke@chrisdev.com 
+    project_name (default is "Wagtail Project")? My CMS
+    repo_name (default is "wagtailproject")? my_site
+    author_name (default is "Your Name")? Chris Clarke
+    email (default is "Your email")? cclarke@chrisdev.com
     description (default is "A short description of the project.")? My site.
     domain_name (default is "example.com")? myreddit.com
     version (default is "0.1.0")? 0.0.1
@@ -128,7 +128,7 @@ Firstly, open up a command line shell in your new projects directory.
 
   **Python 2.7**
 
-  ``pyvenv`` is only included with Python 3.3 onwards. 
+  ``pyvenv`` is only included with Python 3.3 onwards.
   To get virtual environments on Python 2, use the ``virtualenv`` package:
 
   .. code-block:: bash
@@ -170,8 +170,8 @@ Firstly, open up a command line shell in your new projects directory.
 Using Vagrant
 -------------
 Alternatively you may prefer to use Vagrant_ to run your project locally in
-is own virtual machine. This will you to use PostgreSQL, Elasticsearch 
-Redis etc.  in development without having to install them on your host machine. 
+is own virtual machine. This will you to use PostgreSQL, Elasticsearch
+Redis etc.  in development without having to install them on your host machine.
 To install Vagrant, see: `Installing Vagrant`_
 
 .. _`Installing Vagrant`: https://docs.vagrantup.com/v2/installation/
@@ -189,9 +189,8 @@ To setup the Vagrant box, run the following commands
 
 
 If you now visit http://localhost:8000 you should see the default wagtail
-foundation site 
+foundation site
 
 You can browse the Wagtail admin interface at: http://localhost:8000/admin
 
 You can read more about how Vagrant works at: https://docs.vagrantup.com/v2/
-
