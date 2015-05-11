@@ -1,0 +1,10 @@
+{% raw %}
+{% if form.non_field_errors %}
+    <div class="alert-box error">
+     {{ form.non_field_errors|join:"<br/>" }}
+    </div>
+{% endif %}
+{% for field in form %}
+    {% include "utils/tags/foundation/foundation_form_field.html" %}
+{% endfor %}
+{% endraw %}
