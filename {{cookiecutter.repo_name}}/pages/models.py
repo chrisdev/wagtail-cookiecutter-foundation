@@ -154,7 +154,6 @@ class HomePage(Page):
 
 HomePage.content_panels = [
     FieldPanel('title', classname="full title"),
-    FieldPanel('welcome_text', classname="full"),
     InlinePanel(HomePage, 'carousel_items', label="Carousel items"),
     InlinePanel(HomePage, 'content_items', label="Content Blocks"),
     InlinePanel(HomePage, 'related_links', label="Related links"),
