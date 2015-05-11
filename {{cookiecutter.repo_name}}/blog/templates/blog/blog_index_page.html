@@ -1,0 +1,43 @@
+{% raw %}
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block content %}
+    <div id="content" class="row">
+        <div class="large-9 medium-8 columns">
+        
+            {% if request.GET.tag|length %}
+                <h4>Showing posts tagged as {{ request.GET.tag|safe }} <a href=" {% pageurl self %} ">Show all</a></h4>
+            {% endif %}
+        
+            <div id="blog_list" class="row" data-equalizer>
+                {% for blog in blogs %}
+                    {% include "blog/includes/blog_list_item.html" %}
+                {% empty %}
+                    No blogs found
+                {% endfor %}
+            </div>
+        
+             <div class="row">
+                <div class="pagination-centered">
+                  <ul class="pagination">
+                       {% if blogs.has_previous %}
+                            <li class="arrow unavailable"><a href="?page={{ blogs.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&laquo;</a></li>
+                       {% endif %}
+                       
+                       Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}
+                        
+                       {% if blogs.has_next %}
+                           <li class="arrow"><a href="?page={{ blogs.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&raquo;</a></li>
+                       {% endif %}
+                  </ul>
+                </div>
+            </div>
+        
+        </div>
+        <div id="sidebar" class="large-3 medium-4 columns">
+        </div>
+    </div>
+{% endblock %}
+{% endraw %}
