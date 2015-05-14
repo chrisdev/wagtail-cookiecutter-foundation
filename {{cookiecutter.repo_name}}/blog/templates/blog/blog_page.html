@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% raw %}{% extends "blog/blog_base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
 {% if blog.feed_image %}
 {% block og_image %}
@@ -7,40 +7,10 @@
 <meta property="og:type" content="article" />
 {% endblock %} 
 {% endif %}
-{% block content %}
-<div id="fb-root"></div>
-
-    <div id="content" class="row">        
-        <div id="blog" class="large-9 columns">
-            <div class="panel radius">
-                {% if self.date %}
-                    {% block heading %}
-                        <h3>{{ self.title }}</h3>
-                        <h6>{{ self.date|date:"j F Y" }}</h6>
-                    {% endblock %}
-                {% endif %}
-                {% with self.tags.all as tags %}
-                    {% if tags %}
-                     <div id="tags" style="margin-bottom:10px">
-                         <span class="radius label success" style="font-size: 14px">
-                             TAGS
-                         </span>
-                        {% for tag in tags %}
-                            <span class="radius label" style="font-size: 14px">
-                                {{ tag }}
-                                <a href="{% pageurl self.blog_index %}?tag={{ tag }}"></a>
-                            </span>
-                        {% endfor %}
-                    </div>
-                    {% endif %}
-                {% endwith %}
-                
-            
-                {% include "pages/includes/body.html" with body=self.body only %}
+{% block article_content %}
+<article>
+    {% include "blog/includes/blog_header.html" %}
+    {% include "blog/includes/blog_body.html" with body=self.body only %}
     
-            </div>
-        </div>
-        <div id="sidebar" class="large-3 columns">
-        </div>
-    </div>
-{% endblock %}
+</article>
+{% endblock %}{% endraw %}

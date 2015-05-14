@@ -1,16 +1,11 @@
-{% raw %}
-{% extends "base.html" %}
+{% extends "blog/blog_base.html" %}
 
 {% load wagtailcore_tags %}
 
-{% block content %}
-    <div id="content" class="row">
-        <div class="large-9 medium-8 columns">
-        
+{% block article_content %}
             {% if request.GET.tag|length %}
                 <h4>Showing posts tagged as {{ request.GET.tag|safe }} <a href=" {% pageurl self %} ">Show all</a></h4>
             {% endif %}
-        
             <div id="blog_list" class="row" data-equalizer>
                 {% for blog in blogs %}
                     {% include "blog/includes/blog_list_item.html" %}
@@ -34,10 +29,4 @@
                   </ul>
                 </div>
             </div>
-        
-        </div>
-        <div id="sidebar" class="large-3 medium-4 columns">
-        </div>
-    </div>
-{% endblock %}
-{% endraw %}
+{% endblock %}{% endraw %}
