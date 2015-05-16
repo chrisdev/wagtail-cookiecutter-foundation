@@ -1,0 +1,14 @@
+{% raw %}{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+ <div class="large-9 medium-8 columns" role="content">
+     {% block contact_content %}{% endblock %}
+</div>
+<aside class="large-3 medium-4 columns">
+     {% block sidebar %}
+     <h3> Side Bar </h3>
+     {% endblock %}
+</aside>
+</div>
+{% endblock %}{% endraw %}
