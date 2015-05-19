@@ -1,4 +1,4 @@
-{% raw %}{% load wagtailcore_tags core_tags %}
+{% raw %}{% load wagtailcore_tags navigation_tags %}
 {% for child in menuitems_children %}
     <li>
         <a href="{% pageurl child %}">{{ child.title }}</a>

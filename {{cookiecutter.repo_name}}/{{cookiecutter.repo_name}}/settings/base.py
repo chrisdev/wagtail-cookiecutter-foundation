@@ -64,6 +64,9 @@ INSTALLED_APPS = (
 
     'utils',
     'pages',
+    'blog',
+    'events',
+    'contact',
 )
 
 MIDDLEWARE_CLASSES = (

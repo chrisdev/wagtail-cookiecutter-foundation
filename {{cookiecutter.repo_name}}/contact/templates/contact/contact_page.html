@@ -1,0 +1,17 @@
+{% raw %}{% extends "contact/contact_base.html" %}
+
+{% load wagtailcore_tags foundation_tags %}
+
+{% block contact_content %}
+            <h2> {{ self.title }} </h2>
+            <h3 class="subheader"> <small>{{ self.intro }}</small> </h3>
+            <hr>
+            <div class="form-panel">
+                    <form class="contact-form" action="{% pageurl self %}" method="POST">
+                        {% csrf_token %}
+                        {{ form|as_foundation }}
+                        <input class="button tiny radius" type="submit" value="Send">
+                    </form>
+                </div>
+         </div>
+{% endblock %}{% endraw %}

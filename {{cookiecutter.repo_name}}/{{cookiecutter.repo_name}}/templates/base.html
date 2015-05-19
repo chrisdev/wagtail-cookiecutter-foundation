@@ -1,4 +1,4 @@
-{% raw %}{% load compress static wagtailuserbar %}
+{% raw %}{% load compress static wagtailuserbar navigation_tags %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -26,22 +26,10 @@
 
     <body class="{% block body_class %}{% endblock %}">
         {% wagtailuserbar %}
-        <div class="contain-to-grid fixed">
-          <nav class="top-bar" data-topbar role="navigation">
-            <ul class="title-area">
-              <li class="name">
-                <h1><a href="#">{{ self.title }}</a></h1>
-              </li>
-              <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-            </ul>
 
-            <section class="top-bar-section">
-              <ul class="right">
-                <li class="active"><a href="#">Home</a></li>
-              </ul>
-            </section>
-          </nav>
-        </div>
+        {% get_site_root as site_root %}
+        {% top_menu parent=site_root calling_page=self %}
+
         {% block content %}{% endblock %}
 
         <footer>

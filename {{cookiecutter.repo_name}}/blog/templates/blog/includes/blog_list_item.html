@@ -1,0 +1,25 @@
+{% raw %}{% load wagtailcore_tags wagtailimages_tags %}
+    <div class="medium-12 columns">
+        <article>
+        <div class="blog panel radius row">
+            <a href="{% pageurl blog %}">
+                <h4>{{ blog.title }}</h4>
+                {% if blog.search_description or blog.feed_image %}
+                        {% if blog.feed_image %}
+                            {% image blog.feed_image width-250 %}
+                        {% endif %}
+                        {% if blog.search_description %}
+                            {{ blog.search_description }}
+                        {% endif %}
+                {% endif %}
+                {{ blog.intro|truncatewords:80|richtext }}
+                <div class="medium-12 columns" style="padding: 0;margin-top: 12px;">
+                    <p style="margin-bottom: 0;">
+                        <a class="button radius tiny secondary disabled">{{ blog.date|date:"j F Y" }}</a>
+                        <a class="right button radius tiny" href="{% pageurl blog %}">Read Article &raquo;</a>
+                    </p>
+                </div>
+            </a>
+        </div>
+        </article>
+    </div>{% endraw %}

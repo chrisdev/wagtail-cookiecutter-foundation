@@ -1,0 +1,24 @@
+{% raw %}{% load wagtailcore_tags %}
+<div class="panel radius">
+    {% if self.date %}
+    {% block heading %}
+    <h3>{{ self.title }}</h3>
+    <h6>{{ self.date|date:"j F Y" }}</h6>
+    {% endblock %}
+    {% endif %}
+    {% with self.tags.all as tags %}
+    {% if tags %}
+    <div id="tags" style="margin-bottom:10px">
+        <span class="radius label success" style="font-size: 14px">
+            TAGS
+        </span>
+        {% for tag in tags %}
+        <span class="radius label" style="font-size: 14px">
+            {{ tag }}
+            <a href="{% pageurl self.blog_index %}?tag={{ tag }}"></a>
+        </span>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+</div>{% endraw %}
