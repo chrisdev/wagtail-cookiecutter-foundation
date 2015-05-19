@@ -1,4 +1,4 @@
-"""
+{% raw %}"""
 Celery config for {{ cookiecutter.repo_name }} project.
 
 For more information on this file, see
@@ -27,4 +27,4 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "{{ cookiecutter.repo_name }}.se
 app = Celery("{{ cookiecutter.repo_name }}")
 
 app.config_from_object('django.conf:settings')
-app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
+app.autodiscover_tasks(lambda: settings.INSTALLED_APPS){% endraw %}
