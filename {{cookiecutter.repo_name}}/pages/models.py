@@ -132,7 +132,6 @@ StandardPage.content_panels = [
     FieldPanel('body', classname="full"),
     InlinePanel(StandardPage, 'carousel_items', label="Carousel items"),
     InlinePanel(StandardPage, 'related_links', label="Related links"),
-    FieldPanel('template_string')
 
 ]
 

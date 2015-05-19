@@ -1,6 +1,5 @@
-{% raw %}
-{% extends "base.html" %}
-{% load wagtailcore_tags core_tags %}
+{% raw %}{% extends "base.html" %}
+{% load wagtailcore_tags navigation_tags %}
 {% load wagtailimages_tags %}
 
 {% block content %}
@@ -15,11 +14,8 @@
             </div>
         </div>
         <div id="sidebar" class="large-3 medium-4 columns">
-            {% standard_index_listing calling_page=self %}
-            {% include "page/includes/sidebar.html" %}
-            {% include "page/includes/related_links.html" with related_links=self.related_links.all only %}
+            <h2>The sidebar</h2>
         </div>
     </div>
-{% endblock %}
-{% endraw %}
+{% endblock %}{% endraw %}
 

@@ -1,7 +1,6 @@
 {% raw %}
 {% extends "base.html" %}
-{% load wagtailcore_tags core_tags %}
-{% load wagtailimages_tags %}
+{% load wagtailcore_tags navigation_tags %}
 
 {% block content %}
     <div id="content" class="row">
@@ -11,13 +10,12 @@
             <hr>
             {% include "pages/includes/intro.html" with intro=self.intro only %}
         
-            {% include "base/includes/standard_carousel.html" with image_items=self.image_items.all only %}
+            {% include "pages/includes/standard_carousel.html" with image_items=self.image_items.all only %}
             
-            {% include "base/includes/body.html" with body=self.body only %}
+            {% include "pages/includes/body.html" with body=self.body only %}
         </div>
         <div id="sidebar" class="large-3 medium-4 columns">
-            {% include "base/includes/sidebar.html" %}
-            {% include "base/includes/related_links.html" with related_links=self.related_links.all only %}
+            <h2>Sidebar</h2>
         </div>
     </div>
 {% endblock %}
