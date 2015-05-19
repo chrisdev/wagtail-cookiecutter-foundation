@@ -75,27 +75,26 @@ You'll be prompted for some questions, answer them, then it will create a Django
 
 You will be prompted to answer the following questions. ::
 
-    Cloning into 'cookiecutter-django'...
-    remote: Counting objects: 550, done.
-    remote: Compressing objects: 100% (310/310), done.
-    remote: Total 550 (delta 283), reused 479 (delta 222)
-    Receiving objects: 100% (550/550), 127.66 KiB | 58 KiB/s, done.
-    Resolving deltas: 100% (283/283), done.
-    project_name (default is "Wagtail Project")? My CMS
-    repo_name (default is "wagtailproject")? my_site
-    author_name (default is "Your Name")? Chris Clarke
-    email (default is "Your email")? cclarke@chrisdev.com
-    description (default is "A short description of the project.")? My site.
-    domain_name (default is "example.com")? myreddit.com
-    version (default is "0.1.0")? 0.0.1
+    Cloning into 'wagtail-cookiecutter-foundation'...
+    remote: Counting objects: 611, done.
+    remote: Compressing objects: 100% (13/13), done.
+    remote: Total 611 (delta 3), reused 0 (delta 0), pack-reused 598
+    Receiving objects: 100% (611/611), 423.98 KiB | 0 bytes/s, done.
+    Resolving deltas: 100% (264/264), done.
+    Checking connectivity... done.
+    project_name (default is "Wagtail Project")?
+    repo_name (default is "wagtailproject")?
+    author_name (default is "Your Name")?
+    email (default is "Your email")?
+    description (default is "A short description of the project.")?
     timezone (default is "UTC")?
-    now (default is "2015/01/13")? 2015/01/16
-    year (default is "2015")?
+   now (default is "2015/04/16")?
+     year (default is "2015")?
 
 
 Enter the project and take a look around::
 
-    $ cd my_site/
+    $ cd wagtaiproject/
     $ ls
 
 Create a GitHub, Bitbucket repo and push it there::
