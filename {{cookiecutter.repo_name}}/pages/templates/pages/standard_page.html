@@ -15,7 +15,7 @@
             {% include "pages/includes/body.html" with body=self.body only %}
         </div>
         <div id="sidebar" class="large-3 medium-4 columns">
-            <h2>Sidebar</h2>
+              {% secondary_menu calling_page=self %}
         </div>
     </div>
 {% endblock %}
