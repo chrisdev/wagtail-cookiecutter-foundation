@@ -7,11 +7,10 @@
             <h3 class="subheader"> <small>{{ self.intro }}</small> </h3>
             <hr>
             <div class="form-panel">
-                    <form class="contact-form" action="{% pageurl self %}" method="POST">
-                        {% csrf_token %}
-                        {{ form|as_foundation }}
-                        <input class="button tiny radius" type="submit" value="Send">
-                    </form>
-                </div>
-         </div>
+                <form class="contact-form" action="{% pageurl self %}" method="POST">
+                    {% csrf_token %}
+                    {{ form|as_foundation }}
+                    <input class="button tiny radius" type="submit" value="Send">
+                </form>
+            </div>
 {% endblock %}{% endraw %}

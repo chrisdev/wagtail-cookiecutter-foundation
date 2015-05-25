@@ -1,8 +1,7 @@
 from django import template
-from django.conf import settings
-from django.template.loader import get_template
-from django.template import Context
+from wagtail.wagtailcore.models import Page
 register = template.Library()
+
 
 @register.assignment_tag(takes_context=True)
 def get_site_root(context):
@@ -16,7 +15,8 @@ def has_menu_children(page):
         return False
 
 
-@register.inclusion_tag('utils/tags/navigation/top_menu.html', takes_context=True)
+@register.inclusion_tag(
+    'utils/tags/navigation/top_menu.html', takes_context=True)
 def top_menu(context, parent, calling_page=None):
     menuitems = parent.get_children().filter(
         live=True,
@@ -32,7 +32,8 @@ def top_menu(context, parent, calling_page=None):
 
 
 # Retrieves the children of the top menu items for the drop downs
-@register.inclusion_tag('utils/tags/navigation/top_menu_children.html', takes_context=True)
+@register.inclusion_tag(
+    'utils/tags/navigation/top_menu_children.html', takes_context=True)
 def top_menu_children(context, parent):
     menuitems_children = parent.get_children()
     menuitems_children = menuitems_children.filter(
@@ -48,7 +49,9 @@ def top_menu_children(context, parent):
         'request': context['request'],
     }
 
-@register.inclusion_tag('utils/tags/navigtion/site_menu.html', takes_context=True)
+
+@register.inclusion_tag(
+    'utils/tags/navigation/site_menu.html', takes_context=True)
 def site_menu(context, parent, calling_page=None):
     menuitems = parent.get_children().filter(
         live=True,
@@ -63,7 +66,8 @@ def site_menu(context, parent, calling_page=None):
     }
 
 
-@register.inclusion_tag('utils/tags/navigation/site_menu_children.html', takes_context=True)
+@register.inclusion_tag(
+    'utils/tags/navigation/site_menu_children.html', takes_context=True)
 def site_menu_children(context, parent):
     menuitems_children = parent.get_children()
     menuitems_children = menuitems_children.filter(
@@ -80,9 +84,8 @@ def site_menu_children(context, parent):
     }
 
 
-# Retrieves the secondary links for the 'also in this section' links
-# - either the children or siblings of the current page
-@register.inclusion_tag('utils/tags/navigation/secondary_menu.html', takes_context=True)
+@register.inclusion_tag(
+    'utils/tags/navigation/secondary_menu.html', takes_context=True)
 def secondary_menu(context, calling_page=None):
     pages = []
     if calling_page:
@@ -103,7 +106,9 @@ def secondary_menu(context, calling_page=None):
         'request': context['request'],
     }
 
-@register.inclusion_tag('utils/tags/navigation/breadcrumbs.html', takes_context=True)
+
+@register.inclusion_tag(
+    'utils/tags/navigation/breadcrumbs.html', takes_context=True)
 def breadcrumbs(context):
     self = context.get('self')
     if self is None or self.depth <= 2:
@@ -116,4 +121,3 @@ def breadcrumbs(context):
         'ancestors': ancestors,
         'request': context['request'],
     }
-
