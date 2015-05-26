@@ -1,0 +1,22 @@
+/* TEAM */
+
+Lead Developer:Christopher Clarke
+Contact: cclarke [at] chrisdev.com
+Twitter: @realchrisdev
+From:Tunapuna, Trinidad and Tobago
+
+Web Design and Graphics:Lendl Smith
+Contact: lendl.smith [at] chrisdev.com
+Twitter: @lendlsmith
+From:Tunapuna, Trinidad and Tobago
+
+Developer: Parbhat Puri
+Contact: 2012ecs17 [at] smvdu.ac.in 
+Twitter: @parbhatpuri
+From: Kurukshetra, Haryana, India 
+
+/* SITE */
+Language:English
+Doctype: HTML5
+Components: Zurb Foundation, jQuery, Django, Wagtail CMS 
+Software: Vim, Photoshop Elements, Pixelmator
