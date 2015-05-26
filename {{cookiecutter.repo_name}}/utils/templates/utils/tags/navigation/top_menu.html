@@ -1,38 +1,41 @@
 {% raw %}{% load wagtailcore_tags navigation_tags %}
 {% get_site_root as site_root %}
-<nav class="top-bar" data-topbar>
-    <ul class="title-area">
-        <li class="name">
-        <h1 class="show-for-small"><a href="/">&nbsp;</a></h1>
-        </li>
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-    </ul>
-    <section class="top-bar-section">
-    <ul class="menu">
-        <li class="{% if calling_page.url == site_root %} active{% endif %}"><a href="{% pageurl site_root %}">Home</a></li>
-            {% for menuitem in menuitems %}
-                <li class="{% if menuitem.show_dropdown %}has-dropdown{% endif %}
-                           {% if calling_page.url == menuitem.url %} active{% endif %}">
-                    <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
-                {% if menuitem.show_dropdown %}
-                    <ul class="dropdown">
-                        {% top_menu_children parent=menuitem %}
-                    </ul>
-                {% endif %}
-            {% endfor %}
-        </li>
-        <li class="has-form show-for-small" style="background: transparent;">
-           <form action ="{% url 'wagtailsearch_search' %}" method="get">
-               <div class="row collapse">
-                   <div class="large-8 small-9 columns">
-                       <input type="text" placeholder="Search"  name="q"{% if query_string %} value="{{ query_string }}"{% endif %}>
+<div class="contain-to-grid fixed">
+    <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="/">{{ self.title }}</a></h1>
+          </li>
+          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+        <section class="top-bar-section">
+        <ul class="menu right">
+            <li class="{% if calling_page.url == site_root %} active{% endif %}"><a href="{% pageurl site_root %}">Home</a></li>
+                {% for menuitem in menuitems %}
+                    <li class="{% if menuitem.show_dropdown %}has-dropdown{% endif %}
+                               {% if calling_page.url == menuitem.url %} active{% endif %}">
+                        <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+                    {% if menuitem.show_dropdown %}
+                        <ul class="dropdown">
+                            {% top_menu_children parent=menuitem %}
+                        </ul>
+                    {% endif %}
+                {% endfor %}
+            </li>
+            <li class="has-form show-for-small" style="background: transparent;">
+               <form action ="{% url 'wagtailsearch_search' %}" method="get">
+                   <div class="row collapse">
+                       <div class="large-8 small-9 columns">
+                           <input type="text" placeholder="Search"  name="q"{% if query_string %} value="{{ query_string }}"{% endif %}>
+                       </div>
+                       <div class="large-4 small-3 columns">
+                           <input type="submit" class="secondary postfix button expand" value="Search">
+                       </div>
                    </div>
-                   <div class="large-4 small-3 columns">
-                       <input type="submit" class="secondary postfix button expand" value="Search">
-                   </div>
-               </div>
-           </form>
-        </li>
-    </ul>   
-    </section>
-</nav>{% endraw %}
+               </form>
+            </li>
+        </ul>   
+        </section>
+    </nav>
+</div>
+{% endraw %}
