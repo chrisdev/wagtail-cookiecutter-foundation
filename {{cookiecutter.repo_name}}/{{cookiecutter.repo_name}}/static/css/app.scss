@@ -8,6 +8,12 @@ $white: #fff;
 $anakiwa: #A6DCFF;
 $emperor: #555;
 $blue: #008CBA;
+$tundora: #444;
+$celeste: #ccc;
+$mine-shaft: #333;
+$eastern-blue: #238fb2;
+$mystic: #e4e9f0;
+$light-green: #72c02c;
 
 // Background color for the top bar
 $topbar-bg-color: $keppel;
@@ -85,17 +91,51 @@ $header-font-color: #555 !default;
 
 .sitemap
 {
-  padding-bottom: 100px;
+  padding: 40px 0;
+  background-color: $tundora;
+  border-top: solid 1px $celeste;
+  color: white;
+}
+
+.headline
+{
+  display: block;
+  margin: 10px 0 25px 0;
+  border-bottom: 1px dotted $mystic;
+}
+
+.headline h3
+{
+  color: $eastern-blue;
+  margin: 0 0 -2px 0;
+  padding-bottom: 5px;
+  display: inline-block;
+  border-bottom: 2px solid $light-green;
+}
+
+.sitemap a
+{
+  color: white;
+  text-decoration: none;
+}
+
+.sitemap a:hover
+{
+  color: $eastern-blue;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  -webkit-transition: all 0.25s ease;
 }
 
 .copyright
 {
-  background-color: $keppel;
-  color: $white;
-  padding-top: 10px;
+  background-color: $mine-shaft;
+  color: $celeste;
+  padding: 17px 0;
+  border-top: solid 1px $emperor;
 }
 
 .nav-top
 {
-  border-top: 5px solid #238fb2;
+  border-top: 5px solid $eastern-blue;
 }
