@@ -19,9 +19,8 @@
             <script src="{% static 'js/vendor/modernizr.js' %}"></script>
         {% endcompress %}
 
-        {% block extra_css %}
-
-        {% endblock %}
+        {% block extra_css %}{% endblock %}
+        {% include "utils/includes/google_analytics.html" %}
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
