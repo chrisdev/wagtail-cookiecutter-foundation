@@ -7,10 +7,12 @@ $boston_blue: #3299BB;
 $white: #fff;
 $anakiwa: #A6DCFF;
 $emperor: #555;
+$blue: #008CBA;
 
 // Background color for the top bar
 $topbar-bg-color: $keppel;
 $topbar-bg: $topbar-bg-color;
+$topbar-link-bg-hover: $blue;
 
 // Fonts
 $header-font-family: 'Lato', Helvetica, sans;
@@ -89,4 +91,9 @@ $header-font-color: #555 !default;
   background-color: $keppel;
   color: $white;
   padding-top: 10px;
+}
+
+.nav-top
+{
+  border-top: 5px solid #238fb2;
 }
