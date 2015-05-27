@@ -5,24 +5,15 @@
 {% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
 
 {% block content %}
-	<div class="intro">
-		<div class="row text-center">
-		  <div class="large-12 columns">
-		  	<h1>{{ self.title }}</h1>
-		  	<p>
-		  		{{ self.body|richtext }}
-		  	</p>
-		  </div>
-		</div>
-	</div>
-
-	<div class="welcome">
-		<div class="row text-center">
-		  <div class="large-12 columns">
-		  	{{ self.welcome_text|richtext }}
-		  </div>
-		</div>
-	</div>
+    <div class="intro">
+        <div class="row text-center">
+          <div class="large-12 columns">
+            <h1>{{ self.title }}</h1>
+            {{ self.body|richtext }}
+        {% include "pages/includes/bx_carousel.html" with carousel_items=self.carousel_items.all only  %}
+          </div>
+        </div>
+    </div>
 
 	<div class="section">
         <div id="icons" class="row">

@@ -52,12 +52,17 @@ $header-font-color: #555 !default;
 
 .intro
 {
-  background-color: $boston_blue;
   color: $white;
-  padding: 100px 0px;
+  padding: 50px 0px;
+  background: -webkit-linear-gradient(90deg,#7474bf 1%,#5e9cd1 99%);
+  background: -moz-linear-gradient(90deg,#7474bf 1%,#5e9cd1 99%);
+  background: -ms-linear-gradient(90deg,#7474bf 1%,#5e9cd1 99%);
+  background: -o-linear-gradient(90deg,#7474bf 1%,#5e9cd1 99%);
+  background: linear-gradient(90deg,#7474bf 1%,#5e9cd1 40%);
 }
 
-.intro h1 {
+.intro h1
+ {
   font-size: 50px;
   font-weight: 300;
   line-height: 1;
@@ -65,15 +70,9 @@ $header-font-color: #555 !default;
   color: $white;
 }
 
-.welcome
+.intro .rich-text
 {
-  padding: 50px 0px;
-  color: $emperor;
-}
-
-.welcome p
-{
-  word-wrap: break-word;
+  margin-bottom: 50px;
 }
 
 .section

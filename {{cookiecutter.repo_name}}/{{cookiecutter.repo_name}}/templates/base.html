@@ -19,7 +19,9 @@
             <script src="{% static 'js/vendor/modernizr.js' %}"></script>
         {% endcompress %}
 
-        {% block extra_css %}{% endblock %}
+        {% block extra_css %}
+            <link rel="stylesheet" type="text/css" href="{% static 'css/vendor/jquery.bxslider.css' %}">
+        {% endblock %}
         {% include "utils/includes/google_analytics.html" %}
     </head>
 
@@ -59,11 +61,15 @@
             <script src="{% static 'js/vendor/jquery.js' %}"></script>
             <script src="{% static 'js/foundation.min.js' %}"></script>
             <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+            <script src="{% static 'js/vendor/jquery.bxslider.min.js' %}"></script>
         {% endcompress %}
 
         {% block extra_js %}
         <script>
           $(document).foundation();
+          $(document).ready(function(){
+              $('.bxslider').bxSlider();
+            });
         </script>
         {% endblock %}
     </body>
