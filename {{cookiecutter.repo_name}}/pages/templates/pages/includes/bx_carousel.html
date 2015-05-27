@@ -1,0 +1,18 @@
+{% raw %}
+{% load static pages_tags wagtailcore_tags %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
+{% if carousel_items %}
+<div class="bxslider">
+    {% for carousel_item in carousel_items %}
+        <li>
+          {% if carousel.embed_url %}
+              {{ carousel_item.embed_url|embed:1000 }}
+          {% else %}
+            {% image carousel_item.image width-1400 as carousel_imagedata %}
+                <img class="rsImg" src="{{ carousel_imagedata.url }}" alt="{{ carousel_imagedata.alt }}"/>
+           {% endif %} 
+        </li>
+    {% endfor %}
+</div>
+{% endif %}
+{% endraw %}
