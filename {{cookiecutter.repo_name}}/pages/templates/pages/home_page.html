@@ -8,9 +8,11 @@
     <div class="intro">
         <div class="row text-center">
           <div class="large-12 columns">
-            <h1>{{ self.title }}</h1>
+            <h3>{{ self.title_text|richtext }}</h3>
             {{ self.body|richtext }}
-        {% include "pages/includes/bx_carousel.html" with carousel_items=self.carousel_items.all only  %}
+            <div id="carousel">
+                {% include "pages/includes/bx_carousel.html" with carousel_items=self.carousel_items.all only  %}
+            </div>
           </div>
         </div>
     </div>
