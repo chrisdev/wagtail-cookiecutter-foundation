@@ -130,14 +130,23 @@ $header-font-color: #555 !default;
   -webkit-transition: all 0.25s ease;
 }
 
-.copyright
+.contact-us
 {
   background-color: $mine-shaft;
-  color: $celeste;
-  padding: 17px 0;
+  color: white;
+  padding: 10px 0;
   border-top: solid 1px $emperor;
 }
 
+.contact-us h4
+{
+  color: $white;
+}
+
+.contact-head
+{
+  margin-bottom: 20px;
+}
 .nav-top
 {
   border-top: 5px solid $eastern-blue;
