@@ -47,6 +47,8 @@ class HomePageRelatedLink(Orderable, RelatedLink):
 
 
 class HomePage(Page):
+    title_text = RichTextField(null=True, blank=True)
+    contact = RichTextField(null=True, blank=True)
     body = RichTextField(null=True, blank=True)
 
     search_fields = Page.search_fields + (
@@ -58,6 +60,8 @@ class HomePage(Page):
 
 HomePage.content_panels = [
     FieldPanel('title', classname="full title"),
+    FieldPanel('title_text', classname="full"),
+    FieldPanel('contact', classname="full"),
     FieldPanel('body', classname="full"),
     InlinePanel(HomePage, 'carousel_items', label="Carousel items"),
     InlinePanel(HomePage, 'content_items', label="Content Blocks"),

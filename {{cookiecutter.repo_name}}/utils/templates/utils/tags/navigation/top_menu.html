@@ -1,6 +1,6 @@
 {% raw %}{% load wagtailcore_tags navigation_tags %}
 {% get_site_root as site_root %}
-<div class="contain-to-grid fixed nav-top">
+<div class="fixed nav-top">
     <nav class="top-bar" data-topbar>
         <ul class="title-area">
           <li class="name">
@@ -9,7 +9,7 @@
           <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
         </ul>
         <section class="top-bar-section">
-        <ul class="menu right">
+        <ul class="menu left">
             <li class="{% if calling_page.url == site_root %} active{% endif %}"><a href="{% pageurl site_root %}">Home</a></li>
                 {% for menuitem in menuitems %}
                     <li class="{% if menuitem.show_dropdown %}has-dropdown{% endif %}

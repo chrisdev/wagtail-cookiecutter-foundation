@@ -61,18 +61,22 @@ $header-font-color: #555 !default;
   background: linear-gradient(90deg,#7474bf 1%,#5e9cd1 40%);
 }
 
-.intro h1
+.intro h3
  {
-  font-size: 50px;
-  font-weight: 300;
+  font-size: 30px;
+  font-weight: 800;
   line-height: 1;
-  margin-bottom: 30px;
   color: $white;
 }
 
 .intro .rich-text
 {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
+}
+
+#carousel
+{
+  margin-top: 60px;
 }
 
 .section
@@ -126,14 +130,23 @@ $header-font-color: #555 !default;
   -webkit-transition: all 0.25s ease;
 }
 
-.copyright
+.contact-us
 {
   background-color: $mine-shaft;
-  color: $celeste;
-  padding: 17px 0;
+  color: white;
+  padding: 10px 0;
   border-top: solid 1px $emperor;
 }
 
+.contact-us h4
+{
+  color: $white;
+}
+
+.contact-head
+{
+  margin-bottom: 20px;
+}
 .nav-top
 {
   border-top: 5px solid $eastern-blue;

@@ -177,11 +177,15 @@ Firstly, open up a command line shell in your new projects directory.
 
   :code:`python manage.py migrate`
 
-5. **Create an admin user**
+5. **Load the Initial Data**
+
+  :code:`python manage.py load_initial_data`
+
+6. **Create an admin user**
 
   :code:`python manage.py createsuperuser`
 
-6. **Run the development server**
+7. **Run the development server**
 
   :code:`python manage.py runserver`
 
