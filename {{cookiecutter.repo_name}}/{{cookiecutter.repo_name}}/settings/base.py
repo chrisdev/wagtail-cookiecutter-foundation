@@ -150,6 +150,11 @@ TEMPLATE_DIRS = (
     normpath(join(DJANGO_ROOT, 'templates')),
 )
 
+# Google Maps Key
+
+GOOGLE_MAPS_KEY = ''
+DYNAMIC_MAP_URL = ''
+STATIC_MAP_URL = ''
 
 # Use Redis as the cache backend for extra performance
 

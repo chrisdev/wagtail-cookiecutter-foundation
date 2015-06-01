@@ -7,7 +7,17 @@
 </div>
 <aside class="large-3 medium-4 columns">
      {% block sidebar %}
-     <h3> Side Bar </h3>
+     <h3> Find Us </h3>
+     {% load settings_tags %}
+    {% get_googe_maps_key as google_maps_key %}
+    {% get_dynamic_map_url as dyn_map_url %}
+    {% get_static_map_url as static_map_url %}
+    {% if google_maps_key %}
+    <a href="{{ dyn_map_url }}" target="_blank">
+        <img src="{{ static_map_url }}&key={{ google_maps_key }}"
+        alt="ChrisDev Ltd, Tunapuna, Trinidad & Tobago">
+    </a> 
+    {% endif %}
      {% endblock %}
 </aside>
 </div>
