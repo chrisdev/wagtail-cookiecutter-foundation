@@ -7,9 +7,9 @@
 </div>
 <aside class="large-3 medium-4 columns">
      {% block sidebar %}
-     <h3> Find Us </h3>
+     <center><h3> Find Us </h3></center>
      {% load settings_tags %}
-    {% get_googe_maps_key as google_maps_key %}
+    {% get_google_maps_key as google_maps_key %}
     {% get_dynamic_map_url as dyn_map_url %}
     {% get_static_map_url as static_map_url %}
     {% if google_maps_key %}

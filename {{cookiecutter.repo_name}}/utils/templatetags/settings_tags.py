@@ -9,7 +9,7 @@ def get_ga_key():
 
 
 @register.assignment_tag
-def get_googe_maps_key():
+def get_google_maps_key():
     return getattr(settings, 'GOOGLE_MAPS_KEY', "")
 
 @register.assignment_tag
