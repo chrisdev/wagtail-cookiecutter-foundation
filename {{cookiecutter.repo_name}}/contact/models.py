@@ -40,11 +40,13 @@ class ContactFormField(AbstractFormField):
 class ContactPage(AbstractEmailForm, ContactFields):
     intro = models.CharField(max_length=255, blank=True)
     thank_you_text = RichTextField(blank=True)
+    contact_us = RichTextField(blank=True)
 
 
 ContactPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('intro', classname="full"),
+    FieldPanel('contact_us', classname="full"),
     InlinePanel(FormPage, 'form_fields', label="Form fields"),
     FieldPanel('thank_you_text', classname="full"),
     MultiFieldPanel(ContactFields.panels, "Contact"),

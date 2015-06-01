@@ -1,4 +1,5 @@
 {% raw %}{% load compress static wagtailuserbar navigation_tags %}
+{% load static wagtailcore_tags wagtailimages_tags %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -53,16 +54,16 @@
                 <div class="row">
                     <div class="large-4 columns">
                         <h4 class="contact-head">Contact Us</h4>
-                        <p>ChrisDev Limited<br>
-                        A3 ST Bendicts Gardens<br> Tunapuna<br> Trinidad And Tobago</p>
+                        {% get_contact_field as contactus %}
+                        {{ contactus }}
                     </div>
-                    <div class="large-3 columns">
+                    <div class="large-4 columns text-center">
                         <h4 class="contact-head">Follow Us</h4>
                         <a href="https://github.com/chrisdev" target="_blank"><i class="fa fa-github fa-2x"></i></a>
                         <a href="https://twitter.com/realchrisdev" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
                         <a href="#" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
                     </div>
-                    <div class="large-5 columns text-center">
+                    <div class="large-4 columns text-center">
                         <h4 class="contact-head">Find Us</h4>
                         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3920.9758279670727!2d-61.391602!3d10.658984000000002!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c3600ebfcf1667d%3A0x68891085216fb5e6!2sChrisDev!5e0!3m2!1sen!2s!4v1399313047235" width="100%" height="150" frameborder="0" style="border:0"></iframe>
                     </div>
