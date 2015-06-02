@@ -1,11 +1,18 @@
 from django import template
 from wagtail.wagtailcore.models import Page
+from contact.models import ContactPage
 register = template.Library()
 
 
 @register.assignment_tag(takes_context=True)
 def get_site_root(context):
     return context['request'].site.root_page
+
+
+@register.assignment_tag(takes_context=True)
+def get_contact_field(context):
+    contact_obj = ContactPage.objects.get()
+    return getattr(contact_obj, 'contact_us')
 
 
 def has_menu_children(page):
