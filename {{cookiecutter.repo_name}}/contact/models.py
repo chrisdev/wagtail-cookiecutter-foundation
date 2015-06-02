@@ -46,13 +46,13 @@ class ContactPage(AbstractEmailForm, ContactFields):
 ContactPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('intro', classname="full"),
-    FieldPanel('contact_us', classname="full"),
-    InlinePanel(FormPage, 'form_fields', label="Form fields"),
+    #FieldPanel('contact_us', classname="full"),
+    InlinePanel(FormPage, 'form_fields', label="Contact Form fields"),
     FieldPanel('thank_you_text', classname="full"),
-    MultiFieldPanel(ContactFields.panels, "Contact"),
     MultiFieldPanel([
         FieldPanel('to_address', classname="full"),
         FieldPanel('from_address', classname="full"),
         FieldPanel('subject', classname="full"),
-    ], "Email")
+    ], "Form Submission Email"),
+    MultiFieldPanel(ContactFields.panels, "Your Contact Information"),
 ]

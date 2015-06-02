@@ -16,14 +16,12 @@
     {% if google_maps_key %}
     <a href="{{ dyn_map_url }}" target="_blank">
         <img src="{{ static_map_url }}&key={{ google_maps_key }}"
-        alt="ChrisDev Limited A3 ST Bendicts Gardens Tunapuna Trinidad And Tobago">
+        alt="contact.name_organization">
     </a> 
     {% endif %}
     <center><h4> Contact Us </h4></center>
     <hr>
-    <div class="h-card">
-        {{ self.contact_us|richtext }}
-    </div>
+    {% include "contact/includes/contact_card.html"  with contact=self only%}
      {% endblock %}
     
 </aside>
