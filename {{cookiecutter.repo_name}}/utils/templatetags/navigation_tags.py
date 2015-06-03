@@ -11,8 +11,11 @@ def get_site_root(context):
 
 @register.assignment_tag(takes_context=True)
 def get_contact_field(context):
-    contact_obj = ContactPage.objects.get()
-    return getattr(contact_obj, 'contact_us')
+    contact_obj = ContactPage.objects.values('name_organization', 'address_1', 'address_2', 'city', 'country').get()
+    contact_val = ''
+    for value in contact_obj.values():
+        contact_val += ' ' + value
+    return contact_val
 
 
 def has_menu_children(page):
