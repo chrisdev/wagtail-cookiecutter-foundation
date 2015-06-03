@@ -7,6 +7,34 @@ register = template.Library()
 def get_ga_key():
     return getattr(settings, 'GOOGLE_ANALYTICS_KEY', "")
 
+@register.assignment_tag
+def get_fb_sitename():
+    return getattr(settings, 'FB_SITE_NAME', "")
+
+@register.assignment_tag
+def get_fb_url():
+    return getattr(settings, 'FB_URL', "")
+
+@register.assignment_tag
+def get_fb_description():
+    return getattr(settings, 'FB_DESCRIPTION', "")
+
+@register.assignment_tag
+def get_fb_appid():
+    return getattr(settings, 'FB_APP_ID', "")
+
+@register.assignment_tag
+def get_twitter_url():
+    return getattr(settings, 'TWITTER_URL', "")
+
+@register.assignment_tag
+def get_twitter_creator():
+    return getattr(settings, 'TWITTER_CREATOR', "")
+
+@register.assignment_tag
+def get_twitter_description():
+    return getattr(settings, 'TWITTER_DESCRIPTION', "")
+
 
 @register.assignment_tag
 def get_google_maps_key():

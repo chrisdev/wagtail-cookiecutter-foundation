@@ -1,0 +1,14 @@
+{% raw %}{% load settings_tags %}
+{% get_fb_sitename as fb_sitename %}
+{% get_fb_url as fb_url %}
+{% get_fb_description as fb_description %}
+
+<meta property="og:title" content="{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}"/>
+<meta property="og:site_name" content="{{ fb_sitename }}"/>
+<meta property="og:url" content="{{ fb_url }}{{ request.get_full_path }}" />
+{% if fb_description %}
+<meta property="og:description" content="{{ fb_description }}"/>
+{% endif %}
+{% get_fb_appid as fb_appid %}
+<meta property="fb:app_id" content="{{ fb_appid }}" />
+{% endraw %}
