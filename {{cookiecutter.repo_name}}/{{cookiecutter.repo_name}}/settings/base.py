@@ -156,6 +156,18 @@ GOOGLE_MAPS_KEY = ''
 DYNAMIC_MAP_URL = ''
 STATIC_MAP_URL = ''
 
+# Facebook Open Tags
+FB_SITE_NAME = ''
+FB_URL = ''
+FB_DESCRIPTION = ''
+FB_APP_ID = ''
+
+# Twitter Cards
+
+TWITTER_URL = ''
+TWITTER_CREATOR = ''
+TWITTER_DESCRIPTION = ''
+
 # Use Redis as the cache backend for extra performance
 
 # CACHES = {
