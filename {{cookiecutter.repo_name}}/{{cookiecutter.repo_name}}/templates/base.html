@@ -1,5 +1,5 @@
 {% raw %}{% load compress static wagtailuserbar navigation_tags %}
-{% load static wagtailcore_tags wagtailimages_tags %}
+{% load {% endraw %}{{ cookiecutter.repo_name }}{% raw %}_utils %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -24,6 +24,8 @@
             <link rel="stylesheet" type="text/css" href="{% static 'css/vendor/jquery.bxslider.css' %}">
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         {% endblock %}
+        {% include "utils/includes/facebook_opengraph.html" %}
+        {% include "utils/includes/twitter_cards.html" %}
         {% include "utils/includes/google_analytics.html" %}
     </head>
 
@@ -54,8 +56,8 @@
                 <div class="row">
                     <div class="large-4 columns">
                         <h4 class="contact-head">Contact Us</h4>
-                        {% get_contact_field as contactus %}
-                        {{ contactus }}
+                        {% get_contact_fields as contact %}
+                        {% include "contact/includes/contact_card.html" with contact=contact only %}
                     </div>
                     <div class="large-4 columns text-center">
                         <h4 class="contact-head">Follow Us</h4>
