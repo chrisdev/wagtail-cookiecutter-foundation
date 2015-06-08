@@ -71,7 +71,7 @@ To create a new `Wagtail CMS`_ project. First, install cookiecutter ::
 
 Now run it against this repo::
 
-    $ cookiecutter https://github.com/chrisdev/wagtail-cookiecutte-foundation.git
+    $ cookiecutter https://github.com/chrisdev/wagtail-cookiecutter-foundation.git
 
 You'll be prompted for some questions, answer them, then it will create a Django project for you.
 
@@ -178,19 +178,15 @@ Firstly, open up a command line shell in your new projects directory.
 
   :code: `createdb my_site`
 
-  :code:`python manage.py migrate`
+  :code:`./manage.py migrate`
 
 5. **Load the Initial Data**
 
-  :code:`python manage.py load_initial_data`
+  :code:`./manage.py load_initial_data`
 
-6. **Create an admin user**
+6. **Run the development server**
 
-  :code:`python manage.py createsuperuser`
-
-7. **Run the development server**
-
-  :code:`python manage.py runserver`
+  :code:`./manage.py runserver`
 
   Your site is now accessible at ``http://localhost:8000``,
   with the admin backend available at ``http://localhost:8000/admin/``.
