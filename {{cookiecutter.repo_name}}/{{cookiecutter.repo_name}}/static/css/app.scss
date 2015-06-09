@@ -32,6 +32,14 @@ $header-font-color: #555 !default;
 // Foundation scss import
 @import "vendor/foundation/scss/foundation";
 
+.top-bar-section ul {display: table; margin: 0 auto;}
+.top-bar-section ul li {background: transparent; display: table-cell;}
+.expanded .top-bar-section ul {background: $blue;}
+
+@media only screen and (max-width:40em) { 
+.top-bar-section ul, .top-bar-section ul li  {display: block;}
+}
+
 // Responsive image/video classes
 .rich-text img {
   max-width: 100%;
@@ -81,20 +89,19 @@ $header-font-color: #555 !default;
 
 .section
 {
-  background-color: $anakiwa;
+  background-color: $eastern-blue;
   padding: 20px 10px;
   color: $white;
   text-align: center;
-}
-
-.section h1
-{
-  color: $white;
+  
+  h3,h4,a {color: $white;}
+  h3{font-weight: 500;}
+  h4{margin-bottom :3px;}
 }
 
 .sitemap
 {
-  padding: 40px 0;
+  padding: 20px 0;
   background-color: $tundora;
   border-top: solid 1px $celeste;
   color: white;
