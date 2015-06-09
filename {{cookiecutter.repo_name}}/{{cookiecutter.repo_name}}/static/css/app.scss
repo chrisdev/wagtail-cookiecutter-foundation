@@ -104,16 +104,14 @@ $header-font-color: #555 !default;
 {
   display: block;
   margin: 10px 0 25px 0;
-  border-bottom: 1px dotted $mystic;
 }
 
-.headline h3
+.headline h4
 {
-  color: $eastern-blue;
+  color: $white;
   margin: 0 0 -2px 0;
   padding-bottom: 5px;
   display: inline-block;
-  border-bottom: 2px solid $light-green;
 }
 
 .sitemap a
@@ -130,6 +128,10 @@ $header-font-color: #555 !default;
   -webkit-transition: all 0.25s ease;
 }
 
+.vcard {
+    border: 0px;
+}
+
 .contact-us
 {
   background-color: $mine-shaft;
@@ -138,7 +140,7 @@ $header-font-color: #555 !default;
   border-top: solid 1px $emperor;
 }
 
-.contact-us h4
+.contact-us h5
 {
   color: $white;
 }
