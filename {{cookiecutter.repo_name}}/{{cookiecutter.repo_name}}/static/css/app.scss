@@ -32,6 +32,15 @@ $header-font-color: #555 !default;
 // Foundation scss import
 @import "vendor/foundation/scss/foundation";
 
+.fixed {border-bottom: 1px solid $blue;}
+.top-bar-section ul {display: table; margin: 0 auto;}
+.top-bar-section ul li {background: transparent; display: table-cell;}
+.expanded .top-bar-section ul {background: $blue;}
+
+@media only screen and (max-width:40em) { 
+.top-bar-section ul, .top-bar-section ul li  {display: block;}
+}
+
 // Responsive image/video classes
 .rich-text img {
   max-width: 100%;
@@ -59,19 +68,19 @@ $header-font-color: #555 !default;
   background: -ms-linear-gradient(90deg,#7474bf 1%,#5e9cd1 99%);
   background: -o-linear-gradient(90deg,#7474bf 1%,#5e9cd1 99%);
   background: linear-gradient(90deg,#7474bf 1%,#5e9cd1 40%);
-}
-
-.intro h3
- {
-  font-size: 30px;
-  font-weight: 800;
-  line-height: 1;
-  color: $white;
-}
-
-.intro .rich-text
-{
-  margin-bottom: 20px;
+  
+  h3
+   {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1;
+    color: $white;
+  }
+  
+  .rich-text
+  {
+    margin-bottom: 20px;
+  }
 }
 
 #carousel
@@ -81,55 +90,50 @@ $header-font-color: #555 !default;
 
 .section
 {
-  background-color: $anakiwa;
+  background-color: $keppel;
   padding: 20px 10px;
   color: $white;
   text-align: center;
-}
-
-.section h1
-{
-  color: $white;
+  
+  h3,h4,a {color: $white;}
+  h3{font-weight: 500;}
+  h4{margin-bottom :3px;}
 }
 
 .sitemap
 {
-  padding: 40px 0;
+  padding: 20px 0;
   background-color: $tundora;
   border-top: solid 1px $celeste;
   color: white;
-}
-
-.headline
-{
-  display: block;
-  margin: 10px 0 25px 0;
-}
-
-.headline h4
-{
-  color: $white;
-  margin: 0 0 -2px 0;
-  padding-bottom: 5px;
-  display: inline-block;
-}
-
-.sitemap a
-{
-  color: white;
-  text-decoration: none;
-}
-
-.sitemap a:hover
-{
-  color: $eastern-blue;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  -webkit-transition: all 0.25s ease;
-}
-
-.vcard {
-    border: 0px;
+  
+  .headline
+  {
+    display: block;
+    margin: 10px 0 25px 0;
+  }
+  
+  .headline h4
+  {
+    color: $white;
+    margin: 0 0 -2px 0;
+    padding-bottom: 5px;
+    display: inline-block;
+  }
+  
+  a{
+    color: white;
+    text-decoration: none;
+  }
+  
+  a:hover{
+    color: $eastern-blue;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    -webkit-transition: all 0.25s ease;
+  }
+  
+  li{list-style: none;}
 }
 
 .contact-us
@@ -138,11 +142,14 @@ $header-font-color: #555 !default;
   color: white;
   padding: 10px 0;
   border-top: solid 1px $emperor;
-}
-
-.contact-us h5
-{
-  color: $white;
+  
+  h5{
+    color: $white;
+  }
+  
+  .vcard {
+    border: 0px;
+  }
 }
 
 .contact-head
