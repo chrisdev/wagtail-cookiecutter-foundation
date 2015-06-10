@@ -5,9 +5,9 @@
  <div class="large-9 medium-8 columns" role="content">
      {% block contact_content %}{% endblock %}
 </div>
-<aside class="large-3 medium-4 columns sidebar">
+<aside id="sidebar" class="large-3 medium-4 columns sidebar">
      {% block sidebar %}
-     <center><h4> Find Us </h4></center>
+     <center><h6> Find Us </h6></center>
      <hr>
      {% load settings_tags %}
     {% get_google_maps_key as google_maps_key %}
@@ -19,7 +19,7 @@
         alt="contact.name_organization">
     </a> 
     {% endif %}
-    <center><h4> Contact Us </h4></center>
+    <center><h6> Contact Us </h6></center>
     <hr>
     {% include "contact/includes/contact_card.html"  with contact=self only%}
      {% endblock %}
