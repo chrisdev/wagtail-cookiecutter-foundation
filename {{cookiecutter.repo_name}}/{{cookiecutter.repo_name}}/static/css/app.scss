@@ -100,6 +100,10 @@ $header-font-color: #555 !default;
   h4{margin-bottom :3px;}
 }
 
+#blog_list {
+   hr:last-of-type {border:0px;} 
+}
+
 .sitemap
 {
   padding: 20px 0;
@@ -166,8 +170,19 @@ $header-font-color: #555 !default;
   margin-top: 10px;
 }
 
-.sidebar
-{
-  background: #FAFAFA;
-  padding: 32px 20px;
+ul.side-nav {
+     text-align: center;
+     font-family: $header-font-family;
+     li {
+        margin-bottom: 4px;
+        a:not(.button) {
+            background: $keppel; 
+            border-radius: 2px; 
+            color: $white;
+        }
+        a:hover:not(.button){
+            background: $eastern-blue;
+            color: $white;
+        }
+    }
 }

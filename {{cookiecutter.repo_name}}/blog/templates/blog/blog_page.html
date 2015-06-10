@@ -10,7 +10,7 @@
 {% block article_content %}
 <article>
     {% include "blog/includes/blog_header.html" %}
-    {% include "blog/includes/blog_body.html" with body=self.body only %}
-    
+    <hr />
+    {% include "blog/includes/blog_body.html" with body=self.body only %}    
 </article>
 {% endblock %}{% endraw %}
