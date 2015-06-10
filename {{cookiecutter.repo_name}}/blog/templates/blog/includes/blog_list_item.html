@@ -1,7 +1,6 @@
 {% raw %}{% load wagtailcore_tags wagtailimages_tags %}
-    <div class="medium-12 columns">
-        <article>
-        <div class="blog panel radius row">
+    <div id="blog_list" class="medium-12 columns">
+        <article class="blog">
             <a href="{% pageurl blog %}">
                 <h4>{{ blog.title }}</h4>
                 {% if blog.search_description or blog.feed_image %}
@@ -20,6 +19,6 @@
                     </p>
                 </div>
             </a>
-        </div>
         </article>
+        <hr />
     </div>{% endraw %}

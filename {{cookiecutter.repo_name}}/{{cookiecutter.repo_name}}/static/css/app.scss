@@ -100,6 +100,10 @@ $header-font-color: #555 !default;
   h4{margin-bottom :3px;}
 }
 
+#blog_list {
+   hr:last-of-type {border:0px;} 
+}
+
 .sitemap
 {
   padding: 20px 0;
@@ -172,13 +176,13 @@ ul.side-nav {
      li {
         margin-bottom: 4px;
         a:not(.button) {
-            background: $blue; 
+            background: $keppel; 
             border-radius: 2px; 
             color: $white;
         }
         a:hover:not(.button){
-            background: $white;
-            color: $blue;
+            background: $eastern-blue;
+            color: $white;
         }
     }
 }
