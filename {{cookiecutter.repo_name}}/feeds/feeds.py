@@ -17,16 +17,18 @@ class BlogFeed(Feed):
     author_email = 'example@example.com'
     author_link = 'http://example.com'
 
-    # Link to custom templates for the blog title and blog description.
-    title_template = 'blog_title.html'
-    description_template = 'blog_description.html'
-
     def items(self):
         return BlogPage.objects.order_by('date')
 
     # This gets the BlogPage model datefield "date" which shows when the blog post was made.
     def item_pubdate(self, item):
         return datetime.combine(item.date, time())
+
+    def item_title(self, item):
+        return item.title
+
+    def item_description(self, item):
+        return item.intro if item.intro else item.body
 
     def item_link(self, item):
         return item.full_url
