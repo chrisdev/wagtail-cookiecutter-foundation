@@ -1,6 +1,7 @@
 # Importing the syndication feed and BlogPage class from blog model.
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Rss201rev2Feed
+from xml.sax.saxutils import escape
 from datetime import datetime, time
 from blog.models import BlogPage
 
@@ -13,8 +14,15 @@ class CustomFeedGenerator(Rss201rev2Feed):
 
     def add_item_elements(self, handler, item):
         super(CustomFeedGenerator, self).add_item_elements(handler, item)
-        handler.addQuickElement(u"image", item['image'])
-        handler.addQuickElement(u"body", item['body'])
+        handler.startElement(u"content:encoded", {})
+
+        figure = '<figure type="image">'
+        figure += '<image src="%s"></image>' % (item['image'])
+        figure += '</image></figure>'
+
+        handler.characters(escape(figure))
+
+        handler.endElement(u"content:encoded")
 
 class BlogFeed(Feed):
 
@@ -54,5 +62,4 @@ class BlogFeed(Feed):
         the 'add_item' call of the feed generator.
         Add the fields of the item, to be used by the custom feed generator.
         """
-        return { 'image': '%s' % (item.feed_image) if item.feed_image else "",
-                 'body' : item.body,}
+        return { 'image': '%s' % (item.feed_image) if item.feed_image else ""}
