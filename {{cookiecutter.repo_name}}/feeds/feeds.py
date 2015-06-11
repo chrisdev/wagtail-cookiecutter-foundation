@@ -1,13 +1,25 @@
 # Importing the syndication feed and BlogPage class from blog model.
 from django.contrib.syndication.views import Feed
-from django.utils import feedgenerator
+from django.utils.feedgenerator import Rss201rev2Feed
 from datetime import datetime, time
 from blog.models import BlogPage
+
+class CustomFeedGenerator(Rss201rev2Feed):
+
+    def root_attributes(self):
+        attrs = super(CustomFeedGenerator, self).root_attributes()
+        attrs['xmlns:content'] = 'http://purl.org/rss/1.0/modules/content/'
+        return attrs
+
+    def add_item_elements(self, handler, item):
+        super(CustomFeedGenerator, self).add_item_elements(handler, item)
+        handler.addQuickElement(u"image", item['image'])
+        handler.addQuickElement(u"body", item['body'])
 
 class BlogFeed(Feed):
 
     # FEED TYPE
-    feed_type = feedgenerator.Rss201rev2Feed
+    feed_type = CustomFeedGenerator
 
     # The default RSS information that gets shown at the top of the feed.
     title = "Example site news"
@@ -35,3 +47,12 @@ class BlogFeed(Feed):
 
     def item_author_name(self, item):
         pass
+
+    def item_extra_kwargs(self, item):
+        """
+        Returns an extra keyword arguments dictionary that is used with
+        the 'add_item' call of the feed generator.
+        Add the fields of the item, to be used by the custom feed generator.
+        """
+        return { 'image': '%s' % (item.feed_image) if item.feed_image else "",
+                 'body' : item.body,}
