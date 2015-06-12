@@ -104,6 +104,14 @@ $header-font-color: #555 !default;
    hr:last-of-type {border:0px;} 
 }
 
+#news_feed 
+{
+    li{list-style: none; font-size:14px; margin-bottom: 0px;}
+    p{font-size: 14px; margin-bottom:5px;}
+    hr:last-of-type{border: 0px;}
+    .button{margin-bottom:5px; padding:5px 8px;}
+}
+
 .sitemap
 {
   padding: 20px 0;
@@ -136,6 +144,8 @@ $header-font-color: #555 !default;
     transition: all 0.25s ease;
     -webkit-transition: all 0.25s ease;
   }
+  
+  h5 a{color: $keppel;}
   
   li{list-style: none;}
 }
