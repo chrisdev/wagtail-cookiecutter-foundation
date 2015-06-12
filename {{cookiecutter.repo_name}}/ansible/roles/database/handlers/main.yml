@@ -1,0 +1,2 @@
+- name: start start the database
+  service: name=postgresql enabled=yes state=restarted

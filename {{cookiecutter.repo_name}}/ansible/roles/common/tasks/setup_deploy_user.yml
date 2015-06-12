@@ -1,0 +1,41 @@
+{% raw %}---
+- name: Add the deploy user
+  user: name={{ deploy_user }} shell=/bin/bash groups=sudo append=yes
+  sudo: yes
+  tags:
+    - user
+
+
+- name: Ensure that sudo does not require a password
+  lineinfile: "dest=/etc/sudoers state=present regexp='^%sudo' line='%sudo ALL=(ALL) NOPASSWD: ALL'"
+  sudo: yes
+  tags:
+    - user
+
+- name: create the ssh dir
+  file: path=/home/{{ deploy_user }}/.ssh/
+        owner={{ deploy_user }}
+        group={{ deploy_user }}
+        state=directory
+  sudo: yes
+  tags:
+    - user
+
+- name: Copy the authorized file to the .ssh dir
+  copy: src=/Users/cclarke/Dropbox/ChrisDev/ssl/chris_keys/authorized_keys 
+        dest=/home/{{ deploy_user }}/.ssh/authorized_keys 
+        owner={{ deploy_user }}
+        group={{ deploy_user }}
+  sudo: yes
+  tags:
+    - user
+
+# we need this for creating the bb deploy_user
+# we need to add the public key to the bb repo as the deploy_user
+
+- name: Create the ssh key pair for the deploy user
+  user: name={{ deploy_user }} generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
+  tags:
+      - user
+      - sshkeys
+{% endraw %}

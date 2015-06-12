@@ -1,0 +1,12 @@
+{% raw %}[program:{{ project_name }}]
+environment={% for k, v in django_env.iteritems() %}{% if not loop.first %},{% endif %}{{ k }}="{{ v }}"{% endfor %}
+
+directory= {{ sites_dir }}/{{ project_name }}
+command= {{ virtualenvs_dir }}/{{ project_name }}-env/bin/gunicorn {{ project_name }}.wsgi:application -c gunicorn.conf
+user= {{ deploy_user }}
+autostart=True
+autorestart=True
+redirect_stderr=True
+
+stdout_logfile={{ sites_dir}}/{{ project_name }}/gunicorn/gunicorn-stdout.log
+stderr_logfile={{ sites_dir}}/{{ project_name }}/gunicorn/gunicorn-error.log{% endraw %}

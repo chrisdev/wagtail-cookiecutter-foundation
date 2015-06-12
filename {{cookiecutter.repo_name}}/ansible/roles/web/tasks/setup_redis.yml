@@ -1,0 +1,70 @@
+---
+- name: update the apt-cache
+  apt: update_cache=yes cache_valid_time=3600
+  sudo: yes
+  tags:
+     - redis
+
+- name: install dependencies
+  apt:  pkg={{ item }} state=latest
+  with_items:
+    - gcc
+    - make
+  sudo: yes
+  tags:
+     - redis
+
+- name: Download redis tar file
+  get_url: url=http://download.redis.io/releases/redis-{{ redis_version }}.tar.gz
+           dest=/usr/local/src/redis-{{ redis_version }}.tar.gz
+  sudo: yes
+  tags:
+     - redis
+
+- name: Un tar the Redis tarball
+  shell: tar xf /usr/local/src/redis-{{ redis_version }}.tar.gz -C /usr/local/src
+  args:
+      creates: /usr/local/src/redis-{{ redis_version }}
+  sudo: yes
+  tags:
+      - redis
+
+- name: make reddis
+  command: make
+  sudo: yes
+  args: 
+      chdir: /usr/local/src/redis-{{ redis_version }}
+      creates: /usr/local/src/redis-{{ redis_version }}/src/redis-server
+  tags:
+     - redis
+
+- name: install redis
+  command: make install
+  sudo: yes
+  args:
+      chdir: /usr/local/src/redis-{{ redis_version }}
+      creates: /usr/local/bin/redis-server
+  tags:
+     - redis
+
+- name: Run the redis install script
+  shell: yes '' | ./install_server.sh
+  sudo: yes
+  args:
+      chdir: /usr/local/src/redis-{{ redis_version }}/utils
+  tags:
+     - redis
+
+- name: Start the redis server
+  command: service redis_6379 start
+  sudo: yes
+  tags:
+     - redis
+
+
+- name: Set redis to start automatically on boot
+  command: update-rc.d redis_6379 defaults
+  sudo: yes
+  tags:
+     - redis
+

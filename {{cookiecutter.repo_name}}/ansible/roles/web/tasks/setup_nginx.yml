@@ -1,0 +1,65 @@
+---
+- name: Enure that the Nginx service is stopped
+  service: name=nginx state=stopped
+  tags:
+      - nginx 
+
+- name: Create/Upload the Nginx configuration file
+  template: src=nginx.j2
+            dest=/etc/nginx/sites-available/{{ project_name }}
+            backup=yes
+  tags:
+      - nginx 
+
+
+- name: Ensure that the default site is disabled
+  command: rm /etc/nginx/sites-enabled/default
+           removes=/etc/nginx/sites-enabled/default
+  tags:
+      - nginx 
+
+- name: Ensure that the application site is enabled
+  command: ln -s /etc/nginx/sites-available/{{ project_name }}
+           /etc/nginx/sites-enabled/{{ project_name }}
+           creates=/etc/nginx/sites-enabled/{{ project_name }}
+  tags:
+      - nginx
+
+- name: Ensure the SSL Directory exists
+  file: path=/svr/ssl/
+        state=directory
+        owner=root
+        group=root
+  sudo: yes
+  when: production == 'true'
+  tags:
+      - nginx
+      - ssl 
+
+- name: Copy the authorized key file 
+  copy: src=/Users/cclarke/Dropbox/ChrisDev/ssl/textelcu/conference.foreign.gov.tt.key 
+        dest=/svr/ssl/textelcu.key  
+        owner=root
+        group=root
+  sudo: yes
+  when: production == 'true'
+  tags:
+    - ssl 
+    - nginx
+- name: Copy the SSL bundle (publix key) 
+  copy: src=/Users/cclarke/Dropbox/ChrisDev/ssl/textelcu/conference/conference-foreign-gov-ssl-bundle.crt 
+        dest=/svr/ssl/conference-foreign-gov-ssl-bundle.crt  
+        owner=root 
+        group=root
+  sudo: yes
+  when: production == 'true'
+  tags:
+    - ssl
+    - nginx
+
+- name: Ensure Nginx service is started
+  service: name=nginx state=started enabled=yes
+  tags:
+      - nginx 
+      - ssl
+

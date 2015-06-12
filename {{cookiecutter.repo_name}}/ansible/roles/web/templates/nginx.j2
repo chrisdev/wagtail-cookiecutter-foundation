@@ -1,0 +1,55 @@
+{% raw %}server {
+    listen 80;
+    server_name www.{{ django_env.HOST_NAME }};
+    return 301 $scheme://{{ django_env.HOST_NAME}}$request_uri;
+}
+
+server {
+        listen 80;
+        server_name  {{ django_env.HOST_NAME }};
+        root {{ sites_dir }}/{{ project_name }}/static;
+
+        access_log /var/log/nginx/{{ project_name }}_access.log;
+        error_log /var/log/nginx/{{ project_name }}_error.log;
+
+
+        location ~ ^/(apple-touch-icon|android-chrome|browserconfig|favicon|mstile)(.*)\.(png|xml|ico)$ {
+            root {{ sites_dir }}/{{ project_name }}/static/img/favicons;
+        } 
+
+        location ~ ^/(robots.txt|humans.txt)$ {
+            alias {{ sites_dir }}/{{ project_name }}/static/$1;
+        }
+
+        client_max_body_size 4G;
+
+        location  /static/ {
+               alias {{ sites_dir }}/{{ project_name }}/static/;
+         }
+
+        location  /media/ {
+               alias {{ sites_dir }}/{{ project_name }}/media/;
+         }
+
+        location / {
+           if (-f {{ sites_dir }}/{{ project_name }}/static/offline.html) {
+                return 503;
+           }
+           proxy_set_header   Host             $host;
+           proxy_set_header   X-Real-IP        $remote_addr;
+           proxy_set_header   REMOTE_HOST      $remote_addr;
+           proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+           proxy_set_header   X-FORWARDED-PROTOCOL $scheme;
+           proxy_pass http://{{ gunicorn }};
+        }
+
+
+        error_page 500 502 504 /500.html;
+        location = /500.html {
+            root {{ sites_dir }}/{{ project_name }}/core/templates/;
+        }
+        error_page 503 502 @maintenance;
+        location @maintenance {
+              rewrite ^(.*)$ /offline.html break;
+        }
+}{% endraw %}

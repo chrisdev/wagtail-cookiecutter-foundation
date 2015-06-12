@@ -1,0 +1,5 @@
+[ui]
+username = chrisdev_deploy <chrisdev@gmail.com>
+[trusted]
+users=django
+
