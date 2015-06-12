@@ -104,6 +104,17 @@ $header-font-color: #555 !default;
    hr:last-of-type {border:0px;} 
 }
 
+#news_feed 
+{
+    h6, li {margin-bottom :5px;}
+    li{list-style: none; font-size:14px; margin-bottom: 0px;}
+    p{font-size: 14px; margin-bottom:10px;}
+    hr {border-color: $celeste;}
+    hr:last-of-type{border: 0px;}
+    .button{margin-bottom:5px; padding:5px 8px; float: right;}
+}
+
+
 .sitemap
 {
   padding: 20px 0;
@@ -136,6 +147,8 @@ $header-font-color: #555 !default;
     transition: all 0.25s ease;
     -webkit-transition: all 0.25s ease;
   }
+  
+  h5 a{color: $keppel;}
   
   li{list-style: none;}
 }
@@ -184,5 +197,16 @@ ul.side-nav {
             background: $eastern-blue;
             color: $white;
         }
+    }
+}
+
+#sidebar {
+    #news_feed 
+    {
+        h6 a, li{color: $mine-shaft;}
+        h6, li{text-align: center; margin-bottom: 6px;}
+        p{display: none;}
+        hr{border: 0px;}
+        .news{border: 1px solid $keppel; border-radius: 5px; padding: 8px; margin-bottom:10px;}
     }
 }

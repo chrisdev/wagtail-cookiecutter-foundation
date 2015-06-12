@@ -4,9 +4,10 @@
 <ul class="medium-block-grid-4">
     {% for menuitem in menuitems %}
     <li>
-    <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+    
+    <h5><strong><a href="{% pageurl menuitem %}">{{ menuitem.title }}</a></strong></h5>
     {% if menuitem.show_dropdown %}
-    <ul class="info">
+    <ul class="info" style="margin-left: 0px;">
         {% site_menu_children parent=menuitem %}
     </ul>
     {% endif %}

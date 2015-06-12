@@ -1,6 +1,7 @@
 {% raw %}{% extends "base.html" %}
 {% load wagtailcore_tags navigation_tags %}
 {% load wagtailimages_tags %}
+{% load {% endraw %}{{ cookiecutter.repo_name }}{% raw %}_utils %}
 
 {% block content %}
     <div id="content" class="row">
@@ -15,6 +16,11 @@
         </div>
         <div id="sidebar" class="large-3 medium-4 columns">
               {% secondary_menu calling_page=self %}
+              <hr />
+              
+              <center><h6>News Feed</h6></center>
+              {% news_feed %}
+              
         </div>
     </div>
 {% endblock %}{% endraw %}
