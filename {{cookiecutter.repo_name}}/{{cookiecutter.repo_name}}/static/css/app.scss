@@ -203,10 +203,10 @@ ul.side-nav {
 #sidebar {
     #news_feed 
     {
-        h6 a, li{color: $mine_shaft;}
+        h6 a, li{color: $mine-shaft;}
         h6, li{text-align: center; margin-bottom: 6px;}
         p{display: none;}
         hr{border: 0px;}
-        .news{border: 1px solid $keppel; border-radius: 5px; padding: 8px;}
+        .news{border: 1px solid $keppel; border-radius: 5px; padding: 8px; margin-bottom:10px;}
     }
 }
