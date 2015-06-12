@@ -49,7 +49,7 @@ What's included
 - Support for Vagrant_ which uses the `torchbox/wagtail base box`_
 
 - Deployment and provisioning using Ansible_ that has been extensively tested on
-  Digital Ocean and Linode VPS but is should be easy to modified for hosting on
+  Digital Ocean and Linode VPS but should be easy to modified for hosting on
   EC2 etc..
 
 .. _`torchbox/wagtail base box`: https://github.com/torchbox/vagrant-wagtail-base
@@ -91,8 +91,8 @@ You will be prompted to answer the following questions. ::
     email (default is "Your email")?
     description (default is "A short description of the project.")?
     timezone (default is "UTC")?
-   now (default is "2015/04/16")?
-     year (default is "2015")?
+    now (default is "2015/04/16")?
+    year (default is "2015")?
 
 
 Enter the project and take a look around::
@@ -183,6 +183,10 @@ Firstly, open up a command line shell in your new projects directory.
 5. **Load the Initial Data**
 
   :code:`./manage.py load_initial_data`
+  
+  The default Admin username is *admin*
+  
+  The default Admin password is *admin123*
 
 6. **Run the development server**
 
