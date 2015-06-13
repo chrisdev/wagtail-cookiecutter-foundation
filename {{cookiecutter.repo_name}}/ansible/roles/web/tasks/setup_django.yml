@@ -1,5 +1,4 @@
----
-
+{% raw %}---
 - name: Pull/And update the source
   shell: hg pull
       && hg update
@@ -43,4 +42,4 @@
   args:
     chdir: "{{ sites_dir }}/{{ project_name }}"
   tags:
-    - django
+    - django{% endraw %}

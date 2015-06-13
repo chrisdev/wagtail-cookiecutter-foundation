@@ -1,4 +1,4 @@
----
+{% raw %}---
 - name: Create the application log folder
   file: path={{ sites_dir }}/{{ project_name }}/gunicorn/
         owner={{ deploy_user }}
@@ -41,6 +41,4 @@
   notify: restart gunicorn 
   tags:
      - gunicorn
-     - supervisor
-
-
+     - supervisor{% endraw %}

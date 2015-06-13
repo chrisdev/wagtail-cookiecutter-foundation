@@ -1,4 +1,4 @@
----
+{% raw %}---
 use_ssl:true 
 django_env:
     SECRET_KEY: your_secret_key 
@@ -11,4 +11,4 @@ django_env:
     EMAIL_FROM: 'support@chrisdev.com'
     EMAIL_USER: 'email_user'
     EMAIL_PASSWD: 'email_passwd'
-    GOOGLE_TRACKING_ID: 'google_tracking_id'
+    GOOGLE_TRACKING_ID: 'google_tracking_id' {% endraw %}

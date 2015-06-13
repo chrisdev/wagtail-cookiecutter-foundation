@@ -1,4 +1,4 @@
----
+{% raw %}---
 - name: update the apt-cache
   apt: update_cache=yes cache_valid_time=3600
   sudo: yes
@@ -66,5 +66,4 @@
   command: update-rc.d redis_6379 defaults
   sudo: yes
   tags:
-     - redis
-
+     - redis{% endraw %}

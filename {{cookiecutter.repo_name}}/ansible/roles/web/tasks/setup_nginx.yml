@@ -1,4 +1,4 @@
----
+{% raw %}---
 - name: Enure that the Nginx service is stopped
   service: name=nginx state=stopped
   tags:
@@ -61,5 +61,4 @@
   service: name=nginx state=started enabled=yes
   tags:
       - nginx 
-      - ssl
-
+      - ssl {% endraw %}

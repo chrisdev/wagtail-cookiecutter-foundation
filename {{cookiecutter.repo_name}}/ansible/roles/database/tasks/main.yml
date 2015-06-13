@@ -1,4 +1,4 @@
----
+{% raw %}---
 - name: update the apt-cache
   apt: update_cache=yes
   tags: 
@@ -52,4 +52,4 @@
                    state=present
   tags:
       - pg_install
-      - pg_config
+      - pg_config{% endraw %}

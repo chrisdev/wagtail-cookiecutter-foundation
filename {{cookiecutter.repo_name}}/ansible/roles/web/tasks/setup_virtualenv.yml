@@ -1,4 +1,4 @@
----
+{% raw %}---
 - name: Install packages via pip
   pip: name={{ item }}
   sudo: yes 
@@ -68,4 +68,4 @@
       - web
       - py_setup 
       - debug 
-      - postactivate
+      - postactivate {% endraw %}
