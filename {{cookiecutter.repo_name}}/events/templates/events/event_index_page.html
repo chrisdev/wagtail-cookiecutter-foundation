@@ -4,10 +4,10 @@
 {% block event_content %}
     <div id="content" class="row">
         <div class="large-9 medium-8 columns" style="padding-top: 20px;">
-            <h5>Upcoming Events</h5>
+            <h3>Upcoming Events</h3>
             {% with self.events.all as events %}
                 {% if events %}    
-                    <ul class="small-block-grid-1 medium-block-grid-2 columns">
+                    <ul class="small-block-grid-1 medium-block-grid-2 columns" data-equalizer>
                         {% for event in events %}
                             {% include "events/includes/event_list_item.html" %}
                         {% endfor %}

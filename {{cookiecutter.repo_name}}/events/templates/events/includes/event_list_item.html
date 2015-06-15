@@ -1,6 +1,6 @@
 {% raw %}{% load wagtailcore_tags wagtailimages_tags %}
 <li style="text-align: center;">
-    <div class="event-list panel radius" style="padding: 8px;">
+    <div class="event-list panel radius" style="padding: 8px;" data-equalizer-watch>
         <a href="{% pageurl event %}">
             {% if event.search_description or event.feed_image %}
                     {% if event.feed_image %}
