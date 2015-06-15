@@ -1,0 +1,71 @@
+{% raw %}---
+- hosts: all
+  sudo: yes 
+  user: django 
+
+  tasks:
+
+
+    - name: Pull/And update the source
+      shell: hg pull
+             && hg update
+      sudo: no
+      args:
+           chdir: "{{ sites_dir }}/{{ project_name }}"
+      tags:
+            - django
+            
+    - name: Put the site into maint mode
+      shell: cp core/templates/offline.html static
+      args:
+           chdir: "{{ sites_dir }}/{{ project_name }}"
+      tags:
+            - start_maint 
+
+    - name: Install/update apps required by the Django app inside virtualenv
+      pip: virtualenv={{ virtualenvs_dir }}/{{ project_name }}-env 
+        requirements={{ sites_dir }}/{{ project_name }}/requirements/production.txt
+      tags:
+           - django
+
+    - name: Run Django South migrations
+      shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
+            && python manage.py migrate --noinput --settings={{ project_name }}.settings.production
+      environment: django_env
+      sudo: no
+      args:
+           chdir: "{{ sites_dir }}/{{ project_name }}"
+      tags:
+            - django
+
+    - name: Run Django collectstatic
+      shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
+            && python manage.py collectstatic --noinput --settings={{ project_name }}.settings.production
+      environment: django_env
+      sudo: no
+      args:
+          chdir: "{{ sites_dir }}/{{ project_name }}"
+      tags:
+         - django
+
+    - name: Run Django compress
+      shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
+             && python manage.py compress --settings={{ project_name }}.settings.production
+      environment: django_env
+      sudo: no
+      args:
+           chdir: "{{ sites_dir }}/{{ project_name }}"
+      tags:
+           - django
+
+    - name: Take the site out of  maint mode
+      shell: rm static/offline.html
+      args:
+           chdir: "{{ sites_dir }}/{{ project_name }}"
+      tags:
+           - django
+           - end_maint
+
+    - name: restart gunicorn 
+      supervisorctl: name={{ project_name }}
+                      state=restarted {% endraw %}

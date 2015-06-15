@@ -1,0 +1,40 @@
+{% raw %}---
+- name: update the apt-cache
+  apt: update_cache=yes 
+  tags:
+      - packages 
+
+- name: safe upgrade 
+  apt: upgrade=safe force=yes
+  tags:
+      - packages 
+
+- name: install common package dependencies
+  apt: >
+        pkg={{ item }}  
+        state=latest
+        force=yes
+  with_items:
+    - build-essential
+    - python 
+    - python-dev
+    - python-setuptools
+    - libjpeg-dev
+    - libtiff-dev 
+    - zlib1g-dev 
+    - libfreetype6-dev 
+    - liblcms2-dev
+    - python-opencv
+    - python-numpy
+    - openjdk-7-jre-headless
+    - python-pip
+    - bash
+    - openssl
+    - libssl-dev
+    - mercurial
+    - git
+    - supervisor
+    - fail2ban
+  tags:
+      - packages
+{% endraw %}
