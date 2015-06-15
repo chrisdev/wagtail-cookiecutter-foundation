@@ -1,6 +1,7 @@
 # Importing the syndication feed and BlogPage class from blog model.
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Rss201rev2Feed
+from wagtail.wagtailimages.models import Filter
 from xml.sax.saxutils import escape
 from datetime import datetime, time
 from blog.models import BlogPage
@@ -62,4 +63,8 @@ class BlogFeed(Feed):
         the 'add_item' call of the feed generator.
         Add the fields of the item, to be used by the custom feed generator.
         """
-        return { 'image': '%s' % (item.feed_image) if item.feed_image else ""}
+        feed_image = item.feed_image
+        filter,_ = Filter.objects.get_or_create(spec='width-1200')
+        img = feed_image.get_rendition(filter)
+        
+        return { 'image': img.url if item.feed_image else ""}

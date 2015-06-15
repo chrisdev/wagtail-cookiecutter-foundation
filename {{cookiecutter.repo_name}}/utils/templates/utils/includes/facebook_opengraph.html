@@ -1,4 +1,5 @@
-{% raw %}{% load settings_tags %}
+{% raw %}{% load wagtailcore_tags wagtailimages_tags %}
+{% load settings_tags %}
 {% get_fb_sitename as fb_sitename %}
 {% get_fb_url as fb_url %}
 {% get_fb_description as fb_description %}
@@ -12,5 +13,6 @@
 {% get_fb_appid as fb_appid %}
 <meta property="fb:app_id" content="{{ fb_appid }}" />
 {% image self.feed_image width-1200 as img %}
-<meta property="og:image" content="{{ img.url }}" />
-{% endraw %}
+{% if img %}
+<meta property="og:image" content="{{ site_url }}{{ img.url }}" />
+{% endif %}{% endraw %}
