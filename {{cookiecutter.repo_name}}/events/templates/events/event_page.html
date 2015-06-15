@@ -1,4 +1,4 @@
-{% extends "events/event_base.html" %}
+{% raw %}{% extends "events/event_base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
 {% load {% endraw %}{{ cookiecutter.repo_name }}{% raw %}_utils %}
 
@@ -75,4 +75,4 @@
      <p class="add"><a class='button tiny radius' href= "{{ self.url }}?format=ical"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Add to calendar</a></p>
 </div>
 </div>
-{% endblock %}
+{% endblock %}{% endraw %}
