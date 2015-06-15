@@ -11,4 +11,6 @@
 {% endif %}
 {% get_fb_appid as fb_appid %}
 <meta property="fb:app_id" content="{{ fb_appid }}" />
+{% image self.feed_image width-1200 as img %}
+<meta property="og:image" content="{{ img.url }}" />
 {% endraw %}
