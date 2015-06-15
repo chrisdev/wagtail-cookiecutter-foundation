@@ -1,0 +1,12 @@
+{% raw %}- hosts: all
+  sudo: yes 
+  user: root 
+  roles:
+    - common 
+
+- hosts: all
+  sudo: yes 
+  user: django 
+  roles:
+      - {role: database, tags: ["database"] }
+      - {role: web, tags:["allweb"] }{% endraw %}

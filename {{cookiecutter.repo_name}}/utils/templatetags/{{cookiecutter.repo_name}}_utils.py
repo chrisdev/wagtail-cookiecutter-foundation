@@ -3,6 +3,7 @@ from django.conf import settings
 from django.template.loader import get_template
 from contact.models import ContactPage
 from blog.models import BlogPage
+from events.models import EventPage
 
 register = template.Library()
 
@@ -27,3 +28,49 @@ def news_feed(context, count=2):
         # required by the pageurl tag that we want to use within this template
         'request': context['request'],
     }
+
+    
+@register.inclusion_tag('events/includes/event_listing.html',takes_context=True)
+def upcoming_events(context, count=3):
+
+    events = EventPage.objects.filter(live=True)
+    events = events.all().order_by('-date_from')
+    return {
+        'events': events[:count],
+        # required by the pageurl tag that we want to use within this template
+        'request': context['request'],
+    }
+
+@register.filter
+def time_display(time):
+    """Format the time - is this really required"""
+    # Get hour and minute from time object
+    hour = time.hour
+    minute = time.minute
+
+    # Convert to 12 hour format
+    if hour >= 12:
+        pm = True
+        hour -= 12
+    else:
+        pm = False
+    if hour == 0:
+        hour = 12
+
+    # Hour string
+    hour_string = str(hour)
+
+    # Minute string
+    if minute != 0:
+        minute_string = "." + str(minute)
+    else:
+        minute_string = ""
+
+    # PM string
+    if pm:
+        pm_string = "pm"
+    else:
+        pm_string = "am"
+
+    # Join and return
+    return "".join([hour_string, minute_string, pm_string])

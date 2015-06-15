@@ -1,7 +1,12 @@
-{% raw %}{% block events_content %}<div class="medium-10 small-centered columns">
-     <div class="panel">
+{% raw %}{% extends "events/event_base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% load {% endraw %}{{ cookiecutter.repo_name }}{% raw %}_utils %}
 
-         <h2>{{ self.title }}</h4>
+{% block event_content %}
+<div class="medium-10 small-centered columns">
+     <div class="panel radius">
+
+         <h4>{{ self.title }}</h4>
 
          {% if self.image_items %} 
             {% image image_items width-200 %}
@@ -26,7 +31,7 @@
             <p>Location: <strong>{{ self.location }}</strong></p>
          {% endif %}
 
-         <p>{% include "core/includes/body.html" with body=self.body only %}</p>
+         <p>{% include "events/includes/events_body.html" with body=self.body only %}</p>
 
          {% if self.audience %}
          <p>Audience:
@@ -68,4 +73,6 @@
      {% endwith %}
 
      <p class="add"><a class='button tiny radius' href= "{{ self.url }}?format=ical"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Add to calendar</a></p>
-</div>{% endblock %}{% endraw %}
+</div>
+</div>
+{% endblock %}{% endraw %}

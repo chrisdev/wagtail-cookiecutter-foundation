@@ -1,0 +1,17 @@
+- name: Deploy the Celery worker startup Script
+  template: src=celery.j2
+        dest=/etc/supervisor/conf.d/celery.conf
+            backup=yes
+  tags:
+     - celery
+
+- name: Re-read the Supervisor config files
+  command: supervisorctl reread
+  tags:
+     - celery
+
+- name: Update Supervisor to add the app in the process group
+  command: supervisorctl update
+  tags:
+     - celery 
+

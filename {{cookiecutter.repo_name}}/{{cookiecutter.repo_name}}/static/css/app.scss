@@ -114,6 +114,14 @@ $header-font-color: #555 !default;
     .button{margin-bottom:5px; padding:5px 8px; float: right;}
 }
 
+#event_feed
+{
+    h6, h5 {margin-bottom :5px;}
+    .event{border: 1px solid $keppel; border-radius: 3px; margin-bottom: 8px; padding: 5px;}
+    h5{color: $keppel;}
+    h6{color: $mine-shaft;}
+}
+
 
 .sitemap
 {

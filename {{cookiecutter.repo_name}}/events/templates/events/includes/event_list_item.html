@@ -1,6 +1,6 @@
 {% raw %}{% load wagtailcore_tags wagtailimages_tags %}
 <li style="text-align: center;">
-    <div class="event-list panel radius">
+    <div class="event-list panel radius" style="padding: 8px;" data-equalizer-watch>
         <a href="{% pageurl event %}">
             {% if event.search_description or event.feed_image %}
                     {% if event.feed_image %}
@@ -15,4 +15,5 @@
             <h6 class="subheader" style="font-size: 14px;">{{ event.date_from|date:"j F Y" }}{% if event.date_to %} to {{ event.date_to|date:"j F Y" }}{% endif %}</h6>       
         </a>
     </div>
-</li>{% endraw %}
+</li>
+{% endraw %}

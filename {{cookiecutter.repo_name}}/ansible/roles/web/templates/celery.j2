@@ -1,0 +1,15 @@
+{% raw %}[program:{{ project_name }}-celery]
+environment={% for k, v in django_env.iteritems() %}{% if not loop.first %},{% endif %}{{ k }}="{{ v }}"{% endfor %}
+
+directory= {{ sites_dir }}/{{ project_name }}
+command= {{ virtualenvs_dir }}/{{ project_name }}-env/bin/python manage.py celery worker --loglevel=INFO
+user= {{ deploy_user }}
+autostart=True
+autorestart=True
+numprocs=1
+
+stdout_logfile={{ sites_dir}}/{{ project_name }}/celery-worker.log
+stderr_logfile={{ sites_dir}}/{{ project_name }}/celery-worker.log
+
+stopwaitsecs = 600 {% endraw %}
+
