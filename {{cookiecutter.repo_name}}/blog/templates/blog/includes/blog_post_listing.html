@@ -5,7 +5,7 @@
         <div class="news">
         <h6><a href="{% pageurl blog %}">{{ blog.title }}</a></h6>
         <li><strong>{{ blog.date|date:"j F Y" }}</strong></li>
-        <p>{{ blog.intro|truncatewords:20|richtext }}</p>
+        {{ blog.intro|truncatewords:20|richtext }}
         <p><a href="{% pageurl blog %}" class="button right tiny radius">Read More</a></p>
         </div>
         <hr>
