@@ -10,7 +10,7 @@
                 <form class="contact-form" action="{% pageurl self %}" method="POST">
                     {% csrf_token %}
                     {{ form|as_foundation }}
-                    <input class="button tiny radius" type="submit" value="Send">
+                    <input class="button tiny radius" name="Send" type="submit" value="Send">
                 </form>
             </div>
 {% endblock %}{% endraw %}
