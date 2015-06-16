@@ -40,6 +40,3 @@ class ContactAppTests(SeleniumTestCase):
  
         # Check the returned result
         assert 'Thanks for you interest' in selenium.page_source
-
-if __name__ == '__main__':
-    unittest.main(warnings='ignore')
