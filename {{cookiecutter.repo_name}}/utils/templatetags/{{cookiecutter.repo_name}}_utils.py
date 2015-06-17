@@ -4,6 +4,7 @@ from django.template.loader import get_template
 from contact.models import ContactPage
 from blog.models import BlogPage
 from events.models import EventPage
+from pages.models import Testimonial
 
 register = template.Library()
 
@@ -74,3 +75,11 @@ def time_display(time):
 
     # Join and return
     return "".join([hour_string, minute_string, pm_string])
+    
+    
+@register.inclusion_tag('pages/includes/testimonials.html', takes_context=True)
+def testimonials(context):
+    return {
+        'testimonials': Testimonial.objects.select_related('page'),
+        'request': context['request'],
+    }
