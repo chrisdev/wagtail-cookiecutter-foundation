@@ -1,9 +1,9 @@
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.webdriver import WebDriver
 
 
-class SeleniumTestCase(LiveServerTestCase):
+class SeleniumTestCase(StaticLiveServerTestCase):
 
     @classmethod
     def setUpClass(cls):
