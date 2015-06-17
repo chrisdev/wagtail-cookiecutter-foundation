@@ -1,0 +1,29 @@
+{% raw %}{% extends "people/person_base.html" %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block people_content %}
+    <div id="content" class="row">            
+            <h3>{{ self.title }}</h3>
+            <h4 class="subheader">{{ self.subtitle }}</h4>
+            {% include "people/includes/intro.html" with intro=self.intro only %}
+            <hr> 
+            <div class="row">
+                <ul class="people large-block-grid-3 small-block-grid-2" data-equalizer>
+                    {% for person in persons %}
+                        <li data-equalizer-watch>
+                            <div class="panel radius">
+                                <a href="{% pageurl person %}">
+                                    {% image person.image width-200 %}
+                                    <center><h5 style="margin-bottom: 0px;">{{ person.title}}</h5></center>
+                                    {% if person.role %}
+                                    <center><h6 class="subheader">{{ person.role }}</h6></center>
+                                    {% else %} {% endif %}
+                                </a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+    </div>
+{% endblock %}{% endraw %}
