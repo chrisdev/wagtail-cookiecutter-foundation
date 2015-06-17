@@ -1,16 +1,15 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from django.utils.translation import activate
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.firefox.webdriver import WebDriver
+from selenium import webdriver
 
 
 class SeleniumTestCase(StaticLiveServerTestCase):
 
-    @classmethod
-    def setUpClass(cls):
-        cls.selenium = WebDriver()
-        super(SeleniumTestCase, cls).setUpClass()
+    def setUp(self):
+        self.browser = webdriver.Firefox()
+        self.browser.implicitly_wait(3)
+        activate('en')
 
-    @classmethod
-    def tearDownClass(cls):
-        super(SeleniumTestCase, cls).tearDownClass()
-        cls.selenium.quit()
+    def tearDown(self):
+        self.browser.quit()
