@@ -4,8 +4,11 @@
         {% for t in testimonials %}
             <li> 
                 <blockquote>
+                    {% if t.photo %}
+                        {% image t.photo width-100 %}
+                    {% endif %}
                     <p>{{ t.text }}</p>
-                    <h6>{{t.name}}</h6>
+                    <h6><strong>{{t.name}}</strong></h6>
                 </blockquote>
             </li> 
         {% endfor %}

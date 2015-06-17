@@ -136,14 +136,13 @@ $header-font-color: #555 !default;
 
 #testimonials {
      .bx-wrapper .bx-viewport{background: transparent; border:0px; box-shadow: none;}
-     img{float: left; margin-right: 10px;}
+     img{float: left; margin-right: 10px; border-radius: 100%;}
      h1,h2,h3,h4,h5,h6,p,li {color: $keppel;}
      h4{color: $white;}
-     p{margin-bottom: 5px;}
+     p{margin-top: 10px; margin-bottom: 10px; text-align: left; font-style: italic; font-size: 15px;}
      h6{text-align: right;}     
      blockquote {border-left: 0px;}
 }
-
 
 
 .sitemap
