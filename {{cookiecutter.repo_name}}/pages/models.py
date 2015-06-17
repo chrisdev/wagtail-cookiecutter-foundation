@@ -5,6 +5,7 @@ from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailimages.models import Image
+from wagtail.wagtailsnippets.models import register_snippet
 from modelcluster.fields import ParentalKey
 from wagtail.wagtailadmin.edit_handlers import (
     FieldPanel, MultiFieldPanel, InlinePanel, PageChooserPanel
@@ -141,3 +142,55 @@ StandardPage.content_panels = [
 StandardPage.promote_panels = Page.promote_panels + [
     ImageChooserPanel('feed_image'),
 ]
+
+class ContentBlock(LinkFields):
+    page = models.ForeignKey(
+        Page,
+        related_name='contentblocks',
+        null=True,
+        blank=True
+    )
+    title = models.CharField(max_length=255)
+    body = RichTextField()
+    summary = RichTextField(blank=True)
+    slug = models.SlugField()
+    panels = [
+        PageChooserPanel('page'),
+        FieldPanel('title'),
+        FieldPanel('summary'),
+        FieldPanel('body', classname="full"),
+        FieldPanel('slug'),
+        MultiFieldPanel(LinkFields.panels, "Link"),
+    ]
+
+    def __unicode__(self):
+        return u"{0}[{1}]".format(self.title, self.slug)
+
+register_snippet(ContentBlock)
+
+
+class Testimonial(LinkFields):
+    page = models.ForeignKey(
+        Page,
+        related_name='testimonials',
+        null=True,
+        blank=True
+    )
+    name = models.CharField(max_length=150)
+    photo = models.ForeignKey(
+        Image, null=True, blank=True, on_delete=models.SET_NULL
+    )
+    text = models.CharField(max_length=255)
+
+    panels = [
+        PageChooserPanel('page'),
+        FieldPanel('name'),
+        ImageChooserPanel('photo'),
+        FieldPanel('text'),
+        MultiFieldPanel(LinkFields.panels, "Link"),
+    ]
+
+    def __unicode__(self):
+        return self.name
+
+register_snippet(Testimonial)
