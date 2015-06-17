@@ -104,6 +104,18 @@ $header-font-color: #555 !default;
    hr:last-of-type {border:0px;} 
 }
 
+#people {
+    .people {
+        text-align: center;
+        img {border-radius: 3px; margin-bottom: 8px;}
+        .panel {padding: 10px;}
+    }
+    #contact-info {
+        li{list-style: none;}
+    }
+}
+
+
 #news_feed 
 {
     h6, li {margin-bottom :5px;}
@@ -216,5 +228,6 @@ ul.side-nav {
         p{display: none;}
         hr{border: 0px;}
         .news{border: 1px solid $keppel; border-radius: 5px; padding: 8px; margin-bottom:10px;}
+        .rich-text{display: none;}
     }
 }
