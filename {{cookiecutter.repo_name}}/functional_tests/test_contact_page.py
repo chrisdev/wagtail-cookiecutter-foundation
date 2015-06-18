@@ -24,4 +24,4 @@ class ContactAppTests(SeleniumTestCase):
         submit.send_keys(Keys.RETURN)
  
         # Check the returned result
-        assert 'Thanks for you interest' in browser.page_source
+        assert 'Thanks for your interest' in browser.page_source
