@@ -9,9 +9,9 @@ class ContactAppTests(SeleniumTestCase):
         browser.get('http://127.0.0.1:8000/contact-us/')
 
         # find the form elements
-        name = browser.find_element_by_id('id_your-name')
-        email = browser.find_element_by_id('id_your-email-address')
-        message = browser.find_element_by_id('id_your-message')
+        name = browser.find_element_by_id('id_name')
+        email = browser.find_element_by_id('id_e-mail')
+        message = browser.find_element_by_id('id_message')
  
         submit = browser.find_element_by_name('Send')
  
