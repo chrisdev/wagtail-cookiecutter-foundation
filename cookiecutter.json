@@ -1,10 +1,13 @@
 {
     "project_name": "Wagtail Project",
-    "repo_name": "{{ cookiecutter.project_name|replace(' ', '')|lower }}",
+    "repo_name": "{{ cookiecutter.project_name|replace(' ', '_')|lower }}",
     "author_name": "Your Name",
     "email": "Your email",
     "description": "A short description of the project.",
     "timezone": "UTC",
     "now": "2015/04/16",
-    "year": "{{ cookiecutter.now[:4] }}"
+    "year": "{{ cookiecutter.now[:4] }}",
+    "production_host_name" : "example.org",
+    "use_ssl_in_production": "true",
+    "staging_host_name": "staging.example.org"
 }
