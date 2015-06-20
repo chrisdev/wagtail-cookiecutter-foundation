@@ -6,3 +6,4 @@ nginx_root_dir:  /etc/nginx/sites-available
 gunicorn:  127.0.0.1:2015
 deploy_user: django
 redis_version: 2.8.19
+deploy_user_auth_key_path: "path_to_your_public_key"

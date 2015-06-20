@@ -1,2 +1,2 @@
 [all]
-staging.com
+{% if cookiecutter.use_vagrant_staging %} {{ cookiecutter.staging_host_name }}  ansible_ssh_host=192.168.33.10 {% else %} {{ cookiecutter.staging_host_name }} {% endif %}
