@@ -67,5 +67,4 @@
   tags:
       - web
       - py_setup 
-      - debug 
       - postactivate {% endraw %}

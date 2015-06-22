@@ -1,0 +1,32 @@
+- hosts: all
+  sudo: yes
+  remote_user: vagrant
+  
+  tasks:
+    - name: Creates destination directory
+      file: state=directory mode=0700 dest=/root/.ssh/
+      
+    - name: Pushes user's rsa key to root's vagrant box (it's ok if this TASK fails)
+      copy: src=~/.ssh/id_rsa.pub dest=/root/.ssh/authorized_keys owner=root mode=0600
+      register: rsa
+      ignore_errors: yes
+
+    - name: Pushes user's dsa key to root's vagrant box (it's NOT ok if both TASKs fail)
+      copy: src=~/.ssh/id_dsa.pub dest=/root/.ssh/authorized_keys owner=root mode=0600
+      when: rsa|failed
+
+    - name: Checks if resolver is working properly (issues with some VBox/Host OS combinations)
+      command: host -t A ansible.cc
+      register: ns
+      ignore_errors: yes
+
+    - name: Pushes new resolver configuration if resolver fails
+      lineinfile: regexp="^nameserver " line="nameserver 8.8.8.8" dest=/etc/resolv.conf
+      when: ns|failed
+
+    - name: Checks if resolver is working properly with new nameserver
+      command: host -t A ansible.cc
+
+    - name: Final greeting
+      pause: prompt="You public keys have been added to the root user!
+        Please press [Enter]"

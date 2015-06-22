@@ -16,7 +16,7 @@
             - django
             
     - name: Put the site into maint mode
-      shell: cp core/templates/offline.html static
+      shell: cp "{{ project_name }}/templates/offline.html" static
       args:
            chdir: "{{ sites_dir }}/{{ project_name }}"
       tags:
