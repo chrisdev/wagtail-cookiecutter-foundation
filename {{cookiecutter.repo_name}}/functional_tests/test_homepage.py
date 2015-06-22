@@ -1,4 +1,5 @@
 from .base import *
+from selenium.common.exceptions import NoSuchElementException 
 
 HOMEPAGE = 'http://127.0.0.1:8000'
 
@@ -9,9 +10,7 @@ class HomepageTests(SeleniumTestCase):
         self.assertIn("Homepage", self.browser.title)
 
     def test_home_files(self):
-        self.browser.get(HOMEPAGE + "/robots.txt")
-        self.assertNotIn("Not Found", self.browser.title)
-        self.browser.get(HOMEPAGE + "/humans.txt")
+        self.browser.get(HOMEPAGE + "/static/favicon.ico")
         self.assertNotIn("Not Found", self.browser.title)
 
     def test_home_heading(self):
@@ -27,4 +26,10 @@ class HomepageTests(SeleniumTestCase):
         browser = self.browser
         browser.get(HOMEPAGE)
 
-        self.assertTrue(browser.find_element_by_class_name('icon').size())
+        try:
+            browser.find_element_by_class_name('icon')
+
+        except NoSuchElementException:
+            return False
+
+        return True
