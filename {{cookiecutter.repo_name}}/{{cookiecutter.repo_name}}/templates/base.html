@@ -23,6 +23,7 @@
 
         {% block extra_css %}
             <link rel="stylesheet" type="text/css" href="{% static 'css/vendor/jquery.bxslider.css' %}">
+            <link rel="stylesheet" type="text/css" href="{% static 'css/vendor/royalslider.css' %}" >
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         {% endblock %}
         {% include "utils/includes/facebook_opengraph.html" %}
@@ -79,6 +80,41 @@
             <script src="{% static 'js/foundation.min.js' %}"></script>
             <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
             <script src="{% static 'js/vendor/jquery.bxslider.min.js' %}"></script>
+            
+            <script src="{% static 'js/vendor/royalslider/jquery.royalslider.min.js' %}"></script>
+            <script src="{% static 'js/vendor/royalslider/highlight.pack.js' %}"></script>
+            <script> hljs.initHighlightingOnLoad();</script>
+            
+            <script id="addJS">jQuery(document).ready(function($) {
+              $('#full-width-slider').royalSlider({
+                arrowsNav: true,
+                loop: false,
+                keyboardNavEnabled: true,
+                controlsInside: false,
+                imageScaleMode: 'fill',
+                arrowsNavAutoHide: false,
+                autoScaleSlider: true, 
+                autoScaleSliderWidth: 1300,     
+                autoScaleSliderHeight: 500,
+                controlNavigation: 'bullets',
+                thumbsFitInViewport: false,
+                navigateByClick: true,
+                startSlideId: 0,
+                autoPlay: {
+                    enabled: true,
+                    pauseOnHover: true
+                },
+                transitionType:'move',
+                globalCaption: false,
+                deeplinking: {
+                  enabled: true,
+                  change: false
+                },
+                imgWidth: 1300,
+                imgHeight: 500
+              });
+            });
+            </script>
         {% endcompress %}
 
         {% block extra_js %}
