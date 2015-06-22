@@ -2,11 +2,13 @@
 - name: update the apt-cache
   apt: update_cache=yes 
   tags:
+      - cache 
       - packages 
 
 - name: safe upgrade 
   apt: upgrade=safe force=yes
   tags:
+      - upgrade 
       - packages 
 
 - name: install common package dependencies
@@ -36,5 +38,5 @@
     - supervisor
     - fail2ban
   tags:
-      - packages
-{% endraw %}
+      - packages {% endraw %}
+

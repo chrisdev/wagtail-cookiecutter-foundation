@@ -1,4 +1,4 @@
----
+{% raw %}---
 - name: Authorized hosts for bitbucket
   shell: ssh-keyscan -H bitbucket.org >> /home/{{ deploy_user }}/.ssh/known_hosts
   args:
@@ -22,4 +22,4 @@
       creates: "{{ sites_dir }}/{{ project_name }}"
   tags:
       - web 
-      - hg
+      - hg{% endraw %}

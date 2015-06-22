@@ -44,12 +44,9 @@ server {
         }
 
 
-        error_page 500 502 504 /500.html;
-        location = /500.html {
-            root {{ sites_dir }}/{{ project_name }}/core/templates/;
-        }
-        error_page 503 502 @maintenance;
+        error_page 500 503 502 504 @maintenance;
         location @maintenance {
-              rewrite ^(.*)$ /offline.html break;
+            root {{ sites_dir }}/{{ project_name }}/{{ project_name }}/templates/;
+            rewrite ^(.*)$ /offline.html break;
         }
 }{% endraw %}

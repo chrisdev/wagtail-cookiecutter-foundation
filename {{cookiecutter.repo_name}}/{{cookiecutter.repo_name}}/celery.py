@@ -1,4 +1,4 @@
-{% raw %}"""
+"""
 Celery config for {{ cookiecutter.repo_name }} project.
 
 For more information on this file, see
@@ -22,9 +22,9 @@ from celery import Celery
 from django.conf import settings
 
 # set the default Django settings module for the 'celery' program.
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "{{ cookiecutter.repo_name }}.settings.dev")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "{{ cookiecutter.repo_name }}.settings.production")
 
 app = Celery("{{ cookiecutter.repo_name }}")
 
 app.config_from_object('django.conf:settings')
-app.autodiscover_tasks(lambda: settings.INSTALLED_APPS){% endraw %}
+app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)

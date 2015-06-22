@@ -22,7 +22,7 @@
     - user
 
 - name: Copy the authorized file to the .ssh dir
-  copy: src=/Users/cclarke/Dropbox/ChrisDev/ssl/chris_keys/authorized_keys 
+  copy: src={{ deploy_user_auth_key_path }}
         dest=/home/{{ deploy_user }}/.ssh/authorized_keys 
         owner={{ deploy_user }}
         group={{ deploy_user }}
@@ -37,5 +37,5 @@
   user: name={{ deploy_user }} generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
   tags:
       - user
-      - sshkeys
-{% endraw %}
+      - sshkeys{% endraw %}
+

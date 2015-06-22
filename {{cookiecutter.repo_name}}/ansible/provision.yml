@@ -1,12 +1,25 @@
-{% raw %}- hosts: all
+- name: apply common configruation to all nodes
+  hosts: all 
   sudo: yes 
   user: root 
   roles:
-    - common 
+      - common
 
-- hosts: all
+- name: deploy postgreSQL and configure the database
+  hosts: all
+  sudo: yes 
+  user: root 
+  roles:
+      - role: database 
+  tags:
+      - database
+
+- name: configure and deploy django infrastructure and application code 
+  hosts: all 
   sudo: yes 
   user: django 
   roles:
-      - {role: database, tags: ["database"] }
-      - {role: web, tags:["allweb"] }{% endraw %}
+      - role: web
+  tags:
+      - webapp 
+
