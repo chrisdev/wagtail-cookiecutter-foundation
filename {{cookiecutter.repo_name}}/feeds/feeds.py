@@ -64,7 +64,8 @@ class BlogFeed(Feed):
         Add the fields of the item, to be used by the custom feed generator.
         """
         feed_image = item.feed_image
-        filter,_ = Filter.objects.get_or_create(spec='width-1200')
-        img = feed_image.get_rendition(filter)
+        if feed_image:
+            filter,_ = Filter.objects.get_or_create(spec='width-1200')
+            img = feed_image.get_rendition(filter)
         
-        return { 'image': img.url if item.feed_image else ""}
+        return { 'image': img.url if feed_image else ""}
