@@ -1,5 +1,5 @@
 // Foundation Global settings
-@import "vendor/foundation/scss/components/global";
+@import "../libs/foundation/scss/foundation/components/global";
 
 // Colors
 $keppel: #43b1b0;
@@ -30,7 +30,7 @@ $paragraph-font-family: 'Lato', Helvetica, sans;
 $header-font-color: #555 !default;
 
 // Foundation scss import
-@import "vendor/foundation/scss/foundation";
+@import "../libs/foundation/scss/foundation";
 
 .fixed {border-bottom: 1px solid $blue;}
 .top-bar-section ul {display: table; margin: 0 auto;}
