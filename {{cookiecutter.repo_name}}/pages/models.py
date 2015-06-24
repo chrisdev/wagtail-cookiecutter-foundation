@@ -25,7 +25,7 @@ class HomePageContentItem(Orderable, LinkFields):
         related_name='+'
     )
     title = models.CharField(max_length=100)
-    content = RichTextField()
+    content = RichTextField(null=True,blank=True,)
     summary = RichTextField(blank=True)
     slug = models.SlugField()
 

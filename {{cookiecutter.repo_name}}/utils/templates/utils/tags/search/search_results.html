@@ -1,0 +1,31 @@
+{% raw %}{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+    <div id="content" class="row">
+        <div class="medium-9 columns">
+            <h3>Search{% if search_results %} Results{% endif %} {% if query_string %} for {{ query_string }} {% endif %}</h3> 
+            
+            <form action="{% url 'wagtailsearch_search' %}" method="get" style="margin-bottom: 15px;"> 
+                <div class="row collapse postfix-round">
+                    <div class="small-9 columns">
+                      <input type="text" name="q" {% if query_string %} value="{{ query_string }}"{% endif %}>
+                    </div>
+                    <div class="small-3 columns">
+                      <input type="submit" value="Search" class="postfix button tiny radius">
+                    </div>
+                </div>
+            </form> 
+                          
+            {% if search_results %} 
+                    {% for result in search_results %} 
+                        <h5><a href="{{ result.specific.url }}">{{ result.specific }}</a></h5>  
+                    {% endfor %} 
+            {% endif %}
+        </div>
+        <div id="sidebar" class="medium-3 columns">
+            <center><h6> Sidebar placeholder </h6></center>
+        </div>
+    </div>
+{% endblock %}{% endraw %}
