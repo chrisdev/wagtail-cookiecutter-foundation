@@ -68,6 +68,7 @@ INSTALLED_APPS = (
     'events',
     'contact',
     'people',
+    'photo_gallery',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -185,6 +186,9 @@ TWITTER_DESCRIPTION = ''
 
 
 # Wagtail settings
+
+# Wagtail settings for Custom Image Gallery
+WAGTAILIMAGES_IMAGE_MODEL = 'photo_gallery.CustomImage'
 
 LOGIN_URL = 'wagtailadmin_login'
 LOGIN_REDIRECT_URL = 'wagtailadmin_home'
