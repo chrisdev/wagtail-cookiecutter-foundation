@@ -18,13 +18,18 @@
         {% endcompress %}
 
         {% compress js %}
-            <script src="{% static 'js/vendor/modernizr.js' %}"></script>
+            <script src="{% static 'libs/modernizr/modernizr.js' %}"></script>
         {% endcompress %}
 
         {% block extra_css %}
+<<<<<<< HEAD
             <link rel="stylesheet" type="text/css" href="{% static 'css/vendor/jquery.bxslider.css' %}">
             <link rel="stylesheet" type="text/css" href="{% static 'css/vendor/royalslider.css' %}" >
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+=======
+            <link rel="stylesheet" type="text/css" href="{% static 'libs/bxslider-4/dist/jquery.bxslider.min.css' %}">
+            <link rel="stylesheet" href="{% static 'libs/font-awesome/css/font-awesome.min.css' %}">
+>>>>>>> 4521ee8fa0a3242d5382144a6acd96aac7420099
         {% endblock %}
         {% include "utils/includes/facebook_opengraph.html" %}
         {% include "utils/includes/twitter_cards.html" %}
@@ -76,9 +81,10 @@
         </footer>
 
         {% compress js %}
-            <script src="{% static 'js/vendor/jquery.js' %}"></script>
-            <script src="{% static 'js/foundation.min.js' %}"></script>
+            <script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
+            <script src="{% static 'libs/foundation/js/foundation.min.js' %}"></script>
             <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+<<<<<<< HEAD
             <script src="{% static 'js/vendor/jquery.bxslider.min.js' %}"></script>
             
             <script src="{% static 'js/vendor/royalslider/jquery.royalslider.min.js' %}"></script>
@@ -115,6 +121,9 @@
               });
             });
             </script>
+=======
+            <script src="{% static 'libs/bxslider-4/dist/jquery.bxslider.min.js' %}"></script>
+>>>>>>> 4521ee8fa0a3242d5382144a6acd96aac7420099
         {% endcompress %}
 
         {% block extra_js %}

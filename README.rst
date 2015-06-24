@@ -188,7 +188,13 @@ Firstly, open up a command line shell in your new projects directory.
   
   The default Admin password is *admin123*
 
-6. **Run the development server**
+6. **Install Packages (Foundation, Font-Awesome etc.) using Bower package manager**
+
+  :code:`bower install`
+
+  For more details on bower visit: http://bower.io
+  
+7. **Run the development server**
 
   :code:`./manage.py runserver`
 
