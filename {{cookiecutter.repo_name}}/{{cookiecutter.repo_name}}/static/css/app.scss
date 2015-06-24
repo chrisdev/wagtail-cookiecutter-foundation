@@ -83,6 +83,30 @@ $header-font-color: #555 !default;
   }
 }
 
+#full-width-slider {
+   width: 100%;
+   margin-bottom: 50px;
+   font-family: $header-font-family;
+   h1, h2, h3, h4, h5, h6, p {color: $keppel;font-weight: 700;}
+   
+   .infoBlock {
+       background: rgba($white, 0.9);
+       padding: 20px;
+       border-radius: 2px;
+       margin-left: 15px;
+       margin-top: 25px;
+       max-width: 35%;
+       h4 {font-size: 35px;font-weight: 700;font-variant: small-caps;}
+       p {font-size: 20px;font-weight: 400;}
+       a {background: $keppel;
+          color: $white;
+          border-radius: 5px;
+          padding: 3px 6px;
+          font-size: 15px;
+          float: right;}
+   }   
+}
+
 #carousel
 {
   margin-top: 60px;

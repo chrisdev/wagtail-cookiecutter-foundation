@@ -191,6 +191,8 @@ LOGIN_REDIRECT_URL = 'wagtailadmin_home'
 
 WAGTAIL_SITE_NAME = "{{ cookiecutter.project_name }}"
 
+WAGTAILSEARCH_RESULTS_TEMPLATE = 'utils/tags/search/search_results.html'
+
 # Use Elasticsearch as the search backend for extra performance and better search results
 # WAGTAILSEARCH_BACKENDS = {
 #     'default': {
