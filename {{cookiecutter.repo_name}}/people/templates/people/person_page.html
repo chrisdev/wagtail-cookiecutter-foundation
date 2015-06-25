@@ -2,6 +2,7 @@
 {% load wagtailimages_tags %}
 
 {% block people_content %}
+    {% include "utils/includes/social_share.html" %}
     <div id="content" class="row">
         {% if self.image %}
             {# Person image - first store image as a variable in order to construct an image tag with a class applied #}

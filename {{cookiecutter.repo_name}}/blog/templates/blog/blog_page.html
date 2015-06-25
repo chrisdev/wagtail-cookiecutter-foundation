@@ -9,8 +9,8 @@
 {% endif %}
 {% block article_content %}
 <article>
+    {% include "utils/includes/social_share.html" %}
     {% include "blog/includes/blog_header.html" %}
-    <hr />
     {% include "blog/includes/blog_body.html" with body=self.body only %}    
 </article>
 {% endblock %}{% endraw %}

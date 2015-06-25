@@ -59,6 +59,19 @@ $header-font-color: #555 !default;
   height: 100%;
 }
 
+ul.share-buttons{list-style: none;padding: 0; margin:0; margin-bottom: 15px}
+ul.share-buttons li{display: inline; margin-right: 5px;}
+ul.share-buttons {
+    .fa {margin-right: 8px;}
+    .button.tiny {padding:8px 10px;font-size: 1rem;}
+    .facebook {background: #3b5998;}
+    .twitter {background: #00aced;}
+    .google {background: #dd4b39;}
+    .linkedin {background: #007bb6;}    
+    .pin {background: #cb2027;}
+    .mail {background: #00bf8f;}
+}
+
 .intro
 {
   color: $white;
