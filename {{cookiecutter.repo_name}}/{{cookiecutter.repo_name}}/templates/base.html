@@ -1,5 +1,6 @@
 {% raw %}{% load compress static wagtailuserbar navigation_tags %}
 {% load {% endraw %}{{ cookiecutter.repo_name }}{% raw %}_utils %}
+{% load settings_tags %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -68,7 +69,13 @@
                     </div>
                     <div class="large-4 columns text-center">
                         <h5 class="contact-head">Find Us</h5>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3920.9758279670727!2d-61.391602!3d10.658984000000002!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c3600ebfcf1667d%3A0x68891085216fb5e6!2sChrisDev!5e0!3m2!1sen!2s!4v1399313047235" width="100%" height="150" frameborder="0" style="border:0"></iframe>
+                        {%  if contact.post_code %}
+                            
+                            {% get_google_maps_key as google_maps_key %}
+
+                            <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ contact.post_code }}&zoom=13&size=300x200&maptype=roadmap
+                            &sensor=false&markers=color:green|{{ contact.post_code }}{% if google_maps_key %}&key={{ google_maps_key }}{% endif %}" />
+                        {% endif %}
                     </div>
                 </div>
             </div>
