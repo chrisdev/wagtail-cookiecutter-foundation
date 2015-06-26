@@ -7,6 +7,7 @@ from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailsearch import urls as wagtailsearch_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
+from photo_gallery import urls as photo_gallery_urls
 
 from feeds.feeds import BlogFeed
 
@@ -21,7 +22,10 @@ urlpatterns = patterns('',
     url(r'^documents/', include(wagtaildocs_urls)),
 
     url(r'^blog/feed/$', BlogFeed(), name='blog_feed'),
+    url(r'^photo-gallery/$', include(photo_gallery_urls)),
 
+    # For anything not caught by a more specific rule above, hand over to
+    # Wagtail's serving mechanism
     url(r'', include(wagtail_urls)),
 )
 

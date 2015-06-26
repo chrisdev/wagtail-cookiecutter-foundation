@@ -2231,7 +2231,7 @@
     "is_active": true,
     "is_superuser": true,
     "is_staff": true,
-    "last_login": "2015-06-26T07:24:40.492Z",
+    "last_login": "2015-06-26T14:44:07.881Z",
     "groups": [],
     "user_permissions": [],
     "password": "pbkdf2_sha256$15000$49dBPJuiGwi4$53nRnWjByd/yAt9BlD8Nqc7T1INVHjOk79Ze8ZvTYeY=",
@@ -3091,6 +3091,62 @@
 },
 {
   "fields": {
+    "spec": "max-800x600"
+  },
+  "model": "wagtailimages.filter",
+  "pk": 9
+},
+{
+  "fields": {
+    "spec": "width-500"
+  },
+  "model": "wagtailimages.filter",
+  "pk": 10
+},
+{
+  "fields": {
+    "spec": "width-800"
+  },
+  "model": "wagtailimages.filter",
+  "pk": 11
+},
+{
+  "fields": {
+    "spec": "max-600*300"
+  },
+  "model": "wagtailimages.filter",
+  "pk": 12
+},
+{
+  "fields": {
+    "spec": "max-500x200"
+  },
+  "model": "wagtailimages.filter",
+  "pk": 13
+},
+{
+  "fields": {
+    "spec": "max-800x400"
+  },
+  "model": "wagtailimages.filter",
+  "pk": 14
+},
+{
+  "fields": {
+    "spec": "height-400"
+  },
+  "model": "wagtailimages.filter",
+  "pk": 15
+},
+{
+  "fields": {
+    "spec": "height-300"
+  },
+  "model": "wagtailimages.filter",
+  "pk": 16
+},
+{
+  "fields": {
     "image": 1,
     "focal_point_key": "",
     "filter": 8,
@@ -3595,6 +3651,38 @@
 },
 {
   "fields": {
+    "query_string": "x"
+  },
+  "model": "wagtailsearch.query",
+  "pk": 1
+},
+{
+  "fields": {
+    "query_string": "a"
+  },
+  "model": "wagtailsearch.query",
+  "pk": 2
+},
+{
+  "fields": {
+    "date": "2015-06-26",
+    "query": 1,
+    "hits": 2
+  },
+  "model": "wagtailsearch.querydailyhits",
+  "pk": 1
+},
+{
+  "fields": {
+    "date": "2015-06-26",
+    "query": 2,
+    "hits": 1
+  },
+  "model": "wagtailsearch.querydailyhits",
+  "pk": 2
+},
+{
+  "fields": {
     "form_data": "{\"e-mail\": \"example@example.com\", \"message\": \"Test\", \"why-do-you-want-to-contact\": \"sdhsd\", \"name\": \"Parbhat Puri\"}",
     "page": 4,
     "submit_time": "2015-06-18T16:15:47.722Z"
@@ -3891,5 +3979,177 @@
   },
   "model": "contact.contactpage",
   "pk": 4
+},
+{
+  "fields": {
+    "focal_point_width": null,
+    "gallery_name": "foundation",
+    "title": "foundation1.jpg",
+    "focal_point_height": null,
+    "created_at": "2015-06-26T18:03:15.836Z",
+    "focal_point_x": null,
+    "focal_point_y": null,
+    "height": 500,
+    "width": 1500,
+    "file": "original_images/featured34wdd2x.jpg",
+    "uploaded_by_user": [
+      "admin"
+    ]
+  },
+  "model": "photo_gallery.customimage",
+  "pk": 10
+},
+{
+  "fields": {
+    "focal_point_width": null,
+    "gallery_name": "foundation",
+    "title": "foundation2.jpg",
+    "focal_point_height": null,
+    "created_at": "2015-06-26T18:03:16.040Z",
+    "focal_point_x": null,
+    "focal_point_y": null,
+    "height": 500,
+    "width": 1300,
+    "file": "original_images/image-2-compressed.jpg",
+    "uploaded_by_user": [
+      "admin"
+    ]
+  },
+  "model": "photo_gallery.customimage",
+  "pk": 12
+},
+{
+  "fields": {
+    "focal_point_width": null,
+    "gallery_name": "cookiecutter",
+    "title": "cookiecutter1.jpg",
+    "focal_point_height": null,
+    "created_at": "2015-06-26T18:06:31.670Z",
+    "focal_point_x": null,
+    "focal_point_y": null,
+    "height": 500,
+    "width": 1300,
+    "file": "original_images/postgresql_i4Y7yRE.jpg",
+    "uploaded_by_user": [
+      "admin"
+    ]
+  },
+  "model": "photo_gallery.customimage",
+  "pk": 13
+},
+{
+  "fields": {
+    "focal_point_width": null,
+    "gallery_name": "cookiecutter",
+    "title": "cookiecutter2.png",
+    "focal_point_height": null,
+    "created_at": "2015-06-26T18:06:31.779Z",
+    "focal_point_x": null,
+    "focal_point_y": null,
+    "height": 500,
+    "width": 1300,
+    "file": "original_images/sass-logo-new_zQTGH6m.png",
+    "uploaded_by_user": [
+      "admin"
+    ]
+  },
+  "model": "photo_gallery.customimage",
+  "pk": 14
+},
+{
+  "fields": {
+    "image": 10,
+    "focal_point_key": "",
+    "filter": 3,
+    "width": 1400,
+    "file": "images/featured34wdd2x.focus-none.width-1400.jpg",
+    "height": 466
+  },
+  "model": "photo_gallery.customrendition",
+  "pk": 45
+},
+{
+  "fields": {
+    "image": 12,
+    "focal_point_key": "",
+    "filter": 7,
+    "width": 165,
+    "file": "images/image-2-compressed.focus-none.max-165x165.jpg",
+    "height": 63
+  },
+  "model": "photo_gallery.customrendition",
+  "pk": 46
+},
+{
+  "fields": {
+    "image": 10,
+    "focal_point_key": "",
+    "filter": 7,
+    "width": 165,
+    "file": "images/featured34wdd2x.focus-none.max-165x165.jpg",
+    "height": 55
+  },
+  "model": "photo_gallery.customrendition",
+  "pk": 48
+},
+{
+  "fields": {
+    "image": 12,
+    "focal_point_key": "",
+    "filter": 3,
+    "width": 1300,
+    "file": "images/image-2-compressed.focus-none.width-1400.jpg",
+    "height": 500
+  },
+  "model": "photo_gallery.customrendition",
+  "pk": 50
+},
+{
+  "fields": {
+    "image": 14,
+    "focal_point_key": "",
+    "filter": 7,
+    "width": 165,
+    "file": "images/sass-logo-new_zQTGH6m.focus-none.max-165x165.png",
+    "height": 63
+  },
+  "model": "photo_gallery.customrendition",
+  "pk": 52
+},
+{
+  "fields": {
+    "image": 13,
+    "focal_point_key": "",
+    "filter": 7,
+    "width": 165,
+    "file": "images/postgresql_i4Y7yRE.focus-none.max-165x165.jpg",
+    "height": 63
+  },
+  "model": "photo_gallery.customrendition",
+  "pk": 53
+},
+{
+  "fields": {
+    "image": 14,
+    "focal_point_key": "",
+    "filter": 3,
+    "width": 1300,
+    "file": "images/sass-logo-new_zQTGH6m.focus-none.width-1400.png",
+    "height": 500
+  },
+  "model": "photo_gallery.customrendition",
+  "pk": 54
+},
+{
+  "fields": {
+    "image": 13,
+    "focal_point_key": "",
+    "filter": 3,
+    "width": 1300,
+    "file": "images/postgresql_i4Y7yRE.focus-none.width-1400.jpg",
+    "height": 500
+  },
+  "model": "photo_gallery.customrendition",
+  "pk": 55
 }
 ]

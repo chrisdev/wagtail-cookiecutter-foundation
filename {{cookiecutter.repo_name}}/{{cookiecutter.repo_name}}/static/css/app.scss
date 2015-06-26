@@ -254,3 +254,22 @@ ul.side-nav {
         .rich-text{display: none;}
     }
 }
+
+#photo-gallery
+{
+    padding-top: 20px;
+    padding-bottom: 100px;
+    text-align: center;
+    h3
+    {
+      padding-bottom: 10px;
+    }
+    .gallery-names li
+    {
+      background: #43b1b0;
+      border-radius: 2px;
+      color: #fff;
+      margin-top: 5px;
+      padding: 5px;
+    }
+}
