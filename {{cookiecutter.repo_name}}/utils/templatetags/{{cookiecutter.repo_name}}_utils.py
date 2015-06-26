@@ -14,7 +14,7 @@ def get_contact_fields(context):
     try:
         contact_vals = ContactPage.objects.values(
             'name_organization', 'address_1',
-            'address_2', 'city', 'country', 'telephone'
+            'address_2', 'city', 'country', 'telephone', 'post_code'
         )[0]
         return contact_vals
 

@@ -2065,6 +2065,78 @@
 },
 {
   "fields": {
+    "codename": "add_customimage",
+    "name": "Can add custom image",
+    "content_type": [
+      "photo_gallery",
+      "customimage"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 173
+},
+{
+  "fields": {
+    "codename": "change_customimage",
+    "name": "Can change custom image",
+    "content_type": [
+      "photo_gallery",
+      "customimage"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 174
+},
+{
+  "fields": {
+    "codename": "delete_customimage",
+    "name": "Can delete custom image",
+    "content_type": [
+      "photo_gallery",
+      "customimage"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 175
+},
+{
+  "fields": {
+    "codename": "add_customrendition",
+    "name": "Can add custom rendition",
+    "content_type": [
+      "photo_gallery",
+      "customrendition"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 176
+},
+{
+  "fields": {
+    "codename": "change_customrendition",
+    "name": "Can change custom rendition",
+    "content_type": [
+      "photo_gallery",
+      "customrendition"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 177
+},
+{
+  "fields": {
+    "codename": "delete_customrendition",
+    "name": "Can delete custom rendition",
+    "content_type": [
+      "photo_gallery",
+      "customrendition"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 178
+},
+{
+  "fields": {
     "name": "Moderators",
     "permissions": [
       [
@@ -2159,7 +2231,7 @@
     "is_active": true,
     "is_superuser": true,
     "is_staff": true,
-    "last_login": "2015-06-18T16:19:55.062Z",
+    "last_login": "2015-06-26T07:24:40.492Z",
     "groups": [],
     "user_permissions": [],
     "password": "pbkdf2_sha256$15000$49dBPJuiGwi4$53nRnWjByd/yAt9BlD8Nqc7T1INVHjOk79Ze8ZvTYeY=",
@@ -2241,7 +2313,7 @@
     "show_in_menus": true,
     "live": true,
     "seo_title": "",
-    "latest_revision_created_at": "2015-06-18T16:16:34.788Z",
+    "latest_revision_created_at": "2015-06-26T08:01:19.844Z",
     "depth": 3,
     "search_description": "",
     "content_type": [
@@ -2686,6 +2758,34 @@
   },
   "model": "wagtailcore.pagerevision",
   "pk": 20
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-06-26T07:42:47.125Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"to_address\": \"\", \"from_address\": \"\", \"telephone\": \"8675-309\", \"search_description\": \"\", \"owner\": 1, \"intro\": \"Contact Us\", \"latest_revision_created_at\": \"2015-06-18T16:16:34.788Z\", \"subject\": \"\", \"name_organization\": \"full/formatted name of the person or organisation\", \"city\": \"Town\", \"title\": \"Contact Us\", \"seo_title\": \"\", \"slug\": \"contact-us\", \"live\": true, \"has_unpublished_changes\": false, \"go_live_at\": null, \"email\": \"example@example.com\", \"post_code\": \"W1A 1AA\", \"numchild\": 0, \"content_type\": 52, \"show_in_menus\": true, \"thank_you_text\": \"Thanks for your interest\", \"path\": \"000100010005\", \"url_path\": \"/home/contact-us/\", \"expired\": false, \"pk\": 4, \"locked\": false, \"country\": \"Country\", \"form_fields\": [{\"default_value\": \"\", \"field_type\": \"singleline\", \"required\": true, \"choices\": \"\", \"sort_order\": 0, \"help_text\": \"\", \"pk\": 1, \"label\": \"Name\", \"page\": null}, {\"default_value\": \"\", \"field_type\": \"email\", \"required\": true, \"choices\": \"\", \"sort_order\": 1, \"help_text\": \"\", \"pk\": 2, \"label\": \"E-mail\", \"page\": null}, {\"default_value\": \"\", \"field_type\": \"dropdown\", \"required\": true, \"choices\": \"sdhsd,dsds,sfdsf\", \"sort_order\": 2, \"help_text\": \"\", \"pk\": 3, \"label\": \"Why do you want to contact?\", \"page\": null}, {\"default_value\": \"\", \"field_type\": \"multiline\", \"required\": true, \"choices\": \"\", \"sort_order\": 3, \"help_text\": \"\", \"pk\": 4, \"label\": \"Message\", \"page\": null}], \"depth\": 3, \"address_1\": \"Apt\", \"address_2\": \"Street Address\", \"expire_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 4
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 21
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-06-26T08:01:19.844Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"to_address\": \"\", \"from_address\": \"\", \"telephone\": \"8675-309\", \"search_description\": \"\", \"owner\": 1, \"intro\": \"Contact Us\", \"latest_revision_created_at\": \"2015-06-26T07:42:47.125Z\", \"subject\": \"\", \"name_organization\": \"full/formatted name of the person or organisation\", \"city\": \"Town\", \"title\": \"Contact Us\", \"seo_title\": \"\", \"slug\": \"contact-us\", \"live\": true, \"has_unpublished_changes\": false, \"go_live_at\": null, \"email\": \"example@example.com\", \"post_code\": \"tunapuna\", \"numchild\": 0, \"content_type\": 52, \"show_in_menus\": true, \"thank_you_text\": \"Thanks for your interest\", \"path\": \"000100010005\", \"url_path\": \"/home/contact-us/\", \"expired\": false, \"pk\": 4, \"locked\": false, \"country\": \"Country\", \"form_fields\": [{\"default_value\": \"\", \"field_type\": \"singleline\", \"required\": true, \"choices\": \"\", \"sort_order\": 0, \"help_text\": \"\", \"pk\": 1, \"label\": \"Name\", \"page\": null}, {\"default_value\": \"\", \"field_type\": \"email\", \"required\": true, \"choices\": \"\", \"sort_order\": 1, \"help_text\": \"\", \"pk\": 2, \"label\": \"E-mail\", \"page\": null}, {\"default_value\": \"\", \"field_type\": \"dropdown\", \"required\": true, \"choices\": \"sdhsd,dsds,sfdsf\", \"sort_order\": 2, \"help_text\": \"\", \"pk\": 3, \"label\": \"Why do you want to contact?\", \"page\": null}, {\"default_value\": \"\", \"field_type\": \"multiline\", \"required\": true, \"choices\": \"\", \"sort_order\": 3, \"help_text\": \"\", \"pk\": 4, \"label\": \"Message\", \"page\": null}], \"depth\": 3, \"address_1\": \"Apt\", \"address_2\": \"Street Address\", \"expire_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 4
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 22
 },
 {
   "fields": {
@@ -3483,6 +3583,18 @@
 },
 {
   "fields": {
+    "image": 3,
+    "focal_point_key": "",
+    "filter": 6,
+    "width": 250,
+    "file": "images/wagtail.focus-none.width-250.jpg",
+    "height": 96
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 42
+},
+{
+  "fields": {
     "form_data": "{\"e-mail\": \"example@example.com\", \"message\": \"Test\", \"why-do-you-want-to-contact\": \"sdhsd\", \"name\": \"Parbhat Puri\"}",
     "page": 4,
     "submit_time": "2015-06-18T16:15:47.722Z"
@@ -3765,7 +3877,7 @@
   "fields": {
     "name_organization": "full/formatted name of the person or organisation",
     "city": "Town",
-    "post_code": "Postal",
+    "post_code": "tunapuna",
     "to_address": "",
     "from_address": "",
     "country": "Country",
