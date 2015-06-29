@@ -1,6 +1,7 @@
 {
     "project_name": "Wagtail Project",
     "repo_name": "{{ cookiecutter.project_name|replace(' ', '_')|lower }}",
+    "version_control_system": "hg",
     "author_name": "Your Name",
     "email": "Your email",
     "description": "A short description of the project.",

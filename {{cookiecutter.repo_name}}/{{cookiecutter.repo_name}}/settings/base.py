@@ -7,9 +7,20 @@ https://docs.djangoproject.com/en/1.7/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
-
-from os.path import abspath, basename, dirname, join, normpath
+import os
+from os.path import abspath, dirname, join, normpath
 from sys import path
+
+from django.core.exceptions import ImproperlyConfigured
+
+
+def get_env_variable(var_name):
+    """ Get the environment variable or return exception """
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        error_msg = "Set the %s environment variable" % var_name
+        raise ImproperlyConfigured(error_msg)
 
 # Absolute filesystem path to the Django project directory:
 DJANGO_ROOT = dirname(dirname(abspath(__file__)))
@@ -97,7 +108,7 @@ DATABASES = {
         'USER': '',
         'HOST': '',  # Set to empty string for localhost.
         'PORT': '',  # Set to empty string for default.
-        'CONN_MAX_AGE': 600,  # number of seconds database connections should persist for
+        'CONN_MAX_AGE': 600,
     }
 }
 

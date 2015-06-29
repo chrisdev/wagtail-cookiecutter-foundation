@@ -1,4 +1,9 @@
 {% raw %}---
+
+- name: initial warning 
+  pause: prompt="This playbook will pause to allow you to add deployment keys to your vcs repo
+                 Please press [Enter]"
+
 - name: Add the deploy user
   user: name={{ deploy_user }} shell=/bin/bash groups=sudo append=yes
   sudo: yes
@@ -22,7 +27,7 @@
     - user
 
 - name: Copy the authorized file to the .ssh dir
-  copy: src={{ deploy_user_auth_key_path }}
+  copy: src={{ keystore_path }}/authorized_keys
         dest=/home/{{ deploy_user }}/.ssh/authorized_keys 
         owner={{ deploy_user }}
         group={{ deploy_user }}
@@ -37,5 +42,14 @@
   user: name={{ deploy_user }} generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
   tags:
       - user
-      - sshkeys{% endraw %}
+      - sshkeys
+
+- name: Download the deploy users public keys to your keys directory
+  fetch:  src=/home/{{ deploy_user }}/.ssh/id_rsa.pub
+          dest={{ keystore_path }}/
+
+- name: Prompt to upload deployment keys 
+  pause: prompt="Deployment key has been downloaded addt it to your vcs repo 
+                 Please press [Enter] after you've added keys" {% endraw %}
+
 

@@ -1,104 +1,87 @@
+from base import *
 import os
-from .base import *
 
-# Do not set SECRET_KEY, Postgres or LDAP password or any other sensitive data here.
-# Instead, create a local.py file on the server.
-
-# Disable debug mode
 DEBUG = False
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = DEBUG
 
 
-# Compress static files offline and minify CSS
+# Compress static files offline
 # http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
+
+
+SECRET_KEY = get_env_variable("SECRET_KEY")
+
+# Compress static files offline
+# http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
+
 COMPRESS_OFFLINE = True
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.CSSMinFilter',
-]
 
-
-# Configuration from environment variables
-# Alternatively, you can set these in a local.py file on the server
-
-env = os.environ.copy()
-
-# On Torchbox servers, many environment variables are prefixed with "CFG_"
-for key, value in os.environ.items():
-    if key.startswith('CFG_'):
-        env[key[4:]] = value
-
-
-# Basic configuration
-
-APP_NAME = env.get('APP_NAME', '{{ cookiecutter.repo_name }}')
-
-if 'SECRET_KEY' in env:
-    SECRET_KEY = env['SECRET_KEY']
-
-if 'ALLOWED_HOSTS' in env:
-    ALLOWED_HOSTS = env['ALLOWED_HOSTS'].split(',')
-
-if 'PRIMARY_HOST' in env:
-    BASE_URL = 'http://%s/' % env['PRIMARY_HOST']
-
-if 'SERVER_EMAIL' in env:
-    SERVER_EMAIL = env['SERVER_EMAIL']
-
-
-# Database
+ALLOWED_HOSTS = [get_env_variable("HOST_NAME"), ]
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env.get('PGDATABASE', APP_NAME),
-        'CONN_MAX_AGE': 600,  # number of seconds database connections should persist for
-
-        # User, host and port can be configured by the PGUSER, PGHOST and
-        # PGPORT environment variables (these get picked up by libpq).
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME":  get_env_variable("DB_NAME"),
+        "USER": get_env_variable("DB_USER"),
+        "PASSWORD": get_env_variable("DB_PASSWD"),
+        "HOST": get_env_variable("DB_HOST"),
     }
 }
 
+INSTALLED_APPS += (
+    'gunicorn',
+)
 
-# Redis
-# Redis location can either be passed through with REDIS_HOST or REDIS_SOCKET
+#support opbeat
+MIDDLEWARE_CLASSES = (
+    'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-if 'REDIS_HOST' in env:
-    REDIS_LOCATION = env['REDIS_HOST']
-    BROKER_URL = 'redis://%s' % env['REDIS_HOST']
+    'wagtail.wagtailcore.middleware.SiteMiddleware',
+    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
+)
 
-elif 'REDIS_SOCKET' in env:
-    REDIS_LOCATION = 'unix://%s' % env['REDIS_SOCKET']
-    BROKER_URL = 'redis+socket://%s' % env['REDIS_SOCKET']
+WAGTAIL_SITE_NAME = '{{ cookiecutter.project_name }}'
 
-else:
-    REDIS_LOCATION = None
+# Send notification emails as a background task using Celery,
+# to prevent this from blocking web server threads
+# (requires the django-celery package):
+# http://celery.readthedocs.org/en/latest/configuration.html
+
+# import djcelery
+#
+# djcelery.setup_loader()
+#
+# CELERY_SEND_TASK_ERROR_EMAILS = True
+# BROKER_URL = 'redis://'
 
 
-if REDIS_LOCATION is not None:
-    CACHES = {
-        'default': {
-            'BACKEND': 'redis_cache.cache.RedisCache',
-            'LOCATION': REDIS_LOCATION,
-            'KEY_PREFIX': APP_NAME,
-            'OPTIONS': {
-                'CLIENT_CLASS': 'redis_cache.client.DefaultClient',
-            }
+# Use Redis as the cache backend for extra performance
+# (requires the django-redis-cache package):
+# http://wagtail.readthedocs.org/en/latest/howto/performance.html#cache
+
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.cache.RedisCache',
+        'LOCATION': '127.0.0.1:6379',
+        'KEY_PREFIX': 'skhyfc_site',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'redis_cache.client.DefaultClient',
         }
     }
+}
 
-
-# Elasticsearch
-
-if 'ELASTICSEARCH_URL' in env:
-    WAGTAILSEARCH_BACKENDS = {
-        'default': {
-            'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',
-            'URLS': [env['ELASTICSEARCH_URL']],
-            'INDEX': APP_NAME,
-        },
-    }
-
+DEFAULT_FROM_EMAIL =  {{ cookiecutter.email }}
+EMAIL_USE_TLS = True
+EMAIL_HOST = get_env_variable('EMAIL_HOST')
+EMAIL_HOST_USER = get_env_variable('EMAIL_USER')
+EMAIL_HOST_PASSWORD = get_env_variable('EMAIL_PASSWD')
+EMAIL_PORT = 587
 
 # Logging
 
@@ -124,22 +107,3 @@ LOGGING = {
         },
     },
 }
-
-
-# Log errors to file
-if 'ERROR_LOG' in env:
-    LOGGING['handlers']['errors_file'] = {
-        'level':        'ERROR',
-        'class':        'logging.handlers.RotatingFileHandler',
-        'filename':     env['ERROR_LOG'],
-        'maxBytes':     5242880, # 5MB
-        'backupCount':  5
-    }
-    LOGGING['loggers']['django.request']['handlers'].append('errors_file')
-    LOGGING['loggers']['django.security']['handlers'].append('errors_file')
-
-
-try:
-    from .local import *
-except ImportError:
-    pass
