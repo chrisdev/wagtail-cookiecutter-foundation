@@ -28,5 +28,5 @@
       command: host -t A ansible.cc
 
     - name: Final greeting
-      pause: prompt="You public keys have been added to the root user!
+      pause: prompt="Your public keys have been added to root user's authorised_keyes
         Please press [Enter]"
