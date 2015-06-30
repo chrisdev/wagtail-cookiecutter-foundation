@@ -87,12 +87,17 @@ You will be prompted to answer the following questions. ::
     Checking connectivity... done.
     project_name (default is "Wagtail Project")?
     repo_name (default is "wagtailproject")?
+    version_control_system (default is "hg")?,
     author_name (default is "Your Name")?
     email (default is "Your email")?
     description (default is "A short description of the project.")?
     timezone (default is "UTC")?
     now (default is "2015/04/16")?
     year (default is "2015")?
+    production_host_name (default is  example.org)?
+    use_ssl_in_production (default is true)?
+    staging_host_name (default is staging.example.org)?
+    use_vagrant_staging (default is true)?
 
 
 Enter the project and take a look around::
@@ -172,15 +177,19 @@ Firstly, open up a command line shell in your new projects directory.
 
   :code:`pip install -r requirements/dev.txt`
 
-4. **Create the database**
+4. **Create the database and migrate**
 
   By default require ``PostgreSQL`` to be installed
 
-  :code: `createdb my_site`
+.. code-block:: sh
 
-  :code:`./manage.py migrate`
+    createdb my_site
+   ./manage.py migrate
 
 5. **Load the Initial Data**
+   The cookiecutter comes with some pages already created for your
+   convenience including the Homepage with a working ``bx_slider`` slide show, 
+   contact page, events and news/blog pages. To generate these pages run:
 
   :code:`./manage.py load_initial_data`
   
@@ -190,9 +199,18 @@ Firstly, open up a command line shell in your new projects directory.
 
 6. **Install Packages (Foundation, Font-Awesome etc.) using Bower package manager**
 
+  We use bower_ for front-end dependency management. To install front
+  dependencies use
+
   :code:`bower install`
 
-  For more details on bower visit: http://bower.io
+  This will install the supported version of `Zurb Foundation`_, `Font
+  Awesome`_ and bxSlider_ as well as their dependencies.
+
+  ..  _bower: http://bower.io
+  ..  _bxSlider: http://bxslider.com
+  ..  _`Font Awesome`: http://fontawesome.io 
+
   
 7. **Run the development server**
 
@@ -202,8 +220,8 @@ Firstly, open up a command line shell in your new projects directory.
   with the admin backend available at ``http://localhost:8000/admin/``.
 
 
-Using Vagrant
--------------
+Using Vagrant for Development
+------------------------------
 Alternatively you may prefer to use Vagrant_ to run your project locally in
 is own virtual machine. This will you to use PostgreSQL, Elasticsearch
 Redis etc.  in development without having to install them on your host machine.
@@ -229,3 +247,156 @@ foundation site
 You can browse the Wagtail admin interface at: http://localhost:8000/admin
 
 You can read more about how Vagrant works at: https://docs.vagrantup.com/v2/
+
+
+Using Ansible for Deployment and Provisioning
+----------------------------------------------
+
+This cookiecutter also comes with a suite of Ansible_ play books and roles for 
+provisioning your servers and deploying the site.  We also support the creation
+of a Vagrant based staging server to "stage" your site locally and allow you to tweak and
+experiment with different deployment configurations. By default these play books 
+assume that all your application components ``django``, ``PostgreSQL``, ``redis`` and so on are
+deployed to a single server. However, we can easily change the Vagrant staging
+configuration to simulate more complex deployments including using a separate
+Database server, multiple upstream ``wsgi`` servers and so on.
+
+Vagrant based Staging Server
+-----------------------------
+Start by changing to the ``ansible`` directory  and bringing up vagrant based
+the staging server.
+
+.. code-block:: sh
+
+   cd /my_project/ansible
+   vagrant up
+
+Because of the way Vagrant is setup we need to run a special play book to copy
+your ``ssh`` public key (``id_rsa.pub``) to the root account on the Vagrant staging machine
+i.e. to ``authorised_keys``.
+
+.. code-block:: sh
+
+   ansible-playbook -c paramiko -i staging vagrant_staging_setup.yml --ask-pass --sudo -u vagrant 
+
+When prompted for the password, enter "vagrant" 
+
+If you get the following error ::
+
+    fatal: [staging.example.org] => {'msg': 'FAILED: Authentication failed.', 'failed': True}``
+
+The you may have to remove the entry (IP Address 192.168.33.10) for the staging
+server from your ``~/.ssh/known_hosts`` file.
+
+If you are using Vagrant staging you also need to make an entry into your
+``/etc/hosts`` file for example.
+
+
+
+
+Ansible Variables
+------------------
+Before you run the provisioning and deployment playbooks you need check and
+modify Ansible ``Group`` and ``Host`` Variables (e.g.  ``host_vars/staging.example.org``). 
+
+Group Variables
+***************
+
+===============     ====================================================
+variable            Explanation
+===============     ====================================================
+project_repo        URL of the source code repository
+                    ssh://hg@bitbucket.org/chrisdev/wagtail_project
+virtualenvs_dir     Defaults to /home/django/virtualenvs/
+sites_dir           Where all your projects live on the 
+                    remote server. Defaults to /usr/local/sites
+nginx_root_dir      Defaults to /etc/nginx/sites-available
+gunicorn            127.0.0.1:2015
+deploy_user         Defaults to django
+redis_version       The version of redis to install. Defaults to 2.8.19
+keystore_path       Place all your 
+                    public keys and other secretes   in this location. 
+                    Defaults to repo_name/ansible/repo_name_keystore 
+vcs                 Your Version control system 
+                    *hg* - mecurial 
+                    *git* - git
+===============     ====================================================
+
+Host Variables
+***************
+
+======================  ====================================================
+variable                Explanation
+======================  ====================================================
+use_ssl                 True
+ssl_key_file            For example ``example.org.key``
+ssl_cert_bundle         The "bundled" certificate ``bundle.example.org.crt``
+SECRET_KEY              The Django secret key. Generate a new key especially
+                        if this is going to be a production deployment
+DJANGO_SETTINGS_MODULE  Defaults to ``wagtail_project.settings.production``
+HOST_NAME               This is will be set to  as the ``server_name``
+                        in the nginx virtualhost.
+DB_USER                 Defaults to django
+DB_PASSWD               The database password you must set a value for this 
+DB_HOST                 Defaults to ``localhost``
+DB_NAME                 The name of the database used in production 
+                        Defaults to cookiecutter.repo_name_db 
+EMAIL_HOST              The SMTP email host name e.g. ``smtp.mandrillapp.com``
+EMAIL_FROM              support@chrisdev.com
+EMAIL_USER              The email user 
+EMAIL_PASSWD            The email password 
+======================  ====================================================
+
+Ansible Files
+---------------
+You also have to ensure that files that contain your various secrets are
+present in in the ``keystore`` directory 
+(``ansible/cookiecutter.repo_name.keystore``). Successfully completing the 
+provisioning  playbook would require the following files in the ``keystore``.
+The ``.gitignore`` and ``.hgignore`` files provided by this cookiecutter should
+ensure that no file added to this directory is accidentally added to your VCS.
+
+ - *Authorized Keys* - public key of the developers for e.g. ``id_rsa.pub``. You can
+   concatenate keys for one or more developers and name as ``authorized_keys``
+ - *SSL Private Key and Certificate* - This is required only if ``use_ssl`` 
+   is ``true``. The SSL Certificate you place in this directory should be
+   a "bundle" i.e a single file that includes the CA's Root and Intermediate Certificates along
+   with the SSL certificate obtained for the hosts. These should be 
+   concatenated in the correct order as indicated by the CA.
+
+Playbooks
+----------
+
+To provision you servers run
+
+.. code-block:: sh
+
+   cd ansible
+   #list the available tags 
+   ansible-playbook -i staging provision.yml --list-tags 
+
+   #Run all the plays 
+
+   ansible-playbook -i staging provision.yml 
+
+   #Just install Ubuntu packages 
+
+   ansible-playbook -i staging provision.yml --tags packages
+
+
+To deploy changes to production 
+
+.. code-block:: sh
+
+   ansible-playbook -i production deploy.yml
+
+
+
+
+
+
+
+
+
+
+
