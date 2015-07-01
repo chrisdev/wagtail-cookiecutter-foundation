@@ -2231,7 +2231,7 @@
     "is_active": true,
     "is_superuser": true,
     "is_staff": true,
-    "last_login": "2015-06-26T14:44:07.881Z",
+    "last_login": "2015-07-01T18:23:40.921Z",
     "groups": [],
     "user_permissions": [],
     "password": "pbkdf2_sha256$15000$49dBPJuiGwi4$53nRnWjByd/yAt9BlD8Nqc7T1INVHjOk79Ze8ZvTYeY=",
@@ -2371,7 +2371,7 @@
     "show_in_menus": true,
     "live": true,
     "seo_title": "",
-    "latest_revision_created_at": "2015-06-18T16:25:37.288Z",
+    "latest_revision_created_at": "2015-07-01T18:33:34.007Z",
     "depth": 4,
     "search_description": "",
     "content_type": [
@@ -2786,6 +2786,34 @@
   },
   "model": "wagtailcore.pagerevision",
   "pk": 22
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-07-01T18:33:29.725Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"carousel_items\": [], \"search_description\": \"\", \"owner\": 1, \"intro\": \"<p>This is our first story.</p>\", \"latest_revision_created_at\": \"2015-06-18T16:25:37.288Z\", \"go_live_at\": null, \"feed_image\": 1, \"related_links\": [], \"title\": \"Our first story\", \"seo_title\": \"\", \"slug\": \"our-first-story\", \"live\": true, \"has_unpublished_changes\": false, \"tagged_items\": [], \"body\": \"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ante urna, sagittis rhoncus orci sed, ullamcorper eleifend ipsum. Cras sit amet metus a justo pharetra dignissim. Suspendisse convallis dictum mauris, quis pulvinar nisi rutrum vitae. Vivamus fringilla nulla ac sagittis ornare. Fusce ac purus sodales, posuere ex euismod, semper nibh. Nullam a eros nulla. Maecenas id felis feugiat risus tincidunt ultricies. Suspendisse scelerisque erat vel sem posuere commodo.</p><p>Donec in mollis nisi. Sed ut neque sed dolor ultrices viverra eu quis orci. Nullam at tortor nec eros egestas tristique ut nec augue. Vivamus sapien magna, gravida at maximus quis, gravida vel arcu. Mauris elementum sit amet ex vehicula pulvinar. Suspendisse a tellus nec turpis semper fringilla. Etiam accumsan quis dui ut rhoncus. Pellentesque at augue in diam congue tempus et quis ante. Quisque venenatis hendrerit felis id rhoncus. Nunc egestas felis ornare lorem molestie, in sodales nisl vestibulum. In hendrerit bibendum eros vehicula mattis. Donec porta venenatis ante non interdum. Cras hendrerit et magna sed dignissim. Integer lorem ligula, pulvinar id ante in, faucibus elementum velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p><p>Proin ipsum libero, ornare vitae felis tincidunt, sollicitudin dapibus elit. Aenean iaculis sollicitudin orci vitae iaculis. Morbi ipsum sapien, egestas eget posuere quis, ultrices et lectus. Aenean laoreet porttitor mi, id mollis magna fringilla quis. Nullam non quam sodales, tempor nibh in, ultricies massa. Nam dictum lectus ac mi lobortis, vel luctus sapien aliquam. Donec rhoncus eget ante vel ornare.</p><p>Aliquam ut nisi nec turpis malesuada mattis et pulvinar velit. In pellentesque venenatis ornare. Phasellus auctor turpis suscipit lectus mattis, eget malesuada nisl accumsan. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu placerat erat. Vivamus eget tempor erat. Praesent vehicula magna sit amet mi sodales viverra. Nam facilisis viverra eros ut cursus. Duis non vulputate arcu, sed rutrum nisl. Etiam sagittis mollis eleifend. Quisque eu leo at ex aliquet rhoncus. Fusce nisi magna, commodo id posuere a, fringilla tempor sapien.</p><p>Mauris quis velit est. Cras vel enim purus. Sed ut velit at diam pulvinar rhoncus. Mauris condimentum scelerisque ex, sed ornare mauris dignissim in. Ut vel eleifend enim. Aenean efficitur velit velit, nec lacinia tortor pulvinar id. Ut volutpat finibus tristique. Fusce at sodales urna. Sed sed mi posuere, laoreet quam at, aliquam massa. Aliquam vel sem quis eros consequat vehicula non ac dui.</p>\", \"numchild\": 0, \"content_type\": 42, \"show_in_menus\": true, \"date\": \"2015-06-18\", \"path\": \"0001000100040001\", \"url_path\": \"/home/news/our-first-story/\", \"expired\": false, \"pk\": 6, \"locked\": false, \"depth\": 4, \"expire_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 6
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 23
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-07-01T18:33:34.007Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"carousel_items\": [], \"search_description\": \"\", \"owner\": 1, \"intro\": \"<p>This is our first story.</p>\", \"latest_revision_created_at\": \"2015-07-01T18:33:29.725Z\", \"go_live_at\": null, \"feed_image\": 1, \"related_links\": [], \"title\": \"Our first story\", \"seo_title\": \"\", \"slug\": \"our-first-story\", \"live\": true, \"has_unpublished_changes\": true, \"tagged_items\": [], \"body\": \"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ante urna, sagittis rhoncus orci sed, ullamcorper eleifend ipsum. Cras sit amet metus a justo pharetra dignissim. Suspendisse convallis dictum mauris, quis pulvinar nisi rutrum vitae. Vivamus fringilla nulla ac sagittis ornare. Fusce ac purus sodales, posuere ex euismod, semper nibh. Nullam a eros nulla. Maecenas id felis feugiat risus tincidunt ultricies. Suspendisse scelerisque erat vel sem posuere commodo.</p><p>Donec in mollis nisi. Sed ut neque sed dolor ultrices viverra eu quis orci. Nullam at tortor nec eros egestas tristique ut nec augue. Vivamus sapien magna, gravida at maximus quis, gravida vel arcu. Mauris elementum sit amet ex vehicula pulvinar. Suspendisse a tellus nec turpis semper fringilla. Etiam accumsan quis dui ut rhoncus. Pellentesque at augue in diam congue tempus et quis ante. Quisque venenatis hendrerit felis id rhoncus. Nunc egestas felis ornare lorem molestie, in sodales nisl vestibulum. In hendrerit bibendum eros vehicula mattis. Donec porta venenatis ante non interdum. Cras hendrerit et magna sed dignissim. Integer lorem ligula, pulvinar id ante in, faucibus elementum velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p><p>Proin ipsum libero, ornare vitae felis tincidunt, sollicitudin dapibus elit. Aenean iaculis sollicitudin orci vitae iaculis. Morbi ipsum sapien, egestas eget posuere quis, ultrices et lectus. Aenean laoreet porttitor mi, id mollis magna fringilla quis. Nullam non quam sodales, tempor nibh in, ultricies massa. Nam dictum lectus ac mi lobortis, vel luctus sapien aliquam. Donec rhoncus eget ante vel ornare.</p><p>Aliquam ut nisi nec turpis malesuada mattis et pulvinar velit. In pellentesque venenatis ornare. Phasellus auctor turpis suscipit lectus mattis, eget malesuada nisl accumsan. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu placerat erat. Vivamus eget tempor erat. Praesent vehicula magna sit amet mi sodales viverra. Nam facilisis viverra eros ut cursus. Duis non vulputate arcu, sed rutrum nisl. Etiam sagittis mollis eleifend. Quisque eu leo at ex aliquet rhoncus. Fusce nisi magna, commodo id posuere a, fringilla tempor sapien.</p><p>Mauris quis velit est. Cras vel enim purus. Sed ut velit at diam pulvinar rhoncus. Mauris condimentum scelerisque ex, sed ornare mauris dignissim in. Ut vel eleifend enim. Aenean efficitur velit velit, nec lacinia tortor pulvinar id. Ut volutpat finibus tristique. Fusce at sodales urna. Sed sed mi posuere, laoreet quam at, aliquam massa. Aliquam vel sem quis eros consequat vehicula non ac dui.</p>\", \"numchild\": 0, \"content_type\": 42, \"show_in_menus\": true, \"date\": \"2015-06-18\", \"path\": \"0001000100040001\", \"url_path\": \"/home/news/our-first-story/\", \"expired\": false, \"pk\": 6, \"locked\": false, \"depth\": 4, \"expire_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 6
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 24
 },
 {
   "fields": {
@@ -3651,6 +3679,42 @@
 },
 {
   "fields": {
+    "image": 9,
+    "focal_point_key": "",
+    "filter": 9,
+    "width": 60,
+    "file": "images/PostgreSQL_logo.3colors.120x120.focus-none.max-800x600.png",
+    "height": 60
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 43
+},
+{
+  "fields": {
+    "image": 1,
+    "focal_point_key": "",
+    "filter": 6,
+    "width": 250,
+    "file": "images/foundation_5.focus-none.width-250.png",
+    "height": 96
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 44
+},
+{
+  "fields": {
+    "image": 1,
+    "focal_point_key": "",
+    "filter": 2,
+    "width": 1200,
+    "file": "images/foundation_5.focus-none.width-1200.png",
+    "height": 461
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 45
+},
+{
+  "fields": {
     "query_string": "x"
   },
   "model": "wagtailsearch.query",
@@ -3900,7 +3964,7 @@
     "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ante urna, sagittis rhoncus orci sed, ullamcorper eleifend ipsum. Cras sit amet metus a justo pharetra dignissim. Suspendisse convallis dictum mauris, quis pulvinar nisi rutrum vitae. Vivamus fringilla nulla ac sagittis ornare. Fusce ac purus sodales, posuere ex euismod, semper nibh. Nullam a eros nulla. Maecenas id felis feugiat risus tincidunt ultricies. Suspendisse scelerisque erat vel sem posuere commodo.</p><p>Donec in mollis nisi. Sed ut neque sed dolor ultrices viverra eu quis orci. Nullam at tortor nec eros egestas tristique ut nec augue. Vivamus sapien magna, gravida at maximus quis, gravida vel arcu. Mauris elementum sit amet ex vehicula pulvinar. Suspendisse a tellus nec turpis semper fringilla. Etiam accumsan quis dui ut rhoncus. Pellentesque at augue in diam congue tempus et quis ante. Quisque venenatis hendrerit felis id rhoncus. Nunc egestas felis ornare lorem molestie, in sodales nisl vestibulum. In hendrerit bibendum eros vehicula mattis. Donec porta venenatis ante non interdum. Cras hendrerit et magna sed dignissim. Integer lorem ligula, pulvinar id ante in, faucibus elementum velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p><p>Proin ipsum libero, ornare vitae felis tincidunt, sollicitudin dapibus elit. Aenean iaculis sollicitudin orci vitae iaculis. Morbi ipsum sapien, egestas eget posuere quis, ultrices et lectus. Aenean laoreet porttitor mi, id mollis magna fringilla quis. Nullam non quam sodales, tempor nibh in, ultricies massa. Nam dictum lectus ac mi lobortis, vel luctus sapien aliquam. Donec rhoncus eget ante vel ornare.</p><p>Aliquam ut nisi nec turpis malesuada mattis et pulvinar velit. In pellentesque venenatis ornare. Phasellus auctor turpis suscipit lectus mattis, eget malesuada nisl accumsan. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu placerat erat. Vivamus eget tempor erat. Praesent vehicula magna sit amet mi sodales viverra. Nam facilisis viverra eros ut cursus. Duis non vulputate arcu, sed rutrum nisl. Etiam sagittis mollis eleifend. Quisque eu leo at ex aliquet rhoncus. Fusce nisi magna, commodo id posuere a, fringilla tempor sapien.</p><p>Mauris quis velit est. Cras vel enim purus. Sed ut velit at diam pulvinar rhoncus. Mauris condimentum scelerisque ex, sed ornare mauris dignissim in. Ut vel eleifend enim. Aenean efficitur velit velit, nec lacinia tortor pulvinar id. Ut volutpat finibus tristique. Fusce at sodales urna. Sed sed mi posuere, laoreet quam at, aliquam massa. Aliquam vel sem quis eros consequat vehicula non ac dui.</p>",
     "date": "2015-06-18",
     "intro": "<p>This is our first story.</p>",
-    "feed_image": 3
+    "feed_image": 1
   },
   "model": "blog.blogpage",
   "pk": 6
@@ -3979,177 +4043,5 @@
   },
   "model": "contact.contactpage",
   "pk": 4
-},
-{
-  "fields": {
-    "focal_point_width": null,
-    "gallery_name": "foundation",
-    "title": "foundation1.jpg",
-    "focal_point_height": null,
-    "created_at": "2015-06-26T18:03:15.836Z",
-    "focal_point_x": null,
-    "focal_point_y": null,
-    "height": 500,
-    "width": 1500,
-    "file": "original_images/featured34wdd2x.jpg",
-    "uploaded_by_user": [
-      "admin"
-    ]
-  },
-  "model": "photo_gallery.customimage",
-  "pk": 10
-},
-{
-  "fields": {
-    "focal_point_width": null,
-    "gallery_name": "foundation",
-    "title": "foundation2.jpg",
-    "focal_point_height": null,
-    "created_at": "2015-06-26T18:03:16.040Z",
-    "focal_point_x": null,
-    "focal_point_y": null,
-    "height": 500,
-    "width": 1300,
-    "file": "original_images/image-2-compressed.jpg",
-    "uploaded_by_user": [
-      "admin"
-    ]
-  },
-  "model": "photo_gallery.customimage",
-  "pk": 12
-},
-{
-  "fields": {
-    "focal_point_width": null,
-    "gallery_name": "cookiecutter",
-    "title": "cookiecutter1.jpg",
-    "focal_point_height": null,
-    "created_at": "2015-06-26T18:06:31.670Z",
-    "focal_point_x": null,
-    "focal_point_y": null,
-    "height": 500,
-    "width": 1300,
-    "file": "original_images/postgresql_i4Y7yRE.jpg",
-    "uploaded_by_user": [
-      "admin"
-    ]
-  },
-  "model": "photo_gallery.customimage",
-  "pk": 13
-},
-{
-  "fields": {
-    "focal_point_width": null,
-    "gallery_name": "cookiecutter",
-    "title": "cookiecutter2.png",
-    "focal_point_height": null,
-    "created_at": "2015-06-26T18:06:31.779Z",
-    "focal_point_x": null,
-    "focal_point_y": null,
-    "height": 500,
-    "width": 1300,
-    "file": "original_images/sass-logo-new_zQTGH6m.png",
-    "uploaded_by_user": [
-      "admin"
-    ]
-  },
-  "model": "photo_gallery.customimage",
-  "pk": 14
-},
-{
-  "fields": {
-    "image": 10,
-    "focal_point_key": "",
-    "filter": 3,
-    "width": 1400,
-    "file": "images/featured34wdd2x.focus-none.width-1400.jpg",
-    "height": 466
-  },
-  "model": "photo_gallery.customrendition",
-  "pk": 45
-},
-{
-  "fields": {
-    "image": 12,
-    "focal_point_key": "",
-    "filter": 7,
-    "width": 165,
-    "file": "images/image-2-compressed.focus-none.max-165x165.jpg",
-    "height": 63
-  },
-  "model": "photo_gallery.customrendition",
-  "pk": 46
-},
-{
-  "fields": {
-    "image": 10,
-    "focal_point_key": "",
-    "filter": 7,
-    "width": 165,
-    "file": "images/featured34wdd2x.focus-none.max-165x165.jpg",
-    "height": 55
-  },
-  "model": "photo_gallery.customrendition",
-  "pk": 48
-},
-{
-  "fields": {
-    "image": 12,
-    "focal_point_key": "",
-    "filter": 3,
-    "width": 1300,
-    "file": "images/image-2-compressed.focus-none.width-1400.jpg",
-    "height": 500
-  },
-  "model": "photo_gallery.customrendition",
-  "pk": 50
-},
-{
-  "fields": {
-    "image": 14,
-    "focal_point_key": "",
-    "filter": 7,
-    "width": 165,
-    "file": "images/sass-logo-new_zQTGH6m.focus-none.max-165x165.png",
-    "height": 63
-  },
-  "model": "photo_gallery.customrendition",
-  "pk": 52
-},
-{
-  "fields": {
-    "image": 13,
-    "focal_point_key": "",
-    "filter": 7,
-    "width": 165,
-    "file": "images/postgresql_i4Y7yRE.focus-none.max-165x165.jpg",
-    "height": 63
-  },
-  "model": "photo_gallery.customrendition",
-  "pk": 53
-},
-{
-  "fields": {
-    "image": 14,
-    "focal_point_key": "",
-    "filter": 3,
-    "width": 1300,
-    "file": "images/sass-logo-new_zQTGH6m.focus-none.width-1400.png",
-    "height": 500
-  },
-  "model": "photo_gallery.customrendition",
-  "pk": 54
-},
-{
-  "fields": {
-    "image": 13,
-    "focal_point_key": "",
-    "filter": 3,
-    "width": 1300,
-    "file": "images/postgresql_i4Y7yRE.focus-none.width-1400.jpg",
-    "height": 500
-  },
-  "model": "photo_gallery.customrendition",
-  "pk": 55
 }
 ]
