@@ -4,3 +4,4 @@ elasticsearch==1.2.0
 django-redis==3.8.2
 wagtail>=0.8.8,<1.0
 celery==3.1.17
+Fabric==1.10.2

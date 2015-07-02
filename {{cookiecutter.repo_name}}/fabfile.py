@@ -1,10 +1,23 @@
 from fabric.api import *
-
+from fabric.colors import *
 
 env.roledefs = {
     'production': [],
     'staging': [],
 }
+
+
+@task
+def install():
+
+    local('createdb {{ cookiecutter.repo_name }}')
+    local('python manage.py migrate')
+    local('python manage.py load_initial_data')
+
+    with settings(warn_only=True):
+        bower = local('bower install')
+        if bower.failed:
+            print(red("Problem running bower, did you install Bower, node?"))
 
 
 @roles('production')
