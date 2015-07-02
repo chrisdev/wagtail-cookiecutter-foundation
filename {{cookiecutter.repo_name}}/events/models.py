@@ -12,7 +12,7 @@ from wagtail.wagtailsearch import index
 
 from modelcluster.fields import ParentalKey
 from utils.models import LinkFields, RelatedLink, CarouselItem
-from event_utils import export_event
+from .event_utils import export_event
 
 
 EVENT_AUDIENCE_CHOICES = (
