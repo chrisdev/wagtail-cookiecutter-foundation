@@ -177,6 +177,14 @@ Firstly, open up a command line shell in your new projects directory.
 
   :code:`pip install -r requirements/dev.txt`
 
+**Use** Fabric_ **to avoid below steps**
+
+  :code:`fab install`
+
+  This will create database, migrate, load initial data to database and install Front end packages using bower.
+
+.. _Fabric: http://www.fabfile.org/
+
 4. **Create the database and migrate**
 
   By default require ``PostgreSQL`` to be installed
