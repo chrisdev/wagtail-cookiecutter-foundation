@@ -1,0 +1,14 @@
+{% raw %}{% load wagtailcore_tags navigation_tags %}
+{% for child in menuitems_children %}
+    <li class="{% if child.show_dropdown %}has-submenu{% endif %}
+               {% if calling_page.url == child.url %} active{% endif %}">
+        <a href="{% pageurl child %}">{{ child.title }}</a>
+        {% if child.show_dropdown %}
+            <ul class="left-submenu">
+                <li class="back"><a href="#">Back</a></li>
+                <li><label>{{ child.title }}</label></li>
+                {% top_menu_children parent=child %}
+            </ul>
+        {% endif %}
+    </li>   
+{% endfor %}{% endraw %}
