@@ -19,8 +19,8 @@
             {% if images %}
                 <ul class="clearing-thumbs medium-block-grid-5" data-clearing data-equalizer>
                     {% for gallery_image in images %}
+                        {% image gallery_image width-1400 as gallery_imagedata %}
                         <li data-equalizer-watch><a class="th" href="{{ gallery_imagedata.url }}">
-                            {% image gallery_image width-1400 as gallery_imagedata %}
                             <img class="rsImg" src="{{ gallery_imagedata.url }}" alt="{{ gallery_imagedata.alt }}"/>
                         </a></li>
                     {% endfor %}
