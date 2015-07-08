@@ -4,13 +4,21 @@
   tags:
       - nginx 
 
-- name: Create/Upload the Nginx configuration file
+- name:  Generate the Nginx configuration file
   template: src=nginx.j2
             dest=/etc/nginx/sites-available/{{ project_name }}
             backup=yes
+  when: not use_ssl 
   tags:
       - nginx 
 
+- name: Generate and upload the Nginx SSL configuration file
+  template: src=nginx_ssl.j2
+            dest=/etc/nginx/sites-available/{{ project_name }}
+            backup=yes
+  when: use_ssl
+  tags:
+      - nginx 
 
 - name: Ensure that the default site is disabled
   command: rm /etc/nginx/sites-enabled/default
@@ -31,28 +39,51 @@
         owner=root
         group=root
   sudo: yes
-  when: production == 'true'
+  when: use_ssl
   tags:
       - nginx
       - ssl 
 
-- name: Copy the authorized key file 
-  copy: src=/Users/cclarke/Dropbox/ChrisDev/ssl/textelcu/conference.foreign.gov.tt.key 
-        dest=/svr/ssl/textelcu.key  
+- name: Generate the stronger DHE parameters
+  command: openssl dhparam -out dhparam.pem 2048
+  args:
+    chdir: /svr/ssl
+    creates: /srv/ssl/dhparam.pem
+  sudo: yes
+  when: use_ssl
+  tags:
+      - nginx
+      - ssl 
+
+- name: Copy the private key file 
+  copy: src={{ keystore_path }}/{{ssl_private_key}} 
+        dest=/svr/ssl/{{ssl_private_key}}  
         owner=root
         group=root
   sudo: yes
-  when: production == 'true'
+  when: use_ssl
   tags:
     - ssl 
     - nginx
-- name: Copy the SSL bundle (publix key) 
-  copy: src=/Users/cclarke/Dropbox/ChrisDev/ssl/textelcu/conference/conference-foreign-gov-ssl-bundle.crt 
-        dest=/svr/ssl/conference-foreign-gov-ssl-bundle.crt  
+
+- name: Copy the SSL bundle (public key) 
+  copy: src={{ keystore_path }}/{{ ssl_cert }} 
+        dest=/svr/ssl/{{ ssl_cert }}
         owner=root 
         group=root
   sudo: yes
-  when: production == 'true'
+  when: use_ssl 
+  tags:
+    - ssl
+    - nginx
+
+- name: Comodo SSL bundle for OCSP stapling 
+  copy: src={{ keystore_path }}/{{ ca_cert }} 
+        dest=/svr/ssl/{{ ca_cert }}
+        owner=root 
+        group=root
+  sudo: yes
+  when: use_ssl 
   tags:
     - ssl
     - nginx
