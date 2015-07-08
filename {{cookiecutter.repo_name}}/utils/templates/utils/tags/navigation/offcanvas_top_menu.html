@@ -1,0 +1,47 @@
+{% raw %}{% load wagtailcore_tags navigation_tags settings_tags %}
+{% load static %}
+{% get_site_root as site_root %}
+
+<div class="off-canvas-wrap" data-offcanvas>
+  <div class="inner-wrap">
+    <nav class="tab-bar">
+      <section class="left-small">
+        <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
+      </section>
+
+      <section class="middle tab-bar-section">
+              <h1 class="title">Wagtail Cookie Cutter</h1>
+      </section>
+    </nav>
+    
+    <aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        <li class="{% if calling_page.url == site_root %} active{% endif %}"><a href="{% pageurl site_root %}">Home</a></li>
+            {% for menuitem in menuitems %}
+                <li class="{% if menuitem.show_dropdown %}has-submenu{% endif %} 
+                           {% if calling_page.url == menuitem.url %} active{% endif %}">
+                    <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+                {% if menuitem.show_dropdown %}
+                    <ul class="left-submenu">
+                        <li class="back"><a href="#">Back</a></li>
+                        <li><label>{{ menuitem.title }}</label></li>
+                        {% offcanvas_top_menu_children parent=menuitem %}
+                    </ul>
+                {% endif %}
+                </li>
+            {% endfor %}
+        <li>
+          <form action ="{% url 'wagtailsearch_search' %}" method="get">
+              <div class="row collapse">
+                  <div class="large-8 small-9 columns">
+                      <input type="text" placeholder="Search"  name="q"{% if query_string %} value="{{ query_string }}"{% endif %}>
+                  </div>
+                  <div class="large-4 small-3 columns">
+                      <input type="submit" class="secondary button expand" value="Search" style="padding-top: 8px; padding-bottom: 10px;">
+                  </div>
+              </div>
+          </form>
+        </li>
+      </ul>
+    </aside>
+    {% endraw %}

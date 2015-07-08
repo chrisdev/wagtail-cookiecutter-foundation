@@ -59,6 +59,13 @@ $header-font-color: #555 !default;
   height: 100%;
 }
 
+.inner-wrap{
+    .tab-bar{background: $keppel;}
+    .left-small{border-right: 1px solid $white;}
+    .right-small{border-left: 1px solid $white;}
+    .left-off-canvas-menu {background: $boston_blue;}
+}
+
 ul.share-buttons{list-style: none;padding: 0; margin:0; margin-bottom: 15px}
 ul.share-buttons li{display: inline; margin-right: 5px;}
 ul.share-buttons {
