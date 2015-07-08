@@ -1,0 +1,8 @@
+{% raw %}
+<ul class="tag-names">
+<strong>Tags used - </strong>
+{% for tag in self.tags.all %}
+    <li> <i class="fa fa-tag"></i> {{ tag }}</li>
+{% endfor %}
+</ul>
+{% endraw %}

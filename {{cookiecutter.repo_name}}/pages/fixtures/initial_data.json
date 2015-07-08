@@ -2065,6 +2065,114 @@
 },
 {
   "fields": {
+    "codename": "add_galleryindexpage",
+    "name": "Can add Gallery Index Page",
+    "content_type": [
+      "photo_gallery",
+      "galleryindexpage"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 173
+},
+{
+  "fields": {
+    "codename": "change_galleryindexpage",
+    "name": "Can change Gallery Index Page",
+    "content_type": [
+      "photo_gallery",
+      "galleryindexpage"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 174
+},
+{
+  "fields": {
+    "codename": "delete_galleryindexpage",
+    "name": "Can delete Gallery Index Page",
+    "content_type": [
+      "photo_gallery",
+      "galleryindexpage"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 175
+},
+{
+  "fields": {
+    "codename": "add_gallerypagetag",
+    "name": "Can add gallery page tag",
+    "content_type": [
+      "photo_gallery",
+      "gallerypagetag"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 176
+},
+{
+  "fields": {
+    "codename": "change_gallerypagetag",
+    "name": "Can change gallery page tag",
+    "content_type": [
+      "photo_gallery",
+      "gallerypagetag"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 177
+},
+{
+  "fields": {
+    "codename": "delete_gallerypagetag",
+    "name": "Can delete gallery page tag",
+    "content_type": [
+      "photo_gallery",
+      "gallerypagetag"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 178
+},
+{
+  "fields": {
+    "codename": "add_gallerypage",
+    "name": "Can add Gallery Page",
+    "content_type": [
+      "photo_gallery",
+      "gallerypage"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 179
+},
+{
+  "fields": {
+    "codename": "change_gallerypage",
+    "name": "Can change Gallery Page",
+    "content_type": [
+      "photo_gallery",
+      "gallerypage"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 180
+},
+{
+  "fields": {
+    "codename": "delete_gallerypage",
+    "name": "Can delete Gallery Page",
+    "content_type": [
+      "photo_gallery",
+      "gallerypage"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 181
+},
+{
+  "fields": {
     "name": "Moderators",
     "permissions": [
       [
@@ -2159,7 +2267,7 @@
     "is_active": true,
     "is_superuser": true,
     "is_staff": true,
-    "last_login": "2015-07-01T19:12:21.216Z",
+    "last_login": "2015-07-07T17:02:13.803Z",
     "groups": [],
     "user_permissions": [],
     "password": "pbkdf2_sha256$15000$NSAYzKUq9Lx6$pq03elN0ROVa6NSHdC9lAVvl/sbdHsIgXPyNLuqgE9Y=",
@@ -2168,6 +2276,86 @@
   },
   "model": "auth.user",
   "pk": 1
+},
+{
+  "fields": {
+    "name": "birthday",
+    "slug": "birthday"
+  },
+  "model": "taggit.tag",
+  "pk": 1
+},
+{
+  "fields": {
+    "name": "child",
+    "slug": "child"
+  },
+  "model": "taggit.tag",
+  "pk": 2
+},
+{
+  "fields": {
+    "name": "senior",
+    "slug": "senior"
+  },
+  "model": "taggit.tag",
+  "pk": 3
+},
+{
+  "fields": {
+    "name": "farewell",
+    "slug": "farewell"
+  },
+  "model": "taggit.tag",
+  "pk": 4
+},
+{
+  "fields": {
+    "tag": 1,
+    "content_type": [
+      "wagtailimages",
+      "image"
+    ],
+    "object_id": 2
+  },
+  "model": "taggit.taggeditem",
+  "pk": 1
+},
+{
+  "fields": {
+    "tag": 2,
+    "content_type": [
+      "wagtailimages",
+      "image"
+    ],
+    "object_id": 1
+  },
+  "model": "taggit.taggeditem",
+  "pk": 2
+},
+{
+  "fields": {
+    "tag": 4,
+    "content_type": [
+      "wagtailimages",
+      "image"
+    ],
+    "object_id": 4
+  },
+  "model": "taggit.taggeditem",
+  "pk": 3
+},
+{
+  "fields": {
+    "tag": 3,
+    "content_type": [
+      "wagtailimages",
+      "image"
+    ],
+    "object_id": 3
+  },
+  "model": "taggit.taggeditem",
+  "pk": 4
 },
 {
   "fields": {
@@ -2210,7 +2398,7 @@
   "fields": {
     "locked": false,
     "title": "Homepage",
-    "numchild": 3,
+    "numchild": 4,
     "show_in_menus": false,
     "live": true,
     "seo_title": "",
@@ -2409,6 +2597,93 @@
 },
 {
   "fields": {
+    "locked": false,
+    "title": "Gallery",
+    "numchild": 2,
+    "show_in_menus": true,
+    "live": true,
+    "seo_title": "",
+    "latest_revision_created_at": "2015-07-07T17:03:31.642Z",
+    "depth": 3,
+    "search_description": "",
+    "content_type": [
+      "photo_gallery",
+      "galleryindexpage"
+    ],
+    "has_unpublished_changes": false,
+    "owner": [
+      "admin"
+    ],
+    "path": "000100010004",
+    "url_path": "/home/gallery/",
+    "expired": false,
+    "slug": "gallery",
+    "expire_at": null,
+    "go_live_at": null
+  },
+  "model": "wagtailcore.page",
+  "pk": 10
+},
+{
+  "fields": {
+    "locked": false,
+    "title": "Birthday party",
+    "numchild": 0,
+    "show_in_menus": true,
+    "live": true,
+    "seo_title": "",
+    "latest_revision_created_at": "2015-07-07T17:07:00.812Z",
+    "depth": 4,
+    "search_description": "",
+    "content_type": [
+      "photo_gallery",
+      "gallerypage"
+    ],
+    "has_unpublished_changes": false,
+    "owner": [
+      "admin"
+    ],
+    "path": "0001000100040001",
+    "url_path": "/home/gallery/birthday-party/",
+    "expired": false,
+    "slug": "birthday-party",
+    "expire_at": null,
+    "go_live_at": null
+  },
+  "model": "wagtailcore.page",
+  "pk": 11
+},
+{
+  "fields": {
+    "locked": false,
+    "title": "Farewell party",
+    "numchild": 0,
+    "show_in_menus": true,
+    "live": true,
+    "seo_title": "",
+    "latest_revision_created_at": "2015-07-07T17:07:56.926Z",
+    "depth": 4,
+    "search_description": "",
+    "content_type": [
+      "photo_gallery",
+      "gallerypage"
+    ],
+    "has_unpublished_changes": false,
+    "owner": [
+      "admin"
+    ],
+    "path": "0001000100040002",
+    "url_path": "/home/gallery/farewell-party/",
+    "expired": false,
+    "slug": "farewell-party",
+    "expire_at": null,
+    "go_live_at": null
+  },
+  "model": "wagtailcore.page",
+  "pk": 12
+},
+{
+  "fields": {
     "approved_go_live_at": null,
     "created_at": "2015-07-01T18:57:25.977Z",
     "submitted_for_moderation": false,
@@ -2560,6 +2835,48 @@
   },
   "model": "wagtailcore.pagerevision",
   "pk": 11
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-07-07T17:03:31.642Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"feed_image\": null, \"locked\": false, \"title\": \"Gallery\", \"numchild\": 0, \"show_in_menus\": true, \"live\": true, \"seo_title\": \"\", \"search_description\": \"\", \"depth\": 3, \"intro\": \"<p>Welcome to Gallery module</p>\", \"latest_revision_created_at\": null, \"has_unpublished_changes\": false, \"content_type\": 59, \"path\": \"000100010004\", \"owner\": 1, \"pk\": 10, \"url_path\": \"/home/gallery/\", \"expired\": false, \"slug\": \"gallery\", \"expire_at\": null, \"go_live_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 10
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 12
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-07-07T17:07:00.812Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"feed_image\": 2, \"locked\": false, \"title\": \"Birthday party\", \"tagged_items\": [{\"pk\": 1, \"tag\": 1, \"content_object\": 11}, {\"pk\": 2, \"tag\": 2, \"content_object\": 11}], \"numchild\": 0, \"show_in_menus\": true, \"live\": true, \"seo_title\": \"\", \"search_description\": \"\", \"depth\": 4, \"latest_revision_created_at\": null, \"has_unpublished_changes\": false, \"content_type\": 61, \"path\": \"0001000100040001\", \"owner\": 1, \"pk\": 11, \"url_path\": \"/home/gallery/birthday-party/\", \"expired\": false, \"slug\": \"birthday-party\", \"expire_at\": null, \"go_live_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 11
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 13
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-07-07T17:07:56.926Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"feed_image\": 3, \"locked\": false, \"title\": \"Farewell party\", \"tagged_items\": [{\"pk\": 3, \"tag\": 3, \"content_object\": 12}, {\"pk\": 4, \"tag\": 4, \"content_object\": 12}], \"numchild\": 0, \"show_in_menus\": true, \"live\": true, \"seo_title\": \"\", \"search_description\": \"\", \"depth\": 4, \"latest_revision_created_at\": null, \"has_unpublished_changes\": false, \"content_type\": 61, \"path\": \"0001000100040002\", \"owner\": 1, \"pk\": 12, \"url_path\": \"/home/gallery/farewell-party/\", \"expired\": false, \"slug\": \"farewell-party\", \"expire_at\": null, \"go_live_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 12
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 14
 },
 {
   "fields": {
@@ -2862,6 +3179,13 @@
   },
   "model": "wagtailimages.filter",
   "pk": 8
+},
+{
+  "fields": {
+    "spec": "max-800x600"
+  },
+  "model": "wagtailimages.filter",
+  "pk": 9
 },
 {
   "fields": {
@@ -3333,6 +3657,102 @@
 },
 {
   "fields": {
+    "image": 2,
+    "focal_point_key": "",
+    "filter": 8,
+    "width": 250,
+    "file": "images/wagtail.focus-none.width-250.jpg",
+    "height": 96
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 40
+},
+{
+  "fields": {
+    "image": 3,
+    "focal_point_key": "",
+    "filter": 8,
+    "width": 250,
+    "file": "images/postgresql.focus-none.width-250.jpg",
+    "height": 96
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 41
+},
+{
+  "fields": {
+    "image": 2,
+    "focal_point_key": "",
+    "filter": 2,
+    "width": 1200,
+    "file": "images/wagtail.focus-none.width-1200.jpg",
+    "height": 461
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 42
+},
+{
+  "fields": {
+    "image": 3,
+    "focal_point_key": "",
+    "filter": 2,
+    "width": 1200,
+    "file": "images/postgresql.focus-none.width-1200.jpg",
+    "height": 461
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 43
+},
+{
+  "fields": {
+    "image": 2,
+    "focal_point_key": "",
+    "filter": 9,
+    "width": 800,
+    "file": "images/wagtail.focus-none.max-800x600.jpg",
+    "height": 307
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 44
+},
+{
+  "fields": {
+    "image": 1,
+    "focal_point_key": "",
+    "filter": 9,
+    "width": 800,
+    "file": "images/foundation_5.focus-none.max-800x600.png",
+    "height": 307
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 45
+},
+{
+  "fields": {
+    "image": 4,
+    "focal_point_key": "",
+    "filter": 9,
+    "width": 800,
+    "file": "images/sass-logo-new.focus-none.max-800x600.png",
+    "height": 307
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 46
+},
+{
+  "fields": {
+    "image": 3,
+    "focal_point_key": "",
+    "filter": 9,
+    "width": 800,
+    "file": "images/postgresql.focus-none.max-800x600.jpg",
+    "height": 307
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 47
+},
+{
+  "fields": {
     "slug": "wagtail",
     "link_page": null,
     "title": "Wagtail",
@@ -3611,5 +4031,59 @@
   },
   "model": "contact.contactpage",
   "pk": 9
+},
+{
+  "fields": {
+    "feed_image": null,
+    "intro": "<p>Welcome to Gallery module</p>"
+  },
+  "model": "photo_gallery.galleryindexpage",
+  "pk": 10
+},
+{
+  "fields": {
+    "content_object": 11,
+    "tag": 1
+  },
+  "model": "photo_gallery.gallerypagetag",
+  "pk": 1
+},
+{
+  "fields": {
+    "content_object": 11,
+    "tag": 2
+  },
+  "model": "photo_gallery.gallerypagetag",
+  "pk": 2
+},
+{
+  "fields": {
+    "content_object": 12,
+    "tag": 3
+  },
+  "model": "photo_gallery.gallerypagetag",
+  "pk": 3
+},
+{
+  "fields": {
+    "content_object": 12,
+    "tag": 4
+  },
+  "model": "photo_gallery.gallerypagetag",
+  "pk": 4
+},
+{
+  "fields": {
+    "feed_image": 2
+  },
+  "model": "photo_gallery.gallerypage",
+  "pk": 11
+},
+{
+  "fields": {
+    "feed_image": 3
+  },
+  "model": "photo_gallery.gallerypage",
+  "pk": 12
 }
 ]
