@@ -7,21 +7,23 @@
 
     <div class="row">
         <div class="large-12 columns">
-            <h5>{{ self.title }}</h5>
+            <h3>{{ self.title }}</h3>
             {{ self.intro|richtext }}
 
             {% if pages|length %}
-                <div class="gallery-thumb">
+                <div>
+                    <ul class="medium-block-grid-4" data-equalizer>
                     {% for page in pages %}
-                        <a href="{{ page.url }}" class="th">
-                            {% if page.feed_image %}
-                                {% image page.feed_image width-250 %}
-                            {% endif %}
-                            <h5>
-                                {{ page.title }}
-                            </h5>
-                        </a>
+                        <li data-equalizer-watch>
+                            <a href="{{ page.url }}" class="th">
+                                {% if page.feed_image %}
+                                    {% image page.feed_image width-260 %}
+                                {% endif %}
+                                <center><h5 style="margin-bottom: 0;">{{ page.title }}</h5></center>
+                            </a>
+                        </li>
                     {% endfor %}
+                    </ul>
                 </div>
             {% else %}
             <p>

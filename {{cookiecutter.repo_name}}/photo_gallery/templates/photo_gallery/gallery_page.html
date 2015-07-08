@@ -7,6 +7,7 @@
 {% block content %}
     <div class="row">
         <div class="large-12 columns">
+            <center><h3>{{ self.title }}</h3></center>
             {% if self.tags %}
                 {% include "photo_gallery/includes/tags.html" %}
             {% endif %}
@@ -16,15 +17,14 @@
     <div class="row text-center">
         <div class="large-12 columns">
             {% if images %}
-                <p> <strong>Photo Gallery</strong> - {{ self.title }} </p>
-                <div class="bxslider">
+                <ul class="clearing-thumbs medium-block-grid-5" data-clearing data-equalizer>
                     {% for gallery_image in images %}
-                        <li>
+                        <li data-equalizer-watch><a class="th" href="{{ gallery_imagedata.url }}">
                             {% image gallery_image width-1400 as gallery_imagedata %}
-                              <img class="rsImg" src="{{ gallery_imagedata.url }}" alt="{{ gallery_imagedata.alt }}"/>
-                        </li>
+                            <img class="rsImg" src="{{ gallery_imagedata.url }}" alt="{{ gallery_imagedata.alt }}"/>
+                        </a></li>
                     {% endfor %}
-                </div>
+                </ul>
             {% else %}
                 <p>No images are tagged with your {{ self.title }} gallery or no {{ self.title }} tags defined.</p>
             {% endif %}
