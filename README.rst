@@ -122,10 +122,17 @@ To The following steps assume the following dependencies
     * pip
     * virtualenv/pyvenv/virtualenvwrapper
     * PostgreSQL
+    * Bower
 
 Firstly, open up a command line shell in your new projects directory.
 
+**Avoid Below steps by using make**
+  .. code-block:: bash
 
+    make
+
+This will create virtual environment, install pip requirements, create database, migrate, load initial data to database, install bower packages, run server for you. Awesome, right?
+    
 1. **Create a virtual environment**
 
 

@@ -1,0 +1,35 @@
+{% raw %}
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block body_class %}{{ self.get_verbose_name|slugify }}{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="large-12 columns">
+            <h5>{{ self.title }}</h5>
+            {{ self.intro|richtext }}
+
+            {% if pages|length %}
+                <div class="gallery-thumb">
+                    {% for page in pages %}
+                        <a href="{{ page.url }}" class="th">
+                            {% if page.feed_image %}
+                                {% image page.feed_image width-250 %}
+                            {% endif %}
+                            <h5>
+                                {{ page.title }}
+                            </h5>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+            <p>
+                Whoops, we don't have any Galleries that match right now.
+            </p>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}
+{% endraw %}

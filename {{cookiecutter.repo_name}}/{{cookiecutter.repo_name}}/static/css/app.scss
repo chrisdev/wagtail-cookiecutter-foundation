@@ -255,21 +255,35 @@ ul.side-nav {
     }
 }
 
-#photo-gallery
+.gallery-thumb
 {
-    padding-top: 20px;
-    padding-bottom: 100px;
+  margin: 50px 0;
+  text-align: center;
+  a
+  {
+    margin: 0 30px;
+  }
+
+  h5
+  {
     text-align: center;
-    h3
-    {
-      padding-bottom: 10px;
-    }
-    .gallery-names li
-    {
-      background: #43b1b0;
-      border-radius: 2px;
-      color: #fff;
-      margin-top: 5px;
-      padding: 5px;
-    }
+  }
+}
+
+.gallery-page 
+{
+  strong
+  {
+    color: #555;
+  }
+
+  .tag-names li
+  {
+    background: #43b1b0;
+    border-radius: 2px;
+    color: #fff;
+    padding: 5px;
+    display:inline;
+    margin: 0px 3px;
+  }
 }
