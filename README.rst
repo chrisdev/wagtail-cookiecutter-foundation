@@ -53,7 +53,7 @@ What's included
   EC2 etc..
 
 .. _`torchbox/wagtail base box`: https://github.com/torchbox/vagrant-wagtail-base
-.. _Ansible: https://http://www.ansible.com/home
+.. _Ansible: http://www.ansible.com/home
 .. _libsass: https://github.com/sass/libsass
 .. _django-compressor: https://github.com/sass/libsass
 .. _django-libsass: https://github.com/torchbox/django-libsass
