@@ -74,6 +74,15 @@ test:
 		$(MANAGE_CMD) test; \
 	)
 
+static_site:
+# Static Site generation
+	$(call ECHO_BLUE,Generating Static Site)
+	$(PIP_INSTALL_CMD) django-medusa django-sendfile
+	$(MANAGE_CMD) staticsitegen
+	$(MANAGE_CMD) collectstatic
+	rsync -av static static_build/
+	rsync -av media static_build/
+
 clean:
 # Remove all *.pyc, .DS_Store and temp files from the project
 	$(call ECHO_BLUE,removing .pyc files...)
