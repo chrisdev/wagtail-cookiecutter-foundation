@@ -6,7 +6,7 @@
         {% if child.show_dropdown %}
             <ul class="left-submenu">
                 <li class="back"><a href="#">Back</a></li>
-                <li><label>{{ child.title }}</label></li>
+                <li><a href="{% pageurl child %}">{{ child.title }}</a></li>
                 {% top_menu_children parent=child %}
             </ul>
         {% endif %}
