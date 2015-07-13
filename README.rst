@@ -117,7 +117,7 @@ Now take a look at your repo. Don't forget to carefully look at the generated RE
 
 Getting up and running
 ========================
-To The following steps assume the following dependencies
+To perform the following steps assume the following dependencies
 
     * pip
     * virtualenv/pyvenv/virtualenvwrapper
