@@ -2,7 +2,7 @@
     <div id="event_feed">
         {% for event in events %}
         <div class="event">
-            <a href="{% pageurl event %}">
+            <a href="{% pageurl event %}" class="event-link">
                 <div style="text-align: center;">
                         <h6>{{ event.date_from|date:"d" }} {{ event.date_from|date:"F" }}</h6>
                         <h5>{{ event.title }}</h5>

@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import date
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField
@@ -38,6 +39,29 @@ class EventIndexPage(Page):
         events = events.order_by('date_from')
 
         return events
+    
+    def get_context(self, request):
+            # Get events
+            events = self.events
+            # Filter by tag
+            tag = request.GET.get('tag')
+            if tag:
+                events = events.filter(tags__name=tag)
+    
+            # Pagination
+            page = request.GET.get('page')
+            paginator = Paginator(events, 9)  # Show 10 events per page
+            try:
+                events = paginator.page(page)
+            except PageNotAnInteger:
+                events = paginator.page(1)
+            except EmptyPage:
+                events = paginator.page(paginator.num_pages)
+    
+            # Update template context
+            context = super(EventIndexPage, self).get_context(request)
+            context['events'] = events
+            return context
 
 EventIndexPage.content_panels = [
     FieldPanel('title', classname="full title"),
@@ -121,7 +145,7 @@ class EventPage(Page):
                 )
                 content_dispo = 'attachment; filename=' + self.slug + '.ics'
 
-                response['Content-Disposition'] = contant_dispo
+                response['Content-Disposition'] = content_dispo
                 return response
             else:
                 message = 'Could not export event\n\nUnrecognised format: ' + \

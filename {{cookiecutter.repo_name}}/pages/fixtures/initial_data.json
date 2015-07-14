@@ -2267,7 +2267,7 @@
     "is_active": true,
     "is_superuser": true,
     "is_staff": true,
-    "last_login": "2015-07-07T17:02:13.803Z",
+    "last_login": "2015-07-13T14:50:15.799Z",
     "groups": [],
     "user_permissions": [],
     "password": "pbkdf2_sha256$15000$NSAYzKUq9Lx6$pq03elN0ROVa6NSHdC9lAVvl/sbdHsIgXPyNLuqgE9Y=",
@@ -2512,7 +2512,7 @@
   "fields": {
     "locked": false,
     "title": "News",
-    "numchild": 1,
+    "numchild": 2,
     "show_in_menus": true,
     "live": true,
     "seo_title": "",
@@ -2681,6 +2681,35 @@
   },
   "model": "wagtailcore.page",
   "pk": 12
+},
+{
+  "fields": {
+    "locked": false,
+    "title": "Django Birthday",
+    "numchild": 0,
+    "show_in_menus": false,
+    "live": true,
+    "seo_title": "",
+    "latest_revision_created_at": "2015-07-13T15:19:40.105Z",
+    "depth": 4,
+    "search_description": "",
+    "content_type": [
+      "events",
+      "eventpage"
+    ],
+    "has_unpublished_changes": false,
+    "owner": [
+      "admin"
+    ],
+    "path": "0001000100020002",
+    "url_path": "/home/news/django-birthday/",
+    "expired": false,
+    "slug": "django-birthday",
+    "expire_at": null,
+    "go_live_at": null
+  },
+  "model": "wagtailcore.page",
+  "pk": 13
 },
 {
   "fields": {
@@ -2877,6 +2906,48 @@
   },
   "model": "wagtailcore.pagerevision",
   "pk": 14
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-07-13T14:59:32.990Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"carousel_items\": [], \"show_in_menus\": false, \"search_description\": \"\", \"owner\": 1, \"cost\": \"$90\", \"latest_revision_created_at\": null, \"time_to\": \"18:00:00\", \"go_live_at\": null, \"feed_image\": null, \"related_links\": [], \"title\": \"Django Birthday\", \"signup_link\": \"https://www.djangoproject.com/\", \"date_from\": \"2015-07-10\", \"seo_title\": \"\", \"slug\": \"django-birthday\", \"live\": true, \"location\": \"Lawrence, KS\", \"has_unpublished_changes\": false, \"body\": \"<h2>Happy birthday Django!</h2><p>Time to celebrate! <a href=\\\"https://www.djangoproject.com/\\\">Django</a> is turning 10 years old this July. We're throwing a birthday party for it in the town where it was created.</p><p><br/></p><p>We'll post more details as we lock down plans, but tickets are limited so we wanted to give as much notice as possible for those of you who will be traveling long distances.</p>\", \"numchild\": 0, \"time_from\": \"17:00:00\", \"speakers\": [], \"audience\": \"public\", \"content_type\": 48, \"date_to\": \"2015-07-12\", \"path\": \"0001000100020002\", \"url_path\": \"/home/news/django-birthday/\", \"expired\": false, \"pk\": 13, \"locked\": false, \"depth\": 4, \"expire_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 13
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 15
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-07-13T15:00:36.873Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"carousel_items\": [], \"show_in_menus\": false, \"search_description\": \"\", \"owner\": 1, \"cost\": \"$90\", \"latest_revision_created_at\": \"2015-07-13T14:59:32.990Z\", \"time_to\": \"18:00:00\", \"go_live_at\": null, \"feed_image\": null, \"related_links\": [], \"title\": \"Django Birthday\", \"signup_link\": \"https://djangobirthday.com/\", \"date_from\": \"2015-07-10\", \"seo_title\": \"\", \"slug\": \"django-birthday\", \"live\": true, \"location\": \"Lawrence, KS\", \"has_unpublished_changes\": false, \"body\": \"<h2>Happy birthday Django!</h2><p>Time to celebrate! <a href=\\\"https://www.djangoproject.com/\\\">Django</a> is turning 10 years old this July. We're throwing a birthday party for it in the town where it was created.</p><p><br/></p><p>We'll post more details as we lock down plans, but tickets are limited so we wanted to give as much notice as possible for those of you who will be traveling long distances.</p>\", \"numchild\": 0, \"time_from\": \"17:00:00\", \"speakers\": [], \"audience\": \"public\", \"content_type\": 48, \"date_to\": \"2015-07-12\", \"path\": \"0001000100020002\", \"url_path\": \"/home/news/django-birthday/\", \"expired\": false, \"pk\": 13, \"locked\": false, \"depth\": 4, \"expire_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 13
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 16
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-07-13T15:19:40.105Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"carousel_items\": [], \"show_in_menus\": false, \"search_description\": \"\", \"owner\": 1, \"cost\": \"$90\", \"latest_revision_created_at\": \"2015-07-13T15:00:36.873Z\", \"time_to\": \"18:00:00\", \"go_live_at\": null, \"feed_image\": null, \"related_links\": [], \"title\": \"Django Birthday\", \"signup_link\": \"https://djangobirthday.com/\", \"date_from\": \"2015-07-10\", \"seo_title\": \"\", \"slug\": \"django-birthday\", \"live\": true, \"location\": \"Lawrence, KS\", \"has_unpublished_changes\": false, \"body\": \"<h2>Happy birthday Django!</h2><p>Time to celebrate! <a href=\\\"https://www.djangoproject.com/\\\">Django</a> is turning 10 years old this July. We're throwing a birthday party for it in the town where it was created.</p><p>We'll post more details as we lock down plans, but tickets are limited so we wanted to give as much notice as possible for those of you who will be traveling long distances.</p>\", \"numchild\": 0, \"time_from\": \"17:00:00\", \"speakers\": [], \"audience\": \"public\", \"content_type\": 48, \"date_to\": \"2015-07-12\", \"path\": \"0001000100020002\", \"url_path\": \"/home/news/django-birthday/\", \"expired\": false, \"pk\": 13, \"locked\": false, \"depth\": 4, \"expire_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 13
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 17
 },
 {
   "fields": {
@@ -3186,6 +3257,27 @@
   },
   "model": "wagtailimages.filter",
   "pk": 9
+},
+{
+  "fields": {
+    "spec": "width-200"
+  },
+  "model": "wagtailimages.filter",
+  "pk": 10
+},
+{
+  "fields": {
+    "spec": "height-140"
+  },
+  "model": "wagtailimages.filter",
+  "pk": 11
+},
+{
+  "fields": {
+    "spec": "width-260"
+  },
+  "model": "wagtailimages.filter",
+  "pk": 12
 },
 {
   "fields": {
@@ -3753,6 +3845,30 @@
 },
 {
   "fields": {
+    "image": 2,
+    "focal_point_key": "",
+    "filter": 12,
+    "width": 260,
+    "file": "images/wagtail.focus-none.width-260.jpg",
+    "height": 100
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 48
+},
+{
+  "fields": {
+    "image": 3,
+    "focal_point_key": "",
+    "filter": 12,
+    "width": 260,
+    "file": "images/postgresql.focus-none.width-260.jpg",
+    "height": 100
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 49
+},
+{
+  "fields": {
     "slug": "wagtail",
     "link_page": null,
     "title": "Wagtail",
@@ -3956,6 +4072,22 @@
   },
   "model": "blog.blogpage",
   "pk": 8
+},
+{
+  "fields": {
+    "body": "<h2>Happy birthday Django!</h2><p>Time to celebrate! <a href=\"https://www.djangoproject.com/\">Django</a> is turning 10 years old this July. We're throwing a birthday party for it in the town where it was created.</p><p>We'll post more details as we lock down plans, but tickets are limited so we wanted to give as much notice as possible for those of you who will be traveling long distances.</p>",
+    "feed_image": null,
+    "date_from": "2015-07-10",
+    "time_from": "17:00:00",
+    "audience": "public",
+    "cost": "$90",
+    "location": "Lawrence, KS",
+    "date_to": "2015-07-12",
+    "time_to": "18:00:00",
+    "signup_link": "https://djangobirthday.com/"
+  },
+  "model": "events.eventpage",
+  "pk": 13
 },
 {
   "fields": {

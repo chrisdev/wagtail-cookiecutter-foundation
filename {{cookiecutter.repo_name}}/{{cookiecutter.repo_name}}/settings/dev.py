@@ -11,6 +11,16 @@ INSTALLED_APPS += (
 
 INTERNAL_IPS = ('127.0.0.1',)
 
+INSTALLED_APPS += (
+    'django_medusa',
+    'wagtail.contrib.wagtailmedusa',
+    )
+
+# Medusa settings
+MEDUSA_RENDERER_CLASS = 'django_medusa.renderers.DiskStaticSiteRenderer'
+MEDUSA_DEPLOY_DIR = os.path.join(PROJECT_ROOT, 'static_build')
+SENDFILE_BACKEND = 'sendfile.backends.simple'
+
 # See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation
 MIDDLEWARE_CLASSES += (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
