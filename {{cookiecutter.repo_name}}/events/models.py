@@ -145,7 +145,7 @@ class EventPage(Page):
                 )
                 content_dispo = 'attachment; filename=' + self.slug + '.ics'
 
-                response['Content-Disposition'] = contant_dispo
+                response['Content-Disposition'] = content_dispo
                 return response
             else:
                 message = 'Could not export event\n\nUnrecognised format: ' + \
