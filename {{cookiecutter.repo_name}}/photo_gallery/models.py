@@ -102,6 +102,17 @@ class GalleryPage(Page):
             for i in range(0,len(tags)):
                 img = Image.objects.filter(tags__name=tags[i])
                 images = images | img
+                
+        
+        # Pagination
+        page = request.GET.get('page')
+        paginator = Paginator(images, 25)  # Show 10 images per page
+        try:
+            images = paginator.page(page)
+        except PageNotAnInteger:
+            images = paginator.page(1)
+        except EmptyPage:
+            images = paginator.page(paginator.num_pages)
 
 
         # Update template context
