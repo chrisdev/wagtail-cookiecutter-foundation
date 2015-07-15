@@ -86,43 +86,43 @@ class GalleryPage(Page):
     )
 
     @property
-        def gallery_index(self):
-            # Find closest ancestor which is a Gallery index
-            return self.get_ancestors().type(GalleryIndexPage).last()
-    
-        def get_context(self, request):
-            # Get tags and convert them into list so we can iterate over them 
-            tags = self.tags.values_list('name', flat=True)
-    
-            # Creating empty Queryset from Wagtail image model
-            images = Image.objects.none()
-    
-            # Populating the empty images Queryset with images of all tags in tags list.
-            if tags:
-                for i in range(0,len(tags)):
-                    img = Image.objects.filter(tags__name=tags[i])
-                    images = images | img
-                    
-            
-            # Pagination
-            page = request.GET.get('page')
-            paginator = Paginator(images, 25)  # Show 10 images per page
-            try:
-                images = paginator.page(page)
-            except PageNotAnInteger:
-                images = paginator.page(1)
-            except EmptyPage:
-                images = paginator.page(paginator.num_pages)
-    
-    
-            # Update template context
-            context = super(GalleryPage, self).get_context(request)
-            context['images'] = images
-    
-            return context
-    
-        class Meta:
-            verbose_name = "Gallery Page"
+    def gallery_index(self):
+        # Find closest ancestor which is a Gallery index
+        return self.get_ancestors().type(GalleryIndexPage).last()
+
+    def get_context(self, request):
+        # Get tags and convert them into list so we can iterate over them 
+        tags = self.tags.values_list('name', flat=True)
+
+        # Creating empty Queryset from Wagtail image model
+        images = Image.objects.none()
+
+        # Populating the empty images Queryset with images of all tags in tags list.
+        if tags:
+            for i in range(0,len(tags)):
+                img = Image.objects.filter(tags__name=tags[i])
+                images = images | img
+                
+        
+        # Pagination
+        page = request.GET.get('page')
+        paginator = Paginator(images, 25)  # Show 10 images per page
+        try:
+            images = paginator.page(page)
+        except PageNotAnInteger:
+            images = paginator.page(1)
+        except EmptyPage:
+            images = paginator.page(paginator.num_pages)
+
+
+        # Update template context
+        context = super(GalleryPage, self).get_context(request)
+        context['images'] = images
+
+        return context
+
+    class Meta:
+        verbose_name = "Gallery Page"
 
 GalleryPage.content_panels = [
     FieldPanel('title', classname="full title"),
