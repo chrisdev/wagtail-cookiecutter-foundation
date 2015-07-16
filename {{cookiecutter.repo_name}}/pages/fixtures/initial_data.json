@@ -2267,7 +2267,7 @@
     "is_active": true,
     "is_superuser": true,
     "is_staff": true,
-    "last_login": "2015-07-13T14:50:15.799Z",
+    "last_login": "2015-07-16T07:16:43.227Z",
     "groups": [],
     "user_permissions": [],
     "password": "pbkdf2_sha256$15000$NSAYzKUq9Lx6$pq03elN0ROVa6NSHdC9lAVvl/sbdHsIgXPyNLuqgE9Y=",
@@ -2632,7 +2632,7 @@
     "show_in_menus": true,
     "live": true,
     "seo_title": "",
-    "latest_revision_created_at": "2015-07-07T17:07:00.812Z",
+    "latest_revision_created_at": "2015-07-16T07:23:43.083Z",
     "depth": 4,
     "search_description": "",
     "content_type": [
@@ -2661,7 +2661,7 @@
     "show_in_menus": true,
     "live": true,
     "seo_title": "",
-    "latest_revision_created_at": "2015-07-07T17:07:56.926Z",
+    "latest_revision_created_at": "2015-07-16T07:24:01.184Z",
     "depth": 4,
     "search_description": "",
     "content_type": [
@@ -2948,6 +2948,76 @@
   },
   "model": "wagtailcore.pagerevision",
   "pk": 17
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-07-16T07:17:44.826Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"feed_image\": 3, \"locked\": false, \"title\": \"Farewell party\", \"tagged_items\": [{\"pk\": null, \"tag\": 3, \"content_object\": null}, {\"pk\": null, \"tag\": 4, \"content_object\": null}], \"numchild\": 0, \"show_in_menus\": true, \"live\": true, \"seo_title\": \"\", \"search_description\": \"\", \"depth\": 4, \"latest_revision_created_at\": \"2015-07-07T17:07:56.926Z\", \"has_unpublished_changes\": false, \"content_type\": 61, \"path\": \"0001000100040002\", \"owner\": 1, \"pk\": 12, \"url_path\": \"/home/gallery/farewell-party/\", \"expired\": false, \"slug\": \"farewell-party\", \"expire_at\": null, \"go_live_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 12
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 18
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-07-16T07:17:48.397Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"feed_image\": 3, \"locked\": false, \"title\": \"Farewell party\", \"tagged_items\": [{\"pk\": null, \"tag\": 3, \"content_object\": null}, {\"pk\": null, \"tag\": 4, \"content_object\": null}], \"numchild\": 0, \"show_in_menus\": true, \"live\": true, \"seo_title\": \"\", \"search_description\": \"\", \"depth\": 4, \"latest_revision_created_at\": \"2015-07-16T07:17:44.826Z\", \"has_unpublished_changes\": true, \"content_type\": 61, \"path\": \"0001000100040002\", \"owner\": 1, \"pk\": 12, \"url_path\": \"/home/gallery/farewell-party/\", \"expired\": false, \"slug\": \"farewell-party\", \"expire_at\": null, \"go_live_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 12
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 19
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-07-16T07:18:04.827Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"feed_image\": 2, \"locked\": false, \"title\": \"Birthday party\", \"tagged_items\": [{\"pk\": null, \"tag\": 1, \"content_object\": null}, {\"pk\": null, \"tag\": 2, \"content_object\": null}], \"numchild\": 0, \"show_in_menus\": true, \"live\": true, \"seo_title\": \"\", \"search_description\": \"\", \"depth\": 4, \"latest_revision_created_at\": \"2015-07-07T17:07:00.812Z\", \"has_unpublished_changes\": false, \"content_type\": 61, \"path\": \"0001000100040001\", \"owner\": 1, \"pk\": 11, \"url_path\": \"/home/gallery/birthday-party/\", \"expired\": false, \"slug\": \"birthday-party\", \"expire_at\": null, \"go_live_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 11
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 20
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-07-16T07:23:43.083Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"feed_image\": 1, \"locked\": false, \"title\": \"Birthday party\", \"tagged_items\": [{\"pk\": null, \"tag\": 1, \"content_object\": null}, {\"pk\": null, \"tag\": 2, \"content_object\": null}], \"numchild\": 0, \"show_in_menus\": true, \"live\": true, \"seo_title\": \"\", \"search_description\": \"\", \"depth\": 4, \"latest_revision_created_at\": \"2015-07-16T07:18:04.827Z\", \"has_unpublished_changes\": false, \"content_type\": 61, \"path\": \"0001000100040001\", \"owner\": 1, \"pk\": 11, \"url_path\": \"/home/gallery/birthday-party/\", \"expired\": false, \"slug\": \"birthday-party\", \"expire_at\": null, \"go_live_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 11
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 21
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-07-16T07:24:01.184Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"feed_image\": 4, \"locked\": false, \"title\": \"Farewell party\", \"tagged_items\": [{\"pk\": null, \"tag\": 3, \"content_object\": null}, {\"pk\": null, \"tag\": 4, \"content_object\": null}], \"numchild\": 0, \"show_in_menus\": true, \"live\": true, \"seo_title\": \"\", \"search_description\": \"\", \"depth\": 4, \"latest_revision_created_at\": \"2015-07-16T07:17:48.397Z\", \"has_unpublished_changes\": false, \"content_type\": 61, \"path\": \"0001000100040002\", \"owner\": 1, \"pk\": 12, \"url_path\": \"/home/gallery/farewell-party/\", \"expired\": false, \"slug\": \"farewell-party\", \"expire_at\": null, \"go_live_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 12
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 22
 },
 {
   "fields": {
@@ -3869,6 +3939,30 @@
 },
 {
   "fields": {
+    "image": 1,
+    "focal_point_key": "",
+    "filter": 12,
+    "width": 260,
+    "file": "images/foundation_5.focus-none.width-260.png",
+    "height": 100
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 50
+},
+{
+  "fields": {
+    "image": 4,
+    "focal_point_key": "",
+    "filter": 12,
+    "width": 260,
+    "file": "images/sass-logo-new.focus-none.width-260.png",
+    "height": 100
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 51
+},
+{
+  "fields": {
     "slug": "wagtail",
     "link_page": null,
     "title": "Wagtail",
@@ -4178,7 +4272,7 @@
     "tag": 1
   },
   "model": "photo_gallery.gallerypagetag",
-  "pk": 1
+  "pk": 9
 },
 {
   "fields": {
@@ -4186,7 +4280,7 @@
     "tag": 2
   },
   "model": "photo_gallery.gallerypagetag",
-  "pk": 2
+  "pk": 10
 },
 {
   "fields": {
@@ -4194,7 +4288,7 @@
     "tag": 3
   },
   "model": "photo_gallery.gallerypagetag",
-  "pk": 3
+  "pk": 11
 },
 {
   "fields": {
@@ -4202,18 +4296,18 @@
     "tag": 4
   },
   "model": "photo_gallery.gallerypagetag",
-  "pk": 4
+  "pk": 12
 },
 {
   "fields": {
-    "feed_image": 2
+    "feed_image": 1
   },
   "model": "photo_gallery.gallerypage",
   "pk": 11
 },
 {
   "fields": {
-    "feed_image": 3
+    "feed_image": 4
   },
   "model": "photo_gallery.gallerypage",
   "pk": 12
