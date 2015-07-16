@@ -2,7 +2,7 @@
 environment={% for k, v in django_env.iteritems() %}{% if not loop.first %},{% endif %}{{ k }}="{{ v }}"{% endfor %}
 
 directory= {{ sites_dir }}/{{ project_name }}
-command= {{ virtualenvs_dir }}/{{ project_name }}-env/bin/python manage.py celery worker --loglevel=INFO
+command= {{ virtualenvs_dir }}/{{ project_name }}-env/bin/celery -A {{ project_name }} worker --loglevel=INFO 
 user= {{ deploy_user }}
 autostart=True
 autorestart=True

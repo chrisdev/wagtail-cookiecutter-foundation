@@ -1,5 +1,10 @@
 {% raw %}---
-- name: Enure that the Nginx service is stopped
+- name: Ensure the Nginx is installed
+  apt: name=nginx state=latest update_cache=yes
+  tags:
+      - nginx 
+
+- name: Ensure that the Nginx service is stopped
   service: name=nginx state=stopped
   tags:
       - nginx 

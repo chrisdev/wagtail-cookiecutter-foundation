@@ -7,28 +7,28 @@
     - virtualenvwrapper
   tags:
       - web
-      - py_setup
+      - venv
 
 - name: create the virtualenvwrapper dir if not present
   file: path={{ virtualenvs_dir }} owner={{ deploy_user }} state=directory
   sudo: no
   tags:
       - web
-      - py_setup
+      - venv
 
 - name: Add virtualenvwrapper init1 to the bash profile
   lineinfile: dest=/home/django/.profile line="export WORKON_HOME=~/virtualenvs"
   sudo: no
   tags:
       - web
-      - py_setup
+      - venv
 
 - name: Add virtualenvwrapper init to the bash profile
   lineinfile: dest=/home/django/.profile line="source /usr/local/bin/virtualenvwrapper.sh"
   sudo: no
   tags:
       - web
-      - py_setup
+      - venv
 
 - name: create the project virtualenv
   command: virtualenv {{ virtualenvs_dir }}/{{ project_name }}-env --no-site-packages
@@ -37,7 +37,7 @@
       creates: "{{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate"
   tags:
       - web
-      - py_setup
+      - venv
 
 - name: Pull/And update the source
   sudo: no
@@ -47,7 +47,7 @@
   args:
       chdir: "{{ sites_dir }}/{{ project_name }}"
   tags:
-      - py_setup 
+      - venv 
 
 - name: Install packages required by the Django app inside virtualenv
   sudo: no
@@ -55,7 +55,7 @@
       requirements={{ sites_dir }}/{{ project_name }}/requirements/production.txt
   tags:
       - web
-      - py_setup
+      - venv
 
 - name: Copy/Create the postactivate env file 
   template: src=postactivate.j2
@@ -66,5 +66,5 @@
             backup=yes
   tags:
       - web
-      - py_setup 
+      - venv 
       - postactivate {% endraw %}
