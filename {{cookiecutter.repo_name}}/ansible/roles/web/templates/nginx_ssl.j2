@@ -7,7 +7,7 @@
 server {
         listen 443; 
         server_name {{ django_env.HOST_NAME }};
-
+        ssl on;
         ssl_certificate /svr/ssl/{{ ssl_cert }};
         ssl_certificate_key /svr/ssl/{{ ssl_private_key }};
 

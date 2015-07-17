@@ -34,7 +34,6 @@ INSTALLED_APPS += (
 
 #support opbeat
 MIDDLEWARE_CLASSES = (
-    'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -69,7 +68,7 @@ CACHES = {
     'default': {
         'BACKEND': 'redis_cache.cache.RedisCache',
         'LOCATION': '127.0.0.1:6379',
-        'KEY_PREFIX': 'skhyfc_site',
+        'KEY_PREFIX': '{{ cookiecutter.repo_name }}',
         'OPTIONS': {
             'CLIENT_CLASS': 'redis_cache.client.DefaultClient',
         }
