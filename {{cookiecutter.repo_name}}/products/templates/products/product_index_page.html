@@ -1,0 +1,45 @@
+{% raw %}{% extends "products/product_base.html" %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+    <div class="row">
+    <div class="medium-12 columns">
+            <h3>{{ self.title }}</h3>
+            <h4 class="subheader">{{ self.subtitle }}</h4>
+            {% include "products/includes/intro.html" with intro=self.intro only %}
+            <hr> 
+            <div class="medium-12 columns">
+                <ul class="people large-block-grid-4 small-block-grid-1" data-equalizer>
+                    {% for product in products %}
+                        <li>
+                            <div class="panel radius" data-equalizer-watch>
+                                <a href="{% pageurl product %}">
+                                    {% image product.image width-200 %}
+                                    <center style="margin-top: 15px;">
+                                        <h5><strong>{{ product.title}}</strong></h5>
+                                        <h6><strong>{{ product.price}}</strong></h6>
+                                    </center>
+                                </a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <div class="pagination-centered">
+                <ul class="pagination">
+                      {% if products.has_previous %}
+                          <li class="arrow">
+                              <a href="?page={{ products.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&laquo; Prev</a></li>
+                      {% endif %}
+                      <li class="unavailable">Page {{ products.number }} of {{ products.paginator.num_pages }}</li>
+                      {% if products.has_next %}
+                          <li class="arrow">
+                              <a href="?page={{ products.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Next &raquo;</a></li>
+                      {% endif %}
+                </ul>
+            </div>
+    </div> 
+    </div> 
+{% endblock %}{% endraw %}
