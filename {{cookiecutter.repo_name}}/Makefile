@@ -1,7 +1,26 @@
 PROJECT_NAME = {{ cookiecutter.repo_name }}
 SHELL := /bin/sh
+help:
+	@echo "Please use \`make <target>' where <target> is one of"
+	@echo "  virtualenv               to create the virtualenv for the project"
+	@echo "  requirements             install the requirements to the virtualenv"
+	@echo "  db                       create the PostgreSQL db for the project"
+	@echo "  migrate                  run the migrations"
+	@echo "  initial_data             populate the site with initial page structure"
+	@echo "  bower                    Install front-end dependencies with bower"
+	@echo "  runserver                Start the django dev server"
+	@echo "  test                     run unit tests"
+	@echo "  func_test                run functional tests"
+	@echo "  vagrant_staging_user     create the vagrant user for vagrant staging"
+	@echo "  deploy_user              create the user for production and fetch deployment keys"
+	@echo "  static_site              generate a static site from the project"
+	@echo "  provision_production     provision the production server"
+	@echo "  provision_staging        provision the staging server"
+	@echo "  deploy_production        deploy changes to the production server"
+	@echo "  deploy_staging           deploy changes to staging server"
 
 .PHONY: requirements
+
 
 all: virtualenv requirements db migrate initial_data bower runserver
 
