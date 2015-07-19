@@ -1,0 +1,31 @@
+{% raw %}{% extends "products/product_base.html" %}
+{% load wagtailimages_tags %}
+
+{% block product_content %}
+    <div class="row">
+        <div class="medium-12 columns">
+            {% include "utils/includes/social_share.html" %}
+            
+            <div class="medium-5 columns">
+            {% if self.image %}
+                {% image self.image width-400 as photo %}
+                <img src="{{ photo.url }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="{{ photo.alt }}" class="img-thumbnail" style="float: left;" />
+            {% endif %}
+            </div>
+            <div class="medium-7 columns">
+                <h2 style="margin-bottom: 0px;">{{ self.title }}</h2>
+                
+                {% if self.price %}
+                    <h3><strong>{{ self.price }}</strong></h3>
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="medium-12 columns" style="margin-top: 15px;">                    
+            {% if self.description %}
+                <h5>Product Description</h5>
+            {% endif %}
+            {% include "products/includes/body.html" with body=self.description only %}
+        </div>
+    </div>
+{% endblock %}{% endraw %}
