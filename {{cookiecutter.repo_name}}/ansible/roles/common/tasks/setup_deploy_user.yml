@@ -3,6 +3,8 @@
 - name: initial warning 
   pause: prompt="This playbook will pause to allow you to add deployment keys to your vcs repo
                  Please press [Enter]"
+  tags:
+    - user
 
 - name: Add the deploy user
   user: name={{ deploy_user }} shell=/bin/bash groups=sudo append=yes
@@ -51,5 +53,7 @@
 - name: Prompt to upload deployment keys 
   pause: prompt="Deployment key has been downloaded addt it to your vcs repo 
                  Please press [Enter] after you've added keys" {% endraw %}
+  tags:
+    - user
 
 

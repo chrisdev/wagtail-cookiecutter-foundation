@@ -11,13 +11,10 @@ help:
 	@echo "  runserver                Start the django dev server"
 	@echo "  test                     run unit tests"
 	@echo "  func_test                run functional tests"
-	@echo "  vagrant_staging_user     create the vagrant user for vagrant staging"
-	@echo "  deploy_user              create the user for production and fetch deployment keys"
 	@echo "  static_site              generate a static site from the project"
-	@echo "  provision_production     provision the production server"
-	@echo "  provision_staging        provision the staging server"
-	@echo "  deploy_production        deploy changes to the production server"
-	@echo "  deploy_staging           deploy changes to staging server"
+	@echo "  deploy_user              create the deploy user fetch deployment keys. Defaults to production DEPLOY_ENV=vagrant/staging"
+	@echo "  provision                provision the production server Defaults to production DEPLOY_ENV=staging"
+	@echo "  deploy                   provision the staging server Defaults to production DEPLOY_ENV=staging"
 
 .PHONY: requirements
 
@@ -27,7 +24,7 @@ all: virtualenv requirements db migrate initial_data bower runserver
 # Command variables
 MANAGE_CMD = python manage.py
 PIP_INSTALL_CMD = pip install
-
+PLAYBOOK = ansible-playbook
 VIRTUALENV_NAME = venv
 
 # Helper functions to display messagse
@@ -36,7 +33,7 @@ ECHO_RED = @echo "\033[33;31m $1\033[0m"
 
 # The default server host local development
 HOST ?= localhost:8000
-
+DEPLOYMENT_ENV = production
 
 virtualenv: 
 	virtualenv $(VIRTUALENV_NAME)
@@ -93,6 +90,13 @@ test:
 		$(MANAGE_CMD) test; \
 	)
 
+func_test:
+# Run the test cases
+	( \
+		. $(VIRTUALENV_NAME)/bin/activate; \
+		$(MANAGE_CMD) test functional_tests; \
+	)
+
 static_site:
 # Static Site generation
 	$(call ECHO_BLUE,Generating Static Site)
@@ -101,6 +105,35 @@ static_site:
 	$(MANAGE_CMD) collectstatic
 	rsync -av static static_build/
 	rsync -av media static_build/
+
+deploy_user:
+ifeq ($(DEPLOY_ENV), vagrant)
+	$(call ECHO_BLUE, Create the deploy user for vagrant based staging VM)
+	(\
+		cd ansible; \
+		$(PLAYBOOK) -c paramiko -i staging vagrant_staging_setup.yml --ask-pass --sudo -u vagrant; \
+	)
+else
+	$(call ECHO_BLUE, Create the deploy user for based $(DEPLOY_ENV) )
+	(\
+		cd ansible; \
+		$(PLAYBOOK) -i $(DEPLOY_ENV) provision.yml --tags user; \
+	)
+endif
+
+provision:
+	$(call ECHO_BLUE, Provision the $(DEPLOY_ENV) server )
+	(\
+		cd ansible; \
+		$(PLAYBOOK) -i $(DEPLOY_ENV) provision.yml --skip-tags user; \
+	)
+
+deploy:
+	$(call ECHO_BLUE, deploy changes to the $(DEPLOY_ENV) server )
+	(\
+		cd ansible; \
+		$(PLAYBOOK) -i $(DEPLOY_ENV) deploy.yml;  \
+	)
 
 clean:
 # Remove all *.pyc, .DS_Store and temp files from the project
