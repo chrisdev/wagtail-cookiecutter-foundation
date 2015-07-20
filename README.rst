@@ -263,6 +263,11 @@ You can browse the Wagtail admin interface at: http://localhost:8000/admin
 
 You can read more about how Vagrant works at: https://docs.vagrantup.com/v2/
 
+**Note**: Currently the Vagrant box does not contain Nodejs_. So you can install Node
+within the vagrant session to support bower.
+
+.. _Nodejs: https://nodejs.org/
+
 
 Using Ansible for Deployment and Provisioning
 ----------------------------------------------
