@@ -15,6 +15,7 @@ help:
 	@echo "  deploy_user              create the deploy user fetch deployment keys. Defaults to production DEPLOY_ENV=vagrant/staging"
 	@echo "  provision                provision the production server Defaults to production DEPLOY_ENV=staging"
 	@echo "  deploy                   provision the staging server Defaults to production DEPLOY_ENV=staging"
+	@echo "  livereload               Start Server with livereload functionality
 
 .PHONY: requirements
 
@@ -81,7 +82,7 @@ update_pip:
 update_bower:
 	$(call ECHO_BLUE,Install static dependencies)
 	@echo '---------------------------'
-	bower install
+	bower update
 
 test:
 # Run the test cases
@@ -134,6 +135,11 @@ deploy:
 		cd ansible; \
 		$(PLAYBOOK) -i $(DEPLOY_ENV) deploy.yml;  \
 	)
+
+livereload:
+	$(call ECHO_BLUE,Starting server with livereload)
+	@echo '---------------------------'
+	$(MANAGE_CMD) livereload
 
 clean:
 # Remove all *.pyc, .DS_Store and temp files from the project
