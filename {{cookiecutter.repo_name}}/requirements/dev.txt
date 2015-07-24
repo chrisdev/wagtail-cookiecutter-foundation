@@ -1,5 +1,8 @@
 -r base.txt
 
+# Live Reload
+livereload==2.4.0
+
 django-medusa==0.3.0
 django-sendfile==0.3.8
 
