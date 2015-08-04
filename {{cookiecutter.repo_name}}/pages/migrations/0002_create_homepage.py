@@ -16,7 +16,7 @@ def create_homepage(apps, schema_editor):
 
     # Create content type for homepage model
     homepage_content_type, created = ContentType.objects.get_or_create(
-        model='homepage', app_label='pages', defaults={'name': 'Homepage'})
+        model='homepage', app_label='pages')
 
     # Create a new homepage
     homepage = HomePage.objects.create(
