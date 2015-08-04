@@ -2,7 +2,7 @@ PROJECT_NAME = {{ cookiecutter.repo_name }}
 SHELL := /bin/sh
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  all               		  to setup the whole development environment for the project"
+	@echo "  all                      to setup the whole development environment for the project"
 	@echo "  virtualenv               to create the virtualenv for the project"
 	@echo "  requirements             install the requirements to the virtualenv"
 	@echo "  db                       create the PostgreSQL db for the project"
