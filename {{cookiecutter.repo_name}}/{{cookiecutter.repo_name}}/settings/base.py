@@ -80,6 +80,7 @@ INSTALLED_APPS = (
     'contact',
     'people',
     'photo_gallery',
+    'products',
 )
 
 MIDDLEWARE_CLASSES = (

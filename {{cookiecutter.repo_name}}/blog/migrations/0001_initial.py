@@ -11,10 +11,10 @@ import modelcluster.contrib.taggit
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailimages', '0005_make_filter_spec_unique'),
         ('taggit', '0001_initial'),
-        ('wagtailcore', '0010_change_page_owner_to_null_on_delete'),
-        ('wagtaildocs', '0002_initial_data'),
+        ('wagtailimages', '0006_add_verbose_names'),
+        ('wagtaildocs', '0003_add_verbose_names'),
+        ('wagtailcore', '0001_squashed_0016_change_page_url_path_to_text_field'),
     ]
 
     operations = [
@@ -42,7 +42,6 @@ class Migration(migrations.Migration):
                 'ordering': ['sort_order'],
                 'abstract': False,
             },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='BlogPage',
@@ -75,7 +74,6 @@ class Migration(migrations.Migration):
                 'ordering': ['sort_order'],
                 'abstract': False,
             },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='BlogPageRelatedLink',
@@ -92,7 +90,6 @@ class Migration(migrations.Migration):
                 'ordering': ['sort_order'],
                 'abstract': False,
             },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='BlogPageTag',
@@ -104,24 +101,20 @@ class Migration(migrations.Migration):
             options={
                 'abstract': False,
             },
-            bases=(models.Model,),
         ),
         migrations.AddField(
             model_name='blogpage',
             name='tags',
             field=modelcluster.contrib.taggit.ClusterTaggableManager(to='taggit.Tag', through='blog.BlogPageTag', blank=True, help_text='A comma-separated list of tags.', verbose_name='Tags'),
-            preserve_default=True,
         ),
         migrations.AddField(
             model_name='blogindexpagerelatedlink',
             name='link_page',
             field=models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True),
-            preserve_default=True,
         ),
         migrations.AddField(
             model_name='blogindexpagerelatedlink',
             name='page',
             field=modelcluster.fields.ParentalKey(related_name='related_links', to='blog.BlogIndexPage'),
-            preserve_default=True,
         ),
     ]

@@ -11,10 +11,10 @@ import modelcluster.contrib.taggit
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailimages', '0005_make_filter_spec_unique'),
         ('taggit', '0001_initial'),
-        ('wagtailcore', '0010_change_page_owner_to_null_on_delete'),
-        ('wagtaildocs', '0002_initial_data'),
+        ('wagtailimages', '0006_add_verbose_names'),
+        ('wagtaildocs', '0003_add_verbose_names'),
+        ('wagtailcore', '0001_squashed_0016_change_page_url_path_to_text_field'),
     ]
 
     operations = [
@@ -43,7 +43,6 @@ class Migration(migrations.Migration):
                 'ordering': ['sort_order'],
                 'abstract': False,
             },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='PersonPage',
@@ -51,7 +50,7 @@ class Migration(migrations.Migration):
                 ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('name_organization', models.CharField(max_length=255, blank=True)),
                 ('telephone', models.CharField(max_length=20, blank=True)),
-                ('email', models.EmailField(max_length=75, blank=True)),
+                ('email', models.EmailField(max_length=254, blank=True)),
                 ('address_1', models.CharField(max_length=255, blank=True)),
                 ('address_2', models.CharField(max_length=255, blank=True)),
                 ('city', models.CharField(max_length=255, blank=True)),
@@ -82,7 +81,6 @@ class Migration(migrations.Migration):
                 'ordering': ['sort_order'],
                 'abstract': False,
             },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='PersonPageTag',
@@ -94,7 +92,6 @@ class Migration(migrations.Migration):
             options={
                 'abstract': False,
             },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='PersonRole',
@@ -102,32 +99,25 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=255)),
             ],
-            options={
-            },
-            bases=(models.Model,),
         ),
         migrations.AddField(
             model_name='personpage',
             name='role',
             field=models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='people.PersonRole', null=True),
-            preserve_default=True,
         ),
         migrations.AddField(
             model_name='personpage',
             name='tags',
             field=modelcluster.contrib.taggit.ClusterTaggableManager(to='taggit.Tag', through='people.PersonPageTag', blank=True, help_text='A comma-separated list of tags.', verbose_name='Tags'),
-            preserve_default=True,
         ),
         migrations.AddField(
             model_name='personindexpagerelatedlink',
             name='link_page',
             field=models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True),
-            preserve_default=True,
         ),
         migrations.AddField(
             model_name='personindexpagerelatedlink',
             name='page',
             field=modelcluster.fields.ParentalKey(related_name='related_links', to='people.PersonIndexPage'),
-            preserve_default=True,
         ),
     ]
