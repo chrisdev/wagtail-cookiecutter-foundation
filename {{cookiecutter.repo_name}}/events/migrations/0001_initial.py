@@ -10,9 +10,9 @@ import wagtail.wagtailcore.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailimages', '0005_make_filter_spec_unique'),
-        ('wagtaildocs', '0002_initial_data'),
-        ('wagtailcore', '0010_change_page_owner_to_null_on_delete'),
+        ('wagtailimages', '0006_add_verbose_names'),
+        ('wagtaildocs', '0003_add_verbose_names'),
+        ('wagtailcore', '0001_squashed_0016_change_page_url_path_to_text_field'),
     ]
 
     operations = [
@@ -40,7 +40,6 @@ class Migration(migrations.Migration):
                 'ordering': ['sort_order'],
                 'abstract': False,
             },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='EventPage',
@@ -79,7 +78,6 @@ class Migration(migrations.Migration):
                 'ordering': ['sort_order'],
                 'abstract': False,
             },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='EventPageRelatedLink',
@@ -96,7 +94,6 @@ class Migration(migrations.Migration):
                 'ordering': ['sort_order'],
                 'abstract': False,
             },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='EventPageSpeaker',
@@ -114,18 +111,15 @@ class Migration(migrations.Migration):
                 'ordering': ['sort_order'],
                 'abstract': False,
             },
-            bases=(models.Model,),
         ),
         migrations.AddField(
             model_name='eventindexpagerelatedlink',
             name='link_page',
             field=models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True),
-            preserve_default=True,
         ),
         migrations.AddField(
             model_name='eventindexpagerelatedlink',
             name='page',
             field=modelcluster.fields.ParentalKey(related_name='related_links', to='events.EventIndexPage'),
-            preserve_default=True,
         ),
     ]

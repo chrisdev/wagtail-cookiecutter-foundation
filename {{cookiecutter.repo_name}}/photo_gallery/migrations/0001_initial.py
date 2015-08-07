@@ -11,9 +11,9 @@ import modelcluster.contrib.taggit
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailimages', '0005_make_filter_spec_unique'),
         ('taggit', '0001_initial'),
-        ('wagtailcore', '0010_change_page_owner_to_null_on_delete'),
+        ('wagtailimages', '0006_add_verbose_names'),
+        ('wagtailcore', '0001_squashed_0016_change_page_url_path_to_text_field'),
     ]
 
     operations = [
@@ -50,12 +50,10 @@ class Migration(migrations.Migration):
             options={
                 'abstract': False,
             },
-            bases=(models.Model,),
         ),
         migrations.AddField(
             model_name='gallerypage',
             name='tags',
             field=modelcluster.contrib.taggit.ClusterTaggableManager(to='taggit.Tag', through='photo_gallery.GalleryPageTag', blank=True, help_text='A comma-separated list of tags.', verbose_name='Tags'),
-            preserve_default=True,
         ),
     ]

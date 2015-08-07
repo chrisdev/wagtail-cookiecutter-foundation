@@ -1,14 +1,15 @@
 from django.db import models
 
+from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.models import Page, Orderable
-from wagtail.wagtailcore.fields import RichTextField
+from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailimages.models import Image
 from wagtail.wagtailsnippets.models import register_snippet
 from modelcluster.fields import ParentalKey
 from wagtail.wagtailadmin.edit_handlers import (
-    FieldPanel, MultiFieldPanel, InlinePanel, PageChooserPanel
+    FieldPanel, MultiFieldPanel, InlinePanel, PageChooserPanel, StreamFieldPanel
 )
 from wagtail.wagtailsearch import index
 from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
@@ -194,3 +195,16 @@ class Testimonial(LinkFields):
         return self.name
 
 register_snippet(Testimonial)
+
+# Faqs Page
+
+class FaqsPage(Page):
+    body = StreamField([
+        ('faq_question', blocks.CharBlock(classname="full title")),
+        ('faq_answer', blocks.RichTextBlock()),
+    ])
+
+FaqsPage.content_panels = [
+    FieldPanel('title', classname="full title"),
+    StreamFieldPanel('body'),
+]
