@@ -1,0 +1,32 @@
+.gallery-thumb
+{
+  margin: 50px 0;
+  text-align: center;
+  a
+  {
+    margin: 0 30px;
+  }
+
+  h5
+  {
+    text-align: center;
+  }
+}
+
+.gallery-page 
+{
+  strong
+  {
+    color: #555;
+  }
+
+  .tag-names li
+  {
+    background: #43b1b0;
+    border-radius: 2px;
+    color: #fff;
+    padding: 5px;
+    display:inline;
+    margin: 0px 3px;
+  }
+}
