@@ -14,18 +14,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}"/>
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
-        {% compress css %}
-            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/app.scss' %}">
-        {% endcompress %}
-
         {% compress js %}
             <script src="{% static 'libs/modernizr/modernizr.js' %}"></script>
         {% endcompress %}
-
+        
         {% block extra_css %}
+            
+        {% endblock %}
+        
+        {% compress css %}
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/app.scss' %}">
             <link rel="stylesheet" type="text/css" href="{% static 'libs/bxslider-4/dist/jquery.bxslider.min.css' %}">
             <link rel="stylesheet" href="{% static 'libs/font-awesome/css/font-awesome.min.css' %}">
-        {% endblock %}
+        {% endcompress %}
+        
+
         {% include "utils/includes/facebook_opengraph.html" %}
         {% include "utils/includes/twitter_cards.html" %}
         {% include "utils/includes/google_analytics.html" %}
@@ -98,9 +101,19 @@
         {% block extra_js %}
         <script>
           $(document).foundation();
+        </script>
+        <script>
           $(document).ready(function(){
               $('.bxslider').bxSlider();
             });
+        </script>
+        <script>
+        $(document).ready(function() {
+            $('#faq .block-faq_question').click(function() {
+                $(this).next('.block-faq_answer').slideToggle(500);
+                $(this).toggleClass('close');
+            });
+        });
         </script>
         {% endblock %}
     </body>
