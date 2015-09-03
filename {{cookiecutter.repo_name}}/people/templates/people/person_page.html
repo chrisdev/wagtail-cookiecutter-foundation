@@ -4,13 +4,14 @@
 {% block people_content %}
     {% include "utils/includes/social_share.html" %}
     <div id="content" class="row">
+        <div class="medium-12 columns">
         {% if self.image %}
             {# Person image - first store image as a variable in order to construct an image tag with a class applied #}
             {% image self.image width-180 as photo %}
             <img src="{{ photo.url }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="{{ photo.alt }}" class="img-thumbnail" style="float: left; margin-right: 15px; border-radius: 5px;" />
         {% endif %}
         
-        <h2>{{ self.title }}<h2>
+        <h2>{{ self.title }}</h2>
         
         {% if self.role %}
             <h3>( {{ self.role }} )</h3>
@@ -26,5 +27,6 @@
         <br>
         
         {% include "people/includes/contact.html" with contact=self only %}
+        </div>
     </div>
 {% endblock %}{% endraw %}
