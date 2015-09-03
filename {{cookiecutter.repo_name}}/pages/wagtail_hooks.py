@@ -18,7 +18,7 @@ def whitelister_element_rules():
 def editor_js():
     # Add extra JS files to the admin
     js_files = [
-        'pages/js/hallo-custom.js',
+        'js/hallo-custom.js',
     ]
     js_includes = format_html_join('\n', '<script src="{0}{1}"></script>',
         ((settings.STATIC_URL, filename) for filename in js_files)

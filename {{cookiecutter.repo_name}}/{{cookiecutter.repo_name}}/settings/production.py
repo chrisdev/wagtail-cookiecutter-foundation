@@ -4,17 +4,17 @@ import os
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
-
-# Compress static files offline
-# http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
-
-
 SECRET_KEY = get_env_variable("SECRET_KEY")
 
 # Compress static files offline
 # http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
 
 COMPRESS_OFFLINE = True
+
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter',
+]
 
 ALLOWED_HOSTS = [get_env_variable("HOST_NAME"), ]
 
@@ -29,6 +29,7 @@ DATABASES = {
 }
 
 INSTALLED_APPS += (
+    "wagtail.contrib.wagtailfrontendcache",
     'gunicorn',
 )
 
