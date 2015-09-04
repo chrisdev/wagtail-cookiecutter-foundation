@@ -14,8 +14,7 @@
         </span>
         {% for tag in tags %}
         <span class="radius label" style="font-size: 14px">
-            {{ tag }}
-            <a href="{% pageurl self.blog_index %}?tag={{ tag }}"></a>
+            <a href="{% pageurl self.blog_index %}?tag={{ tag }}">{{ tag }}</a>
         </span>
         {% endfor %}
     </div>

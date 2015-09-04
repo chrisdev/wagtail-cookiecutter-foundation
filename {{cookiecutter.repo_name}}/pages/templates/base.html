@@ -13,7 +13,6 @@
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}"/>
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Source+Code+Pro:400,700" rel="stylesheet" type="text/css">
         {% compress js %}
             <script src="{% static 'libs/modernizr/modernizr.js' %}"></script>
         {% endcompress %}
@@ -23,9 +22,9 @@
         {% endblock %}
         
         {% compress css %}
-            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/app.scss' %}">
             <link rel="stylesheet" type="text/css" href="{% static 'libs/bxslider-4/dist/jquery.bxslider.min.css' %}">
             <link rel="stylesheet" href="{% static 'libs/font-awesome/css/font-awesome.min.css' %}">
+            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/app.scss' %}">
         {% endcompress %}
         
 
