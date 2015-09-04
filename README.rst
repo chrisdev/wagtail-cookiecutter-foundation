@@ -116,22 +116,25 @@ Create a GitHub, Bitbucket repo and push it there::
 Now take a look at your repo. Don't forget to carefully look at the generated README. Awesome, right?
 
 Getting up and running
-========================
-To perform the following steps assume the following dependencies
+======================
+
+To perform the following steps we assume the following dependencies
 
     * pip
     * virtualenv/pyvenv/virtualenvwrapper
     * PostgreSQL
     * Bower
 
+You can start development using one of the below options.
+
+- `Normal Installation`_
+- `Using Makefile`_
+- `Using Vagrant for Development`_
+
+Normal Installation
+-------------------
+
 Firstly, open up a command line shell in your new projects directory.
-
-**Avoid Below steps by using make**
-  .. code-block:: bash
-
-    make
-
-This will create virtual environment, install pip requirements, create database, migrate, load initial data to database, install bower packages, run server for you. Awesome, right?
     
 1. **Create a virtual environment**
 
@@ -184,12 +187,6 @@ This will create virtual environment, install pip requirements, create database,
 
   :code:`pip install -r requirements/dev.txt`
 
-**Use** Fabric_ **to avoid below steps**
-
-  :code:`fab install`
-
-  This will create database, migrate, load initial data to database and install Front end packages using bower.
-
 .. _Fabric: http://www.fabfile.org/
 
 4. **Create the database and migrate**
@@ -234,9 +231,76 @@ This will create virtual environment, install pip requirements, create database,
   Your site is now accessible at ``http://localhost:8000``,
   with the admin backend available at ``http://localhost:8000/admin/``.
 
+Using Makefile
+--------------
+
+The projects created with this cookiecutter contains Makefile which helps to setup project easily.
+
+Please use 'make <target>' where <target> is one of
+
+all
+***
+This will create virtual environment, install pip requirements, create database, migrate, load initial data to database, install bower packages, run server for you. Awesome, right?
+
+virtualenv
+**********
+To create the virtualenv for the project.
+
+requirements
+************
+Install the requirements to the virtualenv
+
+db
+**
+Create the PostgreSQL db for the project.
+
+migrate
+*******
+Run the migrations.
+
+initial_data
+************
+Populate the site with initial page structure.
+
+bower
+*****
+Install front-end dependencies with bower.
+
+runserver
+*********
+Start the django dev server.
+
+test
+****
+Run unit tests.
+
+func_test
+*********
+Run functional tests.
+
+static_site
+***********
+Generate a static site from the project.
+
+deploy_user
+**********
+Create the deploy user fetch deployment keys. Defaults to production DEPLOY_ENV=vagrant/staging.
+
+provision
+*********
+Provision the production server Defaults to production DEPLOY_ENV=staging.
+
+deploy
+******
+Provision the staging server Defaults to production DEPLOY_ENV=staging.
+
+livereload
+**********
+Start Server with livereload functionality.
 
 Using Vagrant for Development
-------------------------------
+-----------------------------
+
 Alternatively you may prefer to use Vagrant_ to run your project locally in
 its own virtual machine. This will allow you to use PostgreSQL, Elasticsearch
 Redis etc.  in development without having to install them on your host machine.
@@ -265,7 +329,39 @@ You can browse the Wagtail admin interface at: http://localhost:8000/admin
 You can read more about how Vagrant works at: https://docs.vagrantup.com/v2/
 
 .. _Nodejs: https://nodejs.org/
+.. _Vagrant: https://www.vagrantup.com/
 
+Modules
+-------
+
+The project made with this cookiecutter contains a number of modules with various functionalities. The project uses a modular structure so you can pick the module you want in your project. The various modules are
+
+* Blog
+* Contact
+* Events
+* Feeds
+* Pages
+* People
+* Photo Gallery
+* Products
+* Utils
+
+Photo Gallery Module
+********************
+
+The Photo Gallery module allows to create photo galleries easily. The normal way to create photo galleries in `Wagtail CMS`_ takes time. Suppose you have to add 100 photos to an example gallery, in normal way you have to choose photos one by one so it takes time. With this module you can add large number of photos to galleries easily. 
+
+We uses tag approach to make this possible. The steps to create Photo galleries with this module are 
+
+* Go to Images section in Wagtail admin and click on Add an Image.
+
+* Drag and drop images you want in your gallery and add common tag name to all Images. You can also add same tag name to existing images if you want them in your gallery.
+
+* Now create a Gallery Index page which displays all your galleries.
+
+* Create a Gallery Page and enter the tag name same as above. You can also choose a feed image so it can appear in Gallery index page.
+
+* Your Gallery is now created with all images you want. Awesome, right?
 
 Using Ansible for Deployment and Provisioning
 ----------------------------------------------
