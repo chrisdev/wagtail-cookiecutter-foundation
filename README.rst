@@ -10,6 +10,26 @@ framework.
 .. _`Wagtail CMS`: https://wagtail.io
 .. _`Zurb Foundation`: https://foundation.zurb.com
 
+Topics
+======
+
+- `What's included`_
+- `Usage`_
+- `Getting up and running`_
+    - `Using Makefile`_
+    - `Normal Installation`_
+    - `Using Vagrant for Development`_
+- `Modules`_
+    - `Photo Gallery Module`_
+- `Using Ansible for Deployment and Provisioning`_
+    - `Vagrant based Staging Server`_
+    - `Ansible Variables`_
+        - `Group Variables`_
+        - `Host Variables`_
+    - `Ansible Files`_
+    - `Playbooks`_
+
+
 What's included
 ---------------
 - A Django project with Wagtail_ pre-installed with support for all the
@@ -127,9 +147,76 @@ To perform the following steps we assume the following dependencies
 
 You can start development using one of the below options.
 
-- `Normal Installation`_
 - `Using Makefile`_
+- `Normal Installation`_
 - `Using Vagrant for Development`_
+
+Using Makefile
+--------------
+
+The projects created with this cookiecutter contains Makefile which helps to setup project easily.
+
+Please use 'make <target>' where <target> is one of
+
+all
+***
+This will create virtual environment, install pip requirements, create database, migrate, load initial data to database, install bower packages, run server for you. Awesome, right?
+
+virtualenv
+**********
+To create the virtualenv for the project.
+
+requirements
+************
+Install the requirements to the virtualenv
+
+db
+**
+Create the PostgreSQL db for the project.
+
+migrate
+*******
+Run the migrations.
+
+initial_data
+************
+Populate the site with initial page structure.
+
+bower
+*****
+Install front-end dependencies with bower.
+
+runserver
+*********
+Start the django dev server.
+
+test
+****
+Run unit tests.
+
+func_test
+*********
+Run functional tests.
+
+static_site
+***********
+Generate a static site from the project.
+
+deploy_user
+**********
+Create the deploy user fetch deployment keys. Defaults to production DEPLOY_ENV=vagrant/staging.
+
+provision
+*********
+Provision the production server Defaults to production DEPLOY_ENV=staging.
+
+deploy
+******
+Provision the staging server Defaults to production DEPLOY_ENV=staging.
+
+livereload
+**********
+Start Server with livereload functionality.
 
 Normal Installation
 -------------------
@@ -230,73 +317,6 @@ Firstly, open up a command line shell in your new projects directory.
 
   Your site is now accessible at ``http://localhost:8000``,
   with the admin backend available at ``http://localhost:8000/admin/``.
-
-Using Makefile
---------------
-
-The projects created with this cookiecutter contains Makefile which helps to setup project easily.
-
-Please use 'make <target>' where <target> is one of
-
-all
-***
-This will create virtual environment, install pip requirements, create database, migrate, load initial data to database, install bower packages, run server for you. Awesome, right?
-
-virtualenv
-**********
-To create the virtualenv for the project.
-
-requirements
-************
-Install the requirements to the virtualenv
-
-db
-**
-Create the PostgreSQL db for the project.
-
-migrate
-*******
-Run the migrations.
-
-initial_data
-************
-Populate the site with initial page structure.
-
-bower
-*****
-Install front-end dependencies with bower.
-
-runserver
-*********
-Start the django dev server.
-
-test
-****
-Run unit tests.
-
-func_test
-*********
-Run functional tests.
-
-static_site
-***********
-Generate a static site from the project.
-
-deploy_user
-**********
-Create the deploy user fetch deployment keys. Defaults to production DEPLOY_ENV=vagrant/staging.
-
-provision
-*********
-Provision the production server Defaults to production DEPLOY_ENV=staging.
-
-deploy
-******
-Provision the staging server Defaults to production DEPLOY_ENV=staging.
-
-livereload
-**********
-Start Server with livereload functionality.
 
 Using Vagrant for Development
 -----------------------------
@@ -406,8 +426,6 @@ If you are using Vagrant staging you also need to make an entry into your
 ``/etc/hosts`` file for example.
 
 
-
-
 Ansible Variables
 ------------------
 Before you run the provisioning and deployment playbooks you need check and
@@ -503,14 +521,3 @@ To deploy changes to production
 .. code-block:: sh
 
    ansible-playbook -i production deploy.yml
-
-
-
-
-
-
-
-
-
-
-
