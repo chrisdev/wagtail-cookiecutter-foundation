@@ -113,6 +113,15 @@
                 $(this).toggleClass('close');
             });
         });
+
+        // Person Page  Reveal modal 
+        $('.person_modal_more').click(function(event) {
+            event.preventDefault();
+
+            $('#modal-content').empty();
+            var link = $(this).attr("href");
+            $('#modal-content').load(link + " .modal-content");
+        });
         </script>
         {% endblock %}
     </body>
