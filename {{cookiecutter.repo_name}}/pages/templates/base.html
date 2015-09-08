@@ -113,6 +113,15 @@
                 $(this).toggleClass('close');
             });
         });
+
+        // Reveal modal event to fetch content from another page
+        $('.reveal_modal').click(function(event) {
+            event.preventDefault();
+
+            $('#modal-content').empty();
+            var link = $(this).attr("href");
+            $('#modal-content').load(link + " .modal-content");
+        });
         </script>
         {% endblock %}
     </body>

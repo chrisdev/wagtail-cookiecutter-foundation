@@ -20,6 +20,16 @@
                                     <center><h6 class="subheader">{{ person.role }}</h6></center>
                                     {% else %} {% endif %}
                                 </a>
+
+                                <a href="{% pageurl person %}" data-reveal-id="personModal" class="reveal_modal">
+                                    Read More
+                                </a>
+
+                                <div id="personModal" class="reveal-modal" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
+                                    <div id="modal-content"></div>
+                                    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                                </div>
+                                
                             </div>
                         </li>
                     {% endfor %}
