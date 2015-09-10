@@ -21,6 +21,8 @@ Topics
     - `Using Vagrant for Development`_
 - `Modules`_
     - `Photo Gallery Module`_
+- `Grunt Tasks`_
+    - `Image Compression`_
 - `Using Ansible for Deployment and Provisioning`_
     - `Vagrant based Staging Server`_
     - `Ansible Variables`_
@@ -386,6 +388,27 @@ We uses tag approach to make this possible. The steps to create Photo galleries 
 * Create a Gallery Page and enter the tag name same as above. You can also choose a feed image so it can appear in Gallery index page.
 
 * Your Gallery is now created with all images you want. Awesome, right?
+
+Grunt Tasks
+-----------
+
+Grunt tasks are included in Gruntfile to automate various things. To perform grunt tasks, install grunt and its plugins using
+
+:code:`npm install`
+
+The various grunt tasks included in this cookiecutter are
+
+Image Compression
+*****************
+
+To compress images used in projects made with this cookiecutter run:
+
+:code:`grunt imagemin`
+
+You can also use make to run the above task
+
+:code:`make compress_images`
+
 
 Using Ansible for Deployment and Provisioning
 ----------------------------------------------
