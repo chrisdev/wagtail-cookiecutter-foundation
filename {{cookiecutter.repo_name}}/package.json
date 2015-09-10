@@ -1,0 +1,12 @@
+{
+  "name": "{{ cookiecutter.repo_name }}",
+  "version": "0.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-imagemin": "^0.9.4"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}

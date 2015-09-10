@@ -202,6 +202,10 @@ static_site
 ***********
 Generate a static site from the project.
 
+compress_images
+***************
+Compresses images used in site.
+
 deploy_user
 **********
 Create the deploy user fetch deployment keys. Defaults to production DEPLOY_ENV=vagrant/staging.
