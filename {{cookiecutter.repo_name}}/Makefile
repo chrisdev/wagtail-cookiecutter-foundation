@@ -17,6 +17,7 @@ help:
 	@echo "  provision                provision the production server Defaults to production DEPLOY_ENV=staging"
 	@echo "  deploy                   provision the staging server Defaults to production DEPLOY_ENV=staging"
 	@echo "  livereload               Start Server with livereload functionality"
+	@echo "  compress_images          Minify Images used in site"
 
 .PHONY: requirements
 
@@ -108,6 +109,10 @@ static_site:
 	rsync -av static static_build/
 	rsync -av media static_build/
 
+compress_images:
+# Minify Images in media
+	grunt imagemin
+	
 deploy_user:
 ifeq ($(DEPLOY_ENV), vagrant)
 	$(call ECHO_BLUE, Create the deploy user for vagrant based staging VM)
