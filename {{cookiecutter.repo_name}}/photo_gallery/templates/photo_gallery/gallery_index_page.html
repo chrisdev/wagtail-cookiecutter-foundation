@@ -14,9 +14,9 @@
                     <ul class="medium-block-grid-4" data-equalizer>
                     {% for page in pages %}
                         <li data-equalizer-watch>
-                            <a href="{{ page.url }}" class="th">
+                            <a href="{{ page.url }}">
                                 {% if page.feed_image %}
-                                    {% image page.feed_image width-260 %}
+                                    {% image page.feed_image fill-500x350 %}
                                 {% endif %}
                                 <center><h5 style="margin-bottom: 0;">{{ page.title }}</h5></center>
                             </a>
