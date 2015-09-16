@@ -3,7 +3,7 @@
 {% load wagtailimages_tags %}
 
 {% block people_content %}
-    <div id="content" class="row">            
+    <div class="row">            
             <h3>{{ self.title }}</h3>
             <h4 class="subheader">{{ self.subtitle }}</h4>
             {% include "people/includes/intro.html" with intro=self.intro only %}

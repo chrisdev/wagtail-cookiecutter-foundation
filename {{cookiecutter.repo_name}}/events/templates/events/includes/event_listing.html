@@ -1,14 +1,25 @@
 {% raw %}{% load wagtailcore_tags %}
     <div id="event_feed">
         {% for event in events %}
-        <div class="event">
-            <a href="{% pageurl event %}" class="event-link">
+            <div class="event">
+                <a href="{% pageurl event %}" class="event-link">
+                    <div style="text-align: center;">
+                            <h6 class="date">{{ event.date_from|date:"d" }} {{ event.date_from|date:"F" }}</h6>
+                            <div class="details">
+                                <h6><strong>{{ event.title }}</strong></h6>
+                                <p>{{ event.location }}</p>
+                            </div>
+                    </div>
+                </a>
+            </div>
+         {% empty %}
+            <div class="event">
                 <div style="text-align: center;">
-                        <h6>{{ event.date_from|date:"d" }} {{ event.date_from|date:"F" }}</h6>
-                        <h5>{{ event.title }}</h5>
-                        <h6><strong>{{ event.location }}</strong></h6>
+                    <h6 class="date">NO UPCOMING EVENTS</h6>
+                    <div class="details">
+                        <p>We currently have no upcoming events scheduled.</p>
+                    </div>
                 </div>
-            </a>
-        </div>
+            </div>
          {% endfor %}
     </div>{% endraw %}

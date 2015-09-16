@@ -4,17 +4,13 @@
 {% block body_class %}{{ self.get_verbose_name|slugify }}{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="large-12 columns">
+    <div id="content" class="row">
+        <div class="medium-12 columns">
             <center><h3>{{ self.title }}</h3></center>
             {% if self.tags %}
                 {% include "photo_gallery/includes/tags.html" %}
             {% endif %}
-        </div>
-    </div>
 
-    <div class="row text-center">
-        <div class="large-12 columns">
             {% if images %}
                 <ul class="clearing-thumbs medium-block-grid-5" data-clearing data-equalizer>
                     {% for gallery_image in images %}
