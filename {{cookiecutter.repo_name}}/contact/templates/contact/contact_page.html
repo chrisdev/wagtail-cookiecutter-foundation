@@ -3,15 +3,13 @@
 {% load wagtailcore_tags foundation_tags %}
 
 {% block contact_content %}
-            <h3 class="subheader"> <small>{{ self.intro }}</small> </h3>
-            <hr>
-            <div class="panel radius">
-                <div class="form-panel">
-                    <form class="contact-form" action="{% pageurl self %}" method="POST">
-                        {% csrf_token %}
-                        {{ form|as_foundation }}
-                        <input class="button tiny radius" name="Send" type="submit" value="Send">
-                    </form>
-                </div>
-            </div>
+         <div class="panel radius">
+             <div class="form-panel">
+                 <form class="contact-form" action="{% pageurl self %}" method="POST">
+                     {% csrf_token %}
+                     {{ form|as_foundation }}
+                     <input class="button tiny radius" name="Send" type="submit" value="Send">
+                 </form>
+             </div>
+         </div>
 {% endblock %}{% endraw %}
