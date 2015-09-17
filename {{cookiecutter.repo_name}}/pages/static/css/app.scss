@@ -88,6 +88,8 @@ box-shadow: 0;
 display: inline;
 }
 
+#content {padding: 15px 0;min-height: 100vh;}
+
 .intro
 {
   color: $white;
@@ -163,12 +165,14 @@ display: inline;
 
 #event_feed
 {
-    h6, h5 {margin-bottom :5px;}
-    .event{border: 1px solid $keppel; border-radius: 3px; margin-bottom: 8px; padding: 5px;}
-    h5{color: $keppel;}
-    h6{color: $mine-shaft;}
+    margin-bottom: 25px;
+    h6, p {margin : 0px;}
+    .event{border: 1px solid $keppel; padding: 0;border-radius: 3px; margin-bottom: 10px;}
+    h6{color: $keppel;}
+    a p{color: $mine-shaft;}
+    h6.date{color: $white; background:$keppel; padding: 5px 0; margin: 0;}
+    .details {padding: 5px;}
 }
-
 #testimonials {
      .bx-wrapper .bx-viewport{background: transparent; border:0px; box-shadow: none;}
      img{float: left; margin-right: 10px; border-radius: 100%;}
@@ -228,11 +232,14 @@ display: inline;
   h5{
     color: $white;
   }
-  
-  .vcard {
-    border: 0px;
-  }
 }
+
+.vcard {
+  border: 0px;
+  padding: 0;
+  margin-bottom: 0px;
+}
+
 
 .contact-head
 {

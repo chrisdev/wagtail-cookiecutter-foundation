@@ -2,28 +2,30 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block event_content %}
-    <div id="content" class="row">
-        <h3>Upcoming Events</h3>
-            {% if events %}    
-                <ul class="small-block-grid-1 medium-block-grid-3 columns" data-equalizer>
-                    {% for event in events %}
-                        {% include "events/includes/event_list_item.html" %}
-                    {% endfor %}
+    <div class="row">
+        <div class="medium-12 columns">
+            <h3>Upcoming Events</h3>
+                {% if events %}    
+                    <ul class="small-block-grid-1 medium-block-grid-3 columns" data-equalizer>
+                        {% for event in events %}
+                            {% include "events/includes/event_list_item.html" %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            
+            <div class="pagination-centered">
+                <ul class="pagination">
+                      {% if events.has_previous %}
+                          <li class="arrow">
+                              <a href="?page={{ events.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&laquo; Prev</a></li>
+                      {% endif %}
+                      <li class="unavailable">Page {{ events.number }} of {{ events.paginator.num_pages }}</li>
+                      {% if events.has_next %}
+                          <li class="arrow">
+                              <a href="?page={{ events.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Next &raquo;</a></li>
+                      {% endif %}
                 </ul>
-            {% endif %}
-        
-        <div class="pagination-centered">
-            <ul class="pagination">
-                  {% if events.has_previous %}
-                      <li class="arrow">
-                          <a href="?page={{ events.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&laquo; Prev</a></li>
-                  {% endif %}
-                  <li class="unavailable">Page {{ events.number }} of {{ events.paginator.num_pages }}</li>
-                  {% if events.has_next %}
-                      <li class="arrow">
-                          <a href="?page={{ events.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Next &raquo;</a></li>
-                  {% endif %}
-            </ul>
+            </div>
         </div>
     </div>
 {% endblock %}{% endraw %}

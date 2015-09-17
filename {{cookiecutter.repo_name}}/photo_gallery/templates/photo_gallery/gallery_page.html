@@ -4,30 +4,25 @@
 {% block body_class %}{{ self.get_verbose_name|slugify }}{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="large-12 columns">
+    <div id="content" class="row">
+        <div class="medium-12 columns">
             <center><h3>{{ self.title }}</h3></center>
             {% if self.tags %}
                 {% include "photo_gallery/includes/tags.html" %}
             {% endif %}
-        </div>
-    </div>
 
-    <div class="row text-center">
-        <div class="large-12 columns">
             {% if images %}
-                <ul class="clearing-thumbs medium-block-grid-5" data-clearing data-equalizer>
+                <ul class="clearing-thumbs medium-block-grid-4" data-clearing data-equalizer>
                     {% for gallery_image in images %}
-                        {% image gallery_image width-1400 as gallery_imagedata %}
+                        {% image gallery_image width-1200 as gallery_imagedata %}
                         <li data-equalizer-watch><a class="th" href="{{ gallery_imagedata.url }}">
-                            <img class="rsImg" src="{{ gallery_imagedata.url }}" alt="{{ gallery_imagedata.alt }}"/>
+                            <img class="rsImg" src="{{ gallery_imagedata.url }}" alt="{{ gallery_imagedata.alt }}" style="width: 100%; height: 150px;"/>
                         </a></li>
                     {% endfor %}
                 </ul>
             {% else %}
                 <p>No images are tagged with your {{ self.title }} gallery or no {{ self.title }} tags defined.</p>
-            {% endif %}
-        </div>
+            {% endif %}        </div>
     </div>
     
     <div class="row">
