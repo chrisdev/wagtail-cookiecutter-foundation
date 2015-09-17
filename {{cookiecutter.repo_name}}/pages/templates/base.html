@@ -13,13 +13,6 @@
         <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}"/>
-        {% compress js %}
-            <script src="{% static 'libs/modernizr/modernizr.js' %}"></script>
-        {% endcompress %}
-        
-        {% block extra_css %}
-            
-        {% endblock %}
         
         {% compress css %}
             <link rel="stylesheet" type="text/css" href="{% static 'libs/bxslider-4/dist/jquery.bxslider.min.css' %}">
@@ -27,6 +20,7 @@
             <link rel="stylesheet" type="text/x-scss" href="{% static 'css/app.scss' %}">
         {% endcompress %}
         
+        {% block extra_css %}{% endblock %}
 
         {% include "utils/includes/facebook_opengraph.html" %}
         {% include "utils/includes/twitter_cards.html" %}
@@ -91,6 +85,9 @@
         </div>
 
         {% compress js %}
+            <!--[if gt IE 8]><!-->
+            <script src="{% static 'libs/modernizr/modernizr.js' %}"></script>
+            <!--<![endif]-->
             <script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
             <script src="{% static 'libs/foundation/js/foundation.min.js' %}"></script>
             <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
@@ -98,31 +95,31 @@
         {% endcompress %}
 
         {% block extra_js %}
-        <script>
-          $(document).foundation();
-        </script>
-        <script>
-          $(document).ready(function(){
-              $('.bxslider').bxSlider();
-            });
-        </script>
-        <script>
-        $(document).ready(function() {
-            $('#faq .block-faq_question').click(function() {
-                $(this).next('.block-faq_answer').slideToggle(500);
-                $(this).toggleClass('close');
-            });
-        });
-
-        // Reveal modal event to fetch content from another page
-        $('.reveal_modal').click(function(event) {
-            event.preventDefault();
-
-            $('#modal-content').empty();
-            var link = $(this).attr("href");
-            $('#modal-content').load(link + " .modal-content");
-        });
-        </script>
+            <script>
+              $(document).foundation();
+            </script>
+            <script>
+              $(document).ready(function(){
+                  $('.bxslider').bxSlider();
+                });
+            </script>
+            <script>
+                $(document).ready(function() {
+                    $('#faq .block-faq_question').click(function() {
+                        $(this).next('.block-faq_answer').slideToggle(500);
+                        $(this).toggleClass('close');
+                    });
+                });
+            </script>
+            <script>
+                $('.reveal_modal').click(function(event) {
+                    event.preventDefault();
+        
+                    $('#modal-content').empty();
+                    var link = $(this).attr("href");
+                    $('#modal-content').load(link + " .modal-content");
+                });
+            </script>
         {% endblock %}
     </body>
 </html>
