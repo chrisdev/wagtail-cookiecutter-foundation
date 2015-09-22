@@ -3,8 +3,8 @@
 {% load wagtailimages_tags %}
 
 {% block content %}
-    <div id="content" class="row">
-        <div class="medium-9 columns">
+    <div id="content" class="row">        
+            <div class="medium-8 medium-centered columns">
             <h3>Search{% if search_results %} Results{% endif %} {% if query_string %} for {{ query_string }} {% endif %}</h3> 
             
             <form action="{% url 'wagtailsearch_search' %}" method="get" style="margin-bottom: 15px;"> 
@@ -17,15 +17,24 @@
                     </div>
                 </div>
             </form> 
-                          
+            </div>             
             {% if search_results %} 
-                    {% for result in search_results %} 
-                        <h5><a href="{{ result.specific.url }}">{{ result.specific }}</a></h5>  
+                <ul class="medium-block-grid-3">
+                    {% for result in search_results %}
+                        <li>
+                            <div class="panel radius" style="padding: 10px;" data-equalizer-watch>
+                               <a href="{{ result.specific.url }}">
+                                   <div data-equalizer-watch>
+                                   {% image result.specific.feed_image width-400 %}
+                                   </div>
+                                   <center style="margin-top: 10px;">
+                                       <h5>{{ result.specific }}</h5>
+                                   </center>
+                               </a>
+                            </div>
+                        </li> 
                     {% endfor %} 
+                </ul>
             {% endif %}
-        </div>
-        <div id="sidebar" class="medium-3 columns">
-            <center><h6> Sidebar placeholder </h6></center>
-        </div>
     </div>
 {% endblock %}{% endraw %}
