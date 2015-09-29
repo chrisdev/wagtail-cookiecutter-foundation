@@ -1,5 +1,10 @@
 Wagtail cookiecutter Foundation
 ================================
+
+.. image:: https://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation.svg?branch=master
+   :target: http://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation
+
+   
 A cookiecutter_ template for `Wagtail CMS`_ featuring `Zurb Foundation`_ front-end
 framework.
 
