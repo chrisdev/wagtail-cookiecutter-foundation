@@ -1,5 +1,10 @@
 Wagtail cookiecutter Foundation
 ================================
+
+.. image:: https://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation.svg?branch=master
+   :target: http://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation
+
+   
 A cookiecutter_ template for `Wagtail CMS`_ featuring `Zurb Foundation`_ front-end
 framework.
 
@@ -39,8 +44,7 @@ What's included
   navigation and other interface components)
 
 - A comprehensive suite of apps to use for building your site.
-  We take an approach similar to the `Wagtail Demo Project`_ but we use a
-  modular approach so that can pick and choose the functionality you want to include
+  We take  a modular approach so that can pick and choose the functionality you want to include
   on you site. We provide individual modules for:
 
     - ``pages`` - Hompage, Standard Pages, People Page, Contact Page, etc.
