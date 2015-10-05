@@ -196,6 +196,32 @@ class Testimonial(LinkFields):
 
 register_snippet(Testimonial)
 
+
+class Advert(LinkFields):
+    page = models.ForeignKey(
+        Page,
+        related_name='adverts',
+        null=True,
+        blank=True
+    )
+    title = models.CharField(max_length=150)
+    image = models.ForeignKey(Image, null=True, blank=True, on_delete=models.SET_NULL)
+    text = RichTextField(blank=True)
+
+    panels = [
+        PageChooserPanel('page'),
+        FieldPanel('title'),
+        ImageChooserPanel('image'),
+        FieldPanel('text'),
+        MultiFieldPanel(LinkFields.panels, "Link"),
+    ]
+
+    def __unicode__(self):
+        return self.title
+
+register_snippet(Advert)
+
+
 # Faqs Page
 
 class FaqsPage(Page):

@@ -5,7 +5,7 @@
 <div class="bxslider">
     {% for carousel_item in carousel_items %}
         <li>
-          {% if carousel.embed_url %}
+          {% if carousel_item.embed_url %}
               {{ carousel_item.embed_url|embed:1000 }}
           {% else %}
             {% image carousel_item.image width-1400 as carousel_imagedata %}
