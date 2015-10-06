@@ -36,7 +36,7 @@ ECHO_RED = @echo "\033[33;31m $1\033[0m"
 
 # The default server host local development
 HOST ?= localhost:8000
-DEPLOYMENT_ENV = production
+DEPLOY_ENV = production
 
 virtualenv: 
 	virtualenv $(VIRTUALENV_NAME)
