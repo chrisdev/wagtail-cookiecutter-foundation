@@ -70,7 +70,7 @@ PersonIndexPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('subtitle'),
     FieldPanel('intro', classname="full"),
-    InlinePanel(PersonIndexPage, 'related_links', label="Related links"),
+    InlinePanel('related_links', label="Related links"),
 ]
 
 
@@ -129,7 +129,7 @@ PersonPage.content_panels = [
     ImageChooserPanel('image'),
     FieldPanel('tags'),
     MultiFieldPanel(ContactFields.panels, "Contact"),
-    InlinePanel(PersonPage, 'related_links', label="Related links"),
+    InlinePanel('related_links', label="Related links"),
 ]
 
 PersonPage.promote_panels = [
