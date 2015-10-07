@@ -70,7 +70,7 @@ ProductIndexPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('subtitle'),
     FieldPanel('intro', classname="full"),
-    InlinePanel(ProductIndexPage, 'related_links', label="Related links"),
+    InlinePanel('related_links', label="Related links"),
 ]
 
 
@@ -114,7 +114,7 @@ ProductPage.content_panels = [
     FieldPanel('description', classname="full"),
     ImageChooserPanel('image'),
     FieldPanel('tags'),
-    InlinePanel(ProductPage, 'related_links', label="Related links"),
+    InlinePanel('related_links', label="Related links"),
 ]
 
 ProductPage.promote_panels = [

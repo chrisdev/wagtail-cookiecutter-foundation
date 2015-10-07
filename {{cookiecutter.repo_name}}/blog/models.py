@@ -63,7 +63,7 @@ class BlogIndexPage(Page):
 BlogIndexPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('intro', classname="full"),
-    InlinePanel(BlogIndexPage, 'related_links', label="Related links"),
+    InlinePanel('related_links', label="Related links"),
 ]
 
 BlogIndexPage.promote_panels = Page.promote_panels
@@ -110,8 +110,8 @@ BlogPage.content_panels = [
     FieldPanel('date'),
     FieldPanel('intro', classname="full"),
     FieldPanel('body', classname="full"),
-    InlinePanel(BlogPage, 'carousel_items', label="Carousel items"),
-    InlinePanel(BlogPage, 'related_links', label="Related links"),
+    InlinePanel('carousel_items', label="Carousel items"),
+    InlinePanel('related_links', label="Related links"),
 ]
 
 BlogPage.promote_panels = Page.promote_panels + [
