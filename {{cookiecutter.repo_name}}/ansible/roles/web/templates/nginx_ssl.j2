@@ -67,9 +67,10 @@ server {
         }
 
 
-
-        error_page 503 502 @maintenance;
+        error_page 503 502  @maintenance;
         location @maintenance {
-              rewrite ^(.*)$ /offline.html break;
+            root {{ sites_dir }}/{{ project_name }}/static; 
+            rewrite ^(.*)$ /offline.html break;
         }
+
 }{% endraw %}

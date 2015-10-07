@@ -39,14 +39,14 @@ server {
            proxy_set_header   X-Real-IP        $remote_addr;
            proxy_set_header   REMOTE_HOST      $remote_addr;
            proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
-           proxy_set_header   X-FORWARDED-PROTOCOL $scheme;
+           proxy_set_header   X-Forwarded-Proto $scheme;
            proxy_pass http://{{ gunicorn }};
         }
 
 
-        error_page 500 503 502 504 @maintenance;
+        error_page 503 502  @maintenance;
         location @maintenance {
-            root {{ sites_dir }}/{{ project_name }}/{{ project_name }}/templates/;
+            root {{ sites_dir }}/{{ project_name }}/static; 
             rewrite ^(.*)$ /offline.html break;
         }
 }{% endraw %}
