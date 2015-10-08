@@ -6,17 +6,27 @@
   tasks:
 
 
-    - name: Pull/And update the source
+    - name: update the source via hg
       shell: hg pull
              && hg update
       sudo: no
       args:
            chdir: "{{ sites_dir }}/{{ project_name }}"
       tags:
-            - django
-            
+            - vcs 
+
+    - name: Update the source via git
+      sudo: no
+      shell: git pull
+      when: vcs == "git"
+      sudo: no
+      args:
+           chdir: "{{ sites_dir }}/{{ project_name }}"
+      tags:
+            - vcs 
+
     - name: Put the site into maint mode
-      shell: cp "{{ project_name }}/templates/offline.html" static
+      shell: cp "pages/templates/offline.html" static
       args:
            chdir: "{{ sites_dir }}/{{ project_name }}"
       tags:
