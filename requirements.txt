@@ -1,5 +1,6 @@
 cookiecutter==1.0.0
 sh
+virtualenv
 
 # Testing
 pytest==2.8.0
