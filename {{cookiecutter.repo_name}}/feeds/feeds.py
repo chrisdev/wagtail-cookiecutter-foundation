@@ -2,6 +2,7 @@
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Rss201rev2Feed
 from wagtail.wagtailimages.models import Filter
+from wagtail.wagtailcore.models import Site
 from xml.sax.saxutils import escape
 from datetime import datetime, time
 from blog.models import BlogPage
@@ -67,5 +68,11 @@ class BlogFeed(Feed):
         if feed_image:
             filter,_ = Filter.objects.get_or_create(spec='width-1200')
             img = feed_image.get_rendition(filter)
-        
-        return { 'image': img.url if feed_image else ""}
+
+            site_objects = Site.objects.all()
+
+            for site in site_objects:
+                if site.is_default_site:
+                    default_site = site
+
+        return { 'image': default_site.root_url + img.url if feed_image else ""}
