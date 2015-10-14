@@ -112,10 +112,10 @@ class EventPage(Page):
     )
     time_from = models.TimeField("Start time", null=True, blank=True)
     time_to = models.TimeField("End time", null=True, blank=True)
-    audience = models.CharField(max_length=255, choices=EVENT_AUDIENCE_CHOICES)
-    location = models.CharField(max_length=255)
+    audience = models.CharField(max_length=255, choices=EVENT_AUDIENCE_CHOICES, null=True, blank=True)
+    location = models.CharField(max_length=255, null=True, blank=True)
     body = RichTextField(blank=True)
-    cost = models.CharField(max_length=255)
+    cost = models.CharField(max_length=255, null=True, blank=True)
     signup_link = models.URLField(blank=True)
     feed_image = models.ForeignKey(
         'wagtailimages.Image',
