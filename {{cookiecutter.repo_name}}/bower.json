@@ -1,7 +1,7 @@
 {
   "name": "{{ cookiecutter.repo_name }}",
   "dependencies": {
-    "foundation": "~5.5.2",
+    "foundation": "~5.5.3",
     "font-awesome": "~4.3.0",
     "bxslider-4": "~4.2.5"
   }
