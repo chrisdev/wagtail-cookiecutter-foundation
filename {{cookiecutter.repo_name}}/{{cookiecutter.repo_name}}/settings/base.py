@@ -81,6 +81,7 @@ INSTALLED_APPS = (
     'people',
     'photo_gallery',
     'products',
+    'documents_gallery',
 )
 
 # List of callables that know how to import templates from various sources.

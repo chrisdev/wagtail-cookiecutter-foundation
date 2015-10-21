@@ -1,0 +1,55 @@
+{% raw %}{% extends "documents_gallery/base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}{{ self.get_verbose_name|slugify }}{% endblock %}
+
+{% block content %}
+    <div id="content" class="row">
+        <div class="medium-12 columns">
+            <center><h3>{{ self.title }}</h3></center>
+            {% if self.tags %}
+                {% include "documents_gallery/includes/tags.html" %}
+            {% endif %}
+
+            {% if documents %}
+                <ul class="small-block-grid-2 large-block-grid-3" id="documents">
+                    {% for document in documents %}
+                        <li>
+                            <a href="{{ document.url }}">
+                                {% if document.file_extension == 'pdf' %}
+                                    <i class="fa fa-file-pdf-o fa-3x"></i>
+                                {% elif document.file_extension == 'docx' or 'doc' %}
+                                    <i class="fa fa-file-word-o fa-3x"></i>
+                                {% else %}
+                                    <i class="fa fa-file fa-3x"></i>
+                                {% endif %}
+                                <p>{{ document.filename}}</p>
+                            </a>
+                            <p>{{ document.created_at }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No documents are tagged with your {{ self.title }} gallery or no {{ self.title }} tags defined.</p>
+            {% endif %}        
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="pagination-centered">
+          <ul class="pagination">
+               {% if documents.has_previous %}
+                    <li class="arrow unavailable"><a href="?page={{ documents.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&laquo;</a></li>
+               {% endif %}
+               
+               Page {{ documents.number }} of {{ documents.paginator.num_pages }}
+                
+               {% if documents.has_next %}
+                   <li class="arrow"><a href="?page={{ documents.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&raquo;</a></li>
+               {% endif %}
+          </ul>
+        </div>
+    </div>
+    
+
+{% endblock %}{% endraw %}

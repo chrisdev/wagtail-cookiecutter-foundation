@@ -1,0 +1,37 @@
+{% raw %}{% extends "documents_gallery/base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+{% block body_class %}{{ self.get_verbose_name|slugify }}{% endblock %}
+
+{% block content %}
+
+    <div id="content" class="row">
+        <div class="medium-12 columns">
+            <h3 class="text-center">{{ self.title }}</h3>
+            {{ self.intro|richtext }}
+
+            {% if pages|length %}
+                <div>
+                    <ul class="medium-block-grid-4" data-equalizer id="documents-index">
+                    {% for page in pages %}
+                        <li data-equalizer-watch>
+                            <a href="{{ page.url }}">
+                                <!--
+                                {% if page.feed_image %}
+                                    {% image page.feed_image fill-500x350 %}
+                                {% endif %}-->
+                                <i class="fa fa-file fa-3x"></i>
+                                <h5 style="margin-bottom: 0;">{{ page.title }}</h5>
+                            </a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            {% else %}
+            <p>
+                Whoops, we don't have any document galleries that match right now.
+            </p>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}{% endraw %}
