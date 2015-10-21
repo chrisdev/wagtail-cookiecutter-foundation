@@ -2389,6 +2389,114 @@
 },
 {
   "fields": {
+    "codename": "add_documentsindexpage",
+    "name": "Can add Documents Index Page",
+    "content_type": [
+      "documents_gallery",
+      "documentsindexpage"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 200
+},
+{
+  "fields": {
+    "codename": "change_documentsindexpage",
+    "name": "Can change Documents Index Page",
+    "content_type": [
+      "documents_gallery",
+      "documentsindexpage"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 201
+},
+{
+  "fields": {
+    "codename": "delete_documentsindexpage",
+    "name": "Can delete Documents Index Page",
+    "content_type": [
+      "documents_gallery",
+      "documentsindexpage"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 202
+},
+{
+  "fields": {
+    "codename": "add_documentspagetag",
+    "name": "Can add documents page tag",
+    "content_type": [
+      "documents_gallery",
+      "documentspagetag"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 203
+},
+{
+  "fields": {
+    "codename": "change_documentspagetag",
+    "name": "Can change documents page tag",
+    "content_type": [
+      "documents_gallery",
+      "documentspagetag"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 204
+},
+{
+  "fields": {
+    "codename": "delete_documentspagetag",
+    "name": "Can delete documents page tag",
+    "content_type": [
+      "documents_gallery",
+      "documentspagetag"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 205
+},
+{
+  "fields": {
+    "codename": "add_documentspage",
+    "name": "Can add Documents Page",
+    "content_type": [
+      "documents_gallery",
+      "documentspage"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 206
+},
+{
+  "fields": {
+    "codename": "change_documentspage",
+    "name": "Can change Documents Page",
+    "content_type": [
+      "documents_gallery",
+      "documentspage"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 207
+},
+{
+  "fields": {
+    "codename": "delete_documentspage",
+    "name": "Can delete Documents Page",
+    "content_type": [
+      "documents_gallery",
+      "documentspage"
+    ]
+  },
+  "model": "auth.permission",
+  "pk": 208
+},
+{
+  "fields": {
     "name": "Moderators",
     "permissions": [
       [
@@ -2483,15 +2591,123 @@
     "is_active": true,
     "is_superuser": true,
     "is_staff": true,
-    "last_login": "2015-10-07T19:54:37.501Z",
+    "last_login": "2015-10-21T17:00:26.654Z",
     "groups": [],
     "user_permissions": [],
-    "password": "pbkdf2_sha256$20000$qZDFjRqTyjuC$+YD1fMexCmOdTEJyyHw/Sr03rJZbiuu8tZ79Odg9ppI=",
+    "password": "pbkdf2_sha256$20000$1IJhUHCjqjLn$4wI9BpfqeGtuVWwEk3cMSLG9GcFBVD9WVTKB45+mgQY=",
     "email": "",
-    "date_joined": "2015-10-07T19:54:16.117Z"
+    "date_joined": "2015-10-21T17:00:12.704Z"
   },
   "model": "auth.user",
   "pk": 1
+},
+{
+  "fields": {
+    "name": "photo_gallery",
+    "slug": "photo_gallery"
+  },
+  "model": "taggit.tag",
+  "pk": 1
+},
+{
+  "fields": {
+    "name": "sample",
+    "slug": "sample"
+  },
+  "model": "taggit.tag",
+  "pk": 2
+},
+{
+  "fields": {
+    "name": "example",
+    "slug": "example"
+  },
+  "model": "taggit.tag",
+  "pk": 3
+},
+{
+  "fields": {
+    "tag": 1,
+    "content_type": [
+      "wagtailimages",
+      "image"
+    ],
+    "object_id": 9
+  },
+  "model": "taggit.taggeditem",
+  "pk": 1
+},
+{
+  "fields": {
+    "tag": 1,
+    "content_type": [
+      "wagtailimages",
+      "image"
+    ],
+    "object_id": 5
+  },
+  "model": "taggit.taggeditem",
+  "pk": 2
+},
+{
+  "fields": {
+    "tag": 1,
+    "content_type": [
+      "wagtailimages",
+      "image"
+    ],
+    "object_id": 2
+  },
+  "model": "taggit.taggeditem",
+  "pk": 3
+},
+{
+  "fields": {
+    "tag": 1,
+    "content_type": [
+      "wagtailimages",
+      "image"
+    ],
+    "object_id": 8
+  },
+  "model": "taggit.taggeditem",
+  "pk": 4
+},
+{
+  "fields": {
+    "tag": 2,
+    "content_type": [
+      "wagtaildocs",
+      "document"
+    ],
+    "object_id": 1
+  },
+  "model": "taggit.taggeditem",
+  "pk": 5
+},
+{
+  "fields": {
+    "tag": 3,
+    "content_type": [
+      "wagtaildocs",
+      "document"
+    ],
+    "object_id": 2
+  },
+  "model": "taggit.taggeditem",
+  "pk": 6
+},
+{
+  "fields": {
+    "tag": 2,
+    "content_type": [
+      "wagtaildocs",
+      "document"
+    ],
+    "object_id": 3
+  },
+  "model": "taggit.taggeditem",
+  "pk": 7
 },
 {
   "fields": {
@@ -2535,11 +2751,11 @@
   "fields": {
     "locked": false,
     "title": "Homepage",
-    "numchild": 0,
-    "show_in_menus": false,
+    "numchild": 2,
+    "show_in_menus": true,
     "live": true,
     "seo_title": "",
-    "latest_revision_created_at": "2015-10-07T19:58:11.624Z",
+    "latest_revision_created_at": "2015-10-21T17:05:31.180Z",
     "depth": 2,
     "search_description": "",
     "content_type": [
@@ -2549,7 +2765,7 @@
     "has_unpublished_changes": false,
     "owner": null,
     "path": "00010001",
-    "first_published_at": "2015-10-07T19:55:39.284Z",
+    "first_published_at": "2015-10-21T17:01:39.746Z",
     "url_path": "/home/",
     "expired": false,
     "slug": "home",
@@ -2561,10 +2777,130 @@
 },
 {
   "fields": {
+    "locked": false,
+    "title": "Photo Gallery",
+    "numchild": 1,
+    "show_in_menus": true,
+    "live": true,
+    "seo_title": "",
+    "latest_revision_created_at": "2015-10-21T17:06:47.877Z",
+    "depth": 3,
+    "search_description": "",
+    "content_type": [
+      "photo_gallery",
+      "galleryindexpage"
+    ],
+    "has_unpublished_changes": false,
+    "owner": [
+      "admin"
+    ],
+    "path": "000100010001",
+    "first_published_at": "2015-10-21T17:06:47.953Z",
+    "url_path": "/home/photo-gallery/",
+    "expired": false,
+    "slug": "photo-gallery",
+    "expire_at": null,
+    "go_live_at": null
+  },
+  "model": "wagtailcore.page",
+  "pk": 4
+},
+{
+  "fields": {
+    "locked": false,
+    "title": "Wagtail Cookiecutter Foundation",
+    "numchild": 0,
+    "show_in_menus": true,
+    "live": true,
+    "seo_title": "",
+    "latest_revision_created_at": "2015-10-21T17:08:02.086Z",
+    "depth": 4,
+    "search_description": "",
+    "content_type": [
+      "photo_gallery",
+      "gallerypage"
+    ],
+    "has_unpublished_changes": false,
+    "owner": [
+      "admin"
+    ],
+    "path": "0001000100010001",
+    "first_published_at": "2015-10-21T17:08:02.180Z",
+    "url_path": "/home/photo-gallery/wagtail-cookiecutter-foundation/",
+    "expired": false,
+    "slug": "wagtail-cookiecutter-foundation",
+    "expire_at": null,
+    "go_live_at": null
+  },
+  "model": "wagtailcore.page",
+  "pk": 5
+},
+{
+  "fields": {
+    "locked": false,
+    "title": "Documents Gallery",
+    "numchild": 1,
+    "show_in_menus": true,
+    "live": true,
+    "seo_title": "",
+    "latest_revision_created_at": "2015-10-21T17:09:24.486Z",
+    "depth": 3,
+    "search_description": "",
+    "content_type": [
+      "documents_gallery",
+      "documentsindexpage"
+    ],
+    "has_unpublished_changes": false,
+    "owner": [
+      "admin"
+    ],
+    "path": "000100010002",
+    "first_published_at": "2015-10-21T17:09:24.563Z",
+    "url_path": "/home/documents-gallery/",
+    "expired": false,
+    "slug": "documents-gallery",
+    "expire_at": null,
+    "go_live_at": null
+  },
+  "model": "wagtailcore.page",
+  "pk": 6
+},
+{
+  "fields": {
+    "locked": false,
+    "title": "Sample Documents",
+    "numchild": 0,
+    "show_in_menus": true,
+    "live": true,
+    "seo_title": "",
+    "latest_revision_created_at": "2015-10-21T17:10:55.851Z",
+    "depth": 4,
+    "search_description": "",
+    "content_type": [
+      "documents_gallery",
+      "documentspage"
+    ],
+    "has_unpublished_changes": false,
+    "owner": [
+      "admin"
+    ],
+    "path": "0001000100020001",
+    "first_published_at": "2015-10-21T17:10:55.968Z",
+    "url_path": "/home/documents-gallery/sample-documents/",
+    "expired": false,
+    "slug": "sample-documents",
+    "expire_at": null,
+    "go_live_at": null
+  },
+  "model": "wagtailcore.page",
+  "pk": 7
+},
+{
+  "fields": {
     "approved_go_live_at": null,
-    "created_at": "2015-10-07T19:55:35.163Z",
+    "created_at": "2015-10-21T17:01:37.597Z",
     "submitted_for_moderation": false,
-    "content_json": "{\"carousel_items\": [], \"search_description\": \"\", \"owner\": null, \"latest_revision_created_at\": null, \"go_live_at\": null, \"related_links\": [], \"title\": \"Homepage\", \"seo_title\": \"\", \"slug\": \"home\", \"live\": true, \"has_unpublished_changes\": false, \"body\": \"<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>\", \"content_items\": [], \"numchild\": 0, \"title_text\": \"<h3>Wagtail cookiecutter Foundation</h3>\", \"content_type\": 4, \"show_in_menus\": false, \"path\": \"00010001\", \"url_path\": \"/home/\", \"expired\": false, \"pk\": 3, \"locked\": false, \"depth\": 2, \"first_published_at\": null, \"expire_at\": null}",
+    "content_json": "{\"carousel_items\": [], \"search_description\": \"\", \"owner\": null, \"latest_revision_created_at\": null, \"go_live_at\": null, \"related_links\": [], \"title\": \"Homepage\", \"seo_title\": \"\", \"slug\": \"home\", \"live\": true, \"has_unpublished_changes\": false, \"body\": \"<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>\", \"content_items\": [], \"numchild\": 0, \"title_text\": \"<h3>Welcome to\\u00a0Wagtail Cookiecutter Foundation</h3>\", \"content_type\": 4, \"show_in_menus\": false, \"path\": \"00010001\", \"url_path\": \"/home/\", \"expired\": false, \"pk\": 3, \"locked\": false, \"depth\": 2, \"first_published_at\": null, \"expire_at\": null}",
     "user": [
       "admin"
     ],
@@ -2576,9 +2912,9 @@
 {
   "fields": {
     "approved_go_live_at": null,
-    "created_at": "2015-10-07T19:55:39.212Z",
+    "created_at": "2015-10-21T17:05:31.180Z",
     "submitted_for_moderation": false,
-    "content_json": "{\"carousel_items\": [], \"search_description\": \"\", \"owner\": null, \"latest_revision_created_at\": \"2015-10-07T19:55:35.163Z\", \"go_live_at\": null, \"related_links\": [], \"title\": \"Homepage\", \"seo_title\": \"\", \"slug\": \"home\", \"live\": true, \"has_unpublished_changes\": true, \"body\": \"<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>\", \"content_items\": [], \"numchild\": 0, \"title_text\": \"<h3>Wagtail cookiecutter Foundation</h3>\", \"content_type\": 4, \"show_in_menus\": false, \"path\": \"00010001\", \"url_path\": \"/home/\", \"expired\": false, \"pk\": 3, \"locked\": false, \"depth\": 2, \"first_published_at\": null, \"expire_at\": null}",
+    "content_json": "{\"carousel_items\": [{\"link_page\": null, \"embed_url\": \"\", \"image\": 2, \"link_external\": \"\", \"caption\": \"\", \"sort_order\": 0, \"link_document\": null, \"pk\": null, \"page\": 3}, {\"link_page\": null, \"embed_url\": \"\", \"image\": 9, \"link_external\": \"\", \"caption\": \"\", \"sort_order\": 1, \"link_document\": null, \"pk\": null, \"page\": 3}, {\"link_page\": null, \"embed_url\": \"\", \"image\": 5, \"link_external\": \"\", \"caption\": \"\", \"sort_order\": 2, \"link_document\": null, \"pk\": null, \"page\": 3}, {\"link_page\": null, \"embed_url\": \"\", \"image\": 8, \"link_external\": \"\", \"caption\": \"\", \"sort_order\": 3, \"link_document\": null, \"pk\": null, \"page\": 3}], \"search_description\": \"\", \"owner\": null, \"latest_revision_created_at\": \"2015-10-21T17:01:37.597Z\", \"go_live_at\": null, \"related_links\": [], \"title\": \"Homepage\", \"seo_title\": \"\", \"slug\": \"home\", \"live\": true, \"has_unpublished_changes\": false, \"body\": \"<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>\", \"content_items\": [], \"numchild\": 0, \"title_text\": \"<h3>Welcome to\\u00a0Wagtail Cookiecutter Foundation</h3>\", \"content_type\": 4, \"show_in_menus\": true, \"path\": \"00010001\", \"url_path\": \"/home/\", \"expired\": false, \"pk\": 3, \"locked\": false, \"depth\": 2, \"first_published_at\": \"2015-10-21T17:01:39.746Z\", \"expire_at\": null}",
     "user": [
       "admin"
     ],
@@ -2590,16 +2926,58 @@
 {
   "fields": {
     "approved_go_live_at": null,
-    "created_at": "2015-10-07T19:58:11.624Z",
+    "created_at": "2015-10-21T17:06:47.877Z",
     "submitted_for_moderation": false,
-    "content_json": "{\"carousel_items\": [{\"link_page\": null, \"embed_url\": \"\", \"image\": 9, \"link_external\": \"\", \"caption\": \"\", \"sort_order\": 0, \"link_document\": null, \"pk\": null, \"page\": 3}, {\"link_page\": null, \"embed_url\": \"\", \"image\": 4, \"link_external\": \"\", \"caption\": \"\", \"sort_order\": 1, \"link_document\": null, \"pk\": null, \"page\": 3}, {\"link_page\": null, \"embed_url\": \"\", \"image\": 1, \"link_external\": \"\", \"caption\": \"\", \"sort_order\": 2, \"link_document\": null, \"pk\": null, \"page\": 3}, {\"link_page\": null, \"embed_url\": \"\", \"image\": 6, \"link_external\": \"\", \"caption\": \"\", \"sort_order\": 3, \"link_document\": null, \"pk\": null, \"page\": 3}], \"search_description\": \"\", \"owner\": null, \"latest_revision_created_at\": \"2015-10-07T19:55:39.212Z\", \"go_live_at\": null, \"related_links\": [], \"title\": \"Homepage\", \"seo_title\": \"\", \"slug\": \"home\", \"live\": true, \"has_unpublished_changes\": false, \"body\": \"<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>\", \"content_items\": [], \"numchild\": 0, \"title_text\": \"<h3>Wagtail cookiecutter Foundation</h3>\", \"content_type\": 4, \"show_in_menus\": false, \"path\": \"00010001\", \"url_path\": \"/home/\", \"expired\": false, \"pk\": 3, \"locked\": false, \"depth\": 2, \"first_published_at\": \"2015-10-07T19:55:39.284Z\", \"expire_at\": null}",
+    "content_json": "{\"search_description\": \"\", \"owner\": 1, \"intro\": \"<p>Welcome to photo gallery!</p>\", \"latest_revision_created_at\": null, \"go_live_at\": null, \"feed_image\": null, \"title\": \"Photo Gallery\", \"seo_title\": \"\", \"slug\": \"photo-gallery\", \"live\": true, \"has_unpublished_changes\": false, \"numchild\": 0, \"content_type\": 60, \"show_in_menus\": true, \"path\": \"000100010001\", \"url_path\": \"/home/photo-gallery/\", \"expired\": false, \"pk\": 4, \"locked\": false, \"depth\": 3, \"first_published_at\": null, \"expire_at\": null}",
     "user": [
       "admin"
     ],
-    "page": 3
+    "page": 4
   },
   "model": "wagtailcore.pagerevision",
   "pk": 3
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-10-21T17:08:02.086Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"search_description\": \"\", \"owner\": 1, \"latest_revision_created_at\": null, \"go_live_at\": null, \"feed_image\": 2, \"title\": \"Wagtail Cookiecutter Foundation\", \"seo_title\": \"\", \"slug\": \"wagtail-cookiecutter-foundation\", \"live\": true, \"has_unpublished_changes\": false, \"tagged_items\": [{\"pk\": 1, \"tag\": 1, \"content_object\": 5}], \"numchild\": 0, \"content_type\": 62, \"show_in_menus\": true, \"path\": \"0001000100010001\", \"url_path\": \"/home/photo-gallery/wagtail-cookiecutter-foundation/\", \"expired\": false, \"pk\": 5, \"locked\": false, \"depth\": 4, \"first_published_at\": null, \"expire_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 5
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 4
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-10-21T17:09:24.486Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"search_description\": \"\", \"owner\": 1, \"intro\": \"<p>Welcome to documents gallery!</p>\", \"latest_revision_created_at\": null, \"go_live_at\": null, \"feed_image\": null, \"title\": \"Documents Gallery\", \"seo_title\": \"\", \"slug\": \"documents-gallery\", \"live\": true, \"has_unpublished_changes\": false, \"numchild\": 0, \"content_type\": 68, \"show_in_menus\": true, \"path\": \"000100010002\", \"url_path\": \"/home/documents-gallery/\", \"expired\": false, \"pk\": 6, \"locked\": false, \"depth\": 3, \"first_published_at\": null, \"expire_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 6
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 5
+},
+{
+  "fields": {
+    "approved_go_live_at": null,
+    "created_at": "2015-10-21T17:10:55.851Z",
+    "submitted_for_moderation": false,
+    "content_json": "{\"search_description\": \"\", \"owner\": 1, \"latest_revision_created_at\": null, \"go_live_at\": null, \"feed_image\": null, \"title\": \"Sample Documents\", \"seo_title\": \"\", \"slug\": \"sample-documents\", \"live\": true, \"has_unpublished_changes\": false, \"tagged_items\": [{\"pk\": 1, \"tag\": 2, \"content_object\": 7}, {\"pk\": 2, \"tag\": 3, \"content_object\": 7}], \"numchild\": 0, \"content_type\": 70, \"show_in_menus\": true, \"path\": \"0001000100020001\", \"url_path\": \"/home/documents-gallery/sample-documents/\", \"expired\": false, \"pk\": 7, \"locked\": false, \"depth\": 4, \"first_published_at\": null, \"expire_at\": null}",
+    "user": [
+      "admin"
+    ],
+    "page": 7
+  },
+  "model": "wagtailcore.pagerevision",
+  "pk": 6
 },
 {
   "fields": {
@@ -2669,124 +3047,46 @@
 },
 {
   "fields": {
-    "focal_point_width": null,
-    "title": "postgresql.jpg",
-    "focal_point_height": null,
-    "created_at": "2015-10-07T19:57:00.020Z",
-    "focal_point_x": null,
-    "focal_point_y": null,
-    "height": 500,
-    "width": 1300,
-    "file": "original_images/postgresql.jpg",
-    "file_size": 78794,
+    "created_at": "2015-10-21T17:12:35.158Z",
     "uploaded_by_user": [
       "admin"
-    ]
+    ],
+    "file": "documents/sample.pdf",
+    "title": "sample"
   },
-  "model": "wagtailimages.image",
+  "model": "wagtaildocs.document",
   "pk": 1
 },
 {
   "fields": {
-    "focal_point_width": null,
-    "title": "sass.png",
-    "focal_point_height": null,
-    "created_at": "2015-10-07T19:57:00.117Z",
-    "focal_point_x": null,
-    "focal_point_y": null,
-    "height": 60,
-    "width": 60,
-    "file": "original_images/sass.png",
-    "file_size": 3259,
+    "created_at": "2015-10-21T17:13:00.068Z",
     "uploaded_by_user": [
       "admin"
-    ]
+    ],
+    "file": "documents/example.docx",
+    "title": "example"
   },
-  "model": "wagtailimages.image",
+  "model": "wagtaildocs.document",
   "pk": 2
 },
 {
   "fields": {
-    "focal_point_width": null,
-    "title": "Wagtail_CMS_logo.png",
-    "focal_point_height": null,
-    "created_at": "2015-10-07T19:57:00.190Z",
-    "focal_point_x": null,
-    "focal_point_y": null,
-    "height": 60,
-    "width": 60,
-    "file": "original_images/Wagtail_CMS_logo.png",
-    "file_size": 1353,
+    "created_at": "2015-10-21T17:13:25.607Z",
     "uploaded_by_user": [
       "admin"
-    ]
+    ],
+    "file": "documents/document.doc",
+    "title": "document"
   },
-  "model": "wagtailimages.image",
+  "model": "wagtaildocs.document",
   "pk": 3
 },
 {
   "fields": {
     "focal_point_width": null,
-    "title": "wagtail.jpg",
+    "title": "digitalocean-logo.png",
     "focal_point_height": null,
-    "created_at": "2015-10-07T19:57:00.263Z",
-    "focal_point_x": null,
-    "focal_point_y": null,
-    "height": 500,
-    "width": 1300,
-    "file": "original_images/wagtail.jpg",
-    "file_size": 36907,
-    "uploaded_by_user": [
-      "admin"
-    ]
-  },
-  "model": "wagtailimages.image",
-  "pk": 4
-},
-{
-  "fields": {
-    "focal_point_width": null,
-    "title": "PostgreSQL.png",
-    "focal_point_height": null,
-    "created_at": "2015-10-07T19:57:00.369Z",
-    "focal_point_x": null,
-    "focal_point_y": null,
-    "height": 60,
-    "width": 60,
-    "file": "original_images/PostgreSQL_logo.3colors.120x120.png",
-    "file_size": 4433,
-    "uploaded_by_user": [
-      "admin"
-    ]
-  },
-  "model": "wagtailimages.image",
-  "pk": 5
-},
-{
-  "fields": {
-    "focal_point_width": null,
-    "title": "sass-logo-new.png",
-    "focal_point_height": null,
-    "created_at": "2015-10-07T19:57:00.455Z",
-    "focal_point_x": null,
-    "focal_point_y": null,
-    "height": 500,
-    "width": 1300,
-    "file": "original_images/sass-logo-new.png",
-    "file_size": 51541,
-    "uploaded_by_user": [
-      "admin"
-    ]
-  },
-  "model": "wagtailimages.image",
-  "pk": 6
-},
-{
-  "fields": {
-    "focal_point_width": null,
-    "title": "digital.png",
-    "focal_point_height": null,
-    "created_at": "2015-10-07T19:57:00.536Z",
+    "created_at": "2015-10-21T17:02:28.495Z",
     "focal_point_x": null,
     "focal_point_y": null,
     "height": 60,
@@ -2798,33 +3098,14 @@
     ]
   },
   "model": "wagtailimages.image",
-  "pk": 7
+  "pk": 1
 },
 {
   "fields": {
     "focal_point_width": null,
-    "title": "hero-image.png",
+    "title": "foundation.png",
     "focal_point_height": null,
-    "created_at": "2015-10-07T19:57:00.620Z",
-    "focal_point_x": null,
-    "focal_point_y": null,
-    "height": 60,
-    "width": 60,
-    "file": "original_images/hero-image.png",
-    "file_size": 6607,
-    "uploaded_by_user": [
-      "admin"
-    ]
-  },
-  "model": "wagtailimages.image",
-  "pk": 8
-},
-{
-  "fields": {
-    "focal_point_width": null,
-    "title": "foundation_5.png",
-    "focal_point_height": null,
-    "created_at": "2015-10-07T19:57:00.698Z",
+    "created_at": "2015-10-21T17:02:28.605Z",
     "focal_point_x": null,
     "focal_point_y": null,
     "height": 500,
@@ -2836,20 +3117,153 @@
     ]
   },
   "model": "wagtailimages.image",
-  "pk": 9
+  "pk": 2
 },
 {
   "fields": {
     "focal_point_width": null,
-    "title": "image-ansible.png",
+    "title": "foundation-logo.png",
     "focal_point_height": null,
-    "created_at": "2015-10-07T19:57:00.770Z",
+    "created_at": "2015-10-21T17:02:28.850Z",
+    "focal_point_x": null,
+    "focal_point_y": null,
+    "height": 60,
+    "width": 60,
+    "file": "original_images/hero-image.png",
+    "file_size": 6607,
+    "uploaded_by_user": [
+      "admin"
+    ]
+  },
+  "model": "wagtailimages.image",
+  "pk": 3
+},
+{
+  "fields": {
+    "focal_point_width": null,
+    "title": "ansible-logo.png",
+    "focal_point_height": null,
+    "created_at": "2015-10-21T17:02:29.472Z",
     "focal_point_x": null,
     "focal_point_y": null,
     "height": 60,
     "width": 60,
     "file": "original_images/image-ansible.png",
     "file_size": 1585,
+    "uploaded_by_user": [
+      "admin"
+    ]
+  },
+  "model": "wagtailimages.image",
+  "pk": 4
+},
+{
+  "fields": {
+    "focal_point_width": null,
+    "title": "postgresql.jpg",
+    "focal_point_height": null,
+    "created_at": "2015-10-21T17:02:29.578Z",
+    "focal_point_x": null,
+    "focal_point_y": null,
+    "height": 500,
+    "width": 1300,
+    "file": "original_images/postgresql.jpg",
+    "file_size": 78794,
+    "uploaded_by_user": [
+      "admin"
+    ]
+  },
+  "model": "wagtailimages.image",
+  "pk": 5
+},
+{
+  "fields": {
+    "focal_point_width": null,
+    "title": "postgresql-logo.120x120.png",
+    "focal_point_height": null,
+    "created_at": "2015-10-21T17:02:29.774Z",
+    "focal_point_x": null,
+    "focal_point_y": null,
+    "height": 60,
+    "width": 60,
+    "file": "original_images/PostgreSQL_logo.3colors.120x120.png",
+    "file_size": 4433,
+    "uploaded_by_user": [
+      "admin"
+    ]
+  },
+  "model": "wagtailimages.image",
+  "pk": 6
+},
+{
+  "fields": {
+    "focal_point_width": null,
+    "title": "sass-logo.png",
+    "focal_point_height": null,
+    "created_at": "2015-10-21T17:02:30.382Z",
+    "focal_point_x": null,
+    "focal_point_y": null,
+    "height": 60,
+    "width": 60,
+    "file": "original_images/sass.png",
+    "file_size": 3259,
+    "uploaded_by_user": [
+      "admin"
+    ]
+  },
+  "model": "wagtailimages.image",
+  "pk": 7
+},
+{
+  "fields": {
+    "focal_point_width": null,
+    "title": "sass.png",
+    "focal_point_height": null,
+    "created_at": "2015-10-21T17:02:30.564Z",
+    "focal_point_x": null,
+    "focal_point_y": null,
+    "height": 500,
+    "width": 1300,
+    "file": "original_images/sass-logo-new.png",
+    "file_size": 51541,
+    "uploaded_by_user": [
+      "admin"
+    ]
+  },
+  "model": "wagtailimages.image",
+  "pk": 8
+},
+{
+  "fields": {
+    "focal_point_width": null,
+    "title": "wagtail.jpg",
+    "focal_point_height": null,
+    "created_at": "2015-10-21T17:02:30.626Z",
+    "focal_point_x": null,
+    "focal_point_y": null,
+    "height": 500,
+    "width": 1300,
+    "file": "original_images/wagtail.jpg",
+    "file_size": 36907,
+    "uploaded_by_user": [
+      "admin"
+    ]
+  },
+  "model": "wagtailimages.image",
+  "pk": 9
+},
+{
+  "fields": {
+    "focal_point_width": null,
+    "title": "wagtail-logo.png",
+    "focal_point_height": null,
+    "created_at": "2015-10-21T17:02:30.693Z",
+    "focal_point_x": null,
+    "focal_point_y": null,
+    "height": 60,
+    "width": 60,
+    "file": "original_images/Wagtail_CMS_logo.png",
+    "file_size": 1353,
     "uploaded_by_user": [
       "admin"
     ]
@@ -2866,17 +3280,45 @@
 },
 {
   "fields": {
-    "spec": "max-130x100"
+    "spec": "original"
   },
   "model": "wagtailimages.filter",
   "pk": 2
 },
 {
   "fields": {
-    "spec": "width-1400"
+    "spec": "max-800x600"
   },
   "model": "wagtailimages.filter",
   "pk": 3
+},
+{
+  "fields": {
+    "spec": "max-130x100"
+  },
+  "model": "wagtailimages.filter",
+  "pk": 4
+},
+{
+  "fields": {
+    "spec": "width-1400"
+  },
+  "model": "wagtailimages.filter",
+  "pk": 5
+},
+{
+  "fields": {
+    "spec": "fill-500x350"
+  },
+  "model": "wagtailimages.filter",
+  "pk": 6
+},
+{
+  "fields": {
+    "spec": "width-1200"
+  },
+  "model": "wagtailimages.filter",
+  "pk": 7
 },
 {
   "fields": {
@@ -2884,7 +3326,7 @@
     "focal_point_key": "",
     "filter": 1,
     "width": 60,
-    "file": "images/image-ansible.max-165x165.png",
+    "file": "images/Wagtail_CMS_logo.max-165x165.png",
     "height": 60
   },
   "model": "wagtailimages.rendition",
@@ -2896,7 +3338,7 @@
     "focal_point_key": "",
     "filter": 1,
     "width": 165,
-    "file": "images/foundation_5.max-165x165.png",
+    "file": "images/wagtail.max-165x165.jpg",
     "height": 63
   },
   "model": "wagtailimages.rendition",
@@ -2907,9 +3349,9 @@
     "image": 8,
     "focal_point_key": "",
     "filter": 1,
-    "width": 60,
-    "file": "images/hero-image.max-165x165.png",
-    "height": 60
+    "width": 165,
+    "file": "images/sass-logo-new.max-165x165.png",
+    "height": 63
   },
   "model": "wagtailimages.rendition",
   "pk": 3
@@ -2920,7 +3362,7 @@
     "focal_point_key": "",
     "filter": 1,
     "width": 60,
-    "file": "images/digital.max-165x165.png",
+    "file": "images/sass.max-165x165.png",
     "height": 60
   },
   "model": "wagtailimages.rendition",
@@ -2931,9 +3373,9 @@
     "image": 6,
     "focal_point_key": "",
     "filter": 1,
-    "width": 165,
-    "file": "images/sass-logo-new.max-165x165.png",
-    "height": 63
+    "width": 60,
+    "file": "images/PostgreSQL_logo.3colors.120x120.max-165x165.png",
+    "height": 60
   },
   "model": "wagtailimages.rendition",
   "pk": 5
@@ -2943,9 +3385,9 @@
     "image": 5,
     "focal_point_key": "",
     "filter": 1,
-    "width": 60,
-    "file": "images/PostgreSQL_logo.3colors.120x120.max-165x165.png",
-    "height": 60
+    "width": 165,
+    "file": "images/postgresql.max-165x165.jpg",
+    "height": 63
   },
   "model": "wagtailimages.rendition",
   "pk": 6
@@ -2955,9 +3397,9 @@
     "image": 4,
     "focal_point_key": "",
     "filter": 1,
-    "width": 165,
-    "file": "images/wagtail.max-165x165.jpg",
-    "height": 63
+    "width": 60,
+    "file": "images/image-ansible.max-165x165.png",
+    "height": 60
   },
   "model": "wagtailimages.rendition",
   "pk": 7
@@ -2968,7 +3410,7 @@
     "focal_point_key": "",
     "filter": 1,
     "width": 60,
-    "file": "images/Wagtail_CMS_logo.max-165x165.png",
+    "file": "images/hero-image.max-165x165.png",
     "height": 60
   },
   "model": "wagtailimages.rendition",
@@ -2979,9 +3421,9 @@
     "image": 2,
     "focal_point_key": "",
     "filter": 1,
-    "width": 60,
-    "file": "images/sass.max-165x165.png",
-    "height": 60
+    "width": 165,
+    "file": "images/foundation_5.max-165x165.png",
+    "height": 63
   },
   "model": "wagtailimages.rendition",
   "pk": 9
@@ -2991,9 +3433,9 @@
     "image": 1,
     "focal_point_key": "",
     "filter": 1,
-    "width": 165,
-    "file": "images/postgresql.max-165x165.jpg",
-    "height": 63
+    "width": 60,
+    "file": "images/digital.max-165x165.png",
+    "height": 60
   },
   "model": "wagtailimages.rendition",
   "pk": 10
@@ -3003,56 +3445,56 @@
     "image": 9,
     "focal_point_key": "",
     "filter": 2,
-    "width": 130,
-    "file": "images/foundation_5.max-130x100.png",
-    "height": 50
+    "width": 1300,
+    "file": "images/wagtail.original.jpg",
+    "height": 500
   },
   "model": "wagtailimages.rendition",
   "pk": 11
 },
 {
   "fields": {
-    "image": 4,
+    "image": 9,
     "focal_point_key": "",
-    "filter": 2,
-    "width": 130,
-    "file": "images/wagtail.max-130x100.jpg",
-    "height": 50
+    "filter": 3,
+    "width": 800,
+    "file": "images/wagtail.max-800x600.jpg",
+    "height": 307
   },
   "model": "wagtailimages.rendition",
   "pk": 12
 },
 {
   "fields": {
-    "image": 6,
+    "image": 5,
     "focal_point_key": "",
     "filter": 2,
-    "width": 130,
-    "file": "images/sass-logo-new.max-130x100.png",
-    "height": 50
+    "width": 1300,
+    "file": "images/postgresql.original.jpg",
+    "height": 500
   },
   "model": "wagtailimages.rendition",
   "pk": 13
 },
 {
   "fields": {
-    "image": 1,
+    "image": 5,
     "focal_point_key": "",
-    "filter": 2,
-    "width": 130,
-    "file": "images/postgresql.max-130x100.jpg",
-    "height": 50
+    "filter": 3,
+    "width": 800,
+    "file": "images/postgresql.max-800x600.jpg",
+    "height": 307
   },
   "model": "wagtailimages.rendition",
   "pk": 14
 },
 {
   "fields": {
-    "image": 9,
+    "image": 2,
     "focal_point_key": "",
-    "filter": 3,
+    "filter": 2,
     "width": 1300,
-    "file": "images/foundation_5.width-1400.png",
+    "file": "images/foundation_5.original.png",
     "height": 500
   },
   "model": "wagtailimages.rendition",
@@ -3060,23 +3502,23 @@
 },
 {
   "fields": {
-    "image": 4,
+    "image": 2,
     "focal_point_key": "",
     "filter": 3,
-    "width": 1300,
-    "file": "images/wagtail.width-1400.jpg",
-    "height": 500
+    "width": 800,
+    "file": "images/foundation_5.max-800x600.png",
+    "height": 307
   },
   "model": "wagtailimages.rendition",
   "pk": 16
 },
 {
   "fields": {
-    "image": 1,
+    "image": 8,
     "focal_point_key": "",
-    "filter": 3,
+    "filter": 2,
     "width": 1300,
-    "file": "images/postgresql.width-1400.jpg",
+    "file": "images/sass-logo-new.original.png",
     "height": 500
   },
   "model": "wagtailimages.rendition",
@@ -3084,21 +3526,177 @@
 },
 {
   "fields": {
-    "image": 6,
+    "image": 8,
     "focal_point_key": "",
     "filter": 3,
-    "width": 1300,
-    "file": "images/sass-logo-new.width-1400.png",
-    "height": 500
+    "width": 800,
+    "file": "images/sass-logo-new.max-800x600.png",
+    "height": 307
   },
   "model": "wagtailimages.rendition",
   "pk": 18
 },
 {
   "fields": {
+    "image": 2,
+    "focal_point_key": "",
+    "filter": 4,
+    "width": 130,
+    "file": "images/foundation_5.max-130x100.png",
+    "height": 50
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 19
+},
+{
+  "fields": {
+    "image": 9,
+    "focal_point_key": "",
+    "filter": 4,
+    "width": 130,
+    "file": "images/wagtail.max-130x100.jpg",
+    "height": 50
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 20
+},
+{
+  "fields": {
+    "image": 5,
+    "focal_point_key": "",
+    "filter": 4,
+    "width": 130,
+    "file": "images/postgresql.max-130x100.jpg",
+    "height": 50
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 21
+},
+{
+  "fields": {
+    "image": 8,
+    "focal_point_key": "",
+    "filter": 4,
+    "width": 130,
+    "file": "images/sass-logo-new.max-130x100.png",
+    "height": 50
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 22
+},
+{
+  "fields": {
+    "image": 2,
+    "focal_point_key": "",
+    "filter": 5,
+    "width": 1300,
+    "file": "images/foundation_5.width-1400.png",
+    "height": 500
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 23
+},
+{
+  "fields": {
+    "image": 9,
+    "focal_point_key": "",
+    "filter": 5,
+    "width": 1300,
+    "file": "images/wagtail.width-1400.jpg",
+    "height": 500
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 24
+},
+{
+  "fields": {
+    "image": 5,
+    "focal_point_key": "",
+    "filter": 5,
+    "width": 1300,
+    "file": "images/postgresql.width-1400.jpg",
+    "height": 500
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 25
+},
+{
+  "fields": {
+    "image": 8,
+    "focal_point_key": "",
+    "filter": 5,
+    "width": 1300,
+    "file": "images/sass-logo-new.width-1400.png",
+    "height": 500
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 26
+},
+{
+  "fields": {
+    "image": 2,
+    "focal_point_key": "2e16d0ba",
+    "filter": 6,
+    "width": 500,
+    "file": "images/foundation_5.2e16d0ba.fill-500x350.png",
+    "height": 350
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 27
+},
+{
+  "fields": {
+    "image": 2,
+    "focal_point_key": "",
+    "filter": 7,
+    "width": 1200,
+    "file": "images/foundation_5.width-1200.png",
+    "height": 461
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 28
+},
+{
+  "fields": {
+    "image": 9,
+    "focal_point_key": "",
+    "filter": 7,
+    "width": 1200,
+    "file": "images/wagtail.width-1200.jpg",
+    "height": 461
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 29
+},
+{
+  "fields": {
+    "image": 5,
+    "focal_point_key": "",
+    "filter": 7,
+    "width": 1200,
+    "file": "images/postgresql.width-1200.jpg",
+    "height": 461
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 30
+},
+{
+  "fields": {
+    "image": 8,
+    "focal_point_key": "",
+    "filter": 7,
+    "width": 1200,
+    "file": "images/sass-logo-new.width-1200.png",
+    "height": 461
+  },
+  "model": "wagtailimages.rendition",
+  "pk": 31
+},
+{
+  "fields": {
     "link_page": null,
     "embed_url": "",
-    "image": 9,
+    "image": 2,
     "link_external": "",
     "caption": "",
     "sort_order": 0,
@@ -3112,7 +3710,7 @@
   "fields": {
     "link_page": null,
     "embed_url": "",
-    "image": 4,
+    "image": 9,
     "link_external": "",
     "caption": "",
     "sort_order": 1,
@@ -3126,7 +3724,7 @@
   "fields": {
     "link_page": null,
     "embed_url": "",
-    "image": 1,
+    "image": 5,
     "link_external": "",
     "caption": "",
     "sort_order": 2,
@@ -3140,7 +3738,7 @@
   "fields": {
     "link_page": null,
     "embed_url": "",
-    "image": 6,
+    "image": 8,
     "link_external": "",
     "caption": "",
     "sort_order": 3,
@@ -3153,9 +3751,63 @@
 {
   "fields": {
     "body": "<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>",
-    "title_text": "<h3>Wagtail cookiecutter Foundation</h3>"
+    "title_text": "<h3>Welcome to\u00a0Wagtail Cookiecutter Foundation</h3>"
   },
   "model": "pages.homepage",
   "pk": 3
+},
+{
+  "fields": {
+    "feed_image": null,
+    "intro": "<p>Welcome to photo gallery!</p>"
+  },
+  "model": "photo_gallery.galleryindexpage",
+  "pk": 4
+},
+{
+  "fields": {
+    "content_object": 5,
+    "tag": 1
+  },
+  "model": "photo_gallery.gallerypagetag",
+  "pk": 1
+},
+{
+  "fields": {
+    "feed_image": 2
+  },
+  "model": "photo_gallery.gallerypage",
+  "pk": 5
+},
+{
+  "fields": {
+    "feed_image": null,
+    "intro": "<p>Welcome to documents gallery!</p>"
+  },
+  "model": "documents_gallery.documentsindexpage",
+  "pk": 6
+},
+{
+  "fields": {
+    "content_object": 7,
+    "tag": 2
+  },
+  "model": "documents_gallery.documentspagetag",
+  "pk": 1
+},
+{
+  "fields": {
+    "content_object": 7,
+    "tag": 3
+  },
+  "model": "documents_gallery.documentspagetag",
+  "pk": 2
+},
+{
+  "fields": {
+    "feed_image": null
+  },
+  "model": "documents_gallery.documentspage",
+  "pk": 7
 }
 ]
