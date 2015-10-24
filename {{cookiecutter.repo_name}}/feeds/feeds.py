@@ -1,11 +1,12 @@
 # Importing the syndication feed and BlogPage class from blog model.
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Rss201rev2Feed
+from blog.models import BlogPage
+
 from wagtail.wagtailimages.models import Filter
 from wagtail.wagtailcore.models import Site
-from xml.sax.saxutils import escape
+from django.utils.html import strip_tags
 from datetime import datetime, time
-from blog.models import BlogPage
 
 class CustomFeedGenerator(Rss201rev2Feed):
 
@@ -18,11 +19,17 @@ class CustomFeedGenerator(Rss201rev2Feed):
         super(CustomFeedGenerator, self).add_item_elements(handler, item)
         handler.startElement(u"content:encoded", {})
 
-        figure = '<figure type="image">'
-        figure += '<image src="%s"></image>' % (item['image'])
-        figure += '</image></figure>'
+        content = '<![CDATA['
+        content += '<h3>%s</h3><hr>' % (item['content_description'])
+        if item['image'] != "":
+            content += '<img src="%s">' % (item['image'])
+        content += ']]>'
 
-        handler.characters(escape(figure))
+        # Adding content in this way do not escape content so make it suitable for
+        # Feedburner and other services. If we use handler.characters(content) then
+        # it will escape content and will not work perfectly with Feedburner and 
+        # other services.
+        handler._write(content)
 
         handler.endElement(u"content:encoded")
 
@@ -50,7 +57,7 @@ class BlogFeed(Feed):
         return item.title
 
     def item_description(self, item):
-        return item.intro if item.intro else item.body
+        return strip_tags(item.intro) if item.intro else strip_tags(item.body)
 
     def item_link(self, item):
         return item.full_url
@@ -71,8 +78,15 @@ class BlogFeed(Feed):
 
             site_objects = Site.objects.all()
 
+            # Getting the Default site to be added in image relative URL
             for site in site_objects:
                 if site.is_default_site:
                     default_site = site
 
-        return { 'image': default_site.root_url + img.url if feed_image else ""}
+            image_complete_url = default_site.root_url + img.url
+
+        content_description = strip_tags(item.intro) if item.intro else strip_tags(item.body)
+
+        return { 'image': image_complete_url if feed_image else "",
+                'content_description': content_description
+        }
