@@ -1,12 +1,16 @@
-# Importing the syndication feed and BlogPage class from blog model.
+# Importing the syndication feed
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Rss201rev2Feed
-from blog.models import BlogPage
 
 from wagtail.wagtailimages.models import Filter
 from wagtail.wagtailcore.models import Site
 from django.utils.html import strip_tags
+from django.conf import settings
 from datetime import datetime, time
+
+import importlib
+blogmodel_path = importlib.import_module(getattr(settings, "FEEDS_BLOG_MODEL_PATH"))
+
 
 class CustomFeedGenerator(Rss201rev2Feed):
 
@@ -38,18 +42,19 @@ class BlogFeed(Feed):
     # FEED TYPE
     feed_type = CustomFeedGenerator
 
-    # The default RSS information that gets shown at the top of the feed.
-    title = "Example site news"
-    link = "/news/"
-    description = "Updates on news in example site"
+    # The RSS information that gets shown at the top of the feed.
+    title = getattr(settings, "FEEDS_TITLE", "")
+    link = getattr(settings, "FEEDS_LINK", "")
+    description = getattr(settings, "FEEDS_DESCRIPTION", "")
     
-    author_email = 'example@example.com'
-    author_link = 'http://example.com'
+    author_email = getattr(settings, "FEEDS_AUTHOR_EMAIL", "")
+    author_link = getattr(settings, "FEEDS_AUTHOR_LINK", "")
 
     def items(self):
-        return BlogPage.objects.order_by('date')
+        blog_model_name = getattr(settings, "FEEDS_BLOG_MODEL_NAME")
+        return getattr(blogmodel_path, blog_model_name).objects.order_by('date')
 
-    # This gets the BlogPage model datefield "date" which shows when the blog post was made.
+    # This gets the model datefield "date" which shows when the blog post was made.
     def item_pubdate(self, item):
         return datetime.combine(item.date, time())
 
@@ -57,7 +62,13 @@ class BlogFeed(Feed):
         return item.title
 
     def item_description(self, item):
-        return strip_tags(item.intro) if item.intro else strip_tags(item.body)
+        intro_field = getattr(settings, "FEEDS_BLOG_DESCRIPTION_INTRO")
+        body_field = getattr(settings, "FEEDS_BLOG_DESCRIPTION_BODY")
+        
+        if getattr(item, intro_field):
+            return strip_tags(getattr(item, intro_field)) 
+        else:
+            return strip_tags(getattr(item, body_field))
 
     def item_link(self, item):
         return item.full_url
