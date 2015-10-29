@@ -180,6 +180,21 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+# Feeds app for Wagtail CMS
+
+FEEDS_TITLE = "Example site news"
+FEEDS_LINK = "/news/"
+FEEDS_DESCRIPTION = "Updates on news in example site"
+
+FEEDS_AUTHOR_EMAIL = "example@example.com"
+FEEDS_AUTHOR_LINK = "http://example.com"
+
+FEEDS_BLOG_MODEL_PATH = "blog.models"
+FEEDS_BLOG_MODEL_NAME = "BlogPage"
+
+FEEDS_BLOG_DESCRIPTION_INTRO = "intro"
+FEEDS_BLOG_DESCRIPTION_BODY = "body"
+
 # Google Maps Key
 
 GOOGLE_MAPS_KEY = ''
