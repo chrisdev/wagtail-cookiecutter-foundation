@@ -26,6 +26,7 @@ Topics
     - `Using Vagrant for Development`_
 - `Modules`_
     - `Photo Gallery Module`_
+    - `Feeds Module`_
 - `Grunt Tasks`_
     - `Image Compression`_
 - `Using Ansible for Deployment and Provisioning`_
@@ -44,13 +45,15 @@ What's included
   navigation and other interface components)
 
 - A comprehensive suite of apps to use for building your site.
-  We take  a modular approach so that can pick and choose the functionality you want to include
-  on you site. We provide individual modules for:
+  We take a modular approach so that you can pick and choose the functionality you want to include
+  on your site. We provide individual modules for:
 
     - ``pages`` - Hompage, Standard Pages, People Page, Contact Page, etc.
     - ``blog`` - Blogging or site news
     - ``events`` - Event management
-    - ``photo_gallery``- To facilitate easy  management of photo galleries
+    - ``Feeds`` - To create RSS feeds for blog which also support images
+    - ``photo_gallery``- To facilitate easy management of photo galleries
+    - ``documents_gallery``- To facilitate easy management of documents like pdf etc.
     - ``utils`` - utility functions, templatetags and filters
 
 .. _Wagtail: https://wagtail.io
@@ -70,13 +73,13 @@ What's included
 
 - We also provide support for updating your Foundation framework through
   Bower_ and provide support for an alternative front-end work flow based on
-  using Bower_ and a task runner like Grunt_ or Gulp_
+  using Bower_ and a task runner like Grunt_
 
 - Support for Vagrant_ which uses the `torchbox/wagtail base box`_
 
 - Deployment and provisioning using Ansible_ that has been extensively tested on
   Digital Ocean and Linode VPS but should be easy to modified for hosting on
-  EC2 etc..
+  EC2 etc.
 
 .. _`torchbox/wagtail base box`: https://github.com/torchbox/vagrant-wagtail-base
 .. _Ansible: http://www.ansible.com/home
@@ -84,7 +87,6 @@ What's included
 .. _django-compressor: https://github.com/sass/libsass
 .. _django-libsass: https://github.com/torchbox/django-libsass
 .. _Bower: http://bower.io
-.. _Gulp: https://gulpjs.com
 .. _Grunt: https://gruntjs.com
 .. _Vagrant: https://www.vagrantup.com/
 
@@ -170,7 +172,7 @@ This will create virtual environment, install pip requirements, create database,
 
 virtualenv
 **********
-To create the virtualenv for the project.
+To create the virtualenv named venv for the project.
 
 requirements
 ************
@@ -290,10 +292,10 @@ Firstly, open up a command line shell in your new projects directory.
 
   By default require ``PostgreSQL`` to be installed
 
-.. code-block:: sh
+  .. code-block:: sh
 
-    createdb my_site
-   ./manage.py migrate
+      createdb my_site
+     ./manage.py migrate
 
 5. **Load the Initial Data**
    The cookiecutter comes with some pages already created for your
@@ -366,15 +368,27 @@ Modules
 
 The project made with this cookiecutter contains a number of modules with various functionalities. The project uses a modular structure so you can pick the module you want in your project. The various modules are
 
-* Blog
-* Contact
-* Events
-* Feeds
-* Pages
-* People
-* Photo Gallery
-* Products
-* Utils
+* Blog_
+* Contact_
+* Documents_Gallery_
+* Events_
+* Feeds_
+* Pages_
+* People_
+* Photo_Gallery_
+* Products_
+* Utils_
+
+.. _Blog: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/blog
+.. _Contact: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/contact
+.. _Documents_Gallery: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/documents_gallery
+.. _Events: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/events
+.. _Feeds: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/feeds
+.. _Pages: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/pages
+.. _People: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/people
+.. _Photo_Gallery: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/photo_gallery
+.. _Products: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/products
+.. _Utils: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/utils
 
 Photo Gallery Module
 ********************
@@ -392,6 +406,35 @@ We uses tag approach to make this possible. The steps to create Photo galleries 
 * Create a Gallery Page and enter the tag name same as above. You can also choose a feed image so it can appear in Gallery index page.
 
 * Your Gallery is now created with all images you want. Awesome, right?
+
+Feeds Module
+************
+
+The feeds module allows to create RSS feeds for your blog. This module generates RSS feeds, which supports images as well and validates. The following settings for this module is defined in ``settings/base.py``. You can change these according to your needs.
+
+* ``FEEDS_TITLE`` = "Example site news"
+* ``FEEDS_LINK`` = "/news/"
+* ``FEEDS_DESCRIPTION`` = "Updates on news in example site"
+
+* ``FEEDS_AUTHOR_EMAIL`` = "example@example.com"
+* ``FEEDS_AUTHOR_LINK`` = "http://example.com"
+
+The following settings define the path to the blog model class file and the name of the blog model class.
+
+* ``FEEDS_BLOG_MODEL_PATH`` = "blog.models"
+* ``FEEDS_BLOG_MODEL_NAME`` = "BlogPage"
+
+The following settings define the fields in the model class to be used for RSS description.
+
+* ``FEEDS_BLOG_DESCRIPTION_INTRO`` = "intro"
+* ``FEEDS_BLOG_DESCRIPTION_BODY`` = "body"
+
+The project created with this cookiecutter has defined the url to the feed in urls.py file. You can change the url if you want.
+
+  .. code-block:: python
+
+     from feeds.feeds import BlogFeed
+     url(r'^blog/feed/$', BlogFeed(), name='blog_feed')
 
 Grunt Tasks
 -----------
