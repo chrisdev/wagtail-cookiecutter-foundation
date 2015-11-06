@@ -10,6 +10,7 @@ help:
 	@echo "  initial_data             populate the site with initial page structure"
 	@echo "  bower                    Install front-end dependencies with bower"
 	@echo "  runserver                Start the django dev server"
+	@echo "  superuser                Create superuser with name superuser and password pass"
 	@echo "  test                     run unit tests"
 	@echo "  func_test                run functional tests"
 	@echo "  static_site              generate a static site from the project"
@@ -71,6 +72,9 @@ runserver:
 		$(MANAGE_CMD) runserver $(HOST); \
 	)
 
+superuser:
+	echo "from django.contrib.auth.models import User; User.objects.create_superuser('superuser', 'superuser@example.com', 'pass')" | ./manage.py shell
+	
 update: update_pip update_bower
 
 update_pip:
