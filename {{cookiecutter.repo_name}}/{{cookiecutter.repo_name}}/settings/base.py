@@ -182,19 +182,17 @@ TEMPLATE_DIRS = (
 )
 
 # Feeds app for Wagtail CMS
+FEED_APP_LABEL = 'blog'
+FEED_MODEL_NAME = 'BlogPage'
+FEED_ITEM_DESCRIPTION_FIELD = 'intro'
+FEED_ITEM_CONTENT_FIELD = 'body'
 
-FEEDS_TITLE = "Example site news"
-FEEDS_LINK = "/news/"
-FEEDS_DESCRIPTION = "Updates on news in example site"
+FEED_TITLE = 'From the Desk of John Blog'
+FEED_LINK = '/news/'
+FEED_DESCRIPTION = "News and views from around the Web"
+FEED_AUTHOR_EMAIL = 'john@johnblog.com'
+FEED_AUTHOR_LINK = 'https://johnblog.com'
 
-FEEDS_AUTHOR_EMAIL = "example@example.com"
-FEEDS_AUTHOR_LINK = "http://example.com"
-
-FEEDS_BLOG_MODEL_PATH = "blog.models"
-FEEDS_BLOG_MODEL_NAME = "BlogPage"
-
-FEEDS_BLOG_DESCRIPTION_INTRO = "intro"
-FEEDS_BLOG_DESCRIPTION_BODY = "body"
 
 # Google Maps Key
 
