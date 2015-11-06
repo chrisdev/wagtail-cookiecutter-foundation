@@ -198,6 +198,10 @@ runserver
 *********
 Start the django dev server.
 
+superuser
+*********
+Create superuser with name superuser and password pass.
+
 test
 ****
 Run unit tests.
