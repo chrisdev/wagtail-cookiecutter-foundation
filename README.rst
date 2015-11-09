@@ -4,7 +4,6 @@ Wagtail cookiecutter Foundation
 .. image:: https://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation.svg?branch=master
    :target: http://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation
 
-   
 A cookiecutter_ template for `Wagtail CMS`_ featuring `Zurb Foundation`_ front-end
 framework.
 
@@ -19,67 +18,116 @@ Topics
 ======
 
 - `What's included`_
-- `Usage`_
-- `Getting up and running`_
-    - `Using Makefile`_
-    - `Normal Installation`_
-    - `Using Vagrant for Development`_
-- `Modules`_
-    - `Photo Gallery Module`_
-    - `Feeds Module`_
-- `Grunt Tasks`_
-    - `Image Compression`_
-- `Using Ansible for Deployment and Provisioning`_
-    - `Vagrant based Staging Server`_
+- `Getting Started`_
+- `Up and Running for Development`_
+    - `Using make`_
+    - `Manual Setup`_
+- `Provisioning and Deployment`_
+    - `Prerequisites`_
+    - `Provisioning`_
+    - `Deployment`_
     - `Ansible Variables`_
-        - `Group Variables`_
-        - `Host Variables`_
-    - `Ansible Files`_
-    - `Playbooks`_
-
+-  `Other Tasks`_
+    - `Static Sites`_
+    - `Image Compression`
 
 What's included
----------------
-- A Django project with Wagtail_ pre-installed with support for all the
-  `Zurb Foundation`_ HTML and CSS UI components (typography, forms, buttons,
-  navigation and other interface components)
+----------------
+A Django project with Wagtail_ pre-installed with support for all the
+Zurb Foundation`_ HTML, CSS and Javascript components (typography, forms, buttons,
+navigation and other interface components)
 
-- A comprehensive suite of apps to use for building your site.
-  We take a modular approach so that you can pick and choose the functionality you want to include
-  on your site. We provide individual modules for:
+App Modules
+^^^^^^^^^^^^
+We provide a comprehensive suite of apps to use for building your site.
+We take  a modular approach so that can pick and choose the functionality you
+want to include. We provide separate modules for:
 
-    - ``pages`` - Hompage, Standard Pages, People Page, Contact Page, etc.
-    - ``blog`` - Blogging or site news
-    - ``events`` - Event management
-    - ``Feeds`` - To create RSS feeds for blog which also support images
-    - ``photo_gallery``- To facilitate easy management of photo galleries
-    - ``documents_gallery``- To facilitate easy management of documents like pdf etc.
-    - ``utils`` - utility functions, templatetags and filters
+    - ``pages`` - Different kinds of pages including, Homepage, Standard Pages, 
+    - ``blog`` - Blog or site news
+    - ``contact`` - Contact Page with included contact form 
+    - ``events`` - Events
+    - ``photo_gallery`` - Create photo galleries using wagtail tags
+    - ``documents`` - Create and organize documents in folders using wagtail tags 
+    - ``products`` - use for a product or portfolio showcase
+    -  ``feeds`` - RSS/Atom feeds which support enclosures 
+        (e.g image and video embeds and work services like feedburner and mailchimp
+    - ``utils`` - Various utility functions, templatetags and filters
+
+The projects spun up with wagtail-cookiecutter-foundation have a modular structure 
+so you can pick the modules that you want to included in  in your project.
+
+Photo Gallery Module
+"""""""""""""""""""""
+
+The Photo Gallery module allows you to easily create Photo Galleries for your site
+Using the built in tagging funcitonality.  To create Photo Galleries  
+
+    * Go to Images section of the Wagtail Admin and click on Add an Image.
+
+    * Drag and drop images you want in your gallery and add common tag name to all Images. 
+      You can also add same tag name to any existing images that you want 
+      to the gallery.
+
+    * Next create a Gallery Index Page which displays all your galleries.
+
+    * Add a Gallery Child Page and enter the tags of the Images that you want
+      to appear in the Gallery. You can also choose a feed image so it can appear
+      in Gallery index page.
+
+    * Your Gallery is now created with all images you want. Awesome, right?
+
+Documents Folder 
+""""""""""""""""
+
+This module allows to organize documents in "folders" based on tags. 
+
+    * Go to Documents section in Wagtail Admin.
+
+    * Add add a common tag name to all documents that you want to appear in the folder. 
+
+    * Now create a Document Index page which displays all your Document folders.
+
+    * Create a Document Folder Child Page and enter the tags for the document that you
+      want to appear in the folder. 
+
+    * The Folder is now created with all the Documents matching the tags you want.
+      Awesome, right?
 
 .. _Wagtail: https://wagtail.io
 .. _`Wagtail Demo Project`: https://github.com/torchbox/wagtaildemo
 
 
-- Templates and template tags to support Foundation ``HTML`` and ``CSS UI``
-  components including:
+Feeds 
+"""""""""
+To do
+
+Other Components
+"""""""""""""""""
+- We provide templates and templatetags to support all the major Foundation ``HTML`` 
+  and ``CSS`` UI components including:
 
     - Top bar including (sticky nav)
-    - Off canvas
+    - Off canvas menu
     - Bread crumbs
     - SubNav
     - Pagination
+    - Reveals  
 
-- Full libsass_ Foundation Sass support through `django-compressor`_/`django-libsass`_
+- We also provide comprehensive set of  `make` commands to  help you to  perform
+  key development, provisioning and deployment tasks.
 
-- We also provide support for updating your Foundation framework through
-  Bower_ and provide support for an alternative front-end work flow based on
-  using Bower_ and a task runner like Grunt_
+- libsass_ Foundation Sass support through `django-compressor`_/`django-libsass`_
 
-- Support for Vagrant_ which uses the `torchbox/wagtail base box`_
+- Front end dependency management with Bower_ 
+  
 
 - Deployment and provisioning using Ansible_ that has been extensively tested on
-  Digital Ocean and Linode VPS but should be easy to modified for hosting on
-  EC2 etc.
+  Digital Ocean and Linode VPSs but should work on other 
+  platforms. You you can drive the Ansible playbooks using 
+  a set of simple make commands
+
+- Image optimization using Grunt
 
 .. _`torchbox/wagtail base box`: https://github.com/torchbox/vagrant-wagtail-base
 .. _Ansible: http://www.ansible.com/home
@@ -87,22 +135,20 @@ What's included
 .. _django-compressor: https://github.com/sass/libsass
 .. _django-libsass: https://github.com/torchbox/django-libsass
 .. _Bower: http://bower.io
+.. _Gulp: https://gulpjs.com
 .. _Grunt: https://gruntjs.com
 .. _Vagrant: https://www.vagrantup.com/
 
-Usage
------
+Getting Started
+----------------
 
 To create a new `Wagtail CMS`_ project. First, install cookiecutter ::
 
     $ pip install cookiecutter
 
-Now run it against this repo::
+Now run it against this repo ::
 
     $ cookiecutter https://github.com/chrisdev/wagtail-cookiecutter-foundation.git
-
-You'll be prompted for some questions, answer them, then it will create a Django project for you.
-
 
 You will be prompted to answer the following questions. ::
 
@@ -116,6 +162,7 @@ You will be prompted to answer the following questions. ::
     project_name (default is "Wagtail Project")?
     repo_name (default is "wagtailproject")?
     version_control_system (default is "hg")?,
+    vcs_host (default is "bitbucket")?,
     author_name (default is "Your Name")?
     email (default is "Your email")?
     description (default is "A short description of the project.")?
@@ -126,6 +173,7 @@ You will be prompted to answer the following questions. ::
     use_ssl_in_production (default is true)?
     staging_host_name (default is staging.example.org)?
     use_vagrant_staging (default is true)?
+    deploy_user_name (default is django)
 
 
 Enter the project and take a look around::
@@ -133,7 +181,7 @@ Enter the project and take a look around::
     $ cd wagtaiproject/
     $ ls
 
-Create a GitHub, Bitbucket repo and push it there::
+Create a GitHub or Bitbucket repo for the project and push it there::
 
     $ git init
     $ git add .
@@ -141,126 +189,152 @@ Create a GitHub, Bitbucket repo and push it there::
     $ git remote add origin git@github.com:cclarke/my_site.git
     $ git push -u origin master
 
-Now take a look at your repo. Don't forget to carefully look at the generated README. Awesome, right?
 
-Getting up and running
-======================
+Up and Running for Development
+-------------------------------
 
-To perform the following steps we assume the following dependencies
+Before you start ensure that you've installed
+the following.
 
     * pip
     * virtualenv/pyvenv/virtualenvwrapper
     * PostgreSQL
-    * Bower
+    * node, npm and git and bower
 
-You can start development using one of the below options.
+The easiest way to get started is to use the built in ``make`` commands.
 
-- `Using Makefile`_
-- `Normal Installation`_
-- `Using Vagrant for Development`_
+Using make
+^^^^^^^^^^
 
-Using Makefile
---------------
+Your project contains Makefile which helps to you setup your development 
+environment with a single command. Additionally, we've included 
+commands which will allow you to easily provision your servers  
+and deploy changes to your project easily.  
 
-The projects created with this cookiecutter contains Makefile which helps to setup project easily.
-
-Please use 'make <target>' where <target> is one of
+The Makefile supports the full range of development tasks. Namely creating
+a virtualenv_ for the project, installing requirements_, creating a database
+(db_):, running migrations (migrate_). Loading initial page structure for the
+site (initial_data_), install front-end components with bower_, starting the
+development server (runserver_). Using the livereload_ utility and running your
+unit (test_) and functional (func_test_). 
 
 all
-***
-This will create virtual environment, install pip requirements, create database, migrate, load initial data to database, install bower packages, run server for you. Awesome, right?
+""""
+This is a "do all" command. Run it! ::
+
+  make all
+
+This command will create the projects virtual environment, 
+install all python dependencies,  create
+the database, run migrations and load initial data to database,
+install front-end dependencies and finally start the development server 
+for you. Awesome, right?
+
+Access your site at ``http://localhost:8000``. The Admin 
+back-end is available at ``http://localhost:8000/admin/``.
+The default Admin username is *admin*.  
+The default Admin password is *admin123*
 
 virtualenv
-**********
-To create the virtualenv named venv for the project.
+"""""""""""
+To create the virtualenv for the project. ::
+
+  make virtualenv
 
 requirements
-************
-Install the requirements to the virtualenv
+"""""""""""""
+Install the requirements to the virtualenv ::
+
+  make requirements 
 
 db
-**
-Create the PostgreSQL db for the project.
+"""
+Create a PostgreSQL database for the project. It will have the same name as the
+project ::
+
+  make db 
 
 migrate
-*******
-Run the migrations.
+""""""""
+Run the migrations ::
+
+  make db 
+
 
 initial_data
-************
-Populate the site with initial page structure.
+""""""""""""
+Populate the site with initial page structure. ::
+
+  make initial_data 
 
 bower
-*****
-Install front-end dependencies with bower.
+"""""
+Install all front-end dependencies with bower i.e `foundation`, `bxslider` and 
+`font-awesome` ::
+
+  make initial_data 
 
 runserver
-*********
-Start the django dev server.
+"""""""""
+Start the standard Django dev server. ::
 
-superuser
-*********
-Create superuser with name superuser and password pass.
-
-test
-****
-Run unit tests.
-
-func_test
-*********
-Run functional tests.
-
-static_site
-***********
-Generate a static site from the project.
-
-compress_images
-***************
-Compresses images used in site.
-
-deploy_user
-**********
-Create the deploy user fetch deployment keys. Defaults to production DEPLOY_ENV=vagrant/staging.
-
-provision
-*********
-Provision the production server Defaults to production DEPLOY_ENV=staging.
-
-deploy
-******
-Provision the staging server Defaults to production DEPLOY_ENV=staging.
+   make runserver
 
 livereload
-**********
-Start Server with livereload functionality.
+""""""""""
+Start Server with livereload functionality. Uses the excellent 
+`python-livereload`_ library. ::
 
-Normal Installation
--------------------
+    make linvreload
 
-Firstly, open up a command line shell in your new projects directory.
+.. _python-livereload: https://github.com/lepture/python-livereload   
+
+test
+""""
+Run your unit tests.::  
+
+    make test
+
+func_test
+"""""""""
+Run your functional tests. ::
+
+    make func_test
+
+
+
+Manual Setup 
+^^^^^^^^^^^^^
+
+Firstly, start your command shell and change to the new projects directory.
+So on Linux or OS X ::
+
+   cd project_repo
     
-1. **Create a virtual environment**
+Next create an virtual environment for the project   
+On Linux/Mac OSX ::
 
+  pyvenv venv`
 
-  **Linux/Mac OSX:** :code:`pyvenv venv`
+On Windows ::
 
-  **Windows:** :code:`c:\Python34\python -m venv myenv`
+   c:\Python34\python -m venv myenv`
 
-  **Python 2.7**
-
-  ``pyvenv`` is only included with Python 3.3 onwards.
-  To get virtual environments on Python 2, use the ``virtualenv`` package:
+If you are not using Python 3.3 or later ``pyvenv`` is not bundled with your
+Python distribution and you need to install the ``virtualenv`` package to  
+get the virtual environments working:
 
   .. code-block:: bash
 
       pip install virtualenv
       virtualenv venv
 
-  **Virtualenvwrapper**
+In this regard, you may find the  virtualenvwrapper_ package useful as it 
+provides a number of commands and utilities which makes working with virtual
+environments much more pleasant. It also places all your virtual environments
+in one place.
 
-  virtualenvwrapper_ provides a set of commands which makes working with virtual environments much more pleasant. It also places all your virtual environments in one place.
-
-  To install (make sure virtualenv is already installed):
+To install (make sure virtualenv is already installed):
 
   .. code-block:: bash
 
@@ -269,7 +343,7 @@ Firstly, open up a command line shell in your new projects directory.
       source /usr/local/bin/virtualenvwrapper.sh
       mkvirtualenv venv
 
-  *Windows*:
+On Windows 
 
   .. code-block:: bash
 
@@ -278,242 +352,236 @@ Firstly, open up a command line shell in your new projects directory.
 
   .. _virtualenvwrapper: http://virtualenvwrapper.readthedocs.org/en/latest/index.html
 
-2. **Activate the virtual environment**
+Once your virtual environment is setup activate it 
+ on Linux/Mac OSX :: 
 
-  **Linux/Mac OSX:** :code:`source venv/bin/activate`
+   source venv/bin/activate
 
-  **Windows:** :code:`venv/Scripts/activate.bat`
+On Windows ::
 
-  **Virtualenvwrapper:** :code:`workon venv`
+   venv/Scripts/activate.bat
 
-3. **Install PIP requirements**
+Using Virtualenvwrapper ::
 
-  :code:`pip install -r requirements/dev.txt`
+   `workon venv`
 
-.. _Fabric: http://www.fabfile.org/
+Install the dependencies for the project using ``pip`` ::
 
-4. **Create the database and migrate**
+  pip install -r requirements/dev.txt
 
-  By default require ``PostgreSQL`` to be installed
 
-  .. code-block:: sh
+Create the database and run migrations. Remember this cookiecutter requires
+``PostgreSQL`` so you need to install it before you can continue.
 
-      createdb my_site
-     ./manage.py migrate
+.. code-block:: sh
 
-5. **Load the Initial Data**
-   The cookiecutter comes with some pages already created for your
-   convenience including the Homepage with a working ``bx_slider`` slide show, 
-   contact page, events and news/blog pages. To generate these pages run:
+    createdb my_site
+   ./manage.py migrate
 
-  :code:`./manage.py load_initial_data`
+``wagtail-cookiecutter-foundation`` comes with some pages already created for your
+convenience including the homepage with a working ``bx_slider`` slideshow, 
+contact page, events and news/blog pages. To generate these pages run ::
+
+  /manage.py load_initial_data
   
-  The default Admin username is *admin*
-  
-  The default Admin password is *admin123*
+The default Admin username is *admin*.  The default Admin password is *admin123*
 
-6. **Install Packages (Foundation, Font-Awesome etc.) using Bower package manager**
+This cookiecutter also has front-end dependencies for Foundation, 
+Font-Awesome etc, bx_slider, Grunt and so on. We use bower_ 
+for front-end dependency management. To install the required front-end 
+dependencies use::
 
-  We use bower_ for front-end dependency management. To install front
-  dependencies use
+  bower install`
 
-  :code:`bower install`
-
-  This will install the supported version of `Zurb Foundation`_, `Font
-  Awesome`_ and bxSlider_ as well as their dependencies.
+This will install the supported version of `Zurb Foundation`_, `Font
+Awesome`_ , bxSlider_ and Grunt as well as their dependencies.
 
   ..  _bower: http://bower.io
   ..  _bxSlider: http://bxslider.com
   ..  _`Font Awesome`: http://fontawesome.io 
 
   
-7. **Run the development server**
+Finally start the development server ::
 
-  :code:`./manage.py runserver`
+  ./manage.py runserver
 
-  Your site is now accessible at ``http://localhost:8000``,
-  with the admin backend available at ``http://localhost:8000/admin/``.
-
-Using Vagrant for Development
------------------------------
-
-Alternatively you may prefer to use Vagrant_ to run your project locally in
-its own virtual machine. This will allow you to use PostgreSQL, Elasticsearch
-Redis etc.  in development without having to install them on your host machine.
-To install Vagrant, see: `Installing Vagrant`_
-
-.. _`Installing Vagrant`: https://docs.vagrantup.com/v2/installation/
-
-
-To setup the Vagrant box, run the following commands
-
- .. code-block:: bash
-
-    vagrant up # This may take some time on first run
-    vagrant ssh
-    # within the ssh session
-    bower install
-    dj createsuperuser
-    djrun
-
-
-If you now visit http://localhost:8000 you should see the default wagtail
-foundation site
-
-You can browse the Wagtail admin interface at: http://localhost:8000/admin
-
-You can read more about how Vagrant works at: https://docs.vagrantup.com/v2/
+Your site is now accessible at ``http://localhost:8000``,
+with the admin backend available at ``http://localhost:8000/admin/``.
+The default Admin username is *admin*.  The default Admin password is *admin123*
 
 .. _Nodejs: https://nodejs.org/
 .. _Vagrant: https://www.vagrantup.com/
 
-Modules
--------
 
-The project made with this cookiecutter contains a number of modules with various functionalities. The project uses a modular structure so you can pick the module you want in your project. The various modules are
+Provisioning and Deployment
+----------------------------
 
-* Blog_
-* Contact_
-* Documents_Gallery_
-* Events_
-* Feeds_
-* Pages_
-* People_
-* Photo_Gallery_
-* Products_
-* Utils_
+This cookiecutter comes with a suite of Ansible_ playbooks to
+support provisioning your servers and deploying changes to production and
+staging.  We also support the creation of a Vagrant based staging server so you
+can "stage" your site locally and tweak and experiment with different
+deployment configurations.  To keep things simple we assume that all your
+application components i.e.  ``Django``, ``PostgreSQL``, ``redis`` and so on
+are all deployed on a single server.  
+However, it is a relatively straightforward
+procedure to tweak the playbooks to support more complex provisioning
+scenarios. In this way you can support for example, separate database server,
+multiple upstream ``wsgi`` servers and so on.  Indeed you easily tweak the
+Vagrantfile located at ``project_repo/ansible/Vagrantfile`` to experiment with
+and test these more complex provisioning scenarios. on.
 
-.. _Blog: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/blog
-.. _Contact: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/contact
-.. _Documents_Gallery: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/documents_gallery
-.. _Events: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/events
-.. _Feeds: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/feeds
-.. _Pages: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/pages
-.. _People: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/people
-.. _Photo_Gallery: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/photo_gallery
-.. _Products: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/products
-.. _Utils: https://github.com/chrisdev/wagtail-cookiecutter-foundation/tree/master/%7B%7Bcookiecutter.repo_name%7D%7D/utils
+Prerequisites
+^^^^^^^^^^^^^^^
 
-Photo Gallery Module
-********************
+Before you start you need to place a copy of your `ssh` public 
+SSH key in the `keystore` directory located in `ansible/{{repo_name}}_keystore`  
+and rename it a `authorized_keys`. Add the ssh keys of any team members that
+you want to run the provisioning and deployment tasks.
 
-The Photo Gallery module allows to create photo galleries easily. The normal way to create photo galleries in `Wagtail CMS`_ takes time. Suppose you have to add 100 photos to an example gallery, in normal way you have to choose photos one by one so it takes time. With this module you can add large number of photos to galleries easily. 
+Also if you want to use SSL then, you need to ensure that you also have  
+the following key files in the ``keystore`` directory:
 
-We uses tag approach to make this possible. The steps to create Photo galleries with this module are 
+    * The private key for your site
+    * The bundled SSL certificate obtained from the CA which contains the 
+      root and intermediate certificates along with your domains certificate.
+      In some cases these may not be bundled but provided separately in which
+      case you must consult your CA's documentation on how to build your own
+      bundle.
+    * The CA's bundled root and intermediate certificate. This is use for
+      certificate pinning.
 
-* Go to Images section in Wagtail admin and click on Add an Image.
+In case you were wondering, the your projects ``.gitignore`` or ``.hgignore`` 
+files will ensure that any of the files that you  place in the  ``keystore`` 
+directory will be ignored by the VCS.  However, you
+should always double check to ensure that your secrets are not accidentally
+checked into a remote VCS repo.
 
-* Drag and drop images you want in your gallery and add common tag name to all Images. You can also add same tag name to existing images if you want them in your gallery.
+Alternatively, may wish to consider the use the `Ansible Vault`_ to keep your
+secrets safe.
 
-* Now create a Gallery Index page which displays all your galleries.
+.. _`Ansible Vault`: http://docs.ansible.com/ansible/playbooks_vault.html 
 
-* Create a Gallery Page and enter the tag name same as above. You can also choose a feed image so it can appear in Gallery index page.
+Next examine the generated `ansible/group_vars/all` file and replace 
+the following to match your SSL key files ::
 
-* Your Gallery is now created with all images you want. Awesome, right?
+    ssl_private_key: your_ssl_private_key
+    ssl_cert:  your_ssl_certificate_bundle¬
+    ca_cert: comodo.pem
 
-Feeds Module
-************
+You must also ensure you that you provide values for the following entries 
+in  your `ansible/host_vars/{{production_host_name}}` file ::
 
-The feeds module allows to create RSS feeds for your blog. This module generates RSS feeds, which supports images as well and validates. The following settings for this module is defined in ``settings/base.py``. You can change these according to your needs.
+    SECRET_KEY: your_django_secret_key 
+    DB_PASSWD: your_db_password 
+    DB_HOST: localhost
+    EMAIL_HOST: 'your_email_server'
+    EMAIL_FROM: 'your_email_from_address'
+    EMAIL_USER: 'email_user'
+    EMAIL_PASSWD: 'email_passwd'
+    GOOGLE_TRACKING_ID: 'your_google_tracking_id
 
-* ``FEEDS_TITLE`` = "Example site news"
-* ``FEEDS_LINK`` = "/news/"
-* ``FEEDS_DESCRIPTION`` = "Updates on news in example site"
+Provisioning
+^^^^^^^^^^^^^
 
-* ``FEEDS_AUTHOR_EMAIL`` = "example@example.com"
-* ``FEEDS_AUTHOR_LINK`` = "http://example.com"
+The provisioning playbooks will:
 
-The following settings define the path to the blog model class file and the name of the blog model class.
+  - Create the  deployment user and download deployment keys for github.com,
+    bitbucket.org, etc.
+  - Install all the required Linux packages on the server including the 
+    UWF firewall and the fail2ban utility.
+  - Install and configure PostgresSQL and a PostreSQL role (user) for the site
+  - Clone the projects repo and setup and Django and Gunicorn project 
+    instance that is managed by supervior
+  - install and configre Redis, Celery and Elasticsearch
+  - Set up and configure Nginx for you site 
 
-* ``FEEDS_BLOG_MODEL_PATH`` = "blog.models"
-* ``FEEDS_BLOG_MODEL_NAME`` = "BlogPage"
+Creating a Deploymet User
+""""""""""""""""""""""""""
+The first thing that you must do is to create a deployment user.
+To create the deploy user for the production ::
 
-The following settings define the fields in the model class to be used for RSS description.
+    make deploy_user
 
-* ``FEEDS_BLOG_DESCRIPTION_INTRO`` = "intro"
-* ``FEEDS_BLOG_DESCRIPTION_BODY`` = "body"
+This will create the deploy user for the production server. For staging run ::
 
-The project created with this cookiecutter has defined the url to the feed in urls.py file. You can change the url if you want.
+    make deploy_user DEPLOY_ENV=staging
 
-  .. code-block:: python
-
-     from feeds.feeds import BlogFeed
-     url(r'^blog/feed/$', BlogFeed(), name='blog_feed')
-
-Grunt Tasks
------------
-
-Grunt tasks are included in Gruntfile to automate various things. To perform grunt tasks, install grunt and its plugins using
-
-:code:`npm install`
-
-The various grunt tasks included in this cookiecutter are
-
-Image Compression
-*****************
-
-To compress images used in projects made with this cookiecutter run:
-
-:code:`grunt imagemin`
-
-You can also use make to run the above task
-
-:code:`make compress_images`
-
-
-Using Ansible for Deployment and Provisioning
-----------------------------------------------
-
-This cookiecutter also comes with a suite of Ansible_ play books and roles for 
-provisioning your servers and deploying the site.  We also support the creation
-of a Vagrant based staging server to "stage" your site locally and allow you to tweak and
-experiment with different deployment configurations. By default these play books 
-assume that all your application components ``django``, ``PostgreSQL``, ``redis`` and so on are
-deployed to a single server. However, we can easily change the Vagrant staging
-configuration to simulate more complex deployments including using a separate
-Database server, multiple upstream ``wsgi`` servers and so on.
-
-Vagrant based Staging Server
------------------------------
-Start by changing to the ``ansible`` directory  and bringing up vagrant based
-the staging server.
+and if you want to use a Vagrant based staging server ::
 
 .. code-block:: sh
 
    cd /my_project/ansible
    vagrant up
 
-Because of the way Vagrant is setup we need to run a special play book to copy
-your ``ssh`` public key (``id_rsa.pub``) to the root account on the Vagrant staging machine
-i.e. to ``authorised_keys``.
+    make deploy_user DEPLOY_ENV=vagrant
 
-.. code-block:: sh
-
-   ansible-playbook -c paramiko -i staging vagrant_staging_setup.yml --ask-pass --sudo -u vagrant 
-
-When prompted for the password, enter "vagrant" 
-
-If you get the following error ::
+When prompted for the password, enter "vagrant" If you get the following error ::
 
     fatal: [staging.example.org] => {'msg': 'FAILED: Authentication failed.', 'failed': True}``
 
 The you may have to remove the entry (IP Address 192.168.33.10) for the staging
 server from your ``~/.ssh/known_hosts`` file.
 
-If you are using Vagrant staging you also need to make an entry into your
-``/etc/hosts`` file for example.
+In addition to creating the deploy user, this make command will 
+download the ``ssh`` public key for the deployment user into your project's
+``keystore`` directory so you can use it as a deployment key on sites 
+like github.com or bitbucket.org  
+
+Other Provisionig Task
+"""""""""""""""""""""""
+
+Once you have setup the deployment user you can now provision the server. 
+This will install all the Linux packages and libraries required to run Django,
+PostgreSQL and related apps.  We also take care to install ``ufw`` firewall and
+``fail2ban``. Provisioning tasks also include; the setting up the project's
+virtual environment, the installation of python dependencies, 
+the setup and configuration of the project's Django/Gunicorn and Supervisor, 
+as well as the installation and setting up the 
+projects Celery, Redis, ElasticSearch and Nginx.  
+
+To provision the production server ::
+
+    make provision
+
+For staging run ::
+
+    make provision DEPLOY_ENV=staging
+
+for a Vagrant based staging server run ::
+
+    make provision DEPLOY_ENV=vagrant
+
+At the end of the process you should  be able to navigate to the
+host URL to view the site and access the Admin using the password specified in
+in ``ansible/host_vars/{{production_host_name}}``
+
+Deployment
+^^^^^^^^^^
+Once you have provisioned your site. Deploying you changes is really simple.
+To deploy to production run: ::
+
+    make deploy 
+
+For staging run ::
+
+    make deploy_user DEPLOY_ENV=staging
+
+and for a Vagrant based staging server ::
+
+    make deploy_user DEPLOY_ENV=staging
 
 
 Ansible Variables
-------------------
+^^^^^^^^^^^^^^^^^^
+
 Before you run the provisioning and deployment playbooks you need check and
 modify Ansible ``Group`` and ``Host`` Variables (e.g.  ``host_vars/staging.example.org``). 
 
 Group Variables
-***************
+"""""""""""""""""
 
 ===============     ====================================================
-variable            Explanation
+Variable            Explanation
 ===============     ====================================================
 project_repo        URL of the source code repository
                     ssh://hg@bitbucket.org/chrisdev/wagtail_project
@@ -525,18 +593,18 @@ gunicorn            127.0.0.1:2015
 deploy_user         Defaults to django
 redis_version       The version of redis to install. Defaults to 2.8.19
 keystore_path       Place all your 
-                    public keys and other secretes   in this location. 
+                    public keys and other secrets here. 
                     Defaults to repo_name/ansible/repo_name_keystore 
-vcs                 Your Version control system 
+vcs                 Your Version control system of choice 
                     *hg* - mecurial 
                     *git* - git
 ===============     ====================================================
 
 Host Variables
-***************
+"""""""""""""""
 
 ======================  ====================================================
-variable                Explanation
+Variable                Explanation
 ======================  ====================================================
 use_ssl                 True
 ssl_key_file            For example ``example.org.key``
@@ -557,47 +625,28 @@ EMAIL_USER              The email user
 EMAIL_PASSWD            The email password 
 ======================  ====================================================
 
-Ansible Files
----------------
-You also have to ensure that files that contain your various secrets are
-present in in the ``keystore`` directory 
-(``ansible/cookiecutter.repo_name.keystore``). Successfully completing the 
-provisioning  playbook would require the following files in the ``keystore``.
-The ``.gitignore`` and ``.hgignore`` files provided by this cookiecutter should
-ensure that no file added to this directory is accidentally added to your VCS.
+Other Tasks
+-----------
 
- - *Authorized Keys* - public key of the developers for e.g. ``id_rsa.pub``. You can
-   concatenate keys for one or more developers and name as ``authorized_keys``
- - *SSL Private Key and Certificate* - This is required only if ``use_ssl`` 
-   is ``true``. The SSL Certificate you place in this directory should be
-   a "bundle" i.e a single file that includes the CA's Root and Intermediate Certificates along
-   with the SSL certificate obtained for the hosts. These should be 
-   concatenated in the correct order as indicated by the CA.
+Static Sites
+^^^^^^^^^^^^^
 
-Playbooks
-----------
+You can use `make` to generate a static site from the project. The static site
+will be in a folder `static_build`.  The command will ensure that all static
+assets and media required for the site to perform correctly are copied to the 
+build folder ::
 
-To provision you servers run
+    make static_site
 
-.. code-block:: sh
+Image Compression
+^^^^^^^^^^^^^^^^^^
 
-   cd ansible
-   #list the available tags 
-   ansible-playbook -i staging provision.yml --list-tags 
+To compress images used in projects made with this cookiecutter run: ::
 
-   #Run all the plays 
+  grunt imagemin
 
-   ansible-playbook -i staging provision.yml 
+You can also use make to run the above task ::
 
-   #Just install Ubuntu packages 
-
-   ansible-playbook -i staging provision.yml --tags packages
-
-
-To deploy changes to production 
-
-.. code-block:: sh
-
-   ansible-playbook -i production deploy.yml
+   make compress_images
 
 .. end-here
