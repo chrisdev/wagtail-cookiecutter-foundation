@@ -414,31 +414,36 @@ We uses tag approach to make this possible. The steps to create Photo galleries 
 Feeds Module
 ************
 
-The feeds module allows to create RSS feeds for your blog. This module generates RSS feeds, which supports images as well and validates. The following settings for this module is defined in ``settings/base.py``. You can change these according to your needs.
+The feeds module allows to create RSS feeds for your blog. This module generates RSS feeds, which supports images and validates as well. The module allows to create two types of feeds.
 
-* ``FEEDS_TITLE`` = "Example site news"
-* ``FEEDS_LINK`` = "/news/"
-* ``FEEDS_DESCRIPTION`` = "Updates on news in example site"
+* ``Basic Feed``: Create basic RSS feed.
+* ``Extended Feed``: Create RSS feed with images.
 
-* ``FEEDS_AUTHOR_EMAIL`` = "example@example.com"
-* ``FEEDS_AUTHOR_LINK`` = "http://example.com"
+The following settings for this module is defined in ``settings/base.py``. You can change these according to your needs.
 
-The following settings define the path to the blog model class file and the name of the blog model class.
+* ``FEED_TITLE`` = 'From the Desk of John Blog'
+* ``FEED_LINK`` = '/news/'
+* ``FEED_DESCRIPTION`` = "News and views from around the Web"
+* ``FEED_AUTHOR_EMAIL`` = 'john@johnblog.com'
+* ``FEED_AUTHOR_LINK`` = 'https://johnblog.com'
 
-* ``FEEDS_BLOG_MODEL_PATH`` = "blog.models"
-* ``FEEDS_BLOG_MODEL_NAME`` = "BlogPage"
+The following settings define the blog model app label and the name of the blog model class.
 
-The following settings define the fields in the model class to be used for RSS description.
+* ``FEED_APP_LABEL`` = 'blog'
+* ``FEED_MODEL_NAME`` = 'BlogPage'
 
-* ``FEEDS_BLOG_DESCRIPTION_INTRO`` = "intro"
-* ``FEEDS_BLOG_DESCRIPTION_BODY`` = "body"
+The following settings define the fields in the model class to be used for RSS description and content fields.
+
+* ``FEED_ITEM_DESCRIPTION_FIELD`` = 'intro'
+* ``FEED_ITEM_CONTENT_FIELD`` = 'body'
 
 The project created with this cookiecutter has defined the url to the feed in urls.py file. You can change the url if you want.
 
   .. code-block:: python
 
-     from feeds.feeds import BlogFeed
-     url(r'^blog/feed/$', BlogFeed(), name='blog_feed')
+     from feeds.feeds import BasicFeed, ExtendedFeed
+     url(r'^blog/feed/basic$', BasicFeed(), name='basic_feed'),
+     url(r'^blog/feed/extended$', ExtendedFeed(), name='extended_feed'),
 
 Grunt Tasks
 -----------
