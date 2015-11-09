@@ -3,7 +3,7 @@
 {% load wagtailcore_tags %}
 
 {% block article_content %}
-            <a href="{% url 'blog_feed' %}" target="_blank"><i class="fa fa-rss" id="blog-rss"></i></a>
+            <a href="{% url 'extended_feed' %}" target="_blank"><i class="fa fa-rss" id="blog-rss"></i></a>
             {% if request.GET.tag|length %}
                 <h4>Showing posts tagged as {{ request.GET.tag|safe }} <a href=" {% pageurl self %} ">Show all</a></h4>
             {% endif %}
