@@ -4,15 +4,12 @@ Wagtail cookiecutter Foundation
 .. image:: https://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation.svg?branch=master
    :target: http://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation
 
-A cookiecutter_ template for `Wagtail CMS`_ featuring `Zurb Foundation`_ front-end
-framework.
+A cookiecutter_ template for `Wagtail CMS`_ featuring the `Zurb Foundation`_ 
+front-end framework.
 
 .. figure:: http://i.imgur.com/xMZq2cE.gif
    :alt: Wagtail Cookiecutter Foundation
 
-.. _cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`Wagtail CMS`: https://wagtail.io
-.. _`Zurb Foundation`: https://foundation.zurb.com
 
 Topics
 ======
@@ -29,13 +26,17 @@ Topics
     - `Ansible Variables`_
 -  `Other Tasks`_
     - `Static Sites`_
-    - `Image Compression`
+    - `Image Compression`_
 
 What's included
 ----------------
 A Django project with Wagtail_ pre-installed with support for all the
-Zurb Foundation`_ HTML, CSS and Javascript components (typography, forms, buttons,
+`Zurb Foundation`_ HTML, CSS and Javascript components (typography, forms, buttons,
 navigation and other interface components)
+
+.. _cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`Wagtail CMS`: https://wagtail.io
+.. _`Zurb Foundation`: https://foundation.zurb.com
 
 App Modules
 ^^^^^^^^^^^^
@@ -78,7 +79,7 @@ Using the built in tagging funcitonality.  To create Photo Galleries
     * Your Gallery is now created with all images you want. Awesome, right?
 
 Documents Folder 
-""""""""""""""""
+""""""""""""""""""
 
 This module allows to organize documents in "folders" based on tags. 
 
@@ -99,7 +100,7 @@ This module allows to organize documents in "folders" based on tags.
 
 
 Feeds 
-"""""""""
+"""""""
 To do
 
 Other Components
@@ -206,22 +207,8 @@ The easiest way to get started is to use the built in ``make`` commands.
 Using make
 ^^^^^^^^^^
 
-Your project contains Makefile which helps to you setup your development 
-environment with a single command. Additionally, we've included 
-commands which will allow you to easily provision your servers  
-and deploy changes to your project easily.  
-
-The Makefile supports the full range of development tasks. Namely creating
-a virtualenv_ for the project, installing requirements_, creating a database
-(db_):, running migrations (migrate_). Loading initial page structure for the
-site (initial_data_), install front-end components with bower_, starting the
-development server (runserver_). Using the livereload_ utility and running your
-unit (test_) and functional (func_test_). 
-
-all
-""""
-This is a "do all" command. Run it! ::
-
+Your project contains a Makefile that allows you to setup your development 
+environment with a single command. To do this run ::
   make all
 
 This command will create the projects virtual environment, 
@@ -230,16 +217,26 @@ the database, run migrations and load initial data to database,
 install front-end dependencies and finally start the development server 
 for you. Awesome, right?
 
-Access your site at ``http://localhost:8000``. The Admin 
+Now, access your site at ``http://localhost:8000``. The Admin 
 back-end is available at ``http://localhost:8000/admin/``.
-The default Admin username is *admin*.  
-The default Admin password is *admin123*
+The default Admin username is *admin* and The default Admin password is
+*admin123*
+
+The Makefile supports the full range of development tasks. Namely creating
+a virtualenv_ for the project, installing requirements_, creating a database
+(db_):, running migrations (migrate_). Loading initial page structure for the
+site (initial_data_), install front-end components with bower_, starting the
+development server (runserver_). Using the livereload_ utility and running your
+unit (test_) and functional (func_test_). These commands are explainded in more
+detail below.
 
 virtualenv
 """""""""""
-To create the virtualenv for the project. ::
+Create the virtualenv for the project. ::
 
   make virtualenv
+
+The virtualenvironment is located in your projects ``venv`` directory.
 
 requirements
 """""""""""""
@@ -293,7 +290,7 @@ test
 """"
 Run your unit tests.::  
 
-    make test
+  make test
 
 func_test
 """""""""
@@ -306,6 +303,7 @@ Run your functional tests. ::
 Manual Setup 
 ^^^^^^^^^^^^^
 
+You can also set up your project manually.
 Firstly, start your command shell and change to the new projects directory.
 So on Linux or OS X ::
 
@@ -314,17 +312,15 @@ So on Linux or OS X ::
 Next create an virtual environment for the project   
 On Linux/Mac OSX ::
 
-  pyvenv venv`
+  pyvenv venv
 
 On Windows ::
 
-   c:\Python34\python -m venv myenv`
+   c:\Python34\python -m venv myenv
 
 If you are not using Python 3.3 or later ``pyvenv`` is not bundled with your
 Python distribution and you need to install the ``virtualenv`` package to  
-get the virtual environments working:
-
-  .. code-block:: bash
+get the virtual environments working. ::
 
       pip install virtualenv
       virtualenv venv
@@ -334,26 +330,21 @@ provides a number of commands and utilities which makes working with virtual
 environments much more pleasant. It also places all your virtual environments
 in one place.
 
-To install (make sure virtualenv is already installed):
+To install (make sure virtualenv is already installed) ::
 
-  .. code-block:: bash
+    pip install virtualenvwrapper
+    export WORKON_HOME=~/Envs
+    source /usr/local/bin/virtualenvwrapper.sh
+    mkvirtualenv venv
 
-      pip install virtualenvwrapper
-      export WORKON_HOME=~/Envs
-      source /usr/local/bin/virtualenvwrapper.sh
-      mkvirtualenv venv
+On Windows ::
 
-On Windows 
+    pip install virtualenvwrapper-win
+    mkvirtualenv venv
 
-  .. code-block:: bash
+.. _virtualenvwrapper: http://virtualenvwrapper.readthedocs.org/en/latest/index.html
 
-      pip install virtualenvwrapper-win
-      mkvirtualenv venv
-
-  .. _virtualenvwrapper: http://virtualenvwrapper.readthedocs.org/en/latest/index.html
-
-Once your virtual environment is setup activate it 
- on Linux/Mac OSX :: 
+Once your virtual environment is setup activate it on Linux/Mac OSX :: 
 
    source venv/bin/activate
 
@@ -363,7 +354,7 @@ On Windows ::
 
 Using Virtualenvwrapper ::
 
-   `workon venv`
+   workon venv
 
 Install the dependencies for the project using ``pip`` ::
 
@@ -371,12 +362,10 @@ Install the dependencies for the project using ``pip`` ::
 
 
 Create the database and run migrations. Remember this cookiecutter requires
-``PostgreSQL`` so you need to install it before you can continue.
-
-.. code-block:: sh
+``PostgreSQL`` so you need to install it before you can continue. ::
 
     createdb my_site
-   ./manage.py migrate
+    ./manage.py migrate
 
 ``wagtail-cookiecutter-foundation`` comes with some pages already created for your
 convenience including the homepage with a working ``bx_slider`` slideshow, 
@@ -387,11 +376,12 @@ contact page, events and news/blog pages. To generate these pages run ::
 The default Admin username is *admin*.  The default Admin password is *admin123*
 
 This cookiecutter also has front-end dependencies for Foundation, 
-Font-Awesome etc, bx_slider, Grunt and so on. We use bower_ 
+Font-Awesome etc and bx_slider. We use bower_ 
 for front-end dependency management. To install the required front-end 
-dependencies use::
+dependencies use: ::
 
-  bower install`
+   cd project_repo
+   bower install`
 
 This will install the supported version of `Zurb Foundation`_, `Font
 Awesome`_ , bxSlider_ and Grunt as well as their dependencies.
