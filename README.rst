@@ -498,10 +498,8 @@ This will create the deploy user for the production server. For staging run ::
 
 and if you want to use a Vagrant based staging server ::
 
-.. code-block:: sh
-
-   cd /my_project/ansible
-   vagrant up
+    cd /my_project/ansible
+    vagrant up
 
     make deploy_user DEPLOY_ENV=vagrant
 
