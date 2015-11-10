@@ -44,7 +44,7 @@ We provide a comprehensive suite of apps to use for building your site.
 We take  a modular approach so that can pick and choose the functionality you
 want to include. We provide separate modules for:
 
-    - ``pages`` - Different kinds of pages including, Homepage, Standard Pages, 
+    - ``pages`` - Different kinds of pages including, Homepage, Standard Pages, Faqs Page etc.
     - ``blog`` - Blog or site news
     - ``contact`` - Contact Page with included contact form 
     - ``events`` - Events
@@ -52,7 +52,7 @@ want to include. We provide separate modules for:
     - ``documents`` - Create and organize documents in folders using wagtail tags 
     - ``products`` - use for a product or portfolio showcase
     -  ``feeds`` - RSS/Atom feeds which support enclosures 
-        (e.g image and video embeds and work services like feedburner and mailchimp
+        (e.g image and video embeds and work with services like feedburner and mailchimp)
     - ``utils`` - Various utility functions, templatetags and filters
 
 The projects spun up with wagtail-cookiecutter-foundation have a modular structure 
@@ -68,7 +68,7 @@ Using the built in tagging funcitonality.  To create Photo Galleries
 
     * Drag and drop images you want in your gallery and add common tag name to all Images. 
       You can also add same tag name to any existing images that you want 
-      to the gallery.
+      to include in the gallery.
 
     * Next create a Gallery Index Page which displays all your galleries.
 
@@ -255,7 +255,7 @@ migrate
 """"""""
 Run the migrations ::
 
-  make db 
+  make migrate 
 
 
 initial_data
@@ -269,7 +269,7 @@ bower
 Install all front-end dependencies with bower i.e `foundation`, `bxslider` and 
 `font-awesome` ::
 
-  make initial_data 
+  make bower 
 
 runserver
 """""""""
@@ -282,7 +282,7 @@ livereload
 Start Server with livereload functionality. Uses the excellent 
 `python-livereload`_ library. ::
 
-    make linvreload
+    make livereload
 
 .. _python-livereload: https://github.com/lepture/python-livereload   
 
@@ -485,7 +485,7 @@ The provisioning playbooks will:
   - install and configre Redis, Celery and Elasticsearch
   - Set up and configure Nginx for you site 
 
-Creating a Deploymet User
+Creating a Deployment User
 """"""""""""""""""""""""""
 The first thing that you must do is to create a deployment user.
 To create the deploy user for the production ::
@@ -517,7 +517,7 @@ download the ``ssh`` public key for the deployment user into your project's
 ``keystore`` directory so you can use it as a deployment key on sites 
 like github.com or bitbucket.org  
 
-Other Provisionig Task
+Other Provisioning Task
 """""""""""""""""""""""
 
 Once you have setup the deployment user you can now provision the server. 
