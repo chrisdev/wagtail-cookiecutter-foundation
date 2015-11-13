@@ -51,10 +51,10 @@ want to include. We provide separate modules for:
     - ``photo_gallery`` - Create photo galleries using wagtail tags
     - ``documents`` - Organize documents in folders using wagtail tags .
     - ``products`` - Ideal for a product or portfolio showcase
-    -  ``feeds`` - RSS/Atom feeds which support enclosures. 
-    -  ``people`` - For the people in your organization or team. 
+    - ``feeds`` - RSS/Atom feeds which support enclosures. 
         (e.g image and video embeds and work with services like feedburner and mailchimp)
-    -  ``faq`` - FAQ and answers.
+    - ``people`` - For the people in your organization or team. 
+    - ``faq`` - FAQ and answers.
     - ``utils`` - Various utility functions, templatetags and filters
 
 The projects spun up with ``wagtail-cookiecutter-foundation`` are modular  
@@ -63,7 +63,7 @@ so you can pick and choose the modules that you want to include in  in your proj
 Photo Gallery
 """"""""""""""
 The Photo Gallery module allows you to easily create Photo Galleries for your site
-Using the built in tagging funcitonality.  To create Photo Galleries  
+Using the built in tagging functionality.  To create Photo Galleries  
 
     * Go to Images section of the Wagtail Admin and click on Add an Image.
 
@@ -196,7 +196,7 @@ You will be prompted to answer the following questions. ::
     Resolving deltas: 100% (264/264), done.
     Checking connectivity... done.
     project_name (default is "Wagtail Project")?
-    repo_name (default is "wagtailproject")?
+    repo_name (default is "wagtail_project")?
     version_control_system (default is "hg")?,
     vcs_host (default is "bitbucket")?,
     author_name (default is "Your Name")?
@@ -214,7 +214,7 @@ You will be prompted to answer the following questions. ::
 
 Enter the project and take a look around::
 
-    $ cd wagtaiproject/
+    $ cd wagtail_project/
     $ ls
 
 Create a GitHub or Bitbucket repo for the project and push it there::
@@ -257,14 +257,15 @@ back-end is available at ``http://localhost:8000/admin/``.
 The default Admin username is *admin* and The default Admin password is
 *admin123*
 
-The make command available for development are discussed in more detail  below.
+The make command available for development are discussed in more detail below.
+
 virtualenv
 """""""""""
 Create the virtualenv for the project. ::
 
   make virtualenv
 
-The virtualenvironment is located in your project's ``venv`` directory.
+The virtual environment is located in your project's ``venv`` directory.
 
 requirements
 """""""""""""
