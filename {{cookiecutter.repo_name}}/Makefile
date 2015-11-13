@@ -122,6 +122,7 @@ ifeq ($(DEPLOY_ENV), vagrant)
 	$(call ECHO_BLUE, Create the deploy user for vagrant based staging VM)
 	(\
 		cd ansible; \
+		vagrant up; \
 		$(PLAYBOOK) -c paramiko -i staging vagrant_staging_setup.yml --ask-pass --sudo -u vagrant; \
 	)
 else
