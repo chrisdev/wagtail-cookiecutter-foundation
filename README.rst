@@ -257,14 +257,15 @@ back-end is available at ``http://localhost:8000/admin/``.
 The default Admin username is *admin* and The default Admin password is
 *admin123*
 
-The make command available for development are discussed in more detail  below.
+The make command available for development are discussed in more detail below.
+
 virtualenv
 """""""""""
 Create the virtualenv for the project. ::
 
   make virtualenv
 
-The virtualenvironment is located in your project's ``venv`` directory.
+The virtual environment is located in your project's ``venv`` directory.
 
 requirements
 """""""""""""
