@@ -1,2 +1,2 @@
 [all]
-production.com
+{{ cookiecutter.production_host_name }}
