@@ -1,7 +1,7 @@
 {% if cookiecutter.version_control_system == 'hg' %}
- project_repo: ssh://hg@{{cookiecutter.repo_host}}/{{cookiecutter.repo_user_name}}/{{cookiecutter.repo_name}}
+project_repo: ssh://hg@{{cookiecutter.repo_host}}/{{cookiecutter.repo_user_name}}/{{cookiecutter.repo_name}}
 {% else %}
- project_repo: git@{{cookiecutter.repo_host}}:{{cookiecutter.repo_user_name}}/{{cookiecutter.repo_name}}.git
+project_repo: git@{{cookiecutter.repo_host}}:{{cookiecutter.repo_user_name}}/{{cookiecutter.repo_name}}.git
 {% endif %}
 project_name: {{cookiecutter.repo_name}} 
 sites_dir:  /usr/local/sites
