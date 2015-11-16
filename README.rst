@@ -210,7 +210,7 @@ You will be prompted to answer the following questions. ::
     staging_host_name (default is staging.example.org)?
     use_vagrant_staging (default is true)?
     deploy_user_name (default is django)
-
+    django_admin_user (default is my_admin_user)    
 
 Enter the project and take a look around::
 
