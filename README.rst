@@ -41,7 +41,7 @@ navigation and other interface components)
 App Modules
 ^^^^^^^^^^^^
 We provide a comprehensive suite of apps to use for building your site.
-We take  a modular approach so that can pick and choose the functionality you
+We take  a modular approach so that you can pick and choose the functionality you
 want to include. We provide separate modules for:
 
     - ``pages`` - Different kinds of pages including, Homepage, Standard Pages, 
@@ -61,8 +61,8 @@ so you can pick the modules that you want to included in  in your project.
 Photo Gallery Module
 """""""""""""""""""""
 
-The Photo Gallery module allows you to easily create Photo Galleries for your site
-Using the built in tagging funcitonality.  To create Photo Galleries  
+The Photo Gallery module allows you to easily create Photo Galleries for your site,
+Using the built in tagging funcitonality.  To create Photo Galleries: 
 
     * Go to Images section of the Wagtail Admin and click on Add an Image.
 
@@ -115,7 +115,7 @@ Other Components
     - Pagination
     - Reveals  
 
-- We also provide comprehensive set of  `make` commands to  help you to  perform
+- We also provide a comprehensive set of  `make` commands to  help you to  perform
   key development, provisioning and deployment tasks.
 
 - libsass_ Foundation Sass support through `django-compressor`_/`django-libsass`_
@@ -227,7 +227,7 @@ a virtualenv_ for the project, installing requirements_, creating a database
 (db_):, running migrations (migrate_). Loading initial page structure for the
 site (initial_data_), install front-end components with bower_, starting the
 development server (runserver_). Using the livereload_ utility and running your
-unit (test_) and functional (func_test_). These commands are explainded in more
+unit (test_) and functional (func_test_). These commands are explainded in greater
 detail below.
 
 virtualenv
@@ -319,7 +319,7 @@ On Windows ::
    c:\Python34\python -m venv myenv
 
 If you are not using Python 3.3 or later ``pyvenv`` is not bundled with your
-Python distribution and you need to install the ``virtualenv`` package to  
+Python distribution and you will need to install the ``virtualenv`` package to  
 get the virtual environments working. ::
 
       pip install virtualenv
@@ -440,7 +440,7 @@ the following key files in the ``keystore`` directory:
     * The CA's bundled root and intermediate certificate. This is use for
       certificate pinning.
 
-In case you were wondering, the your projects ``.gitignore`` or ``.hgignore`` 
+In case you were wondering,  your projects' ``.gitignore`` or ``.hgignore`` 
 files will ensure that any of the files that you  place in the  ``keystore`` 
 directory will be ignored by the VCS.  However, you
 should always double check to ensure that your secrets are not accidentally
@@ -487,7 +487,7 @@ The provisioning playbooks will:
 
 Creating a Deploymet User
 """"""""""""""""""""""""""
-The first thing that you must do is to create a deployment user.
+The first thing that you must do is create a deployment user.
 To create the deploy user for the production ::
 
     make deploy_user
@@ -505,7 +505,7 @@ and if you want to use a Vagrant based staging server ::
 
     make deploy_user DEPLOY_ENV=vagrant
 
-When prompted for the password, enter "vagrant" If you get the following error ::
+When prompted for the password, enter "vagrant". If you get the following error ::
 
     fatal: [staging.example.org] => {'msg': 'FAILED: Authentication failed.', 'failed': True}``
 
