@@ -2,6 +2,7 @@
     "project_name": "Wagtail Project",
     "repo_name": "{{ cookiecutter.project_name|replace(' ', '_')|lower }}",
     "version_control_system": "hg",
+    "vcs_host_username": "your github.com or bitbucket.org useraname",
     "author_name": "Your Name",
     "email": "Your email",
     "description": "A short description of the project.",
@@ -11,5 +12,7 @@
     "production_host_name" : "example.org",
     "use_ssl_in_production": "true",
     "staging_host_name": "staging.example.org",
-    "use_vagrant_staging": true
+    "use_vagrant_staging": true,
+    "deploy_user_name": "django",
+    "django_admin_user": "my_wagtail_admin"
 }

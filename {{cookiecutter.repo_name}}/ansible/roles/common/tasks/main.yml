@@ -1,4 +1,4 @@
 ---
-
+- include: run_settings_files_check.yml
 - include: setup_deploy_user.yml 
 - include: install_packages.yml
