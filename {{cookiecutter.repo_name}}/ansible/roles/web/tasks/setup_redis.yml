@@ -29,7 +29,7 @@
   tags:
       - redis
 
-- name: make reddis
+- name: make redis
   command: make
   sudo: yes
   args: 
@@ -55,12 +55,20 @@
   tags:
      - redis
 
+- name: Ensure that redis only listens only to localhost
+  lineinfile: dest=/etc/redis/6379.conf 
+                regexp='^#bind 127\.0\.0\.1'
+                insertafter='^#bind'
+                line='bind 127.0.0.1'
+                state=present
+  tags:
+     - redis 
+
 - name: Start the redis server
   command: service redis_6379 start
   sudo: yes
   tags:
      - redis
-
 
 - name: Set redis to start automatically on boot
   command: update-rc.d redis_6379 defaults

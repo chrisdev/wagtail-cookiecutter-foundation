@@ -5,6 +5,11 @@
 /static/
 /media/
 /.vagrant/
+ansible/.vagrant/
 /Vagrantfile.local
 /docs/_build/
 node_modules
+ansible/{{ cookiecutter.repo_name }}_keystore/*
+ansible/files/*
+ansible/group_vars/*
+ansible/host_vars/*

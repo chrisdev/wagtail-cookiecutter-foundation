@@ -48,7 +48,7 @@
 
 - name: Download the deploy users public keys to your keys directory
   fetch:  src=/home/{{ deploy_user }}/.ssh/id_rsa.pub
-      dest={{ keystore_path }}/{{ deploy_user }}-deploy_keys.pub flat=yes
+      dest={{ keystore_path }}/{{ inventory_hostname }}-{{ deploy_user }}-deploy_keys.pub flat=yes
   tags:
     - user
     - sshkeys

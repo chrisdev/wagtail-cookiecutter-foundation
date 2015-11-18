@@ -1,8 +1,5 @@
 {% if cookiecutter.version_control_system == 'hg' %}
-project_repo: ssh://hg@{{cookiecutter.repo_host}}/{{cookiecutter.vcs_host_user_name}}/{{cookiecutter.repo_name}}
-{% else %}
-project_repo: git@{{cookiecutter.repo_host}}:{{cookiecutter.vcs_host_user_name}}/{{cookiecutter.repo_name}}.git
-{% endif %}
+project_repo: ssh://hg@{{cookiecutter.vcs_repo_hostname}}/{{cookiecutter.vcs_repo_username}}/{{cookiecutter.repo_name}}{% else %}project_repo: git@{{cookiecutter.vcs_repo_hostname}}:{{cookiecutter.vcs_repo_username}}/{{cookiecutter.repo_name}}.git{% endif %}
 project_name: {{cookiecutter.repo_name}} 
 sites_dir:  /usr/local/sites
 virtualenvs_dir: /home/django/virtualenvs/
