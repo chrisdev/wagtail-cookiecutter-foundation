@@ -8,12 +8,12 @@
   service: name=nginx state=stopped
   tags:
       - nginx 
-
+ 
 - name:  Nginx config NO SSL
   template: src=nginx.j2
             dest=/etc/nginx/sites-available/{{ project_name }}
             backup=yes
-  when: use_ssl == False
+  when: not use_ssl|bool
   tags:
     - no_ssl
     - nginx 
@@ -24,7 +24,7 @@
         owner=root
         group=root
   sudo: yes
-  when: use_ssl == True 
+  when: use_ssl|bool
   tags:
       - nginx
       - ssl 
@@ -36,7 +36,7 @@
         owner=root
         group=root
   sudo: yes
-  when: use_ssl == True 
+  when: use_ssl|bool 
   tags:
     - ssl 
     - nginx
@@ -47,7 +47,7 @@
         owner=root 
         group=root
   sudo: yes
-  when: use_ssl == True 
+  when: use_ssl|bool 
   tags:
     - ssl
     - nginx
@@ -58,7 +58,7 @@
     chdir: /svr/ssl
     creates: /srv/ssl/dhparam.pem
   sudo: yes
-  when: use_ssl == True 
+  when: use_ssl|bool 
   tags:
       - nginx
       - ssl 
@@ -70,7 +70,7 @@
         owner=root 
         group=root
   sudo: yes
-  when: use_ssl == True 
+  when: use_ssl|bool 
   tags:
     - ssl
     - nginx
@@ -80,7 +80,7 @@
   template: src=nginx_ssl.j2
             dest=/etc/nginx/sites-available/{{ project_name }}
             backup=yes
-  when: use_ssl == True 
+  when: use_ssl|bool 
   tags:
     - ssl
     - nginx 
@@ -90,4 +90,13 @@
            removes=/etc/nginx/sites-enabled/default
   tags:
       - nginx 
-      - ssl {% endraw %}
+      - ssl 
+
+- name: enable the site 
+  file: src=/etc/nginx/sites-available/{{ project_name }} 
+      dest=/etc/nginx/sites-enabled/{{ project_name }} state=link
+  notify: restart nginx
+  tags:
+      - nginx 
+      - ssl
+      - nginx_enable{% endraw %}
