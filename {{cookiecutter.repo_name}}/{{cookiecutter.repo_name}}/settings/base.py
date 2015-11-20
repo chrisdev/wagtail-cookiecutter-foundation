@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "wagtail.contrib.wagtailsitemaps",
 
     'compressor',
     'taggit',
@@ -81,6 +82,7 @@ INSTALLED_APPS = (
     'people',
     'photo_gallery',
     'products',
+    'documents_gallery',
 )
 
 # List of callables that know how to import templates from various sources.
@@ -178,6 +180,19 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
+
+# Feeds app for Wagtail CMS
+FEED_APP_LABEL = 'blog'
+FEED_MODEL_NAME = 'BlogPage'
+FEED_ITEM_DESCRIPTION_FIELD = 'intro'
+FEED_ITEM_CONTENT_FIELD = 'body'
+
+FEED_TITLE = 'From the Desk of John Blog'
+FEED_LINK = '/news/'
+FEED_DESCRIPTION = "News and views from around the Web"
+FEED_AUTHOR_EMAIL = 'john@johnblog.com'
+FEED_AUTHOR_LINK = 'https://johnblog.com'
+
 
 # Google Maps Key
 

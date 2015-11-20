@@ -16,4 +16,4 @@ docs/_build/
 db.sqlite3
 ansible/group_vars/*
 ansible/host_vars/*
-{{ cookiecutter.repo_name}}_keystore/*
+ansible/{{ cookiecutter.repo_name}}_keystore/*

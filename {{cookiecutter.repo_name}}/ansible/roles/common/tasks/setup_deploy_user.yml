@@ -1,8 +1,8 @@
 {% raw %}---
 
 - name: initial warning 
-  pause: prompt="This playbook will pause to allow you to add deployment keys to your vcs repo
-                 Please press [Enter]"
+  pause: prompt="This playbook will pause to allow you to add the authorized keys to the keystore
+                 Please press [Enter] to continue"
   tags:
     - user
 
@@ -48,12 +48,14 @@
 
 - name: Download the deploy users public keys to your keys directory
   fetch:  src=/home/{{ deploy_user }}/.ssh/id_rsa.pub
-          dest={{ keystore_path }}/
-
-- name: Prompt to upload deployment keys 
-  pause: prompt="Deployment key has been downloaded addt it to your vcs repo 
-                 Please press [Enter] after you've added keys" {% endraw %}
+      dest={{ keystore_path }}/{{ inventory_hostname }}-{{ deploy_user }}-deploy_keys.pub flat=yes
   tags:
     - user
+    - sshkeys
 
-
+- name: Prompt to upload deployment keys 
+  pause: prompt="Deployment key has been downloaded add it to your VCS  
+                 Please press [Enter] after you've added keys" 
+  tags:
+    - user
+{% endraw %}

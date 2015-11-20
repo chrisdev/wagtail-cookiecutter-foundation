@@ -1,14 +1,8 @@
 {% raw %}---
 - name: update the apt-cache
-  apt: update_cache=yes 
+  apt: update_cache=yes  cache_valid_time=36000
   tags:
       - cache 
-      - packages 
-
-- name: safe upgrade 
-  apt: upgrade=safe force=yes
-  tags:
-      - upgrade 
       - packages 
 
 - name: install common package dependencies
@@ -36,7 +30,13 @@
     - mercurial
     - git
     - supervisor
+    - ufw
     - fail2ban
   tags:
-      - packages {% endraw %}
+      - packages 
 
+- name: safe upgrade 
+  apt: upgrade=safe force=yes
+  tags:
+      - upgrade 
+      - packages{% endraw %}

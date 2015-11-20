@@ -62,14 +62,15 @@ server {
            proxy_set_header   X-Real-IP        $remote_addr;
            proxy_set_header   REMOTE_HOST      $remote_addr;
            proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
-           proxy_set_header   X-FORWARDED-PROTOCOL $scheme;
+           proxy_set_header   X-Forwarded-Proto $scheme;
            proxy_pass http://{{ gunicorn }};
         }
 
 
-
-        error_page 503 502 @maintenance;
+        error_page 503 502  @maintenance;
         location @maintenance {
-              rewrite ^(.*)$ /offline.html break;
+            root {{ sites_dir }}/{{ project_name }}/static; 
+            rewrite ^(.*)$ /offline.html break;
         }
+
 }{% endraw %}

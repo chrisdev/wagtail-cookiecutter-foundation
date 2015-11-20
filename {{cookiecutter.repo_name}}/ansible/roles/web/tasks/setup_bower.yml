@@ -1,0 +1,34 @@
+{% raw %}---
+- name: update the apt-cache
+  apt: update_cache=yes 
+  sudo: yes
+  tags:
+    - bower
+
+- name: install bower and dependencies
+  sudo: yes
+  apt: >
+        pkg={{ item }}  
+        state=latest
+        force=yes
+  with_items:
+    - nodejs 
+    - npm
+    - nodejs-legacy
+  tags:
+    - bower
+    - node
+
+- name: install bower 
+  sudo: yes
+  shell: npm install -g bower
+  tags:
+     - bower
+
+- name: install frontend dependencies 
+  sudo: no
+  shell: bower install
+  args:
+     chdir: "{{ sites_dir }}/{{ project_name }}"
+  tags:
+     - bower {% endraw %}

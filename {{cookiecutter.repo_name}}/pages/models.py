@@ -63,9 +63,9 @@ HomePage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('title_text', classname="full"),
     FieldPanel('body', classname="full"),
-    InlinePanel(HomePage, 'carousel_items', label="Carousel items"),
-    InlinePanel(HomePage, 'content_items', label="Content Blocks"),
-    InlinePanel(HomePage, 'related_links', label="Related links"),
+    InlinePanel('carousel_items', label="Carousel items"),
+    InlinePanel('content_items', label="Content Blocks"),
+    InlinePanel('related_links', label="Related links"),
 ]
 
 HomePage.promote_panels = Page.promote_panels
@@ -93,7 +93,7 @@ StandardIndexPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('subtitle', classname="full title"),
     FieldPanel('intro', classname="full"),
-    InlinePanel(StandardIndexPage, 'related_links', label="Related links"),
+    InlinePanel('related_links', label="Related links"),
 ]
 
 StandardIndexPage.promote_panels = [
@@ -135,8 +135,8 @@ StandardPage.content_panels = [
     FieldPanel('subtitle', classname="full title"),
     FieldPanel('intro', classname="full"),
     FieldPanel('body', classname="full"),
-    InlinePanel(StandardPage, 'carousel_items', label="Carousel items"),
-    InlinePanel(StandardPage, 'related_links', label="Related links"),
+    InlinePanel('carousel_items', label="Carousel items"),
+    InlinePanel('related_links', label="Related links"),
 
 ]
 
@@ -195,6 +195,32 @@ class Testimonial(LinkFields):
         return self.name
 
 register_snippet(Testimonial)
+
+
+class Advert(LinkFields):
+    page = models.ForeignKey(
+        Page,
+        related_name='adverts',
+        null=True,
+        blank=True
+    )
+    title = models.CharField(max_length=150, null=True)
+    image = models.ForeignKey(Image, null=True, blank=True, on_delete=models.SET_NULL)
+    text = RichTextField(blank=True)
+
+    panels = [
+        PageChooserPanel('page'),
+        FieldPanel('title'),
+        ImageChooserPanel('image'),
+        FieldPanel('text'),
+        MultiFieldPanel(LinkFields.panels, "Link"),
+    ]
+
+    def __unicode__(self):
+        return self.title
+
+register_snippet(Advert)
+
 
 # Faqs Page
 

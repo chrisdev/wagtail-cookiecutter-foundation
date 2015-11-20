@@ -8,35 +8,15 @@
   service: name=nginx state=stopped
   tags:
       - nginx 
-
-- name:  Generate the Nginx configuration file
+ 
+- name:  Nginx config NO SSL
   template: src=nginx.j2
             dest=/etc/nginx/sites-available/{{ project_name }}
             backup=yes
-  when: not use_ssl 
+  when: not use_ssl|bool
   tags:
-      - nginx 
-
-- name: Generate and upload the Nginx SSL configuration file
-  template: src=nginx_ssl.j2
-            dest=/etc/nginx/sites-available/{{ project_name }}
-            backup=yes
-  when: use_ssl
-  tags:
-      - nginx 
-
-- name: Ensure that the default site is disabled
-  command: rm /etc/nginx/sites-enabled/default
-           removes=/etc/nginx/sites-enabled/default
-  tags:
-      - nginx 
-
-- name: Ensure that the application site is enabled
-  command: ln -s /etc/nginx/sites-available/{{ project_name }}
-           /etc/nginx/sites-enabled/{{ project_name }}
-           creates=/etc/nginx/sites-enabled/{{ project_name }}
-  tags:
-      - nginx
+    - no_ssl
+    - nginx 
 
 - name: Ensure the SSL Directory exists
   file: path=/svr/ssl/
@@ -44,21 +24,11 @@
         owner=root
         group=root
   sudo: yes
-  when: use_ssl
+  when: use_ssl|bool
   tags:
       - nginx
       - ssl 
 
-- name: Generate the stronger DHE parameters
-  command: openssl dhparam -out dhparam.pem 2048
-  args:
-    chdir: /svr/ssl
-    creates: /srv/ssl/dhparam.pem
-  sudo: yes
-  when: use_ssl
-  tags:
-      - nginx
-      - ssl 
 
 - name: Copy the private key file 
   copy: src={{ keystore_path }}/{{ssl_private_key}} 
@@ -66,7 +36,7 @@
         owner=root
         group=root
   sudo: yes
-  when: use_ssl
+  when: use_ssl|bool 
   tags:
     - ssl 
     - nginx
@@ -77,10 +47,22 @@
         owner=root 
         group=root
   sudo: yes
-  when: use_ssl 
+  when: use_ssl|bool 
   tags:
     - ssl
     - nginx
+
+- name: Generate the stronger DHE parameters
+  command: openssl dhparam -out dhparam.pem 2048
+  args:
+    chdir: /svr/ssl
+    creates: /srv/ssl/dhparam.pem
+  sudo: yes
+  when: use_ssl|bool 
+  tags:
+      - nginx
+      - ssl 
+
 
 - name: Comodo SSL bundle for OCSP stapling 
   copy: src={{ keystore_path }}/{{ ca_cert }} 
@@ -88,13 +70,33 @@
         owner=root 
         group=root
   sudo: yes
-  when: use_ssl 
+  when: use_ssl|bool 
   tags:
     - ssl
     - nginx
 
-- name: Ensure Nginx service is started
-  service: name=nginx state=started enabled=yes
+
+- name: Nginx Config YES SSL 
+  template: src=nginx_ssl.j2
+            dest=/etc/nginx/sites-available/{{ project_name }}
+            backup=yes
+  when: use_ssl|bool 
+  tags:
+    - ssl
+    - nginx 
+
+- name: Ensure that the default site is disabled
+  command: rm /etc/nginx/sites-enabled/default
+           removes=/etc/nginx/sites-enabled/default
   tags:
       - nginx 
-      - ssl {% endraw %}
+      - ssl 
+
+- name: enable the site 
+  file: src=/etc/nginx/sites-available/{{ project_name }} 
+      dest=/etc/nginx/sites-enabled/{{ project_name }} state=link
+  notify: restart nginx
+  tags:
+      - nginx 
+      - ssl
+      - nginx_enable{% endraw %}

@@ -1,9 +1,9 @@
 ---
-- include: setup_hg_repo.yml 
+- include: setup_vcs_repo.yml 
 - include: setup_virtualenv.yml
 - include: setup_nginx.yml
-- include: setup_gunicorn.yml
+- include: setup_bower.yml
+- include: setup_redis.yml
 - include: setup_django.yml
-- include: setup_redis.yml
+- include: setup_gunicorn.yml
 - include: setup_celery.yml
-- include: setup_redis.yml

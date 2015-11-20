@@ -3,15 +3,15 @@
         <article class="blog">
             <a href="{% pageurl blog %}">
                 <h4>{{ blog.title }}</h4>
-                {% if blog.search_description or blog.feed_image %}
-                        {% if blog.feed_image %}
-                            {% image blog.feed_image width-250 %}
-                        {% endif %}
-                        {% if blog.search_description %}
-                            {{ blog.search_description }}
-                        {% endif %}
+                {% if blog.feed_image %}
+                    {% image blog.feed_image width-1200 %}
                 {% endif %}
-                {{ blog.intro|truncatewords:80|richtext }}
+                
+                {% if blog.intro %}
+                    {{ blog.intro|richtext }}
+                {% else %}
+                    {{ blog.search_description }}   
+                {% endif %}
                 <div class="medium-12 columns" style="padding: 0;margin-top: 12px;">
                     <p style="margin-bottom: 0;">
                         <a class="button radius tiny secondary disabled">{{ blog.date|date:"j F Y" }}</a>

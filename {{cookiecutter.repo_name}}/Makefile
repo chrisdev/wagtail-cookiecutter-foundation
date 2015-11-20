@@ -10,6 +10,7 @@ help:
 	@echo "  initial_data             populate the site with initial page structure"
 	@echo "  bower                    Install front-end dependencies with bower"
 	@echo "  runserver                Start the django dev server"
+	@echo "  superuser                Create superuser with name superuser and password pass"
 	@echo "  test                     run unit tests"
 	@echo "  func_test                run functional tests"
 	@echo "  static_site              generate a static site from the project"
@@ -36,7 +37,7 @@ ECHO_RED = @echo "\033[33;31m $1\033[0m"
 
 # The default server host local development
 HOST ?= localhost:8000
-DEPLOYMENT_ENV = production
+DEPLOY_ENV = production
 
 virtualenv: 
 	virtualenv $(VIRTUALENV_NAME)
@@ -71,6 +72,9 @@ runserver:
 		$(MANAGE_CMD) runserver $(HOST); \
 	)
 
+superuser:
+	echo "from django.contrib.auth.models import User; User.objects.create_superuser('superuser', 'superuser@example.com', 'pass')" | ./manage.py shell
+	
 update: update_pip update_bower
 
 update_pip:
@@ -118,6 +122,7 @@ ifeq ($(DEPLOY_ENV), vagrant)
 	$(call ECHO_BLUE, Create the deploy user for vagrant based staging VM)
 	(\
 		cd ansible; \
+		vagrant up; \
 		$(PLAYBOOK) -c paramiko -i staging vagrant_staging_setup.yml --ask-pass --sudo -u vagrant; \
 	)
 else

@@ -76,7 +76,7 @@ CACHES = {
     }
 }
 
-DEFAULT_FROM_EMAIL =  {{ cookiecutter.email }}
+DEFAULT_FROM_EMAIL =  get_env_variable('EMAIL_FROM')
 EMAIL_USE_TLS = True
 EMAIL_HOST = get_env_variable('EMAIL_HOST')
 EMAIL_HOST_USER = get_env_variable('EMAIL_USER')

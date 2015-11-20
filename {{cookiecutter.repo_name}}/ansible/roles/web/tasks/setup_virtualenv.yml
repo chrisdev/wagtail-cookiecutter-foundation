@@ -39,10 +39,21 @@
       - web
       - venv
 
-- name: Pull/And update the source
+- name: Pull/And update the source hg
   sudo: no
   shell: hg pull
       && hg update
+  when: vcs == 'hg'
+  sudo: no
+  args:
+      chdir: "{{ sites_dir }}/{{ project_name }}"
+  tags:
+      - venv 
+
+- name: Pull/And update the source git 
+  sudo: no
+  shell: git pull
+  when: vcs == 'git'
   sudo: no
   args:
       chdir: "{{ sites_dir }}/{{ project_name }}"

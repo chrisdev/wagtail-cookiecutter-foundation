@@ -1,10 +1,11 @@
 from django import template
 from django.conf import settings
 from django.template.loader import get_template
+from wagtail.wagtaildocs.models import Document
 from contact.models import ContactPage
 from blog.models import BlogPage
 from events.models import EventPage
-from pages.models import Testimonial
+from pages.models import Testimonial, Advert
 
 register = template.Library()
 
@@ -20,6 +21,17 @@ def get_contact_fields(context):
 
     except IndexError:
         return {}
+ 
+        
+@register.inclusion_tag('documents_gallery/includes/documents_listing.html',takes_context=True)
+def latest_documents(context, count=5):
+
+    documents = Document.objects.order_by('-created_at')
+    return {
+        'documents': documents[:count],
+        'request': context['request'],
+    }
+
         
 @register.inclusion_tag('blog/includes/blog_post_listing.html',takes_context=True)
 def news_feed(context, count=2):
@@ -81,5 +93,12 @@ def time_display(time):
 def testimonials(context):
     return {
         'testimonials': Testimonial.objects.select_related('page'),
+        'request': context['request'],
+    }
+    
+@register.inclusion_tag('pages/includes/adverts.html', takes_context=True)
+def adverts(context):
+    return {
+        'adverts': Advert.objects.select_related('page'),
         'request': context['request'],
     }

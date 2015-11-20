@@ -1,8 +1,18 @@
 {% raw %}---
-- name: Pull/And update the source
+- name: Pull/And update from hg repo 
   shell: hg pull
       && hg update
   sudo: no
+  when: vcs == 'hg'
+  args:
+      chdir: "{{ sites_dir }}/{{ project_name }}"
+  tags:
+      - django
+
+- name: Pull from git repo 
+  shell: git pull
+  sudo: no
+  when: vcs == 'git'
   args:
       chdir: "{{ sites_dir }}/{{ project_name }}"
   tags:

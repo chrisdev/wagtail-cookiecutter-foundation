@@ -7,8 +7,9 @@ from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailsearch import urls as wagtailsearch_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
+from wagtail.contrib.wagtailsitemaps.views import sitemap
 
-from feeds.feeds import BlogFeed
+from feeds.feeds import BasicFeed, ExtendedFeed
 
 admin.autodiscover()
 
@@ -20,7 +21,9 @@ urlpatterns = patterns('',
     url(r'^search/', include(wagtailsearch_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
 
-    url(r'^blog/feed/$', BlogFeed(), name='blog_feed'),
+    url('^sitemap\.xml$', sitemap),
+    url(r'^blog/feed/basic$', BasicFeed(), name='basic_feed'),
+    url(r'^blog/feed/extended$', ExtendedFeed(), name='extended_feed'),
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's serving mechanism
