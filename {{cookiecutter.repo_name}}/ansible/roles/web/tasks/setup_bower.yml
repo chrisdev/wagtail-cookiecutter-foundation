@@ -5,7 +5,7 @@
   tags:
     - bower
 
-- name: install common package dependencies
+- name: install bower and dependencies
   sudo: yes
   apt: >
         pkg={{ item }}  
