@@ -34,6 +34,18 @@
   tags:
       - django
 
+
+- name: Create Django SuperUser 
+  shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
+          && echo "from django.contrib.auth.models import User;User.objects.create_superuser(username='{{ django_env.DJANGO_ADMIN_USER }}', email='{{ django_env.DJANGO_ADMIN_EMAIL }}', password='{{ django_env.DJANGO_ADMIN_PASSWD }}')" | ./manage.py shell
+  environment: django_env
+  sudo: no
+  args:
+     chdir: "{{ sites_dir }}/{{ project_name }}"
+  tags:
+      - django
+      - superuser
+
 - name: Run Django collectstatic
   shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
          && python manage.py collectstatic --noinput --settings={{ project_name }}.settings.production
