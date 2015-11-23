@@ -9,7 +9,10 @@ from django.utils.html import strip_tags
 from django.apps import apps
 from wagtail.wagtailcore.rich_text import expand_db_html
 from bs4 import BeautifulSoup
-from urlparse import urljoin
+try:
+    from urlparse import urljoin
+except ImportError:
+    from urllib.parse import urljoin
 from django.utils import feedgenerator
 
 feed_app_label = getattr(settings, "FEED_APP_LABEL")
