@@ -5,7 +5,7 @@
 
 {% block content %}
     <div id="content" class="row">
-        <div class="large-9 medium-8 columns">
+        <div class="medium-9 columns">
             <div class="medium-12 columns">
                 
                 <h2>{{ self.title }}</h2>
@@ -14,13 +14,11 @@
                 {% include "pages/includes/intro.html" with intro=self.intro only %}
             </div>
         </div>
-        <div id="sidebar" class="large-3 medium-4 columns">
+        <div id="sidebar" class="medium-3 columns">
               {% secondary_menu calling_page=self %}
-              <hr />
               
               <center><h6>News Feed</h6></center>
               {% news_feed %}
-              <hr/>
               
               <center><h6>Upcoming Events</h6></center>
               {% upcoming_events %}

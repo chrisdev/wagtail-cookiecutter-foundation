@@ -2,39 +2,37 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
 
-{% block people_content %}
-    <div class="row">            
+{% block content %}            
             <h3>{{ self.title }}</h3>
             <h4 class="subheader">{{ self.subtitle }}</h4>
             {% include "people/includes/intro.html" with intro=self.intro only %}
             <hr> 
-            <div class="row">
-                <ul class="people large-block-grid-3 small-block-grid-2" data-equalizer>
-                    {% for person in persons %}
-                        <li data-equalizer-watch>
-                            <div class="panel radius">
-                                <a href="{% pageurl person %}">
-                                    {% image person.image width-200 %}
-                                    <center><h5 style="margin-bottom: 0px;">{{ person.title}}</h5></center>
-                                    {% if person.role %}
-                                    <center><h6 class="subheader">{{ person.role }}</h6></center>
-                                    {% else %} {% endif %}
-                                </a>
 
-                                <a href="{% pageurl person %}" data-reveal-id="personModal" class="reveal_modal">
-                                    Read More
-                                </a>
+            <ul class="people medium-block-grid-4 small-block-grid-1" data-equalizer>
+                {% for person in persons %}
+                    <li data-equalizer-watch>
+                        <div class="panel radius">
+                            <a href="{% pageurl person %}">
+                                {% image person.image width-200 %}
+                                <center><h5 style="margin-bottom: 0px;">{{ person.title}}</h5></center>
+                                {% if person.role %}
+                                <center><h6 class="subheader">{{ person.role }}</h6></center>
+                                {% else %} {% endif %}
+                            </a>
 
-                                <div id="personModal" class="reveal-modal" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
-                                    <div id="modal-content"></div>
-                                    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-                                </div>
-                                
+                            <a href="{% pageurl person %}" data-reveal-id="personModal" class="button tiny radius reveal_modal" style="margin-top: 12px; margin-bottom: 3px;">
+                                Read More
+                            </a>
+
+                            <div id="personModal" class="reveal-modal" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
+                                <div id="modal-content"></div>
+                                <a class="close-reveal-modal" aria-label="Close">&#215;</a>
                             </div>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
+                            
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
             
             <div class="pagination-centered">
                 <ul class="pagination">
@@ -49,5 +47,4 @@
                       {% endif %}
                 </ul>
             </div>
-    </div>
 {% endblock %}{% endraw %}
