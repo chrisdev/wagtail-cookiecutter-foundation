@@ -2,6 +2,7 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
+    <div id="content" class="row">
         <h3>Upcoming Events</h3>
             {% if events %}    
                 <ul class="small-block-grid-1 medium-block-grid-3 columns" data-equalizer>
@@ -24,4 +25,5 @@
                   {% endif %}
             </ul>
         </div>
+    </div>
 {% endblock %}{% endraw %}
