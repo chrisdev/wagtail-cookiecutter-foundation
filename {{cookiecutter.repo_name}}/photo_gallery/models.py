@@ -106,7 +106,7 @@ class GalleryPage(Page):
         
         # Pagination
         page = request.GET.get('page')
-        paginator = Paginator(images, 25)  # Show 10 images per page
+        paginator = Paginator(images, 20)  # Show 20 images per page
         try:
             images = paginator.page(page)
         except PageNotAnInteger:
