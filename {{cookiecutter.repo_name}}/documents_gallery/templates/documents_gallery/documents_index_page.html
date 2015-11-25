@@ -6,8 +6,10 @@
 
     <div id="content" class="row">
         <div class="medium-12 columns">
-            <h3 class="text-center">{{ self.title }}</h3>
-            {{ self.intro|richtext }}
+            <center>
+                <h3>{{ self.title }}</h3>
+                {{ self.intro|richtext }}
+            </center>
 
             {% if pages|length %}
                 <div>
