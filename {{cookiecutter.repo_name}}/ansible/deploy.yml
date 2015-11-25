@@ -10,6 +10,7 @@
       shell: hg pull
              && hg update
       sudo: no
+      when: vcs == "hg"
       args:
            chdir: "{{ sites_dir }}/{{ project_name }}"
       tags:
