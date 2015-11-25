@@ -2,10 +2,10 @@
 Django settings for {{ cookiecutter.repo_name }} project.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
+https://docs.djangoproject.com/en/1.8/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
+https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 import os
 from os.path import abspath, dirname, join, normpath
@@ -34,15 +34,13 @@ path.append(DJANGO_ROOT)
 
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # Do not set SECRET_KEY or LDAP password or any other sensitive data here.
 # Instead, create a local.py file on the server.
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -56,23 +54,24 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "wagtail.contrib.wagtailsitemaps",
 
     'compressor',
     'taggit',
     'modelcluster',
 
-    'wagtail.wagtailcore',
-    'wagtail.wagtailadmin',
-    'wagtail.wagtaildocs',
-    'wagtail.wagtailsnippets',
-    'wagtail.wagtailusers',
-    'wagtail.wagtailsites',
-    'wagtail.wagtailimages',
-    'wagtail.wagtailembeds',
-    'wagtail.wagtailsearch',
-    'wagtail.wagtailredirects',
+    'wagtail.contrib.wagtailsitemaps',
+    'wagtail.contrib.wagtailsearchpromotions',
     'wagtail.wagtailforms',
+    'wagtail.wagtailredirects',
+    'wagtail.wagtailembeds',
+    'wagtail.wagtailsites',
+    'wagtail.wagtailusers',
+    'wagtail.wagtailsnippets',
+    'wagtail.wagtaildocs',
+    'wagtail.wagtailimages',
+    'wagtail.wagtailsearch',
+    'wagtail.wagtailadmin',
+    'wagtail.wagtailcore',
 
     'utils',
     'pages',
@@ -85,31 +84,45 @@ INSTALLED_APPS = (
     'documents_gallery',
 )
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-    # 'django.template.loaders.eggs.Loader',
-)
-
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
 
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 )
 
 ROOT_URLCONF = '{{ cookiecutter.repo_name }}.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'debug' : DEBUG,
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'pages.context_processors.site_url',
+            ],
+        },
+    },
+]
+
 WSGI_APPLICATION = '{{ cookiecutter.repo_name }}.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -124,7 +137,7 @@ DATABASES = {
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
+# https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = 'en-gb'
 TIME_ZONE = 'UTC'
@@ -134,7 +147,7 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_ROOT = join(PROJECT_ROOT, 'static')
 STATIC_URL = '/static/'
@@ -165,21 +178,6 @@ COMPRESS_PRECOMPILERS = (
 )
 
 COMPRESS_OFFLINE = True
-
-# Template configuration
-
-from django.conf import global_settings
-
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
-    'django.core.context_processors.request',
-    'pages.context_processors.site_url'
-)
-
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
 
 # Feeds app for Wagtail CMS
 FEED_APP_LABEL = 'blog'
