@@ -2,7 +2,7 @@ from base import *
 import os
 
 DEBUG = False
-TEMPLATE_DEBUG = DEBUG
+TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 SECRET_KEY = get_env_variable("SECRET_KEY")
 
