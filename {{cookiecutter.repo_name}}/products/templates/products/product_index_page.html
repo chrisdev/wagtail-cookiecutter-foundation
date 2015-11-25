@@ -3,8 +3,7 @@
 {% load wagtailimages_tags %}
 
 {% block content %}
-    <div class="row">
-    <div class="medium-12 columns">
+    <div id="content" class="row">
             <h3>{{ self.title }}</h3>
             <h4 class="subheader">{{ self.subtitle }}</h4>
             {% include "products/includes/intro.html" with intro=self.intro only %}
@@ -40,6 +39,5 @@
                       {% endif %}
                 </ul>
             </div>
-    </div> 
     </div> 
 {% endblock %}{% endraw %}
