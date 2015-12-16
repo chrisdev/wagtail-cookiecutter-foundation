@@ -5,9 +5,9 @@ Wagtail cookiecutter Foundation
    :target: http://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation
 
 A cookiecutter_ template for `Wagtail CMS`_ featuring the `Zurb Foundation`_ 
-front-end framework.
+front-end framework. The demo of the project is available at http://wagtail.chrisdev.com
 
-.. figure:: http://i.imgur.com/xMZq2cE.gif
+.. figure:: http://i.imgur.com/U31clXG.gif
    :alt: Wagtail Cookiecutter Foundation
 
 
@@ -27,6 +27,7 @@ Topics
 -  `Other Tasks`_
     - `Static Sites`_
     - `Image Compression`_
+-  `Contributing`_
 
 What's included
 ----------------
@@ -680,5 +681,10 @@ EMAIL_FROM              support@chrisdev.com
 EMAIL_USER              The email user 
 EMAIL_PASSWD            The email password 
 ======================  ====================================================
+
+Contributing
+------------
+
+Contributions are always welcome to improve this project. If you think you've found a bug or are interested in contributing fork this project and send the pull request. After review, your pull request will be merged. We are always happy to receive pull requests. If you identify any issue, please raise it in the issues section.
 
 .. end-here
