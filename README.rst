@@ -29,6 +29,8 @@ Topics
     - `Image Compression`_
 -  `Contributing`_
 
+More detailed documentation can be found on `Read the Docs`_ 
+
 What's included
 ----------------
 A Django project with Wagtail_ pre-installed with support for all the
@@ -38,7 +40,7 @@ navigation and other interface components)
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`Wagtail CMS`: https://wagtail.io
 .. _`Zurb Foundation`: https://foundation.zurb.com
-
+.. _`Read the Docs`: http://wagtail-cookiecutter-foundation.readthedocs.org/en/latest/   
 App Modules
 ^^^^^^^^^^^^
 We provide a comprehensive suite of apps to use for building your site.
