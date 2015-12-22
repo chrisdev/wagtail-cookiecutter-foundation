@@ -18,9 +18,9 @@ class EventsPageTests(SeleniumTestCase):
     def test_event_calendarlink(self):
         browser = self.browser
 
-        browser.get('http://127.0.0.1:8000/news/')
+        browser.get('http://127.0.0.1:8000/event-index/')
 
-        event_link = browser.find_element_by_class_name("event-link")
+        event_link = browser.find_element_by_xpath('//*[@id="content"]/ul/li/div/a')
         event_link.click()
 
         def calender_link_check():

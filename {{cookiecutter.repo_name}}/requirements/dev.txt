@@ -1,5 +1,8 @@
 -r base.txt
 
+# Functional testing with Selenium
+selenium==2.48.0
+
 # Live Reload
 livereload==2.4.0
 
