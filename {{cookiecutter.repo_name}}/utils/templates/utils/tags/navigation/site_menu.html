@@ -1,9 +1,9 @@
 {% raw %}{% load wagtailcore_tags %}
 {% load navigation_tags %}
 {% get_site_root as site_root %}
-<ul class="medium-block-grid-4">
+<div class="medium-up-4">
     {% for menuitem in menuitems %}
-    <li>
+    <div class="column">
     
     <h5><strong><a href="{% pageurl menuitem %}">{{ menuitem.title }}</a></strong></h5>
     {% if menuitem.show_dropdown %}
@@ -11,6 +11,6 @@
         {% site_menu_children parent=menuitem %}
     </ul>
     {% endif %}
-    </li>
+    </div>
     {% endfor %}
-</ul>{% endraw %}
+</div>{% endraw %}

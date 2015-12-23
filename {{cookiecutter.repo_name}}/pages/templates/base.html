@@ -6,119 +6,117 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
-        <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}"/>
-        
-        {% compress css %}
-            <link rel="stylesheet" type="text/css" href="{% static 'libs/bxslider-4/dist/jquery.bxslider.min.css' %}">
-            <link rel="stylesheet" href="{% static 'libs/font-awesome/css/font-awesome.min.css' %}">
-            <link rel="stylesheet" type="text/x-scss" href="{% static 'css/app.scss' %}">
-        {% endcompress %}
-        
-        {% block extra_css %}{% endblock %}
-
-        {% include "utils/includes/facebook_opengraph.html" %}
-        {% include "utils/includes/twitter_cards.html" %}
-        {% include "utils/includes/google_analytics.html" %}
-    </head>
-
-    <body class="{% block body_class %}{% endblock %}">
-        {% wagtailuserbar %}
-
-        {% get_site_root as site_root %}
-        {% top_menu parent=site_root calling_page=self %}
-        
-        <section class="main-section">
-        {% breadcrumbs %}
-        {% block content %}{% endblock %}
-
-        <footer>
-            <div class="sitemap">
-                <div class="row">
-                  <div class="medium-4 columns">
-                    <div class="headline">
-                      <h4>Explore Our Site</h4>
+     <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
+            <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}"/>
+            
+            {% compress css %}
+                <link rel="stylesheet" type="text/css" href="{% static 'libs/foundation-sites/dist/foundation.min.css' %}">
+                <link rel="stylesheet" type="text/css" href="{% static 'libs/bxslider-4/dist/jquery.bxslider.min.css' %}">
+                <link rel="stylesheet" href="{% static 'libs/font-awesome/css/font-awesome.min.css' %}">
+                <link rel="stylesheet" type="text/x-scss" href="{% static 'css/app.scss' %}">
+            {% endcompress %}
+            
+            {% block extra_css %}{% endblock %}
+    
+            {% include "utils/includes/facebook_opengraph.html" %}
+            {% include "utils/includes/twitter_cards.html" %}
+            {% include "utils/includes/google_analytics.html" %}
+        </head>
+    
+        <body class="{% block body_class %}{% endblock %}">
+            {% wagtailuserbar %}
+    
+            {% get_site_root as site_root %}
+            {% top_menu parent=site_root calling_page=self %}
+            
+            {% breadcrumbs %}
+            {% block content %}{% endblock %}
+    
+            <footer>
+                <div class="sitemap">
+                    <div class="row">
+                      <div class="medium-4 columns">
+                        <div class="headline">
+                          <h4>Explore Our Site</h4>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="medium-12 columns">
-                        {% site_menu parent=site_root calling_page=self %}
-                    </div>
-                </div>
-            </div>
-            <div class="contact-us">
-                <div class="row">
-                    <div class="medium-4 columns">
-                        <h5 class="contact-head">Contact Us</h5>
-                        {% get_contact_fields as contact %}
-                        {% include "contact/includes/contact_card.html" with contact=contact only %}
-                    </div>
-                    <div class="medium-4 columns text-center">
-                        <h5 class="contact-head">Follow Us</h5>
-                        <a href="https://github.com/chrisdev" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
-                        <a href="https://twitter.com/realchrisdev" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
-                        <a href="#" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
-                    </div>
-                    <div class="medium-4 columns text-center">
-                        <h5 class="contact-head">Find Us</h5>
-                        {%  if contact.post_code %}
-                            
-                            {% get_google_maps_key as google_maps_key %}
-
-                            <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ contact.post_code }}&zoom=13&size=300x200&maptype=roadmap
-                            &sensor=false&markers=color:green|{{ contact.post_code }}{% if google_maps_key %}&key={{ google_maps_key }}{% endif %}" />
-                        {% endif %}
+                    <div class="row">
+                      <div class="medium-12 columns">
+                            {% site_menu parent=site_root calling_page=self %}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
-        
-        <a class="exit-off-canvas"></a>
-        
-        </div>
-        </div>
-
-        {% compress js %}
-            <script src="{% static 'libs/foundation/js/vendor/modernizr.js' %}"></script>
-            <script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
-            <script src="{% static 'libs/foundation/js/foundation.min.js' %}"></script>
-            <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
-            <script src="{% static 'libs/bxslider-4/dist/jquery.bxslider.min.js' %}"></script>
-        {% endcompress %}
-
-        {% block extra_js %}
-            <script>
-              $(document).foundation();
-            </script>
-            <script>
-              $(document).ready(function(){
-                  $('.bxslider').bxSlider();
-                });
-            </script>
-            <script>
-                $(document).ready(function() {
-                    $('#faq .block-faq_question').click(function() {
-                        $(this).next('.block-faq_answer').slideToggle(500);
-                        $(this).toggleClass('close');
+                <div class="contact-us">
+                    <div class="row">
+                        <div class="medium-4 columns">
+                            <h5 class="contact-head">Contact Us</h5>
+                            {% get_contact_fields as contact %}
+                            {% include "contact/includes/contact_card.html" with contact=contact only %}
+                        </div>
+                        <div class="medium-4 columns text-center">
+                            <h5 class="contact-head">Follow Us</h5>
+                            <a href="https://github.com/chrisdev" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+                            <a href="https://twitter.com/realchrisdev" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
+                        </div>
+                        <div class="medium-4 columns text-center">
+                            <h5 class="contact-head">Find Us</h5>
+                            {%  if contact.post_code %}
+                                
+                                {% get_google_maps_key as google_maps_key %}
+    
+                                <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ contact.post_code }}&zoom=13&size=300x200&maptype=roadmap
+                                &sensor=false&markers=color:green|{{ contact.post_code }}{% if google_maps_key %}&key={{ google_maps_key }}{% endif %}" />
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            
+    
+            {% compress js %}
+                <script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
+                <script src="{% static 'libs/foundation-sites/dist/foundation.min.js' %}"></script>
+                <script src="{% static 'libs/what-input/what-input.min.js' %}"></script>
+                <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+                <script src="{% static 'libs/bxslider-4/dist/jquery.bxslider.min.js' %}"></script>
+            {% endcompress %}
+    
+            {% block extra_js %}
+                <script>
+                  $(document).foundation();
+                </script>
+                <script>
+                  $(document).ready(function(){
+                      $('.bxslider').bxSlider();
                     });
-                });
-            </script>
-            <script>
-                $('.reveal_modal').click(function(event) {
-                    event.preventDefault();
-        
-                    $('#modal-content').empty();
-                    var link = $(this).attr("href");
-                    $('#modal-content').load(link + " .modal-content");
-                });
-            </script>
-        {% endblock %}
-    </body>
-</html>
+                </script>
+                <script>
+                    $(document).ready(function() {
+                        $('#faq .block-faq_question').click(function() {
+                            $(this).next('.block-faq_answer').slideToggle(500);
+                            $(this).toggleClass('close');
+                        });
+                    });
+                </script>
+                <script>
+                    $('.reveal_modal').click(function(event) {
+                        event.preventDefault();
+            
+                        $('#modal-content').empty();
+                        var link = $(this).attr("href");
+                        $('#modal-content').load(link + " .modal-content");
+                    });
+                </script>
+            {% endblock %}
+        </body>
+    </html>
+    
+    
 {% endraw %}

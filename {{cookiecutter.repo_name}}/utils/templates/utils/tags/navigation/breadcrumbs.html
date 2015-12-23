@@ -3,7 +3,8 @@
 <div class="row">
     <div class="medium-12 medium-centered columns">
     {% if ancestors %}
-      <ul class="breadcrumbs"  role="menubar" aria-label="breadcrumbs">
+      <nav aria-label="You are here:" role="navigation">
+        <ul class="breadcrumbs">
           <li><a href="/"> Home</a></li>
         {% for ancestor in ancestors %}
           {% if forloop.last %}
@@ -13,6 +14,7 @@
           {% endif %}
         {% endfor %}
       </ul>
+      </nav>
       {% endif %}
     </div>
-</div>{% endraw %}
+</div>  {% endraw %}

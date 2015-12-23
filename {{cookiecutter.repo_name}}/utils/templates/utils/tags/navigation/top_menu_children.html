@@ -1,9 +1,9 @@
 {% raw %}{% load wagtailcore_tags navigation_tags %}
 {% for child in menuitems_children %}
-    <li class="{% if child.show_dropdown %}has-dropdown{% endif %}{% if calling_page.url == child.url %} active{% endif %}">
+    <li class="{% if child.show_dropdown %}has-submenu{% endif %}{% if calling_page.url == child.url %} active{% endif %}">
         <a href="{% pageurl child %}">{{ child.title }}</a>
         {% if child.show_dropdown %}
-        <ul class="dropdown">
+        <ul class="submenu menu vertical">
             {% top_menu_children parent=child %}
         </ul>
         {% endif %}
