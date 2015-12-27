@@ -450,7 +450,7 @@ multiple upstream ``wsgi`` servers and so on.  Indeed, you easily tweak the
 ``Vagrantfile`` located at ``project_repo/ansible/Vagrantfile`` to experiment with
 and test these more complex provisioning scenarios. on.
 
-.. _Vagrant: https://https://docs.vagrantup.com/v2/
+.. _Vagrant: https://docs.vagrantup.com/v2/
 
 Prerequisites
 ^^^^^^^^^^^^^^^
