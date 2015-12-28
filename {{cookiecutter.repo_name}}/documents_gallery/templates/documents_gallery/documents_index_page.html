@@ -13,9 +13,9 @@
 
             {% if pages|length %}
                 <div>
-                    <ul class="medium-block-grid-4" data-equalizer id="documents-index">
+                    <div class="medium-up-4 small-up-1" data-equalizer id="documents-index">
                     {% for page in pages %}
-                        <li data-equalizer-watch>
+                        <div class="column" data-equalizer-watch>
                             <a href="{{ page.url }}">
                                 <!--
                                 {% if page.feed_image %}
@@ -24,9 +24,9 @@
                                 <i class="fa fa-file fa-3x"></i>
                                 <h5 style="margin-bottom: 0;">{{ page.title }}</h5>
                             </a>
-                        </li>
+                        </div>
                     {% endfor %}
-                    </ul>
+                    </div>
                 </div>
             {% else %}
             <p>

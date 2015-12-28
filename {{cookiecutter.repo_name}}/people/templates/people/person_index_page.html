@@ -9,9 +9,9 @@
         {% include "people/includes/intro.html" with intro=self.intro only %}
         <hr> 
 
-        <ul class="people medium-block-grid-4 small-block-grid-1 text-center" data-equalizer>
+        <div class="people medium-up-4 small-up-1 text-center" data-equalizer>
             {% for person in persons %}
-                <li data-equalizer-watch>
+                 <div class="column" data-equalizer-watch>
                     <div class="panel radius">
                         <a href="{% pageurl person %}">
                             {% image person.image width-200 %}
@@ -31,9 +31,9 @@
                         </div>
                         
                     </div>
-                </li>
+                </div>
             {% endfor %}
-        </ul>
+        </div>
         
         <div class="pagination-centered">
             <ul class="pagination">
@@ -49,4 +49,5 @@
             </ul>
         </div>
     </div>
-{% endblock %}{% endraw %}
+{% endblock %}
+{% endraw %}

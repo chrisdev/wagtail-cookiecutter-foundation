@@ -1,5 +1,5 @@
 // Foundation Global settings
-@import "libs/foundation/scss/foundation/components/global";
+@import "libs/foundation-sites/scss/global";
 
 // Colors
 $keppel: #43b1b0;
@@ -31,16 +31,8 @@ $paragraph-font-family: 'Lato', Helvetica, sans;
 $header-font-color: #555 !default;
 
 // Foundation scss import
-@import "libs/foundation/scss/foundation";
+@import "libs/foundation-sites/scss/foundation";
 
-.fixed {border-bottom: 1px solid $blue;}
-.top-bar-section ul {display: table; margin: 0 auto;}
-.top-bar-section ul li {background: transparent; display: table-cell;}
-.expanded .top-bar-section ul {background: $blue;}
-
-@media only screen and (max-width:40em) { 
-.top-bar-section ul, .top-bar-section ul li  {display: block;}
-}
 
 // Responsive image/video classes
 .rich-text img {
@@ -60,11 +52,27 @@ $header-font-color: #555 !default;
   height: 100%;
 }
 
+.row{max-width: 68em;}
+
 .inner-wrap{
     .tab-bar{background: $keppel;}
     .left-small{border-right: 1px solid $white;}
     .right-small{border-left: 1px solid $white;}
     .left-off-canvas-menu {background: $boston_blue;}
+}
+
+.breadcrumbs {
+    margin: 20px 0 10px;
+    background: #f6f6f6;
+    border-radius: 15px;
+    padding: 15px;
+    a {color: $keppel;}
+}
+
+.side-nav {
+    margin-top: 15px;
+    li {list-style: none;}
+    a{display: block;padding: 5px 0;}
 }
 
 ul.share-buttons{list-style: none;padding: 0; margin:0; margin-bottom: 15px}

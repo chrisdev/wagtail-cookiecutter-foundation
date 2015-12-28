@@ -3,6 +3,7 @@
 
 {% block body_class %}{{ self.get_verbose_name|slugify }}{% endblock %}
 
+
 {% block content %}
     <div id="content" class="row">
         <div class="medium-12 columns">
@@ -12,9 +13,9 @@
             {% endif %}
 
             {% if documents %}
-                <ul class="small-block-grid-2 large-block-grid-3" id="documents">
+                <div class="medium-up-3 small-up-1" id="documents">
                     {% for document in documents %}
-                        <li>
+                        <div class="column">
                             <a href="{{ document.url }}">
                                 {% if document.file_extension == 'pdf' %}
                                     <i class="fa fa-file-pdf-o fa-3x"></i>
@@ -26,9 +27,9 @@
                                 <p>{{ document.filename}}</p>
                             </a>
                             <p>{{ document.created_at }}</p>
-                        </li>
+                        </div>
                     {% endfor %}
-                </ul>
+                </div>
             {% else %}
                 <p>No documents are tagged with your {{ self.title }} gallery or no {{ self.title }} tags defined.</p>
             {% endif %}        

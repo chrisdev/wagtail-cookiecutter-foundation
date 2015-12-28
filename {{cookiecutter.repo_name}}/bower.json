@@ -1,8 +1,8 @@
 {
   "name": "{{ cookiecutter.repo_name }}",
   "dependencies": {
-    "foundation": "~5.5.3",
-    "font-awesome": "~4.3.0",
+    "foundation-sites": "~6.1.0",
+    "font-awesome": "~4.5.0",
     "bxslider-4": "~4.2.5"
   }
 }

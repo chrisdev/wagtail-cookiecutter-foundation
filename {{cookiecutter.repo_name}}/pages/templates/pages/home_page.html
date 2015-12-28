@@ -7,7 +7,7 @@
 {% block content %}
     <div class="intro">
         <div class="row text-center">
-          <div class="medium-12 columns">
+          <div class="medium-10 medium-centered columns">
             <h3>{{ self.title_text|richtext }}</h3>
             {{ self.body|richtext }}
             <div id="carousel">
@@ -31,9 +31,9 @@
         <div id="icons" class="row">
         <h3>Featuring</h3>
         <br>
-        <ul class="medium-block-grid-3 small-block-grid-2">
+        <div class="medium-up-3 small-up-2">
             {% for block in self.content_items.all %}
-            <li class="icon">
+            <div class="column icon">
                 <a href="{{ block.link }}" target="_blank">
                  {% if block.image %}
                     {% image block.image fill-60x60 %}
@@ -41,11 +41,12 @@
                  <h4>{{ block.title}}</h4>
                  {{ block.content|richtext }}
                 </a>
-            </li>
+            </div>
            {% endfor %}
-        </ul>
+        </div>
         </div>
 	</div>
 
 {% endblock %}
+
 {% endraw %}

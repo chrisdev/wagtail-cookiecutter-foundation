@@ -9,9 +9,9 @@
             {% include "products/includes/intro.html" with intro=self.intro only %}
             <hr> 
             <div class="medium-12 columns">
-                <ul class="people large-block-grid-4 small-block-grid-1" data-equalizer>
+                <div class="people medium-up-4 small-up-1" data-equalizer>
                     {% for product in products %}
-                        <li>
+                        <div class="column">
                             <div class="panel radius" data-equalizer-watch>
                                 <a href="{% pageurl product %}">
                                     {% image product.image width-200 %}
@@ -21,9 +21,9 @@
                                     </center>
                                 </a>
                             </div>
-                        </li>
+                        </div>
                     {% endfor %}
-                </ul>
+                </div>
             </div>
             
             <div class="pagination-centered">

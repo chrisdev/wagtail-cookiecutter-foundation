@@ -13,18 +13,18 @@
 
             {% if pages|length %}
                 <div>
-                    <ul class="medium-block-grid-4" data-equalizer>
+                    <div class="medium-up-4 small-up-1" data-equalizer>
                     {% for page in pages %}
-                        <li data-equalizer-watch>
-                            <a href="{{ page.url }}" class="th">
+                        <div class="column" data-equalizer-watch>
+                            <a href="{{ page.url }}" class="thumbnail">
                                 {% if page.feed_image %}
                                     {% image page.feed_image fill-500x350 %}
                                 {% endif %}
                                 <center><h5 style="margin-bottom: 0;">{{ page.title }}</h5></center>
                             </a>
-                        </li>
+                        </div>
                     {% endfor %}
-                    </ul>
+                    </div>
                 </div>
             {% else %}
             <p>
