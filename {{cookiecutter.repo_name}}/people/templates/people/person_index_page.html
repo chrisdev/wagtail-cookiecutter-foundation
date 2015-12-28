@@ -21,22 +21,21 @@
                             {% else %} {% endif %}
                         </a>
 
-                        <a href="{% pageurl person %}" data-reveal-id="personModal" class="button tiny radius reveal_modal" style="margin-top: 12px; margin-bottom: 3px;">
+                        <!--<a href="{% pageurl person %}" data-reveal-id="personModal" class="button tiny radius reveal_modal" style="margin-top: 12px; margin-bottom: 3px;">
                             Reveal More
                         </a>
 
                         <div id="personModal" class="reveal-modal" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
                             <div id="modal-content"></div>
                             <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-                        </div>
+                        </div>-->
                         
                     </div>
                 </div>
             {% endfor %}
         </div>
         
-        <div class="pagination-centered">
-            <ul class="pagination">
+            <ul class="pagination text-center">
                   {% if persons.has_previous %}
                       <li class="arrow">
                           <a href="?page={{ persons.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&laquo; Prev</a></li>
@@ -47,7 +46,6 @@
                           <a href="?page={{ persons.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Next &raquo;</a></li>
                   {% endif %}
             </ul>
-        </div>
     </div>
 {% endblock %}
 {% endraw %}

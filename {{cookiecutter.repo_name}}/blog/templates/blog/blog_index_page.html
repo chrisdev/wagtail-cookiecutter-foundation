@@ -15,19 +15,17 @@
                 {% endfor %}
             </div>
         
-             <div class="row">
-                <div class="pagination-centered">
-                  <ul class="pagination">
-                       {% if blogs.has_previous %}
-                            <li class="arrow unavailable"><a href="?page={{ blogs.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&laquo;</a></li>
-                       {% endif %}
-                       
-                       Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}
-                        
-                       {% if blogs.has_next %}
-                           <li class="arrow"><a href="?page={{ blogs.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&raquo;</a></li>
-                       {% endif %}
-                  </ul>
-                </div>
-            </div>
+
+          <ul class="pagination text-center">
+               {% if blogs.has_previous %}
+                    <li class="arrow unavailable"><a href="?page={{ blogs.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&laquo;</a></li>
+               {% endif %}
+               
+               Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}
+                
+               {% if blogs.has_next %}
+                   <li class="arrow"><a href="?page={{ blogs.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&raquo;</a></li>
+               {% endif %}
+          </ul>
+
 {% endblock %}{% endraw %}
