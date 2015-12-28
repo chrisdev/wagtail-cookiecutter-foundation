@@ -12,19 +12,20 @@
             {% endif %}
 
             {% if images %}
-                <div class="clearing-thumbs medium-up-4" data-clearing data-equalizer>
+                <div class="medium-up-4" data-equalizer>
                     {% for gallery_image in images %}
                         {% image gallery_image width-1200 as gallery_imagedata %}
                         <div class="column" data-equalizer-watch>
-                            <a class="thumbnail" href="{{ gallery_imagedata.url }}">
-                                <img class="rsImg" src="{{ gallery_imagedata.url }}" alt="{{ gallery_imagedata.alt }}" style="width: 100%; height: 150px;"/>
+                            <a class="thumbnail fresco" href="{{ gallery_imagedata.url }}" data-fresco-group="{{ self.title }}">
+                                <img src="{{ gallery_imagedata.url }}" alt="{{ gallery_imagedata.alt }}" style="width: 100%; height: 150px;"/>
                             </a>
                         </div>
                     {% endfor %}
                 </div>
             {% else %}
                 <p>No images are tagged with your {{ self.title }} gallery or no {{ self.title }} tags defined.</p>
-            {% endif %}        </div>
+            {% endif %}
+        </div>
     </div>
     
     <div class="row">
