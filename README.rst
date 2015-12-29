@@ -412,7 +412,7 @@ for front-end dependency management. To install the required front-end
 dependencies use: ::
 
    cd project_repo
-   bower install`
+   bower install
 
 This will install the supported version of `Zurb Foundation`_, `Font
 Awesome`_ , bxSlider_ and Grunt as well as their dependencies.
