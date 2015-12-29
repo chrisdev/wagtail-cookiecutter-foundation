@@ -54,11 +54,21 @@ $header-font-color: #555 !default;
 
 .row{max-width: 68em;}
 
-.inner-wrap{
-    .tab-bar{background: $keppel;}
-    .left-small{border-right: 1px solid $white;}
-    .right-small{border-left: 1px solid $white;}
-    .left-off-canvas-menu {background: $boston_blue;}
+.off-canvas{
+    li a {
+        border-bottom: 1px solid #e6e6e6;
+        color: #2199e8;
+        display: block;
+        font-size: 0.75rem;
+        line-height: 1;
+        padding: 1.25rem 1rem;
+        position: relative;
+    }
+    li.label {
+        background: $keppel;
+        padding-bottom: 0;
+        a {border: 0; color: $white;}
+    }
 }
 
 .breadcrumbs {
@@ -168,22 +178,6 @@ display: inline;
     }
 }
 
-#faq {
-    .block-faq_answer {display:none;}
-    .block-faq_question {
-        background:url('/#{$static}/img/faq/open.png') right no-repeat;
-        font-size: 15px;
-        color: $keppel;
-        padding: 12px 25px 12px 0;
-        cursor:pointer;  
-        margin: 0; 
-        font-weight: 400;}
-    .block-faq_question:hover {color: $boston_blue;}
-    .block-faq_question.close {background-image:url('/#{$static}/img/faq/close.png');}
-    .block-faq_question {border-top: 1px solid #ccc;}
-    .block-faq_question:first-of-type {border: 0;}
-}
-
 
 #news_feed 
 {
@@ -277,6 +271,10 @@ display: inline;
 {
   margin-bottom: 20px;
 }
+.nav-top
+{
+  border-top: 5px solid $eastern-blue;
+}
 
 
 ul.side-nav {
@@ -306,4 +304,20 @@ ul.side-nav {
         .news{border: 1px solid $keppel; border-radius: 5px; padding: 8px; margin-bottom:10px;}
         .rich-text{display: none;}
     }
+}
+
+#faq {
+    .block-faq_answer {display:none;}
+    .block-faq_question {
+        background:url('/#{$static}/img/faq/open.png') right no-repeat;
+        font-size: 15px;
+        color: $keppel;
+        padding: 12px 25px 12px 0;
+        cursor:pointer;  
+        margin: 0; 
+        font-weight: 400;}
+    .block-faq_question:hover {color: $boston_blue;}
+    .block-faq_question.close {background-image:url('/#{$static}/img/faq/close.png');}
+    .block-faq_question {border-top: 1px solid #ccc;}
+    .block-faq_question:first-of-type {border: 0;}
 }

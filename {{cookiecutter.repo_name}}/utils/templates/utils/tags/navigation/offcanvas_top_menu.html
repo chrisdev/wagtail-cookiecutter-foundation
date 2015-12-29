@@ -2,30 +2,24 @@
 {% load static %}
 {% get_site_root as site_root %}
 
-<div class="off-canvas-wrap" data-offcanvas>
-  <div class="inner-wrap">
-    <nav class="tab-bar">
-      <section class="left-small">
-        <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
-      </section>
-
-      <section class="middle tab-bar-section">
-              <h1 class="title">Wagtail Cookie Cutter</h1>
-      </section>
-    </nav>
-    
-    <aside class="left-off-canvas-menu">
-      <ul class="off-canvas-list">
-        <li class="{% if calling_page.url == site_root %} active{% endif %}"><a href="{% pageurl site_root %}">Home</a></li>
+<div class="off-canvas-wrapper">
+   <div class="title-bar">
+     <div class="title-bar-left">
+       <button class="menu-icon" type="button" data-toggle="offCanvas"></button>
+       <span class="title-bar-title">ChrisDev Wagtail</span>
+     </div>
+   </div>
+   <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+     <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
+     <ul class="vertical dropdown menu" data-dropdown-menu style="max-width: 300px;">
+        <li class="{% if calling_page.url == site_root %}active{% endif %}"><a href="{% pageurl site_root %}">Home</a></li>
             {% for menuitem in menuitems %}
-                <li class="{% if menuitem.show_dropdown %}has-submenu{% endif %} 
-                           {% if calling_page.url == menuitem.url %} active{% endif %}">
+                <li class="{% if calling_page.url == menuitem.url %}is-active{% endif %}">
                     <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
                 {% if menuitem.show_dropdown %}
-                    <ul class="left-submenu">
-                        <li class="back"><a href="#">Back</a></li>
-                        <li><a href="{% pageurl menuitem %}">{{ menuitem.title }}</a></li>
-                        {% offcanvas_top_menu_children parent=menuitem %}
+                    <ul class="menu text-center" style="right: 0px;">
+                      <li class="label"><a href="{% pageurl menuitem %}">{{ menuitem.title }}</a></li>
+                      {% offcanvas_top_menu_children parent=menuitem %}
                     </ul>
                 {% endif %}
                 </li>
@@ -43,5 +37,5 @@
           </form>
         </li>
       </ul>
-    </aside>
+     </div>
     {% endraw %}
