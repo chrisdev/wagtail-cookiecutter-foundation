@@ -7,6 +7,7 @@ $boston_blue: #3299BB;
 $eastern-blue: #238fb2;
 $white: #fff;
 $celeste: #ccc;
+$tundora: #444;
 $mine-shaft: #333;
 $static: static;
 
@@ -73,6 +74,8 @@ $header-font-color: #555 !default;
     li {list-style: none;}
     a{display: block;padding: 5px 0;}
 }
+
+.list-style {li{list-style: none;}}
 
 ul.share-buttons{list-style: none;padding: 0; margin:0; margin-bottom: 15px}
 ul.share-buttons li{display: inline; margin-right: 5px;}
@@ -165,6 +168,22 @@ display: inline;
     }
 }
 
+#faq {
+    .block-faq_answer {display:none;}
+    .block-faq_question {
+        background:url('/#{$static}/img/faq/open.png') right no-repeat;
+        font-size: 15px;
+        color: $keppel;
+        padding: 12px 25px 12px 0;
+        cursor:pointer;  
+        margin: 0; 
+        font-weight: 400;}
+    .block-faq_question:hover {color: $boston_blue;}
+    .block-faq_question.close {background-image:url('/#{$static}/img/faq/close.png');}
+    .block-faq_question {border-top: 1px solid #ccc;}
+    .block-faq_question:first-of-type {border: 0;}
+}
+
 
 #news_feed 
 {
@@ -200,14 +219,14 @@ display: inline;
 .sitemap
 {
   padding: 20px 0;
-  background-color: $mine-shaft;
+  background-color: $tundora;
   border-top: solid 1px $celeste;
-  color: white;
+  color: $white;
   
   .headline
   {
     display: block;
-    margin: 10px 0 25px 0;
+    margin: 10px 0 10px 0;
   }
   
   .headline h4
@@ -258,15 +277,7 @@ display: inline;
 {
   margin-bottom: 20px;
 }
-.nav-top
-{
-  border-top: 5px solid $eastern-blue;
-}
 
-.breadcrumbs
-{
-  margin-top: 10px;
-}
 
 ul.side-nav {
      text-align: center;
@@ -295,20 +306,4 @@ ul.side-nav {
         .news{border: 1px solid $keppel; border-radius: 5px; padding: 8px; margin-bottom:10px;}
         .rich-text{display: none;}
     }
-}
-
-#faq {
-    .block-faq_answer {display:none;}
-    .block-faq_question {
-        background:url('/#{$static}/img/faq/open.png') right no-repeat;
-        font-size: 15px;
-        color: $keppel;
-        padding: 12px 25px 12px 0;
-        cursor:pointer;  
-        margin: 0; 
-        font-weight: 400;}
-    .block-faq_question:hover {color: $boston_blue;}
-    .block-faq_question.close {background-image:url('/#{$static}/img/faq/close.png');}
-    .block-faq_question {border-top: 1px solid #ccc;}
-    .block-faq_question:first-of-type {border: 0;}
 }
