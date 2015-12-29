@@ -16,7 +16,7 @@
                     {% for gallery_image in images %}
                         {% image gallery_image width-1200 as gallery_imagedata %}
                         <div class="column" data-equalizer-watch>
-                            <a class="thumbnail fresco" href="{{ gallery_imagedata.url }}" data-fresco-group="{{ self.title }}">
+                            <a class="thumbnail" href="{{ gallery_imagedata.url }}" data-lightbox="{{ self.title }}">
                                 <img src="{{ gallery_imagedata.url }}" alt="{{ gallery_imagedata.alt }}" style="width: 100%; height: 150px;"/>
                             </a>
                         </div>
