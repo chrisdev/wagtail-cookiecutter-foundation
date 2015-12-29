@@ -4,24 +4,11 @@
 // Colors
 $keppel: #43b1b0;
 $boston_blue: #3299BB;
+$eastern-blue: #238fb2;
 $white: #fff;
-$anakiwa: #A6DCFF;
-$emperor: #555;
-$blue: #008CBA;
-$tundora: #444;
 $celeste: #ccc;
 $mine-shaft: #333;
-$eastern-blue: #238fb2;
-$mystic: #e4e9f0;
-$light-green: #72c02c;
 $static: static;
-
-// Background color for the top bar
-$topbar-bg-color: $keppel;
-$topbar-bg: $topbar-bg-color;
-$topbar-link-bg-hover: $blue;
-$topbar-dropdown-link-bg: $keppel;
-$topbar-dropdown-link-bg-hover: $blue;
 
 // Fonts
 $header-font-family: 'Lato', Helvetica, sans;
@@ -50,6 +37,18 @@ $header-font-color: #555 !default;
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.top-bar  {
+    background: $keppel;
+    padding: 0;
+    li {font-size: 14px;}
+    li.menu-text{font-size: 18px; color: $white;}
+    a {color: $white;}
+    ul, .dropdown.menu .submenu { background: $keppel;}
+    .menu li:not(.menu-text) a {padding: 15px 20px;}
+    .dropdown.menu .is-dropdown-submenu-parent a::after {margin-top: 7px;}
+    .dropdown.menu .is-dropdown-submenu-parent.is-down-arrow a::after{border-color: $white transparent transparent;}
 }
 
 .row{max-width: 68em;}
@@ -201,7 +200,7 @@ display: inline;
 .sitemap
 {
   padding: 20px 0;
-  background-color: $tundora;
+  background-color: $mine-shaft;
   border-top: solid 1px $celeste;
   color: white;
   
@@ -241,7 +240,7 @@ display: inline;
   background-color: $mine-shaft;
   color: white;
   padding: 10px 0;
-  border-top: solid 1px $emperor;
+  border-top: solid 1px $mine-shaft;
   
   h5{
     color: $white;
