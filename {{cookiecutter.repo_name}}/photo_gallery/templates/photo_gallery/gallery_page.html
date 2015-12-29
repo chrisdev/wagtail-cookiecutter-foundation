@@ -16,7 +16,7 @@
                     {% for gallery_image in images %}
                         {% image gallery_image width-1200 as gallery_imagedata %}
                         <div class="column" data-equalizer-watch>
-                            <a class="thumbnail fresco" href="{{ gallery_imagedata.url }}" data-fresco-group="{{ self.title }}">
+                            <a class="thumbnail" href="{{ gallery_imagedata.url }}" data-lightbox="{{ self.title }}">
                                 <img src="{{ gallery_imagedata.url }}" alt="{{ gallery_imagedata.alt }}" style="width: 100%; height: 150px;"/>
                             </a>
                         </div>
@@ -28,21 +28,19 @@
         </div>
     </div>
     
-    <div class="row">
-        <div class="pagination-centered">
-          <ul class="pagination">
-               {% if images.has_previous %}
-                    <li class="arrow unavailable"><a href="?page={{ images.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&laquo;</a></li>
-               {% endif %}
-               
-               Page {{ images.number }} of {{ images.paginator.num_pages }}
-                
-               {% if images.has_next %}
-                   <li class="arrow"><a href="?page={{ images.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&raquo;</a></li>
-               {% endif %}
-          </ul>
-        </div>
-    </div>
+
+      <ul class="pagination text-center">
+           {% if images.has_previous %}
+                <li class="arrow unavailable"><a href="?page={{ images.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&laquo;</a></li>
+           {% endif %}
+           
+           Page {{ images.number }} of {{ images.paginator.num_pages }}
+            
+           {% if images.has_next %}
+               <li class="arrow"><a href="?page={{ images.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&raquo;</a></li>
+           {% endif %}
+      </ul>
+
     
 
 {% endblock %}{% endraw %}

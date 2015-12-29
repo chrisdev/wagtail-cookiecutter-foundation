@@ -3,6 +3,7 @@
   "dependencies": {
     "foundation-sites": "~6.1.0",
     "font-awesome": "~4.5.0",
-    "bxslider-4": "~4.2.5"
+    "bxslider-4": "~4.2.5",
+    "lightbox2": "~2.8.2"
   }
 }
