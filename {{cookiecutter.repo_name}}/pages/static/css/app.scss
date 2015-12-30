@@ -54,20 +54,13 @@ $header-font-color: #555 !default;
 
 .row{max-width: 68em;}
 
-.off-canvas{
+.vertical.menu {
     li a {
-        border-bottom: 1px solid #e6e6e6;
-        color: #2199e8;
         display: block;
-        font-size: 0.75rem;
+        font-size: 0.8rem;
         line-height: 1;
-        padding: 1.25rem 1rem;
+        padding: 1rem;
         position: relative;
-    }
-    li.label {
-        background: $keppel;
-        padding-bottom: 0;
-        a {border: 0; color: $white;}
     }
 }
 
