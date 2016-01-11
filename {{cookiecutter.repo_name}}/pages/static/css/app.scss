@@ -1,5 +1,44 @@
-// Foundation Global settings
-@import "libs/foundation-sites/scss/global";
+@charset 'utf-8';
+
+@import 'css/settings';
+@import 'libs/foundation-sites/scss/foundation';
+
+@include foundation-global-styles;
+@include foundation-grid;
+@include foundation-typography;
+@include foundation-button;
+@include foundation-forms;
+@include foundation-visibility-classes;
+@include foundation-float-classes;
+@include foundation-accordion;
+@include foundation-accordion-menu;
+@include foundation-badge;
+@include foundation-breadcrumbs;
+@include foundation-button-group;
+@include foundation-callout;
+@include foundation-close-button;
+@include foundation-drilldown-menu;
+@include foundation-dropdown;
+@include foundation-dropdown-menu;
+@include foundation-flex-video;
+@include foundation-label;
+@include foundation-media-object;
+@include foundation-menu;
+@include foundation-off-canvas;
+@include foundation-orbit;
+@include foundation-pagination;
+@include foundation-progress-bar;
+@include foundation-slider;
+@include foundation-sticky;
+@include foundation-reveal;
+@include foundation-switch;
+@include foundation-table;
+@include foundation-tabs;
+@include foundation-thumbnail;
+@include foundation-title-bar;
+@include foundation-tooltip;
+@include foundation-top-bar;
+
 
 // Colors
 $keppel: #43b1b0;
@@ -17,10 +56,6 @@ $body-font-family: 'Lato', Helvetica, sans;
 $paragraph-font-family: 'Lato', Helvetica, sans;
 
 $header-font-color: #555 !default;
-
-// Foundation scss import
-@import "libs/foundation-sites/scss/foundation";
-
 
 // Responsive image/video classes
 .rich-text img {
@@ -40,17 +75,19 @@ $header-font-color: #555 !default;
   height: 100%;
 }
 
-.top-bar  {
-    background: $keppel;
-    padding: 0;
-    li {font-size: 14px;}
-    li.menu-text{font-size: 18px; color: $white;}
-    a {color: $white;}
-    ul, .dropdown.menu .submenu { background: $keppel;}
-    .menu li:not(.menu-text) a {padding: 15px 20px;}
-    .dropdown.menu .is-dropdown-submenu-parent a::after {margin-top: 7px;}
-    .dropdown.menu .is-dropdown-submenu-parent.is-down-arrow a::after{border-color: $white transparent transparent;}
-}
+$topbar-background: #000;
+
+//.top-bar  {
+//    background: $keppel;
+//    padding: 0;
+//    li {font-size: 14px;}
+//    li.menu-text{font-size: 18px; color: $white;}
+//    a {color: $white;}
+//    ul, .dropdown.menu .submenu { background: $keppel;}
+//    .menu li:not(.menu-text) a {padding: 15px 20px;}
+//    .dropdown.menu .is-dropdown-submenu-parent a::after {margin-top: 7px;}
+//    .dropdown.menu .is-dropdown-submenu-parent.is-down-arrow a::after{border-color: $white transparent transparent;}
+//}
 
 .row{max-width: 68em;}
 
