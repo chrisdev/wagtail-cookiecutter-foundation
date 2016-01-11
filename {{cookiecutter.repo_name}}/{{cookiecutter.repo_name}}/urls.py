@@ -14,7 +14,7 @@ from feeds.feeds import BasicFeed, ExtendedFeed
 admin.autodiscover()
 
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^django-admin/', include(admin.site.urls)),
 
     url(r'^admin/', include(wagtailadmin_urls)),
@@ -28,7 +28,7 @@ urlpatterns = patterns('',
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's serving mechanism
     url(r'', include(wagtail_urls)),
-)
+]
 
 
 if settings.DEBUG:
