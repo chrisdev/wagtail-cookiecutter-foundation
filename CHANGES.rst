@@ -1,5 +1,9 @@
 CHANGES
 ========
+0.2.0 (2016-01-16)
+-------------------
+- Now supports Foundation 6
+
 0.0.2 (2016-01-11)
 -------------------
 - Added support for Django 1.9 and wagtail 1.3.1
