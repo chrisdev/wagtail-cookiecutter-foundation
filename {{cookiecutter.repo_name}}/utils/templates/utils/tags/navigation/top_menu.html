@@ -1,13 +1,18 @@
 {% raw %}{% load wagtailcore_tags navigation_tags %}
 {% get_site_root as site_root %}
-<div class="top-bar">
+<div class="title-bar" data-responsive-toggle="menu" data-hide-for="large">
+  <button class="menu-icon" type="button" data-toggle></button>
+  <div class="title-bar-title">Menu</div>
+</div>
+
+<div class="top-bar" id="menu">
   <div class="top-bar-left">
-    <ul class="dropdown menu" data-dropdown-menu>
+    <ul class="dropdown menu">
       <li class="menu-text">ChrisDev Wagtail</li>
     </ul>
   </div>
   <div class="top-bar-right">
-    <ul class="dropdown menu" data-dropdown-menu>
+    <ul class="vertical medium-horizontal dropdown menu" data-dropdown-menu>
       <li class="{% if calling_page.url == site_root %} active{% endif %}"><a href="{% pageurl site_root %}">Home</a></li>
           {% for menuitem in menuitems %}
               <li class="{% if menuitem.show_dropdown %}has-submenu{% endif %}
