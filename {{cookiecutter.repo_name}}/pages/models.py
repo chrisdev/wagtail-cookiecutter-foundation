@@ -113,9 +113,17 @@ class StandardPageRelatedLink(Orderable, RelatedLink):
 
 
 class StandardPage(Page):
+    TEMPLATE_CHOICES = [
+        ('pages/standard_page.html', 'Default Template'),
+        ('pages/standard_page_full.html', 'Standard Page Full'),
+    ]
     subtitle = models.CharField(max_length=255, blank=True)
     intro = RichTextField(blank=True)
     body = RichTextField(blank=True)
+    template_string = models.CharField(
+        max_length=255, choices=TEMPLATE_CHOICES,
+        default='pages/standard_page.html'
+    )
     feed_image = models.ForeignKey(
         Image,
         null=True,
@@ -128,13 +136,18 @@ class StandardPage(Page):
         index.SearchField('intro'),
         index.SearchField('body'),
     )
-
+    
+    @property
+    def template(self):
+        return self.template_string
+        
 
 StandardPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('subtitle', classname="full title"),
     FieldPanel('intro', classname="full"),
     FieldPanel('body', classname="full"),
+    FieldPanel('template_string'),
     InlinePanel('carousel_items', label="Carousel items"),
     InlinePanel('related_links', label="Related links"),
 
