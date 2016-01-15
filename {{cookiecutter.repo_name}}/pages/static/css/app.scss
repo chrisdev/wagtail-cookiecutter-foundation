@@ -77,7 +77,6 @@ $header-font-color: #555 !default;
 
 .title-bar {background: $keppel;}
 .top-bar  {
-    background: $keppel;
     padding: 0;
     li {font-size: 14px;}
     li.menu-text{font-size: 18px; color: $white;}
@@ -89,6 +88,8 @@ $header-font-color: #555 !default;
     .is-drilldown-submenu-parent>a::after {border-color: transparent transparent transparent $white;}
     .js-drilldown-back::before {border-color: transparent $white transparent transparent;}
 }
+
+.active { background-color: $primary-color; }
 
 .row{max-width: 68em;}
 
