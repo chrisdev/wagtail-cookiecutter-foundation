@@ -12,7 +12,7 @@
     </ul>
   </div>
   <div class="top-bar-right">
-    <ul class="vertical medium-horizontal dropdown menu" data-dropdown-menu>
+    <ul class="vertical medium-horizontal menu" data-responsive-menu="drilldown medium-dropdown">
       <li class="{% if calling_page.url == site_root %} active{% endif %}"><a href="{% pageurl site_root %}">Home</a></li>
           {% for menuitem in menuitems %}
               <li class="{% if menuitem.show_dropdown %}has-submenu{% endif %}
