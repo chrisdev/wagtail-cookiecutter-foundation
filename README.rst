@@ -10,7 +10,7 @@ The release tagged ``0.0.2`` is based on Foundation 5.
 A demo of a default project generated from this cookiecutter is available at http://wagtail.chrisdev.com.
 
 
-.. figure:: http://i.imgur.com/U31clXG.gif
+.. figure:: http://i.imgur.com/vNRQDGj.gif
    :alt: Wagtail Cookiecutter Foundation
 
 
