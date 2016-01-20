@@ -77,17 +77,21 @@ $header-font-color: #555 !default;
 
 .title-bar {background: $keppel;}
 .top-bar  {
+    border-top: 5px solid $eastern_blue;
     padding: 0;
-    li {font-size: 14px;}
+    li {font-size: 13px;}
     li.menu-text{font-size: 18px; color: $white;}
     a {color: $white;}
-    ul, .dropdown.menu .submenu { background: $keppel;}
-    .menu li:not(.menu-text) a {padding: 15px 20px;}
+    ul, .dropdown.menu .submenu { background: $keppel; border: 0px;}
+    .dropdown.menu .submenu {border-top: 3px solid $eastern_blue;}
+    .menu li:not(.menu-text) a {padding: 13px 15px;}
     .dropdown.menu .is-dropdown-submenu-parent a::after {
       margin-top: 5px; border-color: $white transparent transparent; border-style: solid;}
     .is-drilldown-submenu-parent>a::after {border-color: transparent transparent transparent $white;}
-    .js-drilldown-back::before {border-color: transparent $white transparent transparent;}
+    .js-drilldown-back::before {border-color: transparent $white transparent transparent;}    
 }
+
+.off-canvas-content {box-shadow: none;}
 
 .active { background-color: $primary-color; }
 
