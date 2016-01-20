@@ -5,11 +5,11 @@
     <div id="content" class="row">
         <center><h3>Upcoming Events</h3></center>
             {% if events %}    
-                <ul class="small-block-grid-1 medium-block-grid-3 columns" data-equalizer>
+                <div class="medium-up-3 small-up-1 columns" data-equalizer>
                     {% for event in events %}
                         {% include "events/includes/event_list_item.html" %}
                     {% endfor %}
-                </ul>
+                </div>
             {% endif %}
         
         <ul class="pagination text-center">
