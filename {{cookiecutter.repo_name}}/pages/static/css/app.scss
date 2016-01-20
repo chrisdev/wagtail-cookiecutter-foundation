@@ -91,7 +91,12 @@ $header-font-color: #555 !default;
     .js-drilldown-back::before {border-color: transparent $white transparent transparent;}    
 }
 
+.off-canvas {
+    a{color: $white;}
+    .is-accordion-submenu-parent > a::after {border-color: #fff transparent transparent;}
+}
 .off-canvas-content {box-shadow: none;}
+.off-canvas.position-left {height: 100%;background: $keppel;}
 
 .active { background-color: $primary-color; }
 
