@@ -44,6 +44,46 @@ navigation and other interface components)
 .. _`Wagtail CMS`: https://wagtail.io
 .. _`Zurb Foundation`: https://foundation.zurb.com
 .. _`Read the Docs`: http://wagtail-cookiecutter-foundation.readthedocs.org/en/latest/ 
+
+Migrating from Foundation 5 to Foundation 6
+--------------------------------------------
+Bower Install
+""""""""""""""
+In the bower.json change - "foundation": "~5.5.3"  to "foundation-sites": "~6.1.0"
+
+Modernizr
+""""""""""""""
+Modernizr has been removed from foundation 6 so it can be removed from your base.html
+
+New Top-bar
+""""""""""""""
+`The entire code for the topbar has been changed`_
+
+New Off Canvas
+"""""""""""""""
+* `The entire code for the offcanvas has been changed`_
+* `The drop down for off canvas can now use accordion vertical menu`_
+
+Block Grid Changed
+"""""""""""""""""""
+`The html for a block grid has changed`_ : eg. medium-block-grid-4 to medium-up-4
+
+Clearing Box changes to Lightbox2
+""""""""""""""""""""""""""""""""""
+In foundation 6 there is no more clearing box which was used for the photo gallery so you can implement Lightbox2. Also the class “th” has been changed to “thumbnail”.
+`Lightbox2 documentation`_ : Install with bower - “lightbox2": "~2.8.2"
+
+SASS changes
+""""""""""""""
+`New SASS documentation`_
+
+.. _`The entire code for the topbar has been changed`: http://foundation.zurb.com/sites/docs/top-bar.html
+.. _`The entire code for the offcanvas has been changed`: http://foundation.zurb.com/sites/docs/off-canvas.html
+.. _`The drop down for off canvas can now use accordion vertical menu`: http://foundation.zurb.com/sites/docs/accordion-menu.html
+.. _`The html for a block grid has changed`: http://foundation.zurb.com/sites/docs/grid.html
+.. _`Lightbox2 documentation`: http://lokeshdhakar.com/projects/lightbox2/
+.. _`New SASS documentation` : http://foundation.zurb.com/sites/docs/sass.html
+
 App Modules
 ^^^^^^^^^^^^
 We provide a comprehensive suite of apps to use for building your site.
