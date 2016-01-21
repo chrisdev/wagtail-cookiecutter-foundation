@@ -3,7 +3,7 @@
 {% load wagtailcore_tags foundation_tags %}
 
 {% block contact_content %}
-         <div class="panel radius">
+         <div class="callout">
              <div class="form-panel">
                  <form class="contact-form" action="{% pageurl self %}" method="POST">
                      {% csrf_token %}
