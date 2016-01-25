@@ -215,12 +215,18 @@ SASS changes
 ^^^^^^^^^^^^^
 `New SASS documentation`_
 
+What-input added
+^^^^^^^^^^^^^^^^
+What-input is a global utility for tracking the current input method (mouse, keyboard or touch) and has been added to foundation 6.
+`What-input documentation`_
+
 .. _`The entire code for the topbar has been changed`: http://foundation.zurb.com/sites/docs/top-bar.html
 .. _`The entire code for the offcanvas has been changed`: http://foundation.zurb.com/sites/docs/off-canvas.html
 .. _`The drop down for off canvas can now use accordion vertical menu`: http://foundation.zurb.com/sites/docs/accordion-menu.html
 .. _`The html for a block grid has changed`: http://foundation.zurb.com/sites/docs/grid.html
 .. _`Lightbox2 documentation`: http://lokeshdhakar.com/projects/lightbox2/
 .. _`New SASS documentation` : http://foundation.zurb.com/sites/docs/sass.html
+.. _`What-input documentation` : https://www.npmjs.com/package/what-input
 
 Getting Started
 ----------------
