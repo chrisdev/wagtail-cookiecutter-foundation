@@ -4,10 +4,10 @@
 
 {% block content %}
     <div id="content" class="row">
-        <div id="people" class="large-9 medium-8 columns" role="content">
+        <div id="people" class="medium-9 columns" role="content">
              {% block people_content %}{% endblock %}
         </div>
-        <aside id="sidebar" class="large-3 medium-4 columns">
+        <aside id="sidebar" class="hide-for-small-only medium-3 columns">
              {% block sidebar %}
                  {% include "people/includes/sidebar.html" %} 
              {% endblock %}
