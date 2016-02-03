@@ -1,4 +1,4 @@
-Django==1.9.1
+Django==1.9.2
 psycopg2==2.6.1
 elasticsearch==1.6.0
 django-redis==4.3.0
