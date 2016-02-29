@@ -19,9 +19,9 @@
             </form> 
             </div>             
             {% if search_results %} 
-                <ul class="medium-block-grid-3">
+                <div class="medium-up-3 small-up-1" data-equalizer>
                     {% for result in search_results %}
-                        <li>
+                        <div class="column" data-equalizer>
                             <div class="panel radius" style="padding: 10px;" data-equalizer-watch>
                                <a href="{{ result.specific.url }}">
                                    <div data-equalizer-watch>
@@ -36,9 +36,9 @@
                                    </center>
                                </a>
                             </div>
-                        </li> 
+                        </div> 
                     {% endfor %} 
-                </ul>
+                </div>
             {% endif %}
     </div>
 {% endblock %}{% endraw %}
