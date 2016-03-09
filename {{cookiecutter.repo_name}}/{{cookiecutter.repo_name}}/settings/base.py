@@ -73,6 +73,9 @@ INSTALLED_APPS = (
     'wagtail.wagtailadmin',
     'wagtail.wagtailcore',
 
+    'wagalytics',
+    'wagtailfontawesome',
+    
     'utils',
     'pages',
     'blog',
@@ -190,6 +193,11 @@ FEED_LINK = '/news/'
 FEED_DESCRIPTION = "News and views from around the Web"
 FEED_AUTHOR_EMAIL = 'john@johnblog.com'
 FEED_AUTHOR_LINK = 'https://johnblog.com'
+
+
+# Settings for wagalytics
+GA_KEY_FILEPATH = ''
+GA_VIEW_ID = ''
 
 
 # Google Maps Key
