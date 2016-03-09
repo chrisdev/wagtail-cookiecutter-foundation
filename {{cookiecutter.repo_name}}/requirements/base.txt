@@ -8,3 +8,4 @@ Fabric==1.10.2
 django-libsass==0.6
 libsass==0.10.0
 ansible==2.0.1.0
+wagalytics==0.5
