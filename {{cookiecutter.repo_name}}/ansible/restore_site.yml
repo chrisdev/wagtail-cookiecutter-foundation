@@ -2,7 +2,7 @@
 - hosts: all
   user: {{cookiecutter.deploy_user_name }}
   vars:
-    - backup_db: {{cookiecutter.reop_name}}.sql
+    - backup_db: {{cookiecutter.repo_name}}.sql
 
 {% raw %}
   tasks:
