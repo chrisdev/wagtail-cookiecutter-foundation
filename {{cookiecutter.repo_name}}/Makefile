@@ -8,6 +8,7 @@ help:
 	@echo "  db                       create the PostgreSQL db for the project"
 	@echo "  migrate                  run the migrations"
 	@echo "  initial_data             populate the site with initial page structure"
+	@echo "  copy_media               copy the media(images and documents) to project root"
 	@echo "  bower                    Install front-end dependencies with bower"
 	@echo "  runserver                Start the django dev server"
 	@echo "  superuser                Create superuser with name superuser and password pass"
@@ -23,7 +24,7 @@ help:
 .PHONY: requirements
 
 
-all: virtualenv requirements db migrate initial_data bower runserver
+all: virtualenv requirements db initial_data copy_media bower runserver
 
 # Command variables
 MANAGE_CMD = python manage.py
@@ -60,7 +61,13 @@ migrate:
 initial_data:
 	( \
 		. $(VIRTUALENV_NAME)/bin/activate; \
-		$(MANAGE_CMD) load_initial_data; \
+		psql -d $(PROJECT_NAME) -f db.sql; \
+	)
+
+copy_media:
+	( \
+		. $(VIRTUALENV_NAME)/bin/activate; \
+		$(MANAGE_CMD) copy_media; \
 	)
 
 bower:

@@ -346,6 +346,12 @@ Populate the site with initial page structure. ::
 
   make initial_data 
 
+copy_media
+""""""""""""
+copy the media(images and documents) to project root. ::
+
+  make copy_media 
+
 bower
 """""
 Install all front-end dependencies with bower i.e `foundation`, `bxslider` and 
@@ -442,17 +448,17 @@ Install the dependencies for the project using ``pip`` ::
   pip install -r requirements/dev.txt
 
 
-Create the database and run migrations. Remember this cookiecutter requires
+Create the database. Remember this cookiecutter requires
 ``PostgreSQL`` so you need to install it before you can continue. ::
 
     createdb my_site
-    ./manage.py migrate
 
 ``wagtail-cookiecutter-foundation`` comes with some pages already created for your
 convenience including the homepage with a working ``bx_slider`` slideshow, 
 contact page, events and news/blog pages. To generate these pages run ::
 
-  /manage.py load_initial_data
+    psql -d my_site -f db.sql
+    ./manage.py copy_media
   
 The default Admin username is *admin*.  The default Admin password is *admin123*
 
