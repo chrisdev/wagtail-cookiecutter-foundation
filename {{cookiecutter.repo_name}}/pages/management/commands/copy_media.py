@@ -7,16 +7,13 @@ from django.core.management import call_command
 
 class Command(NoArgsCommand):
     def handle_noargs(self, **options):
-        fixtures_dir = os.path.join(settings.PROJECT_ROOT, 'pages', 'fixtures')
-        fixture_file = os.path.join(fixtures_dir, 'initial_data.json')
-        image_src_dir = os.path.join(fixtures_dir, 'images')
-        image_src_dir_or = os.path.join(fixtures_dir, 'original_images')
-        documents_src_dir = os.path.join(fixtures_dir, 'documents')
+        media_src_dir = os.path.join(settings.PROJECT_ROOT, 'pages', 'media')
+        image_src_dir = os.path.join(media_src_dir, 'images')
+        image_src_dir_or = os.path.join(media_src_dir, 'original_images')
+        documents_src_dir = os.path.join(media_src_dir, 'documents')
         image_dest_dir_or = os.path.join(settings.MEDIA_ROOT, 'original_images')
         image_dest_dir = os.path.join(settings.MEDIA_ROOT, 'images')
         documents_dest_dir = os.path.join(settings.MEDIA_ROOT, 'documents')
-
-        call_command('loaddata', fixture_file, verbosity=0)
 
         if not os.path.isdir(image_dest_dir):
             os.makedirs(image_dest_dir)
