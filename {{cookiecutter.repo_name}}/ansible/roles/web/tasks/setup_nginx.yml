@@ -1,102 +1,99 @@
 {% raw %}---
 - name: Ensure the Nginx is installed
-  apt: name=nginx state=latest update_cache=yes
+  apt: name=nginx state=latest update_cache=yes cache_valid_time=36000
+  become_user: root
+  become: yes
   tags:
       - nginx 
 
 - name: Ensure that the Nginx service is stopped
   service: name=nginx state=stopped
+  become: yes
+  become_user: root
   tags:
       - nginx 
- 
+
+- name: Check to see if the Cert has already been generated
+  become: yes
+  become_user: root
+  stat:
+    path: "/etc/letsencrypt/live/{{ django_env.HOST_NAME }}/fullchain.pem"
+  when: use_ssl|bool 
+  register: cert_stat
+  tags:
+      - ssl
+      - nginx 
+
 - name:  Nginx config NO SSL
+  become: yes
+  become_user: root
   template: src=nginx.j2
             dest=/etc/nginx/sites-available/{{ project_name }}
             backup=yes
   when: not use_ssl|bool
   tags:
-    - no_ssl
-    - nginx 
-
-- name: Ensure the SSL Directory exists
-  file: path=/svr/ssl/
-        state=directory
-        owner=root
-        group=root
-  sudo: yes
-  when: use_ssl|bool
-  tags:
+      - no_ssl
       - nginx
-      - ssl 
-
-
-- name: Copy the private key file 
-  copy: src={{ keystore_path }}/{{ssl_private_key}} 
-        dest=/svr/ssl/{{ssl_private_key}}  
-        owner=root
-        group=root
-  sudo: yes
-  when: use_ssl|bool 
-  tags:
-    - ssl 
-    - nginx
-
-- name: Copy the SSL bundle (public key) 
-  copy: src={{ keystore_path }}/{{ ssl_cert }} 
-        dest=/svr/ssl/{{ ssl_cert }}
-        owner=root 
-        group=root
-  sudo: yes
-  when: use_ssl|bool 
-  tags:
-    - ssl
-    - nginx
-
-- name: Generate the stronger DHE parameters
-  command: openssl dhparam -out dhparam.pem 2048
-  args:
-    chdir: /svr/ssl
-    creates: /srv/ssl/dhparam.pem
-  sudo: yes
-  when: use_ssl|bool 
-  tags:
-      - nginx
-      - ssl 
-
-
-- name: Comodo SSL bundle for OCSP stapling 
-  copy: src={{ keystore_path }}/{{ ca_cert }} 
-        dest=/svr/ssl/{{ ca_cert }}
-        owner=root 
-        group=root
-  sudo: yes
-  when: use_ssl|bool 
-  tags:
-    - ssl
-    - nginx
 
 
 - name: Nginx Config YES SSL 
+  become: yes
+  become_user: root
   template: src=nginx_ssl.j2
             dest=/etc/nginx/sites-available/{{ project_name }}
             backup=yes
-  when: use_ssl|bool 
+  when: use_ssl|bool and cert_stat.stat.exists
+  tags:
+       - ssl
+       - nginx
+
+- name: change the cli.ini to support webroot
+  become: yes
+  become_user: root
+  template: src=le-cli-webroot.j2
+            dest=/etc/letsencrypt/cli.ini
+            backup=yes
+  when: use_ssl|bool and cert_stat.stat.exists
+  tags:
+       - ssl
+       - nginx 
+
+- name: upload the LE auto renewal script
+  become: yes
+  become_user: root
+  when: use_ssl|bool and cert_stat.stat.exists
+  template: src=le-renew.j2
+        dest=/usr/local/bin/le-renew-webroot
+        mode="0744"
   tags:
     - ssl
     - nginx 
+    - letest
+
+- name: Add the renewal cronjob to the system
+  become: yes
+  become_user: root
+  cron: name="le certificate renewal" minute="30" hour="2" weekday="1" 
+        job="/usr/local/bin/le-renew-webroot >> /var/log/le-renewal.log"
+  when: use_ssl|bool and cert_stat.stat.exists
+  tags:
+    - ssl
+    - nginx1 
 
 - name: Ensure that the default site is disabled
+  become: yes
+  become_user: root
   command: rm /etc/nginx/sites-enabled/default
            removes=/etc/nginx/sites-enabled/default
   tags:
-      - nginx 
-      - ssl 
+      - nginx
 
 - name: enable the site 
+  become: yes
+  become_user: root
   file: src=/etc/nginx/sites-available/{{ project_name }} 
       dest=/etc/nginx/sites-enabled/{{ project_name }} state=link
   notify: restart nginx
   tags:
       - nginx 
-      - ssl
       - nginx_enable{% endraw %}

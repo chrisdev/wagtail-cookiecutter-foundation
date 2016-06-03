@@ -1,12 +1,14 @@
 {% raw %}---
 - name: update the apt-cache
-  apt: update_cache=yes 
-  sudo: yes
+  apt: update_cache=yes cache_valid_time=3600
+  become_user: root
+  become: true
   tags:
     - bower
 
 - name: install bower and dependencies
-  sudo: yes
+  become_user: root
+  become: true
   apt: >
         pkg={{ item }}  
         state=latest
@@ -20,15 +22,15 @@
     - node
 
 - name: install bower 
-  sudo: yes
+  become_user: root
+  become: true
   shell: npm install -g bower
   tags:
      - bower
 
 - name: install frontend dependencies 
-  sudo: no
   shell: bower install
   args:
      chdir: "{{ sites_dir }}/{{ project_name }}"
   tags:
-     - bower {% endraw %}
+     - bower{% endraw %}

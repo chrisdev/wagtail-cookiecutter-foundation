@@ -1,7 +1,8 @@
 {% raw %}---
 - name: update the apt-cache
   apt: update_cache=yes cache_valid_time=3600
-  sudo: yes
+  become_user: root
+  become: true
   tags:
      - redis
 
@@ -10,48 +11,54 @@
   with_items:
     - gcc
     - make
-  sudo: yes
+  become_user: root
+  become: true 
   tags:
      - redis
 
 - name: Download redis tar file
-  get_url: url=http://download.redis.io/releases/redis-{{ redis_version }}.tar.gz
-           dest=/usr/local/src/redis-{{ redis_version }}.tar.gz
-  sudo: yes
+  get_url: url=http://download.redis.io/redis-stable.tar.gz
+           dest=/usr/local/src/redis-stable.tar.gz
+  become_user: root
+  become: true 
   tags:
      - redis
 
 - name: Un tar the Redis tarball
-  shell: tar xf /usr/local/src/redis-{{ redis_version }}.tar.gz -C /usr/local/src
+  shell: tar xf /usr/local/src/redis-stable.tar.gz -C /usr/local/src
   args:
-      creates: /usr/local/src/redis-{{ redis_version }}
-  sudo: yes
+      creates: /usr/local/src/redis-stable
+  become_user: root
+  become: true 
   tags:
       - redis
 
 - name: make redis
   command: make
-  sudo: yes
+  become_user: root
+  become: true 
   args: 
-      chdir: /usr/local/src/redis-{{ redis_version }}
-      creates: /usr/local/src/redis-{{ redis_version }}/src/redis-server
+      chdir: /usr/local/src/redis-stable
+      creates: /usr/local/src/redis-stable/src/redis-server
   tags:
      - redis
 
 - name: install redis
   command: make install
-  sudo: yes
+  become_user: root
+  become: true 
   args:
-      chdir: /usr/local/src/redis-{{ redis_version }}
+      chdir: /usr/local/src/redis-stable
       creates: /usr/local/bin/redis-server
   tags:
      - redis
 
 - name: Run the redis install script
   shell: yes '' | ./install_server.sh
-  sudo: yes
+  become_user: root
+  become: true 
   args:
-      chdir: /usr/local/src/redis-{{ redis_version }}/utils
+      chdir: /usr/local/src/redis-stable/utils
   tags:
      - redis
 
@@ -61,17 +68,23 @@
                 insertafter='^#bind'
                 line='bind 127.0.0.1'
                 state=present
+  become_user: root
+  become: true 
   tags:
      - redis 
 
 - name: Start the redis server
   command: service redis_6379 start
-  sudo: yes
+  become_user: root
+  become: true 
   tags:
      - redis
+     - redisdebug 
 
-- name: Set redis to start automatically on boot
+- name: Restart redis 
   command: update-rc.d redis_6379 defaults
-  sudo: yes
+  command: service redis_6379 start
+  become_user: root
+  become: true 
   tags:
-     - redis{% endraw %}
+    - redis{% endraw %}

@@ -3,16 +3,30 @@
   shell: ssh-keyscan -H bitbucket.org >> /home/{{ deploy_user }}/.ssh/known_hosts
   args:
       creates: /home/{{ deploy_user }}/.ssh/known_hosts
-  sudo: no
   tags:
-      - hg
-      - test
+      - web
+      - vc
+
+- name: ensure github.com is a known host
+  lineinfile:
+  args:
+    dest: /home/{{ deploy_user }}/.ssh/known_hosts
+    create: yes
+    state: present
+    line: "{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}"
+    regexp: "^github\\.com"
+  tags:
+      - web
+      - vc
 
 - name: Create the Sites Directory if not present 
   file: path={{ sites_dir }} owner={{ deploy_user }} state=directory
+  become_user: root
+  become: true
   tags:
       - web 
       - hg
+      - vc
 
 - name: clone git repo 
   command: git clone {{ project_repo }} 
@@ -23,15 +37,15 @@
       creates: "{{ sites_dir }}/{{ project_name }}"
   tags:
       - web 
-      - hg
-        
+      - git
+      - vc        
 - name: clone hg repo
   command: hg clone {{ project_repo }} 
   when: vcs == 'hg'
-  sudo: no
   args:
       chdir: "{{ sites_dir }}"
       creates: "{{ sites_dir }}/{{ project_name }}"
   tags:
       - web 
-      - hg{% endraw %}
+      - hg
+      - vc{% endraw %}

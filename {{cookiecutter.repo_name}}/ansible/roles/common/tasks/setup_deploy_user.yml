@@ -8,14 +8,14 @@
 
 - name: Add the deploy user
   user: name={{ deploy_user }} shell=/bin/bash groups=sudo append=yes
-  sudo: yes
+  become_user: root 
   tags:
     - user
 
 
 - name: Ensure that sudo does not require a password
   lineinfile: "dest=/etc/sudoers state=present regexp='^%sudo' line='%sudo ALL=(ALL) NOPASSWD: ALL'"
-  sudo: yes
+  become_user: root 
   tags:
     - user
 
@@ -24,7 +24,7 @@
         owner={{ deploy_user }}
         group={{ deploy_user }}
         state=directory
-  sudo: yes
+  become_user: root 
   tags:
     - user
 
@@ -33,7 +33,7 @@
         dest=/home/{{ deploy_user }}/.ssh/authorized_keys 
         owner={{ deploy_user }}
         group={{ deploy_user }}
-  sudo: yes
+  become_user: root 
   tags:
     - user
 

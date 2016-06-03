@@ -1,6 +1,6 @@
 {% raw %}---
 - name: update the apt-cache
-  apt: update_cache=yes
+  apt: update_cache=yes  cache_valid_time=36000
   tags: 
       - pg_install
 
@@ -9,7 +9,7 @@
        pkg={{ item }}
        state=installed
   with_items:
-      - postgresql-9.3
+      - postgresql-9.5
       - libpq-dev
       - postgresql-client-common
       - python-psycopg2
@@ -22,7 +22,8 @@
       - pg_install
 
 - name: Create the database for the project 
-  sudo_user: postgres
+  become_user: postgres
+  become: true
   postgresql_db: name={{ django_env.DB_NAME }}
                  encoding='UTF-8'
                  lc_collate='en_US.UTF-8'
@@ -32,10 +33,10 @@
   tags:
       - pg_install
       - pg_config
-      - debugme
 
 - name: Ensure user has access to the database
-  sudo_user: postgres
+  become_user: postgres
+  become: true
   postgresql_user: db={{ django_env.DB_NAME }}
                    name={{ django_env.DB_USER }}
                    password={{ django_env.DB_PASSWD }}
@@ -46,7 +47,8 @@
       - pgconfig
             
 - name: Ensure user does not have unnecessary privileges
-  sudo_user: postgres
+  become_user: postgres
+  become: true
   postgresql_user: name={{ django_env.DB_USER }}
                    role_attr_flags=NOSUPERUSER,NOCREATEDB
                    state=present

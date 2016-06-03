@@ -1,14 +1,16 @@
 - name: apply common configruation to all nodes
   hosts: all 
-  sudo: yes 
-  user: root 
+  remote_user: django 
+  become: yes
+  become_user: root
   roles:
       - common
 
 - name: deploy postgreSQL and configure the database
   hosts: all
-  sudo: yes 
-  user: root 
+  remote_user: django 
+  become: yes
+  become_user: root
   roles:
       - role: database 
   tags:
@@ -16,8 +18,7 @@
 
 - name: configure and deploy django infrastructure and application code 
   hosts: all 
-  sudo: yes 
-  user: django 
+  remote_user: django 
   roles:
       - role: web
   tags:

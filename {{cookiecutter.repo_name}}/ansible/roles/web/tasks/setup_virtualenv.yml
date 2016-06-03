@@ -1,7 +1,8 @@
 {% raw %}---
 - name: Install packages via pip
   pip: name={{ item }}
-  sudo: yes 
+  become_user: root 
+  become: true
   with_items:
     - virtualenv
     - virtualenvwrapper
@@ -11,21 +12,22 @@
 
 - name: create the virtualenvwrapper dir if not present
   file: path={{ virtualenvs_dir }} owner={{ deploy_user }} state=directory
-  sudo: no
+  become_user: {{ deploy_user }}
+  become: true
   tags:
       - web
       - venv
 
 - name: Add virtualenvwrapper init1 to the bash profile
-  lineinfile: dest=/home/django/.profile line="export WORKON_HOME=~/virtualenvs"
-  sudo: no
+  lineinfile: dest=/home/{{ deploy_user }}/.profile line="export WORKON_HOME=~/virtualenvs"
+  become_user: {{ deploy_user }}
   tags:
       - web
       - venv
 
 - name: Add virtualenvwrapper init to the bash profile
-  lineinfile: dest=/home/django/.profile line="source /usr/local/bin/virtualenvwrapper.sh"
-  sudo: no
+  lineinfile: dest=/home/{{ deploy_user }}/.profile line="source /usr/local/bin/virtualenvwrapper.sh"
+  become_user: {{ deploy_user }}
   tags:
       - web
       - venv
