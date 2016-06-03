@@ -1,6 +1,8 @@
 Wagtail cookiecutter Foundation
 ================================
-
+.. image:: https://requires.io/github/chrisdev/wagtail-cookiecutter-foundation/requirements.svg?branch=master
+     :target: https://requires.io/github/chrisdev/wagtail-cookiecutter-foundation/requirements/?branch=master
+     :alt: Requirements Status
 .. image:: https://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation.svg?branch=master
    :target: http://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation
 
