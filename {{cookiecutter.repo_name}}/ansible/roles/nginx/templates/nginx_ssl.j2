@@ -1,4 +1,4 @@
-server {
+{% raw %}server {
     listen 80;
     server_name www.{{ django_env.HOST_NAME }};
     return 301 https://{{ django_env.HOST_NAME}}$request_uri;
@@ -82,4 +82,4 @@ server {
             rewrite ^(.*)$ /offline.html break;
         }
 
-}
+}{% endraw %}

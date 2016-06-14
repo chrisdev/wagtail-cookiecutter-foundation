@@ -1,4 +1,4 @@
-{% raw %}----
+{% raw %}---
 - name: use the ubuntu letsencrypt package 
   apt: name=letsencrypt state=latest update_cache=yes cache_valid_time=3600
   become: yes
@@ -114,5 +114,4 @@
   when: use_ssl|bool and use_package.stat.exists
   tags:
       - le
-      - ssl
-        {% endraw %}
+      - ssl{% endraw %}
