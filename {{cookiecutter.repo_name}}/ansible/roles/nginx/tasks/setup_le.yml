@@ -1,0 +1,117 @@
+{% raw %}---
+- name: use the ubuntu letsencrypt package 
+  apt: name=letsencrypt state=latest update_cache=yes cache_valid_time=3600
+  become: yes
+  become_user: root
+  when: use_ssl|bool and ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
+  tags:
+      - le 
+      - ssl
+
+- name: Your OS does not come with LE 
+  get_url: dest=/opt/certbot-auto url=https://dl.eff.org/certbot-auto 
+  become: yes
+  become_user: root
+  when: use_ssl|bool and ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
+  tags:
+      - le 
+      - ssl
+
+  name: Make the certbot-auto executable
+  file: path=/opt/certbot-auto mode=0744
+  become: yes
+  become_user: root
+  when: use_ssl|bool and ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
+  tag:
+      - le 
+      - ssl
+    
+- name: create the letsencrypt config dir
+  become: yes
+  become_user: root
+  file: path=/etc/letsencrypt
+        state=directory
+        mode=755
+  when: use_ssl|bool
+  tags:
+      - ssl
+
+- name: Check to see if the Cert has already been generated
+  become: yes
+  become_user: root
+  stat:
+    path: "/etc/letsencrypt/live/{{ django_env.HOST_NAME }}/fullchain.pem"
+  register: cert_stat
+  tags:
+      - le
+      - ssl
+
+- name: upload le-cli standalone config
+  become: yes
+  become_user: root
+  template: src=le-cli.j2
+            dest=/etc/letsencrypt/cli.ini
+            backup=yes
+
+  when: use_ssl|bool and not cert_stat.stat.exists
+  tags:
+      - le
+      - ssl
+
+- name: Check to see if to use certbot-auto or letsencrpt
+  become: yes
+  become_user: root
+  stat:
+      path: "/opt/certbot-auto"
+  register: use_package 
+  tags:
+      - le
+      - ssl
+        
+- name: Generate CSR, Sign and Download using certbot-auto  
+  become: yes
+  become_user: root
+  command: /opt/certbot-auto certonly --standalone  --agree-tos --config /etc/letsencrypt/cli.ini
+  when: use_ssl|bool and not use_package.stat.exists
+  tags:
+      - ssl
+
+- name: Generate CSR, Sign and Download using letsencrypt  
+  become: yes
+  become_user: root
+  command: letsencrypt certonly --standalone  --agree-tos --config /etc/letsencrypt/cli.ini
+  when: use_ssl|bool and use_package.stat.exists
+  tags:
+      - ssl
+ 
+- name: Generate stronger DHE parameters
+  become: yes
+  become_user: root
+  command: openssl dhparam -out dhparam.pem 2048
+  args:
+    chdir: /etc/letsencrypt/live/{{ django_env.HOST_NAME }}/
+    creates: "/etc/letsencrypt/live/{{ django_env.HOST_NAME }}/dhparam.pem"
+  when: use_ssl|bool 
+  tags:
+      - le
+      - ssl
+        
+- name: Dry run from cerbot-auto 
+  command: /opt/certbot-auto renew --dry-run 
+  become: yes
+  become_user: root
+  register: autorenew 
+  when: use_ssl|bool and use_not package.stat.exists
+  tags:
+      - le
+      - ssl
+
+- name: Dry run using letencrypt package 
+  command: letsencrpt renew --dry-run 
+  become: yes
+  register: autorenew 
+  become_user: root
+  when: use_ssl|bool and use_package.stat.exists
+  tags:
+      - le
+      - ssl{% endraw %}

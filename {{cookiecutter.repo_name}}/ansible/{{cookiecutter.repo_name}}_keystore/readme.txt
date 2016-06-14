@@ -4,3 +4,9 @@ Default location for
 - SSL keys
 - Other secrets
 
+**NOTE** 
+.gitignore/.hgignore rules will exclude any files here from your VCS repo.
+Alternatively you can use the ansible vault for your secrets.
+
+
+
