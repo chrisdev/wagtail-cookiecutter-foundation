@@ -123,7 +123,7 @@ class PersonPage(Page, ContactFields):
 
 PersonPage.content_panels = [
     FieldPanel('title', classname="title"),
-    SnippetChooserPanel('role', PersonRole),
+    SnippetChooserPanel('role'),
     FieldPanel('intro', classname="full"),
     FieldPanel('biography', classname="full"),
     ImageChooserPanel('image'),
