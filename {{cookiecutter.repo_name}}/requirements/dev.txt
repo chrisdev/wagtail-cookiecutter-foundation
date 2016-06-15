@@ -1,14 +1,14 @@
 -r base.txt
 
 # Functional testing with Selenium
-selenium==2.48.0
+selenium==2.53.5
 
 # Live Reload
-livereload==2.4.0
+livereload==2.4.1
 
 django-medusa==0.3.0
-django-sendfile==0.3.8
+django-sendfile==0.3.10
 
 # django-debug-toolbar that works with Django 1.5+
 django-debug-toolbar==1.4
-django-extensions==1.6.1
+django-extensions==1.6.7
