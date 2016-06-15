@@ -41,7 +41,7 @@
                     {% block content %}{% endblock %}
             
                     <footer>
-                        <div class="sitemap hide-for-small-only">
+                        <div class="sitemap pad hide-for-small-only">
                             <div class="row">
                               <div class="medium-4 columns">
                                 <div class="headline">
@@ -49,10 +49,9 @@
                                 </div>
                               </div>
                             </div>
+                            <br>
                             <div class="row">
-                              <div class="medium-12 columns">
-                                    {% site_menu parent=site_root calling_page=self %}
-                                </div>
+                                {% site_menu parent=site_root calling_page=self %}
                             </div>
                         </div>
                         <div class="contact-us">
