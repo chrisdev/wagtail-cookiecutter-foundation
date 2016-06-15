@@ -118,25 +118,19 @@ $header-font-color: #555 !default;
 
 .list-style {li{list-style: none;}}
 
-ul.share-buttons{list-style: none;padding: 0; margin:0; margin-bottom: 15px}
-ul.share-buttons li{display: inline; margin-right: 5px;}
-ul.share-buttons {
-    .fa {margin-right: 8px;}
-    .button.tiny {padding:8px 10px;font-size: 1rem;}
+.share-buttons{list-style: none;padding: 0; margin:0 0 5px;}
+ul.share-buttons li{display: inline; margin-right: 10px;}
+ul.share-buttons .fa {min-width: 30px;}
+.share-buttons {
+    .button.expanded, .button.tiny{padding:6px 8px;font-size: 1.2rem; border-radius: 5px;}
+    .button.expanded {margin-bottom: 0;}
     .facebook {background: #3b5998;}
     .twitter {background: #00aced;}
     .google {background: #dd4b39;}
     .linkedin {background: #007bb6;}    
     .pin {background: #cb2027;}
     .mail {background: #00bf8f;}
-}
-
-#share-buttons img {
-width: 55px;
-padding: 5px;
-border: 0;
-box-shadow: 0;
-display: inline;
+    .whatsapp {background: #43d854;}
 }
 
 #content {padding: 15px 0;min-height: 100vh;}
@@ -221,15 +215,20 @@ display: inline;
 }
 
 #event_feed
-{
-    margin-bottom: 25px;
-    h6, p {margin : 0px;}
-    .event{border: 1px solid $keppel; padding: 0;border-radius: 3px; margin-bottom: 10px;}
-    h6{color: $keppel;}
-    a p{color: $mine-shaft;}
-    h6.date{color: $white; background:$keppel; padding: 5px 0; margin: 0;}
-    .details {padding: 5px;}
+{    
+    .feed {
+        height: 372px;
+        overflow-y: scroll;
+    }
+    h6.title{background: $primary; padding: 6px; color: $white;}
+    h6.date{margin-top: 0px; color: $black;}
+    h6.event {padding:3px 0; margin:0;}
+    .event{border-bottom: 1px solid #ccc;padding: 11px 0;}
+    .event:last-of-type {border-bottom: 0px;}
+    a {color: $tundora}
+    hr:last-of-type {border: 0px;}
 }
+
 #testimonials {
      .bx-wrapper .bx-viewport{background: transparent; border:0px; box-shadow: none;}
      img{float: left; margin-right: 10px; border-radius: 100%;}
