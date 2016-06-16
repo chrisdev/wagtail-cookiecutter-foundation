@@ -12,9 +12,9 @@
                 <div class="people medium-up-4 small-up-1" data-equalizer>
                     {% for product in products %}
                         <div class="column">
-                            <div class="callout" data-equalizer-watch>
+                            <div class="callout secondary" data-equalizer-watch>
                                 <a href="{% pageurl product %}">
-                                    {% image product.image width-200 %}
+                                    {% image product.image fill-1200x630 %}
                                     <center style="margin-top: 15px;">
                                         <h5><strong>{{ product.title}}</strong></h5>
                                         <h6><strong>{{ product.price}}</strong></h6>

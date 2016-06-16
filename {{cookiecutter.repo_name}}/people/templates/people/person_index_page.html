@@ -12,25 +12,15 @@
         <div class="people medium-up-4 small-up-1 text-center" data-equalizer>
             {% for person in persons %}
                  <div class="column" data-equalizer-watch>
-                    <div class="callout">
-                        <a href="{% pageurl person %}">
-                            {% image person.image width-200 %}
+                    <a href="{% pageurl person %}">
+                        {% image person.image fill-800x800 %}
+                        <div class="callout secondary">
                             <center><h5 style="margin-bottom: 0px;">{{ person.title}}</h5></center>
                             {% if person.role %}
                             <center><h6 class="subheader">{{ person.role }}</h6></center>
-                            {% else %} {% endif %}
-                        </a>
-
-                        <!--<a href="{% pageurl person %}" data-reveal-id="personModal" class="button tiny radius reveal_modal" style="margin-top: 12px; margin-bottom: 3px;">
-                            Reveal More
-                        </a>
-
-                        <div id="personModal" class="reveal-modal" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
-                            <div id="modal-content"></div>
-                            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-                        </div>-->
-                        
-                    </div>
+                            {% endif %}
+                        </div>
+                    </a>
                 </div>
             {% endfor %}
         </div>

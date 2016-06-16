@@ -83,6 +83,7 @@ $header-font-color: $tundora !default;
     li {font-size: 13px;}
     li.menu-text{font-size: 18px; color: $white;}
     a {color: $white;}
+    a:hover {color: $tertiary;}
     ul, .dropdown.menu .submenu { background: $primary; border: 0px;}
     .dropdown.menu .submenu {border-top: 3px solid $secondary;}
     .menu li:not(.menu-text) a {padding: 13px 15px;}
@@ -103,8 +104,10 @@ $header-font-color: $tundora !default;
 
 .row{max-width: 68em;}
 .pad {padding: 20px 0;}
- a {color: $primary;}
- button, .button {background: $tertiary;}
+a {color: $primary;}
+a:hover {color: $secondary;}
+button, .button {background: $tertiary;}
+button:hover, .button:hover {background: $primary;}
 
 .breadcrumbs {
     margin: 20px 0 10px;
@@ -220,7 +223,7 @@ ul.share-buttons .fa {min-width: 30px;}
 #event_feed
 {    
     .feed {
-        height: 280px;
+        height: 230px;
         overflow-y: scroll;
     }
     h6.title{background: $primary; padding: 6px; color: $white;}
@@ -246,31 +249,19 @@ ul.share-buttons .fa {min-width: 30px;}
 .sitemap
 {
   background-color: $tundora;
-  color: $white;
   
   ul {margin-left: 0;}
-  
-  .headline h4
-  {
-    color: $white;
-    margin: 0 0 -2px 0;
-    padding-bottom: 5px;
-    display: inline-block;
-  }
-  
-  a{
-    color: $white;
-  }
-  
-  a:hover{
-    color: $primary;
-    transition: all 0.25s ease;
-    -webkit-transition: all 0.25s ease;
-  }
-  
-  h5 a{color: $tertiary;}
-  
   li{list-style: none;}
+  
+  h4{color: $white;}
+  
+  a{color: $white;}
+  a:hover{color: $tertiary;}
+  
+  h5 {
+      a{color: $tertiary;}
+      a:hover {color: $white;}
+  } 
 }
 
 .contact-us
