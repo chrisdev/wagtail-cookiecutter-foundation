@@ -15,13 +15,9 @@
                 <div>
                     <div class="medium-up-4 small-up-1" data-equalizer id="documents-index">
                     {% for page in pages %}
-                        <div class="column" data-equalizer-watch>
+                        <div class="column text-center" data-equalizer-watch>
                             <a href="{{ page.url }}">
-                                <!--
-                                {% if page.feed_image %}
-                                    {% image page.feed_image fill-500x350 %}
-                                {% endif %}-->
-                                <i class="fa fa-file fa-3x"></i>
+                                <i class="fa fa-file fa-3x" style="margin-bottom: 10px;"></i>
                                 <h5 style="margin-bottom: 0;">{{ page.title }}</h5>
                             </a>
                         </div>
