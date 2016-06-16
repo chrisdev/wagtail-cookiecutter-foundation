@@ -44,7 +44,7 @@ def news_feed(context, count=2):
 
     
 @register.inclusion_tag('events/includes/event_listing.html',takes_context=True)
-def upcoming_events(context, count=3):
+def upcoming_events(context, count=8):
 
     events = EventPage.objects.filter(live=True)
     events = events.all().order_by('-date_from')

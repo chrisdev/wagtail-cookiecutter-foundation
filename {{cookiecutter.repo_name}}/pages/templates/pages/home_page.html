@@ -8,38 +8,28 @@
     <div class="intro">
         <div class="row text-center">
           <div class="medium-10 medium-centered columns">
-            <h3>{{ self.title_text|richtext }}</h3>
-            {{ self.body|richtext }}
-            <div id="carousel">
-                {% include "pages/includes/bx_carousel.html" with carousel_items=self.carousel_items.all only  %}
-            </div>
+              <h3><strong>{{ self.title_text|richtext }}</strong></h3>
+              {{ self.body|richtext }}
+              <div id="carousel">
+                  {% include "pages/includes/bx_carousel.html" with carousel_items=self.carousel_items.all only  %}
+              </div>
           </div>
         </div>
     </div>
 
 	<div class="section">
-	    <div id="testimonials" class="row">
-	        <div class="medium-8 medium-centered columns">
-	            <center><h3>Testimonials</h3></center>
-	            <br>
-	            {% testimonials %}
-	         </div>
-	    </div>
-	    
-	    <br>
-	    
-        <div id="icons" class="row">
+        <div id="icons" class="row text-center">
         <h3>Featuring</h3>
         <br>
-        <div class="medium-up-3 small-up-2">
+        <div class="medium-up-3 small-up-1" data>
             {% for block in self.content_items.all %}
             <div class="column icon">
                 <a href="{{ block.link }}" target="_blank">
-                 {% if block.image %}
-                    {% image block.image fill-60x60 %}
-                 {% endif %}
-                 <h4>{{ block.title}}</h4>
-                 {{ block.content|richtext }}
+                     {% if block.image %}
+                        {% image block.image fill-80x80 %}
+                     {% endif %}
+                     <h4><strong>{{ block.title}}</strong></h4>
+                     {{ block.content|richtext }}
                 </a>
             </div>
            {% endfor %}

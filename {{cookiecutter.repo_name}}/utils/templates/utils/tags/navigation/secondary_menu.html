@@ -1,11 +1,15 @@
 {% raw %}{% load wagtailcore_tags %}
 {% if pages %}
 <div class="row">
-        <center><h6>Also in This Section<center><h6>
-        <ul class="side-nav">
-            {% for page in pages %}
-                <li><a href="{% pageurl page %}">{{ page.title }}</a></li>
-            {% endfor %}
-        </ul>
+    <div class="medium-12 columns">
+        <div id="side_menu" class="callout" style="padding: 0;">
+            <center><h6 class="title" style="font-variant: small-caps;"><strong>Also In This Section</strong></h6></center>
+            <ul class="menu vertical">
+                {% for page in pages %}
+                    <li><a href="{% pageurl page %}"><strong>{{ page.title }}</strong></a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 </div>
 {% endif %}{% endraw %}
