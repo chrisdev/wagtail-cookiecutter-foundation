@@ -117,12 +117,6 @@ button:hover, .button:hover {background: $primary;}
     a {color: $primary;}
 }
 
-.side-nav {
-    margin-top: 15px;
-    li {list-style: none;}
-    a{display: block;padding: 5px 0;}
-}
-
 .list-style {li{list-style: none;}}
 
 .share-buttons{list-style: none;padding: 0; margin:0 0 5px;}
@@ -171,9 +165,8 @@ ul.share-buttons .fa {min-width: 30px;}
   padding: 20px 10px;
   
   h3, p {color: $white;}
-  h4 {color: $tertiary; padding: 4px 0;}
+  h4 {color: $white; padding: 4px 0;}
   img {padding: 8px 0;}
-  .small-pad {padding: 5px;}  
 }
 
 #blog_list {
@@ -206,7 +199,6 @@ ul.share-buttons .fa {min-width: 30px;}
     h6.title{background: $primary; padding: 6px; color: $white;}
     hr:last-of-type {border: 0;}
 }
-
 
 #news_feed 
 {
@@ -245,8 +237,23 @@ ul.share-buttons .fa {min-width: 30px;}
      blockquote {border-left: 0px;}
 }
 
+#faq {
+    .block-faq_answer {display:none;}
+    .block-faq_question {
+        background:url('/#{$static}/img/faq/open.png') right no-repeat;
+        font-size: 15px;
+        color: $primary;
+        padding: 12px 25px 12px 0;
+        cursor:pointer;  
+        margin: 0; 
+        font-weight: 400;}
+    .block-faq_question:hover {color: $primary;}
+    .block-faq_question.close {background-image:url('/#{$static}/img/faq/close.png');}
+    .block-faq_question {border-top: 1px solid $tundora;}
+    .block-faq_question:first-of-type {border: 0;}
+}
 
-.sitemap
+#sitemap
 {
   background-color: $tundora;
   
@@ -264,41 +271,19 @@ ul.share-buttons .fa {min-width: 30px;}
   } 
 }
 
-.contact-us
+#contact-us
 {
   background-color: $mine-shaft;
   color: white;
-  padding: 10px 0;
-  border-top: solid 1px $mine-shaft;
-    
+  padding: 20px 0;    
   
   a, h5{color: $white;}
+  
+  .social a {font-size: 30px; margin: 5px;}
 }
 
 .vcard {
   border: 0px;
   padding: 0;
   margin-bottom: 0px;
-}
-
-
-.contact-head
-{
-  margin-bottom: 20px;
-}
-
-#faq {
-    .block-faq_answer {display:none;}
-    .block-faq_question {
-        background:url('/#{$static}/img/faq/open.png') right no-repeat;
-        font-size: 15px;
-        color: $primary;
-        padding: 12px 25px 12px 0;
-        cursor:pointer;  
-        margin: 0; 
-        font-weight: 400;}
-    .block-faq_question:hover {color: $primary;}
-    .block-faq_question.close {background-image:url('/#{$static}/img/faq/close.png');}
-    .block-faq_question {border-top: 1px solid $tundora;}
-    .block-faq_question:first-of-type {border: 0;}
 }

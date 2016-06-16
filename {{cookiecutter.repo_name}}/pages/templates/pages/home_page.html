@@ -29,9 +29,7 @@
                         {% image block.image fill-80x80 %}
                      {% endif %}
                      <h4><strong>{{ block.title}}</strong></h4>
-                     <div class="small-pad">
-                         {{ block.content|richtext }}
-                     </div>
+                     {{ block.content|richtext }}
                 </a>
             </div>
            {% endfor %}

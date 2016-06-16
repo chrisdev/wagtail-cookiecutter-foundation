@@ -5,8 +5,8 @@
                 {% if blog.feed_image %}
                     {% image blog.feed_image fill-1200x630 %}
                 {% endif %}
-                <div class="callout secondary">
-                    <h4>{{ blog.title }}</h4>
+                <div class="callout">
+                    <h4><strong>{{ blog.title }}</strong></h4>
                 
                     {% if blog.intro %}
                         {{ blog.intro|richtext }}
@@ -16,7 +16,7 @@
                     
                     <div class="medium-12 columns" style="padding: 0;">
                         <p>
-                            <a class="button radius tiny secondary disabled">{{ blog.date|date:"j F Y" }}</a>
+                            <a class="button radius tiny secondary disabled"><strong>{{ blog.date|date:"j F Y" }}</strong></a>
                             <a class="float-right button radius tiny" href="{% pageurl blog %}">Read Article &raquo;</a>
                         </p>
                     </div>
