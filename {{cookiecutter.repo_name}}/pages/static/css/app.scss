@@ -104,6 +104,7 @@ $header-font-color: $tundora !default;
 .row{max-width: 68em;}
 .pad {padding: 20px 0;}
  a {color: $primary;}
+ button, .button {background: $tertiary;}
 
 .breadcrumbs {
     margin: 20px 0 10px;
@@ -170,7 +171,6 @@ ul.share-buttons .fa {min-width: 30px;}
   h4 {color: $tertiary; padding: 4px 0;}
   img {padding: 8px 0;}
   .small-pad {padding: 5px;}  
-
 }
 
 #blog_list {
@@ -185,8 +185,7 @@ ul.share-buttons .fa {min-width: 30px;}
 
 #blog-rss
 {
-  float: right;
-  color: $primary;
+  color: $white;
 }
 
 #people {
@@ -200,9 +199,16 @@ ul.share-buttons .fa {min-width: 30px;}
     }
 }
 
+#side_menu {
+    h6.title{background: $primary; padding: 6px; color: $white;}
+    hr:last-of-type {border: 0;}
+}
+
 
 #news_feed 
 {
+    h6 {color: $primary;}
+    h6.title{background: $primary; padding: 6px; color: $white;}
     h6, li {margin-bottom :5px;}
     li{list-style: none; font-size:14px; margin-bottom: 0px;}
     p{font-size: 14px; margin-bottom:10px;}
@@ -288,40 +294,6 @@ ul.share-buttons .fa {min-width: 30px;}
 .contact-head
 {
   margin-bottom: 20px;
-}
-.nav-top
-{
-  border-top: 5px solid $primary;
-}
-
-
-ul.side-nav {
-     text-align: center;
-     font-family: $header-font-family;
-     li {
-        margin-bottom: 4px;
-        a:not(.button) {
-            background: $primary; 
-            border-radius: 2px; 
-            color: $white;
-        }
-        a:hover:not(.button){
-            background: $primary;
-            color: $white;
-        }
-    }
-}
-
-#sidebar {
-    #news_feed 
-    {
-        h6 a, li{color: $mine-shaft;}
-        h6, li{text-align: center; margin-bottom: 6px;}
-        p{display: none;}
-        hr{border: 0px;}
-        .news{border: 1px solid $primary; border-radius: 5px; padding: 8px; margin-bottom:10px;}
-        .rich-text{display: none;}
-    }
 }
 
 #faq {
