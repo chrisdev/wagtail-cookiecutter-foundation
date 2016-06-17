@@ -26,6 +26,8 @@
                 <h5>Product Description</h5>
             {% endif %}
             {% include "products/includes/body.html" with body=self.description only %}
+            <br>
+            {% include "utils/includes/related_links.html" with related_links=self.related_links.all only %} 
         </div>
     </div>
 {% endblock %}{% endraw %}
