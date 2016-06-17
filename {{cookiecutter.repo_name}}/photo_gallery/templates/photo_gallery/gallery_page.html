@@ -26,20 +26,26 @@
                 <p>No images are tagged with your {{ self.title }} gallery or no {{ self.title }} tags defined.</p>
             {% endif %}
         </div>
+        
+        <div class="medium-12 columns">    
+            <ul class="pagination text-center" role="navigation" aria-label="Pagination">
+                  {% if images.has_previous %}
+                      <li class="pagination-previous">
+                          <a href="?page={{ images.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Previous page">Previous</a></li>
+                      {% else %} 
+                      <li class="pagination-previous disabled">Previous</li>
+                  {% endif %}
+                  <li class="unavailable">Page {{ images.number }} of {{ images.paginator.num_pages }}</li>
+                  {% if images.has_next %}
+                      <li class="pagination-next">
+                          <a href="?page={{ images.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a></li>
+                      {% else %}
+                      <li class="pagination-next disabled">Next</li>
+                  {% endif %}
+            </ul>
+        </div>
     </div>
     
-
-      <ul class="pagination text-center">
-           {% if images.has_previous %}
-                <li class="arrow unavailable"><a href="?page={{ images.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&laquo;</a></li>
-           {% endif %}
-           
-           Page {{ images.number }} of {{ images.paginator.num_pages }}
-            
-           {% if images.has_next %}
-               <li class="arrow"><a href="?page={{ images.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&raquo;</a></li>
-           {% endif %}
-      </ul>
 
     
 

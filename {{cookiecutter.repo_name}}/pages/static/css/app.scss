@@ -78,14 +78,15 @@ $header-font-color: $tundora !default;
 .title-bar {background: $primary;}
 .top-bar  {
     background: $primary;
-    border-bottom: 2px solid tertiary;
     padding: 0;
     li {font-size: 13px;}
     li.menu-text{font-size: 18px; color: $white;}
     a {color: $white;}
-    a:hover {color: $tertiary;}
-    ul, .dropdown.menu .submenu { background: $primary; border: 0px;}
-    .dropdown.menu .submenu {border-top: 3px solid $secondary;}
+    a:hover {color: $white;}
+    .menu .active a {background: $tertiary;}
+    ul, .dropdown.menu .submenu {background: $primary; border: 0px;}
+    .dropdown.menu .submenu {border-top: 3px solid $tertiary;}
+    .top-bar-right {margin-top: 1px;}
     .menu li:not(.menu-text) a {padding: 13px 15px;}
     .dropdown.menu .is-dropdown-submenu-parent a::after {
       margin-top: 5px; border-color: $white transparent transparent; border-style: solid;}
@@ -235,6 +236,16 @@ ul.share-buttons .fa {min-width: 30px;}
      p{margin-top: 10px; margin-bottom: 10px; text-align: left; font-style: italic; font-size: 15px;}
      h6{text-align: right;}     
      blockquote {border-left: 0px;}
+}
+
+.tag-names li
+{
+  background: $primary;
+  border-radius: 2px;
+  color: #fff;
+  padding: 5px;
+  display:inline;
+  margin: 0px 3px;
 }
 
 #faq {

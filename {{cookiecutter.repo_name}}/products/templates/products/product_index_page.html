@@ -4,6 +4,7 @@
 
 {% block content %}
     <div id="content" class="row">
+        <div class="medium-12 columns">
             <h3>{{ self.title }}</h3>
             <h4 class="subheader">{{ self.subtitle }}</h4>
             {% include "products/includes/intro.html" with intro=self.intro only %}
@@ -25,17 +26,23 @@
                     {% endfor %}
                 </div>
             </div>
-            
-            <ul class="pagination text-center">
+        </div>
+        <div class="medium-12 columns">    
+            <ul class="pagination text-center" role="navigation" aria-label="Pagination">
                   {% if products.has_previous %}
-                      <li class="arrow">
-                          <a href="?page={{ products.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&laquo; Prev</a></li>
+                      <li class="pagination-previous">
+                          <a href="?page={{ products.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Previous page">Previous</a></li>
+                      {% else %} 
+                      <li class="pagination-previous disabled">Previous</li>
                   {% endif %}
                   <li class="unavailable">Page {{ products.number }} of {{ products.paginator.num_pages }}</li>
                   {% if products.has_next %}
-                      <li class="arrow">
-                          <a href="?page={{ products.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Next &raquo;</a></li>
+                      <li class="pagination-next">
+                          <a href="?page={{ products.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a></li>
+                      {% else %}
+                      <li class="pagination-next disabled">Next</li>
                   {% endif %}
             </ul>
+        </div>
     </div> 
 {% endblock %}{% endraw %}
