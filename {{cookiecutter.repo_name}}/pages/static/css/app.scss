@@ -75,6 +75,13 @@ $header-font-color: $tundora !default;
   height: 100%;
 }
 
+.row{max-width: 68em;}
+.pad {padding: 20px 0;}
+a {color: $primary;}
+a:hover {color: $secondary;}
+button, .button {background: $tertiary;}
+button:hover, .button:hover {background: $primary;}
+
 .title-bar {background: $primary;}
 .top-bar  {
     background: $primary;
@@ -96,19 +103,12 @@ $header-font-color: $tundora !default;
 
 .off-canvas {
     a{color: $white;}
+    a:hover{color: $tertiary;}
     .is-accordion-submenu-parent > a::after {border-color: $white transparent transparent;}
 }
+.off-canvas-wrapper{button {background: transparent;}}
 .off-canvas-content {box-shadow: none;}
 .off-canvas.position-left {height: 100%;background: $primary;}
-
-.active { background-color: $primary-color; }
-
-.row{max-width: 68em;}
-.pad {padding: 20px 0;}
-a {color: $primary;}
-a:hover {color: $secondary;}
-button, .button {background: $tertiary;}
-button:hover, .button:hover {background: $primary;}
 
 .breadcrumbs {
     margin: 20px 0 10px;
