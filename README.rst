@@ -4,7 +4,7 @@ Wagtail cookiecutter Foundation
      :target: https://requires.io/github/chrisdev/wagtail-cookiecutter-foundation/requirements/?branch=master
      :alt: Requirements Status
 .. image:: https://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation.svg?branch=master
-   :target: http://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation
+   :target: https://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation
 
 A cookiecutter_ template for `Wagtail CMS`_ featuring the `Zurb Foundation`_ 
 front-end framework. **Note the master branch of the project is now based on Foundation 6**.
