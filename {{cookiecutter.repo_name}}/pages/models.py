@@ -14,7 +14,20 @@ from wagtail.wagtailadmin.edit_handlers import (
 from wagtail.wagtailsearch import index
 from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
 from utils.models import LinkFields, ContactFields, RelatedLink, CarouselItem
+from wagtail.contrib.settings.models import BaseSetting, register_setting
 
+@register_setting
+class SocialMediaSettings(BaseSetting):
+    facebook = models.URLField(
+        help_text='Your Facebook page URL')
+    instagram = models.CharField(
+        max_length=255, help_text='Your Instagram username, without the @')
+    twitter_name = models.CharField(
+        max_length=255, help_text='Your Twitter username, without the @')
+    youtube = models.URLField(
+        help_text='Your YouTube channel or user account URL')
+    facebook_appid = models.CharField(
+        max_length=255, help_text='Your Facbook AppID')
 
 class HomePageContentItem(Orderable, LinkFields):
     page = ParentalKey('pages.HomePage', related_name='content_items')
