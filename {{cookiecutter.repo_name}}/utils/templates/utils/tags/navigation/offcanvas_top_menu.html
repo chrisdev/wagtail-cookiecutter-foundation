@@ -1,12 +1,12 @@
-{% raw %}{% load wagtailcore_tags navigation_tags settings_tags %}
-{% load static %}
+{% raw %}{% load wagtailcore_tags navigation_tags wagtailsettings_tags static %}
+{% get_settings %}
 {% get_site_root as site_root %}
 
 <div id="social_bar">
     <div class="row" style="max-width: 95%;">
-     <a href="#" title="Facebook" target="_blank"><i class="fa fa-facebook-square"></i></a>
-     <a href="https://twitter.com/realchrisdev" title="Twitter" target="_blank"><i class="fa fa-twitter-square"></i></a>
-     <a href="https://github.com/chrisdev" title="Github" target="_blank"><i class="fa fa-github-square"></i></a>
+     <a href="{{ settings.pages.SocialMediaSettings.facebook }}" title="Facebook" target="_blank"><i class="fa fa-facebook-square"></i></a>
+     <a href="{{ settings.pages.SocialMediaSettings.twitter_name }}" title="Twitter" target="_blank"><i class="fa fa-twitter-square"></i></a>
+     <a href="{{ settings.pages.SocialMediaSettings.github }}" title="Github" target="_blank"><i class="fa fa-github-square"></i></a>
      <a href="mailto:cclarke@chrisdev.com" title="Mail" target="_blank"><i class="fa fa-envelope"></i></a>
      </div>
 </div>

@@ -1,6 +1,7 @@
-{% raw %}{% load compress static wagtailuserbar navigation_tags %}
+{% raw %}{% load compress static wagtailuserbar wagtailsettings_tags navigation_tags %}
 {% load {% endraw %}{{ cookiecutter.repo_name }}{% raw %}_utils %}
 {% load settings_tags %}
+{% get_settings %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -63,9 +64,9 @@
                                 </div>
                                 <div class="social medium-4 columns text-center">
                                     <h5><strong>Follow Us</strong></h5>
-                                    <a href="https://github.com/chrisdev" target="_blank"><i class="fa fa-github-square"></i></a>
-                                    <a href="https://twitter.com/realchrisdev" target="_blank"><i class="fa fa-twitter-square"></i></a>
-                                    <a href="#" target="_blank"><i class="fa fa-facebook-square"></i></a>
+                                    <a href="{{ settings.pages.SocialMediaSettings.facebook }}" target="_blank"><i class="fa fa-facebook-square"></i></a>
+                                    <a href="{{ settings.pages.SocialMediaSettings.twitter_name }}" target="_blank"><i class="fa fa-twitter-square"></i></a>
+                                    <a href="{{ settings.pages.SocialMediaSettings.github }}" target="_blank"><i class="fa fa-github-square"></i></a>
                                 </div>
                                 <div class="medium-4 columns text-center">
                                     <h5><strong>Find Us</strong></h5>
