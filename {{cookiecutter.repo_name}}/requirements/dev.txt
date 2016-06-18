@@ -6,7 +6,7 @@ selenium==2.53.5
 # Live Reload
 livereload==2.4.1
 
-django-medusa==0.3.0
+git+https://github.com/alsoicode/django-medusa
 django-sendfile==0.3.10
 
 # django-debug-toolbar that works with Django 1.5+
