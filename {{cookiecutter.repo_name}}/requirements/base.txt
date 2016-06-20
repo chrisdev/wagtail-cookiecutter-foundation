@@ -7,4 +7,4 @@ celery==3.1.23
 django-libsass==0.7
 libsass==0.11.1
 ansible==2.1.0.0
-wagalytics==0.5
+wagalytics==0.6
