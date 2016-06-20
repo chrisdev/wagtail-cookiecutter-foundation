@@ -114,7 +114,6 @@ func_test:
 static_site:
 # Static Site generation
 	$(call ECHO_BLUE,Generating Static Site)
-	$(PIP_INSTALL_CMD) django-medusa django-sendfile
 	$(MANAGE_CMD) staticsitegen
 	$(MANAGE_CMD) collectstatic
 	rsync -av static static_build/
