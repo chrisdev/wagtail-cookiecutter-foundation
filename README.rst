@@ -1,11 +1,11 @@
 Wagtail cookiecutter Foundation
 ================================
-.. image:: https://requires.io/github/chrisdev/wagtail-cookiecutter-foundation/requirements.svg?branch=master
-     :target: https://requires.io/github/chrisdev/wagtail-cookiecutter-foundation/requirements/?branch=master
-     :alt: Requirements Status
+.. image:: https://pyup.io/repos/github/chrisdev/wagtail-cookiecutter-foundation/shield.svg
+     :target: https://pyup.io/repos/github/chrisdev/wagtail-cookiecutter-foundation/
+     :alt: Updates
 .. image:: https://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation.svg?branch=master
    :target: https://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation
-
+   
 A cookiecutter_ template for `Wagtail CMS`_ featuring the `Zurb Foundation`_ 
 front-end framework. **Note the master branch of the project is now based on Foundation 6**.
 The release tagged ``0.0.2`` is based on Foundation 5.  
