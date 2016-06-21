@@ -3,7 +3,6 @@ from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Rss201rev2Feed
 from wagtail.wagtailimages.models import Filter
 from wagtail.wagtailcore.models import Site
-from django.conf import settings
 from datetime import datetime, time
 from django.utils.html import strip_tags
 from django.apps import apps
@@ -15,10 +14,17 @@ except ImportError:
     from urllib.parse import urljoin
 from django.utils import feedgenerator
 
-feed_app_label = getattr(settings, "FEED_APP_LABEL")
-feed_model_name = getattr(settings, "FEED_MODEL_NAME")
-feed_model = apps.get_model(app_label=feed_app_label,
-                            model_name=feed_model_name)
+from .models import FeedsAppSettings
+
+feed_app_settings = FeedsAppSettings.for_site(
+    site=Site.objects.get(is_default_site=True))
+feed_app_label = feed_app_settings.feed_app_label
+feed_model_name = feed_app_settings.feed_model_name
+try:
+    feed_model = apps.get_model(app_label=feed_app_label,
+                                model_name=feed_model_name)
+except:
+    feed_model = None
 
 
 class CustomFeedGenerator(Rss201rev2Feed):
@@ -53,15 +59,15 @@ class BasicFeed(Feed):
     feed_type = feedgenerator.Rss201rev2Feed
 
     # The RSS information that gets shown at the top of the feed.
-    title = getattr(settings, "FEED_TITLE", "")
-    link = getattr(settings, "FEED_LINK", "")
-    description = getattr(settings, "FEED_DESCRIPTION", "Blog Feed")
+    title = feed_app_settings.feed_title
+    link = feed_app_settings.feed_link
+    description = feed_app_settings.feed_description
 
-    author_email = getattr(settings, "FEED_AUTHOR_EMAIL", "")
-    author_link = getattr(settings, "FEED_AUTHOR_LINK", "")
+    author_email = feed_app_settings.feed_author_email
+    author_link = feed_app_settings.feed_author_link
 
-    item_description_field = getattr(settings, "FEED_ITEM_DESCRIPTION_FIELD")
-    item_content_field = getattr(settings, "FEED_ITEM_CONTENT_FIELD")
+    item_description_field = feed_app_settings.feed_item_description_field
+    item_content_field = feed_app_settings.feed_item_content_field
 
     def items(self):
         return feed_model.objects.order_by('-date').live()
@@ -82,15 +88,15 @@ class ExtendedFeed(Feed):
     feed_type = CustomFeedGenerator
 
     # The RSS information that gets shown at the top of the feed.
-    title = getattr(settings, "FEED_TITLE", "")
-    link = getattr(settings, "FEED_LINK", "")
-    description = getattr(settings, "FEED_DESCRIPTION", "Blog Feed")
+    title = feed_app_settings.feed_title
+    link = feed_app_settings.feed_link
+    description = feed_app_settings.feed_description
 
-    author_email = getattr(settings, "FEED_AUTHOR_EMAIL", "")
-    author_link = getattr(settings, "FEED_AUTHOR_LINK", "")
+    author_email = feed_app_settings.feed_author_email
+    author_link = feed_app_settings.feed_author_link
 
-    item_description_field = getattr(settings, "FEED_ITEM_DESCRIPTION_FIELD")
-    item_content_field = getattr(settings, "FEED_ITEM_CONTENT_FIELD")
+    item_description_field = feed_app_settings.feed_item_description_field
+    item_content_field = feed_app_settings.feed_item_content_field
 
     def get_site_url(self):
         site = Site.objects.get(is_default_site=True)
@@ -113,7 +119,7 @@ class ExtendedFeed(Feed):
         return item.full_url
 
     def item_author_name(self, item):
-        return u'Jonh Blog'
+        pass
 
     def item_extra_kwargs(self, item):
         """

@@ -76,7 +76,7 @@ INSTALLED_APPS = (
 
     'wagalytics',
     'wagtailfontawesome',
-    
+
     'utils',
     'pages',
     'blog',
@@ -86,6 +86,7 @@ INSTALLED_APPS = (
     'photo_gallery',
     'products',
     'documents_gallery',
+    'feeds',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -182,19 +183,6 @@ COMPRESS_PRECOMPILERS = (
 )
 
 COMPRESS_OFFLINE = True
-
-# Feeds app for Wagtail CMS
-FEED_APP_LABEL = 'blog'
-FEED_MODEL_NAME = 'BlogPage'
-FEED_ITEM_DESCRIPTION_FIELD = 'intro'
-FEED_ITEM_CONTENT_FIELD = 'body'
-
-FEED_TITLE = 'From the Desk of John Blog'
-FEED_LINK = '/news/'
-FEED_DESCRIPTION = "News and views from around the Web"
-FEED_AUTHOR_EMAIL = 'john@johnblog.com'
-FEED_AUTHOR_LINK = 'https://johnblog.com'
-
 
 # Settings for wagalytics
 GA_KEY_FILEPATH = ''
