@@ -2,28 +2,9 @@
 {% load static wagtailcore_tags wagtailimages_tags %}
 {% block content %}
 <div id="content" class="row">
-    <div class="medium-10 medium-centered columns">
+    <div class="medium-9 medium-centered columns">
         <center><h3>{{ self.title }}</h3></center>
-        <div class="medium-8 columns" role="content">
-             {% block contact_content %}{% endblock %}
-        </div>
-        <aside id="sidebar" class="medium-4 columns sidebar">
-             {% block sidebar %}
-             <center><h6> Find Us </h6></center>
-             {% load settings_tags %}
-            {% get_google_maps_key as google_maps_key %}
-            {% get_dynamic_map_url as dyn_map_url %}
-            {% get_static_map_url as static_map_url %}
-            {% if google_maps_key %}
-            <a href="{{ dyn_map_url }}" target="_blank">
-                <img src="{{ static_map_url }}&key={{ google_maps_key }}"
-                alt="contact.name_organization">
-            </a> 
-            {% endif %}
-            {% include "contact/includes/contact_card.html"  with contact=self only%}
-             {% endblock %}
-            
-        </aside>
+         {% block contact_content %}{% endblock %}
     </div>
 </div>
 {% endblock %}{% endraw %}
