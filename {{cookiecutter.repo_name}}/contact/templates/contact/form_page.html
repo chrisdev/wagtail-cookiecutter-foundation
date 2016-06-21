@@ -2,21 +2,17 @@
 
 {% load wagtailcore_tags foundation_tags %}
 
-{% block content %}
-    <div id="content" class="row">
-        <div class="medium-8 medium-centered columns">
-             <div class="panel radius">
-                 <center><h3>{{ self.title }}</h3></center>
-                 {{ self.intro|richtext }}
-                 <div class="form-panel">
-                     <form class="contact-form" action="{% pageurl self %}" method="POST">
-                         {% csrf_token %}
-                         {{ form|as_foundation }}
-                         <input class="right button tiny radius" name="Send" type="submit" value="Submit">
-                         <br>
-                     </form>
-                 </div>
-             </div>
+{% block contact_content %}
+     <div class="callout secondary">
+         {{ self.intro|richtext }}
+         <div class="form-panel">
+             <form class="contact-form" action="{% pageurl self %}" method="POST">
+                 {% csrf_token %}
+                 {{ form|as_foundation }}
+                 <input class="button radius float-right" name="Send" type="submit" value="Submit">
+                 <br>
+                 <br>
+             </form>
          </div>
      </div>
 {% endblock %}{% endraw %}
