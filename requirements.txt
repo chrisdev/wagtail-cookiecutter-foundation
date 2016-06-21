@@ -1,5 +1,5 @@
 cookiecutter==1.4.0
-sh
+sh==1.11
 virtualenv==15.0.2
 
 # Testing
