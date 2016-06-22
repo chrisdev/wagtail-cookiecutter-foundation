@@ -16,8 +16,8 @@ A demo of a default project generated from this cookiecutter is available at htt
    :alt: Wagtail Cookiecutter Foundation
 
 
-Topics
-======
+Table of Contents
+==================
 
 - `What's included`_
 - `Migrating from Foundation 5 to Foundation 6`_
