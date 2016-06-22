@@ -2,11 +2,11 @@
 {% if pages %}
 <div class="row">
     <div class="medium-12 columns">
-        <div id="side_menu" class="callout" style="padding: 0;">
+        <div id="side_menu" class="callout" style="padding: 0; padding-bottom: 15px;">
             <center><h6 class="title" style="font-variant: small-caps;"><strong>Also In This Section</strong></h6></center>
             <ul class="menu vertical">
                 {% for page in pages %}
-                    <li><a href="{% pageurl page %}"><strong>{{ page.title }}</strong></a></li>
+                    <li style="font-size: 14px;"><a href="{% pageurl page %}"><strong>{{ page.title }}</strong></a></li>
                 {% endfor %}
             </ul>
         </div>

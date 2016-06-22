@@ -64,12 +64,11 @@
                                 </div>
                                 <div class="social medium-4 columns text-center">
                                     <h5><strong>Follow Us</strong></h5>
-                                    <a href="{{ settings.pages.SocialMediaSettings.facebook }}" target="_blank"><i class="fa fa-facebook-square"></i></a>
-                                    <a href="{{ settings.pages.SocialMediaSettings.twitter_name }}" target="_blank"><i class="fa fa-twitter-square"></i></a>
-                                    <a href="{{ settings.pages.SocialMediaSettings.github }}" target="_blank"><i class="fa fa-github-square"></i></a>
+                                    <li><a href="{{ settings.pages.SocialMediaSettings.facebook }}" target="_blank"><i class="fa fa-facebook-square"></i></a></li>
+                                    <li><a href="{{ settings.pages.SocialMediaSettings.twitter_name }}" target="_blank"><i class="fa fa-twitter-square"></i></a></li>
+                                    <li><a href="{{ settings.pages.SocialMediaSettings.github }}" target="_blank"><i class="fa fa-github-square"></i></a></li>
                                 </div>
                                 <div class="medium-4 columns text-center">
-                                    <h5><strong>Find Us</strong></h5>
                                     {%  if contact.post_code %}
                                         
                                         {% get_google_maps_key as google_maps_key %}

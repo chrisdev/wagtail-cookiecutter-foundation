@@ -150,7 +150,7 @@ ul.share-buttons .fa {min-width: 30px;}
   
   h3, p {color: $white;}
   
-  h3{font-weight: 800;line-height: 1;font-size: 30px;}
+  h3{font-weight: 800;line-height: 1;}
   
   .rich-text{margin-bottom: 20px;}
 }
@@ -162,12 +162,19 @@ ul.share-buttons .fa {min-width: 30px;}
 
 .section
 {
-  background-color: $secondary;
+  background: $off-white;
   padding: 20px 10px;
   
-  h3, p {color: $white;}
-  h4 {color: $white; padding: 4px 0;}
-  img {padding: 8px 0;}
+  .callout {padding: 0; border-radius: 5px;}
+  h3{color: $primary;font-weight: 800;line-height: 1;}
+  h5 {background: $primary; color: $white; padding: 4px 0;}
+  p {color: $primary; padding: 5px;}
+  img {padding: 15px 0;}
+  
+  .column:hover {
+      h5 {background: $tertiary;}
+      p {color: $tertiary;}    
+  }
 }
 
 #blog_list {
@@ -290,7 +297,7 @@ ul.share-buttons .fa {min-width: 30px;}
   
   a, h5{color: $white;}
   
-  .social a {font-size: 30px; margin: 5px;}
+  .social li {list-style: none;font-size: 30px;}
 }
 
 .vcard {
