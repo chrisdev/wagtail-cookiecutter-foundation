@@ -1,5 +1,5 @@
-{% raw %}<ul class="h-card vcard list-style">
-        <li class="p-name fn org"> {{ contact.name_organization }} </li>
+{% raw %}<ul class="h-card vcard list-style" style="margin-left: 0;">
+        <li class="p-name fn org"><strong>{{ contact.name_organization }}</strong></li>
         {% if contact.address_1 %}
             <li class="p-street-address street-address">{{ contact.address_1 }}</li>
         {% endif %}
