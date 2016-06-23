@@ -4,41 +4,42 @@
 
 {% block content %}
     <div id="content" class="row">        
-            <div class="medium-8 medium-centered columns">
-            <h3>Search{% if search_results %} Results{% endif %} {% if query_string %} for {{ query_string }} {% endif %}</h3> 
+            <div id="search" class="medium-5 medium-centered columns">
+                <center>
+                    <h3>Search{% if search_results %} Results{% endif %} {% if query_string %} for <strong>{{ query_string }}</strong>{% endif %}
+                    </h3> 
+                </center>
             
-            <form action="{% url 'wagtailsearch_search' %}" method="get" style="margin-bottom: 15px;"> 
-                <div class="row collapse postfix-round">
-                    <div class="small-9 columns">
-                      <input type="text" name="q" {% if query_string %} value="{{ query_string }}"{% endif %}>
+                <form action="{% url 'wagtailsearch_search' %}" method="get" style="margin-bottom: 15px;"> 
+                    <div class="row collapse">
+                        <div class="medium-10 small-8 columns">
+                          <input type="text" name="q" {% if query_string %} value="{{ query_string }}"{% endif %}>
+                        </div>
+                        <div class="medium-2 small-4 columns">
+                          <input type="submit" value="Search" class="expand button">
+                        </div>
                     </div>
-                    <div class="small-3 columns">
-                      <input type="submit" value="Search" class="expand button tiny">
-                    </div>
-                </div>
-            </form> 
-            </div>             
-            {% if search_results %} 
-                <div class="medium-up-3 small-up-1" data-equalizer>
-                    {% for result in search_results %}
-                        <div class="column" data-equalizer>
-                            <div class="panel radius" style="padding: 10px;" data-equalizer-watch>
+                </form>
+            
+            </div>
+         
+            <div id="event_grid" class="medium-12 columns">            
+                {% if search_results %} 
+                    <div class="medium-up-3 small-up-1" data-equalizer>
+                        {% for result in search_results %}
+                            <div class="column text-center" data-equalizer-watch>
                                <a href="{{ result.specific.url }}">
-                                   <div data-equalizer-watch>
                                    {% if result.specific.feed_image %}
-                                       {% image result.specific.feed_image fill-400x250 %}
-                                   {% else %}
-                                       <img src="{% static 'img/photo_unavailable.jpg' %}" alt="" />
+                                       {% image result.specific.feed_image fill-1200x440 %}
                                    {% endif %}
+                                   <div class="callout" style="padding: 8px;">
+                                       <h5><strong>{{ result.title }}</strong></h5>
                                    </div>
-                                   <center style="margin-top: 10px;">
-                                       <h5>{{ result.specific }}</h5>
-                                   </center>
                                </a>
-                            </div>
-                        </div> 
-                    {% endfor %} 
-                </div>
-            {% endif %}
+                            </div> 
+                        {% endfor %} 
+                    </div>
+                {% endif %}
+            </div>
     </div>
 {% endblock %}{% endraw %}

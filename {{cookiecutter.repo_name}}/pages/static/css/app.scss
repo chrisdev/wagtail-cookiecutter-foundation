@@ -98,7 +98,23 @@ button:hover, .button:hover {background: $primary;}
     .dropdown.menu .is-dropdown-submenu-parent a::after {
       margin-top: 5px; border-color: $white transparent transparent; border-style: solid;}
     .is-drilldown-submenu-parent>a::after {border-color: transparent transparent transparent $white;}
-    .js-drilldown-back::before {border-color: transparent $white transparent transparent;}    
+    .js-drilldown-back::before {border-color: transparent $white transparent transparent;} 
+    .has-form {
+        padding-left: 20px;
+        input {max-width: 300px;}
+        input.field {
+            margin-right: 0px;
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+        }
+        input.button {
+            padding-bottom: 11px;
+            padding-top: 9px;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+        }
+        [type="text"],[type="submit"]  {height: 2.1rem;}
+    }    
 }
 
 .off-canvas {
@@ -243,6 +259,11 @@ ul.share-buttons .fa {min-width: 30px;}
      p{margin-top: 10px; margin-bottom: 10px; text-align: left; font-style: italic; font-size: 15px;}
      h6{text-align: right;}     
      blockquote {border-left: 0px;}
+}
+
+#search {
+    input[type="text"]{border-top-left-radius: 5px; border-bottom-left-radius: 5px; font-size: 1.2rem;padding-left: 15px;}
+    input.button{border-top-right-radius: 5px; border-bottom-right-radius: 5px;color: $white;padding-top: 11px;}
 }
 
 .tag-names li
