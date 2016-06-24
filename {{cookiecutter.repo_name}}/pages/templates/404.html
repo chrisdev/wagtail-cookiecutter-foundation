@@ -1,18 +1,14 @@
 {% raw %}{% extends "base.html" %}
+{% load static %}
 
-{% block title %}Page Cannot Be Found{% endblock %}
+{% block title %}404 Page Not Found{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="medium-8 medium-centered columns pad" style="text-align: center;">
-            <h3>Page Not Found</h3>
-            <div class="medium-4 medium-centered columns">
-        	    <img src="{{STATIC_URL}}img/404.png" style="margin-bottom: 30px;">
-            </div>
-            <h4>Sorry we cannot find the page you are looking for.</h4>
-            <h4>Click <a href="/" style="color: #08C;">here</a> to return</h4>
+    <div id="content" class="row">
+        <div class="medium-10 medium-centered columns pad" style="text-align: center;">
+            <a href="/">
+        	    <img src="{% static 'img/404.png' %}">
+        	</a>
         </div>
     </div>
-{% endblock %}
-
-{% endraw %}
+{% endblock %}{% endraw %}
