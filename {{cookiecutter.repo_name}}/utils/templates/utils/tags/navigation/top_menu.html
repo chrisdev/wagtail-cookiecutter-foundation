@@ -39,11 +39,11 @@
       <li class="has-form show-for-small-only" style="background: transparent;">
          <form action ="{% url 'wagtailsearch_search' %}" method="get">
              <div class="row collapse">
-                 <div class="large-8 small-9 columns">
-                     <input type="text" placeholder="Search"  name="q"{% if query_string %} value="{{ query_string }}"{% endif %}>
+                 <div class="small-8 columns">
+                     <input class="field" type="text" placeholder="Search" name="q"{% if query_string %} value="{{ query_string }}"{% endif %}>
                  </div>
-                 <div class="large-4 small-3 columns">
-                     <input type="submit" class="secondary button expand" value="Search">
+                 <div class="small-4 columns">
+                     <input type="submit" class="secondary button expand"value="Search">
                  </div>
              </div>
          </form>
