@@ -23,7 +23,7 @@
             
             </div>
          
-            <div id="event_grid" class="medium-12 columns">            
+            <div class="medium-12 columns">            
                 {% if search_results %} 
                     <div class="medium-up-3 small-up-1" data-equalizer>
                         {% for result in search_results %}
@@ -33,7 +33,7 @@
                                        {% image result.specific.feed_image fill-1200x440 %}
                                    {% endif %}
                                    <div class="callout" style="padding: 8px;">
-                                       <h5><strong>{{ result.title }}</strong></h5>
+                                       <h6><strong>{{ result.title }}</strong></h6>
                                    </div>
                                </a>
                             </div> 
