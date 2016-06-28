@@ -117,18 +117,6 @@ button:hover, .button:hover {background: $primary;}
     }    
 }
 
-.top-bar ul li a:hover{background-color:#000033;}
-
-.grow {
-transition: 1s ease;
-}
-.grow:hover{
--webkit-transform: scale(1.1);
--ms-transform: scale(1.1);
-transform: scale(1.1);
-transition: 1s ease;
-}
-
 .off-canvas {
     a{color: $white;}
     a:hover{color: $tertiary;}
