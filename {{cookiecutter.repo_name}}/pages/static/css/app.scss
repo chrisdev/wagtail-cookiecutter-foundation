@@ -48,6 +48,7 @@ $tertiary: #FF4081;
 $off-white : #F2F2F2;
 $tundora: #444;
 $mine-shaft: #333;
+$hoverblue:#000033;
 $static: static;
 
 // Fonts
@@ -117,7 +118,7 @@ button:hover, .button:hover {background: $primary;}
     }    
 }
 
-.top-bar-right ul li a:hover{background-color:#000033;}
+.top-bar-right ul li a:hover{background-color:$hoverblue;}
 
 .grow {
 transition: 1s ease;
