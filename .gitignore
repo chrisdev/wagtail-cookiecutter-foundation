@@ -5,3 +5,4 @@
 .ropeproject/
 /docs/_build/
 .cache/*
+*.scss~
