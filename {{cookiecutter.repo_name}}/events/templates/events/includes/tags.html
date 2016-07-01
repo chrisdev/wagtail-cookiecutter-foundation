@@ -4,10 +4,8 @@
 <br>
         
 {% if request.GET.tag|length %}
-    <h2>Events tagged with <span class="">{{ request.GET.tag|safe }}</span></h2>
-    <a href=" {% pageurl self %} ">Show all events</a>
-    
-    <hr>
+    <h3>Events tagged with <strong>{{ request.GET.tag|safe }}</strong></h3>
+    <h6><a href=" {% pageurl self %} "><strong>Show all events</strong></a></h6>
         
 {% else %}
 
