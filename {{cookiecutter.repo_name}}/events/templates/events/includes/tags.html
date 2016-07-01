@@ -1,0 +1,24 @@
+{% raw %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<br>
+        
+{% if request.GET.tag|length %}
+    <h2>Events tagged with <span class="">{{ request.GET.tag|safe }}</span></h2>
+    <a href=" {% pageurl self %} ">Show all events</a>
+    
+    <hr>
+        
+{% else %}
+
+    <ul class="tag-names">
+        <strong>Filter by Tags :</strong>
+        {% for tag in tags.all %}
+            <li>
+            <a href="{{ request.path }}?tag={{ tag }}" title="">
+            <i class="fa fa-tag"></i> {{ tag }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+         
+{% endif %}{% endraw %}
