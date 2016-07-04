@@ -48,7 +48,6 @@ $tertiary: #FF4081;
 $off-white : #F2F2F2;
 $tundora: #444;
 $mine-shaft: #333;
-$hoverblue:#000033;
 $static: static;
 
 // Fonts
@@ -96,6 +95,7 @@ button:hover, .button:hover {background: $primary;}
     .dropdown.menu .submenu {border-top: 3px solid $tertiary;}
     .top-bar-right {margin-top: 1px;}
     .menu li:not(.menu-text) a {padding: 13px 15px;}
+    li a:hover{background-color:$tertiary;}
     .dropdown.menu .is-dropdown-submenu-parent a::after {
       margin-top: 5px; border-color: $white transparent transparent; border-style: solid;}
     .is-drilldown-submenu-parent>a::after {border-color: transparent transparent transparent $white;}
@@ -118,16 +118,14 @@ button:hover, .button:hover {background: $primary;}
     }    
 }
 
-.top-bar-right ul li a:hover{background-color:$hoverblue;}
-
 .grow {
-transition: 1s ease;
+    transition: 1s ease;
 }
 .grow:hover{
--webkit-transform: scale(1.1);
--ms-transform: scale(1.1);
-transform: scale(1.1);
-transition: 1s ease;
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+    transition: 1s ease;
 }
 
 .off-canvas {
