@@ -26,8 +26,6 @@ A Django project with Wagtail_ pre-installed with support for all the `Zurb Foun
 * Optimized development and production settings
 * Comes with custom user model ready to go.
 * Grunt build for compass and livereload
-* Send emails via Anymail_ (using Mailgun_ by default, but switchable)
-* Media storage using Amazon S3
 * Ansible support for development and production
 * Works with Python 2.7.x or 3.5.x
 
@@ -112,54 +110,8 @@ You can access your site at ``http://localhost:8000``. The Admin back-end is ava
 
 The make command available for development are discussed in more detail below.
 
-Create the virtualenv for the project ::
-
-	make virtualenv
-
-Install the requirements to the virtualenv ::
-
-	make requirements 
-
-Create a PostgreSQL database for the project. It will have the same name as the project ::
-
-	make db 
-
-Run the migrations ::
-
-	make migrate 
-
-Populate the site with initial page structure ::
-
-	make initial_data 
-
-Copy the media(images and documents) to project root ::
-
-	make copy_media 
-
-Install all front-end dependencies with bower ::
-
-	make bower 
-
-Start the standard Django dev server ::
-
-	make runserver
-
-Start Server with livereload functionality ::
-
-    make livereload
-
-Run your unit tests ::  
-
-    make test
-
-Run your functional tests ::
-
-    make func_test
-
-
 App Modules
 ------------
-
 We provide a comprehensive suite of apps to use for building your site. We take  a modular approach so that can pick and choose the functionality you want to include. We provide separate modules for:
 
     - ``pages`` - Different pages including Homepage, Standard & Faqs Page etc.
