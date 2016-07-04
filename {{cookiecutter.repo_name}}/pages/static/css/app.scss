@@ -342,3 +342,15 @@ textarea#id_message {max-height: 150px;}
   padding: 0;
   margin-bottom: 0px;
 }
+
+.scrollup {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    bottom: 5px;
+    right: 20px;
+    display: none;
+    padding-top:2px;
+    background-color:#000;
+   
+   }
