@@ -15,24 +15,6 @@ front-end framework. A demo of a default project generated from this cookiecutte
 
 * Documentation: http://wagtail-cookiecutter-foundation.readthedocs.org/en/latest/
 
-Table of Contents
-==================
-
-- `Features`_
-- `Prerequisites`_
-- `Usage`_
-    - `Using make`_
-- `App Modules`_
-    - `Other Components`_
-- `Provisioning and Deployment`_
-    - `Provisioning`_
-    - `Deployment`_
-    - `Ansible Variables`_
--  `Other Tasks`_
-    - `Static Sites`_
-    - `Image Compression`_
--  `Contributing`_
-
 Features
 ----------
 
