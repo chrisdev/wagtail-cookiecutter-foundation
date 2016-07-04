@@ -2,7 +2,9 @@
 {% get_settings %}
 {% get_site_root as site_root %}
 
-<div class="navbar-fixed">
+<div id="page">
+<div class="sticky-container" data-sticky-container>
+ <div class="sticky is-stuck" data-sticky data-options="anchor: page; marginTop: 0; stickyOn: content;" style="width:100%; z-index:99999;">
 <div id="social_bar">
     <div class="row" style="max-width: 95%;">
      <a href="{{ settings.pages.SocialMediaSettings.facebook }}" title="Facebook" target="_blank"><i class="fa fa-facebook-square"></i></a>
@@ -53,4 +55,7 @@
     </ul>
   </div>
 </div>
-</div>{% endraw %}
+</div>
+</div>
+</div>
+{% endraw %}

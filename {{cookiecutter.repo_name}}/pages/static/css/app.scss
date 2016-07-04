@@ -347,32 +347,13 @@ textarea#id_message {max-height: 150px;}
     width: 40px;
     height: 40px;
     position: fixed;
-    bottom: 5px;
+    bottom: -80px;
     right: 20px;
     display: none;
     padding-top:2px;
+    margin-bottom:100px;
+    color:$white;
     background-color:#000;
+    z-index:99999;
    
    }
-.navbar-fixed{
-  position:fixed;
-  z-index:99999;
-  width:100%;
-  
-}
-
-@media screen and (max-width: 1019px) and (min-width:769px) {
-    .navbar-padding{
-  padding-top:70px; 
-  }
-}
-@media screen and (min-width: 320px) and (max-width: 768px) {
-    .navbar-padding{
-  padding-top:70px; 
-  }
-}
-@media screen and (min-width: 1018px) and (max-width:1440px)  {
-    .navbar-padding{
-  padding-top:60px; 
-  }
-}
