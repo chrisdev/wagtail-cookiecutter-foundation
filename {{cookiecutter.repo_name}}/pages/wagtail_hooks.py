@@ -1,8 +1,17 @@
+from django.core import urlresolvers
+from django.utils.translation import ugettext_lazy as _
 from django.utils.safestring import mark_safe
 from django.utils.html import format_html, format_html_join
 from django.conf import settings
 from wagtail.wagtailcore import hooks
+from wagtail.wagtailadmin.menu import MenuItem
 from wagtail.wagtailcore.whitelist import attribute_rule, check_url, allow_without_attributes
+
+
+@hooks.register('register_settings_menu_item')
+def register_django_admin_menu_item():
+    return MenuItem(_('Django Admin'), urlresolvers.reverse('admin:index'),
+                    classnames='icon icon-cogs', order=700)
 
 
 @hooks.register('construct_whitelister_element_rules')
