@@ -100,7 +100,7 @@ Create a git repo and push it there::
 Using make
 ^^^^^^^^^^^^
 
-The easiest way to get started is to use the built in ``make`` commands. Your project contains a Makefile that allows you to setup your development environment with a single command. This command will create your project's virtual environment, install all pip dependencies,  create the development database, run migrations and load initial data to database, install front-end dependencies and finally start the development server for you. Awesome, right? 
+The easiest way to get started is to use the built in ``make`` commands. Your project contains a Makefile that allows you to setup your development environment with a single command. This command will create your project's virtual environment, install all pip dependencies,  create the development database, run migrations and load initial data to database, install front-end dependencies and finally start the development server for you. 
 
 To do this run ::
 
@@ -154,8 +154,6 @@ Provisioning and Deployment
 -----------------------------
 
 You project comes with a suite of Ansible_ playbooks to support the provisioning your servers and deploying changes to production and staging.  We also support the creation of a Vagrant_ based staging server so you can "stage" your site locally and tweak and experiment with different deployment configurations.  To keep things simple we assume that all your application components i.e.  ``Django``, ``PostgreSQL``, ``redis`` and so on are all deployed on a single server.  
-
-However, it is a relatively straightforward procedure to tweak the playbooks to support more complex provisioning scenarios. In this way, you can support for example, separate database server, multiple upstream ``wsgi`` servers and so on.  Indeed, you easily tweak the ``Vagrantfile`` located at ``project_repo/ansible/Vagrantfile`` to experiment with and test these more complex provisioning scenarios on.
 
 .. _Vagrant: https://docs.vagrantup.com/v2/
 

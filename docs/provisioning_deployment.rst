@@ -2,6 +2,8 @@ You project comes with a suite of Ansible_ playbooks to support the provisioning
 
 However, it is a relatively straightforward procedure to tweak the playbooks to support more complex provisioning scenarios. In this way, you can support for example, separate database server, multiple upstream ``wsgi`` servers and so on.  Indeed, you easily tweak the ``Vagrantfile`` located at ``project_repo/ansible/Vagrantfile`` to experiment with and test these more complex provisioning scenarios. on.
 
+.. _Vagrant: https://docs.vagrantup.com/v2/
+
 Next, you need to place a copy of your `ssh` public key in the `keystore` directory located in `ansible/{{repo_name}}_keystore` and rename it a `authorized_keys`. Remember to add the ssh keys of any team members that you want to run the provisioning and deployment tasks.
 
 Also if you want to use SSL then you need to ensure that you also have the following key files in the ``keystore`` directory:
