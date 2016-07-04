@@ -2,6 +2,7 @@
 {% get_settings %}
 {% get_site_root as site_root %}
 
+<div class="navbar-fixed">
 <div id="social_bar">
     <div class="row" style="max-width: 95%;">
      <a href="{{ settings.pages.SocialMediaSettings.facebook }}" title="Facebook" target="_blank"><i class="fa fa-facebook-square"></i></a>
@@ -43,7 +44,7 @@
                      <input class="field" type="text" placeholder="Search" name="q"{% if query_string %} value="{{ query_string }}"{% endif %}>
                  </div>
                  <div class="small-4 columns">
-                     <input type="submit" class="secondary button expand"value="Search">
+                     <input type="submit" class="secondary button expand" value="Search">
                  </div>
              </div>
          </form>
@@ -51,4 +52,5 @@
       <a href="#" class="scrollup"><img src="{% static 'img/top.png' %}"></i></a>
     </ul>
   </div>
+</div>
 </div>{% endraw %}

@@ -354,3 +354,25 @@ textarea#id_message {max-height: 150px;}
     background-color:#000;
    
    }
+.navbar-fixed{
+  position:fixed;
+  z-index:99999;
+  width:100%;
+  
+}
+
+@media screen and (max-width: 1019px) and (min-width:769px) {
+    .navbar-padding{
+  padding-top:70px; 
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 768px) {
+    .navbar-padding{
+  padding-top:70px; 
+  }
+}
+@media screen and (min-width: 1018px) and (max-width:1440px)  {
+    .navbar-padding{
+  padding-top:60px; 
+  }
+}
