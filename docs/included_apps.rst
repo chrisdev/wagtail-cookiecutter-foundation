@@ -18,25 +18,25 @@ We provide a comprehensive suite of apps to use for building your site. We take 
 Photo Gallery
 ---------------
 
-The Photo Gallery module allows you to easily create Photo Galleries for your site Using the built in tagging functionality. To create Photo Galleries ::
+The Photo Gallery module allows you to easily create Photo Galleries for your site Using the built in tagging functionality. To create Photo Galleries simply:
 
-1) Go to Images section of the Wagtail Admin and click on Add an Image.
-2) Drag and drop images you want in your gallery and add common tag name to all the uploaded Images. You can also add same tag name to any existing images that you want to include in the gallery.
-3) Next create a Gallery Index Page which displays all your galleries.
-4) Add a Gallery Child Page and enter the tags of the Images that you want to appear in the Gallery. You can also choose a feed image so it can appear in Gallery index page.
-5) Your Gallery is now created with all images you want.
+* Go to Images section of the Wagtail Admin and click on Add an Image.
+* Drag and drop images you want in your gallery and add common tag name to all the uploaded Images. You can also add same tag name to any existing images that you want to include in the gallery.
+* Next create a Gallery Index Page which displays all your galleries.
+* Add a Gallery Child Page and enter the tags of the Images that you want to appear in the Gallery. You can also choose a feed image so it can appear in Gallery index page.
+* Your Gallery is now created with all images you want.
 
 
 Documents Folder
 ------------------
 
-This module allows to organize documents into “folders” based on common tags. In many ways it works the same way as the Photo Gallery module ::
+This module allows to organize documents into “folders” based on common tags. In many ways it works the same way as the Photo Gallery module:
 
-1) Go to Documents section in Wagtail Admin.
-2) Add add a common tag name to all documents that you want to appear in the folder.
-3) Now create a Document Index page which displays all your Document folders.
-4) Create a Document Folder Child Page and enter the tags for the document that you want to appear in the folder.
-5) The Folder is now created with all the Documents matching the tags you want.
+* Go to Documents section in Wagtail Admin.
+* Add add a common tag name to all documents that you want to appear in the folder.
+* Now create a Document Index page which displays all your Document folders.
+* Create a Document Folder Child Page and enter the tags for the document that you want to appear in the folder.
+* The Folder is now created with all the Documents matching the tags you want.
 
 
 Feeds

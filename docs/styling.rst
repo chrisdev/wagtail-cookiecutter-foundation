@@ -1,5 +1,5 @@
-Using Foundation
-=================
+Styling
+========
 
 SCSS
 ------
