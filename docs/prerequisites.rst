@@ -1,5 +1,5 @@
-Installation
-============
+Pre-Requisites
+===============
 
 To get started we assume the following dependencies
 

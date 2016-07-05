@@ -10,10 +10,10 @@ Wagtail Cookiecutter Foundation
 A cookiecutter_ template for `Wagtail CMS`_ was built using `Zurb Foundation`_ 
 front-end framework. A demo of a default project generated from this cookiecutter is available at http://wagtail.chrisdev.com.
 
-.. figure:: http://i.imgur.com/vNRQDGj.gif :alt: Wagtail Cookiecutter Foundation
+.. figure:: http://i.imgur.com/FGJtr78.gif :alt: Wagtail Cookiecutter Foundation
 
 
-* Documentation: http://wagtail-cookiecutter-foundation.readthedocs.org/en/latest/
+Read the Docs: http://wagtail-cookiecutter-foundation.readthedocs.org/en/latest/
 
 Features
 ----------
@@ -24,6 +24,7 @@ A Django project with Wagtail_ pre-installed with support for all the `Zurb Foun
 * Renders Django projects with 100% starting test coverage
 * ZURB Foundation
 * Optimized development and production settings
+* Built with `Let's Encrypt`_
 * Comes with custom user model ready to go.
 * Grunt build for compass and livereload
 * Ansible support for development and production
@@ -32,9 +33,10 @@ A Django project with Wagtail_ pre-installed with support for all the `Zurb Foun
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`Wagtail CMS`: https://wagtail.io
 .. _`Zurb Foundation`: https://foundation.zurb.com
+.. _`Let's Encrypt`: https://letsencrypt.org/
 .. _`Read the Docs`: http://wagtail-cookiecutter-foundation.readthedocs.org/en/latest/
 
-Prerequisites
+Pre-requisites
 ---------------
 You need to have the following already installed:
    
@@ -46,15 +48,15 @@ You need to have the following already installed:
     * Ansible
     * node, npm and git and bower
 
-Usage
-------
+Installation
+-------------
 Let's pretend you want to create a Django project called "wagtail_project". Rather than using `startproject` and then editing the results to include your name, email, and various configuration issues that always get forgotten until the worst possible moment, get cookiecutter_ to do all the work.
 
-First, get Cookiecutter. Trust me, it's awesome::
+First, get Cookiecutter ::
 
     $ pip install cookiecutter
 
-Now run it against this repo::
+Now run it against this repo ::
 
     $ cookiecutter https://github.com/chrisdev/wagtail-cookiecutter-foundation.git
 
