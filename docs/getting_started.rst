@@ -1,5 +1,5 @@
-Quick Start
-=============
+Getting Started
+================
 
 Here is how we create a new Django project quickly while letting cookiecutter_ to do all the work.
 

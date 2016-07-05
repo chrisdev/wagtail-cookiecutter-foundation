@@ -15,59 +15,57 @@ front-end framework. A demo of a default project generated from this cookiecutte
 .. _`Read the Docs`: http://wagtail-cookiecutter-foundation.readthedocs.org/en/latest/
 
 
-Quick Start
--------------
+.. _quick_start:
 
 .. toctree::
    :maxdepth: 2
+   :caption: Getting Started
 
-   quick_start
-
-.. _apiref:
-
-
-Installation
--------------
+   getting_started
+   
+   
+.. _prerequisites:
 
 .. toctree::
    :maxdepth: 2
+   :caption: Installation
 
    prerequisites
    installation
    manual_installation
 
 
-Usage
-------
+.. _using_make:
 
 .. toctree::
    :maxdepth: 2
+   :caption: Usage
 
    using_make
    styling
    using_tags
    included_apps
    other_components
-
-
-Deployment and Provisioning
------------------------------
+ 
+   
+.. _ansible:
 
 .. toctree::
    :maxdepth: 2
+   :caption: Deployment and Provisioning
 
    ansible
    ansible_variables
    provisioning
    deployment
    vagrant
-   
-   
-Project Info
------------------------------
+
+
+.. _contributing:
 
 .. toctree::
    :maxdepth: 2
+   :caption: Project Info
 
    contributing
    authors
