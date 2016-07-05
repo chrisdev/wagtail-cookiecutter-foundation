@@ -2,6 +2,9 @@
 {% get_settings %}
 {% get_site_root as site_root %}
 
+<div id="page">
+<div class="sticky-container" data-sticky-container>
+ <div class="sticky is-stuck" data-sticky data-options="anchor: page; marginTop: 0; stickyOn: content;" style="width:100%; z-index:99999;">
 <div id="social_bar">
     <div class="row" style="max-width: 95%;">
      <a href="{{ settings.pages.SocialMediaSettings.facebook }}" title="Facebook" target="_blank"><i class="fa fa-facebook-square"></i></a>
@@ -43,11 +46,17 @@
                      <input class="field" type="text" placeholder="Search" name="q"{% if query_string %} value="{{ query_string }}"{% endif %}>
                  </div>
                  <div class="small-4 columns">
-                     <input type="submit" class="secondary button expand"value="Search">
+                     <input type="submit" class="secondary button expand" value="Search">
                  </div>
              </div>
          </form>
       </li>
+     
     </ul>
   </div>
-</div>{% endraw %}
+</div>
+</div>
+ <a href="#" class="scrollup"><img src="{% static 'img/top.png' %}"></i></a>
+</div>
+</div>
+{% endraw %}
