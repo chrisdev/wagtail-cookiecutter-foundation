@@ -1,25 +1,5 @@
-What's included
-===============
-
-- A Django project with Wagtail_ pre-installed with support for all the
-  `Zurb Foundation`_ HTML and CSS UI components (typography, forms, buttons,
-  navigation and other interface components)
-
-- A comprehensive suite of apps to use for building your site.
-  We take an approach similar to the `Wagtail Demo Project`_ but we use a
-  modular approach so that can pick and choose the functionality you want to include
-  on you site. We provide individual modules for:
-
-    - ``pages`` - Hompage, Standard Pages, People Page, Contact Page, etc.
-    - ``blog`` - Blogging or site news
-    - ``events`` - Event management
-    - ``photo_gallery``- To facilitate easy  management of photo galleries
-    - ``utils`` - utility functions, templatetags and filters
-
-.. _`Zurb Foundation`: https://foundation.zurb.com
-.. _Wagtail: https://wagtail.io
-.. _`Wagtail Demo Project`: https://github.com/torchbox/wagtaildemo
-
+Other Components
+=================
 
 - Templates and template tags to support Foundation ``HTML`` and ``CSS UI``
   components including:

@@ -1,5 +1,5 @@
-Variables
-----------
+Ansible Variables
+------------------
 
 Group Variables
 ^^^^^^^^^^^^^^^^

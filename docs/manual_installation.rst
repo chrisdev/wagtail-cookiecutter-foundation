@@ -1,5 +1,5 @@
-Normal Installation
-===================
+Manual Installation
+====================
 
 Firstly, open up a command line shell in your new projects directory.
     
