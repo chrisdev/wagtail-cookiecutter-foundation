@@ -4,7 +4,10 @@
 {% block content %}
     <div id="content" class="row">
         <center><h3>Upcoming Events</h3></center>
+        
+        {% include "events/includes/tags.html" %}
         <br>
+
         <div class="medium-12 columns">
             {% if events %}    
                 <div class="medium-up-3 small-up-1 columns" data-equalizer>

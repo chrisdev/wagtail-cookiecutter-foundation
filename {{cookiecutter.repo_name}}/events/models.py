@@ -11,6 +11,9 @@ from wagtail.wagtailadmin.edit_handlers import (
 )
 from wagtail.wagtailsearch import index
 
+from modelcluster.tags import ClusterTaggableManager
+from taggit.models import TaggedItemBase, Tag
+
 from modelcluster.fields import ParentalKey
 from utils.models import LinkFields, RelatedLink, CarouselItem
 from .event_utils import export_event
@@ -62,6 +65,10 @@ class EventIndexPage(Page):
             # Update template context
             context = super(EventIndexPage, self).get_context(request)
             context['events'] = events
+            context['tags'] = Tag.objects.filter(
+                events_eventpagetag_items__isnull=False,
+                events_eventpagetag_items__content_object__live=True
+            ).distinct().order_by('name')
             return context
 
 EventIndexPage.content_panels = [
@@ -103,6 +110,10 @@ class EventPageSpeaker(Orderable, LinkFields):
     ]
 
 
+class EventPageTag(TaggedItemBase):
+    content_object = ParentalKey('events.EventPage', related_name='tagged_items')
+
+
 class EventPage(Page):
     date_from = models.DateField("Start date")
     date_to = models.DateField(
@@ -127,6 +138,8 @@ class EventPage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+
+    tags = ClusterTaggableManager(through=EventPageTag, blank=True)
 
     search_fields = Page.search_fields + (
         index.SearchField('get_audience_display'),
@@ -167,6 +180,7 @@ EventPage.content_panels = [
     FieldPanel('audience'),
     FieldPanel('cost'),
     FieldPanel('signup_link'),
+    FieldPanel('tags'),
     InlinePanel('carousel_items', label="Carousel items"),
     FieldPanel('body', classname="full"),
     InlinePanel('speakers', label="Speakers"),

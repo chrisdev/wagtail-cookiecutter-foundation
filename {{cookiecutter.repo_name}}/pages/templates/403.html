@@ -1,15 +1,13 @@
 {% raw %}{% extends "base.html" %}
+{% load static %}
 
 {% block title %}Page forbidden{% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="medium-8 medium-centered columns pad" style="text-align: center;">
-            <h3>Page forbidden</h3>
-            <h4>Sorry, restricted area.</h4>
-            <h4>Click <a href="/" style="color: #08C;">here</a> to return</h4>
+    <div id="content" class="row">
+        <div class="medium-8 medium-centered columns pad text-center">
+            <img src="{% static 'img/403.png' %}" style="margin-bottom: 30px;">
+            <a class="button" href="/" style="border-radius: 2px;">TAKE ME TO THE HOMEPAGE &nbsp;&#8594;</a>
         </div>
     </div>
-{% endblock %}
-
-{% endraw %}
+{% endblock %}{% endraw %}

@@ -1,5 +1,5 @@
-Using Ansible for Deployment and Provisioning
-----------------------------------------------
+Using Ansible 
+===============
 
 This cookiecutter also comes with a suite of Ansible_ play books and roles for 
 provisioning your servers and deploying the site.  We also support the creation
@@ -10,4 +10,11 @@ deployed to a single server. However, we can easily change the Vagrant staging
 configuration to simulate more complex deployments including using a separate
 Database server, multiple upstream ``wsgi`` servers and so on.
 
+.. toctree::
+   :maxdepth: 3
+
+   files
+   playbooks
+   variables
+   
 .. _Ansible: http://www.ansible.com/home

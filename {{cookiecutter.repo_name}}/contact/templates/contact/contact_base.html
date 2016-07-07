@@ -2,9 +2,21 @@
 {% load static wagtailcore_tags wagtailimages_tags %}
 {% block content %}
 <div id="content" class="row">
-    <div class="medium-7 medium-centered columns">
+    <div class="medium-10 medium-centered columns">
         <center><h3>{{ self.title }}</h3></center>
-         {% block contact_content %}{% endblock %}
+        
+        <br>
+               
+        <div class="row">
+            <div class="medium-8 columns">
+                {% block contact_content %}{% endblock %}
+            </div>
+            <aside id="sidebar" class="hide-for-small-only medium-4 columns">
+                 {% block sidebar %}
+                     {% include "contact/includes/sidebar.html" %} 
+                 {% endblock %}
+            </aside>
+        </div>
     </div>
 </div>
 {% endblock %}{% endraw %}

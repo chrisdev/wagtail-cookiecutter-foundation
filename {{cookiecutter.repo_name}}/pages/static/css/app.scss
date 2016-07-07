@@ -95,10 +95,37 @@ button:hover, .button:hover {background: $primary;}
     .dropdown.menu .submenu {border-top: 3px solid $tertiary;}
     .top-bar-right {margin-top: 1px;}
     .menu li:not(.menu-text) a {padding: 13px 15px;}
+    li a:hover{background-color:$tertiary;}
     .dropdown.menu .is-dropdown-submenu-parent a::after {
       margin-top: 5px; border-color: $white transparent transparent; border-style: solid;}
     .is-drilldown-submenu-parent>a::after {border-color: transparent transparent transparent $white;}
-    .js-drilldown-back::before {border-color: transparent $white transparent transparent;}    
+    .js-drilldown-back::before {border-color: transparent $white transparent transparent;} 
+    .has-form {
+        padding-left: 20px;
+        input {max-width: 300px;}
+        input.field {
+            margin-right: 0px;
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+        }
+        input.button {
+            padding-bottom: 11px;
+            padding-top: 9px;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+        }
+        [type="text"],[type="submit"]  {height: 2.1rem;}
+    }    
+}
+
+.grow {
+    transition: 1s ease;
+}
+.grow:hover{
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+    transition: 1s ease;
 }
 
 .off-canvas {
@@ -245,6 +272,11 @@ ul.share-buttons .fa {min-width: 30px;}
      blockquote {border-left: 0px;}
 }
 
+#search {
+    input[type="text"]{border-top-left-radius: 5px; border-bottom-left-radius: 5px; font-size: 1.2rem;padding-left: 15px;}
+    input.button{border-top-right-radius: 5px; border-bottom-right-radius: 5px;color: $white;padding-top: 11px;}
+}
+
 .tag-names li
 {
   background: $primary;
@@ -253,6 +285,7 @@ ul.share-buttons .fa {min-width: 30px;}
   padding: 5px;
   display:inline;
   margin: 0px 3px;
+  a{color:$white;};
 }
 
 #faq {
@@ -300,8 +333,27 @@ ul.share-buttons .fa {min-width: 30px;}
   .social li {list-style: none;font-size: 30px;}
 }
 
+textarea#id_message {max-height: 150px;}
+
 .vcard {
   border: 0px;
   padding: 0;
   margin-bottom: 0px;
+
 }
+
+.scrollup {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    bottom: -80px;
+    right: 20px;
+    display: none;
+    padding-top:2px;
+    margin-bottom:100px;
+    color:$white;
+    background-color:#000;
+    z-index:99999;
+   
+   }
+
