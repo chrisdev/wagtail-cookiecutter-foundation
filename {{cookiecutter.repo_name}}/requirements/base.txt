@@ -8,5 +8,5 @@ django-libsass==0.7
 django-redis==4.4.3
 elasticsearch==2.3.0
 libsass==0.11.1
-psycopg2==2.6.1
+psycopg2==2.6.2
 wagalytics==0.6
