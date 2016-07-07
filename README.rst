@@ -36,27 +36,22 @@ A Django project with Wagtail_ pre-installed with support for all the `Zurb Foun
 .. _`Let's Encrypt`: https://letsencrypt.org/
 .. _`Read the Docs`: http://wagtail-cookiecutter-foundation.readthedocs.org/en/latest/
 
-Pre-requisites
----------------
-You need to have the following already installed:
-   
-    * Python 2.7/3.5
-    * pip
-    * virtualenv/pyvenv/virtualenvwrapper
-    * PostgreSQL
-    * VirtualBox or VMWare/Vagrant (required for vagrant staging)
-    * Ansible
-    * node, npm and git and bower
+Get Started
+------------
+Here is how we create a new Django project quickly while letting cookiecutter_ to do all the work.
 
-Installation
--------------
-Let's pretend you want to create a Django project called "wagtail_project". Rather than using `startproject` and then editing the results to include your name, email, and various configuration issues that always get forgotten until the worst possible moment, get cookiecutter_ to do all the work.
+To get started we assume the following dependencies ::
+    
+    pip
+    virtualenv/pyvenv/virtualenvwrapper
+    PostgreSQL
+    Bower
 
-First, get Cookiecutter ::
+Get Cookiecutter ::
 
     $ pip install cookiecutter
 
-Now run it against this repo ::
+Now run it against this repo::
 
     $ cookiecutter https://github.com/chrisdev/wagtail-cookiecutter-foundation.git
 
@@ -110,6 +105,7 @@ To do this run ::
 
 You can access your site at ``http://localhost:8000``. The Admin back-end is available at ``http://localhost:8000/admin/``.The default Admin username is *admin* and The default Admin password is *admin123*.
 
+
 App Modules
 ------------
 We provide a comprehensive suite of apps to use for building your site. We take  a modular approach so that can pick and choose the functionality you want to include. We provide separate modules for:
@@ -124,60 +120,6 @@ We provide a comprehensive suite of apps to use for building your site. We take 
     - ``products`` - Ideal for a product or portfolio showcase
     - ``faq`` - FAQ and answers.
     - ``utils`` - Various utility functions, templatetags and filters
-    
-Other Components
-^^^^^^^^^^^^^^^^^^
-- We provide templates and templatetags to support all the major Foundation ``HTML`` 
-  and ``CSS`` UI components including:
-
-    - Top bar including (sticky nav)
-    - Off canvas menu
-    - Bread crumbs
-    - SubNav
-    - Pagination
-    - Reveals  
-
-- We also provide comprehensive set of  `make` commands to  help you to  perform key development, provisioning and deployment tasks.
-
-- libsass_ Foundation Sass support through `django-compressor`_/`django-libsass`_
-  
-- Server provisioning and deployment using Ansible_ that has been extensively tested on Digital Ocean and Linode VPSs but it should work on other platforms. You can drive the Ansible playbooks using a set of make commands.
-
-.. _`torchbox/wagtail base box`: https://github.com/torchbox/vagrant-wagtail-base
-.. _Ansible: http://www.ansible.com/home
-.. _libsass: https://github.com/sass/libsass
-.. _django-compressor: https://github.com/sass/libsass
-.. _django-libsass: https://github.com/torchbox/django-libsass
-.. _Bower: http://bower.io
-.. _Gulp: https://gulpjs.com
-.. _Grunt: https://gruntjs.com
-
-Provisioning and Deployment
------------------------------
-
-You project comes with a suite of Ansible_ playbooks to support the provisioning your servers and deploying changes to production and staging.  We also support the creation of a Vagrant_ based staging server so you can "stage" your site locally and tweak and experiment with different deployment configurations.  To keep things simple we assume that all your application components i.e.  ``Django``, ``PostgreSQL``, ``redis`` and so on are all deployed on a single server.  
-
-.. _Vagrant: https://docs.vagrantup.com/v2/
-
-Other Tasks
-------------
-
-Static Sites
-^^^^^^^^^^^^^
-
-You can use `make` to generate a static site from the project. The static site will be in a folder `static_build`.  The command will ensure that all static assets and media required for the site to perform correctly are copied to the build folder ::
-
-    make static_site
-
-Image Compression
-^^^^^^^^^^^^^^^^^^
-To compress images used in project's made with this cookiecutter run: ::
-
-	grunt imagemin
-
-You can also use make to run the above task ::
-
-	make compress_images
 
 
 Contributing
