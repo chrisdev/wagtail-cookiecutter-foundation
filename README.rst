@@ -81,10 +81,9 @@ You'll be prompted for some values. Provide them, then a Django project will be 
     deploy_user_name (default is django)
     django_admin_user (default is my_admin_user)
 
-Enter the project and take a look around::
+Enter the project ::
 
     $ cd wagtail_project/
-    $ ls
 
 Create a git repo and push it there::
 
@@ -93,17 +92,14 @@ Create a git repo and push it there::
     $ git commit -m "first awesome commit"
     $ git remote add origin git@github.com:cclarke/my_site.git
     $ git push -u origin master
-
-Using make
-^^^^^^^^^^^^
-
-The easiest way to get started is to use the built in ``make`` commands. Your project contains a Makefile that allows you to setup your development environment with a single command. This command will create your project's virtual environment, install all pip dependencies,  create the development database, run migrations and load initial data to database, install front-end dependencies and finally start the development server for you. 
-
-To do this run ::
+    
+To create your project's virtual environment, install all pip dependencies, create the development database, run migrations and load initial data to database, install front-end dependencies and finally start the development server for you run ::
 
 	make all
 
 You can access your site at ``http://localhost:8000``. The Admin back-end is available at ``http://localhost:8000/admin/``.The default Admin username is *admin* and The default Admin password is *admin123*.
+
+.. _cookiecutter: https://github.com/audreyr/cookiecutter
 
 
 App Modules
