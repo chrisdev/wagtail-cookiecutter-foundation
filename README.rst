@@ -18,11 +18,11 @@ Read the Docs: http://wagtail-cookiecutter-foundation.readthedocs.org/en/latest/
 Features
 ----------
 
-A Django project with Wagtail_ pre-installed with support for all the `Zurb Foundation`_ components.
+A Django project with `Wagtail CMS`_ pre-installed with support for all the `Zurb Foundation`_ components.
 
 * For Django 1.9
-* Renders Django projects with 100% starting test coverage
-* ZURB Foundation
+* Renders `Django`_ projects with 100% starting test coverage
+* `Zurb Foundation`_
 * Optimized development and production settings
 * Built with `Let's Encrypt`_
 * Comes with custom user model ready to go.
@@ -32,12 +32,13 @@ A Django project with Wagtail_ pre-installed with support for all the `Zurb Foun
 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`Wagtail CMS`: https://wagtail.io
+.. _`Django`: https://www.djangoproject.com/
 .. _`Zurb Foundation`: https://foundation.zurb.com
 .. _`Let's Encrypt`: https://letsencrypt.org/
 .. _`Read the Docs`: http://wagtail-cookiecutter-foundation.readthedocs.org/en/latest/
 
-Get Started
-------------
+Getting Started
+----------------
 Here is how we create a new Django project quickly while letting cookiecutter_ to do all the work.
 
 To get started we assume the following dependencies ::
