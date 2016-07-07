@@ -1,8 +1,9 @@
-from django.utils.safestring import mark_safe
 from django.utils.html import format_html, format_html_join
 from django.conf import settings
 from wagtail.wagtailcore import hooks
-from wagtail.wagtailcore.whitelist import attribute_rule, check_url, allow_without_attributes
+from wagtail.wagtailcore.whitelist import (
+    attribute_rule, check_url
+)
 
 
 @hooks.register('construct_whitelister_element_rules')
@@ -20,10 +21,11 @@ def editor_js():
     js_files = [
         'js/hallo-custom.js',
     ]
-    js_includes = format_html_join('\n', '<script src="{0}{1}"></script>',
+    js_includes = format_html_join(
+        '\n', '<script src="{0}{1}"></script>',
         ((settings.STATIC_URL, filename) for filename in js_files)
     )
- 
+
     return js_includes + format_html(
         """
         <script>
@@ -33,6 +35,7 @@ def editor_js():
         """
     )
 
+
 @hooks.register('insert_editor_css')
 def editor_css():
     # Add extra CSS files to the admin like font-awesome
@@ -41,6 +44,8 @@ def editor_css():
     ]
 
     css_includes = format_html_join(
-        '\n', '<link rel="stylesheet" href="{0}{1}">', ((settings.STATIC_URL, filename) for filename in css_files))
+        '\n', '<link rel="stylesheet" href="{0}{1}">',
+        ((settings.STATIC_URL, filename) for filename in css_files)
+    )
 
     return css_includes

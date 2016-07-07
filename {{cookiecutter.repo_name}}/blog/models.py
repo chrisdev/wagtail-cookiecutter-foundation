@@ -5,15 +5,16 @@ from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 
-from wagtail.wagtailadmin.edit_handlers import (
-    FieldPanel, MultiFieldPanel, InlinePanel
-)
 from wagtail.wagtailsearch import index
 
+from wagtail.wagtailadmin.edit_handlers import (
+    FieldPanel, InlinePanel
+)
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
-from taggit.models import Tag, TaggedItemBase
-from utils.models import LinkFields, ContactFields, RelatedLink, CarouselItem
+from taggit.models import TaggedItemBase
+from utils.models import RelatedLink, CarouselItem
+
 
 class BlogIndexPageRelatedLink(Orderable, RelatedLink):
     page = ParentalKey('blog.BlogIndexPage', related_name='related_links')

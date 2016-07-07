@@ -1,7 +1,9 @@
-from .base import *
-from selenium.common.exceptions import NoSuchElementException 
+from .base import *  # flake8: noqa
+
+from selenium.common.exceptions import NoSuchElementException
 
 HOMEPAGE = 'http://127.0.0.1:8000'
+
 
 class HomepageTests(SeleniumTestCase):
 
