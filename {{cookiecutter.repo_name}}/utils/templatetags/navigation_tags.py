@@ -121,7 +121,8 @@ def breadcrumbs(context):
         'ancestors': ancestors,
         'request': context['request'],
     }
-    
+
+
 @register.inclusion_tag(
     'utils/tags/navigation/offcanvas_top_menu.html', takes_context=True)
 def offcanvas_top_menu(context, parent, calling_page=None):
@@ -140,7 +141,9 @@ def offcanvas_top_menu(context, parent, calling_page=None):
 
 # Retrieves the children of the top menu items for the drop downs
 @register.inclusion_tag(
-    'utils/tags/navigation/offcanvas_top_menu_children.html', takes_context=True)
+    'utils/tags/navigation/offcanvas_top_menu_children.html',
+    takes_context=True
+    )
 def offcanvas_top_menu_children(context, parent):
     menuitems_children = parent.get_children()
     menuitems_children = menuitems_children.filter(

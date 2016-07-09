@@ -1,20 +1,12 @@
-<<<<<<< HEAD
-from django.utils.html import format_html, format_html_join
-from django.conf import settings
-from wagtail.wagtailcore import hooks
-from wagtail.wagtailcore.whitelist import (
-    attribute_rule, check_url
-)
-=======
 from django.core import urlresolvers
-from django.utils.translation import ugettext_lazy as _
-from django.utils.safestring import mark_safe
 from django.utils.html import format_html, format_html_join
+from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from wagtail.wagtailcore import hooks
 from wagtail.wagtailadmin.menu import MenuItem
-from wagtail.wagtailcore.whitelist import attribute_rule, check_url, allow_without_attributes
->>>>>>> origin/master
+from wagtail.wagtailcore.whitelist import (
+    attribute_rule, check_url
+)
 
 
 @hooks.register('register_settings_menu_item')

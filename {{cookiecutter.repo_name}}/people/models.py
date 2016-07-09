@@ -10,14 +10,13 @@ from wagtail.wagtailimages.models import Image
 from wagtail.wagtailadmin.edit_handlers import (
     FieldPanel, MultiFieldPanel, InlinePanel
 )
-from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailsnippets.edit_handlers import SnippetChooserPanel
 
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
 from taggit.models import Tag, TaggedItemBase
-from utils.models import LinkFields, ContactFields, RelatedLink, CarouselItem
+from utils.models import ContactFields, RelatedLink
 
 
 # Person page

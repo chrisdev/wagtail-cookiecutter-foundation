@@ -10,17 +10,17 @@ from wagtail.wagtailimages.models import Image
 from wagtail.wagtailadmin.edit_handlers import (
     FieldPanel, MultiFieldPanel, InlinePanel
 )
-from wagtail.wagtailsearch import index
-
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
 from taggit.models import Tag, TaggedItemBase
-from utils.models import LinkFields, RelatedLink, CarouselItem
+from utils.models import RelatedLink
 
 
 # Product page
 class ProductIndexPageRelatedLink(Orderable, RelatedLink):
-    page = ParentalKey('products.ProductIndexPage', related_name='related_links')
+    page = ParentalKey(
+        'products.ProductIndexPage', related_name='related_links'
+    )
 
 
 class ProductIndexPage(Page):
@@ -80,7 +80,7 @@ class ProductPageTag(TaggedItemBase):
     content_object = ParentalKey(
         'products.ProductPage', related_name='tagged_items'
     )
-    
+
     def __unicode__(self):
         return self.name
 
