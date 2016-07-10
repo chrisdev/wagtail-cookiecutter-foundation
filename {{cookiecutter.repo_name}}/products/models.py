@@ -88,6 +88,7 @@ class ProductPageTag(TaggedItemBase):
 class ProductPage(Page):
     price = models.CharField(max_length=255, blank=True)
     description = RichTextField(blank=True)
+    intro = RichTextField(blank=True)
     tags = ClusterTaggableManager(through=ProductPageTag, blank=True)
     image = models.ForeignKey(
         Image,
@@ -108,6 +109,7 @@ class ProductPage(Page):
 
 ProductPage.content_panels = [
     FieldPanel('title', classname="title"),
+    FieldPanel('intro', classname="full"),
     FieldPanel('price', classname="full"),
     FieldPanel('description', classname="full"),
     ImageChooserPanel('image'),
