@@ -77,6 +77,10 @@ INSTALLED_APPS = (
     'wagalytics',
     'wagtailfontawesome',
 
+    {% if cookiecutter.use_django_cachalot == "y" %}
+    'cachalot',
+    {% endif %}
+
     'utils',
     'pages',
     'blog',
@@ -195,31 +199,22 @@ GOOGLE_MAPS_KEY = ''
 DYNAMIC_MAP_URL = ''
 STATIC_MAP_URL = ''
 
-# Facebook Open Tags
-FB_SITE_NAME = ''
-FB_URL = ''
-FB_DESCRIPTION = ''
-FB_APP_ID = ''
-
-# Twitter Cards
-
-TWITTER_URL = ''
-TWITTER_CREATOR = ''
-TWITTER_DESCRIPTION = ''
 
 # Use Redis as the cache backend for extra performance
 
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'redis_cache.cache.RedisCache',
-#         'LOCATION': '127.0.0.1:6379',
-#         'KEY_PREFIX': '{{ cookiecutter.repo_name }}',
-#         'OPTIONS': {
-#             'CLIENT_CLASS': 'redis_cache.client.DefaultClient',
-#         }
-#     }
-# }
+{% if cookiecutter.use_django_cachalot == "y" %}
 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
+{% endif %}
 
 # Wagtail settings
 

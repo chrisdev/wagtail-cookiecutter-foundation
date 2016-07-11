@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Wagtail Cookiecutter Foundation
-=================================
+===============================
 
 A cookiecutter_ template for `Wagtail CMS`_ was built using `Zurb Foundation`_ 
 front-end framework. A demo of a default project generated from this cookiecutter is available at http://wagtail.chrisdev.com.
@@ -18,7 +18,7 @@ front-end framework. A demo of a default project generated from this cookiecutte
 .. _quick_start:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Getting Started
 
    getting_started
@@ -27,38 +27,37 @@ front-end framework. A demo of a default project generated from this cookiecutte
 .. _prerequisites:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Installation
 
-   prerequisites
-   installation
-   manual_installation
+   installation/prerequisites
+   installation/installation
+   installation/manual_installation
 
 
 .. _using_make:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 5
    :caption: Usage
-
-   using_make
-   styling
-   using_tags
-   included_apps
-   other_components
+   
+   editor_manual/index
+   usage/using_make
+   usage/styling
+   usage/template_tags
+   usage/included_apps
+   usage/other_components
  
    
 .. _ansible:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Deployment and Provisioning
 
-   ansible
-   ansible_variables
-   provisioning
-   deployment
-   vagrant
+   ansible/index
+   provisioning_deployment/index
+   provisioning_deployment/vagrant
 
 
 .. _contributing:
@@ -67,5 +66,5 @@ front-end framework. A demo of a default project generated from this cookiecutte
    :maxdepth: 2
    :caption: Project Info
 
-   contributing
-   authors
+   project_info/contributing
+   project_info/authors

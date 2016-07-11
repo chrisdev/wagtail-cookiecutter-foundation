@@ -10,6 +10,7 @@
     "timezone": "UTC",
     "now": "2015/04/16",
     "year": "{{ cookiecutter.now[:4] }}",
+    "use_django_cachalot": "n",
     "production_host_name" : "wagtail-example.org",
     "use_ssl_in_production": "true",
     "staging_host_name": "staging.example.org",
