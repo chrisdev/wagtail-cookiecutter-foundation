@@ -10,7 +10,7 @@ Development Leads
 Core Committers
 ---------------
 
-* Lendl Smith (`@lendlsmith`_)
+* Lendl Smith (`@ilendl2`_)
 * Parbhat Puri (`@parbhat`_)
 
 
@@ -20,7 +20,7 @@ Contributors
 * Fygul Hether (`@fygul`_)
 
 
-.. _`@cclarke`: https://github.com/chrisdev
-.. _`@lendlsmith`: https://github.com/lendlsmith
+.. _`@chrisdev`: https://github.com/chrisdev
+.. _`@ilendl2`: https://github.com/ilendl2
 .. _`@parbhat`: https://github.com/parbhat
 .. _`@fygul`: https://github.com/fygul
