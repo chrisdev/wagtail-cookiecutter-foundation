@@ -1,5 +1,5 @@
 Ansible Playbooks
-==================
+=================
 
 To provision you servers run
 

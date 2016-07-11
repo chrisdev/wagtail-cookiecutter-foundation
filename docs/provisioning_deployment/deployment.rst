@@ -1,5 +1,5 @@
 Deployment
-===========
+==========
 
 Once you have provisioned your site. Deploying you changes is really simple. To deploy to production run: ::
 
