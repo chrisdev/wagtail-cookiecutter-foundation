@@ -1,14 +1,10 @@
 {% if cookiecutter.version_control_system == 'hg' %}
-project_repo: ssh://hg@{{cookiecutter.vcs_repo_hostname}}/{{cookiecutter.vcs_repo_username}}/{{cookiecutter.repo_name}}{% else %}project_repo: git@{{cookiecutter.vcs_repo_hostname}}:{{cookiecutter.vcs_repo_username}}/{{cookiecutter.repo_name}}.git{% endif %}
+project_repo: ssh://hg@{{cookiecutter.vcs_host}}/{{cookiecutter.vcs_repo_username}}/{{cookiecutter.repo_name}}{% else %}project_repo: git@{{cookiecutter.vcs_host}}:{{cookiecutter.vcs_repo_username}}/{{cookiecutter.repo_name}}.git{% endif %}
 project_name: {{cookiecutter.repo_name}} 
 sites_dir:  /usr/local/sites
 virtualenvs_dir: /home/django/virtualenvs/
 nginx_root_dir:  /etc/nginx/sites-available
 gunicorn:  127.0.0.1:2015
 deploy_user: {{ cookiecutter.deploy_user_name }} 
-redis_version: 2.8.19
 keystore_path: {{ cookiecutter.repo_name }}_keystore 
 vcs: {{ cookiecutter.version_control_system }}
-ssl_private_key: your_ssl_private_key
-ssl_cert:  your_ssl_certificate_bundle¬
-ca_cert: comodo.pem

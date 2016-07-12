@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-import sh
+
 
 from .base import DjangoCookieTestCase
 

@@ -1,4 +1,4 @@
-from .base import *
+from .base import *  # flake8: noqa
 import os
 
 DEBUG = False

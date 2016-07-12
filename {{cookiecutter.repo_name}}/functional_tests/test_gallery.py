@@ -1,7 +1,8 @@
-from .base import *
+from .base import *  # flake8: noqa
+
 
 class GalleryPageTests(SeleniumTestCase):
-    
+
     def test_gallery_items(self):
         browser = self.browser
 

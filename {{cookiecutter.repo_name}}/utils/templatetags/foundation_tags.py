@@ -4,6 +4,7 @@ from django.template import Context
 from django.forms import CheckboxInput
 register = template.Library()
 
+
 @register.filter
 def as_foundation(form):
     template = get_template("utils/tags/foundation/form.html")
@@ -15,8 +16,6 @@ def as_foundation(form):
 def render_field(field):
     """
     Use this need tag to get more control over the layout of your forms
-
-    {% raw %}{% render_field form.my_field %} {% endraw %}
     """
     return {'field': field}
 
