@@ -2,26 +2,40 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
 
+
 {% block content %}
     <div id="content" class="row">
         <div class="medium-12 columns">
-            <h3>{{ self.title }}</h3>
-            <h4 class="subheader">{{ self.subtitle }}</h4>
-            {% include "products/includes/intro.html" with intro=self.intro only %}
+            <center>
+                <h3>{{ self.title }}</h3>
+                <h4 class="subheader">{{ self.subtitle }}</h4>
+                {% include "products/includes/intro.html" with intro=self.intro only %}
+            </center>   
             <hr> 
             <div class="medium-12 columns">
-                <div class="people medium-up-4 small-up-1" data-equalizer>
+                <div class="people medium-up-2 small-up-1" data-equalizer>
                     {% for product in products %}
                         <div class="column">
-                            <div class="callout secondary" data-equalizer-watch>
-                                <a href="{% pageurl product %}">
-                                    {% image product.image fill-1200x630 %}
-                                    <center style="margin-top: 15px;">
-                                        <h5><strong>{{ product.title}}</strong></h5>
-                                        <h6><strong>{{ product.price}}</strong></h6>
-                                    </center>
-                                </a>
-                            </div>
+                            <a  href="{% pageurl product %}">
+                                <div class="callout secondary" data-equalizer>
+                                    <div class="media-object stack-for-small">
+                                        <div class="media-object-section">
+                                            <div class="thumbnail">
+                                             {% image product.image fill-200x200 %}
+                                            </div>
+                                        </div>
+                                        <div class="media-object-section">
+                                                <h5><strong>{{ product.title}}</strong></h5>
+                                                <h6>{{ product.price}}</h6>
+                                                <ul>
+                                                    {% for tag in product.tags.all %}
+                                                    <li class="label"> {{ tag }}</li>
+                                                    {% endfor %}
+                                                </ul>    
+                                        </div>
+                                    </div> 
+                                </div>
+                            </a>
                         </div>
                     {% endfor %}
                 </div>
