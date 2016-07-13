@@ -85,7 +85,7 @@ INSTALLED_APPS = (
     {% if cookiecutter.use_django_cachalot == "y" %}
     'cachalot',
     {% endif %}
-
+	
     'utils',
     'pages',
     'blog',
@@ -96,6 +96,7 @@ INSTALLED_APPS = (
     'products',
     'documents_gallery',
     'feeds',
+    'foundation_formtags',
 )
 
 MIDDLEWARE_CLASSES = (
