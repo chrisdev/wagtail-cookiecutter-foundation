@@ -23,6 +23,7 @@ A Django project with `Wagtail CMS`_ pre-installed with support for all the `Zur
 * For Django 1.9
 * Renders `Django`_ projects with 100% starting test coverage
 * `Zurb Foundation`_
+* 12-Factor_ based settings via django-environ_
 * Optimized development and production settings
 * Built with `Let's Encrypt`_
 * Comes with custom user model ready to go
@@ -36,6 +37,8 @@ A Django project with `Wagtail CMS`_ pre-installed with support for all the `Zur
 .. _`Zurb Foundation`: https://foundation.zurb.com
 .. _`Let's Encrypt`: https://letsencrypt.org/
 .. _`Read the Docs`: http://wagtail-cookiecutter-foundation.readthedocs.org/en/latest/
+.. _django-environ: https://github.com/joke2k/django-environ
+.. _12-Factor: http://12factor.net/
 
 Getting Started
 ----------------

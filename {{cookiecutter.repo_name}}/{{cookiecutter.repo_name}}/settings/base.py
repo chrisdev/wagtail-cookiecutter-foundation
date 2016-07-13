@@ -14,6 +14,10 @@ from sys import path
 
 from django.core.exceptions import ImproperlyConfigured
 
+import environ
+root = environ.Path(__file__) - 3
+env = environ.Env()
+
 
 def get_env_variable(var_name):
     """ Get the environment variable or return exception """
@@ -41,7 +45,7 @@ path.append(DJANGO_ROOT)
 # Instead, create a local.py file on the server.
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DJANGO_DEBUG', False)
 
 ALLOWED_HOSTS = []
 
@@ -135,15 +139,10 @@ WSGI_APPLICATION = '{{ cookiecutter.repo_name }}.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '{{ cookiecutter.repo_name }}',
-        'USER': '',
-        'HOST': '',  # Set to empty string for localhost.
-        'PORT': '',  # Set to empty string for default.
-        'CONN_MAX_AGE': 600,
-    }
+    'default': env.db('DATABASE_URL', default='postgres:///{{cookiecutter.repo_name}}'),
 }
+
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 
 # Internationalization
@@ -199,23 +198,6 @@ GA_VIEW_ID = ''
 GOOGLE_MAPS_KEY = ''
 DYNAMIC_MAP_URL = ''
 STATIC_MAP_URL = ''
-
-
-# Use Redis as the cache backend for extra performance
-
-{% if cookiecutter.use_django_cachalot == "y" %}
-
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
-}
-
-{% endif %}
 
 # Wagtail settings
 
