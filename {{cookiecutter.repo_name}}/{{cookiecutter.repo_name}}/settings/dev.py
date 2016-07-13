@@ -1,7 +1,7 @@
 from .base import *
 
 
-DEBUG = True
+DEBUG = env.bool('DJANGO_DEBUG', default=True)
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 INSTALLED_APPS += (
@@ -25,8 +25,8 @@ SENDFILE_BACKEND = 'sendfile.backends.simple'
 MIDDLEWARE_CLASSES += (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
-SECRET_KEY = '7nn(g(lb*8!r_+cc3m8bjxm#xu!q)6fidwgg&$p$6a+alm+eex'
-DATABASES['default']['PASSWORD'] = ''
+SECRET_KEY = env('DJANGO_SECRET_KEY',
+                 default='7nn(g(lb*8!r_+cc3m8bjxm#xu!q)6fidwgg&$p$6a+alm+x')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -39,3 +39,20 @@ try:
     from .local import *
 except ImportError:
     pass
+
+# Use Redis as the cache backend for extra performance
+
+{% if cookiecutter.use_django_cachalot == "y" %}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': '{0}/{1}'.format(env('REDIS_URL', default='redis://127.0.0.1:6379'), 0),
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'IGNORE_EXCEPTIONS': True,
+        }
+    }
+}
+
+{% endif %}
