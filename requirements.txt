@@ -6,3 +6,4 @@ sphinx-rtd-theme==0.1.9
 
 # Testing
 pytest==2.9.2
+pytest-cookies==0.2.0
