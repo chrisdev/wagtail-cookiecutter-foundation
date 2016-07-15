@@ -4,9 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from wagtail.wagtailcore import hooks
 from wagtail.wagtailadmin.menu import MenuItem
-from wagtail.wagtailcore.whitelist import (
-    attribute_rule, check_url
-)
+from wagtail.wagtailcore.whitelist import attribute_rule, check_url
 
 
 @hooks.register('register_settings_menu_item')
