@@ -4,9 +4,8 @@
 
 .DS_Store
 .vagrant
-.ropeproject
 .cache/*
-
+.ropeproject/*
 /venv/
 /static/
 /media/

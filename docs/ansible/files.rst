@@ -1,5 +1,6 @@
 Ansible Files
-==============
+=============
+
 You also have to ensure that files that contain your various secrets are
 present in in the ``keystore`` directory 
 (``ansible/cookiecutter.repo_name.keystore``). Successfully completing the 

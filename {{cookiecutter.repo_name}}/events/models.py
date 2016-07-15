@@ -24,6 +24,7 @@ EVENT_AUDIENCE_CHOICES = (
     ('private', "Private"),
 )
 
+
 class EventIndexPageRelatedLink(Orderable, RelatedLink):
     page = ParentalKey('events.EventIndexPage', related_name='related_links')
 
@@ -42,7 +43,7 @@ class EventIndexPage(Page):
         events = events.order_by('date_from')
 
         return events
-    
+
     def get_context(self, request):
             # Get events
             events = self.events
@@ -50,7 +51,7 @@ class EventIndexPage(Page):
             tag = request.GET.get('tag')
             if tag:
                 events = events.filter(tags__name=tag)
-    
+
             # Pagination
             page = request.GET.get('page')
             paginator = Paginator(events, 9)  # Show 10 events per page
@@ -60,7 +61,7 @@ class EventIndexPage(Page):
                 events = paginator.page(1)
             except EmptyPage:
                 events = paginator.page(paginator.num_pages)
-    
+
             # Update template context
             context = super(EventIndexPage, self).get_context(request)
             context['events'] = events
@@ -123,7 +124,9 @@ class EventPage(Page):
     )
     time_from = models.TimeField("Start time", null=True, blank=True)
     time_to = models.TimeField("End time", null=True, blank=True)
-    audience = models.CharField(max_length=255, choices=EVENT_AUDIENCE_CHOICES, null=True, blank=True)
+    audience = models.CharField(
+        max_length=255, choices=EVENT_AUDIENCE_CHOICES, null=True, blank=True
+    )
     location = models.CharField(max_length=255, null=True, blank=True)
     body = RichTextField(blank=True)
     cost = models.CharField(max_length=255, null=True, blank=True)
@@ -162,7 +165,7 @@ class EventPage(Page):
                 return response
             else:
                 message = 'Could not export event\n\nUnrecognised format: ' + \
-                        request.GET['format']
+                    request.GET['format']
                 return HttpResponse(message, content_type='text/plain')
         else:
             return super(EventPage, self).serve(request)
@@ -187,5 +190,3 @@ EventPage.content_panels = [
 EventPage.promote_panels = Page.promote_panels + [
     ImageChooserPanel('feed_image'),
 ]
-
-

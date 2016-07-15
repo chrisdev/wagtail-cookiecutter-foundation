@@ -1,7 +1,7 @@
-from .base import *
+from .base import *  # flake8: noqa
 import time
 from selenium.common.exceptions import WebDriverException
-from selenium.webdriver.support.ui import WebDriverWait
+
 
 class EventsPageTests(SeleniumTestCase):
 
@@ -20,7 +20,9 @@ class EventsPageTests(SeleniumTestCase):
 
         browser.get('http://127.0.0.1:8000/event-index/')
 
-        event_link = browser.find_element_by_xpath('//*[@id="content"]/ul/li/div/a')
+        event_link = browser.find_element_by_xpath(
+            '//*[@id="content"]/ul/li/div/a'
+        )
         event_link.click()
 
         def calender_link_check():

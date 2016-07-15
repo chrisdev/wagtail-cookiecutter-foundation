@@ -1,3 +1,4 @@
+# flake8: noqa
 """
 Django settings for {{ cookiecutter.repo_name }} project.
 
@@ -8,7 +9,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 import os
-from os.path import abspath, dirname, join, normpath
+from os.path import abspath, dirname, join
 from sys import path
 
 from django.core.exceptions import ImproperlyConfigured
@@ -84,7 +85,7 @@ INSTALLED_APPS = (
     {% if cookiecutter.use_django_cachalot == "y" %}
     'cachalot',
     {% endif %}
-
+	
     'utils',
     'pages',
     'blog',
@@ -95,6 +96,7 @@ INSTALLED_APPS = (
     'products',
     'documents_gallery',
     'feeds',
+    'foundation_formtags',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -119,7 +121,7 @@ TEMPLATES = [
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
-            'debug' : DEBUG,
+            'debug': DEBUG,
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -207,7 +209,7 @@ WAGTAIL_SITE_NAME = "{{ cookiecutter.project_name }}"
 
 WAGTAILSEARCH_RESULTS_TEMPLATE = 'utils/tags/search/search_results.html'
 
-# Use Elasticsearch as the search backend for extra performance and better search results
+# Use Elasticsearch as the search backend for extra performance search results
 # WAGTAILSEARCH_BACKENDS = {
 #     'default': {
 #         'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',

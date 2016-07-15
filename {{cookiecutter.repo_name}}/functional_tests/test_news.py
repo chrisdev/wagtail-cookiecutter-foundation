@@ -1,5 +1,7 @@
-from .base import *
+from .base import *  # flake8: noqa
+
 from selenium.common.exceptions import NoSuchElementException
+
 
 class NewsPageTests(SeleniumTestCase):
 

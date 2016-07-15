@@ -3,7 +3,6 @@ from django.db import models
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField, StreamField
-from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailimages.models import Image
 from wagtail.wagtailsnippets.models import register_snippet
@@ -12,26 +11,27 @@ from wagtail.wagtailadmin.edit_handlers import (
     FieldPanel, MultiFieldPanel, InlinePanel, PageChooserPanel, StreamFieldPanel
 )
 from wagtail.wagtailsearch import index
-from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
-from utils.models import LinkFields, ContactFields, RelatedLink, CarouselItem
+from utils.models import LinkFields, RelatedLink, CarouselItem
 from wagtail.contrib.settings.models import BaseSetting, register_setting
+
 
 @register_setting
 class SocialMediaSettings(BaseSetting):
     facebook = models.URLField(
-        help_text='Your Facebook page URL', null=True,blank=True)
+        help_text='Your Facebook page URL', null=True, blank=True)
     instagram = models.URLField(
-        max_length=255, help_text='Your Instagram URL', null=True,blank=True)
+        max_length=255, help_text='Your Instagram URL', null=True, blank=True)
     twitter_name = models.URLField(
-        max_length=255, help_text='Your Twitter URL', null=True,blank=True)
+        max_length=255, help_text='Your Twitter URL', null=True, blank=True)
     youtube = models.URLField(
-        help_text='Your YouTube Channel URL', null=True,blank=True)
+        help_text='Your YouTube Channel URL', null=True, blank=True)
     linkedin = models.URLField(
-        max_length=255, help_text='Your Linkedin URL', null=True,blank=True)
+        max_length=255, help_text='Your Linkedin URL', null=True, blank=True)
     github = models.URLField(
-        max_length=255, help_text='Your Github URL', null=True,blank=True)
+        max_length=255, help_text='Your Github URL', null=True, blank=True)
     facebook_appid = models.CharField(
-        max_length=255, help_text='Your Facbook AppID', null=True,blank=True)
+        max_length=255, help_text='Your Facbook AppID', null=True, blank=True)
+
 
 class HomePageContentItem(Orderable, LinkFields):
     page = ParentalKey('pages.HomePage', related_name='content_items')
@@ -43,7 +43,7 @@ class HomePageContentItem(Orderable, LinkFields):
         related_name='+'
     )
     title = models.CharField(max_length=100)
-    content = RichTextField(null=True,blank=True,)
+    content = RichTextField(null=True, blank=True,)
     summary = RichTextField(blank=True)
     slug = models.SlugField()
 
@@ -153,11 +153,11 @@ class StandardPage(Page):
         index.SearchField('intro'),
         index.SearchField('body'),
     )
-    
+
     @property
     def template(self):
         return self.template_string
-        
+
 
 StandardPage.content_panels = [
     FieldPanel('title', classname="full title"),
@@ -173,6 +173,7 @@ StandardPage.content_panels = [
 StandardPage.promote_panels = Page.promote_panels + [
     ImageChooserPanel('feed_image'),
 ]
+
 
 class ContentBlock(LinkFields):
     page = models.ForeignKey(
@@ -235,7 +236,9 @@ class Advert(LinkFields):
         blank=True
     )
     title = models.CharField(max_length=150, null=True)
-    image = models.ForeignKey(Image, null=True, blank=True, on_delete=models.SET_NULL)
+    image = models.ForeignKey(
+        Image, null=True, blank=True, on_delete=models.SET_NULL
+    )
     text = RichTextField(blank=True)
 
     panels = [

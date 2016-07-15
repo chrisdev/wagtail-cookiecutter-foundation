@@ -1,3 +1,4 @@
+# flake8: noqa
 """
 WSGI config for {{ cookiecutter.repo_name }} project.
 
@@ -8,7 +9,10 @@ https://docs.djangoproject.com/en/1.8/howto/deployment/wsgi/
 """
 
 import os
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "{{ cookiecutter.repo_name }}.settings.production")
+os.environ.setdefault(
+    "DJANGO_SETTINGS_MODULE",
+    "{{ cookiecutter.repo_name }}.settings.production"
+)
 
 from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()
