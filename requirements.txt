@@ -1,7 +1,9 @@
 cookiecutter==1.4.0
 flake8==2.6.2
 sh==1.11
-binaryornot==0.4.0
+virtualenv==15.0.2
+Sphinx==1.4.5
+sphinx-rtd-theme==0.1.9
 
 # Testing
 pytest==2.9.2

@@ -1,10 +1,9 @@
 from .base import *  # flake8: noqa
 import os
 
-DEBUG = False
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
-SECRET_KEY = get_env_variable("SECRET_KEY")
+SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 # Compress static files offline
 # http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
@@ -16,17 +15,9 @@ COMPRESS_CSS_FILTERS = [
     'compressor.filters.cssmin.CSSMinFilter',
 ]
 
-ALLOWED_HOSTS = [get_env_variable("HOST_NAME"), ]
+ALLOWED_HOSTS = [env("HOST_NAME"), ]
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME":  get_env_variable("DB_NAME"),
-        "USER": get_env_variable("DB_USER"),
-        "PASSWORD": get_env_variable("DB_PASSWD"),
-        "HOST": get_env_variable("DB_HOST"),
-    }
-}
+DATABASES['default'] = env.db('DATABASE_URL')
 
 INSTALLED_APPS += (
     "wagtail.contrib.wagtailfrontendcache",
@@ -67,20 +58,20 @@ WAGTAIL_SITE_NAME = '{{ cookiecutter.project_name }}'
 
 CACHES = {
     'default': {
-        'BACKEND': 'redis_cache.cache.RedisCache',
-        'LOCATION': '127.0.0.1:6379',
-        'KEY_PREFIX': '{{ cookiecutter.repo_name }}',
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': '{0}/{1}'.format(env('REDIS_URL', default='redis://127.0.0.1:6379'), 0),
         'OPTIONS': {
-            'CLIENT_CLASS': 'redis_cache.client.DefaultClient',
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'IGNORE_EXCEPTIONS': True,
         }
     }
 }
 
-DEFAULT_FROM_EMAIL =  get_env_variable('EMAIL_FROM')
+DEFAULT_FROM_EMAIL =  env('EMAIL_FROM')
 EMAIL_USE_TLS = True
-EMAIL_HOST = get_env_variable('EMAIL_HOST')
-EMAIL_HOST_USER = get_env_variable('EMAIL_USER')
-EMAIL_HOST_PASSWORD = get_env_variable('EMAIL_PASSWD')
+EMAIL_HOST = EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_HOST_USER = env('EMAIL_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_PASSWD')
 EMAIL_PORT = 587
 
 # Logging
