@@ -79,11 +79,10 @@ def test_enabled_features(cookies, feature_context):
     check_paths(paths)
 
 
-#def test_flake8_compliance(cookies):
-#    """generated project should pass flake8"""
-#    result = cookies.bake()
-#
-#    try:
-#        sh.flake8(str(result.project))
-#    except sh.ErrorReturnCode as e:
-#        pytest.fail(e)
+def test_flake8_compliance(cookies):
+    """generated project should pass flake8"""
+    result = cookies.bake()
+    try:
+        sh.flake8(str(result.project))
+    except sh.ErrorReturnCode as e:
+        pytest.fail(e)
