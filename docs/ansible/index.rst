@@ -1,5 +1,5 @@
 Using Ansible 
-===============
+=============
 
 This cookiecutter also comes with a suite of Ansible_ play books and roles for 
 provisioning your servers and deploying the site.  We also support the creation
