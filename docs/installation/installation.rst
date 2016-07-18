@@ -16,29 +16,43 @@ Now run it against this repo::
 You'll be prompted for some values. Provide them, then a Django project will be created for you ::
 
     Cloning into 'wagtail-cookiecutter-foundation'...
-    remote: Counting objects: 5085, done.
-    remote: Compressing objects: 100% (172/172), done.
-    remote: Total 5085 (delta 21), reused 0 (delta 0), pack-reused 4911
-    Receiving objects: 100% (5085/5085), 11.74 MiB | 2.07 MiB/s, done.
-    Resolving deltas: 100% (2818/2818), done.
+    remote: Counting objects: 5355, done.
+    remote: Compressing objects: 100% (10/10), done.
+    remote: Total 5355 (delta 4), reused 0 (delta 0), pack-reused 5345
+    Receiving objects: 100% (5355/5355), 11.77 MiB | 4.39 MiB/s, done.
+    Resolving deltas: 100% (3008/3008), done.
     Checking connectivity... done.
     project_name [Wagtail Project]: 
     repo_name [wagtail_project]: 
-    version_control_system [git]: 
-    vcs_repo_username [bitbucket_username]: 
-    vcs_repo_hostname [bitbucket.org]: 
-    author_name [Your Name]: 
-    email [Your email]: 
+    Select version_control_system:
+        1 - git
+        2 - hg
+        Choose from 1, 2 [1]:
+    Select vcs_host:
+        1 - bitbucket.org
+        2 - github.com
+        Choose from 1, 2 [1]: 
+    vcs_repo_username [your_bitbucket_or_github_user_name]: 
+    author_name [Christopher Clarke]: 
+    email [cclarke@chrisdev.com]: 
     description [A short description of the project.]: 
     timezone [UTC]: 
-    now [2015/04/16]: 
-    year [2015]: 
-    production_host_name [wagtail-example.org]: 
-    use_ssl_in_production [true]: 
-    staging_host_name [staging.example.org]: 
+    production_host_name [wagtail.chrisdev.com]: 
+    version [0.1.0]: 
+    use_letsencrypt [y]: 
+    use_celery [y]: 
+    use_opbeat [n]: 
+    use_django_cachalot [n]: 
+    staging_host_name [wagtail-staging.chrisdev.com]: 
     use_vagrant_staging [True]: 
     deploy_user_name [django]: 
-    django_admin_user [my_wagtail_admin]:
+    django_admin_user [my_wagtail_admin]: 
+    Select open_source_license:
+        1 - MIT
+        2 - BSD
+        3 - Apache Software License 2.0
+        4 - Not open source
+        Choose from 1, 2, 3, 4 [1]:
 
 Enter the project and take a look around::
 
