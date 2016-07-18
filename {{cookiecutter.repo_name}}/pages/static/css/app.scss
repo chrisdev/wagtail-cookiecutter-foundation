@@ -49,6 +49,7 @@ $off-white : #F2F2F2;
 $tundora: #444;
 $mine-shaft: #333;
 $static: static;
+$dark-metal:#1a1a1a;
 
 // Fonts
 $header-font-family: 'Lato', Helvetica, sans;
@@ -332,6 +333,16 @@ ul.share-buttons .fa {min-width: 30px;}
   
   .social li {list-style: none;font-size: 30px;}
 }
+
+#copyright
+{ 
+  background-color:$dark-metal;
+  color: white;
+  padding: 20px 0; 
+  
+
+}
+
 
 textarea#id_message {max-height: 150px;}
 
