@@ -1,27 +1,39 @@
-{% raw %}{% extends "products/product_base.html" %}
+{% raw %}
+{% extends "products/product_base.html" %}
+{% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
 
 {% block product_content %}
     <div class="row">
+
         <div class="medium-12 columns">
             {% include "utils/includes/social_share.html" %}
+            <div class="medium-12 columns center">
+            <h2>{{ self.title }}</h2> 
+            </div>
             
-            <div class="medium-5 columns">
+            <div class="medium-10 columns" style="padding-top:10px;padding-bottom:10px;">
             {% if self.image %}
-                {% image self.image width-400 as photo %}
+                {% image self.image width-600 height-250 %}
                 <img src="{{ photo.url }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="{{ photo.alt }}" class="img-thumbnail" style="float: left;" />
             {% endif %}
             </div>
-            <div class="medium-7 columns">
-                <h2 style="margin-bottom: 0px;">{{ self.title }}</h2>
+            <div class="medium-2 columns" style="border:solid 1px;height:240px;text-align:center;">
+                <h3 >Price</h3><br><br>
                 
                 {% if self.price %}
-                    <h3><strong>{{ self.price }}</strong></h3>
+                    <h1 class="stat"><strong>{{ self.price }}</strong></h1>
                 {% else %}
                 {% endif %}
             </div>
         </div>
-        <div class="medium-12 columns" style="margin-top: 15px;">                    
+        <br><hr style="height: 10px;border: 0;box-shadow: 0 10px 10px -10px #8c8b8b inset;">
+        <div class="medium-12 columns" style="margin-top: 15px;">
+             <ul>                                    
+                {% for tag in self.tags.all %}
+                <li class="label" style="line-height:25px;"> {{ tag }}</li>
+                {% endfor %}
+            </ul>                                                
             {% if self.description %}
                 <h5>Product Description</h5>
             {% endif %}
@@ -30,4 +42,6 @@
             {% include "utils/includes/related_links.html" with related_links=self.related_links.all only %} 
         </div>
     </div>
-{% endblock %}{% endraw %}
+{% endblock %}
+
+{% endraw %}
