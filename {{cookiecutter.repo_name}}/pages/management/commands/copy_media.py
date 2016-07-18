@@ -11,7 +11,8 @@ class Command(NoArgsCommand):
         image_src_dir = os.path.join(media_src_dir, 'images')
         image_src_dir_or = os.path.join(media_src_dir, 'original_images')
         documents_src_dir = os.path.join(media_src_dir, 'documents')
-        image_dest_dir_or = os.path.join(settings.MEDIA_ROOT, 'original_images')
+        image_dest_dir_or = os.path.join(settings.MEDIA_ROOT,
+                                         'original_images')
         image_dest_dir = os.path.join(settings.MEDIA_ROOT, 'images')
         documents_dest_dir = os.path.join(settings.MEDIA_ROOT, 'documents')
 

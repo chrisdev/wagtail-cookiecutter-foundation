@@ -111,7 +111,8 @@ class EventPageSpeaker(Orderable, LinkFields):
 
 
 class EventPageTag(TaggedItemBase):
-    content_object = ParentalKey('events.EventPage', related_name='tagged_items')
+    content_object = ParentalKey('events.EventPage',
+                                 related_name='tagged_items')
 
 
 class EventPage(Page):

@@ -8,8 +8,8 @@ from wagtail.wagtailimages.models import Image
 from wagtail.wagtailsnippets.models import register_snippet
 from modelcluster.fields import ParentalKey
 from wagtail.wagtailadmin.edit_handlers import (
-    FieldPanel, MultiFieldPanel, InlinePanel, PageChooserPanel, StreamFieldPanel
-)
+    FieldPanel, MultiFieldPanel, InlinePanel, PageChooserPanel,
+    StreamFieldPanel)
 from wagtail.wagtailsearch import index
 from utils.models import LinkFields, RelatedLink, CarouselItem
 from wagtail.contrib.settings.models import BaseSetting, register_setting

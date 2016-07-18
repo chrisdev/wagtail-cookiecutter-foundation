@@ -74,9 +74,9 @@ class GalleryPageTag(TaggedItemBase):
 class GalleryPage(Page):
 
     """
-    This is the Gallery page. It takes tag names which you have assigned to your
-    images. It gets the Image object according to tags defined by you. Your
-    Gallery will be created as per tags.
+    This is the Gallery page. It takes tag names which you have assigned to
+    your images. It gets the Image object according to tags defined by you.
+    Your Gallery will be created as per tags.
     """
 
     tags = ClusterTaggableManager(through=GalleryPageTag, blank=True)

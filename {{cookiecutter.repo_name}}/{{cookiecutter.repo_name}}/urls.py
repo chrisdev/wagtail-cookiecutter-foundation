@@ -36,7 +36,8 @@ if settings.DEBUG:
     from django.views.generic.base import RedirectView
 
     urlpatterns += staticfiles_urlpatterns()
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
     urlpatterns += [
         url(r'^favicon\.ico$',
             RedirectView.as_view(
