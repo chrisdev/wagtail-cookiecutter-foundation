@@ -338,7 +338,12 @@ ul.share-buttons .fa {min-width: 30px;}
 #copyright
 { 
   background-color:$dark-metal;
-  color: white; 
+  p {
+      margin-bottom: 0;
+      padding: 8px 0;
+      font-size: 13px;
+      color: white; 
+  }
 }
 
 textarea#id_message {max-height: 150px;}
