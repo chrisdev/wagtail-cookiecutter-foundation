@@ -11,12 +11,14 @@
             
             <br>
             
-            <div class="people medium-up-4 small-up-1 text-center" data-equalizer>
+           <div class="people medium-up-4 small-up-1 text-center" data-equalizer>
                 {% for person in persons %}
-                     <div class="column" data-equalizer-watch>
+                     <div class="column" data-equalizer>
                         <a href="{% pageurl person %}">
-                            <div class="callout secondary" style="padding: 8px; border-radius: 5px;">
-                                {% image person.image fill-800x800 %}
+                            <div class="callout" style="padding: 8px;">
+                                <div class="" style="border:solid 1px;border-radius:60%;overflow:hidden;">
+                                {% image person.image fill-400x400 %}
+                                </div>
                                 <center><h5 style="margin-top: 5px;">{{ person.title}}</h5></center>
                                 {% if person.role %}
                                 <center><h6 class="subheader">{{ person.role }}</h6></center>
