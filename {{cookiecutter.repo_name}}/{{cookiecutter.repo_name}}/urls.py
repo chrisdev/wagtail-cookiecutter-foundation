@@ -9,7 +9,7 @@ from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.contrib.wagtailsitemaps.views import sitemap
 
-from feeds.feeds import BasicFeed, ExtendedFeed
+from wagtail_feeds.feeds import BasicFeed, ExtendedFeed
 
 admin.autodiscover()
 
