@@ -82,9 +82,7 @@ INSTALLED_APPS = (
     'wagalytics',
     'wagtailfontawesome',
 
-    {% if cookiecutter.use_django_cachalot == "y" %}
-    'cachalot',
-    {% endif %}
+    {% if cookiecutter.use_django_cachalot == "y" %}'cachalot',{% endif %}
 	
     'utils',
     'pages',

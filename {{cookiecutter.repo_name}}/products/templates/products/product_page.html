@@ -14,7 +14,7 @@
             
             <div class="medium-10 columns" style="padding-top:10px;padding-bottom:10px;">
             {% if self.image %}
-                {% image self.image width-600 height-250 %}
+                {% image self.image fill-600x250 as photo %}
                 <img src="{{ photo.url }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="{{ photo.alt }}" class="img-thumbnail" style="float: left;" />
             {% endif %}
             </div>
