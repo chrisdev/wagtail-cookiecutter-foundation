@@ -48,8 +48,9 @@ $tertiary: #FF4081;
 $off-white : #F2F2F2;
 $tundora: #444;
 $mine-shaft: #333;
+$dark-metal: #222;
 $static: static;
-$dark-metal:#1a1a1a;
+
 
 // Fonts
 $header-font-family: 'Lato', Helvetica, sans;
@@ -337,12 +338,13 @@ ul.share-buttons .fa {min-width: 30px;}
 #copyright
 { 
   background-color:$dark-metal;
-  color: white;
-  padding: 20px 0; 
-  
-
+  p {
+      margin-bottom: 0;
+      padding: 8px 0;
+      font-size: 13.5px;
+      color: white; 
+  }
 }
-
 
 textarea#id_message {max-height: 150px;}
 
@@ -364,5 +366,4 @@ textarea#id_message {max-height: 150px;}
     margin-bottom:100px;
     color:$white;
     z-index:99999;
-   }
-
+}
