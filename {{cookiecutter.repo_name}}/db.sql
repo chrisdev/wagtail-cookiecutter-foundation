@@ -942,48 +942,6 @@ ALTER SEQUENCE events_eventpagetag_id_seq OWNED BY events_eventpagetag.id;
 
 
 --
--- Name: feeds_feedsappsettings; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
---
-
-CREATE TABLE feeds_feedsappsettings (
-    id integer NOT NULL,
-    feed_app_label character varying(255),
-    feed_model_name character varying(255),
-    site_id integer NOT NULL,
-    feed_author_email character varying(255),
-    feed_author_link character varying(255),
-    feed_description character varying(255),
-    feed_item_content_field character varying(255),
-    feed_item_description_field character varying(255),
-    feed_link character varying(255),
-    feed_title character varying(255)
-);
-
-
-ALTER TABLE feeds_feedsappsettings OWNER TO puri;
-
---
--- Name: feeds_feedsappsettings_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
---
-
-CREATE SEQUENCE feeds_feedsappsettings_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE feeds_feedsappsettings_id_seq OWNER TO puri;
-
---
--- Name: feeds_feedsappsettings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
---
-
-ALTER SEQUENCE feeds_feedsappsettings_id_seq OWNED BY feeds_feedsappsettings.id;
-
-
---
 -- Name: pages_advert; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
 --
 
@@ -1879,6 +1837,48 @@ ALTER SEQUENCE taggit_taggeditem_id_seq OWNED BY taggit_taggeditem.id;
 
 
 --
+-- Name: wagtail_feeds_rssfeedssettings; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+--
+
+CREATE TABLE wagtail_feeds_rssfeedssettings (
+    id integer NOT NULL,
+    feed_app_label character varying(255),
+    feed_model_name character varying(255),
+    feed_title character varying(255),
+    feed_link character varying(255),
+    feed_description character varying(255),
+    feed_author_email character varying(255),
+    feed_author_link character varying(255),
+    feed_item_description_field character varying(255),
+    feed_item_content_field character varying(255),
+    site_id integer NOT NULL
+);
+
+
+ALTER TABLE wagtail_feeds_rssfeedssettings OWNER TO puri;
+
+--
+-- Name: wagtail_feeds_rssfeedssettings_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+--
+
+CREATE SEQUENCE wagtail_feeds_rssfeedssettings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE wagtail_feeds_rssfeedssettings_id_seq OWNER TO puri;
+
+--
+-- Name: wagtail_feeds_rssfeedssettings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+--
+
+ALTER SEQUENCE wagtail_feeds_rssfeedssettings_id_seq OWNED BY wagtail_feeds_rssfeedssettings.id;
+
+
+--
 -- Name: wagtailcore_collection; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
 --
 
@@ -2711,13 +2711,6 @@ ALTER TABLE ONLY events_eventpagetag ALTER COLUMN id SET DEFAULT nextval('events
 -- Name: id; Type: DEFAULT; Schema: public; Owner: puri
 --
 
-ALTER TABLE ONLY feeds_feedsappsettings ALTER COLUMN id SET DEFAULT nextval('feeds_feedsappsettings_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
---
-
 ALTER TABLE ONLY pages_advert ALTER COLUMN id SET DEFAULT nextval('pages_advert_id_seq'::regclass);
 
 
@@ -2852,6 +2845,13 @@ ALTER TABLE ONLY taggit_tag ALTER COLUMN id SET DEFAULT nextval('taggit_tag_id_s
 --
 
 ALTER TABLE ONLY taggit_taggeditem ALTER COLUMN id SET DEFAULT nextval('taggit_taggeditem_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+--
+
+ALTER TABLE ONLY wagtail_feeds_rssfeedssettings ALTER COLUMN id SET DEFAULT nextval('wagtail_feeds_rssfeedssettings_id_seq'::regclass);
 
 
 --
@@ -3185,78 +3185,78 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 152	Can add event page speaker	52	add_eventpagespeaker
 153	Can change event page speaker	52	change_eventpagespeaker
 154	Can delete event page speaker	52	delete_eventpagespeaker
-155	Can add event page	53	add_eventpage
-156	Can change event page	53	change_eventpage
-157	Can delete event page	53	delete_eventpage
-158	Can add form field	54	add_formfield
-159	Can change form field	54	change_formfield
-160	Can delete form field	54	delete_formfield
-161	Can add form page	55	add_formpage
-162	Can change form page	55	change_formpage
-163	Can delete form page	55	delete_formpage
-164	Can add contact form field	56	add_contactformfield
-165	Can change contact form field	56	change_contactformfield
-166	Can delete contact form field	56	delete_contactformfield
-167	Can add contact page	57	add_contactpage
-168	Can change contact page	57	change_contactpage
-169	Can delete contact page	57	delete_contactpage
-170	Can add person index page related link	58	add_personindexpagerelatedlink
-171	Can change person index page related link	58	change_personindexpagerelatedlink
-172	Can delete person index page related link	58	delete_personindexpagerelatedlink
-173	Can add person index page	59	add_personindexpage
-174	Can change person index page	59	change_personindexpage
-175	Can delete person index page	59	delete_personindexpage
-176	Can add person page related link	60	add_personpagerelatedlink
-177	Can change person page related link	60	change_personpagerelatedlink
-178	Can delete person page related link	60	delete_personpagerelatedlink
-179	Can add person page tag	61	add_personpagetag
-180	Can change person page tag	61	change_personpagetag
-181	Can delete person page tag	61	delete_personpagetag
-182	Can add person role	62	add_personrole
-183	Can change person role	62	change_personrole
-184	Can delete person role	62	delete_personrole
-185	Can add person page	63	add_personpage
-186	Can change person page	63	change_personpage
-187	Can delete person page	63	delete_personpage
-188	Can add Gallery Index Page	64	add_galleryindexpage
-189	Can change Gallery Index Page	64	change_galleryindexpage
-190	Can delete Gallery Index Page	64	delete_galleryindexpage
-191	Can add gallery page tag	65	add_gallerypagetag
-192	Can change gallery page tag	65	change_gallerypagetag
-193	Can delete gallery page tag	65	delete_gallerypagetag
-194	Can add Gallery Page	66	add_gallerypage
-195	Can change Gallery Page	66	change_gallerypage
-196	Can delete Gallery Page	66	delete_gallerypage
-197	Can add product index page related link	67	add_productindexpagerelatedlink
-198	Can change product index page related link	67	change_productindexpagerelatedlink
-199	Can delete product index page related link	67	delete_productindexpagerelatedlink
-200	Can add product index page	68	add_productindexpage
-201	Can change product index page	68	change_productindexpage
-202	Can delete product index page	68	delete_productindexpage
-203	Can add product page related link	69	add_productpagerelatedlink
-204	Can change product page related link	69	change_productpagerelatedlink
-205	Can delete product page related link	69	delete_productpagerelatedlink
-206	Can add product page tag	70	add_productpagetag
-207	Can change product page tag	70	change_productpagetag
-208	Can delete product page tag	70	delete_productpagetag
-209	Can add product page	71	add_productpage
-210	Can change product page	71	change_productpage
-211	Can delete product page	71	delete_productpage
-212	Can add Documents Index Page	72	add_documentsindexpage
-213	Can change Documents Index Page	72	change_documentsindexpage
-214	Can delete Documents Index Page	72	delete_documentsindexpage
-215	Can add documents page tag	73	add_documentspagetag
-216	Can change documents page tag	73	change_documentspagetag
-217	Can delete documents page tag	73	delete_documentspagetag
-218	Can add Documents Page	74	add_documentspage
-219	Can change Documents Page	74	change_documentspage
-220	Can delete Documents Page	74	delete_documentspage
-221	Can add feeds app settings	75	add_feedsappsettings
-222	Can change feeds app settings	75	change_feedsappsettings
-223	Can delete feeds app settings	75	delete_feedsappsettings
-224	Can add event page tag	76	add_eventpagetag
-225	Can change event page tag	76	change_eventpagetag
-226	Can delete event page tag	76	delete_eventpagetag
+155	Can add event page tag	53	add_eventpagetag
+156	Can change event page tag	53	change_eventpagetag
+157	Can delete event page tag	53	delete_eventpagetag
+158	Can add event page	54	add_eventpage
+159	Can change event page	54	change_eventpage
+160	Can delete event page	54	delete_eventpage
+161	Can add form field	55	add_formfield
+162	Can change form field	55	change_formfield
+163	Can delete form field	55	delete_formfield
+164	Can add form page	56	add_formpage
+165	Can change form page	56	change_formpage
+166	Can delete form page	56	delete_formpage
+167	Can add contact form field	57	add_contactformfield
+168	Can change contact form field	57	change_contactformfield
+169	Can delete contact form field	57	delete_contactformfield
+170	Can add contact page	58	add_contactpage
+171	Can change contact page	58	change_contactpage
+172	Can delete contact page	58	delete_contactpage
+173	Can add person index page related link	59	add_personindexpagerelatedlink
+174	Can change person index page related link	59	change_personindexpagerelatedlink
+175	Can delete person index page related link	59	delete_personindexpagerelatedlink
+176	Can add person index page	60	add_personindexpage
+177	Can change person index page	60	change_personindexpage
+178	Can delete person index page	60	delete_personindexpage
+179	Can add person page related link	61	add_personpagerelatedlink
+180	Can change person page related link	61	change_personpagerelatedlink
+181	Can delete person page related link	61	delete_personpagerelatedlink
+182	Can add person page tag	62	add_personpagetag
+183	Can change person page tag	62	change_personpagetag
+184	Can delete person page tag	62	delete_personpagetag
+185	Can add person role	63	add_personrole
+186	Can change person role	63	change_personrole
+187	Can delete person role	63	delete_personrole
+188	Can add person page	64	add_personpage
+189	Can change person page	64	change_personpage
+190	Can delete person page	64	delete_personpage
+191	Can add Gallery Index Page	65	add_galleryindexpage
+192	Can change Gallery Index Page	65	change_galleryindexpage
+193	Can delete Gallery Index Page	65	delete_galleryindexpage
+194	Can add gallery page tag	66	add_gallerypagetag
+195	Can change gallery page tag	66	change_gallerypagetag
+196	Can delete gallery page tag	66	delete_gallerypagetag
+197	Can add Gallery Page	67	add_gallerypage
+198	Can change Gallery Page	67	change_gallerypage
+199	Can delete Gallery Page	67	delete_gallerypage
+200	Can add product index page related link	68	add_productindexpagerelatedlink
+201	Can change product index page related link	68	change_productindexpagerelatedlink
+202	Can delete product index page related link	68	delete_productindexpagerelatedlink
+203	Can add product index page	69	add_productindexpage
+204	Can change product index page	69	change_productindexpage
+205	Can delete product index page	69	delete_productindexpage
+206	Can add product page related link	70	add_productpagerelatedlink
+207	Can change product page related link	70	change_productpagerelatedlink
+208	Can delete product page related link	70	delete_productpagerelatedlink
+209	Can add product page tag	71	add_productpagetag
+210	Can change product page tag	71	change_productpagetag
+211	Can delete product page tag	71	delete_productpagetag
+212	Can add product page	72	add_productpage
+213	Can change product page	72	change_productpage
+214	Can delete product page	72	delete_productpage
+215	Can add Documents Index Page	73	add_documentsindexpage
+216	Can change Documents Index Page	73	change_documentsindexpage
+217	Can delete Documents Index Page	73	delete_documentsindexpage
+218	Can add documents page tag	74	add_documentspagetag
+219	Can change documents page tag	74	change_documentspagetag
+220	Can delete documents page tag	74	delete_documentspagetag
+221	Can add Documents Page	75	add_documentspage
+222	Can change Documents Page	75	change_documentspage
+223	Can delete Documents Page	75	delete_documentspage
+224	Can add rss feeds settings	76	add_rssfeedssettings
+225	Can change rss feeds settings	76	change_rssfeedssettings
+226	Can delete rss feeds settings	76	delete_rssfeedssettings
 \.
 
 
@@ -3272,7 +3272,7 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 226, true);
 --
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$24000$kAk6nhoEnhKH$3QxewR1ss/PNzWXcwm52N5wXRl9J0QABnQ2GTlKhxjo=	2016-07-01 13:23:54.893967+05:30	t	admin			cclarke@chrisdev.com	t	t	2016-06-17 21:07:48.485484+05:30
+1	pbkdf2_sha256$24000$FBIkUWyrzsUQ$NwBuozcnaGwY5hRXcyByhbjMeboUmhOTlgw4nfiLX5U=	2016-07-20 14:09:48.272109+05:30	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 12:57:16.7876+05:30
 \.
 
 
@@ -3342,9 +3342,9 @@ SELECT pg_catalog.setval('blog_blogindexpagerelatedlink_id_seq', 1, false);
 --
 
 COPY blog_blogpage (page_ptr_id, intro, body, date, feed_image_id) FROM stdin;
-18	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \nvelit.</p>	<p><embed alt="foundation.jpg" embedtype="image" format="fullwidth" id="3"/><br/></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \nvelit.<br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac \nlibero. Proin mauris ligula, egestas at tempus non, tempor et dolor. \nProin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, \nac semper ex nulla sit amet urna. Ut venenatis eros nec gravida \nmolestie. Integer hendrerit mollis odio vitae porttitor. Sed ut \nelementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis \nid. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed\n venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget\n porttitor quam. In varius diam quis viverra porttitor.</p>	2016-06-17	3
-17	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \nvelit.</p>	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \nvelit.</p><p><embed alt="wagtail.jpg" embedtype="image" format="fullwidth" id="8"/><br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac \nlibero. Proin mauris ligula, egestas at tempus non, tempor et dolor. \nProin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, \nac semper ex nulla sit amet urna. Ut venenatis eros nec gravida \nmolestie. Integer hendrerit mollis odio vitae porttitor. Sed ut \nelementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis \nid. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed\n venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget\n porttitor quam. In varius diam quis viverra porttitor.</p>	2016-06-17	8
-19	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \nvelit.</p>	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \nvelit.</p><p><embed alt="sass.jpg" embedtype="image" format="fullwidth" id="6"/><br/></p>	2016-06-17	8
+19	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p><embed alt="sass.jpg" embedtype="image" format="fullwidth" id="7"/><br/></p><p><br/></p>	2016-06-17	9
+17	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p><embed alt="wagtail.jpg" embedtype="image" format="fullwidth" id="9"/><br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttitor.<br/></p>	2016-06-17	9
+18	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>	<embed alt="foundation.jpg" embedtype="image" format="fullwidth" id="3"/><p><br/></p><p></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.<br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttitor.</p><p></p>	2016-06-17	3
 \.
 
 
@@ -3368,12 +3368,12 @@ SELECT pg_catalog.setval('blog_blogpagecarouselitem_id_seq', 1, false);
 --
 
 COPY blog_blogpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
-2	0		Blog Page 1	\N	17	19
-3	1		Blog Page 2	\N	18	19
-4	0		Blog Page 1	\N	17	18
-5	1		Blog Page 3	\N	19	18
-1	0		Blog Page 2	\N	18	17
-6	1		Blog Page 3	\N	19	17
+3	0		Blog Page 2	\N	18	17
+4	1		Blog Page 3	\N	19	17
+5	0		Blog Page 1	\N	17	18
+6	1		Blog Page 3	\N	19	18
+1	0		Blog Page 1	\N	17	19
+2	1		Blog Page 2	\N	18	19
 \.
 
 
@@ -3423,7 +3423,7 @@ SELECT pg_catalog.setval('contact_contactformfield_id_seq', 4, true);
 --
 
 COPY contact_contactpage (page_ptr_id, to_address, from_address, subject, name_organization, telephone, email, address_1, address_2, city, country, post_code, intro, thank_you_text) FROM stdin;
-24				ChrisDev	+1 868-773-4644		A3 St Benedicts Gardens,		Tunapuna,	Trinidad & Tobago	tunapuna	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi.	<p>Thanks you for submitting.<br/></p>
+24				ChrisDev	+1 868-773-4644		A3 St Benedicts Gardens,		Tunapuna,	Trinidad & Tobago	tunapuna	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi.	<p>Thank you for submitting.</p>
 \.
 
 
@@ -3522,30 +3522,30 @@ COPY django_content_type (id, app_label, model) FROM stdin;
 50	events	eventpagecarouselitem
 51	events	eventpagerelatedlink
 52	events	eventpagespeaker
-53	events	eventpage
-54	contact	formfield
-55	contact	formpage
-56	contact	contactformfield
-57	contact	contactpage
-58	people	personindexpagerelatedlink
-59	people	personindexpage
-60	people	personpagerelatedlink
-61	people	personpagetag
-62	people	personrole
-63	people	personpage
-64	photo_gallery	galleryindexpage
-65	photo_gallery	gallerypagetag
-66	photo_gallery	gallerypage
-67	products	productindexpagerelatedlink
-68	products	productindexpage
-69	products	productpagerelatedlink
-70	products	productpagetag
-71	products	productpage
-72	documents_gallery	documentsindexpage
-73	documents_gallery	documentspagetag
-74	documents_gallery	documentspage
-75	feeds	feedsappsettings
-76	events	eventpagetag
+53	events	eventpagetag
+54	events	eventpage
+55	contact	formfield
+56	contact	formpage
+57	contact	contactformfield
+58	contact	contactpage
+59	people	personindexpagerelatedlink
+60	people	personindexpage
+61	people	personpagerelatedlink
+62	people	personpagetag
+63	people	personrole
+64	people	personpage
+65	photo_gallery	galleryindexpage
+66	photo_gallery	gallerypagetag
+67	photo_gallery	gallerypage
+68	products	productindexpagerelatedlink
+69	products	productindexpage
+70	products	productpagerelatedlink
+71	products	productpagetag
+72	products	productpage
+73	documents_gallery	documentsindexpage
+74	documents_gallery	documentspagetag
+75	documents_gallery	documentspage
+76	wagtail_feeds	rssfeedssettings
 \.
 
 
@@ -3561,117 +3561,114 @@ SELECT pg_catalog.setval('django_content_type_id_seq', 76, true);
 --
 
 COPY django_migrations (id, app, name, applied) FROM stdin;
-1	contenttypes	0001_initial	2016-06-17 21:06:26.66984+05:30
-2	auth	0001_initial	2016-06-17 21:06:26.797853+05:30
-3	admin	0001_initial	2016-06-17 21:06:26.844642+05:30
-4	admin	0002_logentry_remove_auto_add	2016-06-17 21:06:26.874015+05:30
-5	contenttypes	0002_remove_content_type_name	2016-06-17 21:06:26.953071+05:30
-6	auth	0002_alter_permission_name_max_length	2016-06-17 21:06:26.985198+05:30
-7	auth	0003_alter_user_email_max_length	2016-06-17 21:06:27.011829+05:30
-8	auth	0004_alter_user_username_opts	2016-06-17 21:06:27.035674+05:30
-9	auth	0005_alter_user_last_login_null	2016-06-17 21:06:27.062224+05:30
-10	auth	0006_require_contenttypes_0002	2016-06-17 21:06:27.066698+05:30
-11	auth	0007_alter_validators_add_error_messages	2016-06-17 21:06:27.095737+05:30
-12	taggit	0001_initial	2016-06-17 21:06:27.163932+05:30
-13	taggit	0002_auto_20150616_2121	2016-06-17 21:06:27.197611+05:30
-14	wagtailimages	0001_initial	2016-06-17 21:06:27.436754+05:30
-15	wagtailcore	0001_initial	2016-06-17 21:06:28.044743+05:30
-16	wagtailcore	0002_initial_data	2016-06-17 21:06:28.048137+05:30
-17	wagtailcore	0003_add_uniqueness_constraint_on_group_page_permission	2016-06-17 21:06:28.051476+05:30
-18	wagtailcore	0004_page_locked	2016-06-17 21:06:28.054988+05:30
-19	wagtailcore	0005_add_page_lock_permission_to_moderators	2016-06-17 21:06:28.058277+05:30
-20	wagtailcore	0006_add_lock_page_permission	2016-06-17 21:06:28.061559+05:30
-21	wagtailcore	0007_page_latest_revision_created_at	2016-06-17 21:06:28.065001+05:30
-22	wagtailcore	0008_populate_latest_revision_created_at	2016-06-17 21:06:28.068234+05:30
-23	wagtailcore	0009_remove_auto_now_add_from_pagerevision_created_at	2016-06-17 21:06:28.071648+05:30
-24	wagtailcore	0010_change_page_owner_to_null_on_delete	2016-06-17 21:06:28.075056+05:30
-25	wagtailcore	0011_page_first_published_at	2016-06-17 21:06:28.078436+05:30
-26	wagtailcore	0012_extend_page_slug_field	2016-06-17 21:06:28.081771+05:30
-27	wagtailcore	0013_update_golive_expire_help_text	2016-06-17 21:06:28.085146+05:30
-28	wagtailcore	0014_add_verbose_name	2016-06-17 21:06:28.088504+05:30
-29	wagtailcore	0015_add_more_verbose_names	2016-06-17 21:06:28.091852+05:30
-30	wagtailcore	0016_change_page_url_path_to_text_field	2016-06-17 21:06:28.095169+05:30
-31	wagtailimages	0002_initial_data	2016-06-17 21:06:28.139948+05:30
-32	wagtailimages	0003_fix_focal_point_fields	2016-06-17 21:06:28.330695+05:30
-33	wagtailimages	0004_make_focal_point_key_not_nullable	2016-06-17 21:06:28.399509+05:30
-34	wagtailimages	0005_make_filter_spec_unique	2016-06-17 21:06:28.499825+05:30
-35	wagtailimages	0006_add_verbose_names	2016-06-17 21:06:28.746268+05:30
-36	wagtaildocs	0001_initial	2016-06-17 21:06:28.812219+05:30
-37	wagtaildocs	0002_initial_data	2016-06-17 21:06:28.85113+05:30
-38	wagtaildocs	0003_add_verbose_names	2016-06-17 21:06:29.053463+05:30
-39	blog	0001_initial	2016-06-17 21:06:29.70775+05:30
-40	blog	0002_auto_20151021_1630	2016-06-17 21:06:30.299664+05:30
-41	contact	0001_initial	2016-06-17 21:06:30.674652+05:30
-42	contact	0002_auto_20151229_1657	2016-06-17 21:06:32.064129+05:30
-43	wagtailimages	0007_image_file_size	2016-06-17 21:06:32.297502+05:30
-44	wagtailimages	0008_image_created_at_index	2016-06-17 21:06:32.380101+05:30
-45	wagtailcore	0017_change_edit_page_permission_description	2016-06-17 21:06:32.467307+05:30
-46	wagtailcore	0018_pagerevision_submitted_for_moderation_index	2016-06-17 21:06:32.549979+05:30
-47	wagtailcore	0019_verbose_names_cleanup	2016-06-17 21:06:32.939046+05:30
-48	documents_gallery	0001_initial	2016-06-17 21:06:33.308641+05:30
-49	events	0001_initial	2016-06-17 21:06:34.196627+05:30
-50	events	0002_auto_20151014_1415	2016-06-17 21:06:34.662247+05:30
-51	events	0003_auto_20151021_1630	2016-06-17 21:06:35.990676+05:30
-52	wagtailcore	0020_add_index_on_page_first_published_at	2016-06-17 21:06:36.104992+05:30
-53	wagtailcore	0021_capitalizeverbose	2016-06-17 21:06:39.964348+05:30
-54	wagtailcore	0022_add_site_name	2016-06-17 21:06:40.075354+05:30
-55	wagtailcore	0023_alter_page_revision_on_delete_behaviour	2016-06-17 21:06:40.234713+05:30
-56	wagtailcore	0024_collection	2016-06-17 21:06:40.26312+05:30
-57	wagtailcore	0025_collection_initial_data	2016-06-17 21:06:40.279363+05:30
-58	wagtailcore	0026_group_collection_permission	2016-06-17 21:06:40.527891+05:30
-59	wagtailcore	0027_fix_collection_path_collation	2016-06-17 21:06:40.54707+05:30
-60	wagtailcore	0024_alter_page_content_type_on_delete_behaviour	2016-06-17 21:06:40.721999+05:30
-61	wagtailcore	0028_merge	2016-06-17 21:06:40.726186+05:30
-62	pages	0001_initial	2016-06-17 21:06:44.101138+05:30
-63	pages	0002_create_homepage	2016-06-17 21:06:44.239886+05:30
-64	pages	0003_advert	2016-06-17 21:06:44.414305+05:30
-65	pages	0004_auto_20151007_1926	2016-06-17 21:06:44.588483+05:30
-66	pages	0005_auto_20151021_1630	2016-06-17 21:06:47.151919+05:30
-67	pages	0006_standardpage_template_string	2016-06-17 21:06:47.311782+05:30
-68	pages	0007_socialmediasettings	2016-06-17 21:06:47.475452+05:30
-69	people	0001_initial	2016-06-17 21:06:49.164068+05:30
-70	people	0002_auto_20151021_1630	2016-06-17 21:06:49.823878+05:30
-71	photo_gallery	0001_initial	2016-06-17 21:06:50.696476+05:30
-72	products	0001_initial	2016-06-17 21:06:52.885216+05:30
-73	products	0002_auto_20151021_1630	2016-06-17 21:06:53.886439+05:30
-74	sessions	0001_initial	2016-06-17 21:06:53.924287+05:30
-75	wagtailadmin	0001_create_admin_access_permissions	2016-06-17 21:06:53.987377+05:30
-76	wagtaildocs	0004_capitalizeverbose	2016-06-17 21:06:55.481348+05:30
-77	wagtaildocs	0005_document_collection	2016-06-17 21:06:55.788759+05:30
-78	wagtaildocs	0006_copy_document_permissions_to_collections	2016-06-17 21:06:55.8805+05:30
-79	wagtaildocs	0005_alter_uploaded_by_user_on_delete_action	2016-06-17 21:06:56.676052+05:30
-80	wagtaildocs	0007_merge	2016-06-17 21:06:56.68305+05:30
-81	wagtailembeds	0001_initial	2016-06-17 21:06:56.778782+05:30
-82	wagtailembeds	0002_add_verbose_names	2016-06-17 21:06:56.811341+05:30
-83	wagtailembeds	0003_capitalizeverbose	2016-06-17 21:06:56.984694+05:30
-84	wagtailforms	0001_initial	2016-06-17 21:06:57.408656+05:30
-85	wagtailforms	0002_add_verbose_names	2016-06-17 21:06:58.006128+05:30
-86	wagtailforms	0003_capitalizeverbose	2016-06-17 21:06:58.562443+05:30
-87	wagtailimages	0009_capitalizeverbose	2016-06-17 21:07:01.44617+05:30
-88	wagtailimages	0010_change_on_delete_behaviour	2016-06-17 21:07:01.795665+05:30
-89	wagtailimages	0011_image_collection	2016-06-17 21:07:02.154143+05:30
-90	wagtailimages	0012_copy_image_permissions_to_collections	2016-06-17 21:07:02.228723+05:30
-91	wagtailimages	0013_make_rendition_upload_callable	2016-06-17 21:07:02.680613+05:30
-92	wagtailredirects	0001_initial	2016-06-17 21:07:03.594089+05:30
-93	wagtailredirects	0002_add_verbose_names	2016-06-17 21:07:04.226502+05:30
-94	wagtailredirects	0003_make_site_field_editable	2016-06-17 21:07:04.69082+05:30
-95	wagtailredirects	0004_set_unique_on_path_and_site	2016-06-17 21:07:06.112892+05:30
-96	wagtailredirects	0005_capitalizeverbose	2016-06-17 21:07:08.757867+05:30
-97	wagtailsearch	0001_initial	2016-06-17 21:07:09.507332+05:30
-98	wagtailsearch	0002_add_verbose_names	2016-06-17 21:07:11.383437+05:30
-99	wagtailsearch	0003_remove_editors_pick	2016-06-17 21:07:11.766478+05:30
-100	wagtailsearchpromotions	0001_initial	2016-06-17 21:07:12.861484+05:30
-101	wagtailsearchpromotions	0002_capitalizeverbose	2016-06-17 21:07:14.103859+05:30
-102	wagtailusers	0001_initial	2016-06-17 21:07:14.596797+05:30
-103	wagtailusers	0002_add_verbose_name_on_userprofile	2016-06-17 21:07:15.896748+05:30
-104	wagtailusers	0003_add_verbose_names	2016-06-17 21:07:16.321298+05:30
-105	wagtailusers	0004_capitalizeverbose	2016-06-17 21:07:17.953988+05:30
-106	wagtailcore	0001_squashed_0016_change_page_url_path_to_text_field	2016-06-17 21:07:17.96931+05:30
-107	feeds	0001_initial	2016-06-20 18:15:01.140884+05:30
-108	feeds	0002_auto_20160620_1155	2016-06-20 18:15:02.727011+05:30
-109	feeds	0003_auto_20160620_1249	2016-06-20 18:20:04.653478+05:30
-110	feeds	0003_auto_20160620_1301	2016-06-20 18:32:59.790103+05:30
-111	events	0004_auto_20160701_0831	2016-07-01 14:02:01.546763+05:30
+1	contenttypes	0001_initial	2016-07-20 12:53:49.795951+05:30
+2	auth	0001_initial	2016-07-20 12:53:50.664572+05:30
+3	admin	0001_initial	2016-07-20 12:53:50.897853+05:30
+4	admin	0002_logentry_remove_auto_add	2016-07-20 12:53:50.942383+05:30
+5	contenttypes	0002_remove_content_type_name	2016-07-20 12:53:51.031131+05:30
+6	auth	0002_alter_permission_name_max_length	2016-07-20 12:53:51.075797+05:30
+7	auth	0003_alter_user_email_max_length	2016-07-20 12:53:51.119898+05:30
+8	auth	0004_alter_user_username_opts	2016-07-20 12:53:51.155992+05:30
+9	auth	0005_alter_user_last_login_null	2016-07-20 12:53:51.197724+05:30
+10	auth	0006_require_contenttypes_0002	2016-07-20 12:53:51.209669+05:30
+11	auth	0007_alter_validators_add_error_messages	2016-07-20 12:53:51.237908+05:30
+12	taggit	0001_initial	2016-07-20 12:53:51.620343+05:30
+13	taggit	0002_auto_20150616_2121	2016-07-20 12:53:51.765371+05:30
+14	wagtailimages	0001_initial	2016-07-20 12:53:52.232357+05:30
+15	wagtailcore	0001_initial	2016-07-20 12:53:53.779469+05:30
+16	wagtailcore	0002_initial_data	2016-07-20 12:53:53.789901+05:30
+17	wagtailcore	0003_add_uniqueness_constraint_on_group_page_permission	2016-07-20 12:53:53.800841+05:30
+18	wagtailcore	0004_page_locked	2016-07-20 12:53:53.812718+05:30
+19	wagtailcore	0005_add_page_lock_permission_to_moderators	2016-07-20 12:53:53.823009+05:30
+20	wagtailcore	0006_add_lock_page_permission	2016-07-20 12:53:53.834197+05:30
+21	wagtailcore	0007_page_latest_revision_created_at	2016-07-20 12:53:53.845287+05:30
+22	wagtailcore	0008_populate_latest_revision_created_at	2016-07-20 12:53:53.857034+05:30
+23	wagtailcore	0009_remove_auto_now_add_from_pagerevision_created_at	2016-07-20 12:53:53.867543+05:30
+24	wagtailcore	0010_change_page_owner_to_null_on_delete	2016-07-20 12:53:53.878668+05:30
+25	wagtailcore	0011_page_first_published_at	2016-07-20 12:53:53.889735+05:30
+26	wagtailcore	0012_extend_page_slug_field	2016-07-20 12:53:53.900882+05:30
+27	wagtailcore	0013_update_golive_expire_help_text	2016-07-20 12:53:53.911871+05:30
+28	wagtailcore	0014_add_verbose_name	2016-07-20 12:53:53.923776+05:30
+29	wagtailcore	0015_add_more_verbose_names	2016-07-20 12:53:53.934823+05:30
+30	wagtailcore	0016_change_page_url_path_to_text_field	2016-07-20 12:53:53.945301+05:30
+31	wagtailimages	0002_initial_data	2016-07-20 12:53:54.000976+05:30
+32	wagtailimages	0003_fix_focal_point_fields	2016-07-20 12:53:54.156221+05:30
+33	wagtailimages	0004_make_focal_point_key_not_nullable	2016-07-20 12:53:54.223274+05:30
+34	wagtailimages	0005_make_filter_spec_unique	2016-07-20 12:53:54.357048+05:30
+35	wagtailimages	0006_add_verbose_names	2016-07-20 12:53:54.534611+05:30
+36	wagtaildocs	0001_initial	2016-07-20 12:53:54.679326+05:30
+37	wagtaildocs	0002_initial_data	2016-07-20 12:53:54.723855+05:30
+38	wagtaildocs	0003_add_verbose_names	2016-07-20 12:53:54.879395+05:30
+39	blog	0001_initial	2016-07-20 12:53:56.192529+05:30
+40	blog	0002_auto_20151021_1630	2016-07-20 12:53:56.649922+05:30
+41	contact	0001_initial	2016-07-20 12:53:57.328834+05:30
+42	contact	0002_auto_20151229_1657	2016-07-20 12:53:58.485538+05:30
+43	wagtailimages	0007_image_file_size	2016-07-20 12:53:58.594993+05:30
+44	wagtailimages	0008_image_created_at_index	2016-07-20 12:53:58.717432+05:30
+45	wagtailcore	0017_change_edit_page_permission_description	2016-07-20 12:53:58.785754+05:30
+46	wagtailcore	0018_pagerevision_submitted_for_moderation_index	2016-07-20 12:53:58.917292+05:30
+47	wagtailcore	0019_verbose_names_cleanup	2016-07-20 12:53:59.233977+05:30
+48	documents_gallery	0001_initial	2016-07-20 12:53:59.985089+05:30
+49	events	0001_initial	2016-07-20 12:54:03.132393+05:30
+50	events	0002_auto_20151014_1415	2016-07-20 12:54:03.398074+05:30
+51	events	0003_auto_20151021_1630	2016-07-20 12:54:04.417499+05:30
+52	wagtailcore	0020_add_index_on_page_first_published_at	2016-07-20 12:54:06.220905+05:30
+53	wagtailcore	0021_capitalizeverbose	2016-07-20 12:54:09.010001+05:30
+54	wagtailcore	0022_add_site_name	2016-07-20 12:54:11.611224+05:30
+55	wagtailcore	0023_alter_page_revision_on_delete_behaviour	2016-07-20 12:54:11.776431+05:30
+56	wagtailcore	0024_collection	2016-07-20 12:54:13.955204+05:30
+57	wagtailcore	0025_collection_initial_data	2016-07-20 12:54:14.021854+05:30
+58	wagtailcore	0026_group_collection_permission	2016-07-20 12:54:14.599707+05:30
+59	wagtailcore	0027_fix_collection_path_collation	2016-07-20 12:54:14.778425+05:30
+60	wagtailcore	0024_alter_page_content_type_on_delete_behaviour	2016-07-20 12:54:14.944142+05:30
+61	wagtailcore	0028_merge	2016-07-20 12:54:14.989245+05:30
+62	pages	0001_initial	2016-07-20 12:54:25.871752+05:30
+63	pages	0002_create_homepage	2016-07-20 12:54:26.094867+05:30
+64	pages	0003_advert	2016-07-20 12:54:26.483252+05:30
+65	pages	0004_auto_20151007_1926	2016-07-20 12:54:26.614212+05:30
+66	pages	0005_auto_20151021_1630	2016-07-20 12:54:28.316276+05:30
+67	pages	0006_standardpage_template_string	2016-07-20 12:54:28.562268+05:30
+68	pages	0007_socialmediasettings	2016-07-20 12:54:28.827991+05:30
+69	people	0001_initial	2016-07-20 12:54:31.252893+05:30
+70	people	0002_auto_20151021_1630	2016-07-20 12:54:31.810388+05:30
+71	photo_gallery	0001_initial	2016-07-20 12:54:32.908755+05:30
+72	products	0001_initial	2016-07-20 12:54:36.011961+05:30
+73	products	0002_auto_20151021_1630	2016-07-20 12:54:36.509146+05:30
+74	sessions	0001_initial	2016-07-20 12:54:36.799844+05:30
+75	wagtail_feeds	0001_initial	2016-07-20 12:54:37.311935+05:30
+76	wagtailadmin	0001_create_admin_access_permissions	2016-07-20 12:54:37.456995+05:30
+77	wagtaildocs	0004_capitalizeverbose	2016-07-20 12:54:38.467421+05:30
+78	wagtaildocs	0005_document_collection	2016-07-20 12:54:38.945895+05:30
+79	wagtaildocs	0006_copy_document_permissions_to_collections	2016-07-20 12:54:39.090332+05:30
+80	wagtaildocs	0005_alter_uploaded_by_user_on_delete_action	2016-07-20 12:54:39.425136+05:30
+81	wagtaildocs	0007_merge	2016-07-20 12:54:39.445449+05:30
+82	wagtailembeds	0001_initial	2016-07-20 12:54:39.701348+05:30
+83	wagtailembeds	0002_add_verbose_names	2016-07-20 12:54:39.739251+05:30
+84	wagtailembeds	0003_capitalizeverbose	2016-07-20 12:54:39.76464+05:30
+85	wagtailforms	0001_initial	2016-07-20 12:54:40.112544+05:30
+86	wagtailforms	0002_add_verbose_names	2016-07-20 12:54:40.476931+05:30
+87	wagtailforms	0003_capitalizeverbose	2016-07-20 12:54:41.183877+05:30
+88	wagtailimages	0009_capitalizeverbose	2016-07-20 12:54:42.502136+05:30
+89	wagtailimages	0010_change_on_delete_behaviour	2016-07-20 12:54:42.691386+05:30
+90	wagtailimages	0011_image_collection	2016-07-20 12:54:43.036271+05:30
+91	wagtailimages	0012_copy_image_permissions_to_collections	2016-07-20 12:54:43.079883+05:30
+92	wagtailimages	0013_make_rendition_upload_callable	2016-07-20 12:54:43.232798+05:30
+93	wagtailredirects	0001_initial	2016-07-20 12:54:43.74739+05:30
+94	wagtailredirects	0002_add_verbose_names	2016-07-20 12:54:44.19122+05:30
+95	wagtailredirects	0003_make_site_field_editable	2016-07-20 12:54:44.380445+05:30
+96	wagtailredirects	0004_set_unique_on_path_and_site	2016-07-20 12:54:45.014912+05:30
+97	wagtailredirects	0005_capitalizeverbose	2016-07-20 12:54:46.248276+05:30
+98	wagtailsearch	0001_initial	2016-07-20 12:54:47.192856+05:30
+99	wagtailsearch	0002_add_verbose_names	2016-07-20 12:54:48.015332+05:30
+100	wagtailsearch	0003_remove_editors_pick	2016-07-20 12:54:48.172825+05:30
+101	wagtailsearchpromotions	0001_initial	2016-07-20 12:54:48.882012+05:30
+102	wagtailsearchpromotions	0002_capitalizeverbose	2016-07-20 12:54:49.515025+05:30
+103	wagtailusers	0001_initial	2016-07-20 12:54:49.803395+05:30
+104	wagtailusers	0002_add_verbose_name_on_userprofile	2016-07-20 12:54:50.311326+05:30
+105	wagtailusers	0003_add_verbose_names	2016-07-20 12:54:50.626611+05:30
+106	wagtailusers	0004_capitalizeverbose	2016-07-20 12:54:51.321777+05:30
+107	wagtailcore	0001_squashed_0016_change_page_url_path_to_text_field	2016-07-20 12:54:51.362389+05:30
+108	events	0004_auto_20160720_0725	2016-07-20 12:55:16.963389+05:30
 \.
 
 
@@ -3679,7 +3676,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 111, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 108, true);
 
 
 --
@@ -3687,11 +3684,39 @@ SELECT pg_catalog.setval('django_migrations_id_seq', 111, true);
 --
 
 COPY django_session (session_key, session_data, expire_date) FROM stdin;
-d7d0eohyu745fqfibtnwdw1ynkaijjb4	MGFlNjQ3OTIwMmNiMTk4MmQxZjI5YWMyOGU1ZTU1NGFmMDE2ODZhYzp7Il9hdXRoX3VzZXJfaGFzaCI6IjA1MDRmNGQxYmEwNjJlN2ZhOWNkNTVmOTJhZTYyMTI3MmQyYzg0MmQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-07-01 21:08:13.803532+05:30
-uqsn55k24s1zba02n6eijnx9uaclrjbp	MGFlNjQ3OTIwMmNiMTk4MmQxZjI5YWMyOGU1ZTU1NGFmMDE2ODZhYzp7Il9hdXRoX3VzZXJfaGFzaCI6IjA1MDRmNGQxYmEwNjJlN2ZhOWNkNTVmOTJhZTYyMTI3MmQyYzg0MmQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-07-01 23:26:37.472543+05:30
-3y3gunotbe90buiza1zza3lz1eghekvn	MGFlNjQ3OTIwMmNiMTk4MmQxZjI5YWMyOGU1ZTU1NGFmMDE2ODZhYzp7Il9hdXRoX3VzZXJfaGFzaCI6IjA1MDRmNGQxYmEwNjJlN2ZhOWNkNTVmOTJhZTYyMTI3MmQyYzg0MmQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-07-04 18:34:34.358995+05:30
-t6ys54x4bs1syhfarzim9k619455jago	MGFlNjQ3OTIwMmNiMTk4MmQxZjI5YWMyOGU1ZTU1NGFmMDE2ODZhYzp7Il9hdXRoX3VzZXJfaGFzaCI6IjA1MDRmNGQxYmEwNjJlN2ZhOWNkNTVmOTJhZTYyMTI3MmQyYzg0MmQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-07-05 22:40:42.556526+05:30
-5nyrl4xv6gpcwr7j3ssktw1mekr4lu6o	ZTQwZTM3ODE2N2U0NDQ4ZTRiMDk0MjVhNDkxNzZmYTBmMGY3ZWUwNDp7InBhc3NlZF9wYWdlX3ZpZXdfcmVzdHJpY3Rpb25zIjpbMV0sIl9hdXRoX3VzZXJfaGFzaCI6IjA1MDRmNGQxYmEwNjJlN2ZhOWNkNTVmOTJhZTYyMTI3MmQyYzg0MmQiLCJfYXV0aF91c2VyX2lkIjoiMSIsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIn0=	2016-07-15 13:25:30.255375+05:30
+oyqo7t9nan14i7hf6vmcp1pa8ay3xjcg	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:05:18.505671+05:30
+4u3kgp7wto1smt5erv1vpp9xx1t51px9	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:05:59.272477+05:30
+936hrg921e5wm2143wg7z5oj9os9ckpd	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:14:22.768627+05:30
+zdmqgiqkw0xk3urdhc7fypiffm15sjm9	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:15:01.992+05:30
+mbusdj5atx6p9mgltlm1evv2es9g041n	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:15:49.638206+05:30
+d6zjx8wp753eveto3o7gx7bleq9d0u1p	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:16:51.017832+05:30
+r19m7lvr7azt31pmtdp3kos29hn8fc7q	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:19:27.633999+05:30
+s591fp7b5h8l2a04q96vba9qorxrfzfy	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:21:29.749315+05:30
+dth3o4qowrqakdbwyah8fzlezw6dmnww	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:21:37.983028+05:30
+982z7dyvr4t81szeh6fv2knziirl39xn	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:22:31.929617+05:30
+mwqp1sep3vof9f8ycyrtqsxj581rimel	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:23:50.121411+05:30
+qdo98cgiqx5m79ql2qdh18ot69afadny	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:26:29.940169+05:30
+ufa0ty80lxbi4ehh3iw6mk3q6fa0ohkm	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:36:12.688806+05:30
+pqlwd1yszkse1zt2rqp3kefrc6hskqoz	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:36:51.070447+05:30
+rn68d7jzs0k4ab0fdnbd7t16eqztoyre	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:37:33.855239+05:30
+4h6yezjas58eywy1kcr75kzc65crz0tf	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:39:04.277708+05:30
+fss6i75617h7tjb50dej1sss0x1swkne	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:39:57.144627+05:30
+a4dfjgt32z9gs51zep5mvdpairzcqf2n	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:41:15.395809+05:30
+cbvbg16nsy3ig5y6y07zm615kjm3eig7	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:41:45.271202+05:30
+w9teehmxlv7hkxcwl3bzzodhkzt92unm	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:42:00.625837+05:30
+29vved776ed9sh9yk8bnnb824wmkc18e	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:44:00.891484+05:30
+liuoqxcq0cepu154pdodghpg2ukbytq5	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:45:31.888531+05:30
+qc2828hehqmrqloue3jf181z7jybosgb	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:49:25.12054+05:30
+qnzkmdxmxfwo2mvlrrqm4ux428lijs6i	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:50:58.147019+05:30
+cgrym1ayorglh5ls6lwzbovvf9hqnfzz	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:51:52.069327+05:30
+04d5nnae5xwfyra6hpo1y9z8ah02kw2k	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:55:13.790593+05:30
+no77ce1uw6kj6s0cql1g1n4fwwdgudua	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:55:58.171698+05:30
+g8h8dew8znrtz745tobk2s8kgsauibqw	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:57:03.305773+05:30
+qibmhxgijkb66vb4yhidrhetfc3xv2po	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 13:59:47.051498+05:30
+9rcsuxft0b7jz6ojoum4ibimo1k4jcnt	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 14:05:42.191954+05:30
+rd1nljq4s7vukj05p3fak8fony58jhoq	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 14:07:52.298986+05:30
+yty6ww8edhg0uxt4o0vb0y76l01yr0aj	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 14:08:32.360369+05:30
+h9ls385qyqf1ccm6kfkmu29jn2sau18p	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 14:09:48.290496+05:30
 \.
 
 
@@ -3718,7 +3743,7 @@ COPY documents_gallery_documentspage (page_ptr_id, feed_image_id) FROM stdin;
 --
 
 COPY documents_gallery_documentspagetag (id, content_object_id, tag_id) FROM stdin;
-3	21	2
+2	21	5
 \.
 
 
@@ -3726,7 +3751,7 @@ COPY documents_gallery_documentspagetag (id, content_object_id, tag_id) FROM std
 -- Name: documents_gallery_documentspagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
 --
 
-SELECT pg_catalog.setval('documents_gallery_documentspagetag_id_seq', 3, true);
+SELECT pg_catalog.setval('documents_gallery_documentspagetag_id_seq', 2, true);
 
 
 --
@@ -3758,9 +3783,9 @@ SELECT pg_catalog.setval('events_eventindexpagerelatedlink_id_seq', 1, false);
 --
 
 COPY events_eventpage (page_ptr_id, date_from, date_to, time_from, time_to, audience, location, body, cost, signup_link, feed_image_id) FROM stdin;
+13	2019-06-01	\N	\N	\N	\N					9
 14	2020-06-17	\N	\N	\N	\N					3
-13	2019-06-01	\N	\N	\N	\N					8
-15	2021-08-12	\N	\N	\N	\N					8
+15	2021-08-12	\N	\N	\N	\N					9
 \.
 
 
@@ -3814,11 +3839,10 @@ SELECT pg_catalog.setval('events_eventpagespeaker_id_seq', 1, false);
 --
 
 COPY events_eventpagetag (id, content_object_id, tag_id) FROM stdin;
-3	14	7
-4	13	8
-5	13	5
-6	15	8
-7	15	6
+1	13	1
+2	13	2
+3	14	3
+4	15	4
 \.
 
 
@@ -3826,23 +3850,7 @@ COPY events_eventpagetag (id, content_object_id, tag_id) FROM stdin;
 -- Name: events_eventpagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
 --
 
-SELECT pg_catalog.setval('events_eventpagetag_id_seq', 7, true);
-
-
---
--- Data for Name: feeds_feedsappsettings; Type: TABLE DATA; Schema: public; Owner: puri
---
-
-COPY feeds_feedsappsettings (id, feed_app_label, feed_model_name, site_id, feed_author_email, feed_author_link, feed_description, feed_item_content_field, feed_item_description_field, feed_link, feed_title) FROM stdin;
-1	blog	BlogPage	2	john@johnblog.com	https://johnblog.com	News and views from around the Web	body	intro	http://www.example.com/news/	From the Desk of John Blog
-\.
-
-
---
--- Name: feeds_feedsappsettings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
---
-
-SELECT pg_catalog.setval('feeds_feedsappsettings_id_seq', 1, true);
+SELECT pg_catalog.setval('events_eventpagetag_id_seq', 4, true);
 
 
 --
@@ -3888,7 +3896,7 @@ COPY pages_faqspage (page_ptr_id, body) FROM stdin;
 --
 
 COPY pages_homepage (page_ptr_id, title_text, body) FROM stdin;
-3	<h3>Welcome to Wagtail Cookiecutter Foundation</h3>	<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>
+3	<h3>Welcome to Wagtail Cookiecutter Foundation</h3>	<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>
 \.
 
 
@@ -3898,9 +3906,9 @@ COPY pages_homepage (page_ptr_id, title_text, body) FROM stdin;
 
 COPY pages_homepagecarouselitem (id, sort_order, link_external, embed_url, caption, image_id, link_document_id, link_page_id, page_id) FROM stdin;
 1	0				3	\N	\N	3
-2	1				8	\N	\N	3
-3	2				4	\N	\N	3
-4	3				6	\N	\N	3
+2	1				9	\N	\N	3
+3	2				5	\N	\N	3
+4	3				7	\N	\N	3
 \.
 
 
@@ -3916,12 +3924,12 @@ SELECT pg_catalog.setval('pages_homepagecarouselitem_id_seq', 4, true);
 --
 
 COPY pages_homepagecontentitem (id, sort_order, link_external, title, content, summary, slug, image_id, link_document_id, link_page_id, page_id) FROM stdin;
-2	0	http://foundation.zurb.com/	Foundation 6	<p>The most advanced responsive front-end framework in the world.<br/></p>		foundation	10	\N	\N	3
-3	1	https://wagtail.io/	Wagtail	<p>Wagtail is an open source CMS written in Python and built on the Django framework.</p>		wagtail	9	\N	\N	3
-4	2	https://www.ansible.com/	Ansible	<p>Ansible for easy Provisioning and Deployment.<br/></p>		ansible	1	\N	\N	3
-5	3	http://sass-lang.com/	Sass	<p>Sass 100%<br/></p>		sass	7	\N	\N	3
-6	4	https://www.postgresql.org/	PostgreSQL	<p>PostgreSQL everywhere!<br/></p>		postgresql	5	\N	\N	3
-7	5	https://www.digitalocean.com/	Digital Ocean	<p>Spin up servers with the Digital Ocean API<br/></p>		digital-ocean	2	\N	\N	3
+1	0	http://foundation.zurb.com/	Foundation 6	<p>The most advanced responsive front-end framework in the world.</p>	<p><br/></p>	foundation	11	\N	\N	3
+2	1	https://wagtail.io/	Wagtail	<p>Wagtail is an open source CMS written in Python and built on the Django framework.</p>		Wagtail	10	\N	\N	3
+3	2	https://www.ansible.com/	Ansible	<p>Ansible for easy Provisioning and Deployment.</p>		ansible	1	\N	\N	3
+4	3	http://sass-lang.com/	Sass	<p>Sass 100%</p>		sass	8	\N	\N	3
+5	4	https://www.postgresql.org/	PostgreSQL	<p>PostgreSQL everywhere!</p>		postgresql	6	\N	\N	3
+6	5	https://www.digitalocean.com/	Digital Ocean	<p>Spin up servers with the Digital Ocean API</p>		digital-ocean	2	\N	\N	3
 \.
 
 
@@ -3929,7 +3937,7 @@ COPY pages_homepagecontentitem (id, sort_order, link_external, title, content, s
 -- Name: pages_homepagecontentitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
 --
 
-SELECT pg_catalog.setval('pages_homepagecontentitem_id_seq', 7, true);
+SELECT pg_catalog.setval('pages_homepagecontentitem_id_seq', 6, true);
 
 
 --
@@ -3952,7 +3960,7 @@ SELECT pg_catalog.setval('pages_homepagerelatedlink_id_seq', 1, false);
 --
 
 COPY pages_socialmediasettings (id, facebook, instagram, twitter_name, youtube, linkedin, github, facebook_appid, site_id) FROM stdin;
-1	https://facebook.com/bot.chrisdev		https://twitter.com/realchrisdev			https://github.com/chrisdev		2
+1	\N	\N	\N	\N	\N	\N	\N	2
 \.
 
 
@@ -3960,7 +3968,7 @@ COPY pages_socialmediasettings (id, facebook, instagram, twitter_name, youtube, 
 -- Name: pages_socialmediasettings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
 --
 
-SELECT pg_catalog.setval('pages_socialmediasettings_id_seq', 1, true);
+SELECT pg_catalog.setval('pages_socialmediasettings_id_seq', 2, true);
 
 
 --
@@ -3968,7 +3976,7 @@ SELECT pg_catalog.setval('pages_socialmediasettings_id_seq', 1, true);
 --
 
 COPY pages_standardindexpage (page_ptr_id, subtitle, intro, feed_image_id) FROM stdin;
-4		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \nvelit.</p>	\N
+4		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>	\N
 \.
 
 
@@ -3992,8 +4000,8 @@ SELECT pg_catalog.setval('pages_standardindexpagerelatedlink_id_seq', 1, false);
 --
 
 COPY pages_standardpage (page_ptr_id, subtitle, intro, body, feed_image_id, template_string) FROM stdin;
-6			<p>\n      </p><p></p><p>Lorem ipsum dolor sit amet, consectetur \nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\n ante id, luctus velit.</p><p><embed alt="wagtail.jpg" embedtype="image" format="fullwidth" id="8"/><br/></p><p>Fusce\n et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris \nligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh \nquis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit\n amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit \nmollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio \nlorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in \ntortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut \nmaximus ligula tristique fermentum. Ut eget porttitor quam. In varius \ndiam quis viverra porttutor.</p><p></p>\n    <p></p>	\N	pages/standard_page_full.html
-5			<p>\n      </p><p></p><p>Lorem ipsum dolor sit amet, consectetur \nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\n ante id, luctus velit.</p><p><embed alt="foundation.jpg" embedtype="image" format="fullwidth" id="3"/><br/></p><p>Fusce\n et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris \nligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh \nquis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit\n amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit \nmollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio \nlorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in \ntortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut \nmaximus ligula tristique fermentum. Ut eget porttitor quam. In varius \ndiam quis viverra porttutor.</p><p></p>\n    <p></p>	\N	pages/standard_page.html
+5		<p><br/></p>	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.<br/></p><p><embed alt="wagtail.jpg" embedtype="image" format="fullwidth" id="9"/><br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttutor.</p>	\N	pages/standard_page_full.html
+6			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p><embed alt="foundation.jpg" embedtype="image" format="fullwidth" id="3"/><br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttutor.<br/></p>	\N	pages/standard_page.html
 \.
 
 
@@ -4032,8 +4040,6 @@ SELECT pg_catalog.setval('pages_standardpagerelatedlink_id_seq', 1, false);
 --
 
 COPY pages_testimonial (id, link_external, name, text, link_document_id, link_page_id, page_id, photo_id) FROM stdin;
-1		Lendl Smith	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi.	\N	\N	3	11
-2		Chris Dev	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi.	\N	\N	3	11
 \.
 
 
@@ -4041,7 +4047,7 @@ COPY pages_testimonial (id, link_external, name, text, link_document_id, link_pa
 -- Name: pages_testimonial_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
 --
 
-SELECT pg_catalog.setval('pages_testimonial_id_seq', 2, true);
+SELECT pg_catalog.setval('pages_testimonial_id_seq', 1, false);
 
 
 --
@@ -4049,7 +4055,7 @@ SELECT pg_catalog.setval('pages_testimonial_id_seq', 2, true);
 --
 
 COPY people_personindexpage (page_ptr_id, subtitle, intro) FROM stdin;
-7		<p>\n      </p><p></p><p>Lorem ipsum dolor sit amet, consectetur \nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\n ante id, luctus velit.</p><p></p>\n    <p></p>
+7		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>
 \.
 
 
@@ -4073,10 +4079,10 @@ SELECT pg_catalog.setval('people_personindexpagerelatedlink_id_seq', 1, false);
 --
 
 COPY people_personpage (page_ptr_id, name_organization, telephone, email, address_1, address_2, city, country, post_code, intro, biography, feed_image_id, image_id, role_id) FROM stdin;
-8										<p>\n      <p><p>Lorem ipsum dolor sit amet, consectetur \nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\n ante id, luctus velit.</p><p>Fusce\n et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris \nligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh \nquis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit\n amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit \nmollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio \nlorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in \ntortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut \nmaximus ligula tristique fermentum. Ut eget porttitor quam. In varius \ndiam quis viverra porttutor.</p></p>\n    </p>	\N	11	\N
-9										<p>\n      <p><p>Lorem ipsum dolor sit amet, consectetur \nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\n ante id, luctus velit.</p><p>Fusce\n et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris \nligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh \nquis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit\n amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit \nmollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio \nlorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in \ntortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut \nmaximus ligula tristique fermentum. Ut eget porttitor quam. In varius \ndiam quis viverra porttutor.</p></p>\n    </p>	\N	11	\N
-10										<p>\n      <p><p>Lorem ipsum dolor sit amet, consectetur \nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\n ante id, luctus velit.</p><p>Fusce\n et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris \nligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh \nquis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit\n amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit \nmollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio \nlorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in \ntortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut \nmaximus ligula tristique fermentum. Ut eget porttitor quam. In varius \ndiam quis viverra porttutor.</p></p>\n    </p>	\N	11	\N
-11										<p>\n      <p><p>Lorem ipsum dolor sit amet, consectetur \nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\n ante id, luctus velit.</p><p>Fusce\n et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris \nligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh \nquis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit\n amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit \nmollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio \nlorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in \ntortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut \nmaximus ligula tristique fermentum. Ut eget porttitor quam. In varius \ndiam quis viverra porttutor.</p></p>\n    </p>	\N	11	\N
+8										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttutor.</p>	\N	4	\N
+9										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttutor.</p>	\N	4	\N
+10										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttutor.</p>	\N	4	\N
+11										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttutor.</p>	\N	4	\N
 \.
 
 
@@ -4139,7 +4145,7 @@ COPY photo_gallery_galleryindexpage (page_ptr_id, intro, feed_image_id) FROM std
 --
 
 COPY photo_gallery_gallerypage (page_ptr_id, feed_image_id) FROM stdin;
-23	8
+23	\N
 \.
 
 
@@ -4148,7 +4154,7 @@ COPY photo_gallery_gallerypage (page_ptr_id, feed_image_id) FROM stdin;
 --
 
 COPY photo_gallery_gallerypagetag (id, content_object_id, tag_id) FROM stdin;
-5	23	3
+2	23	6
 \.
 
 
@@ -4156,7 +4162,7 @@ COPY photo_gallery_gallerypagetag (id, content_object_id, tag_id) FROM stdin;
 -- Name: photo_gallery_gallerypagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
 --
 
-SELECT pg_catalog.setval('photo_gallery_gallerypagetag_id_seq', 5, true);
+SELECT pg_catalog.setval('photo_gallery_gallerypagetag_id_seq', 2, true);
 
 
 --
@@ -4225,14 +4231,12 @@ SELECT pg_catalog.setval('products_productpagetag_id_seq', 1, false);
 --
 
 COPY taggit_tag (id, name, slug) FROM stdin;
-1	sample	sample
-2	document	document
-3	photos	photos
-4	gallery	gallery
-5	event1	event1
-6	event3	event3
-7	events2	events2
-8	wagtail	wagtail
+1	wagtail	wagtail
+2	event1	event1
+3	events2	events2
+4	event3	event3
+5	document	document
+6	photos	photos
 \.
 
 
@@ -4240,7 +4244,7 @@ COPY taggit_tag (id, name, slug) FROM stdin;
 -- Name: taggit_tag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
 --
 
-SELECT pg_catalog.setval('taggit_tag_id_seq', 8, true);
+SELECT pg_catalog.setval('taggit_tag_id_seq', 6, true);
 
 
 --
@@ -4248,20 +4252,13 @@ SELECT pg_catalog.setval('taggit_tag_id_seq', 8, true);
 --
 
 COPY taggit_taggeditem (id, object_id, content_type_id, tag_id) FROM stdin;
-1	3	3	1
-2	3	3	2
-3	2	3	1
-4	2	3	2
-5	1	3	1
-6	1	3	2
-7	8	2	3
-8	8	2	4
-9	4	2	3
-10	4	2	4
-11	6	2	3
-12	6	2	4
-13	3	2	3
-14	3	2	4
+1	3	3	5
+2	2	3	5
+3	1	3	5
+4	9	2	6
+5	7	2	6
+6	5	2	6
+7	3	2	6
 \.
 
 
@@ -4269,7 +4266,23 @@ COPY taggit_taggeditem (id, object_id, content_type_id, tag_id) FROM stdin;
 -- Name: taggit_taggeditem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
 --
 
-SELECT pg_catalog.setval('taggit_taggeditem_id_seq', 14, true);
+SELECT pg_catalog.setval('taggit_taggeditem_id_seq', 7, true);
+
+
+--
+-- Data for Name: wagtail_feeds_rssfeedssettings; Type: TABLE DATA; Schema: public; Owner: puri
+--
+
+COPY wagtail_feeds_rssfeedssettings (id, feed_app_label, feed_model_name, feed_title, feed_link, feed_description, feed_author_email, feed_author_link, feed_item_description_field, feed_item_content_field, site_id) FROM stdin;
+1	blog	BlogPage	From the Desk of John Blog	http://www.example.com/news/	News and views from around the Web	john@johnblog.com	https://johnblog.com	intro	body	2
+\.
+
+
+--
+-- Name: wagtail_feeds_rssfeedssettings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+--
+
+SELECT pg_catalog.setval('wagtail_feeds_rssfeedssettings_id_seq', 1, true);
 
 
 --
@@ -4338,28 +4351,28 @@ SELECT pg_catalog.setval('wagtailcore_grouppagepermission_id_seq', 6, true);
 
 COPY wagtailcore_page (id, path, depth, numchild, title, slug, live, has_unpublished_changes, url_path, seo_title, show_in_menus, search_description, go_live_at, expire_at, expired, content_type_id, owner_id, locked, latest_revision_created_at, first_published_at) FROM stdin;
 1	0001	1	1	Root	root	t	f	/		f		\N	\N	f	1	\N	f	\N	\N
-22	000100010006	3	1	Photo Gallery	photo-gallery	t	f	/home/photo-gallery/		t		\N	\N	f	64	1	f	2016-06-17 21:51:30.7016+05:30	2016-06-17 21:51:30.882765+05:30
-11	0001000100020004	4	0	Person Page 4	person-page-4	t	f	/home/person-index-page/person-page-4/		f		\N	\N	f	63	1	f	2016-06-17 21:33:01.261448+05:30	2016-06-17 21:33:01.433263+05:30
-4	000100010001	3	2	Standard Index	standard-index-page	t	f	/home/standard-index-page/		t		\N	\N	f	34	1	f	2016-06-17 21:34:00.906226+05:30	2016-06-17 21:26:57.824556+05:30
-7	000100010002	3	4	Person Index	person-index-page	t	f	/home/person-index-page/		t		\N	\N	f	59	1	f	2016-06-17 21:34:11.182875+05:30	2016-06-17 21:29:56.836285+05:30
-21	0001000100050001	4	0	Sample Documents	sample-documents	t	f	/home/documents-gallery/sample-documents/		f		\N	\N	f	74	1	f	2016-06-17 21:53:55.895032+05:30	2016-06-17 21:49:46.496307+05:30
-8	0001000100020001	4	0	Person Page 1	person-page-1	t	f	/home/person-index-page/person-page-1/		t		\N	\N	f	63	1	f	2016-06-17 21:30:24.12037+05:30	2016-06-17 21:30:24.322505+05:30
-6	0001000100010002	4	0	Standard Page w/o Sidebar	standard-page-wo-sidebar	t	f	/home/standard-index-page/standard-page-wo-sidebar/		t		\N	\N	f	37	1	f	2016-06-17 21:31:00.336654+05:30	2016-06-17 21:29:06.352172+05:30
-16	000100010004	3	3	Blog Index	blog-index	t	f	/home/blog-index/		t		\N	\N	f	43	1	f	2016-06-17 21:43:05.085856+05:30	2016-06-17 21:43:05.301675+05:30
-9	0001000100020002	4	0	Person Page 2	person-page-2	t	f	/home/person-index-page/person-page-2/		t		\N	\N	f	63	1	f	2016-06-17 21:32:15.456572+05:30	2016-06-17 21:32:15.623677+05:30
-10	0001000100020003	4	0	Person Page 3	person-page-3	t	f	/home/person-index-page/person-page-3/		t		\N	\N	f	63	1	f	2016-06-17 21:32:38.487866+05:30	2016-06-17 21:32:38.682069+05:30
-12	000100010003	3	3	Event Index	event-index	t	f	/home/event-index/		t		\N	\N	f	49	1	f	2016-06-17 21:34:32.007271+05:30	2016-06-17 21:34:32.154001+05:30
-20	000100010005	3	1	Documents Gallery	documents-gallery	t	f	/home/documents-gallery/		t		\N	\N	f	72	1	f	2016-06-17 21:49:19.058749+05:30	2016-06-17 21:49:19.232515+05:30
-19	0001000100040003	4	0	Blog Page 3	blog-page-3	t	f	/home/blog-index/blog-page-3/		t		\N	\N	f	47	1	f	2016-06-17 21:57:05.945368+05:30	2016-06-17 21:46:55.677047+05:30
-18	0001000100040002	4	0	Blog Page 2	blog-post-2	t	f	/home/blog-index/blog-post-2/		t		\N	\N	f	47	1	f	2016-06-17 21:57:18.745911+05:30	2016-06-17 21:45:09.867038+05:30
-17	0001000100040001	4	0	Blog Page 1	blog-page-1	t	f	/home/blog-index/blog-page-1/		t		\N	\N	f	47	1	f	2016-06-17 21:57:30.797724+05:30	2016-06-17 21:44:23.952197+05:30
-23	0001000100060001	4	0	Sample Gallery	sample-gallery	t	f	/home/photo-gallery/sample-gallery/		f		\N	\N	f	66	1	f	2016-06-17 23:27:08.331751+05:30	2016-06-17 21:51:56.197955+05:30
-3	00010001	2	7	Homepage	home	t	f	/home/		f		\N	\N	f	4	\N	f	2016-06-22 19:27:58.298889+05:30	2016-06-17 21:17:11.474333+05:30
-24	000100010007	3	0	Contact Us	contact-us	t	f	/home/contact-us/		t		\N	\N	f	57	1	f	2016-06-22 20:49:56.029113+05:30	2016-06-17 21:59:19.63305+05:30
-5	0001000100010001	4	0	Standard Page	standard-page	t	f	/home/standard-index-page/standard-page/		t		\N	\N	f	37	1	f	2016-06-17 21:28:15.836835+05:30	2016-06-17 21:28:06.440068+05:30
-14	0001000100030002	4	0	Event Page 2	event-page-2	t	f	/home/event-index/event-page-2/		t		\N	\N	f	53	1	f	2016-07-01 14:12:10.788204+05:30	2016-06-17 21:35:52.253868+05:30
-13	0001000100030001	4	0	Event Page 1	event-page-1	t	f	/home/event-index/event-page-1/		t		\N	\N	f	53	1	f	2016-07-01 14:16:47.206112+05:30	2016-06-17 21:35:07.651375+05:30
-15	0001000100030003	4	0	Event Page 3	event-page-3	t	f	/home/event-index/event-page-3/		t		\N	\N	f	53	1	f	2016-07-01 14:17:09.032042+05:30	2016-06-17 21:36:40.965531+05:30
+14	0001000100030002	4	0	Event Page 2	event-page-2	t	f	/home/event-index/event-page-2/		t		\N	\N	f	54	1	f	2016-07-20 13:39:41.447057+05:30	2016-07-20 13:39:41.570505+05:30
+12	000100010003	3	3	Event Index	event-index	t	f	/home/event-index/		t		\N	\N	f	49	1	f	2016-07-20 13:36:58.286914+05:30	2016-07-20 13:36:58.53047+05:30
+15	0001000100030003	4	0	Event Page 3	event-page-3	t	f	/home/event-index/event-page-3/		t		\N	\N	f	54	1	f	2016-07-20 13:40:44.402947+05:30	2016-07-20 13:40:44.51417+05:30
+5	0001000100010001	4	0	Standard Page w/o Sidebar	standard-page-wo-sidebar	t	f	/home/standard-index/standard-page-wo-sidebar/		t		\N	\N	f	37	1	f	2016-07-20 13:18:57.364463+05:30	2016-07-20 13:18:57.449331+05:30
+4	000100010001	3	2	Standard Index	standard-index	t	f	/home/standard-index/		t		\N	\N	f	34	1	f	2016-07-20 13:16:10.872621+05:30	2016-07-20 13:16:10.958228+05:30
+6	0001000100010002	4	0	Standard Page	standard-page	t	f	/home/standard-index/standard-page/		t		\N	\N	f	37	1	f	2016-07-20 13:20:19.395088+05:30	2016-07-20 13:20:19.479521+05:30
+22	000100010006	3	1	Photo Gallery	photo-gallery	t	f	/home/photo-gallery/		t		\N	\N	f	65	1	f	2016-07-20 13:56:14.850905+05:30	2016-07-20 13:56:14.950408+05:30
+8	0001000100020001	4	0	Person Page 1	person-page-1	t	f	/home/person-index/person-page-1/		t		\N	\N	f	64	1	f	2016-07-20 13:23:19.593846+05:30	2016-07-20 13:23:19.687868+05:30
+9	0001000100020002	4	0	Person Page 2	person-page-2	t	f	/home/person-index/person-page-2/		t		\N	\N	f	64	1	f	2016-07-20 13:24:19.879143+05:30	2016-07-20 13:24:19.97687+05:30
+10	0001000100020003	4	0	Person Page 3	person-page-3	t	f	/home/person-index/person-page-3/		t		\N	\N	f	64	1	f	2016-07-20 13:24:52.366369+05:30	2016-07-20 13:24:52.464716+05:30
+7	000100010002	3	4	Person Index	person-index	t	f	/home/person-index/		t		\N	\N	f	60	1	f	2016-07-20 13:22:02.385824+05:30	2016-07-20 13:22:02.470385+05:30
+11	0001000100020004	4	0	Person Page 4	person-page-4	t	f	/home/person-index/person-page-4/		t		\N	\N	f	64	1	f	2016-07-20 13:25:24.424289+05:30	2016-07-20 13:25:24.520241+05:30
+16	000100010004	3	3	Blog Index	blog-index	t	f	/home/blog-index/		t		\N	\N	f	43	1	f	2016-07-20 13:41:32.075565+05:30	2016-07-20 13:41:32.157776+05:30
+23	0001000100060001	4	0	Sample Gallery	sample-gallery	t	f	/home/photo-gallery/sample-gallery/		t		\N	\N	f	67	1	f	2016-07-20 13:57:46.60808+05:30	2016-07-20 13:57:21.803486+05:30
+13	0001000100030001	4	0	Event Page 1	event-page-1	t	f	/home/event-index/event-page-1/		t		\N	\N	f	54	1	f	2016-07-20 13:38:44.398391+05:30	2016-07-20 13:38:44.515126+05:30
+3	00010001	2	7	Homepage	home	t	f	/home/		t		\N	\N	f	4	\N	f	2016-07-20 13:15:12.484088+05:30	2016-07-20 13:07:34.678451+05:30
+17	0001000100040001	4	0	Blog Page 1	blog-page-1	t	f	/home/blog-index/blog-page-1/		t		\N	\N	f	47	1	f	2016-07-20 13:48:23.700253+05:30	2016-07-20 13:43:43.63026+05:30
+18	0001000100040002	4	0	Blog Page 2	blog-page-2	t	f	/home/blog-index/blog-page-2/		t		\N	\N	f	47	1	f	2016-07-20 13:48:56.433825+05:30	2016-07-20 13:45:09.479097+05:30
+20	000100010005	3	1	Documents Gallery	documents-gallery	t	f	/home/documents-gallery/		t		\N	\N	f	73	1	f	2016-07-20 13:52:02.975756+05:30	2016-07-20 13:52:03.069215+05:30
+21	0001000100050001	4	0	Sample Documents	sample-documents	t	f	/home/documents-gallery/sample-documents/		t		\N	\N	f	75	1	f	2016-07-20 13:54:12.663501+05:30	2016-07-20 13:54:12.780898+05:30
+24	000100010007	3	0	Contact Us	contact-us	t	f	/home/contact-us/		t		\N	\N	f	58	1	f	2016-07-20 14:03:22.946592+05:30	2016-07-20 14:02:19.773581+05:30
+19	0001000100040003	4	0	Blog Page 3	blog-page-3	t	f	/home/blog-index/blog-page-3/		t		\N	\N	f	47	1	f	2016-07-20 14:06:18.443585+05:30	2016-07-20 13:47:15.679154+05:30
 \.
 
 
@@ -4375,68 +4388,36 @@ SELECT pg_catalog.setval('wagtailcore_page_id_seq', 24, true);
 --
 
 COPY wagtailcore_pagerevision (id, submitted_for_moderation, created_at, content_json, approved_go_live_at, page_id, user_id) FROM stdin;
-5	f	2016-06-17 21:28:06.247298+05:30	{"subtitle": "", "carousel_items": [], "search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "go_live_at": null, "feed_image": null, "related_links": [], "title": "Standard Page", "seo_title": "", "slug": "standard-page", "template_string": "pages/standard_page.html", "live": true, "has_unpublished_changes": false, "body": "<p>\\n      <p><p>Lorem ipsum dolor sit amet, consectetur \\nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \\namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \\nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \\nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \\nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \\nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \\nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\\n ante id, luctus velit.</p><p><embed alt=\\"foundation.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"3\\"/><br/></p><p>Fusce\\n et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris \\nligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh \\nquis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit\\n amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit \\nmollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio \\nlorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in \\ntortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut \\nmaximus ligula tristique fermentum. Ut eget porttitor quam. In varius \\ndiam quis viverra porttutor.</p></p>\\n    </p>", "numchild": 0, "content_type": 37, "show_in_menus": false, "path": "0001000100010001", "url_path": "/home/standard-index-page/standard-page/", "expired": false, "pk": 5, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	5	1
-4	f	2016-06-17 21:26:57.612429+05:30	{"subtitle": "", "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p>", "latest_revision_created_at": null, "go_live_at": null, "feed_image": null, "related_links": [], "title": "Standard Index Page", "seo_title": "", "slug": "standard-index-page", "live": true, "has_unpublished_changes": false, "numchild": 0, "content_type": 34, "show_in_menus": true, "path": "000100010001", "url_path": "/home/standard-index-page/", "expired": false, "pk": 4, "locked": false, "depth": 3, "first_published_at": null, "expire_at": null}	\N	4	1
-6	f	2016-06-17 21:28:15.836835+05:30	{"subtitle": "", "carousel_items": [], "search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": "2016-06-17T15:58:06.247Z", "go_live_at": null, "feed_image": null, "related_links": [], "title": "Standard Page", "seo_title": "", "slug": "standard-page", "template_string": "pages/standard_page.html", "live": true, "has_unpublished_changes": false, "body": "<p>\\n      </p><p></p><p>Lorem ipsum dolor sit amet, consectetur \\nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \\namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \\nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \\nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \\nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \\nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \\nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\\n ante id, luctus velit.</p><p><embed alt=\\"foundation.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"3\\"/><br/></p><p>Fusce\\n et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris \\nligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh \\nquis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit\\n amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit \\nmollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio \\nlorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in \\ntortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut \\nmaximus ligula tristique fermentum. Ut eget porttitor quam. In varius \\ndiam quis viverra porttutor.</p><p></p>\\n    <p></p>", "numchild": 0, "content_type": 37, "show_in_menus": true, "path": "0001000100010001", "url_path": "/home/standard-index-page/standard-page/", "expired": false, "pk": 5, "locked": false, "depth": 4, "first_published_at": "2016-06-17T15:58:06.440Z", "expire_at": null}	\N	5	1
-9	f	2016-06-17 21:29:56.685472+05:30	{"subtitle": "", "search_description": "", "owner": 1, "intro": "<p>\\n      <p><p>Lorem ipsum dolor sit amet, consectetur \\nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \\namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \\nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \\nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \\nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \\nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \\nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\\n ante id, luctus velit.</p><p>Fusce\\n et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris \\nligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh \\nquis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit\\n amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit \\nmollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio \\nlorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in \\ntortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut \\nmaximus ligula tristique fermentum. Ut eget porttitor quam. In varius \\ndiam quis viverra porttutor.</p></p>\\n    </p>", "latest_revision_created_at": null, "go_live_at": null, "related_links": [], "title": "Person Index Page", "seo_title": "", "slug": "person-index-page", "live": true, "has_unpublished_changes": false, "numchild": 0, "content_type": 59, "show_in_menus": true, "path": "000100010002", "url_path": "/home/person-index-page/", "expired": false, "pk": 7, "locked": false, "depth": 3, "first_published_at": null, "expire_at": null}	\N	7	1
-7	f	2016-06-17 21:29:06.217744+05:30	{"subtitle": "", "carousel_items": [], "search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "go_live_at": null, "feed_image": null, "related_links": [], "title": "Standard Page w/o Sidebar", "seo_title": "", "slug": "standard-page-wo-sidebar", "template_string": "pages/standard_page.html", "live": true, "has_unpublished_changes": false, "body": "<p>\\n      <p><p>Lorem ipsum dolor sit amet, consectetur \\nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \\namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \\nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \\nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \\nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \\nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \\nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\\n ante id, luctus velit.</p><p><embed alt=\\"wagtail.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"8\\"/><br/></p><p>Fusce\\n et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris \\nligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh \\nquis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit\\n amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit \\nmollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio \\nlorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in \\ntortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut \\nmaximus ligula tristique fermentum. Ut eget porttitor quam. In varius \\ndiam quis viverra porttutor.</p></p>\\n    </p>", "numchild": 0, "content_type": 37, "show_in_menus": false, "path": "0001000100010002", "url_path": "/home/standard-index-page/standard-page-wo-sidebar/", "expired": false, "pk": 6, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	6	1
-8	f	2016-06-17 21:29:17.440366+05:30	{"subtitle": "", "carousel_items": [], "search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": "2016-06-17T15:59:06.217Z", "go_live_at": null, "feed_image": null, "related_links": [], "title": "Standard Page w/o Sidebar", "seo_title": "", "slug": "standard-page-wo-sidebar", "template_string": "pages/standard_page.html", "live": true, "has_unpublished_changes": false, "body": "<p>\\n      </p><p></p><p>Lorem ipsum dolor sit amet, consectetur \\nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \\namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \\nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \\nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \\nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \\nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \\nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\\n ante id, luctus velit.</p><p><embed alt=\\"wagtail.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"8\\"/><br/></p><p>Fusce\\n et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris \\nligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh \\nquis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit\\n amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit \\nmollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio \\nlorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in \\ntortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut \\nmaximus ligula tristique fermentum. Ut eget porttitor quam. In varius \\ndiam quis viverra porttutor.</p><p></p>\\n    <p></p>", "numchild": 0, "content_type": 37, "show_in_menus": true, "path": "0001000100010002", "url_path": "/home/standard-index-page/standard-page-wo-sidebar/", "expired": false, "pk": 6, "locked": false, "depth": 4, "first_published_at": "2016-06-17T15:59:06.352Z", "expire_at": null}	\N	6	1
-41	f	2016-06-17 21:53:55.895032+05:30	{"search_description": "", "owner": 1, "latest_revision_created_at": "2016-06-17T16:19:46.320Z", "go_live_at": null, "feed_image": null, "title": "Sample Documents", "seo_title": "", "slug": "sample-documents", "live": true, "has_unpublished_changes": false, "tagged_items": [{"pk": null, "tag": 2, "content_object": 21}], "numchild": 0, "content_type": 74, "show_in_menus": false, "path": "0001000100050001", "url_path": "/home/documents-gallery/sample-documents/", "expired": false, "pk": 21, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:19:46.496Z", "expire_at": null}	\N	21	1
-10	f	2016-06-17 21:30:24.12037+05:30	{"image": 11, "telephone": "", "search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "biography": "<p>\\n      <p><p>Lorem ipsum dolor sit amet, consectetur \\nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \\namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \\nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \\nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \\nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \\nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \\nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\\n ante id, luctus velit.</p><p>Fusce\\n et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris \\nligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh \\nquis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit\\n amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit \\nmollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio \\nlorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in \\ntortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut \\nmaximus ligula tristique fermentum. Ut eget porttitor quam. In varius \\ndiam quis viverra porttutor.</p></p>\\n    </p>", "go_live_at": null, "name_organization": "", "city": "", "related_links": [], "title": "Person Page 1", "seo_title": "", "slug": "person-page-1", "live": true, "role": null, "has_unpublished_changes": false, "email": "", "feed_image": null, "post_code": "", "numchild": 0, "content_type": 63, "show_in_menus": true, "path": "0001000100020001", "url_path": "/home/person-index-page/person-page-1/", "expired": false, "pk": 8, "locked": false, "country": "", "tagged_items": [], "depth": 4, "address_1": "", "address_2": "", "first_published_at": null, "expire_at": null}	\N	8	1
-11	f	2016-06-17 21:31:00.336654+05:30	{"subtitle": "", "carousel_items": [], "search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": "2016-06-17T15:59:17.440Z", "go_live_at": null, "feed_image": null, "related_links": [], "title": "Standard Page w/o Sidebar", "seo_title": "", "slug": "standard-page-wo-sidebar", "template_string": "pages/standard_page_full.html", "live": true, "has_unpublished_changes": false, "body": "<p>\\n      </p><p></p><p>Lorem ipsum dolor sit amet, consectetur \\nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \\namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \\nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \\nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \\nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \\nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \\nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\\n ante id, luctus velit.</p><p><embed alt=\\"wagtail.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"8\\"/><br/></p><p>Fusce\\n et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris \\nligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh \\nquis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit\\n amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit \\nmollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio \\nlorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in \\ntortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut \\nmaximus ligula tristique fermentum. Ut eget porttitor quam. In varius \\ndiam quis viverra porttutor.</p><p></p>\\n    <p></p>", "numchild": 0, "content_type": 37, "show_in_menus": true, "path": "0001000100010002", "url_path": "/home/standard-index-page/standard-page-wo-sidebar/", "expired": false, "pk": 6, "locked": false, "depth": 4, "first_published_at": "2016-06-17T15:59:06.352Z", "expire_at": null}	\N	6	1
-12	f	2016-06-17 21:31:33.981782+05:30	{"subtitle": "", "search_description": "", "owner": 1, "intro": "<p>\\n      </p><p></p><p>Lorem ipsum dolor sit amet, consectetur \\nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \\namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \\nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \\nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \\nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \\nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \\nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\\n ante id, luctus velit.</p><p></p>\\n    <p></p>", "latest_revision_created_at": "2016-06-17T15:59:56.685Z", "go_live_at": null, "related_links": [], "title": "Person Index Page", "seo_title": "", "slug": "person-index-page", "live": true, "has_unpublished_changes": false, "numchild": 1, "content_type": 59, "show_in_menus": true, "path": "000100010002", "url_path": "/home/person-index-page/", "expired": false, "pk": 7, "locked": false, "depth": 3, "first_published_at": "2016-06-17T15:59:56.836Z", "expire_at": null}	\N	7	1
-14	f	2016-06-17 21:32:38.487866+05:30	{"image": 11, "telephone": "", "search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "biography": "<p>\\n      <p><p>Lorem ipsum dolor sit amet, consectetur \\nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \\namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \\nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \\nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \\nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \\nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \\nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\\n ante id, luctus velit.</p><p>Fusce\\n et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris \\nligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh \\nquis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit\\n amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit \\nmollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio \\nlorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in \\ntortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut \\nmaximus ligula tristique fermentum. Ut eget porttitor quam. In varius \\ndiam quis viverra porttutor.</p></p>\\n    </p>", "go_live_at": null, "name_organization": "", "city": "", "related_links": [], "title": "Person Page 3", "seo_title": "", "slug": "person-page-3", "live": true, "role": null, "has_unpublished_changes": false, "email": "", "feed_image": null, "post_code": "", "numchild": 0, "content_type": 63, "show_in_menus": true, "path": "0001000100020003", "url_path": "/home/person-index-page/person-page-3/", "expired": false, "pk": 10, "locked": false, "country": "", "tagged_items": [], "depth": 4, "address_1": "", "address_2": "", "first_published_at": null, "expire_at": null}	\N	10	1
-13	f	2016-06-17 21:32:15.456572+05:30	{"image": 11, "telephone": "", "search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "biography": "<p>\\n      <p><p>Lorem ipsum dolor sit amet, consectetur \\nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \\namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \\nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \\nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \\nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \\nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \\nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\\n ante id, luctus velit.</p><p>Fusce\\n et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris \\nligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh \\nquis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit\\n amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit \\nmollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio \\nlorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in \\ntortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut \\nmaximus ligula tristique fermentum. Ut eget porttitor quam. In varius \\ndiam quis viverra porttutor.</p></p>\\n    </p>", "go_live_at": null, "name_organization": "", "city": "", "related_links": [], "title": "Person Page 2", "seo_title": "", "slug": "person-page-2", "live": true, "role": null, "has_unpublished_changes": false, "email": "", "feed_image": null, "post_code": "", "numchild": 0, "content_type": 63, "show_in_menus": true, "path": "0001000100020002", "url_path": "/home/person-index-page/person-page-2/", "expired": false, "pk": 9, "locked": false, "country": "", "tagged_items": [], "depth": 4, "address_1": "", "address_2": "", "first_published_at": null, "expire_at": null}	\N	9	1
-15	f	2016-06-17 21:33:01.261448+05:30	{"image": 11, "telephone": "", "search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "biography": "<p>\\n      <p><p>Lorem ipsum dolor sit amet, consectetur \\nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \\namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \\nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \\nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \\nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \\nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \\nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\\n ante id, luctus velit.</p><p>Fusce\\n et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris \\nligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh \\nquis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit\\n amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit \\nmollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio \\nlorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in \\ntortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut \\nmaximus ligula tristique fermentum. Ut eget porttitor quam. In varius \\ndiam quis viverra porttutor.</p></p>\\n    </p>", "go_live_at": null, "name_organization": "", "city": "", "related_links": [], "title": "Person Page 4", "seo_title": "", "slug": "person-page-4", "live": true, "role": null, "has_unpublished_changes": false, "email": "", "feed_image": null, "post_code": "", "numchild": 0, "content_type": 63, "show_in_menus": false, "path": "0001000100020004", "url_path": "/home/person-index-page/person-page-4/", "expired": false, "pk": 11, "locked": false, "country": "", "tagged_items": [], "depth": 4, "address_1": "", "address_2": "", "first_published_at": null, "expire_at": null}	\N	11	1
-27	f	2016-06-17 21:37:57.801785+05:30	{"carousel_items": [], "show_in_menus": false, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": "2016-06-17T16:06:13.126Z", "time_to": null, "go_live_at": null, "feed_image": 4, "related_links": [], "title": "Event Page 1", "signup_link": "", "date_from": "2019-06-01", "seo_title": "", "slug": "event-page-1", "live": true, "location": "", "has_unpublished_changes": false, "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030001", "url_path": "/home/event-index/event-page-1/", "expired": false, "pk": 13, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:05:07.651Z", "expire_at": null}	\N	13	1
-16	f	2016-06-17 21:34:00.906226+05:30	{"subtitle": "", "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p>", "latest_revision_created_at": "2016-06-17T15:56:57.612Z", "go_live_at": null, "feed_image": null, "related_links": [], "title": "Standard Index", "seo_title": "", "slug": "standard-index-page", "live": true, "has_unpublished_changes": false, "numchild": 2, "content_type": 34, "show_in_menus": true, "path": "000100010001", "url_path": "/home/standard-index-page/", "expired": false, "pk": 4, "locked": false, "depth": 3, "first_published_at": "2016-06-17T15:56:57.824Z", "expire_at": null}	\N	4	1
-17	f	2016-06-17 21:34:11.182875+05:30	{"subtitle": "", "search_description": "", "owner": 1, "intro": "<p>\\n      </p><p></p><p>Lorem ipsum dolor sit amet, consectetur \\nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \\namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \\nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \\nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \\nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \\nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \\nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\\n ante id, luctus velit.</p><p></p>\\n    <p></p>", "latest_revision_created_at": "2016-06-17T16:01:33.981Z", "go_live_at": null, "related_links": [], "title": "Person Index", "seo_title": "", "slug": "person-index-page", "live": true, "has_unpublished_changes": false, "numchild": 4, "content_type": 59, "show_in_menus": true, "path": "000100010002", "url_path": "/home/person-index-page/", "expired": false, "pk": 7, "locked": false, "depth": 3, "first_published_at": "2016-06-17T15:59:56.836Z", "expire_at": null}	\N	7	1
-18	f	2016-06-17 21:34:32.007271+05:30	{"search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "go_live_at": null, "related_links": [], "title": "Event Index", "seo_title": "", "slug": "event-index", "live": true, "has_unpublished_changes": false, "numchild": 0, "content_type": 49, "show_in_menus": true, "path": "000100010003", "url_path": "/home/event-index/", "expired": false, "pk": 12, "locked": false, "depth": 3, "first_published_at": null, "expire_at": null}	\N	12	1
-29	f	2016-06-17 21:43:05.085856+05:30	{"search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "go_live_at": null, "related_links": [], "title": "Blog Index", "seo_title": "", "slug": "blog-index", "live": true, "has_unpublished_changes": false, "numchild": 0, "content_type": 43, "show_in_menus": true, "path": "000100010004", "url_path": "/home/blog-index/", "expired": false, "pk": 16, "locked": false, "depth": 3, "first_published_at": null, "expire_at": null}	\N	16	1
-38	f	2016-06-17 21:51:30.7016+05:30	{"search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "go_live_at": null, "feed_image": null, "title": "Photo Gallery", "seo_title": "", "slug": "photo-gallery", "live": true, "has_unpublished_changes": false, "numchild": 0, "content_type": 64, "show_in_menus": true, "path": "000100010006", "url_path": "/home/photo-gallery/", "expired": false, "pk": 22, "locked": false, "depth": 3, "first_published_at": null, "expire_at": null}	\N	22	1
-39	f	2016-06-17 21:51:55.91781+05:30	{"search_description": "", "owner": 1, "latest_revision_created_at": null, "go_live_at": null, "feed_image": null, "title": "Sample Gallery", "seo_title": "", "slug": "sample-gallery", "live": true, "has_unpublished_changes": false, "tagged_items": [{"pk": 1, "tag": 3, "content_object": 23}, {"pk": 2, "tag": 4, "content_object": 23}], "numchild": 0, "content_type": 66, "show_in_menus": false, "path": "0001000100060001", "url_path": "/home/photo-gallery/sample-gallery/", "expired": false, "pk": 23, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	23	1
-30	f	2016-06-17 21:44:23.709289+05:30	{"carousel_items": [], "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p>", "latest_revision_created_at": null, "go_live_at": null, "feed_image": 8, "related_links": [{"link_page": null, "title": "Blog Post 2", "link_external": "", "sort_order": 0, "link_document": null, "pk": 1, "page": 17}], "title": "Blog Page 1", "seo_title": "", "slug": "blog-page-1", "live": true, "has_unpublished_changes": false, "tagged_items": [], "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p><p><embed alt=\\"wagtail.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"8\\"/><br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac \\nlibero. Proin mauris ligula, egestas at tempus non, tempor et dolor. \\nProin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, \\nac semper ex nulla sit amet urna. Ut venenatis eros nec gravida \\nmolestie. Integer hendrerit mollis odio vitae porttitor. Sed ut \\nelementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis \\nid. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed\\n venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget\\n porttitor quam. In varius diam quis viverra porttitor.</p>", "numchild": 0, "content_type": 47, "show_in_menus": false, "date": "2016-06-17", "path": "0001000100040001", "url_path": "/home/blog-index/blog-page-1/", "expired": false, "pk": 17, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	17	1
-23	f	2016-06-17 21:36:13.126926+05:30	{"carousel_items": [], "show_in_menus": false, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": "2016-06-17T16:05:18.331Z", "time_to": null, "go_live_at": null, "feed_image": null, "related_links": [], "title": "Event Page 1", "signup_link": "", "date_from": "2019-06-01", "seo_title": "", "slug": "event-page-1", "live": true, "location": "", "has_unpublished_changes": false, "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030001", "url_path": "/home/event-index/event-page-1/", "expired": false, "pk": 13, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:05:07.651Z", "expire_at": null}	\N	13	1
-33	f	2016-06-17 21:47:30.690816+05:30	{"carousel_items": [], "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p>", "latest_revision_created_at": "2016-06-17T16:15:09.700Z", "go_live_at": null, "feed_image": 3, "related_links": [{"link_page": 17, "title": "Blog Page 1", "link_external": "", "sort_order": 0, "link_document": null, "pk": null, "page": 18}, {"link_page": 19, "title": "Blog Page 3", "link_external": "", "sort_order": 1, "link_document": null, "pk": null, "page": 18}], "title": "Blog Page 2", "seo_title": "", "slug": "blog-post-2", "live": true, "has_unpublished_changes": false, "tagged_items": [], "body": "<p><embed alt=\\"foundation.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"3\\"/><br/></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.<br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac \\nlibero. Proin mauris ligula, egestas at tempus non, tempor et dolor. \\nProin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, \\nac semper ex nulla sit amet urna. Ut venenatis eros nec gravida \\nmolestie. Integer hendrerit mollis odio vitae porttitor. Sed ut \\nelementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis \\nid. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed\\n venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget\\n porttitor quam. In varius diam quis viverra porttitor.</p>", "numchild": 0, "content_type": 47, "show_in_menus": true, "date": "2016-06-17", "path": "0001000100040002", "url_path": "/home/blog-index/blog-post-2/", "expired": false, "pk": 18, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:15:09.867Z", "expire_at": null}	\N	18	1
-32	f	2016-06-17 21:46:55.492837+05:30	{"carousel_items": [], "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p>", "latest_revision_created_at": null, "go_live_at": null, "feed_image": null, "related_links": [{"link_page": 17, "title": "Blog Page 1", "link_external": "", "sort_order": 0, "link_document": null, "pk": 2, "page": 19}, {"link_page": 18, "title": "Blog Page 2", "link_external": "", "sort_order": 1, "link_document": null, "pk": 3, "page": 19}], "title": "Blog Page 3", "seo_title": "", "slug": "blog-page-3", "live": true, "has_unpublished_changes": false, "tagged_items": [], "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p><p><embed alt=\\"sass.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"6\\"/><br/></p>", "numchild": 0, "content_type": 47, "show_in_menus": false, "date": "2016-06-17", "path": "0001000100040003", "url_path": "/home/blog-index/blog-page-3/", "expired": false, "pk": 19, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	19	1
-31	f	2016-06-17 21:45:09.700902+05:30	{"carousel_items": [], "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p>", "latest_revision_created_at": null, "go_live_at": null, "feed_image": 3, "related_links": [], "title": "Blog Post 2", "seo_title": "", "slug": "blog-post-2", "live": true, "has_unpublished_changes": false, "tagged_items": [], "body": "<p><embed alt=\\"foundation.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"3\\"/><br/></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.<br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac \\nlibero. Proin mauris ligula, egestas at tempus non, tempor et dolor. \\nProin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, \\nac semper ex nulla sit amet urna. Ut venenatis eros nec gravida \\nmolestie. Integer hendrerit mollis odio vitae porttitor. Sed ut \\nelementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis \\nid. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed\\n venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget\\n porttitor quam. In varius diam quis viverra porttitor.</p>", "numchild": 0, "content_type": 47, "show_in_menus": true, "date": "2016-06-17", "path": "0001000100040002", "url_path": "/home/blog-index/blog-post-2/", "expired": false, "pk": 18, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	18	1
-35	f	2016-06-17 21:49:19.058749+05:30	{"search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "go_live_at": null, "feed_image": null, "title": "Documents Gallery", "seo_title": "", "slug": "documents-gallery", "live": true, "has_unpublished_changes": false, "numchild": 0, "content_type": 72, "show_in_menus": true, "path": "000100010005", "url_path": "/home/documents-gallery/", "expired": false, "pk": 20, "locked": false, "depth": 3, "first_published_at": null, "expire_at": null}	\N	20	1
-37	f	2016-06-17 21:51:13.464215+05:30	{"carousel_items": [], "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p>", "latest_revision_created_at": "2016-06-17T16:16:55.492Z", "go_live_at": null, "feed_image": 8, "related_links": [{"link_page": 17, "title": "Blog Page 1", "link_external": "", "sort_order": 0, "link_document": null, "pk": 2, "page": 19}, {"link_page": 18, "title": "Blog Page 2", "link_external": "", "sort_order": 1, "link_document": null, "pk": 3, "page": 19}], "title": "Blog Page 3", "seo_title": "", "slug": "blog-page-3", "live": true, "has_unpublished_changes": false, "tagged_items": [], "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p><p><embed alt=\\"sass.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"6\\"/><br/></p>", "numchild": 0, "content_type": 47, "show_in_menus": false, "date": "2016-06-17", "path": "0001000100040003", "url_path": "/home/blog-index/blog-page-3/", "expired": false, "pk": 19, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:16:55.677Z", "expire_at": null}	\N	19	1
-36	f	2016-06-17 21:49:46.320458+05:30	{"search_description": "", "owner": 1, "latest_revision_created_at": null, "go_live_at": null, "feed_image": null, "title": "Sample Documents", "seo_title": "", "slug": "sample-documents", "live": true, "has_unpublished_changes": false, "tagged_items": [{"pk": 1, "tag": 1, "content_object": 21}, {"pk": 2, "tag": 2, "content_object": 21}], "numchild": 0, "content_type": 74, "show_in_menus": false, "path": "0001000100050001", "url_path": "/home/documents-gallery/sample-documents/", "expired": false, "pk": 21, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	21	1
-43	f	2016-06-17 21:56:38.004607+05:30	{"carousel_items": [], "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p>", "latest_revision_created_at": "2016-06-17T16:18:06.254Z", "go_live_at": null, "feed_image": 8, "related_links": [{"link_page": 18, "title": "Blog Page 2", "link_external": "", "sort_order": 0, "link_document": null, "pk": 1, "page": 17}, {"link_page": 19, "title": "Blog Page 3", "link_external": "", "sort_order": 1, "link_document": null, "pk": 6, "page": 17}], "title": "Blog Page 1", "seo_title": "", "slug": "blog-page-1", "live": true, "has_unpublished_changes": false, "tagged_items": [], "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p><p><embed alt=\\"wagtail.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"8\\"/><br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac \\nlibero. Proin mauris ligula, egestas at tempus non, tempor et dolor. \\nProin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, \\nac semper ex nulla sit amet urna. Ut venenatis eros nec gravida \\nmolestie. Integer hendrerit mollis odio vitae porttitor. Sed ut \\nelementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis \\nid. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed\\n venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget\\n porttitor quam. In varius diam quis viverra porttitor.</p>", "numchild": 0, "content_type": 47, "show_in_menus": true, "date": "2016-06-17", "path": "0001000100040001", "url_path": "/home/blog-index/blog-page-1/", "expired": false, "pk": 17, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:14:23.952Z", "expire_at": null}	\N	17	1
-44	f	2016-06-17 21:57:05.945368+05:30	{"carousel_items": [], "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p>", "latest_revision_created_at": "2016-06-17T16:21:13.464Z", "go_live_at": null, "feed_image": 8, "related_links": [{"link_page": 17, "title": "Blog Page 1", "link_external": "", "sort_order": 0, "link_document": null, "pk": 2, "page": 19}, {"link_page": 18, "title": "Blog Page 2", "link_external": "", "sort_order": 1, "link_document": null, "pk": 3, "page": 19}], "title": "Blog Page 3", "seo_title": "", "slug": "blog-page-3", "live": true, "has_unpublished_changes": false, "tagged_items": [], "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p><p><embed alt=\\"sass.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"6\\"/><br/></p>", "numchild": 0, "content_type": 47, "show_in_menus": true, "date": "2016-06-17", "path": "0001000100040003", "url_path": "/home/blog-index/blog-page-3/", "expired": false, "pk": 19, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:16:55.677Z", "expire_at": null}	\N	19	1
-34	f	2016-06-17 21:48:06.254326+05:30	{"carousel_items": [], "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p>", "latest_revision_created_at": "2016-06-17T16:14:23.709Z", "go_live_at": null, "feed_image": 8, "related_links": [{"link_page": 18, "title": "Blog Page 2", "link_external": "", "sort_order": 0, "link_document": null, "pk": 1, "page": 17}, {"link_page": 19, "title": "Blog Page 3", "link_external": "", "sort_order": 1, "link_document": null, "pk": null, "page": 17}], "title": "Blog Page 1", "seo_title": "", "slug": "blog-page-1", "live": true, "has_unpublished_changes": false, "tagged_items": [], "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p><p><embed alt=\\"wagtail.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"8\\"/><br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac \\nlibero. Proin mauris ligula, egestas at tempus non, tempor et dolor. \\nProin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, \\nac semper ex nulla sit amet urna. Ut venenatis eros nec gravida \\nmolestie. Integer hendrerit mollis odio vitae porttitor. Sed ut \\nelementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis \\nid. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed\\n venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget\\n porttitor quam. In varius diam quis viverra porttitor.</p>", "numchild": 0, "content_type": 47, "show_in_menus": false, "date": "2016-06-17", "path": "0001000100040001", "url_path": "/home/blog-index/blog-page-1/", "expired": false, "pk": 17, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:14:23.952Z", "expire_at": null}	\N	17	1
-40	f	2016-06-17 21:53:23.769398+05:30	{"search_description": "", "owner": 1, "latest_revision_created_at": "2016-06-17T16:21:55.917Z", "go_live_at": null, "feed_image": null, "title": "Sample Gallery", "seo_title": "", "slug": "sample-gallery", "live": true, "has_unpublished_changes": false, "tagged_items": [{"pk": null, "tag": 3, "content_object": 23}], "numchild": 0, "content_type": 66, "show_in_menus": false, "path": "0001000100060001", "url_path": "/home/photo-gallery/sample-gallery/", "expired": false, "pk": 23, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:21:56.197Z", "expire_at": null}	\N	23	1
-48	f	2016-06-17 23:27:08.331751+05:30	{"search_description": "", "owner": 1, "latest_revision_created_at": "2016-06-17T16:24:05.539Z", "go_live_at": null, "feed_image": 8, "title": "Sample Gallery", "seo_title": "", "slug": "sample-gallery", "live": true, "has_unpublished_changes": false, "tagged_items": [{"pk": null, "tag": 3, "content_object": 23}], "numchild": 0, "content_type": 66, "show_in_menus": false, "path": "0001000100060001", "url_path": "/home/photo-gallery/sample-gallery/", "expired": false, "pk": 23, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:21:56.197Z", "expire_at": null}	\N	23	1
-2	f	2016-06-17 21:24:26.111309+05:30	{"carousel_items": [{"link_page": null, "embed_url": "", "image": 3, "link_external": "", "caption": "", "sort_order": 0, "link_document": null, "pk": 1, "page": 3}, {"link_page": null, "embed_url": "", "image": 8, "link_external": "", "caption": "", "sort_order": 1, "link_document": null, "pk": 2, "page": 3}, {"link_page": null, "embed_url": "", "image": 4, "link_external": "", "caption": "", "sort_order": 2, "link_document": null, "pk": 3, "page": 3}, {"link_page": null, "embed_url": "", "image": 6, "link_external": "", "caption": "", "sort_order": 3, "link_document": null, "pk": 4, "page": 3}], "search_description": "", "owner": null, "latest_revision_created_at": "2016-06-17T15:47:11.217Z", "go_live_at": null, "related_links": [], "title": "Homepage", "seo_title": "", "slug": "home", "live": true, "has_unpublished_changes": false, "body": "<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>", "content_items": [{"slug": "foundation", "link_page": null, "title": "Foundation 6", "image": 10, "link_external": "http://foundation.zurb.com/", "summary": "", "content": "<p>The most advanced responsive front-end framework in the world.<br/></p>", "sort_order": 0, "link_document": null, "pk": null, "page": 3}, {"slug": "wagtail", "link_page": null, "title": "Wagtail", "image": 9, "link_external": "https://wagtail.io/", "summary": "<p>Wagtail is an open source CMS written in Python and built on the Django framework.<br/></p>", "content": "", "sort_order": 1, "link_document": null, "pk": null, "page": 3}, {"slug": "ansible", "link_page": null, "title": "Ansible", "image": 1, "link_external": "https://www.ansible.com/", "summary": "", "content": "<p>Ansible for easy Provisioning and Deployment.<br/></p>", "sort_order": 2, "link_document": null, "pk": null, "page": 3}, {"slug": "sass", "link_page": null, "title": "Sass", "image": 7, "link_external": "http://sass-lang.com/", "summary": "", "content": "<p>Sass 100%<br/></p>", "sort_order": 3, "link_document": null, "pk": null, "page": 3}, {"slug": "postgresql", "link_page": null, "title": "PostgreSQL", "image": 5, "link_external": "https://www.postgresql.org/", "summary": "", "content": "<p>PostgreSQL everywhere!<br/></p>", "sort_order": 4, "link_document": null, "pk": null, "page": 3}, {"slug": "digital-ocean", "link_page": null, "title": "Digital Ocean", "image": 2, "link_external": "https://www.digitalocean.com/", "summary": "", "content": "<p>Spin up your server with the Digital Ocean API<br/></p>", "sort_order": 5, "link_document": null, "pk": null, "page": 3}], "numchild": 0, "title_text": "<h3>Welcome to\\u00a0Wagtail Cookiecutter Foundation</h3>", "content_type": 4, "show_in_menus": false, "path": "00010001", "url_path": "/home/", "expired": false, "pk": 3, "locked": false, "depth": 2, "first_published_at": "2016-06-17T15:47:11.474Z", "expire_at": null}	\N	3	1
-45	f	2016-06-17 21:57:18.745911+05:30	{"carousel_items": [], "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p>", "latest_revision_created_at": "2016-06-17T16:17:30.690Z", "go_live_at": null, "feed_image": 3, "related_links": [{"link_page": 17, "title": "Blog Page 1", "link_external": "", "sort_order": 0, "link_document": null, "pk": 4, "page": 18}, {"link_page": 19, "title": "Blog Page 3", "link_external": "", "sort_order": 1, "link_document": null, "pk": 5, "page": 18}], "title": "Blog Page 2", "seo_title": "", "slug": "blog-post-2", "live": true, "has_unpublished_changes": false, "tagged_items": [], "body": "<p><embed alt=\\"foundation.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"3\\"/><br/></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.<br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac \\nlibero. Proin mauris ligula, egestas at tempus non, tempor et dolor. \\nProin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, \\nac semper ex nulla sit amet urna. Ut venenatis eros nec gravida \\nmolestie. Integer hendrerit mollis odio vitae porttitor. Sed ut \\nelementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis \\nid. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed\\n venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget\\n porttitor quam. In varius diam quis viverra porttitor.</p>", "numchild": 0, "content_type": 47, "show_in_menus": true, "date": "2016-06-17", "path": "0001000100040002", "url_path": "/home/blog-index/blog-post-2/", "expired": false, "pk": 18, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:15:09.867Z", "expire_at": null}	\N	18	1
-46	f	2016-06-17 21:57:30.797724+05:30	{"carousel_items": [], "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p>", "latest_revision_created_at": "2016-06-17T16:26:38.004Z", "go_live_at": null, "feed_image": 8, "related_links": [{"link_page": 18, "title": "Blog Page 2", "link_external": "", "sort_order": 0, "link_document": null, "pk": 1, "page": 17}, {"link_page": 19, "title": "Blog Page 3", "link_external": "", "sort_order": 1, "link_document": null, "pk": 6, "page": 17}], "title": "Blog Page 1", "seo_title": "", "slug": "blog-page-1", "live": true, "has_unpublished_changes": false, "tagged_items": [], "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p><p><embed alt=\\"wagtail.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"8\\"/><br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac \\nlibero. Proin mauris ligula, egestas at tempus non, tempor et dolor. \\nProin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, \\nac semper ex nulla sit amet urna. Ut venenatis eros nec gravida \\nmolestie. Integer hendrerit mollis odio vitae porttitor. Sed ut \\nelementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis \\nid. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed\\n venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget\\n porttitor quam. In varius diam quis viverra porttitor.</p>", "numchild": 0, "content_type": 47, "show_in_menus": true, "date": "2016-06-17", "path": "0001000100040001", "url_path": "/home/blog-index/blog-page-1/", "expired": false, "pk": 17, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:14:23.952Z", "expire_at": null}	\N	17	1
-42	f	2016-06-17 21:54:05.539234+05:30	{"search_description": "", "owner": 1, "latest_revision_created_at": "2016-06-17T16:23:23.769Z", "go_live_at": null, "feed_image": null, "title": "Sample Gallery", "seo_title": "", "slug": "sample-gallery", "live": true, "has_unpublished_changes": false, "tagged_items": [{"pk": null, "tag": 3, "content_object": 23}], "numchild": 0, "content_type": 66, "show_in_menus": false, "path": "0001000100060001", "url_path": "/home/photo-gallery/sample-gallery/", "expired": false, "pk": 23, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:21:56.197Z", "expire_at": null}	\N	23	1
-50	f	2016-06-22 19:27:58.298889+05:30	{"carousel_items": [{"link_page": null, "embed_url": "", "image": 3, "link_external": "", "caption": "", "sort_order": 0, "link_document": null, "pk": 1, "page": 3}, {"link_page": null, "embed_url": "", "image": 8, "link_external": "", "caption": "", "sort_order": 1, "link_document": null, "pk": 2, "page": 3}, {"link_page": null, "embed_url": "", "image": 4, "link_external": "", "caption": "", "sort_order": 2, "link_document": null, "pk": 3, "page": 3}, {"link_page": null, "embed_url": "", "image": 6, "link_external": "", "caption": "", "sort_order": 3, "link_document": null, "pk": 4, "page": 3}], "search_description": "", "owner": null, "latest_revision_created_at": "2016-06-17T15:55:56.169Z", "go_live_at": null, "related_links": [], "title": "Homepage", "seo_title": "", "slug": "home", "live": true, "has_unpublished_changes": false, "body": "<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>", "content_items": [{"slug": "foundation", "link_page": null, "title": "Foundation 6", "image": 10, "link_external": "http://foundation.zurb.com/", "summary": "", "content": "<p>The most advanced responsive front-end framework in the world.<br/></p>", "sort_order": 0, "link_document": null, "pk": 2, "page": 3}, {"slug": "wagtail", "link_page": null, "title": "Wagtail", "image": 9, "link_external": "https://wagtail.io/", "summary": "", "content": "<p>Wagtail is an open source CMS written in Python and built on the Django framework.</p>", "sort_order": 1, "link_document": null, "pk": 3, "page": 3}, {"slug": "ansible", "link_page": null, "title": "Ansible", "image": 1, "link_external": "https://www.ansible.com/", "summary": "", "content": "<p>Ansible for easy Provisioning and Deployment.<br/></p>", "sort_order": 2, "link_document": null, "pk": 4, "page": 3}, {"slug": "sass", "link_page": null, "title": "Sass", "image": 7, "link_external": "http://sass-lang.com/", "summary": "", "content": "<p>Sass 100%<br/></p>", "sort_order": 3, "link_document": null, "pk": 5, "page": 3}, {"slug": "postgresql", "link_page": null, "title": "PostgreSQL", "image": 5, "link_external": "https://www.postgresql.org/", "summary": "", "content": "<p>PostgreSQL everywhere!<br/></p>", "sort_order": 4, "link_document": null, "pk": 6, "page": 3}, {"slug": "digital-ocean", "link_page": null, "title": "Digital Ocean", "image": 2, "link_external": "https://www.digitalocean.com/", "summary": "", "content": "<p>Spin up servers with the Digital Ocean API<br/></p>", "sort_order": 5, "link_document": null, "pk": 7, "page": 3}], "numchild": 7, "title_text": "<h3>Welcome to\\u00a0Wagtail Cookiecutter Foundation</h3>", "content_type": 4, "show_in_menus": false, "path": "00010001", "url_path": "/home/", "expired": false, "pk": 3, "locked": false, "depth": 2, "first_published_at": "2016-06-17T15:47:11.474Z", "expire_at": null}	\N	3	1
-3	f	2016-06-17 21:25:56.169067+05:30	{"carousel_items": [{"link_page": null, "embed_url": "", "image": 3, "link_external": "", "caption": "", "sort_order": 0, "link_document": null, "pk": 1, "page": 3}, {"link_page": null, "embed_url": "", "image": 8, "link_external": "", "caption": "", "sort_order": 1, "link_document": null, "pk": 2, "page": 3}, {"link_page": null, "embed_url": "", "image": 4, "link_external": "", "caption": "", "sort_order": 2, "link_document": null, "pk": 3, "page": 3}, {"link_page": null, "embed_url": "", "image": 6, "link_external": "", "caption": "", "sort_order": 3, "link_document": null, "pk": 4, "page": 3}], "search_description": "", "owner": null, "latest_revision_created_at": "2016-06-17T15:54:26.111Z", "go_live_at": null, "related_links": [], "title": "Homepage", "seo_title": "", "slug": "home", "live": true, "has_unpublished_changes": false, "body": "<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>", "content_items": [{"slug": "foundation", "link_page": null, "title": "Foundation 6", "image": 10, "link_external": "http://foundation.zurb.com/", "summary": "", "content": "<p>The most advanced responsive front-end framework in the world.<br/></p>", "sort_order": 0, "link_document": null, "pk": 2, "page": 3}, {"slug": "wagtail", "link_page": null, "title": "Wagtail", "image": 9, "link_external": "https://wagtail.io/", "summary": "", "content": "<p>Wagtail is an open source CMS written in Python and built on the Django framework.</p>", "sort_order": 1, "link_document": null, "pk": 3, "page": 3}, {"slug": "ansible", "link_page": null, "title": "Ansible", "image": 1, "link_external": "https://www.ansible.com/", "summary": "", "content": "<p>Ansible for easy Provisioning and Deployment.<br/></p>", "sort_order": 2, "link_document": null, "pk": 4, "page": 3}, {"slug": "sass", "link_page": null, "title": "Sass", "image": 7, "link_external": "http://sass-lang.com/", "summary": "", "content": "<p>Sass 100%<br/></p>", "sort_order": 3, "link_document": null, "pk": 5, "page": 3}, {"slug": "postgresql", "link_page": null, "title": "PostgreSQL", "image": 5, "link_external": "https://www.postgresql.org/", "summary": "", "content": "<p>PostgreSQL everywhere!<br/></p>", "sort_order": 4, "link_document": null, "pk": 6, "page": 3}, {"slug": "digital-ocean", "link_page": null, "title": "Digital Ocean", "image": 2, "link_external": "https://www.digitalocean.com/", "summary": "", "content": "<p>Spin up your server with the Digital Ocean API<br/></p>", "sort_order": 5, "link_document": null, "pk": 7, "page": 3}], "numchild": 0, "title_text": "<h3>Welcome to\\u00a0Wagtail Cookiecutter Foundation</h3>", "content_type": 4, "show_in_menus": false, "path": "00010001", "url_path": "/home/", "expired": false, "pk": 3, "locked": false, "depth": 2, "first_published_at": "2016-06-17T15:47:11.474Z", "expire_at": null}	\N	3	1
-1	f	2016-06-17 21:17:11.217612+05:30	{"carousel_items": [{"link_page": null, "embed_url": "", "image": 3, "link_external": "", "caption": "", "sort_order": 0, "link_document": null, "pk": null, "page": 3}, {"link_page": null, "embed_url": "", "image": 8, "link_external": "", "caption": "", "sort_order": 1, "link_document": null, "pk": null, "page": 3}, {"link_page": null, "embed_url": "", "image": 4, "link_external": "", "caption": "", "sort_order": 2, "link_document": null, "pk": null, "page": 3}, {"link_page": null, "embed_url": "", "image": 6, "link_external": "", "caption": "", "sort_order": 3, "link_document": null, "pk": null, "page": 3}], "search_description": "", "owner": null, "latest_revision_created_at": null, "go_live_at": null, "related_links": [], "title": "Homepage", "seo_title": "", "slug": "home", "live": true, "has_unpublished_changes": false, "body": "<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>", "content_items": [{"slug": "1", "link_page": null, "title": "Foundation 6", "image": 10, "link_external": "", "summary": "", "content": "<a href=\\"http://wagtail.chrisdev.com/\\" target=\\"_blank\\"><br/></a><p><a href=\\"http://wagtail.chrisdev.com/\\" target=\\"_blank\\"></a></p>", "sort_order": 0, "link_document": null, "pk": null, "page": 3}], "numchild": 0, "title_text": "<h3>Welcome to\\u00a0Wagtail Cookiecutter Foundation</h3>", "content_type": 4, "show_in_menus": false, "path": "00010001", "url_path": "/home/", "expired": false, "pk": 3, "locked": false, "depth": 2, "first_published_at": null, "expire_at": null}	\N	3	1
-55	f	2016-06-22 20:23:43.832804+05:30	{"to_address": "", "from_address": "", "telephone": "+1 868-773-4644", "search_description": "", "owner": 1, "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi.", "latest_revision_created_at": "2016-06-22T14:47:31.894Z", "go_live_at": null, "name_organization": "ChrisDev", "city": "Tunapuna,", "title": "Contact Us", "seo_title": "", "slug": "contact-us", "live": true, "has_unpublished_changes": false, "subject": "", "email": "", "post_code": "", "numchild": 0, "content_type": 57, "show_in_menus": true, "thank_you_text": "<p>Thanks you for submitting.<br/></p>", "path": "000100010007", "url_path": "/home/contact-us/", "expired": false, "pk": 24, "locked": false, "country": "Trinidad & Tobago", "form_fields": [{"default_value": "", "field_type": "singleline", "required": true, "choices": "", "sort_order": 0, "help_text": "", "pk": 1, "label": "Name", "page": 24}, {"default_value": "", "field_type": "email", "required": true, "choices": "", "sort_order": 1, "help_text": "", "pk": 2, "label": "Email", "page": 24}, {"default_value": "", "field_type": "singleline", "required": true, "choices": "", "sort_order": 2, "help_text": "", "pk": 3, "label": "Subject", "page": 24}, {"default_value": "", "field_type": "multiline", "required": true, "choices": "", "sort_order": 3, "help_text": "", "pk": 4, "label": "Message", "page": 24}], "depth": 3, "address_1": "A3 St Benedicts Gardens,", "address_2": "", "first_published_at": "2016-06-17T16:29:19.633Z", "expire_at": null}	\N	24	1
-53	f	2016-06-22 20:15:35.521658+05:30	{"carousel_items": [], "show_in_menus": true, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": "2016-06-17T16:07:10.441Z", "time_to": null, "go_live_at": null, "feed_image": 8, "related_links": [], "title": "Event Page 3", "signup_link": "", "date_from": "2021-08-12", "seo_title": "", "slug": "event-page-3", "live": true, "location": "", "has_unpublished_changes": false, "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030003", "url_path": "/home/event-index/event-page-3/", "expired": false, "pk": 15, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:06:40.965Z", "expire_at": null}	\N	15	1
-24	f	2016-06-17 21:36:40.829884+05:30	{"carousel_items": [], "show_in_menus": false, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": null, "time_to": null, "go_live_at": null, "feed_image": null, "related_links": [], "title": "Event Page 3", "signup_link": "", "date_from": "2021-08-12", "seo_title": "", "slug": "event-page-3", "live": true, "location": "", "has_unpublished_changes": false, "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030003", "url_path": "/home/event-index/event-page-3/", "expired": false, "pk": 15, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	15	1
-26	f	2016-06-17 21:37:41.45225+05:30	{"carousel_items": [], "show_in_menus": false, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": "2016-06-17T16:06:04.529Z", "time_to": null, "go_live_at": null, "feed_image": 3, "related_links": [], "title": "Event Page 2", "signup_link": "", "date_from": "2020-06-17", "seo_title": "", "slug": "event-page-2", "live": true, "location": "", "has_unpublished_changes": false, "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030002", "url_path": "/home/event-index/event-page-2/", "expired": false, "pk": 14, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:05:52.253Z", "expire_at": null}	\N	14	1
-52	f	2016-06-22 20:15:24.086047+05:30	{"carousel_items": [], "show_in_menus": true, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": "2016-06-17T16:07:41.452Z", "time_to": null, "go_live_at": null, "feed_image": 3, "related_links": [], "title": "Event Page 2", "signup_link": "", "date_from": "2020-06-17", "seo_title": "", "slug": "event-page-2", "live": true, "location": "", "has_unpublished_changes": false, "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030002", "url_path": "/home/event-index/event-page-2/", "expired": false, "pk": 14, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:05:52.253Z", "expire_at": null}	\N	14	1
-47	f	2016-06-17 21:59:19.362915+05:30	{"to_address": "", "from_address": "", "telephone": "", "search_description": "", "owner": 1, "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi.", "latest_revision_created_at": null, "go_live_at": null, "name_organization": "", "city": "", "title": "Contact Us", "seo_title": "", "slug": "contact-us", "live": true, "has_unpublished_changes": false, "subject": "", "email": "", "post_code": "", "numchild": 0, "content_type": 57, "show_in_menus": true, "thank_you_text": "", "path": "000100010007", "url_path": "/home/contact-us/", "expired": false, "pk": 24, "locked": false, "country": "", "form_fields": [{"default_value": "", "field_type": "singleline", "required": true, "choices": "", "sort_order": 0, "help_text": "", "pk": 1, "label": "Name", "page": 24}, {"default_value": "", "field_type": "email", "required": true, "choices": "", "sort_order": 1, "help_text": "", "pk": 2, "label": "Email", "page": 24}, {"default_value": "", "field_type": "singleline", "required": true, "choices": "", "sort_order": 2, "help_text": "", "pk": 3, "label": "Subject", "page": 24}, {"default_value": "", "field_type": "multiline", "required": true, "choices": "", "sort_order": 3, "help_text": "", "pk": 4, "label": "Message", "page": 24}], "depth": 3, "address_1": "", "address_2": "", "first_published_at": null, "expire_at": null}	\N	24	1
-49	f	2016-06-21 22:41:12.301838+05:30	{"to_address": "", "from_address": "", "telephone": "", "search_description": "", "owner": 1, "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi.", "latest_revision_created_at": "2016-06-17T16:29:19.362Z", "go_live_at": null, "name_organization": "", "city": "", "title": "Contact Us", "seo_title": "", "slug": "contact-us", "live": true, "has_unpublished_changes": false, "subject": "", "email": "", "post_code": "", "numchild": 0, "content_type": 57, "show_in_menus": true, "thank_you_text": "<p>Thanks you for submitting.<br/></p>", "path": "000100010007", "url_path": "/home/contact-us/", "expired": false, "pk": 24, "locked": false, "country": "", "form_fields": [{"default_value": "", "field_type": "singleline", "required": true, "choices": "", "sort_order": 0, "help_text": "", "pk": 1, "label": "Name", "page": 24}, {"default_value": "", "field_type": "email", "required": true, "choices": "", "sort_order": 1, "help_text": "", "pk": 2, "label": "Email", "page": 24}, {"default_value": "", "field_type": "singleline", "required": true, "choices": "", "sort_order": 2, "help_text": "", "pk": 3, "label": "Subject", "page": 24}, {"default_value": "", "field_type": "multiline", "required": true, "choices": "", "sort_order": 3, "help_text": "", "pk": 4, "label": "Message", "page": 24}], "depth": 3, "address_1": "", "address_2": "", "first_published_at": "2016-06-17T16:29:19.633Z", "expire_at": null}	\N	24	1
-54	f	2016-06-22 20:17:31.894127+05:30	{"to_address": "", "from_address": "", "telephone": "+1 868-773-4644", "search_description": "", "owner": 1, "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi.", "latest_revision_created_at": "2016-06-21T17:11:12.301Z", "go_live_at": null, "name_organization": "ChrisDev", "city": "Tunapuna", "title": "Contact Us", "seo_title": "", "slug": "contact-us", "live": true, "has_unpublished_changes": false, "subject": "", "email": "", "post_code": "", "numchild": 0, "content_type": 57, "show_in_menus": true, "thank_you_text": "<p>Thanks you for submitting.<br/></p>", "path": "000100010007", "url_path": "/home/contact-us/", "expired": false, "pk": 24, "locked": false, "country": "Trinidad & Tobago", "form_fields": [{"default_value": "", "field_type": "singleline", "required": true, "choices": "", "sort_order": 0, "help_text": "", "pk": 1, "label": "Name", "page": 24}, {"default_value": "", "field_type": "email", "required": true, "choices": "", "sort_order": 1, "help_text": "", "pk": 2, "label": "Email", "page": 24}, {"default_value": "", "field_type": "singleline", "required": true, "choices": "", "sort_order": 2, "help_text": "", "pk": 3, "label": "Subject", "page": 24}, {"default_value": "", "field_type": "multiline", "required": true, "choices": "", "sort_order": 3, "help_text": "", "pk": 4, "label": "Message", "page": 24}], "depth": 3, "address_1": "A3 St Benedicts Gardens", "address_2": "", "first_published_at": "2016-06-17T16:29:19.633Z", "expire_at": null}	\N	24	1
-56	f	2016-06-22 20:42:11.314028+05:30	{"to_address": "", "from_address": "", "telephone": "+1 868-773-4644", "search_description": "", "owner": 1, "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi.", "latest_revision_created_at": "2016-06-22T14:53:43.832Z", "go_live_at": null, "name_organization": "ChrisDev", "city": "Tunapuna,", "title": "Contact Us", "seo_title": "", "slug": "contact-us", "live": true, "has_unpublished_changes": false, "subject": "", "email": "", "post_code": "120110", "numchild": 0, "content_type": 57, "show_in_menus": true, "thank_you_text": "<p>Thanks you for submitting.<br/></p>", "path": "000100010007", "url_path": "/home/contact-us/", "expired": false, "pk": 24, "locked": false, "country": "Trinidad & Tobago", "form_fields": [{"default_value": "", "field_type": "singleline", "required": true, "choices": "", "sort_order": 0, "help_text": "", "pk": 1, "label": "Name", "page": 24}, {"default_value": "", "field_type": "email", "required": true, "choices": "", "sort_order": 1, "help_text": "", "pk": 2, "label": "Email", "page": 24}, {"default_value": "", "field_type": "singleline", "required": true, "choices": "", "sort_order": 2, "help_text": "", "pk": 3, "label": "Subject", "page": 24}, {"default_value": "", "field_type": "multiline", "required": true, "choices": "", "sort_order": 3, "help_text": "", "pk": 4, "label": "Message", "page": 24}], "depth": 3, "address_1": "A3 St Benedicts Gardens,", "address_2": "", "first_published_at": "2016-06-17T16:29:19.633Z", "expire_at": null}	\N	24	1
-57	f	2016-06-22 20:49:56.029113+05:30	{"to_address": "", "from_address": "", "telephone": "+1 868-773-4644", "search_description": "", "owner": 1, "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi.", "latest_revision_created_at": "2016-06-22T15:12:11.314Z", "go_live_at": null, "name_organization": "ChrisDev", "city": "Tunapuna,", "title": "Contact Us", "seo_title": "", "slug": "contact-us", "live": true, "has_unpublished_changes": false, "subject": "", "email": "", "post_code": "tunapuna", "numchild": 0, "content_type": 57, "show_in_menus": true, "thank_you_text": "<p>Thanks you for submitting.<br/></p>", "path": "000100010007", "url_path": "/home/contact-us/", "expired": false, "pk": 24, "locked": false, "country": "Trinidad & Tobago", "form_fields": [{"default_value": "", "field_type": "singleline", "required": true, "choices": "", "sort_order": 0, "help_text": "", "pk": 1, "label": "Name", "page": 24}, {"default_value": "", "field_type": "email", "required": true, "choices": "", "sort_order": 1, "help_text": "", "pk": 2, "label": "Email", "page": 24}, {"default_value": "", "field_type": "singleline", "required": true, "choices": "", "sort_order": 2, "help_text": "", "pk": 3, "label": "Subject", "page": 24}, {"default_value": "", "field_type": "multiline", "required": true, "choices": "", "sort_order": 3, "help_text": "", "pk": 4, "label": "Message", "page": 24}], "depth": 3, "address_1": "A3 St Benedicts Gardens,", "address_2": "", "first_published_at": "2016-06-17T16:29:19.633Z", "expire_at": null}	\N	24	1
-28	f	2016-06-17 21:42:41.444676+05:30	{"carousel_items": [], "show_in_menus": false, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": "2016-06-17T16:07:57.801Z", "time_to": null, "go_live_at": null, "feed_image": 8, "related_links": [], "title": "Event Page 1", "signup_link": "", "date_from": "2019-06-01", "seo_title": "", "slug": "event-page-1", "live": true, "location": "", "has_unpublished_changes": false, "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030001", "url_path": "/home/event-index/event-page-1/", "expired": false, "pk": 13, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:05:07.651Z", "expire_at": null}	\N	13	1
-60	f	2016-07-01 14:12:10.788204+05:30	{"carousel_items": [], "show_in_menus": true, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": "2016-06-22T14:45:24.086Z", "time_to": null, "go_live_at": null, "feed_image": 3, "related_links": [], "title": "Event Page 2", "signup_link": "", "date_from": "2020-06-17", "seo_title": "", "slug": "event-page-2", "live": true, "location": "", "has_unpublished_changes": false, "tagged_items": [{"pk": null, "tag": 7, "content_object": 14}], "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030002", "url_path": "/home/event-index/event-page-2/", "expired": false, "pk": 14, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:05:52.253Z", "expire_at": null}	\N	14	1
-22	f	2016-06-17 21:36:04.529968+05:30	{"carousel_items": [], "show_in_menus": false, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": "2016-06-17T16:05:52.113Z", "time_to": null, "go_live_at": null, "feed_image": null, "related_links": [], "title": "Event Page 2", "signup_link": "", "date_from": "2020-06-17", "seo_title": "", "slug": "event-page-2", "live": true, "location": "", "has_unpublished_changes": false, "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030002", "url_path": "/home/event-index/event-page-2/", "expired": false, "pk": 14, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:05:52.253Z", "expire_at": null}	\N	14	1
-25	f	2016-06-17 21:37:10.441761+05:30	{"carousel_items": [], "show_in_menus": false, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": "2016-06-17T16:06:40.829Z", "time_to": null, "go_live_at": null, "feed_image": 8, "related_links": [], "title": "Event Page 3", "signup_link": "", "date_from": "2021-08-12", "seo_title": "", "slug": "event-page-3", "live": true, "location": "", "has_unpublished_changes": false, "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030003", "url_path": "/home/event-index/event-page-3/", "expired": false, "pk": 15, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:06:40.965Z", "expire_at": null}	\N	15	1
-19	f	2016-06-17 21:35:07.507362+05:30	{"carousel_items": [], "show_in_menus": true, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": null, "time_to": null, "go_live_at": null, "feed_image": null, "related_links": [], "title": "Event Page 1", "signup_link": "", "date_from": "2019-06-01", "seo_title": "", "slug": "event-page-1", "live": true, "location": "", "has_unpublished_changes": false, "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030001", "url_path": "/home/event-index/event-page-1/", "expired": false, "pk": 13, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	13	1
-51	f	2016-06-22 20:15:19.753676+05:30	{"carousel_items": [], "show_in_menus": true, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": "2016-06-17T16:12:41.444Z", "time_to": null, "go_live_at": null, "feed_image": 8, "related_links": [], "title": "Event Page 1", "signup_link": "", "date_from": "2019-06-01", "seo_title": "", "slug": "event-page-1", "live": true, "location": "", "has_unpublished_changes": false, "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030001", "url_path": "/home/event-index/event-page-1/", "expired": false, "pk": 13, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:05:07.651Z", "expire_at": null}	\N	13	1
-58	f	2016-07-01 14:11:33.9082+05:30	{"carousel_items": [], "show_in_menus": true, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": "2016-06-22T14:45:19.753Z", "time_to": null, "go_live_at": null, "feed_image": 8, "related_links": [], "title": "Event Page 1", "signup_link": "", "date_from": "2019-06-01", "seo_title": "", "slug": "event-page-1", "live": true, "location": "", "has_unpublished_changes": false, "tagged_items": [{"pk": null, "tag": 5, "content_object": 13}], "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030001", "url_path": "/home/event-index/event-page-1/", "expired": false, "pk": 13, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:05:07.651Z", "expire_at": null}	\N	13	1
-21	f	2016-06-17 21:35:52.113206+05:30	{"carousel_items": [], "show_in_menus": false, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": null, "time_to": null, "go_live_at": null, "feed_image": null, "related_links": [], "title": "Event Page 2", "signup_link": "", "date_from": "2016-06-17", "seo_title": "", "slug": "event-page-2", "live": true, "location": "", "has_unpublished_changes": false, "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030002", "url_path": "/home/event-index/event-page-2/", "expired": false, "pk": 14, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	14	1
-62	f	2016-07-01 14:17:09.032042+05:30	{"carousel_items": [], "show_in_menus": true, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": "2016-07-01T08:41:55.046Z", "time_to": null, "go_live_at": null, "feed_image": 8, "related_links": [], "title": "Event Page 3", "signup_link": "", "date_from": "2021-08-12", "seo_title": "", "slug": "event-page-3", "live": true, "location": "", "has_unpublished_changes": false, "tagged_items": [{"pk": null, "tag": 8, "content_object": 15}, {"pk": null, "tag": 6, "content_object": 15}], "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030003", "url_path": "/home/event-index/event-page-3/", "expired": false, "pk": 15, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:06:40.965Z", "expire_at": null}	\N	15	1
-20	f	2016-06-17 21:35:18.331695+05:30	{"carousel_items": [], "show_in_menus": false, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": "2016-06-17T16:05:07.507Z", "time_to": null, "go_live_at": null, "feed_image": null, "related_links": [], "title": "Event Page 1", "signup_link": "", "date_from": "2019-06-01", "seo_title": "", "slug": "event-page-1", "live": true, "location": "", "has_unpublished_changes": false, "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030001", "url_path": "/home/event-index/event-page-1/", "expired": false, "pk": 13, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:05:07.651Z", "expire_at": null}	\N	13	1
-61	f	2016-07-01 14:16:47.206112+05:30	{"carousel_items": [], "show_in_menus": true, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": "2016-07-01T08:41:33.908Z", "time_to": null, "go_live_at": null, "feed_image": 8, "related_links": [], "title": "Event Page 1", "signup_link": "", "date_from": "2019-06-01", "seo_title": "", "slug": "event-page-1", "live": true, "location": "", "has_unpublished_changes": false, "tagged_items": [{"pk": null, "tag": 8, "content_object": 13}, {"pk": null, "tag": 5, "content_object": 13}], "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030001", "url_path": "/home/event-index/event-page-1/", "expired": false, "pk": 13, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:05:07.651Z", "expire_at": null}	\N	13	1
-59	f	2016-07-01 14:11:55.04664+05:30	{"carousel_items": [], "show_in_menus": true, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": "2016-06-22T14:45:35.521Z", "time_to": null, "go_live_at": null, "feed_image": 8, "related_links": [], "title": "Event Page 3", "signup_link": "", "date_from": "2021-08-12", "seo_title": "", "slug": "event-page-3", "live": true, "location": "", "has_unpublished_changes": false, "tagged_items": [{"pk": null, "tag": 6, "content_object": 15}], "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 53, "date_to": null, "path": "0001000100030003", "url_path": "/home/event-index/event-page-3/", "expired": false, "pk": 15, "locked": false, "depth": 4, "first_published_at": "2016-06-17T16:06:40.965Z", "expire_at": null}	\N	15	1
+26	f	2016-07-20 13:57:21.659085+05:30	{"search_description": "", "owner": 1, "latest_revision_created_at": null, "go_live_at": null, "feed_image": null, "title": "Sample Gallery", "seo_title": "", "slug": "sample-gallery", "live": true, "has_unpublished_changes": false, "tagged_items": [{"pk": 1, "tag": 6, "content_object": 23}], "numchild": 0, "content_type": 67, "show_in_menus": false, "path": "0001000100060001", "url_path": "/home/photo-gallery/sample-gallery/", "expired": false, "pk": 23, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	23	1
+27	f	2016-07-20 13:57:46.60808+05:30	{"search_description": "", "owner": 1, "latest_revision_created_at": "2016-07-20T08:27:21.659Z", "go_live_at": null, "feed_image": null, "title": "Sample Gallery", "seo_title": "", "slug": "sample-gallery", "live": true, "has_unpublished_changes": false, "tagged_items": [{"pk": null, "tag": 6, "content_object": 23}], "numchild": 0, "content_type": 67, "show_in_menus": true, "path": "0001000100060001", "url_path": "/home/photo-gallery/sample-gallery/", "expired": false, "pk": 23, "locked": false, "depth": 4, "first_published_at": "2016-07-20T08:27:21.803Z", "expire_at": null}	\N	23	1
+1	f	2016-07-20 13:07:34.562365+05:30	{"carousel_items": [{"link_page": null, "embed_url": "", "image": null, "link_external": "", "caption": "", "sort_order": 0, "link_document": null, "pk": null, "page": 3}], "search_description": "", "owner": null, "latest_revision_created_at": null, "go_live_at": null, "related_links": [], "title": "Homepage", "seo_title": "", "slug": "home", "live": true, "has_unpublished_changes": false, "body": "<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>", "content_items": [], "numchild": 0, "title_text": "<h3>Welcome to Wagtail Cookiecutter Foundation</h3>", "content_type": 4, "show_in_menus": false, "path": "00010001", "url_path": "/home/", "expired": false, "pk": 3, "locked": false, "depth": 2, "first_published_at": null, "expire_at": null}	\N	3	1
+3	f	2016-07-20 13:15:12.484088+05:30	{"carousel_items": [{"link_page": null, "embed_url": "", "image": 3, "link_external": "", "caption": "", "sort_order": 0, "link_document": null, "pk": 1, "page": 3}, {"link_page": null, "embed_url": "", "image": 9, "link_external": "", "caption": "", "sort_order": 1, "link_document": null, "pk": 2, "page": 3}, {"link_page": null, "embed_url": "", "image": 5, "link_external": "", "caption": "", "sort_order": 2, "link_document": null, "pk": 3, "page": 3}, {"link_page": null, "embed_url": "", "image": 7, "link_external": "", "caption": "", "sort_order": 3, "link_document": null, "pk": 4, "page": 3}], "search_description": "", "owner": null, "latest_revision_created_at": "2016-07-20T07:43:14.265Z", "go_live_at": null, "related_links": [], "title": "Homepage", "seo_title": "", "slug": "home", "live": true, "has_unpublished_changes": false, "body": "<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>", "content_items": [{"slug": "foundation", "link_page": null, "title": "Foundation 6", "image": 11, "link_external": "http://foundation.zurb.com/", "summary": "<p><br/></p>", "content": "<p>The most advanced responsive front-end framework in the world.</p>", "sort_order": 0, "link_document": null, "pk": 1, "page": 3}, {"slug": "Wagtail", "link_page": null, "title": "Wagtail", "image": 10, "link_external": "https://wagtail.io/", "summary": "", "content": "<p>Wagtail is an open source CMS written in Python and built on the Django framework.</p>", "sort_order": 1, "link_document": null, "pk": 2, "page": 3}, {"slug": "ansible", "link_page": null, "title": "Ansible", "image": 1, "link_external": "https://www.ansible.com/", "summary": "", "content": "<p>Ansible for easy Provisioning and Deployment.</p>", "sort_order": 2, "link_document": null, "pk": 3, "page": 3}, {"slug": "sass", "link_page": null, "title": "Sass", "image": 8, "link_external": "http://sass-lang.com/", "summary": "", "content": "<p>Sass 100%</p>", "sort_order": 3, "link_document": null, "pk": 4, "page": 3}, {"slug": "postgresql", "link_page": null, "title": "PostgreSQL", "image": 6, "link_external": "https://www.postgresql.org/", "summary": "", "content": "<p>PostgreSQL everywhere!</p>", "sort_order": 4, "link_document": null, "pk": 5, "page": 3}, {"slug": "digital-ocean", "link_page": null, "title": "Digital Ocean", "image": 2, "link_external": "https://www.digitalocean.com/", "summary": "", "content": "<p>Spin up servers with the Digital Ocean API</p>", "sort_order": 5, "link_document": null, "pk": 6, "page": 3}], "numchild": 0, "title_text": "<h3>Welcome to Wagtail Cookiecutter Foundation</h3>", "content_type": 4, "show_in_menus": true, "path": "00010001", "url_path": "/home/", "expired": false, "pk": 3, "locked": false, "depth": 2, "first_published_at": "2016-07-20T07:37:34.678Z", "expire_at": null}	\N	3	1
+2	f	2016-07-20 13:13:14.265204+05:30	{"carousel_items": [{"link_page": null, "embed_url": "", "image": 3, "link_external": "", "caption": "", "sort_order": 0, "link_document": null, "pk": 1, "page": 3}, {"link_page": null, "embed_url": "", "image": 9, "link_external": "", "caption": "", "sort_order": 1, "link_document": null, "pk": null, "page": 3}, {"link_page": null, "embed_url": "", "image": 5, "link_external": "", "caption": "", "sort_order": 2, "link_document": null, "pk": null, "page": 3}, {"link_page": null, "embed_url": "", "image": 7, "link_external": "", "caption": "", "sort_order": 3, "link_document": null, "pk": null, "page": 3}], "search_description": "", "owner": null, "latest_revision_created_at": "2016-07-20T07:37:34.562Z", "go_live_at": null, "related_links": [], "title": "Homepage", "seo_title": "", "slug": "home", "live": true, "has_unpublished_changes": false, "body": "<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>", "content_items": [{"slug": "foundation", "link_page": null, "title": "Foundation 6", "image": 11, "link_external": "http://foundation.zurb.com/", "summary": "<p><br/></p>", "content": "<p>The most advanced responsive front-end framework in the world.</p>", "sort_order": 0, "link_document": null, "pk": null, "page": 3}, {"slug": "Wagtail", "link_page": null, "title": "Wagtail", "image": 10, "link_external": "https://wagtail.io/", "summary": "", "content": "<p>Wagtail is an open source CMS written in Python and built on the Django framework.</p>", "sort_order": 1, "link_document": null, "pk": null, "page": 3}, {"slug": "ansible", "link_page": null, "title": "Ansible", "image": 1, "link_external": "https://www.ansible.com/", "summary": "", "content": "<p>Ansible for easy Provisioning and Deployment.</p>", "sort_order": 2, "link_document": null, "pk": null, "page": 3}, {"slug": "sass", "link_page": null, "title": "Sass", "image": 8, "link_external": "http://sass-lang.com/", "summary": "", "content": "<p>Sass 100%</p>", "sort_order": 3, "link_document": null, "pk": null, "page": 3}, {"slug": "postgresql", "link_page": null, "title": "PostgreSQL", "image": 6, "link_external": "https://www.postgresql.org/", "summary": "", "content": "<p>PostgreSQL everywhere!</p>", "sort_order": 4, "link_document": null, "pk": null, "page": 3}, {"slug": "digital-ocean", "link_page": null, "title": "Digital Ocean", "image": 2, "link_external": "https://www.digitalocean.com/", "summary": "", "content": "<p>Spin up servers with the Digital Ocean API</p>", "sort_order": 5, "link_document": null, "pk": null, "page": 3}], "numchild": 0, "title_text": "<h3>Welcome to Wagtail Cookiecutter Foundation</h3>", "content_type": 4, "show_in_menus": false, "path": "00010001", "url_path": "/home/", "expired": false, "pk": 3, "locked": false, "depth": 2, "first_published_at": "2016-07-20T07:37:34.678Z", "expire_at": null}	\N	3	1
+4	f	2016-07-20 13:16:10.872621+05:30	{"subtitle": "", "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>", "latest_revision_created_at": null, "go_live_at": null, "feed_image": null, "related_links": [], "title": "Standard Index", "seo_title": "", "slug": "standard-index", "live": true, "has_unpublished_changes": false, "numchild": 0, "content_type": 34, "show_in_menus": true, "path": "000100010001", "url_path": "/home/standard-index/", "expired": false, "pk": 4, "locked": false, "depth": 3, "first_published_at": null, "expire_at": null}	\N	4	1
+5	f	2016-07-20 13:18:57.364463+05:30	{"subtitle": "", "carousel_items": [], "search_description": "", "owner": 1, "intro": "<p><br/></p>", "latest_revision_created_at": null, "go_live_at": null, "feed_image": null, "related_links": [], "title": "Standard Page w/o Sidebar", "seo_title": "", "slug": "standard-page-wo-sidebar", "template_string": "pages/standard_page_full.html", "live": true, "has_unpublished_changes": false, "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.<br/></p><p><embed alt=\\"wagtail.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"9\\"/><br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttutor.</p>", "numchild": 0, "content_type": 37, "show_in_menus": true, "path": "0001000100010001", "url_path": "/home/standard-index/standard-page-wo-sidebar/", "expired": false, "pk": 5, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	5	1
+6	f	2016-07-20 13:20:19.395088+05:30	{"subtitle": "", "carousel_items": [], "search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "go_live_at": null, "feed_image": null, "related_links": [], "title": "Standard Page", "seo_title": "", "slug": "standard-page", "template_string": "pages/standard_page.html", "live": true, "has_unpublished_changes": false, "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p><embed alt=\\"foundation.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"3\\"/><br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttutor.<br/></p>", "numchild": 0, "content_type": 37, "show_in_menus": true, "path": "0001000100010002", "url_path": "/home/standard-index/standard-page/", "expired": false, "pk": 6, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	6	1
+7	f	2016-07-20 13:22:02.385824+05:30	{"subtitle": "", "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>", "latest_revision_created_at": null, "go_live_at": null, "related_links": [], "title": "Person Index", "seo_title": "", "slug": "person-index", "live": true, "has_unpublished_changes": false, "numchild": 0, "content_type": 60, "show_in_menus": true, "path": "000100010002", "url_path": "/home/person-index/", "expired": false, "pk": 7, "locked": false, "depth": 3, "first_published_at": null, "expire_at": null}	\N	7	1
+9	f	2016-07-20 13:24:19.879143+05:30	{"image": 4, "telephone": "", "search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "biography": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttutor.</p>", "go_live_at": null, "name_organization": "", "city": "", "related_links": [], "title": "Person Page 2", "seo_title": "", "slug": "person-page-2", "live": true, "role": null, "has_unpublished_changes": false, "email": "", "feed_image": null, "post_code": "", "numchild": 0, "content_type": 64, "show_in_menus": true, "path": "0001000100020002", "url_path": "/home/person-index/person-page-2/", "expired": false, "pk": 9, "locked": false, "country": "", "tagged_items": [], "depth": 4, "address_1": "", "address_2": "", "first_published_at": null, "expire_at": null}	\N	9	1
+8	f	2016-07-20 13:23:19.593846+05:30	{"image": 4, "telephone": "", "search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "biography": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttutor.</p>", "go_live_at": null, "name_organization": "", "city": "", "related_links": [], "title": "Person Page 1", "seo_title": "", "slug": "person-page-1", "live": true, "role": null, "has_unpublished_changes": false, "email": "", "feed_image": null, "post_code": "", "numchild": 0, "content_type": 64, "show_in_menus": true, "path": "0001000100020001", "url_path": "/home/person-index/person-page-1/", "expired": false, "pk": 8, "locked": false, "country": "", "tagged_items": [], "depth": 4, "address_1": "", "address_2": "", "first_published_at": null, "expire_at": null}	\N	8	1
+10	f	2016-07-20 13:24:52.366369+05:30	{"image": 4, "telephone": "", "search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "biography": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttutor.</p>", "go_live_at": null, "name_organization": "", "city": "", "related_links": [], "title": "Person Page 3", "seo_title": "", "slug": "person-page-3", "live": true, "role": null, "has_unpublished_changes": false, "email": "", "feed_image": null, "post_code": "", "numchild": 0, "content_type": 64, "show_in_menus": true, "path": "0001000100020003", "url_path": "/home/person-index/person-page-3/", "expired": false, "pk": 10, "locked": false, "country": "", "tagged_items": [], "depth": 4, "address_1": "", "address_2": "", "first_published_at": null, "expire_at": null}	\N	10	1
+13	f	2016-07-20 13:38:44.398391+05:30	{"carousel_items": [], "show_in_menus": true, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": null, "time_to": null, "go_live_at": null, "feed_image": 9, "related_links": [], "title": "Event Page 1", "signup_link": "", "date_from": "2019-06-01", "seo_title": "", "slug": "event-page-1", "live": true, "location": "", "has_unpublished_changes": false, "tagged_items": [{"pk": 1, "tag": 1, "content_object": 13}, {"pk": 2, "tag": 2, "content_object": 13}], "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 54, "date_to": null, "path": "0001000100030001", "url_path": "/home/event-index/event-page-1/", "expired": false, "pk": 13, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	13	1
+11	f	2016-07-20 13:25:24.424289+05:30	{"image": 4, "telephone": "", "search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "biography": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttutor.</p>", "go_live_at": null, "name_organization": "", "city": "", "related_links": [], "title": "Person Page 4", "seo_title": "", "slug": "person-page-4", "live": true, "role": null, "has_unpublished_changes": false, "email": "", "feed_image": null, "post_code": "", "numchild": 0, "content_type": 64, "show_in_menus": true, "path": "0001000100020004", "url_path": "/home/person-index/person-page-4/", "expired": false, "pk": 11, "locked": false, "country": "", "tagged_items": [], "depth": 4, "address_1": "", "address_2": "", "first_published_at": null, "expire_at": null}	\N	11	1
+12	f	2016-07-20 13:36:58.286914+05:30	{"search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "go_live_at": null, "related_links": [], "title": "Event Index", "seo_title": "", "slug": "event-index", "live": true, "has_unpublished_changes": false, "numchild": 0, "content_type": 49, "show_in_menus": true, "path": "000100010003", "url_path": "/home/event-index/", "expired": false, "pk": 12, "locked": false, "depth": 3, "first_published_at": null, "expire_at": null}	\N	12	1
+15	f	2016-07-20 13:40:44.402947+05:30	{"carousel_items": [], "show_in_menus": true, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": null, "time_to": null, "go_live_at": null, "feed_image": 9, "related_links": [], "title": "Event Page 3", "signup_link": "", "date_from": "2021-08-12", "seo_title": "", "slug": "event-page-3", "live": true, "location": "", "has_unpublished_changes": false, "tagged_items": [{"pk": 4, "tag": 4, "content_object": 15}], "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 54, "date_to": null, "path": "0001000100030003", "url_path": "/home/event-index/event-page-3/", "expired": false, "pk": 15, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	15	1
+14	f	2016-07-20 13:39:41.447057+05:30	{"carousel_items": [], "show_in_menus": true, "search_description": "", "owner": 1, "cost": "", "latest_revision_created_at": null, "time_to": null, "go_live_at": null, "feed_image": 3, "related_links": [], "title": "Event Page 2", "signup_link": "", "date_from": "2020-06-17", "seo_title": "", "slug": "event-page-2", "live": true, "location": "", "has_unpublished_changes": false, "tagged_items": [{"pk": 3, "tag": 3, "content_object": 14}], "body": "", "numchild": 0, "time_from": null, "speakers": [], "audience": null, "content_type": 54, "date_to": null, "path": "0001000100030002", "url_path": "/home/event-index/event-page-2/", "expired": false, "pk": 14, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	14	1
+16	f	2016-07-20 13:41:32.075565+05:30	{"search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "go_live_at": null, "related_links": [], "title": "Blog Index", "seo_title": "", "slug": "blog-index", "live": true, "has_unpublished_changes": false, "numchild": 0, "content_type": 43, "show_in_menus": true, "path": "000100010004", "url_path": "/home/blog-index/", "expired": false, "pk": 16, "locked": false, "depth": 3, "first_published_at": null, "expire_at": null}	\N	16	1
+19	f	2016-07-20 13:47:15.529073+05:30	{"carousel_items": [], "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>", "latest_revision_created_at": null, "go_live_at": null, "feed_image": 7, "related_links": [{"link_page": 17, "title": "Blog Page 1", "link_external": "", "sort_order": 0, "link_document": null, "pk": 1, "page": 19}, {"link_page": 18, "title": "Blog Page 2", "link_external": "", "sort_order": 1, "link_document": null, "pk": 2, "page": 19}], "title": "Blog Page 3", "seo_title": "", "slug": "blog-page-3", "live": true, "has_unpublished_changes": false, "tagged_items": [], "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p><embed alt=\\"sass.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"7\\"/><br/></p><p><br/></p>", "numchild": 0, "content_type": 47, "show_in_menus": true, "date": "2016-06-17", "path": "0001000100040003", "url_path": "/home/blog-index/blog-page-3/", "expired": false, "pk": 19, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	19	1
+18	f	2016-07-20 13:45:09.348683+05:30	{"carousel_items": [], "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>", "latest_revision_created_at": null, "go_live_at": null, "feed_image": 3, "related_links": [], "title": "Blog Page 2", "seo_title": "", "slug": "blog-page-2", "live": true, "has_unpublished_changes": false, "tagged_items": [], "body": "<embed alt=\\"foundation.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"3\\"/><p><br/></p><p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.<br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttitor.</p></p>", "numchild": 0, "content_type": 47, "show_in_menus": true, "date": "2016-06-17", "path": "0001000100040002", "url_path": "/home/blog-index/blog-page-2/", "expired": false, "pk": 18, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	18	1
+17	f	2016-07-20 13:43:43.42343+05:30	{"carousel_items": [], "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>", "latest_revision_created_at": null, "go_live_at": null, "feed_image": 9, "related_links": [], "title": "Blog Page 1", "seo_title": "", "slug": "blog-page-1", "live": true, "has_unpublished_changes": false, "tagged_items": [], "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p><embed alt=\\"wagtail.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"9\\"/><br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttitor.<br/></p>", "numchild": 0, "content_type": 47, "show_in_menus": true, "date": "2016-06-17", "path": "0001000100040001", "url_path": "/home/blog-index/blog-page-1/", "expired": false, "pk": 17, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	17	1
+20	f	2016-07-20 13:48:23.700253+05:30	{"carousel_items": [], "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>", "latest_revision_created_at": "2016-07-20T08:13:43.423Z", "go_live_at": null, "feed_image": 9, "related_links": [{"link_page": 18, "title": "Blog Page 2", "link_external": "", "sort_order": 0, "link_document": null, "pk": null, "page": 17}, {"link_page": 19, "title": "Blog Page 3", "link_external": "", "sort_order": 1, "link_document": null, "pk": null, "page": 17}], "title": "Blog Page 1", "seo_title": "", "slug": "blog-page-1", "live": true, "has_unpublished_changes": false, "tagged_items": [], "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p><embed alt=\\"wagtail.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"9\\"/><br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttitor.<br/></p>", "numchild": 0, "content_type": 47, "show_in_menus": true, "date": "2016-06-17", "path": "0001000100040001", "url_path": "/home/blog-index/blog-page-1/", "expired": false, "pk": 17, "locked": false, "depth": 4, "first_published_at": "2016-07-20T08:13:43.630Z", "expire_at": null}	\N	17	1
+22	f	2016-07-20 13:52:02.975756+05:30	{"search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "go_live_at": null, "feed_image": null, "title": "Documents Gallery", "seo_title": "", "slug": "documents-gallery", "live": true, "has_unpublished_changes": false, "numchild": 0, "content_type": 73, "show_in_menus": true, "path": "000100010005", "url_path": "/home/documents-gallery/", "expired": false, "pk": 20, "locked": false, "depth": 3, "first_published_at": null, "expire_at": null}	\N	20	1
+21	f	2016-07-20 13:48:56.433825+05:30	{"carousel_items": [], "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>", "latest_revision_created_at": "2016-07-20T08:15:09.348Z", "go_live_at": null, "feed_image": 3, "related_links": [{"link_page": 17, "title": "Blog Page 1", "link_external": "", "sort_order": 0, "link_document": null, "pk": null, "page": 18}, {"link_page": 19, "title": "Blog Page 3", "link_external": "", "sort_order": 1, "link_document": null, "pk": null, "page": 18}], "title": "Blog Page 2", "seo_title": "", "slug": "blog-page-2", "live": true, "has_unpublished_changes": false, "tagged_items": [], "body": "<embed alt=\\"foundation.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"3\\"/><p><br/></p><p></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.<br/></p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttitor.</p><p></p>", "numchild": 0, "content_type": 47, "show_in_menus": true, "date": "2016-06-17", "path": "0001000100040002", "url_path": "/home/blog-index/blog-page-2/", "expired": false, "pk": 18, "locked": false, "depth": 4, "first_published_at": "2016-07-20T08:15:09.479Z", "expire_at": null}	\N	18	1
+24	f	2016-07-20 13:54:12.663501+05:30	{"search_description": "", "owner": 1, "latest_revision_created_at": "2016-07-20T08:22:25.875Z", "go_live_at": null, "feed_image": null, "title": "Sample Documents", "seo_title": "", "slug": "sample-documents", "live": false, "has_unpublished_changes": true, "tagged_items": [{"pk": null, "tag": 5, "content_object": 21}], "numchild": 0, "content_type": 75, "show_in_menus": true, "path": "0001000100050001", "url_path": "/home/documents-gallery/sample-documents/", "expired": false, "pk": 21, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	21	1
+23	f	2016-07-20 13:52:25.875534+05:30	{"search_description": "", "owner": 1, "latest_revision_created_at": null, "go_live_at": null, "feed_image": null, "title": "Sample Documents", "seo_title": "", "slug": "sample-documents", "live": false, "has_unpublished_changes": false, "tagged_items": [{"pk": 1, "tag": 5, "content_object": 21}], "numchild": 0, "content_type": 75, "show_in_menus": true, "path": "0001000100050001", "url_path": "/home/documents-gallery/sample-documents/", "expired": false, "pk": 21, "locked": false, "depth": 4, "first_published_at": null, "expire_at": null}	\N	21	1
+25	f	2016-07-20 13:56:14.850905+05:30	{"search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "go_live_at": null, "feed_image": null, "title": "Photo Gallery", "seo_title": "", "slug": "photo-gallery", "live": true, "has_unpublished_changes": false, "numchild": 0, "content_type": 65, "show_in_menus": true, "path": "000100010006", "url_path": "/home/photo-gallery/", "expired": false, "pk": 22, "locked": false, "depth": 3, "first_published_at": null, "expire_at": null}	\N	22	1
+29	f	2016-07-20 14:03:22.946592+05:30	{"to_address": "", "from_address": "", "telephone": "+1 868-773-4644", "search_description": "", "owner": 1, "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi.", "latest_revision_created_at": "2016-07-20T08:32:19.643Z", "go_live_at": null, "name_organization": "ChrisDev", "city": "Tunapuna,", "title": "Contact Us", "seo_title": "", "slug": "contact-us", "live": true, "has_unpublished_changes": false, "subject": "", "email": "", "post_code": "tunapuna", "numchild": 0, "content_type": 58, "show_in_menus": true, "thank_you_text": "<p>Thank you for submitting.</p>", "path": "000100010007", "url_path": "/home/contact-us/", "expired": false, "pk": 24, "locked": false, "country": "Trinidad & Tobago", "form_fields": [{"default_value": "", "field_type": "singleline", "required": true, "choices": "", "sort_order": 0, "help_text": "", "pk": 1, "label": "Name", "page": 24}, {"default_value": "", "field_type": "email", "required": true, "choices": "", "sort_order": 1, "help_text": "", "pk": 2, "label": "Email", "page": 24}, {"default_value": "", "field_type": "singleline", "required": true, "choices": "", "sort_order": 2, "help_text": "", "pk": 3, "label": "Subject", "page": 24}, {"default_value": "", "field_type": "multiline", "required": true, "choices": "", "sort_order": 3, "help_text": "", "pk": 4, "label": "Message", "page": 24}], "depth": 3, "address_1": "A3 St Benedicts Gardens,", "address_2": "", "first_published_at": "2016-07-20T08:32:19.773Z", "expire_at": null}	\N	24	1
+28	f	2016-07-20 14:02:19.643662+05:30	{"to_address": "", "from_address": "", "telephone": "+1 868-773-4644", "search_description": "", "owner": 1, "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi.", "latest_revision_created_at": null, "go_live_at": null, "name_organization": "ChrisDev", "city": "Tunapuna,", "title": "Contact Us", "seo_title": "", "slug": "contact-us", "live": true, "has_unpublished_changes": false, "subject": "", "email": "", "post_code": "tunapuna", "numchild": 0, "content_type": 58, "show_in_menus": true, "thank_you_text": "<p>Thanks you for submitting.</p>", "path": "000100010007", "url_path": "/home/contact-us/", "expired": false, "pk": 24, "locked": false, "country": "Trinidad & Tobago", "form_fields": [{"default_value": "", "field_type": "singleline", "required": true, "choices": "", "sort_order": 0, "help_text": "", "pk": 1, "label": "Name", "page": 24}, {"default_value": "", "field_type": "email", "required": true, "choices": "", "sort_order": 1, "help_text": "", "pk": 2, "label": "Email", "page": 24}, {"default_value": "", "field_type": "singleline", "required": true, "choices": "", "sort_order": 2, "help_text": "", "pk": 3, "label": "Subject", "page": 24}, {"default_value": "", "field_type": "multiline", "required": true, "choices": "", "sort_order": 3, "help_text": "", "pk": 4, "label": "Message", "page": 24}], "depth": 3, "address_1": "A3 St Benedicts Gardens,", "address_2": "", "first_published_at": null, "expire_at": null}	\N	24	1
+30	f	2016-07-20 14:06:18.443585+05:30	{"carousel_items": [], "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>", "latest_revision_created_at": "2016-07-20T08:17:15.529Z", "go_live_at": null, "feed_image": 9, "related_links": [{"link_page": 17, "title": "Blog Page 1", "link_external": "", "sort_order": 0, "link_document": null, "pk": 1, "page": 19}, {"link_page": 18, "title": "Blog Page 2", "link_external": "", "sort_order": 1, "link_document": null, "pk": 2, "page": 19}], "title": "Blog Page 3", "seo_title": "", "slug": "blog-page-3", "live": true, "has_unpublished_changes": false, "tagged_items": [], "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p><embed alt=\\"sass.jpg\\" embedtype=\\"image\\" format=\\"fullwidth\\" id=\\"7\\"/><br/></p><p><br/></p>", "numchild": 0, "content_type": 47, "show_in_menus": true, "date": "2016-06-17", "path": "0001000100040003", "url_path": "/home/blog-index/blog-page-3/", "expired": false, "pk": 19, "locked": false, "depth": 4, "first_published_at": "2016-07-20T08:17:15.679Z", "expire_at": null}	\N	19	1
 \.
 
 
@@ -4444,7 +4425,7 @@ COPY wagtailcore_pagerevision (id, submitted_for_moderation, created_at, content
 -- Name: wagtailcore_pagerevision_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
 --
 
-SELECT pg_catalog.setval('wagtailcore_pagerevision_id_seq', 62, true);
+SELECT pg_catalog.setval('wagtailcore_pagerevision_id_seq', 30, true);
 
 
 --
@@ -4459,7 +4440,7 @@ COPY wagtailcore_pageviewrestriction (id, password, page_id) FROM stdin;
 -- Name: wagtailcore_pageviewrestriction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
 --
 
-SELECT pg_catalog.setval('wagtailcore_pageviewrestriction_id_seq', 1, true);
+SELECT pg_catalog.setval('wagtailcore_pageviewrestriction_id_seq', 1, false);
 
 
 --
@@ -4483,9 +4464,9 @@ SELECT pg_catalog.setval('wagtailcore_site_id_seq', 2, true);
 --
 
 COPY wagtaildocs_document (id, title, file, created_at, uploaded_by_user_id, collection_id) FROM stdin;
-3	sample.pdf	documents/sample.pdf	2016-06-17 21:48:21.314932+05:30	1	1
-2	example.docx	documents/example.docx	2016-06-17 21:48:21.107695+05:30	1	1
-1	document.doc	documents/document.doc	2016-06-17 21:48:20.942244+05:30	1	1
+3	sample.pdf	documents/sample.pdf	2016-07-20 13:50:05.885324+05:30	1	1
+2	example.docx	documents/example.docx	2016-07-20 13:50:05.773672+05:30	1	1
+1	document.doc	documents/document.doc	2016-07-20 13:50:05.540446+05:30	1	1
 \.
 
 
@@ -4516,6 +4497,7 @@ SELECT pg_catalog.setval('wagtailembeds_embed_id_seq', 1, false);
 --
 
 COPY wagtailforms_formsubmission (id, form_data, submit_time, page_id) FROM stdin;
+1	{"message": "Test Message", "subject": "Test Subject", "name": "Test", "email": "test@test.com"}	2016-07-20 14:02:59.957933+05:30	24
 \.
 
 
@@ -4523,7 +4505,7 @@ COPY wagtailforms_formsubmission (id, form_data, submit_time, page_id) FROM stdi
 -- Name: wagtailforms_formsubmission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
 --
 
-SELECT pg_catalog.setval('wagtailforms_formsubmission_id_seq', 1, false);
+SELECT pg_catalog.setval('wagtailforms_formsubmission_id_seq', 1, true);
 
 
 --
@@ -4536,13 +4518,11 @@ COPY wagtailimages_filter (id, spec) FROM stdin;
 3	fill-70x70
 4	max-800x600
 5	width-800
-6	fill-800x800
-7	height-140
-8	fill-1200x400
-9	fill-1200x630
-10	original
-11	width-1200
-12	fill-500x350
+6	width-180
+7	fill-400x400
+8	original
+9	width-1200
+10	fill-1200x400
 \.
 
 
@@ -4550,7 +4530,7 @@ COPY wagtailimages_filter (id, spec) FROM stdin;
 -- Name: wagtailimages_filter_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
 --
 
-SELECT pg_catalog.setval('wagtailimages_filter_id_seq', 12, true);
+SELECT pg_catalog.setval('wagtailimages_filter_id_seq', 10, true);
 
 
 --
@@ -4558,17 +4538,17 @@ SELECT pg_catalog.setval('wagtailimages_filter_id_seq', 12, true);
 --
 
 COPY wagtailimages_image (id, title, file, width, height, created_at, focal_point_x, focal_point_y, focal_point_width, focal_point_height, uploaded_by_user_id, file_size, collection_id) FROM stdin;
-1	ansible.png	original_images/ansible.png	512	512	2016-06-17 21:12:58.767405+05:30	\N	\N	\N	\N	1	43211	1
-2	digital_ocean.png	original_images/digital_ocean.png	512	512	2016-06-17 21:12:59.095509+05:30	\N	\N	\N	\N	1	58324	1
-5	postgresql.png	original_images/postgresql.png	512	512	2016-06-17 21:13:00.409184+05:30	\N	\N	\N	\N	1	225303	1
-7	sass.png	original_images/sass.png	512	512	2016-06-17 21:13:00.887588+05:30	\N	\N	\N	\N	1	88756	1
-9	wagtail.png	original_images/wagtail.png	512	512	2016-06-17 21:13:01.179654+05:30	\N	\N	\N	\N	1	28197	1
-10	yeti.png	original_images/yeti.png	512	512	2016-06-17 21:13:01.353403+05:30	\N	\N	\N	\N	1	101373	1
-11	placeholder_person.png	original_images/placeholder_person.png	600	568	2016-06-17 21:14:24.011638+05:30	\N	\N	\N	\N	1	\N	1
-8	wagtail.jpg	original_images/wagtail.jpg	1300	500	2016-06-17 21:13:01.027187+05:30	\N	\N	\N	\N	1	60370	1
-4	postgresql.jpg	original_images/postgresql.jpg	1300	500	2016-06-17 21:13:00.090369+05:30	\N	\N	\N	\N	1	117964	1
-6	sass.jpg	original_images/sass.jpg	1300	500	2016-06-17 21:13:00.663125+05:30	\N	\N	\N	\N	1	158244	1
-3	foundation.jpg	original_images/foundation.jpg	1300	500	2016-06-17 21:12:59.371076+05:30	\N	\N	\N	\N	1	131208	1
+1	ansible.png	original_images/ansible.png	512	512	2016-07-20 13:08:05.682273+05:30	\N	\N	\N	\N	1	43211	1
+2	digital_ocean.png	original_images/digital_ocean.png	512	512	2016-07-20 13:08:05.875039+05:30	\N	\N	\N	\N	1	58324	1
+4	placeholder_person.png	original_images/placeholder_person.png	600	568	2016-07-20 13:08:06.108297+05:30	\N	\N	\N	\N	1	10449	1
+6	postgresql.png	original_images/postgresql.png	512	512	2016-07-20 13:08:06.311475+05:30	\N	\N	\N	\N	1	225303	1
+8	sass.png	original_images/sass.png	512	512	2016-07-20 13:08:06.512278+05:30	\N	\N	\N	\N	1	88756	1
+10	wagtail.png	original_images/wagtail.png	512	512	2016-07-20 13:08:06.707594+05:30	\N	\N	\N	\N	1	28197	1
+11	yeti.png	original_images/yeti.png	512	512	2016-07-20 13:08:06.821022+05:30	\N	\N	\N	\N	1	101373	1
+9	wagtail.jpg	original_images/wagtail.jpg	1300	500	2016-07-20 13:08:06.614054+05:30	\N	\N	\N	\N	1	60370	1
+7	sass.jpg	original_images/sass.jpg	1300	500	2016-07-20 13:08:06.406475+05:30	\N	\N	\N	\N	1	158244	1
+5	postgresql.jpg	original_images/postgresql.jpg	1300	500	2016-07-20 13:08:06.2173+05:30	\N	\N	\N	\N	1	117964	1
+3	foundation.jpg	original_images/foundation.jpg	1300	500	2016-07-20 13:08:06.005665+05:30	\N	\N	\N	\N	1	131208	1
 \.
 
 
@@ -4584,51 +4564,49 @@ SELECT pg_catalog.setval('wagtailimages_image_id_seq', 11, true);
 --
 
 COPY wagtailimages_rendition (id, file, width, height, focal_point_key, filter_id, image_id) FROM stdin;
-1	images/yeti.max-165x165.png	165	165		1	10
-2	images/wagtail.max-165x165.png	165	165		1	9
-3	images/wagtail.max-165x165.jpg	165	63		1	8
-4	images/sass.max-165x165.png	165	165		1	7
-5	images/sass.max-165x165.jpg	165	63		1	6
-6	images/postgresql.max-165x165.png	165	165		1	5
-7	images/postgresql.max-165x165.jpg	165	63		1	4
-8	images/foundation.max-165x165.jpg	165	63		1	3
-9	images/digital_ocean.max-165x165.png	165	165		1	2
-10	images/ansible.max-165x165.png	165	165		1	1
-11	images/placeholder_person.max-165x165.png	165	156		1	11
+1	images/yeti.max-165x165.png	165	165		1	11
+2	images/wagtail.max-165x165.png	165	165		1	10
+3	images/wagtail.max-165x165.jpg	165	63		1	9
+4	images/sass.max-165x165.png	165	165		1	8
+5	images/sass.max-165x165.jpg	165	63		1	7
+6	images/postgresql.max-165x165.png	165	165		1	6
+7	images/postgresql.max-165x165.jpg	165	63		1	5
+8	images/placeholder_person.max-165x165.png	165	156		1	4
+9	images/foundation.max-165x165.jpg	165	63		1	3
+10	images/digital_ocean.max-165x165.png	165	165		1	2
+11	images/ansible.max-165x165.png	165	165		1	1
 12	images/foundation.width-1400.jpg	1300	500		2	3
-13	images/wagtail.width-1400.jpg	1300	500		2	8
-14	images/postgresql.width-1400.jpg	1300	500		2	4
-15	images/sass.width-1400.jpg	1300	500		2	6
-16	images/yeti.2e16d0ba.fill-70x70.png	70	70	2e16d0ba	3	10
-17	images/wagtail.2e16d0ba.fill-70x70.png	70	70	2e16d0ba	3	9
+13	images/wagtail.width-1400.jpg	1300	500		2	9
+14	images/postgresql.width-1400.jpg	1300	500		2	5
+15	images/sass.width-1400.jpg	1300	500		2	7
+16	images/yeti.2e16d0ba.fill-70x70.png	70	70	2e16d0ba	3	11
+17	images/wagtail.2e16d0ba.fill-70x70.png	70	70	2e16d0ba	3	10
 18	images/ansible.2e16d0ba.fill-70x70.png	70	70	2e16d0ba	3	1
-19	images/sass.2e16d0ba.fill-70x70.png	70	70	2e16d0ba	3	7
-20	images/postgresql.2e16d0ba.fill-70x70.png	70	70	2e16d0ba	3	5
+19	images/sass.2e16d0ba.fill-70x70.png	70	70	2e16d0ba	3	8
+20	images/postgresql.2e16d0ba.fill-70x70.png	70	70	2e16d0ba	3	6
 21	images/digital_ocean.2e16d0ba.fill-70x70.png	70	70	2e16d0ba	3	2
-22	images/foundation.max-800x600.jpg	800	307		4	3
-23	images/foundation.width-800.jpg	800	307		5	3
-24	images/wagtail.max-800x600.jpg	800	307		4	8
-25	images/wagtail.width-800.jpg	800	307		5	8
-26	images/placeholder_person.2e16d0ba.fill-800x800.png	568	568	2e16d0ba	6	11
-27	images/wagtail.height-140.jpg	364	140		7	8
-28	images/postgresql.2e16d0ba.fill-1200x400.jpg	1200	400	2e16d0ba	8	4
-29	images/foundation.2e16d0ba.fill-1200x400.jpg	1200	400	2e16d0ba	8	3
-30	images/wagtail.2e16d0ba.fill-1200x400.jpg	1200	400	2e16d0ba	8	8
-31	images/postgresql.2e16d0ba.fill-1200x630.jpg	954	500	2e16d0ba	9	4
-32	images/foundation.2e16d0ba.fill-1200x630.jpg	954	500	2e16d0ba	9	3
-33	images/wagtail.2e16d0ba.fill-1200x630.jpg	954	500	2e16d0ba	9	8
-34	images/sass.max-800x600.jpg	800	307		4	6
-35	images/sass.width-800.jpg	800	307		5	6
-36	images/wagtail.original.jpg	1300	500		10	8
-37	images/postgresql.original.jpg	1300	500		10	4
-38	images/postgresql.max-800x600.jpg	800	307		4	4
-39	images/sass.original.jpg	1300	500		10	6
-40	images/foundation.original.jpg	1300	500		10	3
-41	images/wagtail.width-1200.jpg	1200	461		11	8
-42	images/postgresql.width-1200.jpg	1200	461		11	4
-43	images/sass.width-1200.jpg	1200	461		11	6
-44	images/foundation.width-1200.jpg	1200	461		11	3
-45	images/wagtail.2e16d0ba.fill-500x350.jpg	500	350	2e16d0ba	12	8
+22	images/wagtail.max-800x600.jpg	800	307		4	9
+23	images/wagtail.width-800.jpg	800	307		5	9
+24	images/foundation.max-800x600.jpg	800	307		4	3
+25	images/foundation.width-800.jpg	800	307		5	3
+26	images/placeholder_person.width-180.png	180	170		6	4
+27	images/placeholder_person.2e16d0ba.fill-400x400.png	400	400	2e16d0ba	7	4
+28	images/sass.max-800x600.jpg	800	307		4	7
+29	images/sass.width-800.jpg	800	307		5	7
+30	images/wagtail.original.jpg	1300	500		8	9
+31	images/sass.original.png	512	512		8	8
+32	images/sass.max-800x600.png	512	512		4	8
+33	images/sass.original.jpg	1300	500		8	7
+34	images/postgresql.original.jpg	1300	500		8	5
+35	images/postgresql.max-800x600.jpg	800	307		4	5
+36	images/foundation.original.jpg	1300	500		8	3
+37	images/wagtail.width-1200.jpg	1200	461		9	9
+38	images/sass.width-1200.jpg	1200	461		9	7
+39	images/postgresql.width-1200.jpg	1200	461		9	5
+40	images/foundation.width-1200.jpg	1200	461		9	3
+41	images/sass.2e16d0ba.fill-1200x400.jpg	1200	400	2e16d0ba	10	7
+42	images/wagtail.2e16d0ba.fill-1200x400.jpg	1200	400	2e16d0ba	10	9
+43	images/foundation.2e16d0ba.fill-1200x400.jpg	1200	400	2e16d0ba	10	3
 \.
 
 
@@ -4636,7 +4614,7 @@ COPY wagtailimages_rendition (id, file, width, height, focal_point_key, filter_i
 -- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
 --
 
-SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 45, true);
+SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 43, true);
 
 
 --
@@ -5011,22 +4989,6 @@ ALTER TABLE ONLY events_eventpagetag
 
 
 --
--- Name: feeds_feedsappsettings_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
---
-
-ALTER TABLE ONLY feeds_feedsappsettings
-    ADD CONSTRAINT feeds_feedsappsettings_pkey PRIMARY KEY (id);
-
-
---
--- Name: feeds_feedsappsettings_site_id_key; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
---
-
-ALTER TABLE ONLY feeds_feedsappsettings
-    ADD CONSTRAINT feeds_feedsappsettings_site_id_key UNIQUE (site_id);
-
-
---
 -- Name: pages_advert_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
 --
 
@@ -5288,6 +5250,22 @@ ALTER TABLE ONLY taggit_tag
 
 ALTER TABLE ONLY taggit_taggeditem
     ADD CONSTRAINT taggit_taggeditem_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: wagtail_feeds_rssfeedssettings_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+--
+
+ALTER TABLE ONLY wagtail_feeds_rssfeedssettings
+    ADD CONSTRAINT wagtail_feeds_rssfeedssettings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: wagtail_feeds_rssfeedssettings_site_id_key; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+--
+
+ALTER TABLE ONLY wagtail_feeds_rssfeedssettings
+    ADD CONSTRAINT wagtail_feeds_rssfeedssettings_site_id_key UNIQUE (site_id);
 
 
 --
@@ -7035,14 +7013,6 @@ ALTER TABLE ONLY photo_gallery_gallerypagetag
 
 
 --
--- Name: feeds_feedsappsettings_site_id_c9055d51_fk_wagtailcore_site_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
---
-
-ALTER TABLE ONLY feeds_feedsappsettings
-    ADD CONSTRAINT feeds_feedsappsettings_site_id_c9055d51_fk_wagtailcore_site_id FOREIGN KEY (site_id) REFERENCES wagtailcore_site(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
 -- Name: pages_adve_link_document_id_d804b3dc_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
 --
 
@@ -7600,6 +7570,14 @@ ALTER TABLE ONLY taggit_taggeditem
 
 ALTER TABLE ONLY taggit_taggeditem
     ADD CONSTRAINT taggit_taggeditem_tag_id_f4f5b767_fk_taggit_tag_id FOREIGN KEY (tag_id) REFERENCES taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtail_feeds_rssfeedss_site_id_86fa0b0d_fk_wagtailcore_site_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+--
+
+ALTER TABLE ONLY wagtail_feeds_rssfeedssettings
+    ADD CONSTRAINT wagtail_feeds_rssfeedss_site_id_86fa0b0d_fk_wagtailcore_site_id FOREIGN KEY (site_id) REFERENCES wagtailcore_site(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
