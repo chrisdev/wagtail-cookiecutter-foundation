@@ -14,18 +14,16 @@
            <div class="people medium-up-4 small-up-1 text-center" data-equalizer>
                 {% for person in persons %}
                      <div class="column" data-equalizer-watch>
-                        <a href="{% pageurl person %}">
-                            <div class="callout" style="padding: 8px;">
-                                <div style="border:solid 1px;border-radius:60%;overflow:hidden;">
-                                    {% image person.image fill-400x400 %}
-                                </div>
-                                <center><h5 style="margin-top: 5px;">{{ person.title}}</h5></center>
-                                {% if person.role %}
-                                <center><h6 class="subheader">{{ person.role }}</h6></center>
-                                {% endif %}
-                            </div>
-                        </a>
-                    </div>
+                         <a href="{% pageurl person %}">
+                             <div class="callout" style="padding: 3px;">
+                                 {% image person.image fill-400x400 %}
+                                 <center><h5 style="margin-top: 5px;">{{ person.title}}</h5></center>
+                                 {% if person.role %}
+                                 <center><h6 class="subheader">{{ person.role }}</h6></center>
+                                 {% endif %}
+                             </div>
+                         </a>
+                     </div>
                 {% endfor %}
             </div>
         </div>
