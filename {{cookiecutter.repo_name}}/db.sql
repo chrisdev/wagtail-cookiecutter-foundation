@@ -1687,8 +1687,6 @@ ALTER SEQUENCE products_productindexpagerelatedlink_id_seq OWNED BY products_pro
 CREATE TABLE products_productpage (
     page_ptr_id integer NOT NULL,
     price character varying(255) NOT NULL,
-    intro character varying(255) NOT NULL,
-    link_demo character varying(200) NOT NULL,
     description text NOT NULL,
     feed_image_id integer,
     image_id integer
