@@ -30,7 +30,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: auth_group; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE auth_group (
@@ -39,10 +39,10 @@ CREATE TABLE auth_group (
 );
 
 
-ALTER TABLE auth_group OWNER TO puri;
+ALTER TABLE auth_group OWNER TO sumit;
 
 --
--- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE auth_group_id_seq
@@ -53,17 +53,17 @@ CREATE SEQUENCE auth_group_id_seq
     CACHE 1;
 
 
-ALTER TABLE auth_group_id_seq OWNER TO puri;
+ALTER TABLE auth_group_id_seq OWNER TO sumit;
 
 --
--- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE auth_group_id_seq OWNED BY auth_group.id;
 
 
 --
--- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE auth_group_permissions (
@@ -73,10 +73,10 @@ CREATE TABLE auth_group_permissions (
 );
 
 
-ALTER TABLE auth_group_permissions OWNER TO puri;
+ALTER TABLE auth_group_permissions OWNER TO sumit;
 
 --
--- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE auth_group_permissions_id_seq
@@ -87,17 +87,17 @@ CREATE SEQUENCE auth_group_permissions_id_seq
     CACHE 1;
 
 
-ALTER TABLE auth_group_permissions_id_seq OWNER TO puri;
+ALTER TABLE auth_group_permissions_id_seq OWNER TO sumit;
 
 --
--- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE auth_group_permissions_id_seq OWNED BY auth_group_permissions.id;
 
 
 --
--- Name: auth_permission; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE auth_permission (
@@ -108,10 +108,10 @@ CREATE TABLE auth_permission (
 );
 
 
-ALTER TABLE auth_permission OWNER TO puri;
+ALTER TABLE auth_permission OWNER TO sumit;
 
 --
--- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE auth_permission_id_seq
@@ -122,17 +122,17 @@ CREATE SEQUENCE auth_permission_id_seq
     CACHE 1;
 
 
-ALTER TABLE auth_permission_id_seq OWNER TO puri;
+ALTER TABLE auth_permission_id_seq OWNER TO sumit;
 
 --
--- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE auth_permission_id_seq OWNED BY auth_permission.id;
 
 
 --
--- Name: auth_user; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE auth_user (
@@ -150,10 +150,10 @@ CREATE TABLE auth_user (
 );
 
 
-ALTER TABLE auth_user OWNER TO puri;
+ALTER TABLE auth_user OWNER TO sumit;
 
 --
--- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE auth_user_groups (
@@ -163,10 +163,10 @@ CREATE TABLE auth_user_groups (
 );
 
 
-ALTER TABLE auth_user_groups OWNER TO puri;
+ALTER TABLE auth_user_groups OWNER TO sumit;
 
 --
--- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE auth_user_groups_id_seq
@@ -177,17 +177,17 @@ CREATE SEQUENCE auth_user_groups_id_seq
     CACHE 1;
 
 
-ALTER TABLE auth_user_groups_id_seq OWNER TO puri;
+ALTER TABLE auth_user_groups_id_seq OWNER TO sumit;
 
 --
--- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE auth_user_groups_id_seq OWNED BY auth_user_groups.id;
 
 
 --
--- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE auth_user_id_seq
@@ -198,17 +198,17 @@ CREATE SEQUENCE auth_user_id_seq
     CACHE 1;
 
 
-ALTER TABLE auth_user_id_seq OWNER TO puri;
+ALTER TABLE auth_user_id_seq OWNER TO sumit;
 
 --
--- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE auth_user_id_seq OWNED BY auth_user.id;
 
 
 --
--- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE auth_user_user_permissions (
@@ -218,10 +218,10 @@ CREATE TABLE auth_user_user_permissions (
 );
 
 
-ALTER TABLE auth_user_user_permissions OWNER TO puri;
+ALTER TABLE auth_user_user_permissions OWNER TO sumit;
 
 --
--- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE auth_user_user_permissions_id_seq
@@ -232,17 +232,17 @@ CREATE SEQUENCE auth_user_user_permissions_id_seq
     CACHE 1;
 
 
-ALTER TABLE auth_user_user_permissions_id_seq OWNER TO puri;
+ALTER TABLE auth_user_user_permissions_id_seq OWNER TO sumit;
 
 --
--- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE auth_user_user_permissions_id_seq OWNED BY auth_user_user_permissions.id;
 
 
 --
--- Name: blog_blogindexpage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogindexpage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE blog_blogindexpage (
@@ -251,10 +251,10 @@ CREATE TABLE blog_blogindexpage (
 );
 
 
-ALTER TABLE blog_blogindexpage OWNER TO puri;
+ALTER TABLE blog_blogindexpage OWNER TO sumit;
 
 --
--- Name: blog_blogindexpagerelatedlink; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogindexpagerelatedlink; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE blog_blogindexpagerelatedlink (
@@ -268,10 +268,10 @@ CREATE TABLE blog_blogindexpagerelatedlink (
 );
 
 
-ALTER TABLE blog_blogindexpagerelatedlink OWNER TO puri;
+ALTER TABLE blog_blogindexpagerelatedlink OWNER TO sumit;
 
 --
--- Name: blog_blogindexpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: blog_blogindexpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE blog_blogindexpagerelatedlink_id_seq
@@ -282,17 +282,17 @@ CREATE SEQUENCE blog_blogindexpagerelatedlink_id_seq
     CACHE 1;
 
 
-ALTER TABLE blog_blogindexpagerelatedlink_id_seq OWNER TO puri;
+ALTER TABLE blog_blogindexpagerelatedlink_id_seq OWNER TO sumit;
 
 --
--- Name: blog_blogindexpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: blog_blogindexpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE blog_blogindexpagerelatedlink_id_seq OWNED BY blog_blogindexpagerelatedlink.id;
 
 
 --
--- Name: blog_blogpage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE blog_blogpage (
@@ -304,10 +304,10 @@ CREATE TABLE blog_blogpage (
 );
 
 
-ALTER TABLE blog_blogpage OWNER TO puri;
+ALTER TABLE blog_blogpage OWNER TO sumit;
 
 --
--- Name: blog_blogpagecarouselitem; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpagecarouselitem; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE blog_blogpagecarouselitem (
@@ -323,10 +323,10 @@ CREATE TABLE blog_blogpagecarouselitem (
 );
 
 
-ALTER TABLE blog_blogpagecarouselitem OWNER TO puri;
+ALTER TABLE blog_blogpagecarouselitem OWNER TO sumit;
 
 --
--- Name: blog_blogpagecarouselitem_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: blog_blogpagecarouselitem_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE blog_blogpagecarouselitem_id_seq
@@ -337,17 +337,17 @@ CREATE SEQUENCE blog_blogpagecarouselitem_id_seq
     CACHE 1;
 
 
-ALTER TABLE blog_blogpagecarouselitem_id_seq OWNER TO puri;
+ALTER TABLE blog_blogpagecarouselitem_id_seq OWNER TO sumit;
 
 --
--- Name: blog_blogpagecarouselitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: blog_blogpagecarouselitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE blog_blogpagecarouselitem_id_seq OWNED BY blog_blogpagecarouselitem.id;
 
 
 --
--- Name: blog_blogpagerelatedlink; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpagerelatedlink; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE blog_blogpagerelatedlink (
@@ -361,10 +361,10 @@ CREATE TABLE blog_blogpagerelatedlink (
 );
 
 
-ALTER TABLE blog_blogpagerelatedlink OWNER TO puri;
+ALTER TABLE blog_blogpagerelatedlink OWNER TO sumit;
 
 --
--- Name: blog_blogpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: blog_blogpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE blog_blogpagerelatedlink_id_seq
@@ -375,17 +375,17 @@ CREATE SEQUENCE blog_blogpagerelatedlink_id_seq
     CACHE 1;
 
 
-ALTER TABLE blog_blogpagerelatedlink_id_seq OWNER TO puri;
+ALTER TABLE blog_blogpagerelatedlink_id_seq OWNER TO sumit;
 
 --
--- Name: blog_blogpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: blog_blogpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE blog_blogpagerelatedlink_id_seq OWNED BY blog_blogpagerelatedlink.id;
 
 
 --
--- Name: blog_blogpagetag; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpagetag; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE blog_blogpagetag (
@@ -395,10 +395,10 @@ CREATE TABLE blog_blogpagetag (
 );
 
 
-ALTER TABLE blog_blogpagetag OWNER TO puri;
+ALTER TABLE blog_blogpagetag OWNER TO sumit;
 
 --
--- Name: blog_blogpagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: blog_blogpagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE blog_blogpagetag_id_seq
@@ -409,17 +409,17 @@ CREATE SEQUENCE blog_blogpagetag_id_seq
     CACHE 1;
 
 
-ALTER TABLE blog_blogpagetag_id_seq OWNER TO puri;
+ALTER TABLE blog_blogpagetag_id_seq OWNER TO sumit;
 
 --
--- Name: blog_blogpagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: blog_blogpagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE blog_blogpagetag_id_seq OWNED BY blog_blogpagetag.id;
 
 
 --
--- Name: contact_contactformfield; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: contact_contactformfield; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE contact_contactformfield (
@@ -435,10 +435,10 @@ CREATE TABLE contact_contactformfield (
 );
 
 
-ALTER TABLE contact_contactformfield OWNER TO puri;
+ALTER TABLE contact_contactformfield OWNER TO sumit;
 
 --
--- Name: contact_contactformfield_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: contact_contactformfield_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE contact_contactformfield_id_seq
@@ -449,17 +449,17 @@ CREATE SEQUENCE contact_contactformfield_id_seq
     CACHE 1;
 
 
-ALTER TABLE contact_contactformfield_id_seq OWNER TO puri;
+ALTER TABLE contact_contactformfield_id_seq OWNER TO sumit;
 
 --
--- Name: contact_contactformfield_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: contact_contactformfield_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE contact_contactformfield_id_seq OWNED BY contact_contactformfield.id;
 
 
 --
--- Name: contact_contactpage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: contact_contactpage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE contact_contactpage (
@@ -480,10 +480,10 @@ CREATE TABLE contact_contactpage (
 );
 
 
-ALTER TABLE contact_contactpage OWNER TO puri;
+ALTER TABLE contact_contactpage OWNER TO sumit;
 
 --
--- Name: contact_formfield; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: contact_formfield; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE contact_formfield (
@@ -499,10 +499,10 @@ CREATE TABLE contact_formfield (
 );
 
 
-ALTER TABLE contact_formfield OWNER TO puri;
+ALTER TABLE contact_formfield OWNER TO sumit;
 
 --
--- Name: contact_formfield_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: contact_formfield_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE contact_formfield_id_seq
@@ -513,17 +513,17 @@ CREATE SEQUENCE contact_formfield_id_seq
     CACHE 1;
 
 
-ALTER TABLE contact_formfield_id_seq OWNER TO puri;
+ALTER TABLE contact_formfield_id_seq OWNER TO sumit;
 
 --
--- Name: contact_formfield_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: contact_formfield_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE contact_formfield_id_seq OWNED BY contact_formfield.id;
 
 
 --
--- Name: contact_formpage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: contact_formpage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE contact_formpage (
@@ -536,10 +536,10 @@ CREATE TABLE contact_formpage (
 );
 
 
-ALTER TABLE contact_formpage OWNER TO puri;
+ALTER TABLE contact_formpage OWNER TO sumit;
 
 --
--- Name: django_admin_log; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE django_admin_log (
@@ -555,10 +555,10 @@ CREATE TABLE django_admin_log (
 );
 
 
-ALTER TABLE django_admin_log OWNER TO puri;
+ALTER TABLE django_admin_log OWNER TO sumit;
 
 --
--- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE django_admin_log_id_seq
@@ -569,17 +569,17 @@ CREATE SEQUENCE django_admin_log_id_seq
     CACHE 1;
 
 
-ALTER TABLE django_admin_log_id_seq OWNER TO puri;
+ALTER TABLE django_admin_log_id_seq OWNER TO sumit;
 
 --
--- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE django_admin_log_id_seq OWNED BY django_admin_log.id;
 
 
 --
--- Name: django_content_type; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE django_content_type (
@@ -589,10 +589,10 @@ CREATE TABLE django_content_type (
 );
 
 
-ALTER TABLE django_content_type OWNER TO puri;
+ALTER TABLE django_content_type OWNER TO sumit;
 
 --
--- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE django_content_type_id_seq
@@ -603,17 +603,17 @@ CREATE SEQUENCE django_content_type_id_seq
     CACHE 1;
 
 
-ALTER TABLE django_content_type_id_seq OWNER TO puri;
+ALTER TABLE django_content_type_id_seq OWNER TO sumit;
 
 --
--- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE django_content_type_id_seq OWNED BY django_content_type.id;
 
 
 --
--- Name: django_migrations; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE django_migrations (
@@ -624,10 +624,10 @@ CREATE TABLE django_migrations (
 );
 
 
-ALTER TABLE django_migrations OWNER TO puri;
+ALTER TABLE django_migrations OWNER TO sumit;
 
 --
--- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE django_migrations_id_seq
@@ -638,17 +638,17 @@ CREATE SEQUENCE django_migrations_id_seq
     CACHE 1;
 
 
-ALTER TABLE django_migrations_id_seq OWNER TO puri;
+ALTER TABLE django_migrations_id_seq OWNER TO sumit;
 
 --
--- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE django_migrations_id_seq OWNED BY django_migrations.id;
 
 
 --
--- Name: django_session; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: django_session; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE django_session (
@@ -658,10 +658,10 @@ CREATE TABLE django_session (
 );
 
 
-ALTER TABLE django_session OWNER TO puri;
+ALTER TABLE django_session OWNER TO sumit;
 
 --
--- Name: documents_gallery_documentsindexpage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: documents_gallery_documentsindexpage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE documents_gallery_documentsindexpage (
@@ -671,10 +671,10 @@ CREATE TABLE documents_gallery_documentsindexpage (
 );
 
 
-ALTER TABLE documents_gallery_documentsindexpage OWNER TO puri;
+ALTER TABLE documents_gallery_documentsindexpage OWNER TO sumit;
 
 --
--- Name: documents_gallery_documentspage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: documents_gallery_documentspage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE documents_gallery_documentspage (
@@ -683,10 +683,10 @@ CREATE TABLE documents_gallery_documentspage (
 );
 
 
-ALTER TABLE documents_gallery_documentspage OWNER TO puri;
+ALTER TABLE documents_gallery_documentspage OWNER TO sumit;
 
 --
--- Name: documents_gallery_documentspagetag; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: documents_gallery_documentspagetag; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE documents_gallery_documentspagetag (
@@ -696,10 +696,10 @@ CREATE TABLE documents_gallery_documentspagetag (
 );
 
 
-ALTER TABLE documents_gallery_documentspagetag OWNER TO puri;
+ALTER TABLE documents_gallery_documentspagetag OWNER TO sumit;
 
 --
--- Name: documents_gallery_documentspagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: documents_gallery_documentspagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE documents_gallery_documentspagetag_id_seq
@@ -710,17 +710,17 @@ CREATE SEQUENCE documents_gallery_documentspagetag_id_seq
     CACHE 1;
 
 
-ALTER TABLE documents_gallery_documentspagetag_id_seq OWNER TO puri;
+ALTER TABLE documents_gallery_documentspagetag_id_seq OWNER TO sumit;
 
 --
--- Name: documents_gallery_documentspagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: documents_gallery_documentspagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE documents_gallery_documentspagetag_id_seq OWNED BY documents_gallery_documentspagetag.id;
 
 
 --
--- Name: events_eventindexpage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventindexpage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE events_eventindexpage (
@@ -729,10 +729,10 @@ CREATE TABLE events_eventindexpage (
 );
 
 
-ALTER TABLE events_eventindexpage OWNER TO puri;
+ALTER TABLE events_eventindexpage OWNER TO sumit;
 
 --
--- Name: events_eventindexpagerelatedlink; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventindexpagerelatedlink; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE events_eventindexpagerelatedlink (
@@ -746,10 +746,10 @@ CREATE TABLE events_eventindexpagerelatedlink (
 );
 
 
-ALTER TABLE events_eventindexpagerelatedlink OWNER TO puri;
+ALTER TABLE events_eventindexpagerelatedlink OWNER TO sumit;
 
 --
--- Name: events_eventindexpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: events_eventindexpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE events_eventindexpagerelatedlink_id_seq
@@ -760,17 +760,17 @@ CREATE SEQUENCE events_eventindexpagerelatedlink_id_seq
     CACHE 1;
 
 
-ALTER TABLE events_eventindexpagerelatedlink_id_seq OWNER TO puri;
+ALTER TABLE events_eventindexpagerelatedlink_id_seq OWNER TO sumit;
 
 --
--- Name: events_eventindexpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: events_eventindexpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE events_eventindexpagerelatedlink_id_seq OWNED BY events_eventindexpagerelatedlink.id;
 
 
 --
--- Name: events_eventpage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE events_eventpage (
@@ -788,10 +788,10 @@ CREATE TABLE events_eventpage (
 );
 
 
-ALTER TABLE events_eventpage OWNER TO puri;
+ALTER TABLE events_eventpage OWNER TO sumit;
 
 --
--- Name: events_eventpagecarouselitem; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagecarouselitem; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE events_eventpagecarouselitem (
@@ -807,10 +807,10 @@ CREATE TABLE events_eventpagecarouselitem (
 );
 
 
-ALTER TABLE events_eventpagecarouselitem OWNER TO puri;
+ALTER TABLE events_eventpagecarouselitem OWNER TO sumit;
 
 --
--- Name: events_eventpagecarouselitem_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: events_eventpagecarouselitem_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE events_eventpagecarouselitem_id_seq
@@ -821,17 +821,17 @@ CREATE SEQUENCE events_eventpagecarouselitem_id_seq
     CACHE 1;
 
 
-ALTER TABLE events_eventpagecarouselitem_id_seq OWNER TO puri;
+ALTER TABLE events_eventpagecarouselitem_id_seq OWNER TO sumit;
 
 --
--- Name: events_eventpagecarouselitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: events_eventpagecarouselitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE events_eventpagecarouselitem_id_seq OWNED BY events_eventpagecarouselitem.id;
 
 
 --
--- Name: events_eventpagerelatedlink; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagerelatedlink; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE events_eventpagerelatedlink (
@@ -845,10 +845,10 @@ CREATE TABLE events_eventpagerelatedlink (
 );
 
 
-ALTER TABLE events_eventpagerelatedlink OWNER TO puri;
+ALTER TABLE events_eventpagerelatedlink OWNER TO sumit;
 
 --
--- Name: events_eventpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: events_eventpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE events_eventpagerelatedlink_id_seq
@@ -859,17 +859,17 @@ CREATE SEQUENCE events_eventpagerelatedlink_id_seq
     CACHE 1;
 
 
-ALTER TABLE events_eventpagerelatedlink_id_seq OWNER TO puri;
+ALTER TABLE events_eventpagerelatedlink_id_seq OWNER TO sumit;
 
 --
--- Name: events_eventpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: events_eventpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE events_eventpagerelatedlink_id_seq OWNED BY events_eventpagerelatedlink.id;
 
 
 --
--- Name: events_eventpagespeaker; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagespeaker; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE events_eventpagespeaker (
@@ -884,10 +884,10 @@ CREATE TABLE events_eventpagespeaker (
 );
 
 
-ALTER TABLE events_eventpagespeaker OWNER TO puri;
+ALTER TABLE events_eventpagespeaker OWNER TO sumit;
 
 --
--- Name: events_eventpagespeaker_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: events_eventpagespeaker_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE events_eventpagespeaker_id_seq
@@ -898,17 +898,17 @@ CREATE SEQUENCE events_eventpagespeaker_id_seq
     CACHE 1;
 
 
-ALTER TABLE events_eventpagespeaker_id_seq OWNER TO puri;
+ALTER TABLE events_eventpagespeaker_id_seq OWNER TO sumit;
 
 --
--- Name: events_eventpagespeaker_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: events_eventpagespeaker_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE events_eventpagespeaker_id_seq OWNED BY events_eventpagespeaker.id;
 
 
 --
--- Name: events_eventpagetag; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagetag; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE events_eventpagetag (
@@ -918,10 +918,10 @@ CREATE TABLE events_eventpagetag (
 );
 
 
-ALTER TABLE events_eventpagetag OWNER TO puri;
+ALTER TABLE events_eventpagetag OWNER TO sumit;
 
 --
--- Name: events_eventpagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: events_eventpagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE events_eventpagetag_id_seq
@@ -932,17 +932,17 @@ CREATE SEQUENCE events_eventpagetag_id_seq
     CACHE 1;
 
 
-ALTER TABLE events_eventpagetag_id_seq OWNER TO puri;
+ALTER TABLE events_eventpagetag_id_seq OWNER TO sumit;
 
 --
--- Name: events_eventpagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: events_eventpagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE events_eventpagetag_id_seq OWNED BY events_eventpagetag.id;
 
 
 --
--- Name: pages_advert; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_advert; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE pages_advert (
@@ -957,10 +957,10 @@ CREATE TABLE pages_advert (
 );
 
 
-ALTER TABLE pages_advert OWNER TO puri;
+ALTER TABLE pages_advert OWNER TO sumit;
 
 --
--- Name: pages_advert_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: pages_advert_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE pages_advert_id_seq
@@ -971,17 +971,17 @@ CREATE SEQUENCE pages_advert_id_seq
     CACHE 1;
 
 
-ALTER TABLE pages_advert_id_seq OWNER TO puri;
+ALTER TABLE pages_advert_id_seq OWNER TO sumit;
 
 --
--- Name: pages_advert_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: pages_advert_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE pages_advert_id_seq OWNED BY pages_advert.id;
 
 
 --
--- Name: pages_contentblock; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_contentblock; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE pages_contentblock (
@@ -997,10 +997,10 @@ CREATE TABLE pages_contentblock (
 );
 
 
-ALTER TABLE pages_contentblock OWNER TO puri;
+ALTER TABLE pages_contentblock OWNER TO sumit;
 
 --
--- Name: pages_contentblock_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: pages_contentblock_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE pages_contentblock_id_seq
@@ -1011,17 +1011,17 @@ CREATE SEQUENCE pages_contentblock_id_seq
     CACHE 1;
 
 
-ALTER TABLE pages_contentblock_id_seq OWNER TO puri;
+ALTER TABLE pages_contentblock_id_seq OWNER TO sumit;
 
 --
--- Name: pages_contentblock_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: pages_contentblock_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE pages_contentblock_id_seq OWNED BY pages_contentblock.id;
 
 
 --
--- Name: pages_faqspage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_faqspage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE pages_faqspage (
@@ -1030,10 +1030,10 @@ CREATE TABLE pages_faqspage (
 );
 
 
-ALTER TABLE pages_faqspage OWNER TO puri;
+ALTER TABLE pages_faqspage OWNER TO sumit;
 
 --
--- Name: pages_homepage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE pages_homepage (
@@ -1043,10 +1043,10 @@ CREATE TABLE pages_homepage (
 );
 
 
-ALTER TABLE pages_homepage OWNER TO puri;
+ALTER TABLE pages_homepage OWNER TO sumit;
 
 --
--- Name: pages_homepagecarouselitem; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagecarouselitem; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE pages_homepagecarouselitem (
@@ -1062,10 +1062,10 @@ CREATE TABLE pages_homepagecarouselitem (
 );
 
 
-ALTER TABLE pages_homepagecarouselitem OWNER TO puri;
+ALTER TABLE pages_homepagecarouselitem OWNER TO sumit;
 
 --
--- Name: pages_homepagecarouselitem_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: pages_homepagecarouselitem_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE pages_homepagecarouselitem_id_seq
@@ -1076,17 +1076,17 @@ CREATE SEQUENCE pages_homepagecarouselitem_id_seq
     CACHE 1;
 
 
-ALTER TABLE pages_homepagecarouselitem_id_seq OWNER TO puri;
+ALTER TABLE pages_homepagecarouselitem_id_seq OWNER TO sumit;
 
 --
--- Name: pages_homepagecarouselitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: pages_homepagecarouselitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE pages_homepagecarouselitem_id_seq OWNED BY pages_homepagecarouselitem.id;
 
 
 --
--- Name: pages_homepagecontentitem; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagecontentitem; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE pages_homepagecontentitem (
@@ -1104,10 +1104,10 @@ CREATE TABLE pages_homepagecontentitem (
 );
 
 
-ALTER TABLE pages_homepagecontentitem OWNER TO puri;
+ALTER TABLE pages_homepagecontentitem OWNER TO sumit;
 
 --
--- Name: pages_homepagecontentitem_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: pages_homepagecontentitem_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE pages_homepagecontentitem_id_seq
@@ -1118,17 +1118,17 @@ CREATE SEQUENCE pages_homepagecontentitem_id_seq
     CACHE 1;
 
 
-ALTER TABLE pages_homepagecontentitem_id_seq OWNER TO puri;
+ALTER TABLE pages_homepagecontentitem_id_seq OWNER TO sumit;
 
 --
--- Name: pages_homepagecontentitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: pages_homepagecontentitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE pages_homepagecontentitem_id_seq OWNED BY pages_homepagecontentitem.id;
 
 
 --
--- Name: pages_homepagerelatedlink; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagerelatedlink; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE pages_homepagerelatedlink (
@@ -1142,10 +1142,10 @@ CREATE TABLE pages_homepagerelatedlink (
 );
 
 
-ALTER TABLE pages_homepagerelatedlink OWNER TO puri;
+ALTER TABLE pages_homepagerelatedlink OWNER TO sumit;
 
 --
--- Name: pages_homepagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: pages_homepagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE pages_homepagerelatedlink_id_seq
@@ -1156,17 +1156,17 @@ CREATE SEQUENCE pages_homepagerelatedlink_id_seq
     CACHE 1;
 
 
-ALTER TABLE pages_homepagerelatedlink_id_seq OWNER TO puri;
+ALTER TABLE pages_homepagerelatedlink_id_seq OWNER TO sumit;
 
 --
--- Name: pages_homepagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: pages_homepagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE pages_homepagerelatedlink_id_seq OWNED BY pages_homepagerelatedlink.id;
 
 
 --
--- Name: pages_socialmediasettings; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_socialmediasettings; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE pages_socialmediasettings (
@@ -1182,10 +1182,10 @@ CREATE TABLE pages_socialmediasettings (
 );
 
 
-ALTER TABLE pages_socialmediasettings OWNER TO puri;
+ALTER TABLE pages_socialmediasettings OWNER TO sumit;
 
 --
--- Name: pages_socialmediasettings_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: pages_socialmediasettings_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE pages_socialmediasettings_id_seq
@@ -1196,17 +1196,17 @@ CREATE SEQUENCE pages_socialmediasettings_id_seq
     CACHE 1;
 
 
-ALTER TABLE pages_socialmediasettings_id_seq OWNER TO puri;
+ALTER TABLE pages_socialmediasettings_id_seq OWNER TO sumit;
 
 --
--- Name: pages_socialmediasettings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: pages_socialmediasettings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE pages_socialmediasettings_id_seq OWNED BY pages_socialmediasettings.id;
 
 
 --
--- Name: pages_standardindexpage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardindexpage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE pages_standardindexpage (
@@ -1217,10 +1217,10 @@ CREATE TABLE pages_standardindexpage (
 );
 
 
-ALTER TABLE pages_standardindexpage OWNER TO puri;
+ALTER TABLE pages_standardindexpage OWNER TO sumit;
 
 --
--- Name: pages_standardindexpagerelatedlink; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardindexpagerelatedlink; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE pages_standardindexpagerelatedlink (
@@ -1234,10 +1234,10 @@ CREATE TABLE pages_standardindexpagerelatedlink (
 );
 
 
-ALTER TABLE pages_standardindexpagerelatedlink OWNER TO puri;
+ALTER TABLE pages_standardindexpagerelatedlink OWNER TO sumit;
 
 --
--- Name: pages_standardindexpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: pages_standardindexpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE pages_standardindexpagerelatedlink_id_seq
@@ -1248,17 +1248,17 @@ CREATE SEQUENCE pages_standardindexpagerelatedlink_id_seq
     CACHE 1;
 
 
-ALTER TABLE pages_standardindexpagerelatedlink_id_seq OWNER TO puri;
+ALTER TABLE pages_standardindexpagerelatedlink_id_seq OWNER TO sumit;
 
 --
--- Name: pages_standardindexpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: pages_standardindexpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE pages_standardindexpagerelatedlink_id_seq OWNED BY pages_standardindexpagerelatedlink.id;
 
 
 --
--- Name: pages_standardpage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardpage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE pages_standardpage (
@@ -1271,10 +1271,10 @@ CREATE TABLE pages_standardpage (
 );
 
 
-ALTER TABLE pages_standardpage OWNER TO puri;
+ALTER TABLE pages_standardpage OWNER TO sumit;
 
 --
--- Name: pages_standardpagecarouselitem; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardpagecarouselitem; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE pages_standardpagecarouselitem (
@@ -1290,10 +1290,10 @@ CREATE TABLE pages_standardpagecarouselitem (
 );
 
 
-ALTER TABLE pages_standardpagecarouselitem OWNER TO puri;
+ALTER TABLE pages_standardpagecarouselitem OWNER TO sumit;
 
 --
--- Name: pages_standardpagecarouselitem_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: pages_standardpagecarouselitem_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE pages_standardpagecarouselitem_id_seq
@@ -1304,17 +1304,17 @@ CREATE SEQUENCE pages_standardpagecarouselitem_id_seq
     CACHE 1;
 
 
-ALTER TABLE pages_standardpagecarouselitem_id_seq OWNER TO puri;
+ALTER TABLE pages_standardpagecarouselitem_id_seq OWNER TO sumit;
 
 --
--- Name: pages_standardpagecarouselitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: pages_standardpagecarouselitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE pages_standardpagecarouselitem_id_seq OWNED BY pages_standardpagecarouselitem.id;
 
 
 --
--- Name: pages_standardpagerelatedlink; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardpagerelatedlink; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE pages_standardpagerelatedlink (
@@ -1328,10 +1328,10 @@ CREATE TABLE pages_standardpagerelatedlink (
 );
 
 
-ALTER TABLE pages_standardpagerelatedlink OWNER TO puri;
+ALTER TABLE pages_standardpagerelatedlink OWNER TO sumit;
 
 --
--- Name: pages_standardpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: pages_standardpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE pages_standardpagerelatedlink_id_seq
@@ -1342,17 +1342,17 @@ CREATE SEQUENCE pages_standardpagerelatedlink_id_seq
     CACHE 1;
 
 
-ALTER TABLE pages_standardpagerelatedlink_id_seq OWNER TO puri;
+ALTER TABLE pages_standardpagerelatedlink_id_seq OWNER TO sumit;
 
 --
--- Name: pages_standardpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: pages_standardpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE pages_standardpagerelatedlink_id_seq OWNED BY pages_standardpagerelatedlink.id;
 
 
 --
--- Name: pages_testimonial; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_testimonial; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE pages_testimonial (
@@ -1367,10 +1367,10 @@ CREATE TABLE pages_testimonial (
 );
 
 
-ALTER TABLE pages_testimonial OWNER TO puri;
+ALTER TABLE pages_testimonial OWNER TO sumit;
 
 --
--- Name: pages_testimonial_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: pages_testimonial_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE pages_testimonial_id_seq
@@ -1381,17 +1381,17 @@ CREATE SEQUENCE pages_testimonial_id_seq
     CACHE 1;
 
 
-ALTER TABLE pages_testimonial_id_seq OWNER TO puri;
+ALTER TABLE pages_testimonial_id_seq OWNER TO sumit;
 
 --
--- Name: pages_testimonial_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: pages_testimonial_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE pages_testimonial_id_seq OWNED BY pages_testimonial.id;
 
 
 --
--- Name: people_personindexpage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personindexpage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE people_personindexpage (
@@ -1401,10 +1401,10 @@ CREATE TABLE people_personindexpage (
 );
 
 
-ALTER TABLE people_personindexpage OWNER TO puri;
+ALTER TABLE people_personindexpage OWNER TO sumit;
 
 --
--- Name: people_personindexpagerelatedlink; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personindexpagerelatedlink; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE people_personindexpagerelatedlink (
@@ -1418,10 +1418,10 @@ CREATE TABLE people_personindexpagerelatedlink (
 );
 
 
-ALTER TABLE people_personindexpagerelatedlink OWNER TO puri;
+ALTER TABLE people_personindexpagerelatedlink OWNER TO sumit;
 
 --
--- Name: people_personindexpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: people_personindexpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE people_personindexpagerelatedlink_id_seq
@@ -1432,17 +1432,17 @@ CREATE SEQUENCE people_personindexpagerelatedlink_id_seq
     CACHE 1;
 
 
-ALTER TABLE people_personindexpagerelatedlink_id_seq OWNER TO puri;
+ALTER TABLE people_personindexpagerelatedlink_id_seq OWNER TO sumit;
 
 --
--- Name: people_personindexpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: people_personindexpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE people_personindexpagerelatedlink_id_seq OWNED BY people_personindexpagerelatedlink.id;
 
 
 --
--- Name: people_personpage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personpage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE people_personpage (
@@ -1463,10 +1463,10 @@ CREATE TABLE people_personpage (
 );
 
 
-ALTER TABLE people_personpage OWNER TO puri;
+ALTER TABLE people_personpage OWNER TO sumit;
 
 --
--- Name: people_personpagerelatedlink; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personpagerelatedlink; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE people_personpagerelatedlink (
@@ -1480,10 +1480,10 @@ CREATE TABLE people_personpagerelatedlink (
 );
 
 
-ALTER TABLE people_personpagerelatedlink OWNER TO puri;
+ALTER TABLE people_personpagerelatedlink OWNER TO sumit;
 
 --
--- Name: people_personpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: people_personpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE people_personpagerelatedlink_id_seq
@@ -1494,17 +1494,17 @@ CREATE SEQUENCE people_personpagerelatedlink_id_seq
     CACHE 1;
 
 
-ALTER TABLE people_personpagerelatedlink_id_seq OWNER TO puri;
+ALTER TABLE people_personpagerelatedlink_id_seq OWNER TO sumit;
 
 --
--- Name: people_personpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: people_personpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE people_personpagerelatedlink_id_seq OWNED BY people_personpagerelatedlink.id;
 
 
 --
--- Name: people_personpagetag; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personpagetag; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE people_personpagetag (
@@ -1514,10 +1514,10 @@ CREATE TABLE people_personpagetag (
 );
 
 
-ALTER TABLE people_personpagetag OWNER TO puri;
+ALTER TABLE people_personpagetag OWNER TO sumit;
 
 --
--- Name: people_personpagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: people_personpagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE people_personpagetag_id_seq
@@ -1528,17 +1528,17 @@ CREATE SEQUENCE people_personpagetag_id_seq
     CACHE 1;
 
 
-ALTER TABLE people_personpagetag_id_seq OWNER TO puri;
+ALTER TABLE people_personpagetag_id_seq OWNER TO sumit;
 
 --
--- Name: people_personpagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: people_personpagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE people_personpagetag_id_seq OWNED BY people_personpagetag.id;
 
 
 --
--- Name: people_personrole; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personrole; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE people_personrole (
@@ -1547,10 +1547,10 @@ CREATE TABLE people_personrole (
 );
 
 
-ALTER TABLE people_personrole OWNER TO puri;
+ALTER TABLE people_personrole OWNER TO sumit;
 
 --
--- Name: people_personrole_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: people_personrole_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE people_personrole_id_seq
@@ -1561,17 +1561,17 @@ CREATE SEQUENCE people_personrole_id_seq
     CACHE 1;
 
 
-ALTER TABLE people_personrole_id_seq OWNER TO puri;
+ALTER TABLE people_personrole_id_seq OWNER TO sumit;
 
 --
--- Name: people_personrole_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: people_personrole_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE people_personrole_id_seq OWNED BY people_personrole.id;
 
 
 --
--- Name: photo_gallery_galleryindexpage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: photo_gallery_galleryindexpage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE photo_gallery_galleryindexpage (
@@ -1581,10 +1581,10 @@ CREATE TABLE photo_gallery_galleryindexpage (
 );
 
 
-ALTER TABLE photo_gallery_galleryindexpage OWNER TO puri;
+ALTER TABLE photo_gallery_galleryindexpage OWNER TO sumit;
 
 --
--- Name: photo_gallery_gallerypage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: photo_gallery_gallerypage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE photo_gallery_gallerypage (
@@ -1593,10 +1593,10 @@ CREATE TABLE photo_gallery_gallerypage (
 );
 
 
-ALTER TABLE photo_gallery_gallerypage OWNER TO puri;
+ALTER TABLE photo_gallery_gallerypage OWNER TO sumit;
 
 --
--- Name: photo_gallery_gallerypagetag; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: photo_gallery_gallerypagetag; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE photo_gallery_gallerypagetag (
@@ -1606,10 +1606,10 @@ CREATE TABLE photo_gallery_gallerypagetag (
 );
 
 
-ALTER TABLE photo_gallery_gallerypagetag OWNER TO puri;
+ALTER TABLE photo_gallery_gallerypagetag OWNER TO sumit;
 
 --
--- Name: photo_gallery_gallerypagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: photo_gallery_gallerypagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE photo_gallery_gallerypagetag_id_seq
@@ -1620,17 +1620,17 @@ CREATE SEQUENCE photo_gallery_gallerypagetag_id_seq
     CACHE 1;
 
 
-ALTER TABLE photo_gallery_gallerypagetag_id_seq OWNER TO puri;
+ALTER TABLE photo_gallery_gallerypagetag_id_seq OWNER TO sumit;
 
 --
--- Name: photo_gallery_gallerypagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: photo_gallery_gallerypagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE photo_gallery_gallerypagetag_id_seq OWNED BY photo_gallery_gallerypagetag.id;
 
 
 --
--- Name: products_productindexpage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productindexpage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE products_productindexpage (
@@ -1640,10 +1640,10 @@ CREATE TABLE products_productindexpage (
 );
 
 
-ALTER TABLE products_productindexpage OWNER TO puri;
+ALTER TABLE products_productindexpage OWNER TO sumit;
 
 --
--- Name: products_productindexpagerelatedlink; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productindexpagerelatedlink; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE products_productindexpagerelatedlink (
@@ -1657,10 +1657,10 @@ CREATE TABLE products_productindexpagerelatedlink (
 );
 
 
-ALTER TABLE products_productindexpagerelatedlink OWNER TO puri;
+ALTER TABLE products_productindexpagerelatedlink OWNER TO sumit;
 
 --
--- Name: products_productindexpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: products_productindexpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE products_productindexpagerelatedlink_id_seq
@@ -1671,17 +1671,17 @@ CREATE SEQUENCE products_productindexpagerelatedlink_id_seq
     CACHE 1;
 
 
-ALTER TABLE products_productindexpagerelatedlink_id_seq OWNER TO puri;
+ALTER TABLE products_productindexpagerelatedlink_id_seq OWNER TO sumit;
 
 --
--- Name: products_productindexpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: products_productindexpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE products_productindexpagerelatedlink_id_seq OWNED BY products_productindexpagerelatedlink.id;
 
 
 --
--- Name: products_productpage; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productpage; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE products_productpage (
@@ -1689,14 +1689,16 @@ CREATE TABLE products_productpage (
     price character varying(255) NOT NULL,
     description text NOT NULL,
     feed_image_id integer,
-    image_id integer
+    image_id integer,
+    intro character varying(255) NOT NULL,
+    link_demo character varying(200) NOT NULL
 );
 
 
-ALTER TABLE products_productpage OWNER TO puri;
+ALTER TABLE products_productpage OWNER TO sumit;
 
 --
--- Name: products_productpagerelatedlink; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productpagerelatedlink; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE products_productpagerelatedlink (
@@ -1710,10 +1712,10 @@ CREATE TABLE products_productpagerelatedlink (
 );
 
 
-ALTER TABLE products_productpagerelatedlink OWNER TO puri;
+ALTER TABLE products_productpagerelatedlink OWNER TO sumit;
 
 --
--- Name: products_productpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: products_productpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE products_productpagerelatedlink_id_seq
@@ -1724,17 +1726,17 @@ CREATE SEQUENCE products_productpagerelatedlink_id_seq
     CACHE 1;
 
 
-ALTER TABLE products_productpagerelatedlink_id_seq OWNER TO puri;
+ALTER TABLE products_productpagerelatedlink_id_seq OWNER TO sumit;
 
 --
--- Name: products_productpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: products_productpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE products_productpagerelatedlink_id_seq OWNED BY products_productpagerelatedlink.id;
 
 
 --
--- Name: products_productpagetag; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productpagetag; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE products_productpagetag (
@@ -1744,10 +1746,10 @@ CREATE TABLE products_productpagetag (
 );
 
 
-ALTER TABLE products_productpagetag OWNER TO puri;
+ALTER TABLE products_productpagetag OWNER TO sumit;
 
 --
--- Name: products_productpagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: products_productpagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE products_productpagetag_id_seq
@@ -1758,17 +1760,17 @@ CREATE SEQUENCE products_productpagetag_id_seq
     CACHE 1;
 
 
-ALTER TABLE products_productpagetag_id_seq OWNER TO puri;
+ALTER TABLE products_productpagetag_id_seq OWNER TO sumit;
 
 --
--- Name: products_productpagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: products_productpagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE products_productpagetag_id_seq OWNED BY products_productpagetag.id;
 
 
 --
--- Name: taggit_tag; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: taggit_tag; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE taggit_tag (
@@ -1778,10 +1780,10 @@ CREATE TABLE taggit_tag (
 );
 
 
-ALTER TABLE taggit_tag OWNER TO puri;
+ALTER TABLE taggit_tag OWNER TO sumit;
 
 --
--- Name: taggit_tag_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: taggit_tag_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE taggit_tag_id_seq
@@ -1792,17 +1794,17 @@ CREATE SEQUENCE taggit_tag_id_seq
     CACHE 1;
 
 
-ALTER TABLE taggit_tag_id_seq OWNER TO puri;
+ALTER TABLE taggit_tag_id_seq OWNER TO sumit;
 
 --
--- Name: taggit_tag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: taggit_tag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE taggit_tag_id_seq OWNED BY taggit_tag.id;
 
 
 --
--- Name: taggit_taggeditem; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: taggit_taggeditem; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE taggit_taggeditem (
@@ -1813,10 +1815,10 @@ CREATE TABLE taggit_taggeditem (
 );
 
 
-ALTER TABLE taggit_taggeditem OWNER TO puri;
+ALTER TABLE taggit_taggeditem OWNER TO sumit;
 
 --
--- Name: taggit_taggeditem_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: taggit_taggeditem_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE taggit_taggeditem_id_seq
@@ -1827,17 +1829,17 @@ CREATE SEQUENCE taggit_taggeditem_id_seq
     CACHE 1;
 
 
-ALTER TABLE taggit_taggeditem_id_seq OWNER TO puri;
+ALTER TABLE taggit_taggeditem_id_seq OWNER TO sumit;
 
 --
--- Name: taggit_taggeditem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: taggit_taggeditem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE taggit_taggeditem_id_seq OWNED BY taggit_taggeditem.id;
 
 
 --
--- Name: wagtail_feeds_rssfeedssettings; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtail_feeds_rssfeedssettings; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtail_feeds_rssfeedssettings (
@@ -1855,10 +1857,10 @@ CREATE TABLE wagtail_feeds_rssfeedssettings (
 );
 
 
-ALTER TABLE wagtail_feeds_rssfeedssettings OWNER TO puri;
+ALTER TABLE wagtail_feeds_rssfeedssettings OWNER TO sumit;
 
 --
--- Name: wagtail_feeds_rssfeedssettings_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtail_feeds_rssfeedssettings_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtail_feeds_rssfeedssettings_id_seq
@@ -1869,17 +1871,17 @@ CREATE SEQUENCE wagtail_feeds_rssfeedssettings_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtail_feeds_rssfeedssettings_id_seq OWNER TO puri;
+ALTER TABLE wagtail_feeds_rssfeedssettings_id_seq OWNER TO sumit;
 
 --
--- Name: wagtail_feeds_rssfeedssettings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtail_feeds_rssfeedssettings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtail_feeds_rssfeedssettings_id_seq OWNED BY wagtail_feeds_rssfeedssettings.id;
 
 
 --
--- Name: wagtailcore_collection; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_collection; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtailcore_collection (
@@ -1893,10 +1895,10 @@ CREATE TABLE wagtailcore_collection (
 );
 
 
-ALTER TABLE wagtailcore_collection OWNER TO puri;
+ALTER TABLE wagtailcore_collection OWNER TO sumit;
 
 --
--- Name: wagtailcore_collection_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtailcore_collection_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtailcore_collection_id_seq
@@ -1907,17 +1909,17 @@ CREATE SEQUENCE wagtailcore_collection_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtailcore_collection_id_seq OWNER TO puri;
+ALTER TABLE wagtailcore_collection_id_seq OWNER TO sumit;
 
 --
--- Name: wagtailcore_collection_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtailcore_collection_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtailcore_collection_id_seq OWNED BY wagtailcore_collection.id;
 
 
 --
--- Name: wagtailcore_groupcollectionpermission; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_groupcollectionpermission; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtailcore_groupcollectionpermission (
@@ -1928,10 +1930,10 @@ CREATE TABLE wagtailcore_groupcollectionpermission (
 );
 
 
-ALTER TABLE wagtailcore_groupcollectionpermission OWNER TO puri;
+ALTER TABLE wagtailcore_groupcollectionpermission OWNER TO sumit;
 
 --
--- Name: wagtailcore_groupcollectionpermission_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtailcore_groupcollectionpermission_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtailcore_groupcollectionpermission_id_seq
@@ -1942,17 +1944,17 @@ CREATE SEQUENCE wagtailcore_groupcollectionpermission_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtailcore_groupcollectionpermission_id_seq OWNER TO puri;
+ALTER TABLE wagtailcore_groupcollectionpermission_id_seq OWNER TO sumit;
 
 --
--- Name: wagtailcore_groupcollectionpermission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtailcore_groupcollectionpermission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtailcore_groupcollectionpermission_id_seq OWNED BY wagtailcore_groupcollectionpermission.id;
 
 
 --
--- Name: wagtailcore_grouppagepermission; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_grouppagepermission; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtailcore_grouppagepermission (
@@ -1963,10 +1965,10 @@ CREATE TABLE wagtailcore_grouppagepermission (
 );
 
 
-ALTER TABLE wagtailcore_grouppagepermission OWNER TO puri;
+ALTER TABLE wagtailcore_grouppagepermission OWNER TO sumit;
 
 --
--- Name: wagtailcore_grouppagepermission_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtailcore_grouppagepermission_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtailcore_grouppagepermission_id_seq
@@ -1977,17 +1979,17 @@ CREATE SEQUENCE wagtailcore_grouppagepermission_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtailcore_grouppagepermission_id_seq OWNER TO puri;
+ALTER TABLE wagtailcore_grouppagepermission_id_seq OWNER TO sumit;
 
 --
--- Name: wagtailcore_grouppagepermission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtailcore_grouppagepermission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtailcore_grouppagepermission_id_seq OWNED BY wagtailcore_grouppagepermission.id;
 
 
 --
--- Name: wagtailcore_page; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_page; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtailcore_page (
@@ -2016,10 +2018,10 @@ CREATE TABLE wagtailcore_page (
 );
 
 
-ALTER TABLE wagtailcore_page OWNER TO puri;
+ALTER TABLE wagtailcore_page OWNER TO sumit;
 
 --
--- Name: wagtailcore_page_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtailcore_page_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtailcore_page_id_seq
@@ -2030,17 +2032,17 @@ CREATE SEQUENCE wagtailcore_page_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtailcore_page_id_seq OWNER TO puri;
+ALTER TABLE wagtailcore_page_id_seq OWNER TO sumit;
 
 --
--- Name: wagtailcore_page_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtailcore_page_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtailcore_page_id_seq OWNED BY wagtailcore_page.id;
 
 
 --
--- Name: wagtailcore_pagerevision; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_pagerevision; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtailcore_pagerevision (
@@ -2054,10 +2056,10 @@ CREATE TABLE wagtailcore_pagerevision (
 );
 
 
-ALTER TABLE wagtailcore_pagerevision OWNER TO puri;
+ALTER TABLE wagtailcore_pagerevision OWNER TO sumit;
 
 --
--- Name: wagtailcore_pagerevision_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtailcore_pagerevision_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtailcore_pagerevision_id_seq
@@ -2068,17 +2070,17 @@ CREATE SEQUENCE wagtailcore_pagerevision_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtailcore_pagerevision_id_seq OWNER TO puri;
+ALTER TABLE wagtailcore_pagerevision_id_seq OWNER TO sumit;
 
 --
--- Name: wagtailcore_pagerevision_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtailcore_pagerevision_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtailcore_pagerevision_id_seq OWNED BY wagtailcore_pagerevision.id;
 
 
 --
--- Name: wagtailcore_pageviewrestriction; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_pageviewrestriction; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtailcore_pageviewrestriction (
@@ -2088,10 +2090,10 @@ CREATE TABLE wagtailcore_pageviewrestriction (
 );
 
 
-ALTER TABLE wagtailcore_pageviewrestriction OWNER TO puri;
+ALTER TABLE wagtailcore_pageviewrestriction OWNER TO sumit;
 
 --
--- Name: wagtailcore_pageviewrestriction_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtailcore_pageviewrestriction_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtailcore_pageviewrestriction_id_seq
@@ -2102,17 +2104,17 @@ CREATE SEQUENCE wagtailcore_pageviewrestriction_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtailcore_pageviewrestriction_id_seq OWNER TO puri;
+ALTER TABLE wagtailcore_pageviewrestriction_id_seq OWNER TO sumit;
 
 --
--- Name: wagtailcore_pageviewrestriction_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtailcore_pageviewrestriction_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtailcore_pageviewrestriction_id_seq OWNED BY wagtailcore_pageviewrestriction.id;
 
 
 --
--- Name: wagtailcore_site; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_site; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtailcore_site (
@@ -2125,10 +2127,10 @@ CREATE TABLE wagtailcore_site (
 );
 
 
-ALTER TABLE wagtailcore_site OWNER TO puri;
+ALTER TABLE wagtailcore_site OWNER TO sumit;
 
 --
--- Name: wagtailcore_site_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtailcore_site_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtailcore_site_id_seq
@@ -2139,17 +2141,17 @@ CREATE SEQUENCE wagtailcore_site_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtailcore_site_id_seq OWNER TO puri;
+ALTER TABLE wagtailcore_site_id_seq OWNER TO sumit;
 
 --
--- Name: wagtailcore_site_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtailcore_site_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtailcore_site_id_seq OWNED BY wagtailcore_site.id;
 
 
 --
--- Name: wagtaildocs_document; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtaildocs_document; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtaildocs_document (
@@ -2162,10 +2164,10 @@ CREATE TABLE wagtaildocs_document (
 );
 
 
-ALTER TABLE wagtaildocs_document OWNER TO puri;
+ALTER TABLE wagtaildocs_document OWNER TO sumit;
 
 --
--- Name: wagtaildocs_document_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtaildocs_document_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtaildocs_document_id_seq
@@ -2176,17 +2178,17 @@ CREATE SEQUENCE wagtaildocs_document_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtaildocs_document_id_seq OWNER TO puri;
+ALTER TABLE wagtaildocs_document_id_seq OWNER TO sumit;
 
 --
--- Name: wagtaildocs_document_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtaildocs_document_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtaildocs_document_id_seq OWNED BY wagtaildocs_document.id;
 
 
 --
--- Name: wagtailembeds_embed; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailembeds_embed; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtailembeds_embed (
@@ -2205,10 +2207,10 @@ CREATE TABLE wagtailembeds_embed (
 );
 
 
-ALTER TABLE wagtailembeds_embed OWNER TO puri;
+ALTER TABLE wagtailembeds_embed OWNER TO sumit;
 
 --
--- Name: wagtailembeds_embed_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtailembeds_embed_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtailembeds_embed_id_seq
@@ -2219,17 +2221,17 @@ CREATE SEQUENCE wagtailembeds_embed_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtailembeds_embed_id_seq OWNER TO puri;
+ALTER TABLE wagtailembeds_embed_id_seq OWNER TO sumit;
 
 --
--- Name: wagtailembeds_embed_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtailembeds_embed_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtailembeds_embed_id_seq OWNED BY wagtailembeds_embed.id;
 
 
 --
--- Name: wagtailforms_formsubmission; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailforms_formsubmission; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtailforms_formsubmission (
@@ -2240,10 +2242,10 @@ CREATE TABLE wagtailforms_formsubmission (
 );
 
 
-ALTER TABLE wagtailforms_formsubmission OWNER TO puri;
+ALTER TABLE wagtailforms_formsubmission OWNER TO sumit;
 
 --
--- Name: wagtailforms_formsubmission_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtailforms_formsubmission_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtailforms_formsubmission_id_seq
@@ -2254,17 +2256,17 @@ CREATE SEQUENCE wagtailforms_formsubmission_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtailforms_formsubmission_id_seq OWNER TO puri;
+ALTER TABLE wagtailforms_formsubmission_id_seq OWNER TO sumit;
 
 --
--- Name: wagtailforms_formsubmission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtailforms_formsubmission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtailforms_formsubmission_id_seq OWNED BY wagtailforms_formsubmission.id;
 
 
 --
--- Name: wagtailimages_filter; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailimages_filter; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtailimages_filter (
@@ -2273,10 +2275,10 @@ CREATE TABLE wagtailimages_filter (
 );
 
 
-ALTER TABLE wagtailimages_filter OWNER TO puri;
+ALTER TABLE wagtailimages_filter OWNER TO sumit;
 
 --
--- Name: wagtailimages_filter_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtailimages_filter_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtailimages_filter_id_seq
@@ -2287,17 +2289,17 @@ CREATE SEQUENCE wagtailimages_filter_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtailimages_filter_id_seq OWNER TO puri;
+ALTER TABLE wagtailimages_filter_id_seq OWNER TO sumit;
 
 --
--- Name: wagtailimages_filter_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtailimages_filter_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtailimages_filter_id_seq OWNED BY wagtailimages_filter.id;
 
 
 --
--- Name: wagtailimages_image; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailimages_image; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtailimages_image (
@@ -2322,10 +2324,10 @@ CREATE TABLE wagtailimages_image (
 );
 
 
-ALTER TABLE wagtailimages_image OWNER TO puri;
+ALTER TABLE wagtailimages_image OWNER TO sumit;
 
 --
--- Name: wagtailimages_image_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtailimages_image_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtailimages_image_id_seq
@@ -2336,17 +2338,17 @@ CREATE SEQUENCE wagtailimages_image_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtailimages_image_id_seq OWNER TO puri;
+ALTER TABLE wagtailimages_image_id_seq OWNER TO sumit;
 
 --
--- Name: wagtailimages_image_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtailimages_image_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtailimages_image_id_seq OWNED BY wagtailimages_image.id;
 
 
 --
--- Name: wagtailimages_rendition; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailimages_rendition; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtailimages_rendition (
@@ -2360,10 +2362,10 @@ CREATE TABLE wagtailimages_rendition (
 );
 
 
-ALTER TABLE wagtailimages_rendition OWNER TO puri;
+ALTER TABLE wagtailimages_rendition OWNER TO sumit;
 
 --
--- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtailimages_rendition_id_seq
@@ -2374,17 +2376,17 @@ CREATE SEQUENCE wagtailimages_rendition_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtailimages_rendition_id_seq OWNER TO puri;
+ALTER TABLE wagtailimages_rendition_id_seq OWNER TO sumit;
 
 --
--- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtailimages_rendition_id_seq OWNED BY wagtailimages_rendition.id;
 
 
 --
--- Name: wagtailredirects_redirect; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailredirects_redirect; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtailredirects_redirect (
@@ -2397,10 +2399,10 @@ CREATE TABLE wagtailredirects_redirect (
 );
 
 
-ALTER TABLE wagtailredirects_redirect OWNER TO puri;
+ALTER TABLE wagtailredirects_redirect OWNER TO sumit;
 
 --
--- Name: wagtailredirects_redirect_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtailredirects_redirect_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtailredirects_redirect_id_seq
@@ -2411,17 +2413,17 @@ CREATE SEQUENCE wagtailredirects_redirect_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtailredirects_redirect_id_seq OWNER TO puri;
+ALTER TABLE wagtailredirects_redirect_id_seq OWNER TO sumit;
 
 --
--- Name: wagtailredirects_redirect_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtailredirects_redirect_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtailredirects_redirect_id_seq OWNED BY wagtailredirects_redirect.id;
 
 
 --
--- Name: wagtailsearchpromotions_searchpromotion; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailsearchpromotions_searchpromotion; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtailsearchpromotions_searchpromotion (
@@ -2433,10 +2435,10 @@ CREATE TABLE wagtailsearchpromotions_searchpromotion (
 );
 
 
-ALTER TABLE wagtailsearchpromotions_searchpromotion OWNER TO puri;
+ALTER TABLE wagtailsearchpromotions_searchpromotion OWNER TO sumit;
 
 --
--- Name: wagtailsearch_editorspick_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtailsearch_editorspick_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtailsearch_editorspick_id_seq
@@ -2447,17 +2449,17 @@ CREATE SEQUENCE wagtailsearch_editorspick_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtailsearch_editorspick_id_seq OWNER TO puri;
+ALTER TABLE wagtailsearch_editorspick_id_seq OWNER TO sumit;
 
 --
--- Name: wagtailsearch_editorspick_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtailsearch_editorspick_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtailsearch_editorspick_id_seq OWNED BY wagtailsearchpromotions_searchpromotion.id;
 
 
 --
--- Name: wagtailsearch_query; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailsearch_query; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtailsearch_query (
@@ -2466,10 +2468,10 @@ CREATE TABLE wagtailsearch_query (
 );
 
 
-ALTER TABLE wagtailsearch_query OWNER TO puri;
+ALTER TABLE wagtailsearch_query OWNER TO sumit;
 
 --
--- Name: wagtailsearch_query_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtailsearch_query_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtailsearch_query_id_seq
@@ -2480,17 +2482,17 @@ CREATE SEQUENCE wagtailsearch_query_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtailsearch_query_id_seq OWNER TO puri;
+ALTER TABLE wagtailsearch_query_id_seq OWNER TO sumit;
 
 --
--- Name: wagtailsearch_query_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtailsearch_query_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtailsearch_query_id_seq OWNED BY wagtailsearch_query.id;
 
 
 --
--- Name: wagtailsearch_querydailyhits; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailsearch_querydailyhits; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtailsearch_querydailyhits (
@@ -2501,10 +2503,10 @@ CREATE TABLE wagtailsearch_querydailyhits (
 );
 
 
-ALTER TABLE wagtailsearch_querydailyhits OWNER TO puri;
+ALTER TABLE wagtailsearch_querydailyhits OWNER TO sumit;
 
 --
--- Name: wagtailsearch_querydailyhits_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtailsearch_querydailyhits_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtailsearch_querydailyhits_id_seq
@@ -2515,17 +2517,17 @@ CREATE SEQUENCE wagtailsearch_querydailyhits_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtailsearch_querydailyhits_id_seq OWNER TO puri;
+ALTER TABLE wagtailsearch_querydailyhits_id_seq OWNER TO sumit;
 
 --
--- Name: wagtailsearch_querydailyhits_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtailsearch_querydailyhits_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtailsearch_querydailyhits_id_seq OWNED BY wagtailsearch_querydailyhits.id;
 
 
 --
--- Name: wagtailusers_userprofile; Type: TABLE; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailusers_userprofile; Type: TABLE; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE TABLE wagtailusers_userprofile (
@@ -2537,10 +2539,10 @@ CREATE TABLE wagtailusers_userprofile (
 );
 
 
-ALTER TABLE wagtailusers_userprofile OWNER TO puri;
+ALTER TABLE wagtailusers_userprofile OWNER TO sumit;
 
 --
--- Name: wagtailusers_userprofile_id_seq; Type: SEQUENCE; Schema: public; Owner: puri
+-- Name: wagtailusers_userprofile_id_seq; Type: SEQUENCE; Schema: public; Owner: sumit
 --
 
 CREATE SEQUENCE wagtailusers_userprofile_id_seq
@@ -2551,437 +2553,437 @@ CREATE SEQUENCE wagtailusers_userprofile_id_seq
     CACHE 1;
 
 
-ALTER TABLE wagtailusers_userprofile_id_seq OWNER TO puri;
+ALTER TABLE wagtailusers_userprofile_id_seq OWNER TO sumit;
 
 --
--- Name: wagtailusers_userprofile_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: puri
+-- Name: wagtailusers_userprofile_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sumit
 --
 
 ALTER SEQUENCE wagtailusers_userprofile_id_seq OWNED BY wagtailusers_userprofile.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY auth_group ALTER COLUMN id SET DEFAULT nextval('auth_group_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('auth_group_permissions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY auth_permission ALTER COLUMN id SET DEFAULT nextval('auth_permission_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY auth_user ALTER COLUMN id SET DEFAULT nextval('auth_user_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY auth_user_groups ALTER COLUMN id SET DEFAULT nextval('auth_user_groups_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('auth_user_user_permissions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogindexpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('blog_blogindexpagerelatedlink_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogpagecarouselitem ALTER COLUMN id SET DEFAULT nextval('blog_blogpagecarouselitem_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('blog_blogpagerelatedlink_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogpagetag ALTER COLUMN id SET DEFAULT nextval('blog_blogpagetag_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY contact_contactformfield ALTER COLUMN id SET DEFAULT nextval('contact_contactformfield_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY contact_formfield ALTER COLUMN id SET DEFAULT nextval('contact_formfield_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY django_admin_log ALTER COLUMN id SET DEFAULT nextval('django_admin_log_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY django_content_type ALTER COLUMN id SET DEFAULT nextval('django_content_type_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY django_migrations ALTER COLUMN id SET DEFAULT nextval('django_migrations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY documents_gallery_documentspagetag ALTER COLUMN id SET DEFAULT nextval('documents_gallery_documentspagetag_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventindexpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('events_eventindexpagerelatedlink_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpagecarouselitem ALTER COLUMN id SET DEFAULT nextval('events_eventpagecarouselitem_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('events_eventpagerelatedlink_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpagespeaker ALTER COLUMN id SET DEFAULT nextval('events_eventpagespeaker_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpagetag ALTER COLUMN id SET DEFAULT nextval('events_eventpagetag_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_advert ALTER COLUMN id SET DEFAULT nextval('pages_advert_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_contentblock ALTER COLUMN id SET DEFAULT nextval('pages_contentblock_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_homepagecarouselitem ALTER COLUMN id SET DEFAULT nextval('pages_homepagecarouselitem_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_homepagecontentitem ALTER COLUMN id SET DEFAULT nextval('pages_homepagecontentitem_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_homepagerelatedlink ALTER COLUMN id SET DEFAULT nextval('pages_homepagerelatedlink_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_socialmediasettings ALTER COLUMN id SET DEFAULT nextval('pages_socialmediasettings_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_standardindexpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('pages_standardindexpagerelatedlink_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_standardpagecarouselitem ALTER COLUMN id SET DEFAULT nextval('pages_standardpagecarouselitem_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_standardpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('pages_standardpagerelatedlink_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_testimonial ALTER COLUMN id SET DEFAULT nextval('pages_testimonial_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY people_personindexpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('people_personindexpagerelatedlink_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY people_personpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('people_personpagerelatedlink_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY people_personpagetag ALTER COLUMN id SET DEFAULT nextval('people_personpagetag_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY people_personrole ALTER COLUMN id SET DEFAULT nextval('people_personrole_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY photo_gallery_gallerypagetag ALTER COLUMN id SET DEFAULT nextval('photo_gallery_gallerypagetag_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY products_productindexpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('products_productindexpagerelatedlink_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY products_productpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('products_productpagerelatedlink_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY products_productpagetag ALTER COLUMN id SET DEFAULT nextval('products_productpagetag_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY taggit_tag ALTER COLUMN id SET DEFAULT nextval('taggit_tag_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY taggit_taggeditem ALTER COLUMN id SET DEFAULT nextval('taggit_taggeditem_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtail_feeds_rssfeedssettings ALTER COLUMN id SET DEFAULT nextval('wagtail_feeds_rssfeedssettings_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_collection ALTER COLUMN id SET DEFAULT nextval('wagtailcore_collection_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_groupcollectionpermission ALTER COLUMN id SET DEFAULT nextval('wagtailcore_groupcollectionpermission_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_grouppagepermission ALTER COLUMN id SET DEFAULT nextval('wagtailcore_grouppagepermission_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_page ALTER COLUMN id SET DEFAULT nextval('wagtailcore_page_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_pagerevision ALTER COLUMN id SET DEFAULT nextval('wagtailcore_pagerevision_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_pageviewrestriction ALTER COLUMN id SET DEFAULT nextval('wagtailcore_pageviewrestriction_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_site ALTER COLUMN id SET DEFAULT nextval('wagtailcore_site_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtaildocs_document ALTER COLUMN id SET DEFAULT nextval('wagtaildocs_document_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailembeds_embed ALTER COLUMN id SET DEFAULT nextval('wagtailembeds_embed_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailforms_formsubmission ALTER COLUMN id SET DEFAULT nextval('wagtailforms_formsubmission_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailimages_filter ALTER COLUMN id SET DEFAULT nextval('wagtailimages_filter_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailimages_image ALTER COLUMN id SET DEFAULT nextval('wagtailimages_image_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailimages_rendition ALTER COLUMN id SET DEFAULT nextval('wagtailimages_rendition_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailredirects_redirect ALTER COLUMN id SET DEFAULT nextval('wagtailredirects_redirect_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailsearch_query ALTER COLUMN id SET DEFAULT nextval('wagtailsearch_query_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailsearch_querydailyhits ALTER COLUMN id SET DEFAULT nextval('wagtailsearch_querydailyhits_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailsearchpromotions_searchpromotion ALTER COLUMN id SET DEFAULT nextval('wagtailsearch_editorspick_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: puri
+-- Name: id; Type: DEFAULT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailusers_userprofile ALTER COLUMN id SET DEFAULT nextval('wagtailusers_userprofile_id_seq'::regclass);
 
 
 --
--- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY auth_group (id, name) FROM stdin;
@@ -2991,14 +2993,14 @@ COPY auth_group (id, name) FROM stdin;
 
 
 --
--- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('auth_group_id_seq', 2, true);
 
 
 --
--- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY auth_group_permissions (id, group_id, permission_id) FROM stdin;
@@ -3020,14 +3022,14 @@ COPY auth_group_permissions (id, group_id, permission_id) FROM stdin;
 
 
 --
--- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('auth_group_permissions_id_seq', 14, true);
 
 
 --
--- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
@@ -3261,23 +3263,23 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 
 
 --
--- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('auth_permission_id_seq', 226, true);
 
 
 --
--- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$24000$FBIkUWyrzsUQ$NwBuozcnaGwY5hRXcyByhbjMeboUmhOTlgw4nfiLX5U=	2016-07-20 14:09:48.272109+05:30	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 12:57:16.7876+05:30
+1	pbkdf2_sha256$24000$FBIkUWyrzsUQ$NwBuozcnaGwY5hRXcyByhbjMeboUmhOTlgw4nfiLX5U=	2016-07-22 19:42:31.417825+05:30	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 12:57:16.7876+05:30
 \.
 
 
 --
--- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY auth_user_groups (id, user_id, group_id) FROM stdin;
@@ -3285,21 +3287,21 @@ COPY auth_user_groups (id, user_id, group_id) FROM stdin;
 
 
 --
--- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('auth_user_groups_id_seq', 1, false);
 
 
 --
--- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('auth_user_id_seq', 1, true);
 
 
 --
--- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
@@ -3307,14 +3309,14 @@ COPY auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
 
 
 --
--- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('auth_user_user_permissions_id_seq', 1, false);
 
 
 --
--- Data for Name: blog_blogindexpage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: blog_blogindexpage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY blog_blogindexpage (page_ptr_id, intro) FROM stdin;
@@ -3323,7 +3325,7 @@ COPY blog_blogindexpage (page_ptr_id, intro) FROM stdin;
 
 
 --
--- Data for Name: blog_blogindexpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: blog_blogindexpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY blog_blogindexpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
@@ -3331,14 +3333,14 @@ COPY blog_blogindexpagerelatedlink (id, sort_order, link_external, title, link_d
 
 
 --
--- Name: blog_blogindexpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: blog_blogindexpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('blog_blogindexpagerelatedlink_id_seq', 1, false);
 
 
 --
--- Data for Name: blog_blogpage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: blog_blogpage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY blog_blogpage (page_ptr_id, intro, body, date, feed_image_id) FROM stdin;
@@ -3349,7 +3351,7 @@ COPY blog_blogpage (page_ptr_id, intro, body, date, feed_image_id) FROM stdin;
 
 
 --
--- Data for Name: blog_blogpagecarouselitem; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: blog_blogpagecarouselitem; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY blog_blogpagecarouselitem (id, sort_order, link_external, embed_url, caption, image_id, link_document_id, link_page_id, page_id) FROM stdin;
@@ -3357,14 +3359,14 @@ COPY blog_blogpagecarouselitem (id, sort_order, link_external, embed_url, captio
 
 
 --
--- Name: blog_blogpagecarouselitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: blog_blogpagecarouselitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('blog_blogpagecarouselitem_id_seq', 1, false);
 
 
 --
--- Data for Name: blog_blogpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: blog_blogpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY blog_blogpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
@@ -3378,14 +3380,14 @@ COPY blog_blogpagerelatedlink (id, sort_order, link_external, title, link_docume
 
 
 --
--- Name: blog_blogpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: blog_blogpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('blog_blogpagerelatedlink_id_seq', 6, true);
 
 
 --
--- Data for Name: blog_blogpagetag; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: blog_blogpagetag; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY blog_blogpagetag (id, content_object_id, tag_id) FROM stdin;
@@ -3393,14 +3395,14 @@ COPY blog_blogpagetag (id, content_object_id, tag_id) FROM stdin;
 
 
 --
--- Name: blog_blogpagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: blog_blogpagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('blog_blogpagetag_id_seq', 1, false);
 
 
 --
--- Data for Name: contact_contactformfield; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: contact_contactformfield; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY contact_contactformfield (id, sort_order, label, field_type, required, choices, default_value, help_text, page_id) FROM stdin;
@@ -3412,14 +3414,14 @@ COPY contact_contactformfield (id, sort_order, label, field_type, required, choi
 
 
 --
--- Name: contact_contactformfield_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: contact_contactformfield_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('contact_contactformfield_id_seq', 4, true);
 
 
 --
--- Data for Name: contact_contactpage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: contact_contactpage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY contact_contactpage (page_ptr_id, to_address, from_address, subject, name_organization, telephone, email, address_1, address_2, city, country, post_code, intro, thank_you_text) FROM stdin;
@@ -3428,7 +3430,7 @@ COPY contact_contactpage (page_ptr_id, to_address, from_address, subject, name_o
 
 
 --
--- Data for Name: contact_formfield; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: contact_formfield; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY contact_formfield (id, sort_order, label, field_type, required, choices, default_value, help_text, page_id) FROM stdin;
@@ -3436,14 +3438,14 @@ COPY contact_formfield (id, sort_order, label, field_type, required, choices, de
 
 
 --
--- Name: contact_formfield_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: contact_formfield_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('contact_formfield_id_seq', 1, false);
 
 
 --
--- Data for Name: contact_formpage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: contact_formpage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY contact_formpage (page_ptr_id, to_address, from_address, subject, intro, thank_you_text) FROM stdin;
@@ -3451,7 +3453,7 @@ COPY contact_formpage (page_ptr_id, to_address, from_address, subject, intro, th
 
 
 --
--- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
@@ -3459,14 +3461,14 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 
 
 --
--- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('django_admin_log_id_seq', 1, false);
 
 
 --
--- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY django_content_type (id, app_label, model) FROM stdin;
@@ -3550,14 +3552,14 @@ COPY django_content_type (id, app_label, model) FROM stdin;
 
 
 --
--- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('django_content_type_id_seq', 76, true);
 
 
 --
--- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY django_migrations (id, app, name, applied) FROM stdin;
@@ -3669,18 +3671,21 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 106	wagtailusers	0004_capitalizeverbose	2016-07-20 12:54:51.321777+05:30
 107	wagtailcore	0001_squashed_0016_change_page_url_path_to_text_field	2016-07-20 12:54:51.362389+05:30
 108	events	0004_auto_20160720_0725	2016-07-20 12:55:16.963389+05:30
+109	products	0003_auto_20160721_2007	2016-07-22 19:41:37.776263+05:30
+110	products	0004_auto_20160722_1140	2016-07-22 19:41:38.161484+05:30
+111	products	0005_auto_20160722_1148	2016-07-22 19:41:38.941252+05:30
 \.
 
 
 --
--- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 108, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 111, true);
 
 
 --
--- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY django_session (session_key, session_data, expire_date) FROM stdin;
@@ -3717,11 +3722,12 @@ qibmhxgijkb66vb4yhidrhetfc3xv2po	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU
 rd1nljq4s7vukj05p3fak8fony58jhoq	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 14:07:52.298986+05:30
 yty6ww8edhg0uxt4o0vb0y76l01yr0aj	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 14:08:32.360369+05:30
 h9ls385qyqf1ccm6kfkmu29jn2sau18p	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 14:09:48.290496+05:30
+ihfb86gjvjphe9nlp2pj0s5mnd4yde1p	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-05 19:42:31.50711+05:30
 \.
 
 
 --
--- Data for Name: documents_gallery_documentsindexpage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: documents_gallery_documentsindexpage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY documents_gallery_documentsindexpage (page_ptr_id, intro, feed_image_id) FROM stdin;
@@ -3730,7 +3736,7 @@ COPY documents_gallery_documentsindexpage (page_ptr_id, intro, feed_image_id) FR
 
 
 --
--- Data for Name: documents_gallery_documentspage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: documents_gallery_documentspage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY documents_gallery_documentspage (page_ptr_id, feed_image_id) FROM stdin;
@@ -3739,7 +3745,7 @@ COPY documents_gallery_documentspage (page_ptr_id, feed_image_id) FROM stdin;
 
 
 --
--- Data for Name: documents_gallery_documentspagetag; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: documents_gallery_documentspagetag; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY documents_gallery_documentspagetag (id, content_object_id, tag_id) FROM stdin;
@@ -3748,14 +3754,14 @@ COPY documents_gallery_documentspagetag (id, content_object_id, tag_id) FROM std
 
 
 --
--- Name: documents_gallery_documentspagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: documents_gallery_documentspagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('documents_gallery_documentspagetag_id_seq', 2, true);
 
 
 --
--- Data for Name: events_eventindexpage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: events_eventindexpage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY events_eventindexpage (page_ptr_id, intro) FROM stdin;
@@ -3764,7 +3770,7 @@ COPY events_eventindexpage (page_ptr_id, intro) FROM stdin;
 
 
 --
--- Data for Name: events_eventindexpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: events_eventindexpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY events_eventindexpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
@@ -3772,14 +3778,14 @@ COPY events_eventindexpagerelatedlink (id, sort_order, link_external, title, lin
 
 
 --
--- Name: events_eventindexpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: events_eventindexpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('events_eventindexpagerelatedlink_id_seq', 1, false);
 
 
 --
--- Data for Name: events_eventpage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: events_eventpage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY events_eventpage (page_ptr_id, date_from, date_to, time_from, time_to, audience, location, body, cost, signup_link, feed_image_id) FROM stdin;
@@ -3790,7 +3796,7 @@ COPY events_eventpage (page_ptr_id, date_from, date_to, time_from, time_to, audi
 
 
 --
--- Data for Name: events_eventpagecarouselitem; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: events_eventpagecarouselitem; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY events_eventpagecarouselitem (id, sort_order, link_external, embed_url, caption, image_id, link_document_id, link_page_id, page_id) FROM stdin;
@@ -3798,14 +3804,14 @@ COPY events_eventpagecarouselitem (id, sort_order, link_external, embed_url, cap
 
 
 --
--- Name: events_eventpagecarouselitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: events_eventpagecarouselitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('events_eventpagecarouselitem_id_seq', 1, false);
 
 
 --
--- Data for Name: events_eventpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: events_eventpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY events_eventpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
@@ -3813,14 +3819,14 @@ COPY events_eventpagerelatedlink (id, sort_order, link_external, title, link_doc
 
 
 --
--- Name: events_eventpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: events_eventpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('events_eventpagerelatedlink_id_seq', 1, false);
 
 
 --
--- Data for Name: events_eventpagespeaker; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: events_eventpagespeaker; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY events_eventpagespeaker (id, sort_order, link_external, full_name, image_id, link_document_id, link_page_id, page_id) FROM stdin;
@@ -3828,14 +3834,14 @@ COPY events_eventpagespeaker (id, sort_order, link_external, full_name, image_id
 
 
 --
--- Name: events_eventpagespeaker_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: events_eventpagespeaker_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('events_eventpagespeaker_id_seq', 1, false);
 
 
 --
--- Data for Name: events_eventpagetag; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: events_eventpagetag; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY events_eventpagetag (id, content_object_id, tag_id) FROM stdin;
@@ -3847,14 +3853,14 @@ COPY events_eventpagetag (id, content_object_id, tag_id) FROM stdin;
 
 
 --
--- Name: events_eventpagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: events_eventpagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('events_eventpagetag_id_seq', 4, true);
 
 
 --
--- Data for Name: pages_advert; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: pages_advert; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY pages_advert (id, link_external, title, text, image_id, link_document_id, link_page_id, page_id) FROM stdin;
@@ -3862,14 +3868,14 @@ COPY pages_advert (id, link_external, title, text, image_id, link_document_id, l
 
 
 --
--- Name: pages_advert_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: pages_advert_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('pages_advert_id_seq', 1, false);
 
 
 --
--- Data for Name: pages_contentblock; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: pages_contentblock; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY pages_contentblock (id, link_external, title, body, summary, slug, link_document_id, link_page_id, page_id) FROM stdin;
@@ -3877,14 +3883,14 @@ COPY pages_contentblock (id, link_external, title, body, summary, slug, link_doc
 
 
 --
--- Name: pages_contentblock_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: pages_contentblock_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('pages_contentblock_id_seq', 1, false);
 
 
 --
--- Data for Name: pages_faqspage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: pages_faqspage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY pages_faqspage (page_ptr_id, body) FROM stdin;
@@ -3892,7 +3898,7 @@ COPY pages_faqspage (page_ptr_id, body) FROM stdin;
 
 
 --
--- Data for Name: pages_homepage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: pages_homepage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY pages_homepage (page_ptr_id, title_text, body) FROM stdin;
@@ -3901,7 +3907,7 @@ COPY pages_homepage (page_ptr_id, title_text, body) FROM stdin;
 
 
 --
--- Data for Name: pages_homepagecarouselitem; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: pages_homepagecarouselitem; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY pages_homepagecarouselitem (id, sort_order, link_external, embed_url, caption, image_id, link_document_id, link_page_id, page_id) FROM stdin;
@@ -3913,14 +3919,14 @@ COPY pages_homepagecarouselitem (id, sort_order, link_external, embed_url, capti
 
 
 --
--- Name: pages_homepagecarouselitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: pages_homepagecarouselitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('pages_homepagecarouselitem_id_seq', 4, true);
 
 
 --
--- Data for Name: pages_homepagecontentitem; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: pages_homepagecontentitem; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY pages_homepagecontentitem (id, sort_order, link_external, title, content, summary, slug, image_id, link_document_id, link_page_id, page_id) FROM stdin;
@@ -3934,14 +3940,14 @@ COPY pages_homepagecontentitem (id, sort_order, link_external, title, content, s
 
 
 --
--- Name: pages_homepagecontentitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: pages_homepagecontentitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('pages_homepagecontentitem_id_seq', 6, true);
 
 
 --
--- Data for Name: pages_homepagerelatedlink; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: pages_homepagerelatedlink; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY pages_homepagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
@@ -3949,14 +3955,14 @@ COPY pages_homepagerelatedlink (id, sort_order, link_external, title, link_docum
 
 
 --
--- Name: pages_homepagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: pages_homepagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('pages_homepagerelatedlink_id_seq', 1, false);
 
 
 --
--- Data for Name: pages_socialmediasettings; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: pages_socialmediasettings; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY pages_socialmediasettings (id, facebook, instagram, twitter_name, youtube, linkedin, github, facebook_appid, site_id) FROM stdin;
@@ -3965,14 +3971,14 @@ COPY pages_socialmediasettings (id, facebook, instagram, twitter_name, youtube, 
 
 
 --
--- Name: pages_socialmediasettings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: pages_socialmediasettings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('pages_socialmediasettings_id_seq', 2, true);
 
 
 --
--- Data for Name: pages_standardindexpage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: pages_standardindexpage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY pages_standardindexpage (page_ptr_id, subtitle, intro, feed_image_id) FROM stdin;
@@ -3981,7 +3987,7 @@ COPY pages_standardindexpage (page_ptr_id, subtitle, intro, feed_image_id) FROM 
 
 
 --
--- Data for Name: pages_standardindexpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: pages_standardindexpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY pages_standardindexpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
@@ -3989,14 +3995,14 @@ COPY pages_standardindexpagerelatedlink (id, sort_order, link_external, title, l
 
 
 --
--- Name: pages_standardindexpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: pages_standardindexpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('pages_standardindexpagerelatedlink_id_seq', 1, false);
 
 
 --
--- Data for Name: pages_standardpage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: pages_standardpage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY pages_standardpage (page_ptr_id, subtitle, intro, body, feed_image_id, template_string) FROM stdin;
@@ -4006,7 +4012,7 @@ COPY pages_standardpage (page_ptr_id, subtitle, intro, body, feed_image_id, temp
 
 
 --
--- Data for Name: pages_standardpagecarouselitem; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: pages_standardpagecarouselitem; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY pages_standardpagecarouselitem (id, sort_order, link_external, embed_url, caption, image_id, link_document_id, link_page_id, page_id) FROM stdin;
@@ -4014,14 +4020,14 @@ COPY pages_standardpagecarouselitem (id, sort_order, link_external, embed_url, c
 
 
 --
--- Name: pages_standardpagecarouselitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: pages_standardpagecarouselitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('pages_standardpagecarouselitem_id_seq', 1, false);
 
 
 --
--- Data for Name: pages_standardpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: pages_standardpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY pages_standardpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
@@ -4029,14 +4035,14 @@ COPY pages_standardpagerelatedlink (id, sort_order, link_external, title, link_d
 
 
 --
--- Name: pages_standardpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: pages_standardpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('pages_standardpagerelatedlink_id_seq', 1, false);
 
 
 --
--- Data for Name: pages_testimonial; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: pages_testimonial; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY pages_testimonial (id, link_external, name, text, link_document_id, link_page_id, page_id, photo_id) FROM stdin;
@@ -4044,14 +4050,14 @@ COPY pages_testimonial (id, link_external, name, text, link_document_id, link_pa
 
 
 --
--- Name: pages_testimonial_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: pages_testimonial_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('pages_testimonial_id_seq', 1, false);
 
 
 --
--- Data for Name: people_personindexpage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: people_personindexpage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY people_personindexpage (page_ptr_id, subtitle, intro) FROM stdin;
@@ -4060,7 +4066,7 @@ COPY people_personindexpage (page_ptr_id, subtitle, intro) FROM stdin;
 
 
 --
--- Data for Name: people_personindexpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: people_personindexpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY people_personindexpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
@@ -4068,14 +4074,14 @@ COPY people_personindexpagerelatedlink (id, sort_order, link_external, title, li
 
 
 --
--- Name: people_personindexpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: people_personindexpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('people_personindexpagerelatedlink_id_seq', 1, false);
 
 
 --
--- Data for Name: people_personpage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: people_personpage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY people_personpage (page_ptr_id, name_organization, telephone, email, address_1, address_2, city, country, post_code, intro, biography, feed_image_id, image_id, role_id) FROM stdin;
@@ -4087,7 +4093,7 @@ COPY people_personpage (page_ptr_id, name_organization, telephone, email, addres
 
 
 --
--- Data for Name: people_personpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: people_personpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY people_personpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
@@ -4095,14 +4101,14 @@ COPY people_personpagerelatedlink (id, sort_order, link_external, title, link_do
 
 
 --
--- Name: people_personpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: people_personpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('people_personpagerelatedlink_id_seq', 1, false);
 
 
 --
--- Data for Name: people_personpagetag; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: people_personpagetag; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY people_personpagetag (id, content_object_id, tag_id) FROM stdin;
@@ -4110,14 +4116,14 @@ COPY people_personpagetag (id, content_object_id, tag_id) FROM stdin;
 
 
 --
--- Name: people_personpagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: people_personpagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('people_personpagetag_id_seq', 1, false);
 
 
 --
--- Data for Name: people_personrole; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: people_personrole; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY people_personrole (id, name) FROM stdin;
@@ -4125,14 +4131,14 @@ COPY people_personrole (id, name) FROM stdin;
 
 
 --
--- Name: people_personrole_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: people_personrole_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('people_personrole_id_seq', 1, false);
 
 
 --
--- Data for Name: photo_gallery_galleryindexpage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: photo_gallery_galleryindexpage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY photo_gallery_galleryindexpage (page_ptr_id, intro, feed_image_id) FROM stdin;
@@ -4141,7 +4147,7 @@ COPY photo_gallery_galleryindexpage (page_ptr_id, intro, feed_image_id) FROM std
 
 
 --
--- Data for Name: photo_gallery_gallerypage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: photo_gallery_gallerypage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY photo_gallery_gallerypage (page_ptr_id, feed_image_id) FROM stdin;
@@ -4150,7 +4156,7 @@ COPY photo_gallery_gallerypage (page_ptr_id, feed_image_id) FROM stdin;
 
 
 --
--- Data for Name: photo_gallery_gallerypagetag; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: photo_gallery_gallerypagetag; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY photo_gallery_gallerypagetag (id, content_object_id, tag_id) FROM stdin;
@@ -4159,14 +4165,14 @@ COPY photo_gallery_gallerypagetag (id, content_object_id, tag_id) FROM stdin;
 
 
 --
--- Name: photo_gallery_gallerypagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: photo_gallery_gallerypagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('photo_gallery_gallerypagetag_id_seq', 2, true);
 
 
 --
--- Data for Name: products_productindexpage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: products_productindexpage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY products_productindexpage (page_ptr_id, subtitle, intro) FROM stdin;
@@ -4174,7 +4180,7 @@ COPY products_productindexpage (page_ptr_id, subtitle, intro) FROM stdin;
 
 
 --
--- Data for Name: products_productindexpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: products_productindexpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY products_productindexpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
@@ -4182,22 +4188,22 @@ COPY products_productindexpagerelatedlink (id, sort_order, link_external, title,
 
 
 --
--- Name: products_productindexpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: products_productindexpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('products_productindexpagerelatedlink_id_seq', 1, false);
 
 
 --
--- Data for Name: products_productpage; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: products_productpage; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
-COPY products_productpage (page_ptr_id, price, description, feed_image_id, image_id) FROM stdin;
+COPY products_productpage (page_ptr_id, price, description, feed_image_id, image_id, intro, link_demo) FROM stdin;
 \.
 
 
 --
--- Data for Name: products_productpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: products_productpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY products_productpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
@@ -4205,14 +4211,14 @@ COPY products_productpagerelatedlink (id, sort_order, link_external, title, link
 
 
 --
--- Name: products_productpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: products_productpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('products_productpagerelatedlink_id_seq', 1, false);
 
 
 --
--- Data for Name: products_productpagetag; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: products_productpagetag; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY products_productpagetag (id, content_object_id, tag_id) FROM stdin;
@@ -4220,14 +4226,14 @@ COPY products_productpagetag (id, content_object_id, tag_id) FROM stdin;
 
 
 --
--- Name: products_productpagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: products_productpagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
-SELECT pg_catalog.setval('products_productpagetag_id_seq', 1, false);
+SELECT pg_catalog.setval('products_productpagetag_id_seq', 2, true);
 
 
 --
--- Data for Name: taggit_tag; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: taggit_tag; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY taggit_tag (id, name, slug) FROM stdin;
@@ -4237,18 +4243,20 @@ COPY taggit_tag (id, name, slug) FROM stdin;
 4	event3	event3
 5	document	document
 6	photos	photos
+7	kjjjjjjjjjjjjjjjjjj	kjjjjjjjjjjjjjjjjjj
+8	hgjjjjjjjbbbbbbbbbbbb	hgjjjjjjjbbbbbbbbbbbb
 \.
 
 
 --
--- Name: taggit_tag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: taggit_tag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
-SELECT pg_catalog.setval('taggit_tag_id_seq', 6, true);
+SELECT pg_catalog.setval('taggit_tag_id_seq', 8, true);
 
 
 --
--- Data for Name: taggit_taggeditem; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: taggit_taggeditem; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY taggit_taggeditem (id, object_id, content_type_id, tag_id) FROM stdin;
@@ -4263,14 +4271,14 @@ COPY taggit_taggeditem (id, object_id, content_type_id, tag_id) FROM stdin;
 
 
 --
--- Name: taggit_taggeditem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: taggit_taggeditem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('taggit_taggeditem_id_seq', 7, true);
 
 
 --
--- Data for Name: wagtail_feeds_rssfeedssettings; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtail_feeds_rssfeedssettings; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtail_feeds_rssfeedssettings (id, feed_app_label, feed_model_name, feed_title, feed_link, feed_description, feed_author_email, feed_author_link, feed_item_description_field, feed_item_content_field, site_id) FROM stdin;
@@ -4279,14 +4287,14 @@ COPY wagtail_feeds_rssfeedssettings (id, feed_app_label, feed_model_name, feed_t
 
 
 --
--- Name: wagtail_feeds_rssfeedssettings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtail_feeds_rssfeedssettings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('wagtail_feeds_rssfeedssettings_id_seq', 1, true);
 
 
 --
--- Data for Name: wagtailcore_collection; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtailcore_collection; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtailcore_collection (id, path, depth, numchild, name) FROM stdin;
@@ -4295,14 +4303,14 @@ COPY wagtailcore_collection (id, path, depth, numchild, name) FROM stdin;
 
 
 --
--- Name: wagtailcore_collection_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtailcore_collection_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('wagtailcore_collection_id_seq', 1, true);
 
 
 --
--- Data for Name: wagtailcore_groupcollectionpermission; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtailcore_groupcollectionpermission; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtailcore_groupcollectionpermission (id, collection_id, group_id, permission_id) FROM stdin;
@@ -4318,14 +4326,14 @@ COPY wagtailcore_groupcollectionpermission (id, collection_id, group_id, permiss
 
 
 --
--- Name: wagtailcore_groupcollectionpermission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtailcore_groupcollectionpermission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('wagtailcore_groupcollectionpermission_id_seq', 8, true);
 
 
 --
--- Data for Name: wagtailcore_grouppagepermission; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtailcore_grouppagepermission; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtailcore_grouppagepermission (id, permission_type, group_id, page_id) FROM stdin;
@@ -4339,14 +4347,14 @@ COPY wagtailcore_grouppagepermission (id, permission_type, group_id, page_id) FR
 
 
 --
--- Name: wagtailcore_grouppagepermission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtailcore_grouppagepermission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('wagtailcore_grouppagepermission_id_seq', 6, true);
 
 
 --
--- Data for Name: wagtailcore_page; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtailcore_page; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtailcore_page (id, path, depth, numchild, title, slug, live, has_unpublished_changes, url_path, seo_title, show_in_menus, search_description, go_live_at, expire_at, expired, content_type_id, owner_id, locked, latest_revision_created_at, first_published_at) FROM stdin;
@@ -4366,25 +4374,25 @@ COPY wagtailcore_page (id, path, depth, numchild, title, slug, live, has_unpubli
 16	000100010004	3	3	Blog Index	blog-index	t	f	/home/blog-index/		t		\N	\N	f	43	1	f	2016-07-20 13:41:32.075565+05:30	2016-07-20 13:41:32.157776+05:30
 23	0001000100060001	4	0	Sample Gallery	sample-gallery	t	f	/home/photo-gallery/sample-gallery/		t		\N	\N	f	67	1	f	2016-07-20 13:57:46.60808+05:30	2016-07-20 13:57:21.803486+05:30
 13	0001000100030001	4	0	Event Page 1	event-page-1	t	f	/home/event-index/event-page-1/		t		\N	\N	f	54	1	f	2016-07-20 13:38:44.398391+05:30	2016-07-20 13:38:44.515126+05:30
-3	00010001	2	7	Homepage	home	t	f	/home/		t		\N	\N	f	4	\N	f	2016-07-20 13:15:12.484088+05:30	2016-07-20 13:07:34.678451+05:30
 17	0001000100040001	4	0	Blog Page 1	blog-page-1	t	f	/home/blog-index/blog-page-1/		t		\N	\N	f	47	1	f	2016-07-20 13:48:23.700253+05:30	2016-07-20 13:43:43.63026+05:30
 18	0001000100040002	4	0	Blog Page 2	blog-page-2	t	f	/home/blog-index/blog-page-2/		t		\N	\N	f	47	1	f	2016-07-20 13:48:56.433825+05:30	2016-07-20 13:45:09.479097+05:30
 20	000100010005	3	1	Documents Gallery	documents-gallery	t	f	/home/documents-gallery/		t		\N	\N	f	73	1	f	2016-07-20 13:52:02.975756+05:30	2016-07-20 13:52:03.069215+05:30
 21	0001000100050001	4	0	Sample Documents	sample-documents	t	f	/home/documents-gallery/sample-documents/		t		\N	\N	f	75	1	f	2016-07-20 13:54:12.663501+05:30	2016-07-20 13:54:12.780898+05:30
 24	000100010007	3	0	Contact Us	contact-us	t	f	/home/contact-us/		t		\N	\N	f	58	1	f	2016-07-20 14:03:22.946592+05:30	2016-07-20 14:02:19.773581+05:30
 19	0001000100040003	4	0	Blog Page 3	blog-page-3	t	f	/home/blog-index/blog-page-3/		t		\N	\N	f	47	1	f	2016-07-20 14:06:18.443585+05:30	2016-07-20 13:47:15.679154+05:30
+3	00010001	2	7	Homepage	home	t	f	/home/		t		\N	\N	f	4	\N	f	2016-07-20 13:15:12.484088+05:30	2016-07-20 13:07:34.678451+05:30
 \.
 
 
 --
--- Name: wagtailcore_page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtailcore_page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
-SELECT pg_catalog.setval('wagtailcore_page_id_seq', 24, true);
+SELECT pg_catalog.setval('wagtailcore_page_id_seq', 26, true);
 
 
 --
--- Data for Name: wagtailcore_pagerevision; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtailcore_pagerevision; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtailcore_pagerevision (id, submitted_for_moderation, created_at, content_json, approved_go_live_at, page_id, user_id) FROM stdin;
@@ -4422,14 +4430,14 @@ COPY wagtailcore_pagerevision (id, submitted_for_moderation, created_at, content
 
 
 --
--- Name: wagtailcore_pagerevision_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtailcore_pagerevision_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
-SELECT pg_catalog.setval('wagtailcore_pagerevision_id_seq', 30, true);
+SELECT pg_catalog.setval('wagtailcore_pagerevision_id_seq', 32, true);
 
 
 --
--- Data for Name: wagtailcore_pageviewrestriction; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtailcore_pageviewrestriction; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtailcore_pageviewrestriction (id, password, page_id) FROM stdin;
@@ -4437,14 +4445,14 @@ COPY wagtailcore_pageviewrestriction (id, password, page_id) FROM stdin;
 
 
 --
--- Name: wagtailcore_pageviewrestriction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtailcore_pageviewrestriction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('wagtailcore_pageviewrestriction_id_seq', 1, false);
 
 
 --
--- Data for Name: wagtailcore_site; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtailcore_site; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtailcore_site (id, hostname, port, is_default_site, root_page_id, site_name) FROM stdin;
@@ -4453,14 +4461,14 @@ COPY wagtailcore_site (id, hostname, port, is_default_site, root_page_id, site_n
 
 
 --
--- Name: wagtailcore_site_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtailcore_site_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('wagtailcore_site_id_seq', 2, true);
 
 
 --
--- Data for Name: wagtaildocs_document; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtaildocs_document; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtaildocs_document (id, title, file, created_at, uploaded_by_user_id, collection_id) FROM stdin;
@@ -4471,14 +4479,14 @@ COPY wagtaildocs_document (id, title, file, created_at, uploaded_by_user_id, col
 
 
 --
--- Name: wagtaildocs_document_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtaildocs_document_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('wagtaildocs_document_id_seq', 3, true);
 
 
 --
--- Data for Name: wagtailembeds_embed; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtailembeds_embed; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtailembeds_embed (id, url, max_width, type, html, title, author_name, provider_name, thumbnail_url, width, height, last_updated) FROM stdin;
@@ -4486,14 +4494,14 @@ COPY wagtailembeds_embed (id, url, max_width, type, html, title, author_name, pr
 
 
 --
--- Name: wagtailembeds_embed_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtailembeds_embed_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('wagtailembeds_embed_id_seq', 1, false);
 
 
 --
--- Data for Name: wagtailforms_formsubmission; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtailforms_formsubmission; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtailforms_formsubmission (id, form_data, submit_time, page_id) FROM stdin;
@@ -4502,14 +4510,14 @@ COPY wagtailforms_formsubmission (id, form_data, submit_time, page_id) FROM stdi
 
 
 --
--- Name: wagtailforms_formsubmission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtailforms_formsubmission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('wagtailforms_formsubmission_id_seq', 1, true);
 
 
 --
--- Data for Name: wagtailimages_filter; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtailimages_filter; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtailimages_filter (id, spec) FROM stdin;
@@ -4523,18 +4531,20 @@ COPY wagtailimages_filter (id, spec) FROM stdin;
 8	original
 9	width-1200
 10	fill-1200x400
+11	fill-600x250
+12	fill-300x250
 \.
 
 
 --
--- Name: wagtailimages_filter_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtailimages_filter_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
-SELECT pg_catalog.setval('wagtailimages_filter_id_seq', 10, true);
+SELECT pg_catalog.setval('wagtailimages_filter_id_seq', 12, true);
 
 
 --
--- Data for Name: wagtailimages_image; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtailimages_image; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtailimages_image (id, title, file, width, height, created_at, focal_point_x, focal_point_y, focal_point_width, focal_point_height, uploaded_by_user_id, file_size, collection_id) FROM stdin;
@@ -4553,14 +4563,14 @@ COPY wagtailimages_image (id, title, file, width, height, created_at, focal_poin
 
 
 --
--- Name: wagtailimages_image_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtailimages_image_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('wagtailimages_image_id_seq', 11, true);
 
 
 --
--- Data for Name: wagtailimages_rendition; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtailimages_rendition; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtailimages_rendition (id, file, width, height, focal_point_key, filter_id, image_id) FROM stdin;
@@ -4607,18 +4617,20 @@ COPY wagtailimages_rendition (id, file, width, height, focal_point_key, filter_i
 41	images/sass.2e16d0ba.fill-1200x400.jpg	1200	400	2e16d0ba	10	7
 42	images/wagtail.2e16d0ba.fill-1200x400.jpg	1200	400	2e16d0ba	10	9
 43	images/foundation.2e16d0ba.fill-1200x400.jpg	1200	400	2e16d0ba	10	3
+44	images/wagtail.2e16d0ba.fill-600x250.png	512	214	2e16d0ba	11	10
+45	images/wagtail.2e16d0ba.fill-300x250.png	300	250	2e16d0ba	12	10
 \.
 
 
 --
--- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
-SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 43, true);
+SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 45, true);
 
 
 --
--- Data for Name: wagtailredirects_redirect; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtailredirects_redirect; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtailredirects_redirect (id, old_path, is_permanent, redirect_link, redirect_page_id, site_id) FROM stdin;
@@ -4626,21 +4638,21 @@ COPY wagtailredirects_redirect (id, old_path, is_permanent, redirect_link, redir
 
 
 --
--- Name: wagtailredirects_redirect_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtailredirects_redirect_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('wagtailredirects_redirect_id_seq', 1, false);
 
 
 --
--- Name: wagtailsearch_editorspick_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtailsearch_editorspick_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('wagtailsearch_editorspick_id_seq', 1, false);
 
 
 --
--- Data for Name: wagtailsearch_query; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtailsearch_query; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtailsearch_query (id, query_string) FROM stdin;
@@ -4648,14 +4660,14 @@ COPY wagtailsearch_query (id, query_string) FROM stdin;
 
 
 --
--- Name: wagtailsearch_query_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtailsearch_query_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('wagtailsearch_query_id_seq', 1, false);
 
 
 --
--- Data for Name: wagtailsearch_querydailyhits; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtailsearch_querydailyhits; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtailsearch_querydailyhits (id, date, hits, query_id) FROM stdin;
@@ -4663,14 +4675,14 @@ COPY wagtailsearch_querydailyhits (id, date, hits, query_id) FROM stdin;
 
 
 --
--- Name: wagtailsearch_querydailyhits_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtailsearch_querydailyhits_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('wagtailsearch_querydailyhits_id_seq', 1, false);
 
 
 --
--- Data for Name: wagtailsearchpromotions_searchpromotion; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtailsearchpromotions_searchpromotion; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtailsearchpromotions_searchpromotion (id, sort_order, description, page_id, query_id) FROM stdin;
@@ -4678,7 +4690,7 @@ COPY wagtailsearchpromotions_searchpromotion (id, sort_order, description, page_
 
 
 --
--- Data for Name: wagtailusers_userprofile; Type: TABLE DATA; Schema: public; Owner: puri
+-- Data for Name: wagtailusers_userprofile; Type: TABLE DATA; Schema: public; Owner: sumit
 --
 
 COPY wagtailusers_userprofile (id, submitted_notifications, approved_notifications, rejected_notifications, user_id) FROM stdin;
@@ -4686,14 +4698,14 @@ COPY wagtailusers_userprofile (id, submitted_notifications, approved_notificatio
 
 
 --
--- Name: wagtailusers_userprofile_id_seq; Type: SEQUENCE SET; Schema: public; Owner: puri
+-- Name: wagtailusers_userprofile_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sumit
 --
 
 SELECT pg_catalog.setval('wagtailusers_userprofile_id_seq', 1, false);
 
 
 --
--- Name: auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_group
@@ -4701,7 +4713,7 @@ ALTER TABLE ONLY auth_group
 
 
 --
--- Name: auth_group_permissions_group_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_group_permissions_group_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_group_permissions
@@ -4709,7 +4721,7 @@ ALTER TABLE ONLY auth_group_permissions
 
 
 --
--- Name: auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_group_permissions
@@ -4717,7 +4729,7 @@ ALTER TABLE ONLY auth_group_permissions
 
 
 --
--- Name: auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_group
@@ -4725,7 +4737,7 @@ ALTER TABLE ONLY auth_group
 
 
 --
--- Name: auth_permission_content_type_id_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_permission_content_type_id_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_permission
@@ -4733,7 +4745,7 @@ ALTER TABLE ONLY auth_permission
 
 
 --
--- Name: auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_permission
@@ -4741,7 +4753,7 @@ ALTER TABLE ONLY auth_permission
 
 
 --
--- Name: auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_user_groups
@@ -4749,7 +4761,7 @@ ALTER TABLE ONLY auth_user_groups
 
 
 --
--- Name: auth_user_groups_user_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_user_groups_user_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_user_groups
@@ -4757,7 +4769,7 @@ ALTER TABLE ONLY auth_user_groups
 
 
 --
--- Name: auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_user
@@ -4765,7 +4777,7 @@ ALTER TABLE ONLY auth_user
 
 
 --
--- Name: auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_user_user_permissions
@@ -4773,7 +4785,7 @@ ALTER TABLE ONLY auth_user_user_permissions
 
 
 --
--- Name: auth_user_user_permissions_user_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_user_user_permissions_user_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_user_user_permissions
@@ -4781,7 +4793,7 @@ ALTER TABLE ONLY auth_user_user_permissions
 
 
 --
--- Name: auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY auth_user
@@ -4789,7 +4801,7 @@ ALTER TABLE ONLY auth_user
 
 
 --
--- Name: blog_blogindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY blog_blogindexpage
@@ -4797,7 +4809,7 @@ ALTER TABLE ONLY blog_blogindexpage
 
 
 --
--- Name: blog_blogindexpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogindexpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY blog_blogindexpagerelatedlink
@@ -4805,7 +4817,7 @@ ALTER TABLE ONLY blog_blogindexpagerelatedlink
 
 
 --
--- Name: blog_blogpage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY blog_blogpage
@@ -4813,7 +4825,7 @@ ALTER TABLE ONLY blog_blogpage
 
 
 --
--- Name: blog_blogpagecarouselitem_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpagecarouselitem_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY blog_blogpagecarouselitem
@@ -4821,7 +4833,7 @@ ALTER TABLE ONLY blog_blogpagecarouselitem
 
 
 --
--- Name: blog_blogpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY blog_blogpagerelatedlink
@@ -4829,7 +4841,7 @@ ALTER TABLE ONLY blog_blogpagerelatedlink
 
 
 --
--- Name: blog_blogpagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY blog_blogpagetag
@@ -4837,7 +4849,7 @@ ALTER TABLE ONLY blog_blogpagetag
 
 
 --
--- Name: contact_contactformfield_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: contact_contactformfield_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY contact_contactformfield
@@ -4845,7 +4857,7 @@ ALTER TABLE ONLY contact_contactformfield
 
 
 --
--- Name: contact_contactpage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: contact_contactpage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY contact_contactpage
@@ -4853,7 +4865,7 @@ ALTER TABLE ONLY contact_contactpage
 
 
 --
--- Name: contact_formfield_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: contact_formfield_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY contact_formfield
@@ -4861,7 +4873,7 @@ ALTER TABLE ONLY contact_formfield
 
 
 --
--- Name: contact_formpage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: contact_formpage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY contact_formpage
@@ -4869,7 +4881,7 @@ ALTER TABLE ONLY contact_formpage
 
 
 --
--- Name: django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY django_admin_log
@@ -4877,7 +4889,7 @@ ALTER TABLE ONLY django_admin_log
 
 
 --
--- Name: django_content_type_app_label_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: django_content_type_app_label_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY django_content_type
@@ -4885,7 +4897,7 @@ ALTER TABLE ONLY django_content_type
 
 
 --
--- Name: django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY django_content_type
@@ -4893,7 +4905,7 @@ ALTER TABLE ONLY django_content_type
 
 
 --
--- Name: django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY django_migrations
@@ -4901,7 +4913,7 @@ ALTER TABLE ONLY django_migrations
 
 
 --
--- Name: django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY django_session
@@ -4909,7 +4921,7 @@ ALTER TABLE ONLY django_session
 
 
 --
--- Name: documents_gallery_documentsindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: documents_gallery_documentsindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY documents_gallery_documentsindexpage
@@ -4917,7 +4929,7 @@ ALTER TABLE ONLY documents_gallery_documentsindexpage
 
 
 --
--- Name: documents_gallery_documentspage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: documents_gallery_documentspage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY documents_gallery_documentspage
@@ -4925,7 +4937,7 @@ ALTER TABLE ONLY documents_gallery_documentspage
 
 
 --
--- Name: documents_gallery_documentspagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: documents_gallery_documentspagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY documents_gallery_documentspagetag
@@ -4933,7 +4945,7 @@ ALTER TABLE ONLY documents_gallery_documentspagetag
 
 
 --
--- Name: events_eventindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY events_eventindexpage
@@ -4941,7 +4953,7 @@ ALTER TABLE ONLY events_eventindexpage
 
 
 --
--- Name: events_eventindexpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventindexpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY events_eventindexpagerelatedlink
@@ -4949,7 +4961,7 @@ ALTER TABLE ONLY events_eventindexpagerelatedlink
 
 
 --
--- Name: events_eventpage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY events_eventpage
@@ -4957,7 +4969,7 @@ ALTER TABLE ONLY events_eventpage
 
 
 --
--- Name: events_eventpagecarouselitem_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagecarouselitem_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY events_eventpagecarouselitem
@@ -4965,7 +4977,7 @@ ALTER TABLE ONLY events_eventpagecarouselitem
 
 
 --
--- Name: events_eventpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY events_eventpagerelatedlink
@@ -4973,7 +4985,7 @@ ALTER TABLE ONLY events_eventpagerelatedlink
 
 
 --
--- Name: events_eventpagespeaker_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagespeaker_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY events_eventpagespeaker
@@ -4981,7 +4993,7 @@ ALTER TABLE ONLY events_eventpagespeaker
 
 
 --
--- Name: events_eventpagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY events_eventpagetag
@@ -4989,7 +5001,7 @@ ALTER TABLE ONLY events_eventpagetag
 
 
 --
--- Name: pages_advert_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_advert_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY pages_advert
@@ -4997,7 +5009,7 @@ ALTER TABLE ONLY pages_advert
 
 
 --
--- Name: pages_contentblock_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_contentblock_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY pages_contentblock
@@ -5005,7 +5017,7 @@ ALTER TABLE ONLY pages_contentblock
 
 
 --
--- Name: pages_faqspage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_faqspage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY pages_faqspage
@@ -5013,7 +5025,7 @@ ALTER TABLE ONLY pages_faqspage
 
 
 --
--- Name: pages_homepage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY pages_homepage
@@ -5021,7 +5033,7 @@ ALTER TABLE ONLY pages_homepage
 
 
 --
--- Name: pages_homepagecarouselitem_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagecarouselitem_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY pages_homepagecarouselitem
@@ -5029,7 +5041,7 @@ ALTER TABLE ONLY pages_homepagecarouselitem
 
 
 --
--- Name: pages_homepagecontentitem_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagecontentitem_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY pages_homepagecontentitem
@@ -5037,7 +5049,7 @@ ALTER TABLE ONLY pages_homepagecontentitem
 
 
 --
--- Name: pages_homepagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY pages_homepagerelatedlink
@@ -5045,7 +5057,7 @@ ALTER TABLE ONLY pages_homepagerelatedlink
 
 
 --
--- Name: pages_socialmediasettings_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_socialmediasettings_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY pages_socialmediasettings
@@ -5053,7 +5065,7 @@ ALTER TABLE ONLY pages_socialmediasettings
 
 
 --
--- Name: pages_socialmediasettings_site_id_key; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_socialmediasettings_site_id_key; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY pages_socialmediasettings
@@ -5061,7 +5073,7 @@ ALTER TABLE ONLY pages_socialmediasettings
 
 
 --
--- Name: pages_standardindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY pages_standardindexpage
@@ -5069,7 +5081,7 @@ ALTER TABLE ONLY pages_standardindexpage
 
 
 --
--- Name: pages_standardindexpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardindexpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY pages_standardindexpagerelatedlink
@@ -5077,7 +5089,7 @@ ALTER TABLE ONLY pages_standardindexpagerelatedlink
 
 
 --
--- Name: pages_standardpage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardpage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY pages_standardpage
@@ -5085,7 +5097,7 @@ ALTER TABLE ONLY pages_standardpage
 
 
 --
--- Name: pages_standardpagecarouselitem_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardpagecarouselitem_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY pages_standardpagecarouselitem
@@ -5093,7 +5105,7 @@ ALTER TABLE ONLY pages_standardpagecarouselitem
 
 
 --
--- Name: pages_standardpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY pages_standardpagerelatedlink
@@ -5101,7 +5113,7 @@ ALTER TABLE ONLY pages_standardpagerelatedlink
 
 
 --
--- Name: pages_testimonial_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_testimonial_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY pages_testimonial
@@ -5109,7 +5121,7 @@ ALTER TABLE ONLY pages_testimonial
 
 
 --
--- Name: people_personindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY people_personindexpage
@@ -5117,7 +5129,7 @@ ALTER TABLE ONLY people_personindexpage
 
 
 --
--- Name: people_personindexpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personindexpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY people_personindexpagerelatedlink
@@ -5125,7 +5137,7 @@ ALTER TABLE ONLY people_personindexpagerelatedlink
 
 
 --
--- Name: people_personpage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personpage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY people_personpage
@@ -5133,7 +5145,7 @@ ALTER TABLE ONLY people_personpage
 
 
 --
--- Name: people_personpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY people_personpagerelatedlink
@@ -5141,7 +5153,7 @@ ALTER TABLE ONLY people_personpagerelatedlink
 
 
 --
--- Name: people_personpagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personpagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY people_personpagetag
@@ -5149,7 +5161,7 @@ ALTER TABLE ONLY people_personpagetag
 
 
 --
--- Name: people_personrole_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personrole_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY people_personrole
@@ -5157,7 +5169,7 @@ ALTER TABLE ONLY people_personrole
 
 
 --
--- Name: photo_gallery_galleryindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: photo_gallery_galleryindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY photo_gallery_galleryindexpage
@@ -5165,7 +5177,7 @@ ALTER TABLE ONLY photo_gallery_galleryindexpage
 
 
 --
--- Name: photo_gallery_gallerypage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: photo_gallery_gallerypage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY photo_gallery_gallerypage
@@ -5173,7 +5185,7 @@ ALTER TABLE ONLY photo_gallery_gallerypage
 
 
 --
--- Name: photo_gallery_gallerypagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: photo_gallery_gallerypagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY photo_gallery_gallerypagetag
@@ -5181,7 +5193,7 @@ ALTER TABLE ONLY photo_gallery_gallerypagetag
 
 
 --
--- Name: products_productindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY products_productindexpage
@@ -5189,7 +5201,7 @@ ALTER TABLE ONLY products_productindexpage
 
 
 --
--- Name: products_productindexpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productindexpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY products_productindexpagerelatedlink
@@ -5197,7 +5209,7 @@ ALTER TABLE ONLY products_productindexpagerelatedlink
 
 
 --
--- Name: products_productpage_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productpage_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY products_productpage
@@ -5205,7 +5217,7 @@ ALTER TABLE ONLY products_productpage
 
 
 --
--- Name: products_productpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY products_productpagerelatedlink
@@ -5213,7 +5225,7 @@ ALTER TABLE ONLY products_productpagerelatedlink
 
 
 --
--- Name: products_productpagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productpagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY products_productpagetag
@@ -5221,7 +5233,7 @@ ALTER TABLE ONLY products_productpagetag
 
 
 --
--- Name: taggit_tag_name_key; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: taggit_tag_name_key; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY taggit_tag
@@ -5229,7 +5241,7 @@ ALTER TABLE ONLY taggit_tag
 
 
 --
--- Name: taggit_tag_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: taggit_tag_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY taggit_tag
@@ -5237,7 +5249,7 @@ ALTER TABLE ONLY taggit_tag
 
 
 --
--- Name: taggit_tag_slug_key; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: taggit_tag_slug_key; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY taggit_tag
@@ -5245,7 +5257,7 @@ ALTER TABLE ONLY taggit_tag
 
 
 --
--- Name: taggit_taggeditem_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: taggit_taggeditem_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY taggit_taggeditem
@@ -5253,7 +5265,7 @@ ALTER TABLE ONLY taggit_taggeditem
 
 
 --
--- Name: wagtail_feeds_rssfeedssettings_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtail_feeds_rssfeedssettings_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtail_feeds_rssfeedssettings
@@ -5261,7 +5273,7 @@ ALTER TABLE ONLY wagtail_feeds_rssfeedssettings
 
 
 --
--- Name: wagtail_feeds_rssfeedssettings_site_id_key; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtail_feeds_rssfeedssettings_site_id_key; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtail_feeds_rssfeedssettings
@@ -5269,7 +5281,7 @@ ALTER TABLE ONLY wagtail_feeds_rssfeedssettings
 
 
 --
--- Name: wagtailcore_collection_path_key; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_collection_path_key; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailcore_collection
@@ -5277,7 +5289,7 @@ ALTER TABLE ONLY wagtailcore_collection
 
 
 --
--- Name: wagtailcore_collection_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_collection_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailcore_collection
@@ -5285,7 +5297,7 @@ ALTER TABLE ONLY wagtailcore_collection
 
 
 --
--- Name: wagtailcore_groupcollectionpermission_group_id_a21cefe9_uniq; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_groupcollectionpermission_group_id_a21cefe9_uniq; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailcore_groupcollectionpermission
@@ -5293,7 +5305,7 @@ ALTER TABLE ONLY wagtailcore_groupcollectionpermission
 
 
 --
--- Name: wagtailcore_groupcollectionpermission_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_groupcollectionpermission_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailcore_groupcollectionpermission
@@ -5301,7 +5313,7 @@ ALTER TABLE ONLY wagtailcore_groupcollectionpermission
 
 
 --
--- Name: wagtailcore_grouppagepermission_group_id_0898bdf8_uniq; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_grouppagepermission_group_id_0898bdf8_uniq; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailcore_grouppagepermission
@@ -5309,7 +5321,7 @@ ALTER TABLE ONLY wagtailcore_grouppagepermission
 
 
 --
--- Name: wagtailcore_grouppagepermission_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_grouppagepermission_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailcore_grouppagepermission
@@ -5317,7 +5329,7 @@ ALTER TABLE ONLY wagtailcore_grouppagepermission
 
 
 --
--- Name: wagtailcore_page_path_key; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_page_path_key; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailcore_page
@@ -5325,7 +5337,7 @@ ALTER TABLE ONLY wagtailcore_page
 
 
 --
--- Name: wagtailcore_page_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_page_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailcore_page
@@ -5333,7 +5345,7 @@ ALTER TABLE ONLY wagtailcore_page
 
 
 --
--- Name: wagtailcore_pagerevision_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_pagerevision_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailcore_pagerevision
@@ -5341,7 +5353,7 @@ ALTER TABLE ONLY wagtailcore_pagerevision
 
 
 --
--- Name: wagtailcore_pageviewrestriction_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_pageviewrestriction_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailcore_pageviewrestriction
@@ -5349,7 +5361,7 @@ ALTER TABLE ONLY wagtailcore_pageviewrestriction
 
 
 --
--- Name: wagtailcore_site_hostname_2c626d70_uniq; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_site_hostname_2c626d70_uniq; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailcore_site
@@ -5357,7 +5369,7 @@ ALTER TABLE ONLY wagtailcore_site
 
 
 --
--- Name: wagtailcore_site_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_site_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailcore_site
@@ -5365,7 +5377,7 @@ ALTER TABLE ONLY wagtailcore_site
 
 
 --
--- Name: wagtaildocs_document_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtaildocs_document_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtaildocs_document
@@ -5373,7 +5385,7 @@ ALTER TABLE ONLY wagtaildocs_document
 
 
 --
--- Name: wagtailembeds_embed_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailembeds_embed_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailembeds_embed
@@ -5381,7 +5393,7 @@ ALTER TABLE ONLY wagtailembeds_embed
 
 
 --
--- Name: wagtailembeds_embed_url_8a2922d8_uniq; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailembeds_embed_url_8a2922d8_uniq; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailembeds_embed
@@ -5389,7 +5401,7 @@ ALTER TABLE ONLY wagtailembeds_embed
 
 
 --
--- Name: wagtailforms_formsubmission_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailforms_formsubmission_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailforms_formsubmission
@@ -5397,7 +5409,7 @@ ALTER TABLE ONLY wagtailforms_formsubmission
 
 
 --
--- Name: wagtailimages_filter_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailimages_filter_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailimages_filter
@@ -5405,7 +5417,7 @@ ALTER TABLE ONLY wagtailimages_filter
 
 
 --
--- Name: wagtailimages_filter_spec_42ad6e02_uniq; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailimages_filter_spec_42ad6e02_uniq; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailimages_filter
@@ -5413,7 +5425,7 @@ ALTER TABLE ONLY wagtailimages_filter
 
 
 --
--- Name: wagtailimages_image_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailimages_image_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailimages_image
@@ -5421,7 +5433,7 @@ ALTER TABLE ONLY wagtailimages_image
 
 
 --
--- Name: wagtailimages_rendition_image_id_03110280_uniq; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailimages_rendition_image_id_03110280_uniq; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailimages_rendition
@@ -5429,7 +5441,7 @@ ALTER TABLE ONLY wagtailimages_rendition
 
 
 --
--- Name: wagtailimages_rendition_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailimages_rendition_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailimages_rendition
@@ -5437,7 +5449,7 @@ ALTER TABLE ONLY wagtailimages_rendition
 
 
 --
--- Name: wagtailredirects_redirect_old_path_783622d7_uniq; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailredirects_redirect_old_path_783622d7_uniq; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailredirects_redirect
@@ -5445,7 +5457,7 @@ ALTER TABLE ONLY wagtailredirects_redirect
 
 
 --
--- Name: wagtailredirects_redirect_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailredirects_redirect_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailredirects_redirect
@@ -5453,7 +5465,7 @@ ALTER TABLE ONLY wagtailredirects_redirect
 
 
 --
--- Name: wagtailsearch_editorspick_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailsearch_editorspick_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailsearchpromotions_searchpromotion
@@ -5461,7 +5473,7 @@ ALTER TABLE ONLY wagtailsearchpromotions_searchpromotion
 
 
 --
--- Name: wagtailsearch_query_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailsearch_query_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailsearch_query
@@ -5469,7 +5481,7 @@ ALTER TABLE ONLY wagtailsearch_query
 
 
 --
--- Name: wagtailsearch_query_query_string_key; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailsearch_query_query_string_key; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailsearch_query
@@ -5477,7 +5489,7 @@ ALTER TABLE ONLY wagtailsearch_query
 
 
 --
--- Name: wagtailsearch_querydailyhits_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailsearch_querydailyhits_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailsearch_querydailyhits
@@ -5485,7 +5497,7 @@ ALTER TABLE ONLY wagtailsearch_querydailyhits
 
 
 --
--- Name: wagtailsearch_querydailyhits_query_id_1dd232e6_uniq; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailsearch_querydailyhits_query_id_1dd232e6_uniq; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailsearch_querydailyhits
@@ -5493,7 +5505,7 @@ ALTER TABLE ONLY wagtailsearch_querydailyhits
 
 
 --
--- Name: wagtailusers_userprofile_pkey; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailusers_userprofile_pkey; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailusers_userprofile
@@ -5501,7 +5513,7 @@ ALTER TABLE ONLY wagtailusers_userprofile
 
 
 --
--- Name: wagtailusers_userprofile_user_id_key; Type: CONSTRAINT; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailusers_userprofile_user_id_key; Type: CONSTRAINT; Schema: public; Owner: sumit; Tablespace: 
 --
 
 ALTER TABLE ONLY wagtailusers_userprofile
@@ -5509,1071 +5521,1071 @@ ALTER TABLE ONLY wagtailusers_userprofile
 
 
 --
--- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX auth_group_name_a6ea08ec_like ON auth_group USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: auth_group_permissions_0e939a4f; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_group_permissions_0e939a4f; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX auth_group_permissions_0e939a4f ON auth_group_permissions USING btree (group_id);
 
 
 --
--- Name: auth_group_permissions_8373b171; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_group_permissions_8373b171; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX auth_group_permissions_8373b171 ON auth_group_permissions USING btree (permission_id);
 
 
 --
--- Name: auth_permission_417f1b1c; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_permission_417f1b1c; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX auth_permission_417f1b1c ON auth_permission USING btree (content_type_id);
 
 
 --
--- Name: auth_user_groups_0e939a4f; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_user_groups_0e939a4f; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX auth_user_groups_0e939a4f ON auth_user_groups USING btree (group_id);
 
 
 --
--- Name: auth_user_groups_e8701ad4; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_user_groups_e8701ad4; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX auth_user_groups_e8701ad4 ON auth_user_groups USING btree (user_id);
 
 
 --
--- Name: auth_user_user_permissions_8373b171; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_user_user_permissions_8373b171; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX auth_user_user_permissions_8373b171 ON auth_user_user_permissions USING btree (permission_id);
 
 
 --
--- Name: auth_user_user_permissions_e8701ad4; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_user_user_permissions_e8701ad4; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX auth_user_user_permissions_e8701ad4 ON auth_user_user_permissions USING btree (user_id);
 
 
 --
--- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX auth_user_username_6821ab7c_like ON auth_user USING btree (username varchar_pattern_ops);
 
 
 --
--- Name: blog_blogindexpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogindexpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX blog_blogindexpagerelatedlink_121087a8 ON blog_blogindexpagerelatedlink USING btree (link_document_id);
 
 
 --
--- Name: blog_blogindexpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogindexpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX blog_blogindexpagerelatedlink_1a63c800 ON blog_blogindexpagerelatedlink USING btree (page_id);
 
 
 --
--- Name: blog_blogindexpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogindexpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX blog_blogindexpagerelatedlink_5b76e141 ON blog_blogindexpagerelatedlink USING btree (link_page_id);
 
 
 --
--- Name: blog_blogpage_92482941; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpage_92482941; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX blog_blogpage_92482941 ON blog_blogpage USING btree (feed_image_id);
 
 
 --
--- Name: blog_blogpagecarouselitem_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpagecarouselitem_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX blog_blogpagecarouselitem_121087a8 ON blog_blogpagecarouselitem USING btree (link_document_id);
 
 
 --
--- Name: blog_blogpagecarouselitem_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpagecarouselitem_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX blog_blogpagecarouselitem_1a63c800 ON blog_blogpagecarouselitem USING btree (page_id);
 
 
 --
--- Name: blog_blogpagecarouselitem_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpagecarouselitem_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX blog_blogpagecarouselitem_5b76e141 ON blog_blogpagecarouselitem USING btree (link_page_id);
 
 
 --
--- Name: blog_blogpagecarouselitem_f33175e6; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpagecarouselitem_f33175e6; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX blog_blogpagecarouselitem_f33175e6 ON blog_blogpagecarouselitem USING btree (image_id);
 
 
 --
--- Name: blog_blogpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX blog_blogpagerelatedlink_121087a8 ON blog_blogpagerelatedlink USING btree (link_document_id);
 
 
 --
--- Name: blog_blogpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX blog_blogpagerelatedlink_1a63c800 ON blog_blogpagerelatedlink USING btree (page_id);
 
 
 --
--- Name: blog_blogpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX blog_blogpagerelatedlink_5b76e141 ON blog_blogpagerelatedlink USING btree (link_page_id);
 
 
 --
--- Name: blog_blogpagetag_09a80f33; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpagetag_09a80f33; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX blog_blogpagetag_09a80f33 ON blog_blogpagetag USING btree (content_object_id);
 
 
 --
--- Name: blog_blogpagetag_76f094bc; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: blog_blogpagetag_76f094bc; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX blog_blogpagetag_76f094bc ON blog_blogpagetag USING btree (tag_id);
 
 
 --
--- Name: contact_contactformfield_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: contact_contactformfield_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX contact_contactformfield_1a63c800 ON contact_contactformfield USING btree (page_id);
 
 
 --
--- Name: contact_formfield_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: contact_formfield_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX contact_formfield_1a63c800 ON contact_formfield USING btree (page_id);
 
 
 --
--- Name: django_admin_log_417f1b1c; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: django_admin_log_417f1b1c; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX django_admin_log_417f1b1c ON django_admin_log USING btree (content_type_id);
 
 
 --
--- Name: django_admin_log_e8701ad4; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: django_admin_log_e8701ad4; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX django_admin_log_e8701ad4 ON django_admin_log USING btree (user_id);
 
 
 --
--- Name: django_session_de54fa62; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: django_session_de54fa62; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX django_session_de54fa62 ON django_session USING btree (expire_date);
 
 
 --
--- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX django_session_session_key_c0390e0f_like ON django_session USING btree (session_key varchar_pattern_ops);
 
 
 --
--- Name: documents_gallery_documentsindexpage_92482941; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: documents_gallery_documentsindexpage_92482941; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX documents_gallery_documentsindexpage_92482941 ON documents_gallery_documentsindexpage USING btree (feed_image_id);
 
 
 --
--- Name: documents_gallery_documentspage_92482941; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: documents_gallery_documentspage_92482941; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX documents_gallery_documentspage_92482941 ON documents_gallery_documentspage USING btree (feed_image_id);
 
 
 --
--- Name: documents_gallery_documentspagetag_09a80f33; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: documents_gallery_documentspagetag_09a80f33; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX documents_gallery_documentspagetag_09a80f33 ON documents_gallery_documentspagetag USING btree (content_object_id);
 
 
 --
--- Name: documents_gallery_documentspagetag_76f094bc; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: documents_gallery_documentspagetag_76f094bc; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX documents_gallery_documentspagetag_76f094bc ON documents_gallery_documentspagetag USING btree (tag_id);
 
 
 --
--- Name: events_eventindexpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventindexpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX events_eventindexpagerelatedlink_121087a8 ON events_eventindexpagerelatedlink USING btree (link_document_id);
 
 
 --
--- Name: events_eventindexpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventindexpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX events_eventindexpagerelatedlink_1a63c800 ON events_eventindexpagerelatedlink USING btree (page_id);
 
 
 --
--- Name: events_eventindexpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventindexpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX events_eventindexpagerelatedlink_5b76e141 ON events_eventindexpagerelatedlink USING btree (link_page_id);
 
 
 --
--- Name: events_eventpage_92482941; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpage_92482941; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX events_eventpage_92482941 ON events_eventpage USING btree (feed_image_id);
 
 
 --
--- Name: events_eventpagecarouselitem_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagecarouselitem_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX events_eventpagecarouselitem_121087a8 ON events_eventpagecarouselitem USING btree (link_document_id);
 
 
 --
--- Name: events_eventpagecarouselitem_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagecarouselitem_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX events_eventpagecarouselitem_1a63c800 ON events_eventpagecarouselitem USING btree (page_id);
 
 
 --
--- Name: events_eventpagecarouselitem_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagecarouselitem_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX events_eventpagecarouselitem_5b76e141 ON events_eventpagecarouselitem USING btree (link_page_id);
 
 
 --
--- Name: events_eventpagecarouselitem_f33175e6; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagecarouselitem_f33175e6; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX events_eventpagecarouselitem_f33175e6 ON events_eventpagecarouselitem USING btree (image_id);
 
 
 --
--- Name: events_eventpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX events_eventpagerelatedlink_121087a8 ON events_eventpagerelatedlink USING btree (link_document_id);
 
 
 --
--- Name: events_eventpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX events_eventpagerelatedlink_1a63c800 ON events_eventpagerelatedlink USING btree (page_id);
 
 
 --
--- Name: events_eventpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX events_eventpagerelatedlink_5b76e141 ON events_eventpagerelatedlink USING btree (link_page_id);
 
 
 --
--- Name: events_eventpagespeaker_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagespeaker_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX events_eventpagespeaker_121087a8 ON events_eventpagespeaker USING btree (link_document_id);
 
 
 --
--- Name: events_eventpagespeaker_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagespeaker_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX events_eventpagespeaker_1a63c800 ON events_eventpagespeaker USING btree (page_id);
 
 
 --
--- Name: events_eventpagespeaker_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagespeaker_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX events_eventpagespeaker_5b76e141 ON events_eventpagespeaker USING btree (link_page_id);
 
 
 --
--- Name: events_eventpagespeaker_f33175e6; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagespeaker_f33175e6; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX events_eventpagespeaker_f33175e6 ON events_eventpagespeaker USING btree (image_id);
 
 
 --
--- Name: events_eventpagetag_09a80f33; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagetag_09a80f33; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX events_eventpagetag_09a80f33 ON events_eventpagetag USING btree (content_object_id);
 
 
 --
--- Name: events_eventpagetag_76f094bc; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: events_eventpagetag_76f094bc; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX events_eventpagetag_76f094bc ON events_eventpagetag USING btree (tag_id);
 
 
 --
--- Name: pages_advert_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_advert_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_advert_121087a8 ON pages_advert USING btree (link_document_id);
 
 
 --
--- Name: pages_advert_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_advert_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_advert_1a63c800 ON pages_advert USING btree (page_id);
 
 
 --
--- Name: pages_advert_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_advert_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_advert_5b76e141 ON pages_advert USING btree (link_page_id);
 
 
 --
--- Name: pages_advert_f33175e6; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_advert_f33175e6; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_advert_f33175e6 ON pages_advert USING btree (image_id);
 
 
 --
--- Name: pages_contentblock_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_contentblock_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_contentblock_121087a8 ON pages_contentblock USING btree (link_document_id);
 
 
 --
--- Name: pages_contentblock_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_contentblock_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_contentblock_1a63c800 ON pages_contentblock USING btree (page_id);
 
 
 --
--- Name: pages_contentblock_2dbcba41; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_contentblock_2dbcba41; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_contentblock_2dbcba41 ON pages_contentblock USING btree (slug);
 
 
 --
--- Name: pages_contentblock_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_contentblock_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_contentblock_5b76e141 ON pages_contentblock USING btree (link_page_id);
 
 
 --
--- Name: pages_contentblock_slug_946a161b_like; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_contentblock_slug_946a161b_like; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_contentblock_slug_946a161b_like ON pages_contentblock USING btree (slug varchar_pattern_ops);
 
 
 --
--- Name: pages_homepagecarouselitem_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagecarouselitem_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_homepagecarouselitem_121087a8 ON pages_homepagecarouselitem USING btree (link_document_id);
 
 
 --
--- Name: pages_homepagecarouselitem_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagecarouselitem_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_homepagecarouselitem_1a63c800 ON pages_homepagecarouselitem USING btree (page_id);
 
 
 --
--- Name: pages_homepagecarouselitem_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagecarouselitem_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_homepagecarouselitem_5b76e141 ON pages_homepagecarouselitem USING btree (link_page_id);
 
 
 --
--- Name: pages_homepagecarouselitem_f33175e6; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagecarouselitem_f33175e6; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_homepagecarouselitem_f33175e6 ON pages_homepagecarouselitem USING btree (image_id);
 
 
 --
--- Name: pages_homepagecontentitem_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagecontentitem_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_homepagecontentitem_121087a8 ON pages_homepagecontentitem USING btree (link_document_id);
 
 
 --
--- Name: pages_homepagecontentitem_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagecontentitem_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_homepagecontentitem_1a63c800 ON pages_homepagecontentitem USING btree (page_id);
 
 
 --
--- Name: pages_homepagecontentitem_2dbcba41; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagecontentitem_2dbcba41; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_homepagecontentitem_2dbcba41 ON pages_homepagecontentitem USING btree (slug);
 
 
 --
--- Name: pages_homepagecontentitem_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagecontentitem_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_homepagecontentitem_5b76e141 ON pages_homepagecontentitem USING btree (link_page_id);
 
 
 --
--- Name: pages_homepagecontentitem_f33175e6; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagecontentitem_f33175e6; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_homepagecontentitem_f33175e6 ON pages_homepagecontentitem USING btree (image_id);
 
 
 --
--- Name: pages_homepagecontentitem_slug_2f312148_like; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagecontentitem_slug_2f312148_like; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_homepagecontentitem_slug_2f312148_like ON pages_homepagecontentitem USING btree (slug varchar_pattern_ops);
 
 
 --
--- Name: pages_homepagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_homepagerelatedlink_121087a8 ON pages_homepagerelatedlink USING btree (link_document_id);
 
 
 --
--- Name: pages_homepagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_homepagerelatedlink_1a63c800 ON pages_homepagerelatedlink USING btree (page_id);
 
 
 --
--- Name: pages_homepagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_homepagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_homepagerelatedlink_5b76e141 ON pages_homepagerelatedlink USING btree (link_page_id);
 
 
 --
--- Name: pages_standardindexpage_92482941; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardindexpage_92482941; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_standardindexpage_92482941 ON pages_standardindexpage USING btree (feed_image_id);
 
 
 --
--- Name: pages_standardindexpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardindexpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_standardindexpagerelatedlink_121087a8 ON pages_standardindexpagerelatedlink USING btree (link_document_id);
 
 
 --
--- Name: pages_standardindexpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardindexpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_standardindexpagerelatedlink_1a63c800 ON pages_standardindexpagerelatedlink USING btree (page_id);
 
 
 --
--- Name: pages_standardindexpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardindexpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_standardindexpagerelatedlink_5b76e141 ON pages_standardindexpagerelatedlink USING btree (link_page_id);
 
 
 --
--- Name: pages_standardpage_92482941; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardpage_92482941; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_standardpage_92482941 ON pages_standardpage USING btree (feed_image_id);
 
 
 --
--- Name: pages_standardpagecarouselitem_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardpagecarouselitem_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_standardpagecarouselitem_121087a8 ON pages_standardpagecarouselitem USING btree (link_document_id);
 
 
 --
--- Name: pages_standardpagecarouselitem_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardpagecarouselitem_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_standardpagecarouselitem_1a63c800 ON pages_standardpagecarouselitem USING btree (page_id);
 
 
 --
--- Name: pages_standardpagecarouselitem_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardpagecarouselitem_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_standardpagecarouselitem_5b76e141 ON pages_standardpagecarouselitem USING btree (link_page_id);
 
 
 --
--- Name: pages_standardpagecarouselitem_f33175e6; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardpagecarouselitem_f33175e6; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_standardpagecarouselitem_f33175e6 ON pages_standardpagecarouselitem USING btree (image_id);
 
 
 --
--- Name: pages_standardpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_standardpagerelatedlink_121087a8 ON pages_standardpagerelatedlink USING btree (link_document_id);
 
 
 --
--- Name: pages_standardpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_standardpagerelatedlink_1a63c800 ON pages_standardpagerelatedlink USING btree (page_id);
 
 
 --
--- Name: pages_standardpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_standardpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_standardpagerelatedlink_5b76e141 ON pages_standardpagerelatedlink USING btree (link_page_id);
 
 
 --
--- Name: pages_testimonial_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_testimonial_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_testimonial_121087a8 ON pages_testimonial USING btree (link_document_id);
 
 
 --
--- Name: pages_testimonial_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_testimonial_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_testimonial_1a63c800 ON pages_testimonial USING btree (page_id);
 
 
 --
--- Name: pages_testimonial_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_testimonial_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_testimonial_5b76e141 ON pages_testimonial USING btree (link_page_id);
 
 
 --
--- Name: pages_testimonial_b4e75e23; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: pages_testimonial_b4e75e23; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX pages_testimonial_b4e75e23 ON pages_testimonial USING btree (photo_id);
 
 
 --
--- Name: people_personindexpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personindexpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX people_personindexpagerelatedlink_121087a8 ON people_personindexpagerelatedlink USING btree (link_document_id);
 
 
 --
--- Name: people_personindexpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personindexpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX people_personindexpagerelatedlink_1a63c800 ON people_personindexpagerelatedlink USING btree (page_id);
 
 
 --
--- Name: people_personindexpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personindexpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX people_personindexpagerelatedlink_5b76e141 ON people_personindexpagerelatedlink USING btree (link_page_id);
 
 
 --
--- Name: people_personpage_84566833; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personpage_84566833; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX people_personpage_84566833 ON people_personpage USING btree (role_id);
 
 
 --
--- Name: people_personpage_92482941; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personpage_92482941; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX people_personpage_92482941 ON people_personpage USING btree (feed_image_id);
 
 
 --
--- Name: people_personpage_f33175e6; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personpage_f33175e6; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX people_personpage_f33175e6 ON people_personpage USING btree (image_id);
 
 
 --
--- Name: people_personpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX people_personpagerelatedlink_121087a8 ON people_personpagerelatedlink USING btree (link_document_id);
 
 
 --
--- Name: people_personpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX people_personpagerelatedlink_1a63c800 ON people_personpagerelatedlink USING btree (page_id);
 
 
 --
--- Name: people_personpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX people_personpagerelatedlink_5b76e141 ON people_personpagerelatedlink USING btree (link_page_id);
 
 
 --
--- Name: people_personpagetag_09a80f33; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personpagetag_09a80f33; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX people_personpagetag_09a80f33 ON people_personpagetag USING btree (content_object_id);
 
 
 --
--- Name: people_personpagetag_76f094bc; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: people_personpagetag_76f094bc; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX people_personpagetag_76f094bc ON people_personpagetag USING btree (tag_id);
 
 
 --
--- Name: photo_gallery_galleryindexpage_92482941; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: photo_gallery_galleryindexpage_92482941; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX photo_gallery_galleryindexpage_92482941 ON photo_gallery_galleryindexpage USING btree (feed_image_id);
 
 
 --
--- Name: photo_gallery_gallerypage_92482941; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: photo_gallery_gallerypage_92482941; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX photo_gallery_gallerypage_92482941 ON photo_gallery_gallerypage USING btree (feed_image_id);
 
 
 --
--- Name: photo_gallery_gallerypagetag_09a80f33; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: photo_gallery_gallerypagetag_09a80f33; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX photo_gallery_gallerypagetag_09a80f33 ON photo_gallery_gallerypagetag USING btree (content_object_id);
 
 
 --
--- Name: photo_gallery_gallerypagetag_76f094bc; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: photo_gallery_gallerypagetag_76f094bc; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX photo_gallery_gallerypagetag_76f094bc ON photo_gallery_gallerypagetag USING btree (tag_id);
 
 
 --
--- Name: products_productindexpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productindexpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX products_productindexpagerelatedlink_121087a8 ON products_productindexpagerelatedlink USING btree (link_document_id);
 
 
 --
--- Name: products_productindexpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productindexpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX products_productindexpagerelatedlink_1a63c800 ON products_productindexpagerelatedlink USING btree (page_id);
 
 
 --
--- Name: products_productindexpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productindexpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX products_productindexpagerelatedlink_5b76e141 ON products_productindexpagerelatedlink USING btree (link_page_id);
 
 
 --
--- Name: products_productpage_92482941; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productpage_92482941; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX products_productpage_92482941 ON products_productpage USING btree (feed_image_id);
 
 
 --
--- Name: products_productpage_f33175e6; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productpage_f33175e6; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX products_productpage_f33175e6 ON products_productpage USING btree (image_id);
 
 
 --
--- Name: products_productpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX products_productpagerelatedlink_121087a8 ON products_productpagerelatedlink USING btree (link_document_id);
 
 
 --
--- Name: products_productpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX products_productpagerelatedlink_1a63c800 ON products_productpagerelatedlink USING btree (page_id);
 
 
 --
--- Name: products_productpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX products_productpagerelatedlink_5b76e141 ON products_productpagerelatedlink USING btree (link_page_id);
 
 
 --
--- Name: products_productpagetag_09a80f33; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productpagetag_09a80f33; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX products_productpagetag_09a80f33 ON products_productpagetag USING btree (content_object_id);
 
 
 --
--- Name: products_productpagetag_76f094bc; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: products_productpagetag_76f094bc; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX products_productpagetag_76f094bc ON products_productpagetag USING btree (tag_id);
 
 
 --
--- Name: taggit_tag_name_58eb2ed9_like; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: taggit_tag_name_58eb2ed9_like; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX taggit_tag_name_58eb2ed9_like ON taggit_tag USING btree (name varchar_pattern_ops);
 
 
 --
--- Name: taggit_tag_slug_6be58b2c_like; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: taggit_tag_slug_6be58b2c_like; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX taggit_tag_slug_6be58b2c_like ON taggit_tag USING btree (slug varchar_pattern_ops);
 
 
 --
--- Name: taggit_taggeditem_417f1b1c; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: taggit_taggeditem_417f1b1c; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX taggit_taggeditem_417f1b1c ON taggit_taggeditem USING btree (content_type_id);
 
 
 --
--- Name: taggit_taggeditem_76f094bc; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: taggit_taggeditem_76f094bc; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX taggit_taggeditem_76f094bc ON taggit_taggeditem USING btree (tag_id);
 
 
 --
--- Name: taggit_taggeditem_af31437c; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: taggit_taggeditem_af31437c; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX taggit_taggeditem_af31437c ON taggit_taggeditem USING btree (object_id);
 
 
 --
--- Name: taggit_taggeditem_content_type_id_196cc965_idx; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: taggit_taggeditem_content_type_id_196cc965_idx; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX taggit_taggeditem_content_type_id_196cc965_idx ON taggit_taggeditem USING btree (content_type_id, object_id);
 
 
 --
--- Name: wagtailcore_collection_path_d848dc19_like; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_collection_path_d848dc19_like; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_collection_path_d848dc19_like ON wagtailcore_collection USING btree (path varchar_pattern_ops);
 
 
 --
--- Name: wagtailcore_groupcollectionpermission_0a1a4dd8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_groupcollectionpermission_0a1a4dd8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_groupcollectionpermission_0a1a4dd8 ON wagtailcore_groupcollectionpermission USING btree (collection_id);
 
 
 --
--- Name: wagtailcore_groupcollectionpermission_0e939a4f; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_groupcollectionpermission_0e939a4f; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_groupcollectionpermission_0e939a4f ON wagtailcore_groupcollectionpermission USING btree (group_id);
 
 
 --
--- Name: wagtailcore_groupcollectionpermission_8373b171; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_groupcollectionpermission_8373b171; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_groupcollectionpermission_8373b171 ON wagtailcore_groupcollectionpermission USING btree (permission_id);
 
 
 --
--- Name: wagtailcore_grouppagepermission_0e939a4f; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_grouppagepermission_0e939a4f; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_grouppagepermission_0e939a4f ON wagtailcore_grouppagepermission USING btree (group_id);
 
 
 --
--- Name: wagtailcore_grouppagepermission_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_grouppagepermission_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_grouppagepermission_1a63c800 ON wagtailcore_grouppagepermission USING btree (page_id);
 
 
 --
--- Name: wagtailcore_page_2dbcba41; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_page_2dbcba41; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_page_2dbcba41 ON wagtailcore_page USING btree (slug);
 
 
 --
--- Name: wagtailcore_page_417f1b1c; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_page_417f1b1c; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_page_417f1b1c ON wagtailcore_page USING btree (content_type_id);
 
 
 --
--- Name: wagtailcore_page_5e7b1936; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_page_5e7b1936; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_page_5e7b1936 ON wagtailcore_page USING btree (owner_id);
 
 
 --
--- Name: wagtailcore_page_first_published_at_2b5dd637_uniq; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_page_first_published_at_2b5dd637_uniq; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_page_first_published_at_2b5dd637_uniq ON wagtailcore_page USING btree (first_published_at);
 
 
 --
--- Name: wagtailcore_page_path_98eba2c8_like; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_page_path_98eba2c8_like; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_page_path_98eba2c8_like ON wagtailcore_page USING btree (path varchar_pattern_ops);
 
 
 --
--- Name: wagtailcore_page_slug_e7c11b8f_like; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_page_slug_e7c11b8f_like; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_page_slug_e7c11b8f_like ON wagtailcore_page USING btree (slug varchar_pattern_ops);
 
 
 --
--- Name: wagtailcore_pagerevision_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_pagerevision_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_pagerevision_1a63c800 ON wagtailcore_pagerevision USING btree (page_id);
 
 
 --
--- Name: wagtailcore_pagerevision_e8701ad4; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_pagerevision_e8701ad4; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_pagerevision_e8701ad4 ON wagtailcore_pagerevision USING btree (user_id);
 
 
 --
--- Name: wagtailcore_pagerevision_submitted_for_moderation_c682e44c_uniq; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_pagerevision_submitted_for_moderation_c682e44c_uniq; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_pagerevision_submitted_for_moderation_c682e44c_uniq ON wagtailcore_pagerevision USING btree (submitted_for_moderation);
 
 
 --
--- Name: wagtailcore_pageviewrestriction_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_pageviewrestriction_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_pageviewrestriction_1a63c800 ON wagtailcore_pageviewrestriction USING btree (page_id);
 
 
 --
--- Name: wagtailcore_site_0897acf4; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_site_0897acf4; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_site_0897acf4 ON wagtailcore_site USING btree (hostname);
 
 
 --
--- Name: wagtailcore_site_8372b497; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_site_8372b497; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_site_8372b497 ON wagtailcore_site USING btree (root_page_id);
 
 
 --
--- Name: wagtailcore_site_hostname_96b20b46_like; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailcore_site_hostname_96b20b46_like; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailcore_site_hostname_96b20b46_like ON wagtailcore_site USING btree (hostname varchar_pattern_ops);
 
 
 --
--- Name: wagtaildocs_document_0a1a4dd8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtaildocs_document_0a1a4dd8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtaildocs_document_0a1a4dd8 ON wagtaildocs_document USING btree (collection_id);
 
 
 --
--- Name: wagtaildocs_document_ef01e2b6; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtaildocs_document_ef01e2b6; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtaildocs_document_ef01e2b6 ON wagtaildocs_document USING btree (uploaded_by_user_id);
 
 
 --
--- Name: wagtailforms_formsubmission_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailforms_formsubmission_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailforms_formsubmission_1a63c800 ON wagtailforms_formsubmission USING btree (page_id);
 
 
 --
--- Name: wagtailimages_image_0a1a4dd8; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailimages_image_0a1a4dd8; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailimages_image_0a1a4dd8 ON wagtailimages_image USING btree (collection_id);
 
 
 --
--- Name: wagtailimages_image_created_at_86fa6cd4_uniq; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailimages_image_created_at_86fa6cd4_uniq; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailimages_image_created_at_86fa6cd4_uniq ON wagtailimages_image USING btree (created_at);
 
 
 --
--- Name: wagtailimages_image_ef01e2b6; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailimages_image_ef01e2b6; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailimages_image_ef01e2b6 ON wagtailimages_image USING btree (uploaded_by_user_id);
 
 
 --
--- Name: wagtailimages_rendition_0a317463; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailimages_rendition_0a317463; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailimages_rendition_0a317463 ON wagtailimages_rendition USING btree (filter_id);
 
 
 --
--- Name: wagtailimages_rendition_f33175e6; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailimages_rendition_f33175e6; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailimages_rendition_f33175e6 ON wagtailimages_rendition USING btree (image_id);
 
 
 --
--- Name: wagtailredirects_redirect_2fd79f37; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailredirects_redirect_2fd79f37; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailredirects_redirect_2fd79f37 ON wagtailredirects_redirect USING btree (redirect_page_id);
 
 
 --
--- Name: wagtailredirects_redirect_9365d6e7; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailredirects_redirect_9365d6e7; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailredirects_redirect_9365d6e7 ON wagtailredirects_redirect USING btree (site_id);
 
 
 --
--- Name: wagtailredirects_redirect_old_path_bb35247b_like; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailredirects_redirect_old_path_bb35247b_like; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailredirects_redirect_old_path_bb35247b_like ON wagtailredirects_redirect USING btree (old_path varchar_pattern_ops);
 
 
 --
--- Name: wagtailsearch_editorspick_0bbeda9c; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailsearch_editorspick_0bbeda9c; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailsearch_editorspick_0bbeda9c ON wagtailsearchpromotions_searchpromotion USING btree (query_id);
 
 
 --
--- Name: wagtailsearch_editorspick_1a63c800; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailsearch_editorspick_1a63c800; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailsearch_editorspick_1a63c800 ON wagtailsearchpromotions_searchpromotion USING btree (page_id);
 
 
 --
--- Name: wagtailsearch_query_query_string_e785ea07_like; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailsearch_query_query_string_e785ea07_like; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailsearch_query_query_string_e785ea07_like ON wagtailsearch_query USING btree (query_string varchar_pattern_ops);
 
 
 --
--- Name: wagtailsearch_querydailyhits_0bbeda9c; Type: INDEX; Schema: public; Owner: puri; Tablespace: 
+-- Name: wagtailsearch_querydailyhits_0bbeda9c; Type: INDEX; Schema: public; Owner: sumit; Tablespace: 
 --
 
 CREATE INDEX wagtailsearch_querydailyhits_0bbeda9c ON wagtailsearch_querydailyhits USING btree (query_id);
 
 
 --
--- Name: D17c8edd4821aee444fb5a22b2e0a831; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: D17c8edd4821aee444fb5a22b2e0a831; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY documents_gallery_documentspagetag
@@ -6581,7 +6593,7 @@ ALTER TABLE ONLY documents_gallery_documentspagetag
 
 
 --
--- Name: auth_group_permiss_permission_id_84c5c92e_fk_auth_permission_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: auth_group_permiss_permission_id_84c5c92e_fk_auth_permission_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY auth_group_permissions
@@ -6589,7 +6601,7 @@ ALTER TABLE ONLY auth_group_permissions
 
 
 --
--- Name: auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY auth_group_permissions
@@ -6597,7 +6609,7 @@ ALTER TABLE ONLY auth_group_permissions
 
 
 --
--- Name: auth_permiss_content_type_id_2f476e4b_fk_django_content_type_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: auth_permiss_content_type_id_2f476e4b_fk_django_content_type_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY auth_permission
@@ -6605,7 +6617,7 @@ ALTER TABLE ONLY auth_permission
 
 
 --
--- Name: auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY auth_user_groups
@@ -6613,7 +6625,7 @@ ALTER TABLE ONLY auth_user_groups
 
 
 --
--- Name: auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY auth_user_groups
@@ -6621,7 +6633,7 @@ ALTER TABLE ONLY auth_user_groups
 
 
 --
--- Name: auth_user_user_per_permission_id_1fbb5f2c_fk_auth_permission_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: auth_user_user_per_permission_id_1fbb5f2c_fk_auth_permission_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY auth_user_user_permissions
@@ -6629,7 +6641,7 @@ ALTER TABLE ONLY auth_user_user_permissions
 
 
 --
--- Name: auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY auth_user_user_permissions
@@ -6637,7 +6649,7 @@ ALTER TABLE ONLY auth_user_user_permissions
 
 
 --
--- Name: blog_bl_content_object_id_0dc644d2_fk_blog_blogpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: blog_bl_content_object_id_0dc644d2_fk_blog_blogpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogpagetag
@@ -6645,7 +6657,7 @@ ALTER TABLE ONLY blog_blogpagetag
 
 
 --
--- Name: blog_blogi_link_document_id_84c85fbf_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: blog_blogi_link_document_id_84c85fbf_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogindexpagerelatedlink
@@ -6653,7 +6665,7 @@ ALTER TABLE ONLY blog_blogindexpagerelatedlink
 
 
 --
--- Name: blog_blogind_page_id_905f99b7_fk_blog_blogindexpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: blog_blogind_page_id_905f99b7_fk_blog_blogindexpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogindexpagerelatedlink
@@ -6661,7 +6673,7 @@ ALTER TABLE ONLY blog_blogindexpagerelatedlink
 
 
 --
--- Name: blog_blogindexpage_link_page_id_fdd456c7_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: blog_blogindexpage_link_page_id_fdd456c7_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogindexpagerelatedlink
@@ -6669,7 +6681,7 @@ ALTER TABLE ONLY blog_blogindexpagerelatedlink
 
 
 --
--- Name: blog_blogindexpage_page_ptr_id_d87c3ac2_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: blog_blogindexpage_page_ptr_id_d87c3ac2_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogindexpage
@@ -6677,7 +6689,7 @@ ALTER TABLE ONLY blog_blogindexpage
 
 
 --
--- Name: blog_blogp_link_document_id_358015f9_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: blog_blogp_link_document_id_358015f9_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogpagerelatedlink
@@ -6685,7 +6697,7 @@ ALTER TABLE ONLY blog_blogpagerelatedlink
 
 
 --
--- Name: blog_blogp_link_document_id_944c5996_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: blog_blogp_link_document_id_944c5996_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogpagecarouselitem
@@ -6693,7 +6705,7 @@ ALTER TABLE ONLY blog_blogpagecarouselitem
 
 
 --
--- Name: blog_blogpage_feed_image_id_5f46dd6e_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: blog_blogpage_feed_image_id_5f46dd6e_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogpage
@@ -6701,7 +6713,7 @@ ALTER TABLE ONLY blog_blogpage
 
 
 --
--- Name: blog_blogpage_page_ptr_id_1d78e2b7_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: blog_blogpage_page_ptr_id_1d78e2b7_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogpage
@@ -6709,7 +6721,7 @@ ALTER TABLE ONLY blog_blogpage
 
 
 --
--- Name: blog_blogpagecaro_page_id_41128629_fk_blog_blogpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: blog_blogpagecaro_page_id_41128629_fk_blog_blogpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogpagecarouselitem
@@ -6717,7 +6729,7 @@ ALTER TABLE ONLY blog_blogpagecarouselitem
 
 
 --
--- Name: blog_blogpagecarou_link_page_id_86ebc051_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: blog_blogpagecarou_link_page_id_86ebc051_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogpagecarouselitem
@@ -6725,7 +6737,7 @@ ALTER TABLE ONLY blog_blogpagecarouselitem
 
 
 --
--- Name: blog_blogpagecarous_image_id_d51a8744_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: blog_blogpagecarous_image_id_d51a8744_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogpagecarouselitem
@@ -6733,7 +6745,7 @@ ALTER TABLE ONLY blog_blogpagecarouselitem
 
 
 --
--- Name: blog_blogpagerela_page_id_31c20323_fk_blog_blogpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: blog_blogpagerela_page_id_31c20323_fk_blog_blogpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogpagerelatedlink
@@ -6741,7 +6753,7 @@ ALTER TABLE ONLY blog_blogpagerelatedlink
 
 
 --
--- Name: blog_blogpagerelat_link_page_id_1edfe541_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: blog_blogpagerelat_link_page_id_1edfe541_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogpagerelatedlink
@@ -6749,7 +6761,7 @@ ALTER TABLE ONLY blog_blogpagerelatedlink
 
 
 --
--- Name: blog_blogpagetag_tag_id_81dc0e5f_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: blog_blogpagetag_tag_id_81dc0e5f_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY blog_blogpagetag
@@ -6757,7 +6769,7 @@ ALTER TABLE ONLY blog_blogpagetag
 
 
 --
--- Name: contact_con_page_id_95a7af80_fk_contact_contactpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: contact_con_page_id_95a7af80_fk_contact_contactpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY contact_contactformfield
@@ -6765,7 +6777,7 @@ ALTER TABLE ONLY contact_contactformfield
 
 
 --
--- Name: contact_contactpage_page_ptr_id_143c93c1_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: contact_contactpage_page_ptr_id_143c93c1_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY contact_contactpage
@@ -6773,7 +6785,7 @@ ALTER TABLE ONLY contact_contactpage
 
 
 --
--- Name: contact_formfi_page_id_3ee48e6d_fk_contact_formpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: contact_formfi_page_id_3ee48e6d_fk_contact_formpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY contact_formfield
@@ -6781,7 +6793,7 @@ ALTER TABLE ONLY contact_formfield
 
 
 --
--- Name: contact_formpage_page_ptr_id_93c16e67_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: contact_formpage_page_ptr_id_93c16e67_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY contact_formpage
@@ -6789,7 +6801,7 @@ ALTER TABLE ONLY contact_formpage
 
 
 --
--- Name: content_object_id_1985a884_fk_products_productpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: content_object_id_1985a884_fk_products_productpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY products_productpagetag
@@ -6797,7 +6809,7 @@ ALTER TABLE ONLY products_productpagetag
 
 
 --
--- Name: django_admin_content_type_id_c4bce8eb_fk_django_content_type_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: django_admin_content_type_id_c4bce8eb_fk_django_content_type_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY django_admin_log
@@ -6805,7 +6817,7 @@ ALTER TABLE ONLY django_admin_log
 
 
 --
--- Name: django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY django_admin_log
@@ -6813,7 +6825,7 @@ ALTER TABLE ONLY django_admin_log
 
 
 --
--- Name: documents_gall_feed_image_id_72f32dc7_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: documents_gall_feed_image_id_72f32dc7_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY documents_gallery_documentspage
@@ -6821,7 +6833,7 @@ ALTER TABLE ONLY documents_gallery_documentspage
 
 
 --
--- Name: documents_gall_feed_image_id_732ac53b_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: documents_gall_feed_image_id_732ac53b_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY documents_gallery_documentsindexpage
@@ -6829,7 +6841,7 @@ ALTER TABLE ONLY documents_gallery_documentsindexpage
 
 
 --
--- Name: documents_gallery_d_page_ptr_id_ef81894a_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: documents_gallery_d_page_ptr_id_ef81894a_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY documents_gallery_documentspage
@@ -6837,7 +6849,7 @@ ALTER TABLE ONLY documents_gallery_documentspage
 
 
 --
--- Name: documents_gallery_d_page_ptr_id_f7fa951f_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: documents_gallery_d_page_ptr_id_f7fa951f_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY documents_gallery_documentsindexpage
@@ -6845,7 +6857,7 @@ ALTER TABLE ONLY documents_gallery_documentsindexpage
 
 
 --
--- Name: documents_gallery_documentspag_tag_id_50625f82_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: documents_gallery_documentspag_tag_id_50625f82_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY documents_gallery_documentspagetag
@@ -6853,7 +6865,7 @@ ALTER TABLE ONLY documents_gallery_documentspagetag
 
 
 --
--- Name: even_content_object_id_a9eee66f_fk_events_eventpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: even_content_object_id_a9eee66f_fk_events_eventpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpagetag
@@ -6861,7 +6873,7 @@ ALTER TABLE ONLY events_eventpagetag
 
 
 --
--- Name: events_ev_page_id_7ac7d364_fk_events_eventindexpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_ev_page_id_7ac7d364_fk_events_eventindexpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventindexpagerelatedlink
@@ -6869,7 +6881,7 @@ ALTER TABLE ONLY events_eventindexpagerelatedlink
 
 
 --
--- Name: events_eve_link_document_id_0252ea0f_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_eve_link_document_id_0252ea0f_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpagespeaker
@@ -6877,7 +6889,7 @@ ALTER TABLE ONLY events_eventpagespeaker
 
 
 --
--- Name: events_eve_link_document_id_85c089ab_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_eve_link_document_id_85c089ab_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpagecarouselitem
@@ -6885,7 +6897,7 @@ ALTER TABLE ONLY events_eventpagecarouselitem
 
 
 --
--- Name: events_eve_link_document_id_bc602f32_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_eve_link_document_id_bc602f32_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpagerelatedlink
@@ -6893,7 +6905,7 @@ ALTER TABLE ONLY events_eventpagerelatedlink
 
 
 --
--- Name: events_eve_link_document_id_f50895d4_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_eve_link_document_id_f50895d4_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventindexpagerelatedlink
@@ -6901,7 +6913,7 @@ ALTER TABLE ONLY events_eventindexpagerelatedlink
 
 
 --
--- Name: events_eventindexp_link_page_id_4c88907b_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_eventindexp_link_page_id_4c88907b_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventindexpagerelatedlink
@@ -6909,7 +6921,7 @@ ALTER TABLE ONLY events_eventindexpagerelatedlink
 
 
 --
--- Name: events_eventindexpa_page_ptr_id_d4ed8796_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_eventindexpa_page_ptr_id_d4ed8796_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventindexpage
@@ -6917,7 +6929,7 @@ ALTER TABLE ONLY events_eventindexpage
 
 
 --
--- Name: events_eventpa_feed_image_id_25a625d0_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_eventpa_feed_image_id_25a625d0_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpage
@@ -6925,7 +6937,7 @@ ALTER TABLE ONLY events_eventpage
 
 
 --
--- Name: events_eventpa_page_id_10883f65_fk_events_eventpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_eventpa_page_id_10883f65_fk_events_eventpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpagespeaker
@@ -6933,7 +6945,7 @@ ALTER TABLE ONLY events_eventpagespeaker
 
 
 --
--- Name: events_eventpa_page_id_2da96f87_fk_events_eventpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_eventpa_page_id_2da96f87_fk_events_eventpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpagerelatedlink
@@ -6941,7 +6953,7 @@ ALTER TABLE ONLY events_eventpagerelatedlink
 
 
 --
--- Name: events_eventpa_page_id_eec52587_fk_events_eventpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_eventpa_page_id_eec52587_fk_events_eventpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpagecarouselitem
@@ -6949,7 +6961,7 @@ ALTER TABLE ONLY events_eventpagecarouselitem
 
 
 --
--- Name: events_eventpage_page_ptr_id_c6701067_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_eventpage_page_ptr_id_c6701067_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpage
@@ -6957,7 +6969,7 @@ ALTER TABLE ONLY events_eventpage
 
 
 --
--- Name: events_eventpageca_link_page_id_388fd2d0_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_eventpageca_link_page_id_388fd2d0_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpagecarouselitem
@@ -6965,7 +6977,7 @@ ALTER TABLE ONLY events_eventpagecarouselitem
 
 
 --
--- Name: events_eventpagecar_image_id_fb4b4dcd_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_eventpagecar_image_id_fb4b4dcd_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpagecarouselitem
@@ -6973,7 +6985,7 @@ ALTER TABLE ONLY events_eventpagecarouselitem
 
 
 --
--- Name: events_eventpagere_link_page_id_378ea87f_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_eventpagere_link_page_id_378ea87f_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpagerelatedlink
@@ -6981,7 +6993,7 @@ ALTER TABLE ONLY events_eventpagerelatedlink
 
 
 --
--- Name: events_eventpagesp_link_page_id_f4549a64_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_eventpagesp_link_page_id_f4549a64_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpagespeaker
@@ -6989,7 +7001,7 @@ ALTER TABLE ONLY events_eventpagespeaker
 
 
 --
--- Name: events_eventpagespe_image_id_f48678eb_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_eventpagespe_image_id_f48678eb_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpagespeaker
@@ -6997,7 +7009,7 @@ ALTER TABLE ONLY events_eventpagespeaker
 
 
 --
--- Name: events_eventpagetag_tag_id_b811cfc5_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: events_eventpagetag_tag_id_b811cfc5_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY events_eventpagetag
@@ -7005,7 +7017,7 @@ ALTER TABLE ONLY events_eventpagetag
 
 
 --
--- Name: f30176145dc37361fd7bcfd229367ca4; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: f30176145dc37361fd7bcfd229367ca4; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY photo_gallery_gallerypagetag
@@ -7013,7 +7025,7 @@ ALTER TABLE ONLY photo_gallery_gallerypagetag
 
 
 --
--- Name: pages_adve_link_document_id_d804b3dc_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_adve_link_document_id_d804b3dc_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_advert
@@ -7021,7 +7033,7 @@ ALTER TABLE ONLY pages_advert
 
 
 --
--- Name: pages_advert_image_id_c3df93a1_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_advert_image_id_c3df93a1_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_advert
@@ -7029,7 +7041,7 @@ ALTER TABLE ONLY pages_advert
 
 
 --
--- Name: pages_advert_link_page_id_ae00fe23_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_advert_link_page_id_ae00fe23_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_advert
@@ -7037,7 +7049,7 @@ ALTER TABLE ONLY pages_advert
 
 
 --
--- Name: pages_advert_page_id_21245cc0_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_advert_page_id_21245cc0_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_advert
@@ -7045,7 +7057,7 @@ ALTER TABLE ONLY pages_advert
 
 
 --
--- Name: pages_cont_link_document_id_0b825445_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_cont_link_document_id_0b825445_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_contentblock
@@ -7053,7 +7065,7 @@ ALTER TABLE ONLY pages_contentblock
 
 
 --
--- Name: pages_contentblock_link_page_id_84f7b516_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_contentblock_link_page_id_84f7b516_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_contentblock
@@ -7061,7 +7073,7 @@ ALTER TABLE ONLY pages_contentblock
 
 
 --
--- Name: pages_contentblock_page_id_d29244b9_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_contentblock_page_id_d29244b9_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_contentblock
@@ -7069,7 +7081,7 @@ ALTER TABLE ONLY pages_contentblock
 
 
 --
--- Name: pages_faqspage_page_ptr_id_15a8d513_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_faqspage_page_ptr_id_15a8d513_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_faqspage
@@ -7077,7 +7089,7 @@ ALTER TABLE ONLY pages_faqspage
 
 
 --
--- Name: pages_home_link_document_id_1364f817_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_home_link_document_id_1364f817_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_homepagerelatedlink
@@ -7085,7 +7097,7 @@ ALTER TABLE ONLY pages_homepagerelatedlink
 
 
 --
--- Name: pages_home_link_document_id_902c9e7d_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_home_link_document_id_902c9e7d_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_homepagecarouselitem
@@ -7093,7 +7105,7 @@ ALTER TABLE ONLY pages_homepagecarouselitem
 
 
 --
--- Name: pages_home_link_document_id_a2552580_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_home_link_document_id_a2552580_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_homepagecontentitem
@@ -7101,7 +7113,7 @@ ALTER TABLE ONLY pages_homepagecontentitem
 
 
 --
--- Name: pages_homepage_page_ptr_id_5b805d74_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_homepage_page_ptr_id_5b805d74_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_homepage
@@ -7109,7 +7121,7 @@ ALTER TABLE ONLY pages_homepage
 
 
 --
--- Name: pages_homepageca_page_id_915b43c4_fk_pages_homepage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_homepageca_page_id_915b43c4_fk_pages_homepage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_homepagecarouselitem
@@ -7117,7 +7129,7 @@ ALTER TABLE ONLY pages_homepagecarouselitem
 
 
 --
--- Name: pages_homepagecaro_link_page_id_799b1594_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_homepagecaro_link_page_id_799b1594_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_homepagecarouselitem
@@ -7125,7 +7137,7 @@ ALTER TABLE ONLY pages_homepagecarouselitem
 
 
 --
--- Name: pages_homepagecarou_image_id_45b3424e_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_homepagecarou_image_id_45b3424e_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_homepagecarouselitem
@@ -7133,7 +7145,7 @@ ALTER TABLE ONLY pages_homepagecarouselitem
 
 
 --
--- Name: pages_homepageco_page_id_8b646417_fk_pages_homepage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_homepageco_page_id_8b646417_fk_pages_homepage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_homepagecontentitem
@@ -7141,7 +7153,7 @@ ALTER TABLE ONLY pages_homepagecontentitem
 
 
 --
--- Name: pages_homepagecont_link_page_id_9aa371ca_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_homepagecont_link_page_id_9aa371ca_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_homepagecontentitem
@@ -7149,7 +7161,7 @@ ALTER TABLE ONLY pages_homepagecontentitem
 
 
 --
--- Name: pages_homepageconte_image_id_85ec39f6_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_homepageconte_image_id_85ec39f6_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_homepagecontentitem
@@ -7157,7 +7169,7 @@ ALTER TABLE ONLY pages_homepagecontentitem
 
 
 --
--- Name: pages_homepagere_page_id_b0a3517a_fk_pages_homepage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_homepagere_page_id_b0a3517a_fk_pages_homepage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_homepagerelatedlink
@@ -7165,7 +7177,7 @@ ALTER TABLE ONLY pages_homepagerelatedlink
 
 
 --
--- Name: pages_homepagerela_link_page_id_87ab8ff4_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_homepagerela_link_page_id_87ab8ff4_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_homepagerelatedlink
@@ -7173,7 +7185,7 @@ ALTER TABLE ONLY pages_homepagerelatedlink
 
 
 --
--- Name: pages_s_page_id_d0df6fde_fk_pages_standardindexpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_s_page_id_d0df6fde_fk_pages_standardindexpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_standardindexpagerelatedlink
@@ -7181,7 +7193,7 @@ ALTER TABLE ONLY pages_standardindexpagerelatedlink
 
 
 --
--- Name: pages_socialmediasettin_site_id_48a3ffb9_fk_wagtailcore_site_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_socialmediasettin_site_id_48a3ffb9_fk_wagtailcore_site_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_socialmediasettings
@@ -7189,7 +7201,7 @@ ALTER TABLE ONLY pages_socialmediasettings
 
 
 --
--- Name: pages_stan_link_document_id_1e821170_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_stan_link_document_id_1e821170_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_standardpagecarouselitem
@@ -7197,7 +7209,7 @@ ALTER TABLE ONLY pages_standardpagecarouselitem
 
 
 --
--- Name: pages_stan_link_document_id_ab0a20f8_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_stan_link_document_id_ab0a20f8_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_standardindexpagerelatedlink
@@ -7205,7 +7217,7 @@ ALTER TABLE ONLY pages_standardindexpagerelatedlink
 
 
 --
--- Name: pages_stan_link_document_id_c02096ae_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_stan_link_document_id_c02096ae_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_standardpagerelatedlink
@@ -7213,7 +7225,7 @@ ALTER TABLE ONLY pages_standardpagerelatedlink
 
 
 --
--- Name: pages_standa_page_id_1c982abb_fk_pages_standardpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_standa_page_id_1c982abb_fk_pages_standardpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_standardpagerelatedlink
@@ -7221,7 +7233,7 @@ ALTER TABLE ONLY pages_standardpagerelatedlink
 
 
 --
--- Name: pages_standa_page_id_ab87f566_fk_pages_standardpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_standa_page_id_ab87f566_fk_pages_standardpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_standardpagecarouselitem
@@ -7229,7 +7241,7 @@ ALTER TABLE ONLY pages_standardpagecarouselitem
 
 
 --
--- Name: pages_standard_feed_image_id_41c2eccd_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_standard_feed_image_id_41c2eccd_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_standardpage
@@ -7237,7 +7249,7 @@ ALTER TABLE ONLY pages_standardpage
 
 
 --
--- Name: pages_standard_feed_image_id_a65c3494_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_standard_feed_image_id_a65c3494_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_standardindexpage
@@ -7245,7 +7257,7 @@ ALTER TABLE ONLY pages_standardindexpage
 
 
 --
--- Name: pages_standardinde_link_page_id_8ad61c91_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_standardinde_link_page_id_8ad61c91_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_standardindexpagerelatedlink
@@ -7253,7 +7265,7 @@ ALTER TABLE ONLY pages_standardindexpagerelatedlink
 
 
 --
--- Name: pages_standardindex_page_ptr_id_70a0d3dc_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_standardindex_page_ptr_id_70a0d3dc_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_standardindexpage
@@ -7261,7 +7273,7 @@ ALTER TABLE ONLY pages_standardindexpage
 
 
 --
--- Name: pages_standardpage_link_page_id_28e4472a_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_standardpage_link_page_id_28e4472a_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_standardpagecarouselitem
@@ -7269,7 +7281,7 @@ ALTER TABLE ONLY pages_standardpagecarouselitem
 
 
 --
--- Name: pages_standardpage_link_page_id_29341951_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_standardpage_link_page_id_29341951_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_standardpagerelatedlink
@@ -7277,7 +7289,7 @@ ALTER TABLE ONLY pages_standardpagerelatedlink
 
 
 --
--- Name: pages_standardpage_page_ptr_id_8d8149d9_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_standardpage_page_ptr_id_8d8149d9_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_standardpage
@@ -7285,7 +7297,7 @@ ALTER TABLE ONLY pages_standardpage
 
 
 --
--- Name: pages_standardpagec_image_id_8d81528b_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_standardpagec_image_id_8d81528b_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_standardpagecarouselitem
@@ -7293,7 +7305,7 @@ ALTER TABLE ONLY pages_standardpagecarouselitem
 
 
 --
--- Name: pages_test_link_document_id_3c7b9377_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_test_link_document_id_3c7b9377_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_testimonial
@@ -7301,7 +7313,7 @@ ALTER TABLE ONLY pages_testimonial
 
 
 --
--- Name: pages_testimonial_link_page_id_70b58081_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_testimonial_link_page_id_70b58081_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_testimonial
@@ -7309,7 +7321,7 @@ ALTER TABLE ONLY pages_testimonial
 
 
 --
--- Name: pages_testimonial_page_id_aedaf53f_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_testimonial_page_id_aedaf53f_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_testimonial
@@ -7317,7 +7329,7 @@ ALTER TABLE ONLY pages_testimonial
 
 
 --
--- Name: pages_testimonial_photo_id_29360729_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: pages_testimonial_photo_id_29360729_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY pages_testimonial
@@ -7325,7 +7337,7 @@ ALTER TABLE ONLY pages_testimonial
 
 
 --
--- Name: peo_content_object_id_219202ed_fk_people_personpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: peo_content_object_id_219202ed_fk_people_personpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY people_personpagetag
@@ -7333,7 +7345,7 @@ ALTER TABLE ONLY people_personpagetag
 
 
 --
--- Name: people_p_page_id_9074b56c_fk_people_personindexpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: people_p_page_id_9074b56c_fk_people_personindexpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY people_personindexpagerelatedlink
@@ -7341,7 +7353,7 @@ ALTER TABLE ONLY people_personindexpagerelatedlink
 
 
 --
--- Name: people_per_link_document_id_6fb113f2_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: people_per_link_document_id_6fb113f2_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY people_personindexpagerelatedlink
@@ -7349,7 +7361,7 @@ ALTER TABLE ONLY people_personindexpagerelatedlink
 
 
 --
--- Name: people_per_link_document_id_d330a140_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: people_per_link_document_id_d330a140_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY people_personpagerelatedlink
@@ -7357,7 +7369,7 @@ ALTER TABLE ONLY people_personpagerelatedlink
 
 
 --
--- Name: people_person_page_id_37654932_fk_people_personpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: people_person_page_id_37654932_fk_people_personpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY people_personpagerelatedlink
@@ -7365,7 +7377,7 @@ ALTER TABLE ONLY people_personpagerelatedlink
 
 
 --
--- Name: people_personindex_link_page_id_9a45cdb2_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: people_personindex_link_page_id_9a45cdb2_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY people_personindexpagerelatedlink
@@ -7373,7 +7385,7 @@ ALTER TABLE ONLY people_personindexpagerelatedlink
 
 
 --
--- Name: people_personindexp_page_ptr_id_2aafa812_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: people_personindexp_page_ptr_id_2aafa812_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY people_personindexpage
@@ -7381,7 +7393,7 @@ ALTER TABLE ONLY people_personindexpage
 
 
 --
--- Name: people_personp_feed_image_id_c8aaeda0_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: people_personp_feed_image_id_c8aaeda0_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY people_personpage
@@ -7389,7 +7401,7 @@ ALTER TABLE ONLY people_personpage
 
 
 --
--- Name: people_personpage_image_id_f13def2e_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: people_personpage_image_id_f13def2e_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY people_personpage
@@ -7397,7 +7409,7 @@ ALTER TABLE ONLY people_personpage
 
 
 --
--- Name: people_personpage_page_ptr_id_0f038b98_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: people_personpage_page_ptr_id_0f038b98_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY people_personpage
@@ -7405,7 +7417,7 @@ ALTER TABLE ONLY people_personpage
 
 
 --
--- Name: people_personpage_role_id_534a1c51_fk_people_personrole_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: people_personpage_role_id_534a1c51_fk_people_personrole_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY people_personpage
@@ -7413,7 +7425,7 @@ ALTER TABLE ONLY people_personpage
 
 
 --
--- Name: people_personpager_link_page_id_1f38718a_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: people_personpager_link_page_id_1f38718a_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY people_personpagerelatedlink
@@ -7421,7 +7433,7 @@ ALTER TABLE ONLY people_personpagerelatedlink
 
 
 --
--- Name: people_personpagetag_tag_id_e0d52d9d_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: people_personpagetag_tag_id_e0d52d9d_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY people_personpagetag
@@ -7429,7 +7441,7 @@ ALTER TABLE ONLY people_personpagetag
 
 
 --
--- Name: photo_gallery__feed_image_id_2efaf002_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: photo_gallery__feed_image_id_2efaf002_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY photo_gallery_gallerypage
@@ -7437,7 +7449,7 @@ ALTER TABLE ONLY photo_gallery_gallerypage
 
 
 --
--- Name: photo_gallery__feed_image_id_8fa24cf4_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: photo_gallery__feed_image_id_8fa24cf4_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY photo_gallery_galleryindexpage
@@ -7445,7 +7457,7 @@ ALTER TABLE ONLY photo_gallery_galleryindexpage
 
 
 --
--- Name: photo_gallery_galle_page_ptr_id_11be90ff_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: photo_gallery_galle_page_ptr_id_11be90ff_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY photo_gallery_gallerypage
@@ -7453,7 +7465,7 @@ ALTER TABLE ONLY photo_gallery_gallerypage
 
 
 --
--- Name: photo_gallery_galle_page_ptr_id_44a4f590_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: photo_gallery_galle_page_ptr_id_44a4f590_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY photo_gallery_galleryindexpage
@@ -7461,7 +7473,7 @@ ALTER TABLE ONLY photo_gallery_galleryindexpage
 
 
 --
--- Name: photo_gallery_gallerypagetag_tag_id_61ab4280_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: photo_gallery_gallerypagetag_tag_id_61ab4280_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY photo_gallery_gallerypagetag
@@ -7469,7 +7481,7 @@ ALTER TABLE ONLY photo_gallery_gallerypagetag
 
 
 --
--- Name: produ_page_id_320a0204_fk_products_productindexpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: produ_page_id_320a0204_fk_products_productindexpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY products_productindexpagerelatedlink
@@ -7477,7 +7489,7 @@ ALTER TABLE ONLY products_productindexpagerelatedlink
 
 
 --
--- Name: products_p_link_document_id_7589e588_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: products_p_link_document_id_7589e588_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY products_productindexpagerelatedlink
@@ -7485,7 +7497,7 @@ ALTER TABLE ONLY products_productindexpagerelatedlink
 
 
 --
--- Name: products_p_link_document_id_d6cd7769_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: products_p_link_document_id_d6cd7769_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY products_productpagerelatedlink
@@ -7493,7 +7505,7 @@ ALTER TABLE ONLY products_productpagerelatedlink
 
 
 --
--- Name: products_p_page_id_855d9c33_fk_products_productpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: products_p_page_id_855d9c33_fk_products_productpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY products_productpagerelatedlink
@@ -7501,7 +7513,7 @@ ALTER TABLE ONLY products_productpagerelatedlink
 
 
 --
--- Name: products_produ_feed_image_id_fc5dc22b_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: products_produ_feed_image_id_fc5dc22b_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY products_productpage
@@ -7509,7 +7521,7 @@ ALTER TABLE ONLY products_productpage
 
 
 --
--- Name: products_productin_link_page_id_cc9048a1_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: products_productin_link_page_id_cc9048a1_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY products_productindexpagerelatedlink
@@ -7517,7 +7529,7 @@ ALTER TABLE ONLY products_productindexpagerelatedlink
 
 
 --
--- Name: products_productind_page_ptr_id_896e5596_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: products_productind_page_ptr_id_896e5596_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY products_productindexpage
@@ -7525,7 +7537,7 @@ ALTER TABLE ONLY products_productindexpage
 
 
 --
--- Name: products_productpa_link_page_id_39628d87_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: products_productpa_link_page_id_39628d87_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY products_productpagerelatedlink
@@ -7533,7 +7545,7 @@ ALTER TABLE ONLY products_productpagerelatedlink
 
 
 --
--- Name: products_productpag_image_id_b4d3829e_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: products_productpag_image_id_b4d3829e_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY products_productpage
@@ -7541,7 +7553,7 @@ ALTER TABLE ONLY products_productpage
 
 
 --
--- Name: products_productpag_page_ptr_id_d4d9ff65_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: products_productpag_page_ptr_id_d4d9ff65_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY products_productpage
@@ -7549,7 +7561,7 @@ ALTER TABLE ONLY products_productpage
 
 
 --
--- Name: products_productpagetag_tag_id_f0c81f66_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: products_productpagetag_tag_id_f0c81f66_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY products_productpagetag
@@ -7557,7 +7569,7 @@ ALTER TABLE ONLY products_productpagetag
 
 
 --
--- Name: taggit_tagge_content_type_id_9957a03c_fk_django_content_type_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: taggit_tagge_content_type_id_9957a03c_fk_django_content_type_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY taggit_taggeditem
@@ -7565,7 +7577,7 @@ ALTER TABLE ONLY taggit_taggeditem
 
 
 --
--- Name: taggit_taggeditem_tag_id_f4f5b767_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: taggit_taggeditem_tag_id_f4f5b767_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY taggit_taggeditem
@@ -7573,7 +7585,7 @@ ALTER TABLE ONLY taggit_taggeditem
 
 
 --
--- Name: wagtail_feeds_rssfeedss_site_id_86fa0b0d_fk_wagtailcore_site_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtail_feeds_rssfeedss_site_id_86fa0b0d_fk_wagtailcore_site_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtail_feeds_rssfeedssettings
@@ -7581,7 +7593,7 @@ ALTER TABLE ONLY wagtail_feeds_rssfeedssettings
 
 
 --
--- Name: wagtailcore__content_type_id_c28424df_fk_django_content_type_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailcore__content_type_id_c28424df_fk_django_content_type_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_page
@@ -7589,7 +7601,7 @@ ALTER TABLE ONLY wagtailcore_page
 
 
 --
--- Name: wagtailcore_collection_id_5423575a_fk_wagtailcore_collection_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailcore_collection_id_5423575a_fk_wagtailcore_collection_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_groupcollectionpermission
@@ -7597,7 +7609,7 @@ ALTER TABLE ONLY wagtailcore_groupcollectionpermission
 
 
 --
--- Name: wagtailcore_groupc_permission_id_1b626275_fk_auth_permission_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailcore_groupc_permission_id_1b626275_fk_auth_permission_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_groupcollectionpermission
@@ -7605,7 +7617,7 @@ ALTER TABLE ONLY wagtailcore_groupcollectionpermission
 
 
 --
--- Name: wagtailcore_groupcollectionp_group_id_05d61460_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailcore_groupcollectionp_group_id_05d61460_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_groupcollectionpermission
@@ -7613,7 +7625,7 @@ ALTER TABLE ONLY wagtailcore_groupcollectionpermission
 
 
 --
--- Name: wagtailcore_grouppagepe_page_id_710b114a_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailcore_grouppagepe_page_id_710b114a_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_grouppagepermission
@@ -7621,7 +7633,7 @@ ALTER TABLE ONLY wagtailcore_grouppagepermission
 
 
 --
--- Name: wagtailcore_grouppagepermiss_group_id_fc07e671_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailcore_grouppagepermiss_group_id_fc07e671_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_grouppagepermission
@@ -7629,7 +7641,7 @@ ALTER TABLE ONLY wagtailcore_grouppagepermission
 
 
 --
--- Name: wagtailcore_page_owner_id_fbf7c332_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailcore_page_owner_id_fbf7c332_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_page
@@ -7637,7 +7649,7 @@ ALTER TABLE ONLY wagtailcore_page
 
 
 --
--- Name: wagtailcore_pagerevisio_page_id_d421cc1d_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailcore_pagerevisio_page_id_d421cc1d_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_pagerevision
@@ -7645,7 +7657,7 @@ ALTER TABLE ONLY wagtailcore_pagerevision
 
 
 --
--- Name: wagtailcore_pagerevision_user_id_2409d2f4_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailcore_pagerevision_user_id_2409d2f4_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_pagerevision
@@ -7653,7 +7665,7 @@ ALTER TABLE ONLY wagtailcore_pagerevision
 
 
 --
--- Name: wagtailcore_pageviewres_page_id_15a8bea6_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailcore_pageviewres_page_id_15a8bea6_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_pageviewrestriction
@@ -7661,7 +7673,7 @@ ALTER TABLE ONLY wagtailcore_pageviewrestriction
 
 
 --
--- Name: wagtailcore_site_root_page_id_e02fb95c_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailcore_site_root_page_id_e02fb95c_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailcore_site
@@ -7669,7 +7681,7 @@ ALTER TABLE ONLY wagtailcore_site
 
 
 --
--- Name: wagtaildocs_collection_id_23881625_fk_wagtailcore_collection_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtaildocs_collection_id_23881625_fk_wagtailcore_collection_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtaildocs_document
@@ -7677,7 +7689,7 @@ ALTER TABLE ONLY wagtaildocs_document
 
 
 --
--- Name: wagtaildocs_docume_uploaded_by_user_id_17258b41_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtaildocs_docume_uploaded_by_user_id_17258b41_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtaildocs_document
@@ -7685,7 +7697,7 @@ ALTER TABLE ONLY wagtaildocs_document
 
 
 --
--- Name: wagtailforms_formsubmis_page_id_e48e93e7_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailforms_formsubmis_page_id_e48e93e7_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailforms_formsubmission
@@ -7693,7 +7705,7 @@ ALTER TABLE ONLY wagtailforms_formsubmission
 
 
 --
--- Name: wagtailimag_collection_id_c2f8af7e_fk_wagtailcore_collection_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailimag_collection_id_c2f8af7e_fk_wagtailcore_collection_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailimages_image
@@ -7701,7 +7713,7 @@ ALTER TABLE ONLY wagtailimages_image
 
 
 --
--- Name: wagtailimages_imag_uploaded_by_user_id_5d73dc75_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailimages_imag_uploaded_by_user_id_5d73dc75_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailimages_image
@@ -7709,7 +7721,7 @@ ALTER TABLE ONLY wagtailimages_image
 
 
 --
--- Name: wagtailimages_ren_filter_id_7fc52567_fk_wagtailimages_filter_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailimages_ren_filter_id_7fc52567_fk_wagtailimages_filter_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailimages_rendition
@@ -7717,7 +7729,7 @@ ALTER TABLE ONLY wagtailimages_rendition
 
 
 --
--- Name: wagtailimages_rendi_image_id_3e1fd774_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailimages_rendi_image_id_3e1fd774_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailimages_rendition
@@ -7725,7 +7737,7 @@ ALTER TABLE ONLY wagtailimages_rendition
 
 
 --
--- Name: wagtailredirec_redirect_page_id_b5728a8f_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailredirec_redirect_page_id_b5728a8f_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailredirects_redirect
@@ -7733,7 +7745,7 @@ ALTER TABLE ONLY wagtailredirects_redirect
 
 
 --
--- Name: wagtailredirects_redire_site_id_780a0e1e_fk_wagtailcore_site_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailredirects_redire_site_id_780a0e1e_fk_wagtailcore_site_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailredirects_redirect
@@ -7741,7 +7753,7 @@ ALTER TABLE ONLY wagtailredirects_redirect
 
 
 --
--- Name: wagtailsearch_edito_query_id_c6eee4a0_fk_wagtailsearch_query_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailsearch_edito_query_id_c6eee4a0_fk_wagtailsearch_query_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailsearchpromotions_searchpromotion
@@ -7749,7 +7761,7 @@ ALTER TABLE ONLY wagtailsearchpromotions_searchpromotion
 
 
 --
--- Name: wagtailsearch_query_query_id_2185994b_fk_wagtailsearch_query_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailsearch_query_query_id_2185994b_fk_wagtailsearch_query_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailsearch_querydailyhits
@@ -7757,7 +7769,7 @@ ALTER TABLE ONLY wagtailsearch_querydailyhits
 
 
 --
--- Name: wagtailsearchpromotions_page_id_71920f17_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailsearchpromotions_page_id_71920f17_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailsearchpromotions_searchpromotion
@@ -7765,7 +7777,7 @@ ALTER TABLE ONLY wagtailsearchpromotions_searchpromotion
 
 
 --
--- Name: wagtailusers_userprofile_user_id_59c92331_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: puri
+-- Name: wagtailusers_userprofile_user_id_59c92331_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: sumit
 --
 
 ALTER TABLE ONLY wagtailusers_userprofile
