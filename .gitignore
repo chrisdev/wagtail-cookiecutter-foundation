@@ -18,3 +18,5 @@ db.sqlite3
 
 ansible/group_vars/*
 ansible/host_vars/*
+
+.env
