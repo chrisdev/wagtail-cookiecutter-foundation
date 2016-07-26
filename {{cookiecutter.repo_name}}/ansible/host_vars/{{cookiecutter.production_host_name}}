@@ -4,7 +4,7 @@ django_env:
     DJANGO_SETTINGS_MODULE: {{cookiecutter.repo_name}}.settings.production
     HOST_NAME: {{cookiecutter.production_host_name}}
     DB_USER: {{ cookiecutter.database_user_name }}
-    DB_PASSWD: your_db_password 
+    DB_PASSWD: change_db_password!!!
     DB_HOST: localhost
     DB_NAME: {{cookiecutter.repo_name}}_db 
     EMAIL_HOST: 'email_host'
@@ -13,5 +13,4 @@ django_env:
     EMAIL_PASSWD: 'email_passwd'
     DJANGO_ADMIN_USER: {{ cookiecutter.django_admin_user }}
     DJANGO_ADMIN_EMAIL: 'admin@host.com' 
-    DJANGO_ADMIN_PASSWD: 'your_admin_password'
-    GOOGLE_TRACKING_ID: 'google_tracking_id' 
+    DJANGO_ADMIN_PASSWD: 'change_django_admin_password!!!'

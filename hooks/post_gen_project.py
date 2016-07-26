@@ -35,40 +35,53 @@ def get_random_string(
     if using_sysrandom:
         return ''.join(random.choice(allowed_chars) for i in range(length))
     print(
-        "Cookiecutter Django couldn't find a secure pseudo-random number generator on your system."
-        " Please change change your SECRET_KEY variables in conf/settings/local.py and env.example"
-        " manually."
+        "Couldn't find a secure pseudo-random number generator on your system."
+        "Please change change your SECRET_KEY variables in"
+        "env.example ansible/host_vars"
+        "manually."
     )
     return "CHANGEME!!"
 
 
-def set_secret_key(setting_file_location):
+def set_secret_key(file_location):
     # Open locals.py
-    with open(setting_file_location) as f:
+    with open(file_location) as f:
         file_ = f.read()
 
     # Generate a SECRET_KEY that matches the Django standard
     SECRET_KEY = get_random_string()
 
     # Replace "CHANGEME!!!" with SECRET_KEY
-    file_ = file_.replace('CHANGEME!!!', SECRET_KEY, 1)
+    file_ = file_.replace('change_django_secret_key!!!', SECRET_KEY, 1)
 
     # Write the results to the locals.py module
-    with open(setting_file_location, 'w') as f:
+    with open(file_location, 'w') as f:
+        f.write(file_)
+
+
+def set_django_admin_user_password(file_location, secret_key):
+    with open(file_location) as f:
+        file_ = f.read()
+
+    file_ = file_.replace('change_django_admin_password!!!', secret_key, 1)
+
+    with open(file_location, 'w') as f:
+        f.write(file_)
+
+
+def set_db_password(file_location, secret_key):
+    with open(file_location) as f:
+        file_ = f.read()
+
+    file_ = file_.replace('change_db_password!!!', secret_key, 1)
+
+    with open(file_location, 'w') as f:
         f.write(file_)
 
 
 def make_secret_key(project_directory):
     """Generates and saves random secret key"""
     # Determine the local_setting_file_location
-    local_setting = os.path.join(
-        project_directory,
-        'settings/local.py'
-    )
-
-    # local.py settings file
-    set_secret_key(local_setting)
-
     env_file = os.path.join(
         project_directory,
         'env.example'
@@ -78,16 +91,45 @@ def make_secret_key(project_directory):
     set_secret_key(env_file)
 
 
+def make_db_password(project_directory):
+    """Generates and saves a random password for the db user"""
+    SECRET_KEY = get_random_string(length=12)
+
+    env_file = os.path.join(
+        project_directory,
+        'env.example'
+    )
+
+    # env.example file
+    set_db_password(env_file, SECRET_KEY)
+
+    # import pdb; pdb.set_trace() ### BREAK-POINT
+    host_vars_file = os.path.join(
+        project_directory,
+        'ansible', 'host_vars', '{{ cookiecutter.production_host_name }}'
+    )
+
+    # set it in host_vars file
+    set_db_password(host_vars_file, SECRET_KEY)
+
+
+def make_django_admin_user_password(project_directory):
+    # import pdb; pdb.set_trace() ### BREAK-POINT
+
+    SECRET_KEY = get_random_string(length=12)
+
+    host_vars_file = os.path.join(
+        project_directory,
+        'ansible', 'host_vars', '{{ cookiecutter.production_host_name }}'
+    )
+    set_django_admin_user_password(host_vars_file, SECRET_KEY)
+
+
 def remove_file(file_name):
     if os.path.exists(file_name):
         os.remove(file_name)
 
 
-def remove_task_app(project_directory):
-    """Removes the taskapp if celery isn't going to be used"""
-    # Determine the local_setting_file_location
-    task_app_location = os.path.join(
-        PROJECT_DIRECTORY,
-        '{{ cookiecutter.project_slug }}/taskapp'
-    )
-    shutil.rmtree(task_app_location)
+make_secret_key(PROJECT_DIRECTORY)
+make_db_password(PROJECT_DIRECTORY)
+make_django_admin_user_password(PROJECT_DIRECTORY)

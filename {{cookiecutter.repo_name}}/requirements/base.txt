@@ -1,5 +1,6 @@
 Django==1.9.8
 wagtail==1.5.3
+wagtailfontawesome==1.0.5
 celery==3.1.23
 django-cachalot==1.2.1
 django-compressor==2.0
@@ -11,6 +12,9 @@ django-redis==4.4.3
 elasticsearch==2.3.0
 libsass==0.11.1
 psycopg2==2.6.2
-{% if use_wagalytics_app_for_GA == 'y' %}
+{% if cookiecutter.use_wagalytics_app == 'y' %}
 wagalytics==0.6
+{% endif %}
+{% if cookiecutter.use_django_cachalot == 'y' %}
+django-cachalot==1.2.1
 {% endif %}

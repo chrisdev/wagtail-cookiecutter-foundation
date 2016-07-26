@@ -3,8 +3,7 @@
     "repo_name": "{{ cookiecutter.project_name|replace(' ', '_')|lower }}",
     "version_control_system": ["git", "hg"],
     "vcs_host": ["bitbucket.org", "github.com"],
-    "your_bitbucket_or_github_user_name": "chrisdev",  
-    "vcs_repo_username": {{ your_bitbucket_or_github_user_name }}
+    "your_bitbucket_or_github_user_name": "chrisdev",
     "author_name": "Christopher Clarke",
     "email": "cclarke@chrisdev.com",
     "description": "A short description of the project.",
@@ -15,7 +14,7 @@
     "use_celery": "y",
     "use_opbeat": "n",
     "use_django_cachalot": "n",
-    "use_wagalytics_app_for_GA": "n",
+    "use_wagalytics_app": "n",
     "staging_host_name": "wagtail-staging.chrisdev.com",
     "use_vagrant_staging": true,
     "deploy_user_name": "django",

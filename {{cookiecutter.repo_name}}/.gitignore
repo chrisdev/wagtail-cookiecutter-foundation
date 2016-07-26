@@ -10,6 +10,7 @@ ansible/.vagrant/
 /docs/_build/
 node_modules
 ansible/{{ cookiecutter.repo_name }}_keystore/*
-ansible/files/*
 ansible/group_vars/*
 ansible/host_vars/*
+.env
+env.example

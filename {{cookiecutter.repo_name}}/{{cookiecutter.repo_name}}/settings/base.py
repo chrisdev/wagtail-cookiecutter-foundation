@@ -69,11 +69,10 @@ INSTALLED_APPS = (
     'wagtail.wagtailsearch',
     'wagtail.wagtailadmin',
     'wagtail.wagtailcore',
-    {% use_wagalytics_app_for_GA == 'y' %}
+    'wagtailfontawesome',
+    {% if cookiecutter.use_wagalytics_app == 'y' %}
     'wagalytics',
     {% endif %}
-    'wagtailfontawesome',
-
     {% if cookiecutter.use_django_cachalot == "y" %}
     'cachalot',
     {% endif %}
@@ -189,7 +188,7 @@ COMPRESS_PRECOMPILERS = (
 
 COMPRESS_OFFLINE = False
 
-{% if cookiecutter.use_wagalytics == 'y' %}
+{% if cookiecutter.use_wagalytics_app == 'y' %}
 # Settings for wagalytics
 GA_KEY_FILEPATH = env('GA_KEY_FILEPATH')
 GA_VIEW_ID = env('GA_VIEW_ID')
