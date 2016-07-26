@@ -1,11 +1,14 @@
-{% raw %}{% load wagtailimages_tags %}
+{% raw %}
+
+{% load wagtailimages_tags %}
 {% if self.feed_image %}
     {% image self.feed_image width-1200 as img %}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="{{ settings.pages.SocialMediaSettings.twitter_name }}" />
     <meta name="twitter:creator" content="{{settings.pages.SocialMediaSettings.twitter_name }}" />
-    <meta property="twitter:title" content="{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}"/>
-    <meta property="twitter:description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}"/>
-    <meta property="twitter:image" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ img.url }}" />
+    <meta name="twitter:title" content="{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}"/>
+    <meta name="twitter:description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}"/>
+    <meta name="twitter:image" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ img.url }}" />
 {% endif %}
+
 {% endraw %}
