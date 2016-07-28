@@ -4,20 +4,22 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from wagtail.wagtailcore.fields import RichTextField
 from wagtail.wagtailcore.models import Page
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel
-from wagtail.wagtailimages.models import Image, AbstractImage, AbstractRendition
+from wagtail.wagtailimages.models import Image
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
 
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
 
-from taggit.models import TaggedItemBase, Tag
+from taggit.models import TaggedItemBase
+
 
 class GalleryIndexPage(Page):
 
     """
-    This is the index page for the Photo Gallery. It contains the links to Gallery pages.
-    Gallery Page displays the Gallery images according to tags defined.
+    This is the index page for the Photo Gallery. It contains the links to
+    Gallery pages.  Gallery Page displays the Gallery images according to tags
+    defined.
     """
 
     intro = RichTextField(blank=True)
@@ -64,15 +66,17 @@ GalleryIndexPage.promote_panels = [
 
 
 class GalleryPageTag(TaggedItemBase):
-    content_object = ParentalKey('photo_gallery.GalleryPage', related_name='tagged_items')
+    content_object = ParentalKey(
+        'photo_gallery.GalleryPage', related_name='tagged_items'
+    )
 
 
 class GalleryPage(Page):
 
     """
-    This is the Gallery page. It takes tag names which you have assigned to your
-    images. It gets the Image object according to tags defined by you. Your Gallery will
-    be created as per tags.
+    This is the Gallery page. It takes tag names which you have assigned to
+    your images. It gets the Image object according to tags defined by you.
+    Your Gallery will be created as per tags.
     """
 
     tags = ClusterTaggableManager(through=GalleryPageTag, blank=True)
@@ -91,19 +95,17 @@ class GalleryPage(Page):
         return self.get_ancestors().type(GalleryIndexPage).last()
 
     def get_context(self, request):
-        # Get tags and convert them into list so we can iterate over them 
+        # Get tags and convert them into list so we can iterate over them
         tags = self.tags.values_list('name', flat=True)
 
         # Creating empty Queryset from Wagtail image model
         images = Image.objects.none()
 
-        # Populating the empty images Queryset with images of all tags in tags list.
         if tags:
-            for i in range(0,len(tags)):
+            for i in range(0, len(tags)):
                 img = Image.objects.filter(tags__name=tags[i])
                 images = images | img
-                
-        
+
         # Pagination
         page = request.GET.get('page')
         paginator = Paginator(images, 20)  # Show 20 images per page
@@ -113,7 +115,6 @@ class GalleryPage(Page):
             images = paginator.page(1)
         except EmptyPage:
             images = paginator.page(paginator.num_pages)
-
 
         # Update template context
         context = super(GalleryPage, self).get_context(request)

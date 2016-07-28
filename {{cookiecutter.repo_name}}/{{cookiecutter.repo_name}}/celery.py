@@ -9,9 +9,11 @@ Run your celery worker(s) as `djcelery`, which is an alias for
 
 A celerybeat scheduler can be started together with a worker by `djcelery -B`
 or as a separate process:
-`celery -A {{ cookiecutter.repo_name }} beat --loglevel=info -s /tmp/celerybeat-schedule`.
+`celery -A {{ cookiecutter.repo_name }} beat
+--loglevel=info -s /tmp/celerybeat-schedule`.
 It needs to store the last run times of the tasks in a local database file:
-if no -s option is provided it defaults to the cwd. On production it shouldn't be in /tmp/.
+if no -s option is provided it defaults to the cwd.
+On production it shouldn't be in /tmp/.
 
 """
 
@@ -22,7 +24,8 @@ from celery import Celery
 from django.conf import settings
 
 # set the default Django settings module for the 'celery' program.
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "{{ cookiecutter.repo_name }}.settings.production")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE",
+                      "{{ cookiecutter.repo_name }}.settings.production")
 
 app = Celery("{{ cookiecutter.repo_name }}")
 

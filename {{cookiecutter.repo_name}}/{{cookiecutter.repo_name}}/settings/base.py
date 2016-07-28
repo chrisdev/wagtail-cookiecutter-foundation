@@ -1,3 +1,4 @@
+# flake8: noqa
 """
 Django settings for {{ cookiecutter.repo_name }} project.
 
@@ -8,25 +9,20 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 import os
-from os.path import abspath, dirname, join, normpath
+from os.path import abspath, dirname, join
 from sys import path
 
-from django.core.exceptions import ImproperlyConfigured
 
-
-def get_env_variable(var_name):
-    """ Get the environment variable or return exception """
-    try:
-        return os.environ[var_name]
-    except KeyError:
-        error_msg = "Set the %s environment variable" % var_name
-        raise ImproperlyConfigured(error_msg)
-
-# Absolute filesystem path to the Django project directory:
-DJANGO_ROOT = dirname(dirname(abspath(__file__)))
+import environ
+env = environ.Env()
 
 # Absolute filesystem path to the top-level project folder:
-PROJECT_ROOT = dirname(DJANGO_ROOT)
+
+root = environ.Path(__file__) - 3
+PROJECT_ROOT = root()
+
+# Absolute filesystem path to the Django project directory:
+DJANGO_ROOT = root.path('wagtail_project')
 
 # Add our project to our pythonpath, this way we don't need to type our project
 # name in our dotted import paths:
@@ -40,7 +36,7 @@ path.append(DJANGO_ROOT)
 # Instead, create a local.py file on the server.
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DJANGO_DEBUG', True)
 
 ALLOWED_HOSTS = []
 
@@ -61,6 +57,7 @@ INSTALLED_APPS = (
 
     'wagtail.contrib.wagtailsitemaps',
     'wagtail.contrib.wagtailsearchpromotions',
+    'wagtail.contrib.settings',
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
     'wagtail.wagtailembeds',
@@ -72,10 +69,14 @@ INSTALLED_APPS = (
     'wagtail.wagtailsearch',
     'wagtail.wagtailadmin',
     'wagtail.wagtailcore',
-
-    'wagalytics',
     'wagtailfontawesome',
-    
+    {% if cookiecutter.use_wagalytics_app == 'y' %}
+    'wagalytics',
+    {% endif %}
+    {% if cookiecutter.use_django_cachalot == "y" %}
+    'cachalot',
+    {% endif %}
+
     'utils',
     'pages',
     'blog',
@@ -85,6 +86,9 @@ INSTALLED_APPS = (
     'photo_gallery',
     'products',
     'documents_gallery',
+
+    'foundation_formtags',
+    'wagtail_feeds',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -103,19 +107,26 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = '{{ cookiecutter.repo_name }}.urls'
 
+#Admins see https://docs.djangoproject.com/en/dev/ref/settings/#admins
+ADMINS = (
+    ("""{{cookiecutter.author_name}}""", '{{cookiecutter.email}}'),
+)
+
+MANAGERS = ADMINS
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
-            'debug' : DEBUG,
+            'debug': DEBUG,
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'pages.context_processors.site_url',
+                'wagtail.contrib.settings.context_processors.settings',
             ],
         },
     },
@@ -128,15 +139,10 @@ WSGI_APPLICATION = '{{ cookiecutter.repo_name }}.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '{{ cookiecutter.repo_name }}',
-        'USER': '',
-        'HOST': '',  # Set to empty string for localhost.
-        'PORT': '',  # Set to empty string for default.
-        'CONN_MAX_AGE': 600,
-    }
+    'default': env.db('DATABASE_URL', default='postgres:///{{cookiecutter.repo_name}}'),
 }
+
+DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 
 # Internationalization
@@ -152,7 +158,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_ROOT = join(PROJECT_ROOT, 'static')
+STATIC_ROOT = root('static')
 STATIC_URL = '/static/'
 
 STATICFILES_FINDERS = (
@@ -169,7 +175,7 @@ STATICFILES_DIRS = (
 )
 
 
-MEDIA_ROOT = join(PROJECT_ROOT, 'media')
+MEDIA_ROOT = root('media')
 MEDIA_URL = '/media/'
 
 
@@ -180,57 +186,19 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
-COMPRESS_OFFLINE = True
+COMPRESS_OFFLINE = False
 
-# Feeds app for Wagtail CMS
-FEED_APP_LABEL = 'blog'
-FEED_MODEL_NAME = 'BlogPage'
-FEED_ITEM_DESCRIPTION_FIELD = 'intro'
-FEED_ITEM_CONTENT_FIELD = 'body'
-
-FEED_TITLE = 'From the Desk of John Blog'
-FEED_LINK = '/news/'
-FEED_DESCRIPTION = "News and views from around the Web"
-FEED_AUTHOR_EMAIL = 'john@johnblog.com'
-FEED_AUTHOR_LINK = 'https://johnblog.com'
-
-
+{% if cookiecutter.use_wagalytics_app == 'y' %}
 # Settings for wagalytics
-GA_KEY_FILEPATH = ''
-GA_VIEW_ID = ''
-
+GA_KEY_FILEPATH = env('GA_KEY_FILEPATH')
+GA_VIEW_ID = env('GA_VIEW_ID')
+{% endif %}
 
 # Google Maps Key
 
 GOOGLE_MAPS_KEY = ''
 DYNAMIC_MAP_URL = ''
 STATIC_MAP_URL = ''
-
-# Facebook Open Tags
-FB_SITE_NAME = ''
-FB_URL = ''
-FB_DESCRIPTION = ''
-FB_APP_ID = ''
-
-# Twitter Cards
-
-TWITTER_URL = ''
-TWITTER_CREATOR = ''
-TWITTER_DESCRIPTION = ''
-
-# Use Redis as the cache backend for extra performance
-
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'redis_cache.cache.RedisCache',
-#         'LOCATION': '127.0.0.1:6379',
-#         'KEY_PREFIX': '{{ cookiecutter.repo_name }}',
-#         'OPTIONS': {
-#             'CLIENT_CLASS': 'redis_cache.client.DefaultClient',
-#         }
-#     }
-# }
-
 
 # Wagtail settings
 
@@ -241,7 +209,7 @@ WAGTAIL_SITE_NAME = "{{ cookiecutter.project_name }}"
 
 WAGTAILSEARCH_RESULTS_TEMPLATE = 'utils/tags/search/search_results.html'
 
-# Use Elasticsearch as the search backend for extra performance and better search results
+# Use Elasticsearch as the search backend for extra performance search results
 # WAGTAILSEARCH_BACKENDS = {
 #     'default': {
 #         'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',

@@ -1,14 +1,18 @@
 {% raw %}
 {% load wagtailcore_tags %}
-<div id="news_feed">
-    {% for blog in blogs %}
-        <div class="news">
-        <h6><a href="{% pageurl blog %}">{{ blog.title }}</a></h6>
-        <li><strong>{{ blog.date|date:"j F Y" }}</strong></li>
-        {{ blog.intro|truncatewords:20|richtext }}
-        <p><a href="{% pageurl blog %}" class="button right tiny radius">Read More</a></p>
-        </div>
-        <hr>
-    {% endfor %}
+<div id="news_feed" class="callout" style="padding: 0;">
+    <center><h6 class="title" style="font-variant: small-caps;"><strong>News Feed</strong></h6></center>
+    
+    <div style="padding: 5px; padding-top: 0;">
+        {% for blog in blogs %}
+            <div class="news">
+                <h6><strong><a href="{% pageurl blog %}">{{ blog.title }}</a></strong></h6>
+                <li><strong>{{ blog.date|date:"j F Y" }}</strong></li>
+                {{ blog.intro|truncatewords:8|richtext }}
+                <p><a href="{% pageurl blog %}" class="button right tiny">Read More</a></p>
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
 </div>
 {% endraw %}

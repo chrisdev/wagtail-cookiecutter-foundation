@@ -3,49 +3,46 @@
 {% load wagtailimages_tags %}
 
 {% block content %} 
-    <div id="content" class="row">           
-        <h3>{{ self.title }}</h3>
-        <h4 class="subheader">{{ self.subtitle }}</h4>
-        {% include "people/includes/intro.html" with intro=self.intro only %}
-        <hr> 
-
-        <div class="people medium-up-4 small-up-1 text-center" data-equalizer>
-            {% for person in persons %}
-                 <div class="column" data-equalizer-watch>
-                    <div class="callout">
-                        <a href="{% pageurl person %}">
-                            {% image person.image width-200 %}
-                            <center><h5 style="margin-bottom: 0px;">{{ person.title}}</h5></center>
-                            {% if person.role %}
-                            <center><h6 class="subheader">{{ person.role }}</h6></center>
-                            {% else %} {% endif %}
-                        </a>
-
-                        <!--<a href="{% pageurl person %}" data-reveal-id="personModal" class="button tiny radius reveal_modal" style="margin-top: 12px; margin-bottom: 3px;">
-                            Reveal More
-                        </a>
-
-                        <div id="personModal" class="reveal-modal" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
-                            <div id="modal-content"></div>
-                            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-                        </div>-->
-                        
-                    </div>
-                </div>
-            {% endfor %}
+    <div id="content" class="row"> 
+        <div class="medium-12 columns">          
+            <center><h3>{{ self.title }}</h3></center>
+            <h4 class="subheader">{{ self.subtitle }}</h4>
+            {% include "people/includes/intro.html" with intro=self.intro only %}
+            
+            <br>
+            
+           <div class="people medium-up-4 small-up-1 text-center" data-equalizer>
+                {% for person in persons %}
+                     <div class="column" data-equalizer-watch>
+                         <a href="{% pageurl person %}">
+                             <div class="callout" style="padding: 3px;">
+                                 {% image person.image fill-400x400 %}
+                                 <center><h5 style="margin-top: 5px;">{{ person.title}}</h5></center>
+                                 {% if person.role %}
+                                 <center><h6 class="subheader">{{ person.role }}</h6></center>
+                                 {% endif %}
+                             </div>
+                         </a>
+                     </div>
+                {% endfor %}
+            </div>
         </div>
-        
-            <ul class="pagination text-center">
+        <div class="medium-12 columns">    
+            <ul class="pagination text-center" role="navigation" aria-label="Pagination">
                   {% if persons.has_previous %}
-                      <li class="arrow">
-                          <a href="?page={{ persons.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&laquo; Prev</a></li>
+                      <li class="pagination-previous">
+                          <a href="?page={{ persons.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Previous page">Previous</a></li>
+                      {% else %} 
+                      <li class="pagination-previous disabled">Previous</li>
                   {% endif %}
                   <li class="unavailable">Page {{ persons.number }} of {{ persons.paginator.num_pages }}</li>
                   {% if persons.has_next %}
-                      <li class="arrow">
-                          <a href="?page={{ persons.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Next &raquo;</a></li>
+                      <li class="pagination-next">
+                          <a href="?page={{ persons.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a></li>
+                      {% else %}
+                      <li class="pagination-next disabled">Next</li>
                   {% endif %}
             </ul>
+        </div>
     </div>
-{% endblock %}
-{% endraw %}
+{% endblock %}{% endraw %}

@@ -1,23 +1,37 @@
-{% raw %}{% load wagtailcore_tags navigation_tags %}
+{% raw %}{% load wagtailcore_tags navigation_tags wagtailsettings_tags static %}
+{% get_settings %}
 {% get_site_root as site_root %}
+
+<div id="page">
+<div class="sticky-container" data-sticky-container>
+ <div class="sticky is-stuck" data-sticky data-options="anchor: page; marginTop: 0; stickyOn: content;" style="width:100%; z-index:99999;">
+<div id="social_bar">
+    <div class="row" style="max-width: 95%;">
+     <a href="{{ settings.pages.SocialMediaSettings.facebook }}" title="Facebook" target="_blank"><i class="fa fa-facebook-square"></i></a>
+     <a href="{{ settings.pages.SocialMediaSettings.twitter_name }}" title="Twitter" target="_blank"><i class="fa fa-twitter-square"></i></a>
+     <a href="{{ settings.pages.SocialMediaSettings.github }}" title="Github" target="_blank"><i class="fa fa-github-square"></i></a>
+     <a href="mailto:cclarke@chrisdev.com" title="Mail" target="_blank"><i class="fa fa-envelope"></i></a>
+     </div>
+</div>
+
 <div class="title-bar" data-responsive-toggle="menu" data-hide-for="large">
-  <button class="menu-icon" type="button" data-toggle></button>
-  <div class="title-bar-title">Menu</div>
+  <button class="menu-icon" type="button" style="background: transparent;"data-toggle></button>
+  <div class="title-bar-title">ChrisDev Wagtail</div>
 </div>
 
 <div class="top-bar" id="menu">
-  <div class="top-bar-left">
+  <div class="top-bar-left hide-for-small-only">
     <ul class="dropdown menu">
-      <li class="menu-text">ChrisDev Wagtail</li>
+      <li class="menu-text"><a href="{% pageurl site_root %}" style="padding: 0;">ChrisDev Wagtail</a></li>
     </ul>
   </div>
   <div class="top-bar-right">
     <ul class="vertical medium-horizontal menu" data-responsive-menu="drilldown medium-dropdown">
-      <li class="{% if calling_page.url == site_root %} active{% endif %}"><a href="{% pageurl site_root %}">Home</a></li>
+      <li class="{% if calling_page.url == site_root %} active{% endif %}"><a href="{% pageurl site_root %}"><strong>Home</strong></a></li>
           {% for menuitem in menuitems %}
               <li class="{% if menuitem.show_dropdown %}has-submenu{% endif %}
                          {% if calling_page.url == menuitem.url %} active{% endif %}">
-                  <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+                  <a href="{% pageurl menuitem %}"><strong>{{ menuitem.title }}</strong></a>
               {% if menuitem.show_dropdown %}
                   <ul class="submenu menu vertical" data-submenu>
                       {% top_menu_children parent=menuitem %}
@@ -28,15 +42,21 @@
       <li class="has-form show-for-small-only" style="background: transparent;">
          <form action ="{% url 'wagtailsearch_search' %}" method="get">
              <div class="row collapse">
-                 <div class="large-8 small-9 columns">
-                     <input type="text" placeholder="Search"  name="q"{% if query_string %} value="{{ query_string }}"{% endif %}>
+                 <div class="small-8 columns">
+                     <input class="field" type="text" placeholder="Search" name="q"{% if query_string %} value="{{ query_string }}"{% endif %}>
                  </div>
-                 <div class="large-4 small-3 columns">
+                 <div class="small-4 columns">
                      <input type="submit" class="secondary button expand" value="Search">
                  </div>
              </div>
          </form>
       </li>
+     
     </ul>
   </div>
-</div>{% endraw %}
+</div>
+</div>
+ <a href="#" class="scrollup"><img src="{% static 'img/top.png' %}"></i></a>
+</div>
+</div>
+{% endraw %}

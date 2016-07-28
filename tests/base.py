@@ -43,7 +43,7 @@ class DjangoCookieTestCase(unittest.TestCase):
             "timezone": "UTC",
             "now": "2015/04/16",
             "year": "2015",
-            "production_host_name" : "example.org",
+            "production_host_name": "example.org",
             "use_ssl_in_production": "true",
             "staging_host_name": "staging.example.org",
             "use_vagrant_staging": "true"
@@ -56,7 +56,9 @@ class DjangoCookieTestCase(unittest.TestCase):
         self.ctx = ctx
         self.destpath = join(self.root_dir, self.ctx['repo_name'])
 
-        cookiecutter(template='./', checkout=None, no_input=True, extra_context=ctx)
+        cookiecutter(
+            template='./', checkout=None, no_input=True, extra_context=ctx
+        )
 
         # Build a list containing absolute paths to the generated files
         paths = [os.path.join(dirpath, file_path)

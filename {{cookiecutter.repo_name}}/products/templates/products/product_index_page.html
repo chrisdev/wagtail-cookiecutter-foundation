@@ -1,41 +1,80 @@
-{% raw %}{% extends "products/product_base.html" %}
+{% raw %}
+{% extends "products/product_base.html" %}
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
 
+
 {% block content %}
     <div id="content" class="row">
-            <h3>{{ self.title }}</h3>
-            <h4 class="subheader">{{ self.subtitle }}</h4>
-            {% include "products/includes/intro.html" with intro=self.intro only %}
+        <div class="medium-12 columns">
+            <center>
+                <h3>{{ self.title }}</h3>
+                <h4 class="subheader">{{ self.subtitle }}</h4>
+                {% include "products/includes/intro.html" with intro=self.intro only %}
+            </center>   
             <hr> 
             <div class="medium-12 columns">
-                <div class="people medium-up-4 small-up-1" data-equalizer>
+                <div class="people medium-up-1 small-up-1" data-equalizer>
                     {% for product in products %}
                         <div class="column">
-                            <div class="callout" data-equalizer-watch>
-                                <a href="{% pageurl product %}">
-                                    {% image product.image width-200 %}
-                                    <center style="margin-top: 15px;">
-                                        <h5><strong>{{ product.title}}</strong></h5>
-                                        <h6><strong>{{ product.price}}</strong></h6>
-                                    </center>
-                                </a>
+                           
+                            <div class="row">
+                                <div class="callout secondary" data-equalizer>
+                                    <div class="row stack-for-small">
+                                        <div class="medium-4 columns">
+                                            <div class="thumbnail">
+                                             {% image product.image fill-300x250 %}
+                                            </div>
+                                        </div>
+                                      
+                                        <div class="medium-8 columns">
+                                          <div class="row">
+                                                <div class="medium-8 columns"><h5><strong>{{ product.title}}</strong></h5></div>
+                                                <div class="medium-4 columns"><h6 class="stat">{{ product.price}}</h6></div>
+                                            </div>    
+                                                <h6>{% include "products/includes/intro.html" with intro=product.intro only %}</h6>
+                                                <ul>
+                                                  <p>Feature Tags:</p>
+                                                    {% for tag in product.tags.all %}
+                                                    <li class="label"> {{ tag }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            <div class="row">
+                                              <div class="medium-8 columns"></div>
+                                              <div class="medium-4 columns"><a class="hollow button" href="{% pageurl product %}">View</a>
+                                              {% if product.link_demo %}
+                                              <a class="hollow button alert" href="{{product.link_demo}}">Demo</a>
+                                              {% endif %}
+                                              </div>
+                                            </div>  
+                                        </div>
+                                    </div> 
+                                </div>    
                             </div>
+                            
                         </div>
                     {% endfor %}
                 </div>
             </div>
-            
-            <ul class="pagination text-center">
+        </div>
+        <div class="medium-12 columns">    
+            <ul class="pagination text-center" role="navigation" aria-label="Pagination">
                   {% if products.has_previous %}
-                      <li class="arrow">
-                          <a href="?page={{ products.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&laquo; Prev</a></li>
+                      <li class="pagination-previous">
+                          <a href="?page={{ products.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Previous page">Previous</a></li>
+                      {% else %} 
+                      <li class="pagination-previous disabled">Previous</li>
                   {% endif %}
                   <li class="unavailable">Page {{ products.number }} of {{ products.paginator.num_pages }}</li>
                   {% if products.has_next %}
-                      <li class="arrow">
-                          <a href="?page={{ products.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">Next &raquo;</a></li>
+                      <li class="pagination-next">
+                          <a href="?page={{ products.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a></li>
+                      {% else %}
+                      <li class="pagination-next disabled">Next</li>
                   {% endif %}
             </ul>
+        </div>
     </div> 
-{% endblock %}{% endraw %}
+{% endblock %}
+
+{% endraw %}

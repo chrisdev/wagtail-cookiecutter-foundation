@@ -1,10 +1,12 @@
-from .base import *
-import os
+from .base import *  # flake8: noqa
 
-DEBUG = False
+environ.Env.read_env(root('.env'))
+
+DEBUG = env.bool('DJANGO_DEBUG', default=False)
+
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
-SECRET_KEY = get_env_variable("SECRET_KEY")
+SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 # Compress static files offline
 # http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
@@ -16,17 +18,9 @@ COMPRESS_CSS_FILTERS = [
     'compressor.filters.cssmin.CSSMinFilter',
 ]
 
-ALLOWED_HOSTS = [get_env_variable("HOST_NAME"), ]
+ALLOWED_HOSTS = [env("DJANGO_ALLOWED_HOST_NAME"), ]
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME":  get_env_variable("DB_NAME"),
-        "USER": get_env_variable("DB_USER"),
-        "PASSWORD": get_env_variable("DB_PASSWD"),
-        "HOST": get_env_variable("DB_HOST"),
-    }
-}
+DATABASES['default'] = env.db('DATABASE_URL')
 
 INSTALLED_APPS += (
     "wagtail.contrib.wagtailfrontendcache",
@@ -67,43 +61,115 @@ WAGTAIL_SITE_NAME = '{{ cookiecutter.project_name }}'
 
 CACHES = {
     'default': {
-        'BACKEND': 'redis_cache.cache.RedisCache',
-        'LOCATION': '127.0.0.1:6379',
-        'KEY_PREFIX': '{{ cookiecutter.repo_name }}',
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': '{0}/{1}'.format(env('REDIS_URL', default='redis://127.0.0.1:6379'), 0),
         'OPTIONS': {
-            'CLIENT_CLASS': 'redis_cache.client.DefaultClient',
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'IGNORE_EXCEPTIONS': True,
         }
     }
 }
 
-DEFAULT_FROM_EMAIL =  get_env_variable('EMAIL_FROM')
+DEFAULT_FROM_EMAIL =  env('EMAIL_FROM')
 EMAIL_USE_TLS = True
-EMAIL_HOST = get_env_variable('EMAIL_HOST')
-EMAIL_HOST_USER = get_env_variable('EMAIL_USER')
-EMAIL_HOST_PASSWORD = get_env_variable('EMAIL_PASSWD')
+EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_HOST_USER = env('EMAIL_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_PASSWD')
 EMAIL_PORT = 587
+# OP BEAT Config
+{% if cookiecutter.use_opbeat == 'y' %}
+INSTALLED_APPS += ('opbeat.contrib.django',)
+OPBEAT = {
+    'ORGANIZATION_ID': env('OPBEAT_ORGANIZATION_ID'),
+    'APP_ID': env('OPBEAT_APP_ID'),
+    'SECRET_TOKEN': env('OPBEAT_SECRET_TOKEN')
+}
 
-# Logging
-
+MIDDLEWARE_CLASSES = (
+    'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
+) + MIDDLEWARE_CLASSES
+# OP Beat LOGGING CONFIGURATION
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+    },
+    'handlers': {
+        'opbeat': {
+            'level': 'WARNING',
+            'class': 'opbeat.contrib.django.handlers.OpbeatHandler',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'ERROR',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        '{{ cookiecutter.repo_name }}': {
+            'level': 'WARNING',
+            'handlers': ['opbeat'],
+            'propagate': False,
+        },
+        # Log errors from the Opbeat module to the console (recommended)
+        'opbeat.errors': {
+            'level': 'ERROR',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+    },
+}
+{% elif cookiecutter.use_opbeat == 'n' %}
+# LOGGING CONFIGURATION
+# Sends an email to site admins on every HTTP 500 error when DEBUG=False.
+# See http://docs.djangoproject.com/en/dev/topics/logging for
+# more details on how to customize your logging configuration.
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s '
+                      '%(process)d %(thread)d %(message)s'
+        },
+    },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
         },
     },
     'loggers': {
         'django.request': {
-            'handlers':     ['mail_admins'],
-            'level':        'ERROR',
-            'propagate':    False,
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True
         },
-        'django.security': {
-            'handlers':     ['mail_admins'],
-            'level':        'ERROR',
-            'propagate':    False,
-        },
-    },
+        'django.security.DisallowedHost': {
+            'level': 'ERROR',
+            'handlers': ['console', 'mail_admins'],
+            'propagate': True
+        }
+    }
 }
+{% endif %}
+

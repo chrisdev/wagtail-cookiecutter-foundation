@@ -11,22 +11,26 @@
             {% if self.tags %}
                 {% include "documents_gallery/includes/tags.html" %}
             {% endif %}
-
+            
+            <br>
+            
             {% if documents %}
                 <div class="medium-up-3 small-up-1" id="documents">
                     {% for document in documents %}
                         <div class="column">
                             <a href="{{ document.url }}">
-                                {% if document.file_extension == 'pdf' %}
-                                    <i class="fa fa-file-pdf-o fa-3x"></i>
-                                {% elif document.file_extension == 'docx' or 'doc' %}
-                                    <i class="fa fa-file-word-o fa-3x"></i>
-                                {% else %}
-                                    <i class="fa fa-file fa-3x"></i>
-                                {% endif %}
-                                <p>{{ document.filename}}</p>
+                                <div class="callout text-center" style="border-radius: 5px;">
+                                    {% if document.file_extension == 'pdf' %}
+                                        <i class="fa fa-file-pdf-o fa-3x"></i>
+                                    {% elif document.file_extension == 'docx' or 'doc' %}
+                                        <i class="fa fa-file-word-o fa-3x"></i>
+                                    {% else %}
+                                        <i class="fa fa-file fa-3x"></i>
+                                    {% endif %}
+                                    <p style="margin-top: 10px; margin-bottom: 0;"><strong>{{ document.filename}}</strong></p>
+                                    <p>{{ document.created_at }}</p>
+                                </div>
                             </a>
-                            <p>{{ document.created_at }}</p>
                         </div>
                     {% endfor %}
                 </div>
@@ -34,19 +38,23 @@
                 <p>No documents are tagged with your {{ self.title }} gallery or no {{ self.title }} tags defined.</p>
             {% endif %}        
         </div>
+        
+        <div class="medium-12 columns">    
+            <ul class="pagination text-center" role="navigation" aria-label="Pagination">
+                  {% if documents.has_previous %}
+                      <li class="pagination-previous">
+                          <a href="?page={{ documents.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Previous page">Previous</a></li>
+                      {% else %} 
+                      <li class="pagination-previous disabled">Previous</li>
+                  {% endif %}
+                  <li class="unavailable">Page {{ documents.number }} of {{ documents.paginator.num_pages }}</li>
+                  {% if documents.has_next %}
+                      <li class="pagination-next">
+                          <a href="?page={{ documents.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a></li>
+                      {% else %}
+                      <li class="pagination-next disabled">Next</li>
+                  {% endif %}
+            </ul>
+        </div>
     </div>
-    
-      <ul class="pagination text-center">
-           {% if documents.has_previous %}
-                <li class="arrow unavailable"><a href="?page={{ documents.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&laquo;</a></li>
-           {% endif %}
-           
-           Page {{ documents.number }} of {{ documents.paginator.num_pages }}
-            
-           {% if documents.has_next %}
-               <li class="arrow"><a href="?page={{ documents.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}">&raquo;</a></li>
-           {% endif %}
-      </ul>
-    
-
 {% endblock %}{% endraw %}

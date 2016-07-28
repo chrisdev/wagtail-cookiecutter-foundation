@@ -1,6 +1,4 @@
 from django import template
-from django.conf import settings
-from django.template.loader import get_template
 from wagtail.wagtaildocs.models import Document
 from contact.models import ContactPage
 from blog.models import BlogPage
@@ -21,9 +19,10 @@ def get_contact_fields(context):
 
     except IndexError:
         return {}
- 
-        
-@register.inclusion_tag('documents_gallery/includes/documents_listing.html',takes_context=True)
+
+
+@register.inclusion_tag(
+    'documents_gallery/includes/documents_listing.html', takes_context=True)
 def latest_documents(context, count=5):
 
     documents = Document.objects.order_by('-created_at')
@@ -32,8 +31,9 @@ def latest_documents(context, count=5):
         'request': context['request'],
     }
 
-        
-@register.inclusion_tag('blog/includes/blog_post_listing.html',takes_context=True)
+
+@register.inclusion_tag('blog/includes/blog_post_listing.html',
+                        takes_context=True)
 def news_feed(context, count=2):
     blogs = BlogPage.objects.filter(live=True).order_by('-date')
     return {
@@ -42,9 +42,10 @@ def news_feed(context, count=2):
         'request': context['request'],
     }
 
-    
-@register.inclusion_tag('events/includes/event_listing.html',takes_context=True)
-def upcoming_events(context, count=3):
+
+@register.inclusion_tag('events/includes/event_listing.html',
+                        takes_context=True)
+def upcoming_events(context, count=8):
 
     events = EventPage.objects.filter(live=True)
     events = events.all().order_by('-date_from')
@@ -53,6 +54,7 @@ def upcoming_events(context, count=3):
         # required by the pageurl tag that we want to use within this template
         'request': context['request'],
     }
+
 
 @register.filter
 def time_display(time):
@@ -87,15 +89,16 @@ def time_display(time):
 
     # Join and return
     return "".join([hour_string, minute_string, pm_string])
-    
-    
+
+
 @register.inclusion_tag('pages/includes/testimonials.html', takes_context=True)
 def testimonials(context):
     return {
         'testimonials': Testimonial.objects.select_related('page'),
         'request': context['request'],
     }
-    
+
+
 @register.inclusion_tag('pages/includes/adverts.html', takes_context=True)
 def adverts(context):
     return {

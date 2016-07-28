@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
@@ -9,7 +9,7 @@ from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 from wagtail.contrib.wagtailsitemaps.views import sitemap
 
-from feeds.feeds import BasicFeed, ExtendedFeed
+from wagtail_feeds.feeds import BasicFeed, ExtendedFeed
 
 admin.autodiscover()
 
@@ -36,7 +36,11 @@ if settings.DEBUG:
     from django.views.generic.base import RedirectView
 
     urlpatterns += staticfiles_urlpatterns()
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
     urlpatterns += [
-        url(r'^favicon\.ico$', RedirectView.as_view(url=settings.STATIC_URL + 'favicon.ico', permanent=True))
+        url(r'^favicon\.ico$',
+            RedirectView.as_view(
+                url=settings.STATIC_URL + 'favicon.ico', permanent=True)
+            )
     ]

@@ -2,21 +2,25 @@
     <div id="blog_list" class="medium-12 columns">
         <article class="blog">
             <a href="{% pageurl blog %}">
-                <h4>{{ blog.title }}</h4>
                 {% if blog.feed_image %}
-                    {% image blog.feed_image width-1200 %}
+                    {% image blog.feed_image fill-1200x400 %}
                 {% endif %}
+                <div class="callout">
+                    <h4><strong>{{ blog.title }}</strong></h4>
                 
-                {% if blog.intro %}
-                    {{ blog.intro|richtext }}
-                {% else %}
-                    {{ blog.search_description }}   
-                {% endif %}
-                <div class="medium-12 columns" style="padding: 0;margin-top: 12px;">
-                    <p style="margin-bottom: 0;">
-                        <a class="button radius tiny secondary disabled">{{ blog.date|date:"j F Y" }}</a>
-                        <a class="float-right button radius tiny" href="{% pageurl blog %}">Read Article &raquo;</a>
-                    </p>
+                    {% if blog.intro %}
+                        {{ blog.intro|richtext }}
+                    {% else %}
+                        {{ blog.search_description }}   
+                    {% endif %}
+                    
+                    <div class="medium-12 columns" style="padding: 0;">
+                        <p>
+                            <a class="button radius tiny secondary disabled"><strong>{{ blog.date|date:"j F Y" }}</strong></a>
+                            <a class="float-right button radius tiny" href="{% pageurl blog %}">Read Article &raquo;</a>
+                        </p>
+                    </div>
+                    <br>
                 </div>
             </a>
         </article>

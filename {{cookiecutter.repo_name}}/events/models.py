@@ -11,6 +11,9 @@ from wagtail.wagtailadmin.edit_handlers import (
 )
 from wagtail.wagtailsearch import index
 
+from modelcluster.tags import ClusterTaggableManager
+from taggit.models import TaggedItemBase, Tag
+
 from modelcluster.fields import ParentalKey
 from utils.models import LinkFields, RelatedLink, CarouselItem
 from .event_utils import export_event
@@ -20,6 +23,7 @@ EVENT_AUDIENCE_CHOICES = (
     ('public', "Public"),
     ('private', "Private"),
 )
+
 
 class EventIndexPageRelatedLink(Orderable, RelatedLink):
     page = ParentalKey('events.EventIndexPage', related_name='related_links')
@@ -39,7 +43,7 @@ class EventIndexPage(Page):
         events = events.order_by('date_from')
 
         return events
-    
+
     def get_context(self, request):
             # Get events
             events = self.events
@@ -47,7 +51,7 @@ class EventIndexPage(Page):
             tag = request.GET.get('tag')
             if tag:
                 events = events.filter(tags__name=tag)
-    
+
             # Pagination
             page = request.GET.get('page')
             paginator = Paginator(events, 9)  # Show 10 events per page
@@ -57,10 +61,14 @@ class EventIndexPage(Page):
                 events = paginator.page(1)
             except EmptyPage:
                 events = paginator.page(paginator.num_pages)
-    
+
             # Update template context
             context = super(EventIndexPage, self).get_context(request)
             context['events'] = events
+            context['tags'] = Tag.objects.filter(
+                events_eventpagetag_items__isnull=False,
+                events_eventpagetag_items__content_object__live=True
+            ).distinct().order_by('name')
             return context
 
 EventIndexPage.content_panels = [
@@ -102,6 +110,11 @@ class EventPageSpeaker(Orderable, LinkFields):
     ]
 
 
+class EventPageTag(TaggedItemBase):
+    content_object = ParentalKey('events.EventPage',
+                                 related_name='tagged_items')
+
+
 class EventPage(Page):
     date_from = models.DateField("Start date")
     date_to = models.DateField(
@@ -112,7 +125,9 @@ class EventPage(Page):
     )
     time_from = models.TimeField("Start time", null=True, blank=True)
     time_to = models.TimeField("End time", null=True, blank=True)
-    audience = models.CharField(max_length=255, choices=EVENT_AUDIENCE_CHOICES, null=True, blank=True)
+    audience = models.CharField(
+        max_length=255, choices=EVENT_AUDIENCE_CHOICES, null=True, blank=True
+    )
     location = models.CharField(max_length=255, null=True, blank=True)
     body = RichTextField(blank=True)
     cost = models.CharField(max_length=255, null=True, blank=True)
@@ -124,6 +139,8 @@ class EventPage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
+
+    tags = ClusterTaggableManager(through=EventPageTag, blank=True)
 
     search_fields = Page.search_fields + (
         index.SearchField('get_audience_display'),
@@ -149,7 +166,7 @@ class EventPage(Page):
                 return response
             else:
                 message = 'Could not export event\n\nUnrecognised format: ' + \
-                        request.GET['format']
+                    request.GET['format']
                 return HttpResponse(message, content_type='text/plain')
         else:
             return super(EventPage, self).serve(request)
@@ -164,6 +181,7 @@ EventPage.content_panels = [
     FieldPanel('audience'),
     FieldPanel('cost'),
     FieldPanel('signup_link'),
+    FieldPanel('tags'),
     InlinePanel('carousel_items', label="Carousel items"),
     FieldPanel('body', classname="full"),
     InlinePanel('speakers', label="Speakers"),
@@ -173,5 +191,3 @@ EventPage.content_panels = [
 EventPage.promote_panels = Page.promote_panels + [
     ImageChooserPanel('feed_image'),
 ]
-
-
