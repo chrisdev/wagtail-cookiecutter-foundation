@@ -8,8 +8,6 @@ https://docs.djangoproject.com/en/1.8/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
-import os
-from os.path import abspath, dirname, join
 from sys import path
 
 
@@ -20,6 +18,8 @@ env = environ.Env()
 
 root = environ.Path(__file__) - 3
 PROJECT_ROOT = root()
+
+environ.Env.read_env(root('.env'))
 
 # Absolute filesystem path to the Django project directory:
 DJANGO_ROOT = root.path('wagtail_project')
@@ -33,7 +33,6 @@ path.append(DJANGO_ROOT)
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # Do not set SECRET_KEY or LDAP password or any other sensitive data here.
-# Instead, create a local.py file on the server.
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DJANGO_DEBUG', True)
@@ -70,13 +69,8 @@ INSTALLED_APPS = (
     'wagtail.wagtailadmin',
     'wagtail.wagtailcore',
     'wagtailfontawesome',
-    {% if cookiecutter.use_wagalytics_app == 'y' %}
-    'wagalytics',
-    {% endif %}
-    {% if cookiecutter.use_django_cachalot == "y" %}
-    'cachalot',
-    {% endif %}
-
+    {% if cookiecutter.use_wagalytics_app == 'y' %} 'wagalytics', {% endif %}
+    {% if cookiecutter.use_django_cachalot == "y" %} 'cachalot', {% endif %}
     'utils',
     'pages',
     'blog',
@@ -190,8 +184,9 @@ COMPRESS_OFFLINE = False
 
 {% if cookiecutter.use_wagalytics_app == 'y' %}
 # Settings for wagalytics
-GA_KEY_FILEPATH = env('GA_KEY_FILEPATH')
-GA_VIEW_ID = env('GA_VIEW_ID')
+# see https://github.com/tomdyson/wagalytics
+GA_KEY_FILEPATH = env('GA_KEY_FILEPATH', default='/path/to/secure/directory/your-key.json')
+GA_VIEW_ID = env('GA_VIEW_ID', default='ga:xxxxxxxxxxxxx')
 {% endif %}
 
 # Google Maps Key
