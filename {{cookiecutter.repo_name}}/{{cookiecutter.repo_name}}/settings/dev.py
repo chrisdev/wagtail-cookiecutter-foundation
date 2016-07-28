@@ -1,5 +1,6 @@
 # flake8: noqa
 from .base import *
+from os.path import abspath, dirname, join
 
 
 DEBUG = env.bool('DJANGO_DEBUG', default=True)
@@ -19,7 +20,7 @@ INSTALLED_APPS += (
 
 # Medusa settings
 MEDUSA_RENDERER_CLASS = 'django_medusa.renderers.DiskStaticSiteRenderer'
-MEDUSA_DEPLOY_DIR = os.path.join(PROJECT_ROOT, 'static_build')
+MEDUSA_DEPLOY_DIR = join(PROJECT_ROOT, 'static_build')
 SENDFILE_BACKEND = 'sendfile.backends.simple'
 
 # See: https://github.com/django-debug-toolbar/django-debug-toolbar#installation

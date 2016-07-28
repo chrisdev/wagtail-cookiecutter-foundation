@@ -1,6 +1,5 @@
 from .base import *  # flake8: noqa
 
-environ.Env.read_env(root('.env'))
 
 DEBUG = env.bool('DJANGO_DEBUG', default=False)
 
