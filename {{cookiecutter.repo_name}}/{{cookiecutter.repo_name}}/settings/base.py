@@ -12,26 +12,17 @@ import os
 from os.path import abspath, dirname, join
 from sys import path
 
-from django.core.exceptions import ImproperlyConfigured
 
 import environ
-root = environ.Path(__file__) - 3
 env = environ.Env()
 
+# Absolute filesystem path to the top-level project folder:
 
-def get_env_variable(var_name):
-    """ Get the environment variable or return exception """
-    try:
-        return os.environ[var_name]
-    except KeyError:
-        error_msg = "Set the %s environment variable" % var_name
-        raise ImproperlyConfigured(error_msg)
+root = environ.Path(__file__) - 3
+PROJECT_ROOT = root()
 
 # Absolute filesystem path to the Django project directory:
-DJANGO_ROOT = dirname(dirname(abspath(__file__)))
-
-# Absolute filesystem path to the top-level project folder:
-PROJECT_ROOT = dirname(DJANGO_ROOT)
+DJANGO_ROOT = root.path('wagtail_project')
 
 # Add our project to our pythonpath, this way we don't need to type our project
 # name in our dotted import paths:
@@ -45,7 +36,7 @@ path.append(DJANGO_ROOT)
 # Instead, create a local.py file on the server.
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DJANGO_DEBUG', False)
+DEBUG = env.bool('DJANGO_DEBUG', True)
 
 ALLOWED_HOSTS = []
 
@@ -78,12 +69,14 @@ INSTALLED_APPS = (
     'wagtail.wagtailsearch',
     'wagtail.wagtailadmin',
     'wagtail.wagtailcore',
-
-    'wagalytics',
     'wagtailfontawesome',
+    {% if cookiecutter.use_wagalytics_app == 'y' %}
+    'wagalytics',
+    {% endif %}
+    {% if cookiecutter.use_django_cachalot == "y" %}
+    'cachalot',
+    {% endif %}
 
-    {% if cookiecutter.use_django_cachalot == "y" %}'cachalot',{% endif %}
-	
     'utils',
     'pages',
     'blog',
@@ -113,6 +106,13 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = '{{ cookiecutter.repo_name }}.urls'
+
+#Admins see https://docs.djangoproject.com/en/dev/ref/settings/#admins
+ADMINS = (
+    ("""{{cookiecutter.author_name}}""", '{{cookiecutter.email}}'),
+)
+
+MANAGERS = ADMINS
 
 TEMPLATES = [
     {
@@ -158,7 +158,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_ROOT = join(PROJECT_ROOT, 'static')
+STATIC_ROOT = root('static')
 STATIC_URL = '/static/'
 
 STATICFILES_FINDERS = (
@@ -175,7 +175,7 @@ STATICFILES_DIRS = (
 )
 
 
-MEDIA_ROOT = join(PROJECT_ROOT, 'media')
+MEDIA_ROOT = root('media')
 MEDIA_URL = '/media/'
 
 
@@ -186,12 +186,13 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
-COMPRESS_OFFLINE = True
+COMPRESS_OFFLINE = False
 
+{% if cookiecutter.use_wagalytics_app == 'y' %}
 # Settings for wagalytics
-GA_KEY_FILEPATH = ''
-GA_VIEW_ID = ''
-
+GA_KEY_FILEPATH = env('GA_KEY_FILEPATH')
+GA_VIEW_ID = env('GA_VIEW_ID')
+{% endif %}
 
 # Google Maps Key
 
