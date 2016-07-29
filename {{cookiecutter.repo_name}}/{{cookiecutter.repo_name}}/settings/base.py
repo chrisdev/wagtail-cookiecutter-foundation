@@ -22,7 +22,7 @@ PROJECT_ROOT = root()
 environ.Env.read_env(root('.env'))
 
 # Absolute filesystem path to the Django project directory:
-DJANGO_ROOT = root.path('wagtail_project')
+DJANGO_ROOT = root.path('{{ cookiecutter.repo_name }}')
 
 # Add our project to our pythonpath, this way we don't need to type our project
 # name in our dotted import paths:
