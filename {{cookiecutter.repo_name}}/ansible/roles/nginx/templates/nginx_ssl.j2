@@ -1,3 +1,4 @@
+# based on https://mozilla.github.io/server-side-tls/ssl-config-generator/?server=nginx-1.10.1&openssl=1.0.1e&hsts=yes&profile=intermediate
 {% raw %}server {
     listen 80;
     listen [::]:80 default_server;
@@ -72,7 +73,7 @@ server {
          }
 
         location / {
-           if (-f {{ sites_dir }}/{{ project_name }}/static/offline.html) {
+           if (-f /usr/share/nginx/html/{{ project_name}}_offline.html) {
                 return 503;
            }
            proxy_set_header   Host             $host;
@@ -84,10 +85,9 @@ server {
         }
 
 
-        error_page 503 502  @maintenance;
-        location @maintenance {
-            root {{ sites_dir }}/{{ project_name }}/static; 
-            rewrite ^(.*)$ /offline.html break;
+        error_page 503 /{{ project_name }}_offline.html;
+        location = /{{ project_name }}_offline.html {
+            root /usr/share/nginx/html; 
         }
 
 }{% endraw %}

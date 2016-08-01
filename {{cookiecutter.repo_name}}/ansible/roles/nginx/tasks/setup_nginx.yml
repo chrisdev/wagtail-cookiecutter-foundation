@@ -1,19 +1,19 @@
 {% raw %}---
-- name: Ensure the Nginx is installed
+- name: Ensure that nginx is installed
   apt: name=nginx state=latest update_cache=yes cache_valid_time=36000
   become_user: root
   become: yes
   tags:
       - nginx 
 
-- name: Ensure that the Nginx service is stopped
+- name: stop nginx service 
   service: name=nginx state=stopped
   become: yes
   become_user: root
   tags:
       - nginx 
 
-- name: Check to see if the Cert has already been generated
+- name: Check the certificate is there
   become: yes
   become_user: root
   stat:
@@ -24,7 +24,7 @@
       - ssl
       - nginx 
 
-- name:  Nginx config NO SSL
+- name:  nginx config without SSL
   become: yes
   become_user: root
   template: src=nginx.j2
@@ -36,7 +36,7 @@
       - nginx
 
 
-- name: Nginx Config YES SSL 
+- name: nginx config with SSL 
   become: yes
   become_user: root
   template: src=nginx_ssl.j2
@@ -58,27 +58,16 @@
        - ssl
        - nginx 
 
-- name: upload the LE auto renewal script
-  become: yes
-  become_user: root
-  when: use_ssl|bool and cert_stat.stat.exists
-  template: src=le-renew.j2
-        dest=/usr/local/bin/le-renew-webroot
-        mode="0744"
-  tags:
-    - ssl
-    - nginx 
-    - letest
 
 - name: Add the renewal cronjob to the system
   become: yes
   become_user: root
-  cron: name="le certificate renewal" minute="30" hour="2" weekday="1" 
-        job="/usr/local/bin/le-renew-webroot >> /var/log/le-renewal.log"
+  cron: name="LE certificate renewal" minute="30" hour="2,7"  
+        job="/usr/bin/letsencrypt renew >> /var/log/le-renewal.log"
   when: use_ssl|bool and cert_stat.stat.exists
   tags:
     - ssl
-    - nginx1 
+    - nginx 
 
 - name: Ensure that the default site is disabled
   become: yes
@@ -88,12 +77,19 @@
   tags:
       - nginx
 
-- name: enable the site 
+- name: Ensure the site will start in maint mode
+  become: yes
+  become_user: root
+  template: src=offline.j2
+            dest='/usr/share/nginx/html/{{ project_name }}_offline.html'
+  tags:
+     - nginx
+
+- name: enable and restart the site 
   become: yes
   become_user: root
   file: src=/etc/nginx/sites-available/{{ project_name }} 
       dest=/etc/nginx/sites-enabled/{{ project_name }} state=link
   notify: restart nginx
   tags:
-      - nginx 
-      - nginx_enable{% endraw %}
+     - nginx{% endraw %}

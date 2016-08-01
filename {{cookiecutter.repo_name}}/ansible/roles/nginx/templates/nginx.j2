@@ -32,7 +32,7 @@ server {
          }
 
         location / {
-           if (-f {{ sites_dir }}/{{ project_name }}/static/offline.html) {
+           if (-f /usr/share/nginx/html/{{ project_name}}_offline.html) {
                 return 503;
            }
            proxy_set_header   Host             $host;
@@ -44,9 +44,8 @@ server {
         }
 
 
-        error_page 500 503 502 504 @maintenance;
-        location @maintenance {
-            root {{ sites_dir }}/{{ project_name }}/{{ project_name }}/templates/;
-            rewrite ^(.*)$ /offline.html break;
+        error_page 503 /{{ project_name }}_offline.html;
+        location = /{{ project_name }}_offline.html {
+            root /usr/share/nginx/html; 
         }
 }{% endraw %}
