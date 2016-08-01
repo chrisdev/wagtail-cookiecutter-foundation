@@ -14,3 +14,4 @@ ansible/group_vars/*
 ansible/host_vars/*
 .env
 env.example
+pages/static/libs

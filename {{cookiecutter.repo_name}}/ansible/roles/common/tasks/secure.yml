@@ -3,69 +3,82 @@
   apt: update_cache=yes cache_valid_time=3600
   tags: 
     - ufw
-
+    - secure
 - name: Ensure ufw is at the latest version
   apt: pkg=ufw state=latest
   tags: 
     - ufw
+    - secure
 
 - name: Set ufw policy to deny all incoming connections
   ufw: policy=deny direction=incoming
   tags: 
     - ufw
+    - secure
 
 - name: Set ufw policy to allow all ougoing connections
   ufw: policy=allow direction=outgoing
   tags: 
     - ufw
+    - secure
 
 - name: Set ufw to allow ntp
   ufw: rule=allow port=ntp
   tags: 
     - ufw
+    - secure
 
 - name: Set ufw rule to limit connections on ssh/tcp
   ufw: rule=limit port=ssh proto=tcp
   tags: 
     - ufw
+    - secure
 
 - name: Allow http
   ufw: rule=allow port=http
   tags: 
     - ufw
+    - secure
 
 - name: Allow ssh 
   ufw: rule=allow port=https
   tags: 
     - ufw
+    - secure
 
 - name: Allow rsync
   ufw: rule=allow port=rsync
   tags:
-      - ufw
-      - allowrsync
+    - ufw
+    - allowrsync
+    - secure
 
 - name: Enable ufw logging
   ufw: logging=on
   tags: 
     - ufw
-
+    - secure
+  
 - name: Start ufw
   ufw: state=enabled
   tags: 
     - ufw
+    - secure
 
 - name: Ensure fail2ban is at the latest version
   apt: pkg=ufw state=latest
   tags:
-      - fail2ban 
+    - fail2ban 
+    - secure
 
 - name: copy fail2ban local config
   copy: src=jail.local dest=/etc/fail2ban/jail.local owner=root group=root mode=0644
   tags:
-      - fail2ban
-
+    - fail2ban
+    - secure
+  
 - name: restart the fail2ban service 
-  command:  /usr/sbin/service fail2ban restart
+  service: name=fail2ban state=restarted  
   tags:
-      - fail2ban{% endraw %}
+    - secure
+    - fail2ban{% endraw %}

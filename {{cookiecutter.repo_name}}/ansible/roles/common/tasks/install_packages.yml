@@ -22,7 +22,6 @@
     - liblcms2-dev
     - python-opencv
     - python-numpy
-    - openjdk-7-jre-headless
     - python-pip
     - bash
     - openssl
@@ -32,8 +31,24 @@
     - supervisor
     - ufw
     - fail2ban
+    - aptitude
   tags:
       - packages 
+
+- name: install elasticsearch via apt 
+  apt: name=elasticsearch state=latest update_cache=yes cache_valid_time=3600
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
+  tags:
+      - packages 
+      - elasticsearch
+
+- name: "install openjdk a dependency for elasticsearch on {{ ansible_distribution_release }}"
+  apt: name=openjdk-7-jre-headless state=latest update_cache=yes cache_valid_time=3600
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
+  tags:
+      - packages 
+      - elasticsearch
+      - prequsite
 
 - name: safe upgrade 
   apt: upgrade=safe force=yes

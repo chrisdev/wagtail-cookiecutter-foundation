@@ -1,15 +1,13 @@
-{% raw %}----
-- name: apply common configruation to all nodes
+{% raw %}---
+- name: Setup deploy user,install pakages and secure server 
   hosts: all 
-  remote_user: {{ deploy_user }} 
-  become: yes
-  become_user: root
+  user: root 
   roles:
       - common
 
-- name: deploy postgreSQL and configure the database
+- name: Install PostgreSQL and configure the database
   hosts: all
-  remote_user: {{ deploy_user }} 
+  remote_user: '{{ deploy_user }}'
   become: yes
   become_user: root
   roles:
@@ -19,15 +17,15 @@
         
 - name:  configure and provision nginx and letsencrypt ssl cert 
   hosts: all 
-  remote_user: {{ deploy_user }} 
+  remote_user: '{{ deploy_user }}' 
   become: yes
   become_user: root
   roles:
       - role: nginx 
   tags:
-      - nginxle
+      - nginx_le
 
-- name: provision application code django, redis and celery 
+- name: provision application code django, redis and celery etc. 
   hosts: all 
   remote_user:  {{ deploy_user }}
   roles:
