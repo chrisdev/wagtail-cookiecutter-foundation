@@ -1,13 +1,3 @@
 {% raw %}#!/bin/bash
 
-export  DJANGO_SETTINGS_MODULE={{ project_name }}.settings.production
-export  HOST_NAME={{ django_env.HOST_NAME }}
-export  SECRET_KEY={{ django_env.SECRET_KEY }}
-export  DB_NAME={{ django_env.DB_NAME }}
-export  DB_USER={{ django_env.DB_USER }}
-export  DB_PASSWD={{ django_env.DB_PASSWD }}
-export  DB_HOST={{ django_env.DB_HOST }}
-export  EMAIL_USER={{ django_env.EMAIL_USER }}
-export  EMAIL_HOST={{ django_env.EMAIL_HOST }}
-export  EMAIL_FROM={{ django_env.EMAIL_FROM }}
-export  EMAIL_PASSWD={{ django_env.EMAIL_PASSWD }}{% endraw %}
+export  DJANGO_SETTINGS_MODULE={{ project_name }}.settings.production {% endraw %}

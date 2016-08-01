@@ -12,64 +12,68 @@
 
 - name: create the virtualenvwrapper dir if not present
   file: path={{ virtualenvs_dir }} owner={{ deploy_user }} state=directory
-  become_user: {{ deploy_user }}
-  become: true
   tags:
       - web
       - venv
 
-- name: Add virtualenvwrapper init1 to the bash profile
+- name: Add virtualenvwrapper init to the bash profile
   lineinfile: dest=/home/{{ deploy_user }}/.profile line="export WORKON_HOME=~/virtualenvs"
-  become_user: {{ deploy_user }}
   tags:
       - web
       - venv
 
 - name: Add virtualenvwrapper init to the bash profile
   lineinfile: dest=/home/{{ deploy_user }}/.profile line="source /usr/local/bin/virtualenvwrapper.sh"
-  become_user: {{ deploy_user }}
   tags:
       - web
       - venv
 
 - name: create the project virtualenv
   command: virtualenv {{ virtualenvs_dir }}/{{ project_name }}-env --no-site-packages
-  sudo: no
   args:
       creates: "{{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate"
   tags:
       - web
       - venv
 
-- name: Pull/And update the source hg
-  sudo: no
+- name: update the source hg
   shell: hg pull
       && hg update
   when: vcs == 'hg'
-  sudo: no
   args:
       chdir: "{{ sites_dir }}/{{ project_name }}"
   tags:
       - venv 
 
-- name: Pull/And update the source git 
-  sudo: no
+- name: update the source git 
   shell: git pull
   when: vcs == 'git'
-  sudo: no
   args:
       chdir: "{{ sites_dir }}/{{ project_name }}"
   tags:
       - venv 
 
 - name: Install packages required by the Django app inside virtualenv
-  sudo: no
   pip: virtualenv={{ virtualenvs_dir }}/{{ project_name }}-env 
       requirements={{ sites_dir }}/{{ project_name }}/requirements/production.txt
   tags:
       - web
       - venv
 
+- pause: prompt="Copy your .env file to {{ keystore_path }} 
+               [Enter] to continue"
+  tags:
+      - venv 
+
+- name: Copy the .env file to the project_root 
+  copy: src={{ keystore_path }}/.env
+        dest={{ sites_dir }}/{{ project_name }}/.env
+        owner={{ deploy_user }}
+        group={{ deploy_user }}
+  tags:
+    - venv 
+
+  
 - name: Copy/Create the postactivate env file 
   template: src=postactivate.j2
             dest={{ virtualenvs_dir }}/{{ project_name }}-env/bin/postactivate

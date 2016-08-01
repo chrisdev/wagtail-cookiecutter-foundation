@@ -1,13 +1,18 @@
 {% raw %}---
-- name: Authorized hosts for bitbucket
-  shell: ssh-keyscan -H bitbucket.org >> /home/{{ deploy_user }}/.ssh/known_hosts
+- name: ensure bitbucket.org is in known_hosts
+  lineinfile:
   args:
-      creates: /home/{{ deploy_user }}/.ssh/known_hosts
+    dest: /home/{{ deploy_user }}/.ssh/known_hosts
+    create: yes
+    state: present
+    line: "{{ lookup('pipe', 'ssh-keyscan -t rsa bitbucket.org') }}"
+    regexp: "^bitbucket\\.org"
+  when: vcs_host == 'bitbucket.org'
   tags:
       - web
-      - vc
+      - vcs_repo
 
-- name: ensure github.com is a known host
+- name: ensure github.com is known_host
   lineinfile:
   args:
     dest: /home/{{ deploy_user }}/.ssh/known_hosts
@@ -15,9 +20,10 @@
     state: present
     line: "{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}"
     regexp: "^github\\.com"
+  when: vcs_host == 'github.com'
   tags:
       - web
-      - vc
+      - vcs_repo
 
 - name: Create the Sites Directory if not present 
   file: path={{ sites_dir }} owner={{ deploy_user }} state=directory
@@ -26,19 +32,19 @@
   tags:
       - web 
       - hg
-      - vc
+      - vcs_repo
 
 - name: clone git repo 
   command: git clone {{ project_repo }} 
   when: vcs == 'git'
-  sudo: no
   args:
       chdir: "{{ sites_dir }}"
       creates: "{{ sites_dir }}/{{ project_name }}"
   tags:
       - web 
       - git
-      - vc        
+      - vcs_repo
+
 - name: clone hg repo
   command: hg clone {{ project_repo }} 
   when: vcs == 'hg'
@@ -48,4 +54,4 @@
   tags:
       - web 
       - hg
-      - vc{% endraw %}
+      - vcs_repo {% endraw %}
