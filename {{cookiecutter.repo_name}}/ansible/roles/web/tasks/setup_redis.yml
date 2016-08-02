@@ -6,6 +6,33 @@
   tags:
      - redis
 
+- name: install redis from via apt package
+  apt: pkg=redis-server state=latest
+  become_user: root
+  become: true 
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
+  tags:
+     - redis
+
+- name: Ensure that redis only listens only to localhost
+  lineinfile: dest=/etc/redis/redis.conf 
+                regexp='^#bind 127\.0\.0\.1'
+                line='bind 127.0.0.1'
+                state=present
+  become_user: root
+  become: true 
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
+  tags:
+     - redis
+
+- name: Start the redis server xenial
+  service: name=redis-server state=restarted
+  become_user: root
+  become: true 
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'xenial'
+  tags:
+     - redis
+# Ubuntu Trusty requires source install
 - name: install dependencies
   apt:  pkg={{ item }} state=latest
   with_items:
@@ -13,6 +40,7 @@
     - make
   become_user: root
   become: true 
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
   tags:
      - redis
 
@@ -21,15 +49,17 @@
            dest=/usr/local/src/redis-stable.tar.gz
   become_user: root
   become: true 
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
   tags:
      - redis
 
-- name: Un tar the Redis tarball
+- name: Untar the Redis tarball
   shell: tar xf /usr/local/src/redis-stable.tar.gz -C /usr/local/src
   args:
       creates: /usr/local/src/redis-stable
   become_user: root
   become: true 
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
   tags:
       - redis
 
@@ -40,6 +70,7 @@
   args: 
       chdir: /usr/local/src/redis-stable
       creates: /usr/local/src/redis-stable/src/redis-server
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
   tags:
      - redis
 
@@ -50,6 +81,7 @@
   args:
       chdir: /usr/local/src/redis-stable
       creates: /usr/local/bin/redis-server
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
   tags:
      - redis
 
@@ -57,6 +89,7 @@
   shell: yes '' | ./install_server.sh
   become_user: root
   become: true 
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
   args:
       chdir: /usr/local/src/redis-stable/utils
   tags:
@@ -70,21 +103,15 @@
                 state=present
   become_user: root
   become: true 
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
   tags:
      - redis 
 
-- name: Start the redis server
-  command: service redis_6379 start
-  become_user: root
-  become: true 
-  tags:
-     - redis
-     - redisdebug 
 
 - name: Restart redis 
-  command: update-rc.d redis_6379 defaults
   command: service redis_6379 start
   become_user: root
   become: true 
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
   tags:
     - redis{% endraw %}

@@ -1,5 +1,5 @@
 {% raw %}[program:{{ project_name }}-celery]
-environment={% for k, v in django_env.iteritems() %}{% if not loop.first %},{% endif %}{{ k }}="{{ v }}"{% endfor %}
+environment=DJANGO_SETTINGS_MODULE="{{ project_name }}.settings.production"
 
 directory= {{ sites_dir }}/{{ project_name }}
 command= {{ virtualenvs_dir }}/{{ project_name }}-env/bin/celery -A {{ project_name }} worker --loglevel=INFO 

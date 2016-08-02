@@ -1,7 +1,14 @@
-{% raw %}----
+{% raw %}---
+- name: Ensure that supervisor is running
+  service: name=supervisor state=started
+  become_user: root
+  become: true
+  tags:
+     - celery 
+
 - name: Deploy the Celery worker startup Script
   template: src=celery.j2
-        dest=/etc/supervisor/conf.d/celery.conf
+            dest=/etc/supervisor/conf.d/celery.conf
             backup=yes
   become_user: root
   become: true
@@ -19,4 +26,11 @@
   command: supervisorctl update
   become_user: root
   become: true
+     - celery
+
+- name: restart supervisor to ensure it picks up celery 
+  service: name=supervisor state=restarted
+  become_user: root
+  become: true
+  tags:
      - celery{% endraw %}
