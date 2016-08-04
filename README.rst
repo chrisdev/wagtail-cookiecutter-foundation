@@ -8,7 +8,7 @@ Wagtail Cookiecutter Foundation
    :target: https://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation
    
 A cookiecutter_ template for `Wagtail CMS`_ was built using `Zurb Foundation`_ 
-front-end framework. A demo of a default project generated from this cookiecutter is available at http://wagtail.chrisdev.com.
+front-end framework. A demo of a default project generated from this cookiecutter is available at https://wagtail-demo.chrisdev.com.
 
 .. figure:: http://i.imgur.com/FGJtr78.gif :alt: Wagtail Cookiecutter Foundation
 
