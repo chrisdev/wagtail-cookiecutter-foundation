@@ -1,7 +1,7 @@
 {% raw %}---
 
 - name: initial warning 
-  pause: prompt="This playbook will pause to allow you to add the authorized keys to the keystore
+  pause: prompt="This playbook will pause to allow you to add your authorized keys to the keystore
                  Please press [Enter] to continue"
   tags:
     - user
@@ -54,7 +54,7 @@
     - sshkeys
 
 - name: Prompt to upload deployment keys 
-  pause: prompt="Deployment key has been downloaded add it to your VCS  
+  pause: prompt="Deployment key has been downloaded to keystore. Please add to your VCS  Host
                  Please press [Enter] after you've added keys" 
   tags:
     - user

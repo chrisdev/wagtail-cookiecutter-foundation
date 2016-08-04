@@ -1,5 +1,5 @@
-{% raw %}---
-- name: use the ubuntu letsencrypt package 
+{% raw %}---# This Playbook is based on https://certbot.eff.org/
+- name: install the letsencrypt apt package 
   apt: name=letsencrypt state=latest update_cache=yes cache_valid_time=3600
   become: yes
   become_user: root
@@ -8,7 +8,7 @@
       - le 
       - ssl
 
-- name: Your OS does not come with LE 
+- name: OS does not come with letsencrypt apt package 
   get_url: dest=/opt/certbot-auto url=https://dl.eff.org/certbot-auto 
   become: yes
   become_user: root
@@ -17,12 +17,12 @@
       - le 
       - ssl
 
-  name: Make the certbot-auto executable
+- name: Make the certbot-auto executable
   file: path=/opt/certbot-auto mode=0744
   become: yes
   become_user: root
   when: use_ssl|bool and ansible_distribution == 'Ubuntu' and ansible_distribution_release == 'trusty'
-  tag:
+  tags:
       - le 
       - ssl
     
@@ -34,6 +34,7 @@
         mode=755
   when: use_ssl|bool
   tags:
+      - le
       - ssl
 
 - name: Check to see if the Cert has already been generated
@@ -63,25 +64,27 @@
   become_user: root
   stat:
       path: "/opt/certbot-auto"
-  register: use_package 
+  register: certbot_auto 
   tags:
       - le
       - ssl
-        
-- name: Generate CSR, Sign and Download using certbot-auto  
+
+- name: Generate CSR, Sign and Download using downloaded certbot-auto  
   become: yes
   become_user: root
   command: /opt/certbot-auto certonly --standalone  --agree-tos --config /etc/letsencrypt/cli.ini
-  when: use_ssl|bool and not use_package.stat.exists
+  when: use_ssl|bool and certbot_auto.stat.exists 
   tags:
+      - le
       - ssl
 
-- name: Generate CSR, Sign and Download using letsencrypt  
+- name: Generate CSR, Sign and Download using letsencrypt apt package
   become: yes
   become_user: root
   command: letsencrypt certonly --standalone  --agree-tos --config /etc/letsencrypt/cli.ini
-  when: use_ssl|bool and use_package.stat.exists
+  when: use_ssl|bool and certbot_auto.stat.exists == False
   tags:
+      - le
       - ssl
  
 - name: Generate stronger DHE parameters
@@ -95,23 +98,31 @@
   tags:
       - le
       - ssl
-        
+
+- name: Remove the domains in le-cli to allow the renew command to run
+  lineinfile: dest=/etc/letsencrypt/cli.ini 
+              regexp='^domains' 
+              line="#domains = {{ django_env.HOST_NAME }}, www.{{django_env.HOST_NAME}}"
+  tags:
+      - le
+      - ssl
+
 - name: Dry run from cerbot-auto 
   command: /opt/certbot-auto renew --dry-run 
   become: yes
   become_user: root
   register: autorenew 
-  when: use_ssl|bool and use_not package.stat.exists
+  when: use_ssl|bool and certbot_auto.stat.exists
   tags:
       - le
       - ssl
 
 - name: Dry run using letencrypt package 
-  command: letsencrpt renew --dry-run 
+  command: letsencrypt renew --dry-run 
   become: yes
   register: autorenew 
   become_user: root
-  when: use_ssl|bool and use_package.stat.exists
+  when: use_ssl|bool and certbot_auto.stat.exists == False
   tags:
       - le
       - ssl{% endraw %}

@@ -61,7 +61,7 @@ migrate:
 initial_data:
 	( \
 		. $(VIRTUALENV_NAME)/bin/activate; \
-		psql -d $(PROJECT_NAME) -f db.sql; \
+		psql -d $(PROJECT_NAME) -f ansible/roles/web/files/initial_data.sql; \
 	)
 
 copy_media:

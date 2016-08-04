@@ -1,27 +1,4 @@
 {% raw %}---
-- name: Pull/And update from hg repo 
-  shell: hg pull
-      && hg update
-  when: vcs == 'hg'
-  args:
-      chdir: "{{ sites_dir }}/{{ project_name }}"
-  tags:
-      - django
-
-- name: Pull from git repo 
-  shell: git pull
-  when: vcs == 'git'
-  args:
-      chdir: "{{ sites_dir }}/{{ project_name }}"
-  tags:
-      - django
-
-- name: Install/update apps required by the Django app inside virtualenv
-  pip: virtualenv={{ virtualenvs_dir }}/{{ project_name }}-env 
-       requirements={{ sites_dir }}/{{ project_name }}/requirements/production.txt
-  tags:
-      -  django
-
 - name: Run Django migrations
   shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
          && python manage.py migrate --noinput --settings={{ project_name }}.settings.production
@@ -59,3 +36,4 @@
     chdir: "{{ sites_dir }}/{{ project_name }}"
   tags:
     - django{% endraw %}
+

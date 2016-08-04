@@ -33,6 +33,14 @@
      - gunicorn
      - supervisor
 
+- name: Ensure that supervisor is running
+  service: name=supervisor state=started
+  become_user: root
+  become: true
+  tags:
+     - gunicorn
+     - supervisor
+
 - name: Re-read the Supervisor config files
   command: supervisorctl reread
   become_user: root
