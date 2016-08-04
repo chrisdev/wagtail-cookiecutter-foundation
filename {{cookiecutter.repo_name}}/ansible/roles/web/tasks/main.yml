@@ -4,5 +4,6 @@
 - include: setup_bower.yml
 - include: setup_redis.yml
 - include: setup_django.yml
+- include: setup_initial_data.yml
 - include: setup_gunicorn.yml
 - include: setup_celery.yml
