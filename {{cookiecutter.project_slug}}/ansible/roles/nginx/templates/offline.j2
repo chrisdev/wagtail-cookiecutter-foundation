@@ -1,0 +1,39 @@
+{% raw %}!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ project_title }}</title>
+    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+  </head>
+  <body>
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="menu">
+            <li class="menu-text">{{ project_title }}</li>
+          <li><a href="/">Home</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row column text-center">
+        <h1>{{ project_title }}</h1>
+        <p class="lead">We're almost here!</p>
+      <a href="#" class="button large">Learn More</a>
+    </div>
+
+    <div class="row column">
+      <div class="callout primary text-center">
+          <h3>We'll be launching this site very soon</h3>
+          <p>This site was generated with <a href="https://github.com/chrisdev/wagtail-cookiecutter-foundation">Wagtail Cookiecutter Foundation</a></p>
+      </div>
+    </div>
+
+    
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+</body>
+</html>{% endraw %}
