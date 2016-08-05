@@ -1,0 +1,11 @@
+{% if cookiecutter.version_control_system == 'hg' %}
+project_repo: ssh://hg@{{cookiecutter.vcs_host}}/{{cookiecutter.your_bitbucket_or_github_user_name}}/{{cookiecutter.project_slug}}{% else %}project_repo: git@{{cookiecutter.vcs_host}}:{{cookiecutter.your_bitbucket_or_github_user_name}}/{{cookiecutter.project_slug}}.git{% endif %}
+project_title: {{cookiecutter.project_name}}
+project_name: {{cookiecutter.project_slug}} 
+sites_dir:  /usr/local/sites
+virtualenvs_dir: /home/django/virtualenvs/
+nginx_root_dir:  /etc/nginx/sites-available
+gunicorn:  127.0.0.1:2015
+deploy_user: {{ cookiecutter.deploy_user_name }} 
+keystore_path: {{ cookiecutter.project_slug }}_keystore 
+vcs: {{ cookiecutter.version_control_system }}
