@@ -9,7 +9,7 @@ ansible/.vagrant/
 /Vagrantfile.local
 /docs/_build/
 node_modules
-ansible/{{ cookiecutter.repo_name }}_keystore/*
+ansible/{{ cookiecutter.project_slug }}_keystore/*
 ansible/group_vars/*
 ansible/host_vars/*
 .env
