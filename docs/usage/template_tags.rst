@@ -1,7 +1,7 @@
 Template Tags
 ==============
 
-The listing of template tags can be found in ``{{cookiecutter.repo_name}}/utils/templatetags/{{cookiecutter.repo_name}}_utils.py``. From there they can be modified  
+The listing of template tags can be found in ``{{cookiecutter.project_slug}}/utils/templatetags/{{cookiecutter.project_slug}}_utils.py``. From there they can be modified  
 
 Top Menu to Offcanvas
 -----------------------

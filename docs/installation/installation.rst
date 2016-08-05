@@ -23,7 +23,7 @@ You'll be prompted for some values. Provide them, then a Django project will be 
     Resolving deltas: 100% (3291/3291), done.
     Checking connectivity... done.
     project_name [Wagtail Project]: 
-    repo_name [wagtail_project]: 
+    project_slug [wagtail_project]: 
     Select version_control_system:
         1 - git
         2 - hg

@@ -15,7 +15,7 @@ RE_OBJ = re.compile(PATTERN)
 def context():
     return {
         'project_name': 'My Test Project',
-        'repo_name': 'my_test_project',
+        'project_slug': 'my_test_project',
         'author_name': 'Test Author',
         'email': 'test@example.com',
         'description': 'A short description of the project.',
@@ -52,7 +52,7 @@ def test_default_configuration(cookies, context):
     result = cookies.bake(extra_context=context)
     assert result.exit_code == 0
     assert result.exception is None
-    assert result.project.basename == context['repo_name']
+    assert result.project.basename == context['project_slug']
     assert result.project.isdir()
 
     paths = build_files_list(str(result.project))
@@ -71,7 +71,7 @@ def test_enabled_features(cookies, feature_context):
     result = cookies.bake(extra_context=feature_context)
     assert result.exit_code == 0
     assert result.exception is None
-    assert result.project.basename == feature_context['repo_name']
+    assert result.project.basename == feature_context['project_slug']
     assert result.project.isdir()
 
     paths = build_files_list(str(result.project))

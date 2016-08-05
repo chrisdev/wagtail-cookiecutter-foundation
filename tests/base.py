@@ -35,7 +35,7 @@ class DjangoCookieTestCase(unittest.TestCase):
     def generate_project(self, extra_context=None):
         ctx = {
             "project_name": "Wagtail Project",
-            "repo_name": "wagtail_project",
+            "project_slug": "wagtail_project",
             "version_control_system": "hg",
             "author_name": "Your Name",
             "email": "Your email",
@@ -54,7 +54,7 @@ class DjangoCookieTestCase(unittest.TestCase):
             ctx.update(extra_context)
 
         self.ctx = ctx
-        self.destpath = join(self.root_dir, self.ctx['repo_name'])
+        self.destpath = join(self.root_dir, self.ctx['project_slug'])
 
         cookiecutter(
             template='./', checkout=None, no_input=True, extra_context=ctx
