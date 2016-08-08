@@ -1,5 +1,5 @@
-repo_name = '{{ cookiecutter.repo_name }}'
+project_slug = '{{ cookiecutter.project_slug }}'
 
-if hasattr(repo_name, 'isidentifier'):
-    assert repo_name.isidentifier(), 'Repo should be valid Python identifier!'
+if hasattr(project_slug, 'isidentifier'):
+    assert project_slug.isidentifier(), 'Repo should be valid Python identifier!'
 

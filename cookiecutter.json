@@ -1,6 +1,6 @@
 {
     "project_name": "Wagtail Project",
-    "repo_name": "{{ cookiecutter.project_name|replace(' ', '_')|lower }}",
+    "project_slug": "{{ cookiecutter.project_name|replace(' ', '_')|lower }}",
     "version_control_system": ["git", "hg"],
     "vcs_host": ["bitbucket.org", "github.com"],
     "your_bitbucket_or_github_user_name": "chrisdev",

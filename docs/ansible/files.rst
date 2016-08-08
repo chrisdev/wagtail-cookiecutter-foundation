@@ -3,7 +3,7 @@ Ansible Files
 
 You also have to ensure that files that contain your various secrets are
 present in in the ``keystore`` directory 
-(``ansible/cookiecutter.repo_name.keystore``). Successfully completing the 
+(``ansible/cookiecutter.project_slug.keystore``). Successfully completing the 
 provisioning  playbook would require the following files in the ``keystore``.
 The ``.gitignore`` and ``.hgignore`` files provided by this cookiecutter should
 ensure that no file added to this directory is accidentally added to your VCS.

@@ -18,7 +18,7 @@ deploy_user         Defaults to django
 redis_version       The version of redis to install. Defaults to 2.8.19
 keystore_path       Place all your 
                     public keys and other secrets here. 
-                    Defaults to repo_name/ansible/repo_name_keystore 
+                    Defaults to project_slug/ansible/project_slug_keystore 
 vcs                 Your Version control system of choice 
                     *hg* - mecurial 
                     *git* - git
@@ -44,7 +44,7 @@ DJANGO_ADMIN:           your_django_admin_password
 DB_PASSWD               The database password you must set a value for this 
 DB_HOST                 Defaults to ``localhost``
 DB_NAME                 The name of the database used in production 
-                        Defaults to cookiecutter.repo_name_db 
+                        Defaults to cookiecutter.project_slug_db 
 EMAIL_HOST              The SMTP email host name e.g. ``smtp.mandrillapp.com``
 EMAIL_FROM              support@chrisdev.com
 EMAIL_USER              The email user 

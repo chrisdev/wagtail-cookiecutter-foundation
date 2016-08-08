@@ -15,7 +15,6 @@ from cookiecutter.main import cookiecutter
 
 # Get the root project directory
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
-
 # Use the system PRNG if possible
 try:
     random = random.SystemRandom()

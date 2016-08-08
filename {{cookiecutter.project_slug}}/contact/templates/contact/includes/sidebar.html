@@ -1,0 +1,20 @@
+{% raw %}
+{% load {% endraw %}{{ cookiecutter.project_slug }}{% raw %}_utils %}
+{% load settings_tags %}
+
+{% get_contact_fields as contact %}
+{% include "contact/includes/contact_card.html" with contact=contact only %}
+
+<br>
+
+<a href="{{ settings.pages.SocialMediaSettings.facebook }}" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+<a href="{{ settings.pages.SocialMediaSettings.twitter_name }}" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+<a href="{{ settings.pages.SocialMediaSettings.github }}" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+
+<hr>
+
+{%  if contact.post_code %}
+{% get_google_maps_key as google_maps_key %}
+<img src="https://maps.googleapis.com/maps/api/staticmap?center={{ contact.post_code }}&zoom=13&size=300x200&maptype=roadmap
+&sensor=false&markers=color:green|{{ contact.post_code }}{% if google_maps_key %}&key={{ google_maps_key }}{% endif %}" />
+{% endif %}{% endraw %}
