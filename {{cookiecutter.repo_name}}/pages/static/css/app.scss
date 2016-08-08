@@ -367,3 +367,19 @@ textarea#id_message {max-height: 150px;}
     color:$white;
     z-index:99999;
 }
+
+
+/**** Preventing FOUC (flash of unstyled content) ****/
+.no-js {
+  @include breakpoint(small only) {
+    .top-bar {
+      display: none;
+    }
+  }
+
+  @include breakpoint(medium) {
+    .title-bar {
+      display: none;
+    }
+  }
+}
