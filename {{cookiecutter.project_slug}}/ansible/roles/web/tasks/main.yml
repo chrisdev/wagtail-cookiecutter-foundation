@@ -7,3 +7,4 @@
 - include: setup_initial_data.yml
 - include: setup_gunicorn.yml
 - include: setup_celery.yml
+- include: clean_up.yml

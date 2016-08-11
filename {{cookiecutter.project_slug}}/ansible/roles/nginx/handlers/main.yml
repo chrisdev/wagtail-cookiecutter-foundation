@@ -1,7 +1,4 @@
-{% raw %}- name: restart gunicorn 
-  supervisorctl: name={{ project_name }}
-                 state=restarted
-
+{% raw %}---
 - name: restart nginx
-  service: name=nginx state=restarted{% endraw %}
-
+  service: name=nginx state=restarted
+  become: true{% endraw %}

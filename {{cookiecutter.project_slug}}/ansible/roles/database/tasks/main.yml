@@ -1,10 +1,12 @@
 {% raw %}---
 - name: update the apt-cache
   apt: update_cache=yes  cache_valid_time=36000
+  become: yes
   tags: 
       - pg_install
 
 - name: Install PostgreSQL
+  become: yes
   apt: >
        pkg={{ item }}
        state=installed
@@ -18,6 +20,7 @@
 
 - name: Ensure the PostgreSQL service is running
   service: name=postgresql state=started enabled=yes
+  become: yes
   tags:
       - pg_install
 

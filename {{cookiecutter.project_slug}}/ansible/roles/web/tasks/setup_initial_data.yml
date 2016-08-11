@@ -72,7 +72,7 @@
   tags:
      - initial_data 
 
-#need to use shell as we need to set the superuser password
+#shell as we need to set the superuser password
 - name: Create Django SuperUser 
   shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
           && echo "from django.contrib.auth.models import User;User.objects.create_superuser(username='{{ django_env.DJANGO_ADMIN_USER }}', email='{{ django_env.DJANGO_ADMIN_EMAIL }}', password='{{ django_env.DJANGO_ADMIN_PASSWD }}')" | ./manage.py shell

@@ -122,6 +122,13 @@ static_site:
 compress_images:
 # Minify Images in media
 	grunt imagemin
+
+pre_task:
+	$(call ECHO_BLUE, Provision the $(DEPLOY_ENV) server )
+	(\
+		cd ansible; \
+		$(PLAYBOOK) -i $(DEPLOY_ENV) pre_task.yml; \
+	)
 	
 deploy_user:
 ifeq ($(DEPLOY_ENV), vagrant)

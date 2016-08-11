@@ -75,8 +75,9 @@ EMAIL_HOST = env("EMAIL_HOST")
 EMAIL_HOST_USER = env('EMAIL_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_PASSWD')
 EMAIL_PORT = 587
-# OP BEAT Config
+
 {% if cookiecutter.use_opbeat == 'y' %}
+# OP BEAT Config
 INSTALLED_APPS += ('opbeat.contrib.django',)
 OPBEAT = {
     'ORGANIZATION_ID': env('OPBEAT_ORGANIZATION_ID'),

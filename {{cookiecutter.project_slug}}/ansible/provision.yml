@@ -1,15 +1,13 @@
 {% raw %}---
 - name: Setup deploy user,install pakages and secure server 
   hosts: all 
-  user: root 
+  remote_user: root 
   roles:
       - common
 
 - name: Install PostgreSQL and configure the database
   hosts: all
   remote_user: '{{ deploy_user }}'
-  become: yes
-  become_user: root
   roles:
       - role: database 
   tags:
@@ -18,8 +16,6 @@
 - name:  configure and provision nginx and letsencrypt ssl cert 
   hosts: all 
   remote_user: '{{ deploy_user }}' 
-  become: yes
-  become_user: root
   roles:
       - role: nginx 
   tags:
@@ -27,7 +23,7 @@
 
 - name: provision application code django, redis and celery etc. 
   hosts: all 
-  remote_user:  {{ deploy_user }}
+  remote_user:  '{{ deploy_user }}'
   roles:
       - role: web
   tags:

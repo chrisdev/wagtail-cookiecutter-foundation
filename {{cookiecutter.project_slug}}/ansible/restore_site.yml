@@ -1,43 +1,46 @@
----
+---{% raw %}
 - hosts: all
-  user: {{cookiecutter.deploy_user_name }}
+  user: django
   vars:
-    - backup_db: {{cookiecutter.project_slug}}.sql
+    - backup_db: birdsong_restore.sql
+    - media_folder: files/media/
 
-{% raw %}
   tasks:
 
     - name: Copy the database backup up to host
-      sudo: no 
       copy: src=files/{{ backup_db }} dest=/home/{{deploy_user}}/{{ backup_db }}
       tags:
           - dbrestore
 
     - name: Drop the default database 
-      sudo_user: postgres
+      become_user: postgres
+      become: true
       postgresql_db: name={{ django_env.DB_NAME }}
                     state=absent
       tags:
          - dbrestore 
 
     - name: drop database user
-      sudo_user: postgres
+      become_user: postgres
+      become: true
       postgresql_user: name={{ django_env.DB_USER }}
                        state=absent
 
     - name: Create a new db 
-      sudo_user: postgres
+      become_user: postgres
+      become: true
       postgresql_db: name={{ django_env.DB_NAME }}
                     encoding='UTF-8'
                     lc_collate='en_US.UTF-8'
                     lc_ctype='en_US.UTF-8'
                     template='template0'
-                    state=present
+      state=present:
       tags:
          - dbrestore 
 
     - name: Ensure user has access to the database
-      sudo_user: postgres
+      become_user: postgres
+      become: true
       postgresql_user: db={{ django_env.DB_NAME }}
                     name={{ django_env.DB_USER }}
                     password={{ django_env.DB_PASSWD }}
@@ -49,15 +52,13 @@
          - dbrestore 
 
     - name: Restore the database
-      sudo: no 
       shell: /usr/bin/psql {{django_env.DB_NAME}} -f /home/{{deploy_user}}/{{ backup_db }}
       tags:
          - dbrestore 
 
 
     - name: Sync the media folders 
-      sudo: no
-      synchronize: src=files/media/ 
+      synchronize: src={{ media_folder }} 
                   dest="{{ sites_dir }}/{{ project_name }}/media"
       tags:
          - rsync_media {% endraw %}
