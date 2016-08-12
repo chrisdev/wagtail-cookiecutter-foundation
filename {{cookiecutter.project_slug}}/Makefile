@@ -15,6 +15,7 @@ help:
 	@echo "  test                     run unit tests"
 	@echo "  func_test                run functional tests"
 	@echo "  static_site              generate a static site from the project"
+	@echo "  pre_task                 ensures that python deps are installed on host server"
 	@echo "  deploy_user              create the deploy user fetch deployment keys. Defaults to production DEPLOY_ENV=vagrant/staging"
 	@echo "  provision                provision the production server Defaults to production DEPLOY_ENV=staging"
 	@echo "  deploy                   provision the staging server Defaults to production DEPLOY_ENV=staging"
@@ -122,6 +123,13 @@ static_site:
 compress_images:
 # Minify Images in media
 	grunt imagemin
+
+pre_task:
+	$(call ECHO_BLUE, Provision the $(DEPLOY_ENV) server )
+	(\
+		cd ansible; \
+		$(PLAYBOOK) -i $(DEPLOY_ENV) pre_task.yml; \
+	)
 	
 deploy_user:
 ifeq ($(DEPLOY_ENV), vagrant)

@@ -1,4 +1,5 @@
-{% raw %}---# This Playbook is based on https://certbot.eff.org/
+{% raw %}---
+# This Playbook based on https://certbot.eff.org/
 - name: install the letsencrypt apt package 
   apt: name=letsencrypt state=latest update_cache=yes cache_valid_time=3600
   become: yes
@@ -103,12 +104,15 @@
   lineinfile: dest=/etc/letsencrypt/cli.ini 
               regexp='^domains' 
               line="#domains = {{ django_env.HOST_NAME }}, www.{{django_env.HOST_NAME}}"
+  become: yes
+  become_user: root
+  when: use_ssl|bool 
   tags:
       - le
       - ssl
 
 - name: Dry run from cerbot-auto 
-  command: /opt/certbot-auto renew --dry-run 
+  command: /opt/certbot-auto renew --dry-run --agree-tos
   become: yes
   become_user: root
   register: autorenew 
@@ -118,7 +122,7 @@
       - ssl
 
 - name: Dry run using letencrypt package 
-  command: letsencrypt renew --dry-run 
+  command: letsencrypt renew --dry-run --agree-tos
   become: yes
   register: autorenew 
   become_user: root

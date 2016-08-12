@@ -32,6 +32,7 @@
     - ufw
     - fail2ban
     - aptitude
+    - acl
   tags:
       - packages 
 

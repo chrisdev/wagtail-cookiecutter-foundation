@@ -9,3 +9,4 @@ gunicorn:  127.0.0.1:2015
 deploy_user: {{ cookiecutter.deploy_user_name }} 
 keystore_path: {{ cookiecutter.project_slug }}_keystore 
 vcs: {{ cookiecutter.version_control_system }}
+vcs_host: {{ cookiecutter.vcs_host }}

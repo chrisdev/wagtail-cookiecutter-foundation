@@ -1,5 +1,4 @@
 {% raw %}---
-
 - name: initial warning 
   pause: prompt="This playbook will pause to allow you to add your authorized keys to the keystore
                  Please press [Enter] to continue"
@@ -7,41 +6,39 @@
     - user
 
 - name: Add the deploy user
-  user: name={{ deploy_user }} shell=/bin/bash groups=sudo append=yes
-  become_user: root 
+  user: name='{{ deploy_user }}' shell=/bin/bash groups=sudo append=yes
+  become: true
   tags:
     - user
 
 
 - name: Ensure that sudo does not require a password
   lineinfile: "dest=/etc/sudoers state=present regexp='^%sudo' line='%sudo ALL=(ALL) NOPASSWD: ALL'"
-  become_user: root 
+  become: true
   tags:
     - user
 
 - name: create the ssh dir
   file: path=/home/{{ deploy_user }}/.ssh/
-        owner={{ deploy_user }}
-        group={{ deploy_user }}
+        owner='{{ deploy_user }}'
+        group='{{ deploy_user }}'
         state=directory
-  become_user: root 
+  become: true 
   tags:
     - user
 
 - name: Copy the authorized file to the .ssh dir
   copy: src={{ keystore_path }}/authorized_keys
         dest=/home/{{ deploy_user }}/.ssh/authorized_keys 
-        owner={{ deploy_user }}
-        group={{ deploy_user }}
-  become_user: root 
+        owner='{{ deploy_user }}'
+        group='{{ deploy_user }}'
+  become: true 
   tags:
     - user
 
-# we need this for creating the bb deploy_user
-# we need to add the public key to the bb repo as the deploy_user
 
 - name: Create the ssh key pair for the deploy user
-  user: name={{ deploy_user }} generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
+  user: name='{{ deploy_user }}' generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
   tags:
       - user
       - sshkeys
@@ -57,5 +54,4 @@
   pause: prompt="Deployment key has been downloaded to keystore. Please add to your VCS  Host
                  Please press [Enter] after you've added keys" 
   tags:
-    - user
-{% endraw %}
+    - user{% endraw %}
