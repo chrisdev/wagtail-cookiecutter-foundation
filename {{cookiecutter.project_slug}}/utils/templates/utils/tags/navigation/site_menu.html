@@ -1,16 +1,14 @@
 {% raw %}{% load wagtailcore_tags %}
 {% load navigation_tags %}
 {% get_site_root as site_root %}
-<div class="medium-up-4">
+
+<ul class="vertical menu" data-accordion-menu>
     {% for menuitem in menuitems %}
-    <div class="column">
-    
-    <h5><strong><a href="{% pageurl menuitem %}">{{ menuitem.title }}</a></strong></h5>
-    {% if menuitem.show_dropdown %}
-    <ul class="info" style="margin-left: 0px;">
-        {% site_menu_children parent=menuitem %}
-    </ul>
-    {% endif %}
-    </div>
+        <li><a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+        {% if menuitem.show_dropdown %}
+            <ul class="menu vertical nested">
+                {% site_menu_children parent=menuitem %}
+            </ul>
+        {% endif %}</li>
     {% endfor %}
-</div>{% endraw %}
+</ul>{% endraw %}

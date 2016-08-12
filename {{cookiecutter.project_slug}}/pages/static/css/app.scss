@@ -172,7 +172,7 @@ ul.share-buttons .fa {min-width: 30px;}
     a {color: $white; margin-right: 8px;font-size: 20px;}
 }
 
-.intro
+#intro
 {
   padding: 50px 0 30px;
   background: #5e9cd1;
@@ -189,7 +189,7 @@ ul.share-buttons .fa {min-width: 30px;}
   margin-top: 30px;
 }
 
-.section
+#section
 {
   background: $off-white;
   padding: 20px 10px;
@@ -306,43 +306,27 @@ ul.share-buttons .fa {min-width: 30px;}
     .block-faq_question:first-of-type {border: 0;}
 }
 
-#sitemap
-{
-  background-color: $tundora;
-  
-  ul {margin-left: 0;}
-  li{list-style: none;}
-  
-  h4{color: $white;}
-  
-  a{color: $white;}
-  a:hover{color: $tertiary;}
-  
-  h5 {
-      a{color: $tertiary;}
-      a:hover {color: $white;}
-  } 
-}
-
-#contact-us
-{
+footer {
   background-color: $mine-shaft;
   color: white;
-  padding: 20px 0;    
+  padding: 20px 0 0;    
   
   a, h5{color: $white;}
   
-  .social li {list-style: none;font-size: 30px;}
-}
-
-#copyright
-{ 
-  background-color:$dark-metal;
-  p {
-      margin-bottom: 0;
-      padding: 8px 0;
-      font-size: 13.5px;
-      color: white; 
+  .social a{font-size: 14px; padding-right: 4px;}
+  .menu li a {padding: 11px 8px 11px 0; font-size: 14px;}
+  .menu li a:hover {color: $white;}
+  .is-accordion-submenu-parent a::after {border-color: #fff transparent transparent;}
+    
+  #copyright
+  { 
+    background-color:$dark-metal;
+    p {
+        margin-bottom: 0;
+        padding: 8px 0;
+        font-size: 13.5px;
+        color: white; 
+    }
   }
 }
 

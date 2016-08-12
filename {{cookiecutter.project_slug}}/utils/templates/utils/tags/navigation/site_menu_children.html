@@ -1,10 +1,4 @@
 {% raw %}{% load wagtailcore_tags navigation_tags %}
 {% for child in menuitems_children %}
-    <li><a href="{% pageurl child %}">{{ child.title }}</a></li>
-    {% if child.show_dropdown %}
-    <ul style="margin-left: 30px;">
-        {% site_menu_children parent=child %}
-    </ul>
-    {% endif %}  
-{% endfor %}
-{% endraw %}
+    <li><a href="{% pageurl child %}">{{ child.title }}</a></li> 
+{% endfor %}{% endraw %}
