@@ -1,6 +1,7 @@
 {% raw %}- name: restart gunicorn 
   supervisorctl: name={{ project_name }}
                  state=restarted
+  become_user: root
   become: true
 
 - name: restart nginx

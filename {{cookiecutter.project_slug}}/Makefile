@@ -15,6 +15,7 @@ help:
 	@echo "  test                     run unit tests"
 	@echo "  func_test                run functional tests"
 	@echo "  static_site              generate a static site from the project"
+	@echo "  pre_task                 ensures that pythondeps is installed on host server"
 	@echo "  deploy_user              create the deploy user fetch deployment keys. Defaults to production DEPLOY_ENV=vagrant/staging"
 	@echo "  provision                provision the production server Defaults to production DEPLOY_ENV=staging"
 	@echo "  deploy                   provision the staging server Defaults to production DEPLOY_ENV=staging"
