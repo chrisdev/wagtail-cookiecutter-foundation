@@ -10,7 +10,7 @@ email = {{ le_admin_email }}
 
 # Uncomment and update to generate certificates for the specified
 # domains.
-domains = {{ django_env.HOST_NAME }}, www.{{ django_env.HOST_NAME }}
+domains = {{ django_env.HOST_NAME }} #, www.{{ django_env.HOST_NAME }}
 
 # Uncomment to use a text interface instead of ncurses
 text = True
