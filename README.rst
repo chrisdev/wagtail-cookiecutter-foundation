@@ -20,7 +20,7 @@ Features
 
 A Django project with `Wagtail CMS`_ pre-installed with support for all the `Zurb Foundation`_ components.
 
-* For Django 1.9
+* For Django 1.10
 * Renders `Django`_ projects with 100% starting test coverage
 * `Zurb Foundation`_
 * 12-Factor_ based settings via django-environ_
