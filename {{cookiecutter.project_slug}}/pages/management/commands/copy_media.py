@@ -2,11 +2,13 @@ import os
 import shutil
 
 from django.conf import settings
-from django.core.management.base import NoArgsCommand
+from django.core.management.base import BaseCommand
 
 
-class Command(NoArgsCommand):
-    def handle_noargs(self, **options):
+class Command(BaseCommand):
+    help = 'Copy the media directory to project root'
+
+    def handle(self, **options):
         media_src_dir = os.path.join(settings.PROJECT_ROOT, 'pages', 'media')
         image_src_dir = os.path.join(media_src_dir, 'images')
         image_src_dir_or = os.path.join(media_src_dir, 'original_images')

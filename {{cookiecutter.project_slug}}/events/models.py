@@ -32,9 +32,9 @@ class EventIndexPageRelatedLink(Orderable, RelatedLink):
 class EventIndexPage(Page):
     intro = RichTextField(blank=True)
 
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('intro'),
-    )
+    ]
 
     @property
     def events(self):
@@ -142,11 +142,11 @@ class EventPage(Page):
 
     tags = ClusterTaggableManager(through=EventPageTag, blank=True)
 
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('get_audience_display'),
         index.SearchField('location'),
         index.SearchField('body'),
-    )
+    ]
 
     @property
     def event_index(self):
