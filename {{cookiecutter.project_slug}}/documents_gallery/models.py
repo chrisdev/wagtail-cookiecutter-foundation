@@ -24,9 +24,9 @@ class DocumentsIndexPage(Page):
 
     intro = RichTextField(blank=True)
 
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('intro'),
-    )
+    ]
 
     feed_image = models.ForeignKey(
         'wagtailimages.Image',

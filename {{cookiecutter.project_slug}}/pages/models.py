@@ -69,9 +69,9 @@ class HomePage(Page):
     title_text = RichTextField(null=True, blank=True)
     body = RichTextField(null=True, blank=True)
 
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('body'),
-    )
+    ]
 
     class Meta:
         verbose_name = "Homepage"
@@ -149,10 +149,10 @@ class StandardPage(Page):
         related_name='+'
     )
 
-    search_fields = Page.search_fields + (
+    search_fields = Page.search_fields + [
         index.SearchField('intro'),
         index.SearchField('body'),
-    )
+    ]
 
     @property
     def template(self):
