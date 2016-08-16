@@ -8,7 +8,7 @@ Wagtail Cookiecutter Foundation
    :target: https://travis-ci.org/chrisdev/wagtail-cookiecutter-foundation
    
 A cookiecutter_ template for `Wagtail CMS`_ was built using `Zurb Foundation`_ 
-front-end framework. A demo of a default project generated from this cookiecutter is available at https://wagtail-demo.chrisdev.com.
+front-end framework. A demo of a default project generated from this cookiecutter is available at https://wagtail.chrisdev.com.
 
 .. figure:: http://i.imgur.com/FGJtr78.gif :alt: Wagtail Cookiecutter Foundation
 
@@ -26,9 +26,9 @@ A Django project with `Wagtail CMS`_ pre-installed with support for all the `Zur
 * 12-Factor_ based settings via django-environ_
 * Optimized development and production settings
 * Built with `Let's Encrypt`_
-* Comes with custom user model ready to go
-* Grunt build for compass and livereload
-* Ansible support for development and production
+* Comes with a number of handy Custom Page models and templates (blog, photo_gallery, FAQ, events and so on..) to kickstart your site
+* Uses Grunt for image compression and livereload
+* Ansible for provisioning to and deployment to services like Digital Ocean and Linode
 * Works with Python 2.7.x or 3.5.x
 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
