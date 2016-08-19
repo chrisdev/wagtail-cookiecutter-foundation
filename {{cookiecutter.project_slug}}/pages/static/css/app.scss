@@ -340,18 +340,23 @@ textarea#id_message {max-height: 150px;}
 }
 
 .scrollup {
-    width: 40px;
-    height: 40px;
     position: fixed;
-    bottom: -80px;
+    bottom: 20px;
     right: 20px;
     display: none;
-    padding-top:2px;
-    margin-bottom:100px;
-    color:$white;
     z-index:99999;
 }
 
+.lightbox
+{
+  z-index: 100000;
+}
+
+
+.lightboxOverlay
+{
+  z-index: 99999;
+}
 
 /**** Preventing FOUC (flash of unstyled content) ****/
 .no-js {
