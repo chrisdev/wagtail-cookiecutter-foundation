@@ -1,5 +1,4 @@
-{% raw %}
-{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
+{% raw %}{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
 {% if carousel_items %}
     <div class="royalSlider rsDefault">
     {% for carousel_item in carousel_items %}
@@ -19,5 +18,4 @@
         </div>
     {% endfor %}
     </div>
-{% endif %}
-{% endraw %}
+{% endif %}{% endraw %}

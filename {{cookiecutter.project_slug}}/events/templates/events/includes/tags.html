@@ -1,14 +1,9 @@
-{% raw %}
-{% load wagtailcore_tags wagtailimages_tags %}
-
-<br>
-        
+{% raw %}{% load wagtailcore_tags wagtailimages_tags %}
+<br>        
 {% if request.GET.tag|length %}
     <h3>Events tagged with <strong>{{ request.GET.tag|safe }}</strong></h3>
     <h6><a href=" {% pageurl self %} "><strong>Show all events</strong></a></h6>
-        
 {% else %}
-
     <ul class="tag-names">
         <strong>Filter by Tags :</strong>
         {% for tag in tags.all %}
@@ -18,5 +13,4 @@
             </li>
         {% endfor %}
     </ul>
-         
 {% endif %}{% endraw %}

@@ -1,8 +1,5 @@
-{% raw %}
-{% extends "products/product_base.html" %}
-{% load wagtailcore_tags %}
-{% load wagtailimages_tags %}
-
+{% raw %}{% extends "products/product_base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
     <div id="content" class="row">
@@ -75,6 +72,4 @@
             </ul>
         </div>
     </div> 
-{% endblock %}
-
-{% endraw %}
+{% endblock %}{% endraw %}
