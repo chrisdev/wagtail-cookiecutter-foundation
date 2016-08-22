@@ -55,3 +55,15 @@ Run your unit tests ::
 Run your functional tests ::
 
     make func_test
+
+Install Node modules::
+
+    make node_modules
+
+Minify Images used in site ::
+
+    make compress_images
+
+Generate a static site from the project ::
+
+	make static_site
