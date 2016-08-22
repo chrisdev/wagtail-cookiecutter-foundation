@@ -44,34 +44,11 @@ Events
 
 Feeds
 ------
-Syndication feeds come in two flavors:
 
-* BasicFeed - A standard RSS V 2.0.1 feed designed to be used without item enclosures.
-* ExtendedFeed - An RSS V2/Atom Feed with support for item enclosures such as images or video. Use this if when want to integrate your feed with services like MailChimp or Flipboard.
+The app is moved to a separate PyPI project. To setup feeds, see the docs_ of 
+Django Wagtail Feeds.
 
-The feeds module provides the flexibility of allowing you to specify the app module, PageModel and data fields to use for the feed. This is current being done through settings variables. In future versions we plan to provide a page model for truly plug and play functionality. For example, if we wish to create a Syndication Feed based on the BlogPage model which is the blog app ::
-
-    FEED_APP_LABEL = 'blog'
-    FEED_MODEL_NAME = 'BlogPage'
-
-To specify the use of the BlogPage.intro as for the item description and The body field for the content enclosure add the following to your settings ::
-
-    FEED_ITEM_DESCRIPTION_FIELD = 'intro'
-    FEED_ITEM_CONTENT_FIELD = 'body'
-
-Then add the feed level attributes to the settings as follows ::
-
-    FEED_TITLE = 'From the Desk of John Blog'
-    FEED_LINK = '/news/'
-    FEED_DESCRIPTION = "News and views from around the Web"
-    FEED_AUTHOR_EMAIL = 'john@johnblog.com'
-    FEED_AUTHOR_LINK = 'https://johnblog.com'
-
-Finally reference it in the url.py ::
-
-    url(r'^blog/feed/basic$', BasicFeed(), name='basic_feed'),
-    url(r'^blog/feed/extended$', ExtendedFeed(), name='extended_feed'),
-
+.. _docs: https://github.com/chrisdev/django-wagtail-feeds
 
 Pages
 ------

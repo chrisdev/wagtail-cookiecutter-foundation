@@ -27,7 +27,8 @@ A Django project with `Wagtail CMS`_ pre-installed with support for all the `Zur
 * Optimized development and production settings
 * Built with `Let's Encrypt`_
 * Comes with a number of handy Custom Page models and templates (blog, photo_gallery, FAQ, events and so on..) to kickstart your site
-* Uses Grunt for image compression and livereload
+* Uses Grunt for image compression
+* Livereloading via python-livereload_
 * Ansible for provisioning to and deployment to services like Digital Ocean and Linode
 * Works with Python 2.7.x or 3.5.x
 
@@ -39,6 +40,7 @@ A Django project with `Wagtail CMS`_ pre-installed with support for all the `Zur
 .. _`Read the Docs`: http://wagtail-cookiecutter-foundation.readthedocs.org/en/latest/
 .. _django-environ: https://github.com/joke2k/django-environ
 .. _12-Factor: http://12factor.net/
+.. _python-livereload: https://github.com/lepture/python-livereload
 
 Getting Started
 ----------------
