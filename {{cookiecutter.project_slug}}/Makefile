@@ -20,6 +20,7 @@ help:
 	@echo "  provision                provision the production server Defaults to production DEPLOY_ENV=staging"
 	@echo "  deploy                   provision the staging server Defaults to production DEPLOY_ENV=staging"
 	@echo "  livereload               Start Server with livereload functionality"
+	@echo "  node_modules             Install Node modules"
 	@echo "  compress_images          Minify Images used in site"
 
 .PHONY: requirements
@@ -119,6 +120,10 @@ static_site:
 	$(MANAGE_CMD) collectstatic
 	rsync -av static static_build/
 	rsync -av media static_build/
+
+node_modules:
+# Install Node modules
+	npm install
 
 compress_images:
 # Minify Images in media

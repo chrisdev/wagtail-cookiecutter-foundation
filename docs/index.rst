@@ -46,6 +46,7 @@ front-end framework. A demo of a default project generated from this cookiecutte
    usage/styling
    usage/template_tags
    usage/included_apps
+   usage/grunt_tasks
    usage/other_components
  
    
