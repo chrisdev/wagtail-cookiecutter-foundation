@@ -48,7 +48,7 @@ def news_feed(context, count=2):
 def upcoming_events(context, count=8):
 
     events = EventPage.objects.filter(live=True)
-    events = events.all().order_by('-date_from')
+    events = events.all().order_by('date_from')
     return {
         'events': events[:count],
         # required by the pageurl tag that we want to use within this template
