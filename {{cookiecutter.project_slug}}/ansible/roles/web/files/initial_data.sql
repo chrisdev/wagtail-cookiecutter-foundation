@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.1
--- Dumped by pg_dump version 9.5.3
+-- Dumped from database version 9.5.2
+-- Dumped by pg_dump version 9.5.2
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -132,7 +132,7 @@ CREATE TABLE auth_user (
     password character varying(128) NOT NULL,
     last_login timestamp with time zone,
     is_superuser boolean NOT NULL,
-    username character varying(30) NOT NULL,
+    username character varying(150) NOT NULL,
     first_name character varying(30) NOT NULL,
     last_name character varying(30) NOT NULL,
     email character varying(254) NOT NULL,
@@ -388,7 +388,7 @@ CREATE TABLE contact_contactformfield (
     label character varying(255) NOT NULL,
     field_type character varying(16) NOT NULL,
     required boolean NOT NULL,
-    choices character varying(512) NOT NULL,
+    choices text NOT NULL,
     default_value character varying(255) NOT NULL,
     help_text character varying(255) NOT NULL,
     page_id integer NOT NULL
@@ -446,7 +446,7 @@ CREATE TABLE contact_formfield (
     label character varying(255) NOT NULL,
     field_type character varying(16) NOT NULL,
     required boolean NOT NULL,
-    choices character varying(512) NOT NULL,
+    choices text NOT NULL,
     default_value character varying(255) NOT NULL,
     help_text character varying(255) NOT NULL,
     page_id integer NOT NULL
@@ -3000,7 +3000,7 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 226, true);
 --
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$24000$FBIkUWyrzsUQ$NwBuozcnaGwY5hRXcyByhbjMeboUmhOTlgw4nfiLX5U=	2016-07-22 10:12:31.417825-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
+1	pbkdf2_sha256$30000$A8koXK0GpnwX$vrSOwNnzYhXZf1MWwUdbJKzv57RrO9DSkTXLfzs+zqM=	2016-08-23 11:25:47.133443-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
 \.
 
 
@@ -3400,6 +3400,9 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 109	products	0003_auto_20160721_2007	2016-07-22 10:11:37.776263-04
 110	products	0004_auto_20160722_1140	2016-07-22 10:11:38.161484-04
 111	products	0005_auto_20160722_1148	2016-07-22 10:11:38.941252-04
+112	auth	0008_alter_user_username_max_length	2016-08-23 11:23:10.700405-04
+113	contact	0003_auto_20160816_0552	2016-08-23 11:23:23.852972-04
+114	wagtailcore	0029_unicode_slugfield_dj19	2016-08-23 11:24:10.922543-04
 \.
 
 
@@ -3407,7 +3410,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 111, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 114, true);
 
 
 --
@@ -3449,6 +3452,7 @@ rd1nljq4s7vukj05p3fak8fony58jhoq	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU
 yty6ww8edhg0uxt4o0vb0y76l01yr0aj	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 04:38:32.360369-04
 h9ls385qyqf1ccm6kfkmu29jn2sau18p	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 04:39:48.290496-04
 ihfb86gjvjphe9nlp2pj0s5mnd4yde1p	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-05 10:12:31.50711-04
+nw2z5kyd2i5o308w55wdxmv74nniuacz	ZGE0MjFjYzI3MWIyYzRkMWU0Y2E0MGMzNWNmMTU0Njg3OTFkNDJjNzp7Il9hdXRoX3VzZXJfaGFzaCI6ImZiMjZiOTA0ZTBjZDRjNzUxYTA2YmRlZmQ2Mzk5MGYwMWZlNTdjOTIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-09-06 11:25:47.16047-04
 \.
 
 
@@ -3692,7 +3696,7 @@ SELECT pg_catalog.setval('pages_homepagerelatedlink_id_seq', 1, false);
 --
 
 COPY pages_socialmediasettings (id, facebook, instagram, twitter_name, youtube, linkedin, github, facebook_appid, site_id) FROM stdin;
-1	\N	\N	\N	\N	\N	\N	\N	2
+1	https://www.facebook.com/bot.chrisdev?fref=ts		https://www.twitter.com/realchrisdev			https://www.github.com/chrisdev		2
 \.
 
 
