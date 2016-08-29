@@ -3,7 +3,7 @@
 django-debug-toolbar==1.5
 django-extensions==1.7.3
 git+https://github.com/alsoicode/django-medusa
-django-sendfile==0.3.10
+django-sendfile==0.3.11
 
 livereload==2.4.1
 
