@@ -23,10 +23,19 @@
             {% endcompress %}
             
             {% block extra_css %}{% endblock %}
-    
-            {% include "utils/includes/facebook_opengraph.html" %}
-            {% include "utils/includes/twitter_cards.html" %}
-            {% include "utils/includes/google_analytics.html" %}
+            
+            {% block facebook_og %}
+                {% include "utils/includes/facebook_opengraph.html" %}
+            {% endblock %}   
+            
+            {% block twitter_og %}    
+                {% include "utils/includes/twitter_cards.html" %}
+            {% endblock %}
+            
+            {% block google_analytics %}
+                {% include "utils/includes/google_analytics.html" %}
+            {% endblock %}
+            
         </head>
     
         <body class="{% block body_class %}{% endblock %}">
@@ -37,7 +46,10 @@
             
             <div class="off-canvas-content" data-off-canvas-content>
                     
-                    {% breadcrumbs %}
+                    {% block breadcrumbs %}
+                        {% breadcrumbs %}
+                    {% endblock %}
+                    
                     {% block content %}{% endblock %}
                     
                     <a href="#" class="scrollup"><img src="{% static 'img/top.png' %}"></i></a>
@@ -69,7 +81,7 @@
                                 {%  if contact.post_code %}
                                     {% get_google_maps_key as google_maps_key %}
                                     <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ contact.post_code }}&zoom=13&size=300x280&maptype=roadmap
-                                    &sensor=false&markers=color:green|{{ contact.post_code }}{% if google_maps_key %}&key={{ google_maps_key }}{% endif %}" />
+                                    &sensor=false&markers=color:green|{{ contact.post_code }}{% if google_maps_key %}&key={{ google_maps_key }}{% endif %}"/>
                                 {% endif %}
                             </div>
                         </div>
