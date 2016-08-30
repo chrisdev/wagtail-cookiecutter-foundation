@@ -19,3 +19,10 @@ To compress images used in project’s made with this cookiecutter run ::
 You can also use make to run the above task ::
 
 	$ make compress_images
+
+Using Browser Sync for browser testing
+--------------------------------------
+
+To use ``browser-sync`` for Time-saving synchronised browser testing::
+
+	$ grunt browser-sync

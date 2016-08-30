@@ -5,7 +5,7 @@ The easiest way to get started is to use the built in ``make`` commands. Your pr
 
 To do this run ::
 
-	make all
+	make develop_env
 
 You can access your site at ``http://localhost:8000``. The Admin back-end is available at ``http://localhost:8000/admin/``.The default Admin username is *admin* and The default Admin password is *admin123*.
 
