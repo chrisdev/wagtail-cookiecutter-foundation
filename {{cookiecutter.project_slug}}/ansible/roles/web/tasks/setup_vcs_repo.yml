@@ -43,7 +43,7 @@
       - vcs_repo
 
 - name: clone hg repo
-  git: repo={{ project_repo }} dest="{{ sites_dir }}/{{ project_name }}"
+  hg: repo={{ project_repo }} dest="{{ sites_dir }}/{{ project_name }}"
   when: vcs == 'hg'
   tags:
       - web 

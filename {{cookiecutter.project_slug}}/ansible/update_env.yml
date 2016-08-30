@@ -1,0 +1,44 @@
+{% raw %}---
+- hosts: all
+  remote_user: django 
+
+  tasks:
+    - pause: prompt="Place your production settings [env.production] file in {{ keystore_path }} 
+                [Enter] to continue"
+      tags:
+        - update_env 
+
+    - name: Copy the .env file to the project_root 
+      copy: src={{ keystore_path }}/env.production
+            dest={{ sites_dir }}/{{ project_name }}/.env
+            owner={{ deploy_user }}
+            group={{ deploy_user }}
+      tags:
+        - update_env 
+
+    - name: Put the site in maint mode
+      shell: cp "pages/templates/offline.html" "/usr/share/nginx/html/{{ project_name }}_offline.html" 
+      become: yes
+      become_user: root
+      args:
+           chdir: "{{ sites_dir }}/{{ project_name }}"
+      tags:
+          - start_maint 
+          - update_env 
+
+    - name: restart gunicorn 
+      become_user: root
+      become: true
+      supervisorctl: name={{ project_name }}
+                      state=restarted 
+      tags:
+          - update_env 
+
+    - name: Take the site out of  maint mode
+      file: path="/usr/share/nginx/html/{{ project_name }}_offline.html" state=absent 
+      become: yes
+      become_user: root
+      tags:
+           - django
+           - end_maint{% endraw %}
+

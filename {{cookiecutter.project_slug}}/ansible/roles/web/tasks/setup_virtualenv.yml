@@ -46,10 +46,8 @@
       - venv 
 
 - name: update the source git 
-  shell: git pull
-  when: vcs == 'git'
-  args:
-      chdir: "{{ sites_dir }}/{{ project_name }}"
+  git: repo={{ project_repo }} 
+        dest={{ sites_dir }}/{{ project_name }}
   tags:
       - venv 
 
@@ -60,13 +58,13 @@
       - web
       - venv
 
-- pause: prompt="Copy your .env file to {{ keystore_path }} 
-               [Enter] to continue"
+- pause: prompt="Place your production settings [env.production] file in {{ keystore_path }} 
+                [Enter] to continue"
   tags:
       - venv 
 
-- name: Copy the .env file to the project_root 
-  copy: src={{ keystore_path }}/.env
+- name: Copy the env.production file to the project_root 
+  copy: src={{ keystore_path }}/env.production
         dest={{ sites_dir }}/{{ project_name }}/.env
         owner={{ deploy_user }}
         group={{ deploy_user }}

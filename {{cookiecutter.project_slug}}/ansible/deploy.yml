@@ -13,10 +13,10 @@
             - vcs 
 
     - name: Update the source via git
-      shell: git pull
-      when: vcs == "git"
-      args:
-           chdir: "{{ sites_dir }}/{{ project_name }}"
+      git: repo={{ project_repo }} 
+           dest={{ sites_dir }}/{{ project_name }}
+           force=yes
+      when: vcs == 'git'
       tags:
             - vcs 
 

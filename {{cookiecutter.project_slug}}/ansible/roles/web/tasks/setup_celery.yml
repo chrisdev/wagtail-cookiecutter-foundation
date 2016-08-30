@@ -26,11 +26,6 @@
   command: supervisorctl update
   become_user: root
   become: true
-     - celery
-
-- name: restart supervisor to ensure it picks up celery 
-  service: name=supervisor state=restarted
-  become_user: root
-  become: true
+  notify: restart gunicorn 
   tags:
      - celery{% endraw %}
