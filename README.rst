@@ -118,7 +118,7 @@ Create a git repo and push it there::
     
 To create your project's virtual environment, install all pip dependencies, create the development database, run migrations and load initial data to database, install front-end dependencies and finally start the development server for you run ::
 
-	make all
+	make develop_env
 
 You can access your site at ``http://localhost:8000``. The Admin back-end is available at ``http://localhost:8000/admin/``.The default Admin username is *admin* and The default Admin password is *admin123*.
 

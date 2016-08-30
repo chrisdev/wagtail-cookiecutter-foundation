@@ -2,7 +2,7 @@ PROJECT_NAME = {{ cookiecutter.project_slug }}
 SHELL := /bin/sh
 help:
 	@echo "Please use 'make <target>' where <target> is one of"
-	@echo "  all                      to setup the whole development environment for the project"
+	@echo "  develop_env              to setup the whole development environment for the project"
 	@echo "  virtualenv               to create the virtualenv for the project"
 	@echo "  requirements             install the requirements to the virtualenv"
 	@echo "  db                       create the PostgreSQL db for the project"
@@ -26,7 +26,7 @@ help:
 .PHONY: requirements
 
 
-all: virtualenv requirements db initial_data migrate copy_media bower runserver
+develop_env: virtualenv requirements db initial_data migrate copy_media bower runserver
 
 # Command variables
 MANAGE_CMD = python manage.py
