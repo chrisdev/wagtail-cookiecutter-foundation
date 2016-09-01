@@ -38,9 +38,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('pages', '0001_initial'),
-        ('blog', '0001_initial'),
-        ('events', '0001_initial'),
-        ('contact', '0001_initial'),
     ]
 
     operations = [
