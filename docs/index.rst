@@ -59,6 +59,7 @@ front-end framework. A demo of a default project generated from this cookiecutte
    ansible/index
    provisioning_deployment/index
    provisioning_deployment/vagrant
+   provisioning_deployment/deployment-to-aldryn-cloud
 
 
 .. _contributing:
