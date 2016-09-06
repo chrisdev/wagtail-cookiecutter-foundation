@@ -5,6 +5,12 @@ Let's pretend you want to create a Django project called "wagtail_project". Rath
 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
 
+.. raw:: html
+
+    <div>
+       <iframe width="640" height="360" src="https://www.youtube.com/embed/jNu11gMleuY?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+    </div>
+    
 First, get Cookiecutter ::
 
     $ pip install cookiecutter
@@ -60,6 +66,12 @@ Enter the project and take a look around::
 
     $ cd wagtail_project/
     $ ls
+
+.. raw:: html
+
+    <div>
+       <iframe width="640" height="360" src="https://www.youtube.com/embed/1HIRtaGhaEc?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+    </div>
 
 Create a git repo and push it there::
 
