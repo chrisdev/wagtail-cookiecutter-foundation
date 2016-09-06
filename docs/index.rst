@@ -54,12 +54,13 @@ front-end framework. A demo of a default project generated from this cookiecutte
 
 .. toctree::
    :maxdepth: 3
-   :caption: Deployment and Provisioning
+   :caption: Provisioning and Deployment
 
    ansible/index
-   provisioning_deployment/index
-   provisioning_deployment/vagrant
-   provisioning_deployment/deployment-to-aldryn-cloud
+   provisioning_deployment/deployment
+   provisioning_deployment/provisioning
+   provisioning_deployment/deployment_to_aldryn_cloud
+   provisioning_deployment/vagrant 
 
 
 .. _contributing:

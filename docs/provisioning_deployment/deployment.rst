@@ -4,7 +4,9 @@ Deployment
 Creating a Droplet
 ------------------
 
-Create a droplet at https://www.digitalocean.com/ selecting your size server, server name, server location and adding your ssh keys. Once you have create a droplet, deploying your site is really simple.
+Create a droplet at `Digital Ocean`_ selecting your size server, server name, server location and adding your ssh keys. Once you have create a droplet, deploying your site is really simple.
+
+.. _Digital Ocean: https://www.digitalocean.com/
 
 If you are using digital ocean run ::
 
