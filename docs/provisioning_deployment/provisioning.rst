@@ -19,6 +19,12 @@ The provisioning playbooks will:
 Provisioning your Site
 ----------------------
 
+.. raw:: html
+
+    <div>
+       <iframe width="640" height="360" src="https://www.youtube.com/embed/pXLaquzbTk0?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+    </div>
+    
 Now we want to populate your site with all the project's requirements ::
 
     make provision
