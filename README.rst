@@ -53,11 +53,7 @@ To get started we assume the following dependencies ::
     PostgreSQL
     Bower
     
-.. raw:: html
-
-    <div>
-       <iframe width="640" height="360" src="https://www.youtube.com/embed/jNu11gMleuY?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-    </div>
+[![Getting Started Video](http://img.youtube.com/vi/jNu11gMleuY/sddefault.jpg](https://www.youtube.com/watch?v=jNu11gMleuY)
 
 Get Cookiecutter ::
 
