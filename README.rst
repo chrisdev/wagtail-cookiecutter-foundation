@@ -53,7 +53,7 @@ To get started we assume the following dependencies ::
     PostgreSQL
     Bower
     
-[![Getting Started Video](http://img.youtube.com/vi/jNu11gMleuY/sddefault.jpg](https://www.youtube.com/watch?v=jNu11gMleuY)
+[![ScreenShot](http://img.youtube.com/vi/jNu11gMleuY/sddefault.jpg)](https://www.youtube.com/watch?v=jNu11gMleuY)
 
 Get Cookiecutter ::
 
