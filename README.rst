@@ -42,19 +42,19 @@ A Django project with `Wagtail CMS`_ pre-installed with support for all the `Zur
 .. _12-Factor: http://12factor.net/
 .. _python-livereload: https://github.com/lepture/python-livereload
 
+ These projects come with a number of useful pages and a prebuilt content structure that will save you a tonne of work. Did I say that it automatically sets up SSL for your site using Letsencrypt!
+ 
 Getting Started
 ----------------
 Here is how we create a new Django project quickly while letting cookiecutter_ to do all the work.
 
-To get started we assume the following dependencies ::
+To get started we assume the following dependencies are intalled on your development enviornment ::
     
     pip
     virtualenv/pyvenv/virtualenvwrapper
     PostgreSQL
     Bower
     
-.. image:: http://img.youtube.com/vi/jNu11gMleuY/sddefault.jpg
-   :target: https://www.youtube.com/watch?v=jNu11gMleuY
 
 Get Cookiecutter ::
 
@@ -64,50 +64,12 @@ Now run it against this repo::
 
     $ cookiecutter https://github.com/chrisdev/wagtail-cookiecutter-foundation.git
 
-You'll be prompted for some values. Provide them, then a Django project will be created for you ::
+You'll be prompted for some values. Provide them as illustrated in the video below. 
 
-    Cloning into 'wagtail-cookiecutter-foundation'...
-    remote: Counting objects: 5849, done.
-    remote: Compressing objects: 100% (129/129), done.
-    remote: Total 5849 (delta 47), reused 0 (delta 0), pack-reused 5718
-    Receiving objects: 100% (5849/5849), 12.43 MiB | 2.64 MiB/s, done.
-    Resolving deltas: 100% (3291/3291), done.
-    Checking connectivity... done.
-    project_name [Wagtail Project]: 
-    project_slug [wagtail_project]: 
-    Select version_control_system:
-        1 - git
-        2 - hg
-        Choose from 1, 2 [1]: 
-    Select vcs_host:
-        1 - bitbucket.org
-        2 - github.com
-        Choose from 1, 2 [1]: 
-    your_bitbucket_or_github_user_name [chrisdev]: 
-    author_name [Christopher Clarke]: 
-    email [cclarke@chrisdev.com]: 
-    description [A short description of the project.]: 
-    timezone [UTC]: 
-    production_host_name [wagtail.chrisdev.com]: 
-    version [0.1.0]: 
-    use_letsencrypt [y]: 
-    use_celery [y]: 
-    use_opbeat [n]: 
-    use_django_cachalot [n]: 
-    use_wagalytics_app [n]: 
-    staging_host_name [wagtail-staging.chrisdev.com]: 
-    use_vagrant_staging [True]: 
-    deploy_user_name [django]: 
-    database_user_name [django]: 
-    django_admin_user [my_wagtail_admin]: 
-    Select open_source_license:
-        1 - MIT
-        2 - BSD
-        3 - Apache Software License 2.0
-        4 - Not open source
-        Choose from 1, 2, 3, 4 [1]:
+.. image:: http://img.youtube.com/vi/jNu11gMleuY/sddefault.jpg
+   :target: https://www.youtube.com/watch?v=jNu11gMleuY
 
-Enter the project ::
+A full featured Wagtail project will be generated for you. Enter the project ::
 
     $ cd wagtail_project/
 
@@ -127,6 +89,43 @@ You can access your site at ``http://localhost:8000``. The Admin back-end is ava
 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
 
+Up and Running - Provisioning and Deployment
+---------------------------------------------
+
+Once you've created your project you can use the bundled `make` commands to allow you to easily deploy and provision your site on  platfroms like Linode and Digital Ocean. This is illustrated in the video below for a DigitalOcean droplet running Ubuntu 16.04.  
+
+.. image:: http://img.youtube.com/vi/jNu11gMleuY/sddefault.jpg
+   :target: https://youtu.be/mSffkWuCkgQ
+
+
+We're assuming that you've already created a DO droplet and the SSH keys for the project owner have been added to DO. Due to the fact the DO Ubuntu 16.04 droplets don't come with the necessary Python dependencies to support serverside Ansible, the first thing we need to run is::
+
+   $ make pre_task 
+
+Next we run ::
+
+    $ make deploy_user
+
+This creates a deployment  user on the Droplet. The playbook will pause so you can copy your SSH public key to your projects  keystore directory. At the end of this task (play) , the deployment user is created and the public keys are downloaded to the keystore.  You must add them to  the Bitbucket or GitHub  VCS repo that your project.  We support both private and pulic repos here. 
+
+At this point, you're ready to provision, secure your server and deploy your code to the droplet.  However, you may wish to pause and make changes to your project's 12 Factor settings which are stored  in file called `env.example`. The secrets have been automagically generated using `Sys random` but you may want to use your own values.  Once you are satisfied run ::
+
+   $ make provision
+
+This will:
+
+* Install all the required Linux packages and libraries on the server.
+* Setup basic security on the using UFW Firewall and fail2ban.
+* Install and configure PostgresSQL.
+* Install and configure Nginx
+* Install and configure your Nginx for SSL using Letsencrypt
+* Install and configure Redis and ElasticSearch.
+* Clone the project’s VCS repository,
+* Setup a virtual environment and install all python dependencies
+* Setup Gunicorn and Supervisor
+* Configure and install a Celery worker process
+
+Once the the playbook in done, you can check out your site at https://production_host_name.  The Admin back-end is available at http://production_host_name/admin/.  The Django SuperUser name and password are to be found in your project's `ansible/host_vars/production_host_name`: 
 
 App Modules
 ------------
