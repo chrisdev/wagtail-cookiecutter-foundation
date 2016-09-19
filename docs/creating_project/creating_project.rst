@@ -1,5 +1,5 @@
-Installation
-============
+Creating A Project
+==================
 
 Let's pretend you want to create a Django project called "wagtail_project". Rather than using `startproject` and then editing the results to include your name, email, and various configuration issues that always get forgotten until the worst possible moment, get cookiecutter_ to do all the work.
 

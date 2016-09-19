@@ -66,8 +66,8 @@ Now run it against this repo::
 
 You'll be prompted for some values. Provide them as illustrated in the video below. 
 
-.. image:: http://img.youtube.com/vi/jNu11gMleuY/sddefault.jpg
-   :target: https://www.youtube.com/watch?v=jNu11gMleuY
+.. image:: http://img.youtube.com/vi/n6judH8PTwY/sddefault.jpg
+   :target: https://youtu.be/n6judH8PTwY
 
 A full featured Wagtail project will be generated for you. Enter the project ::
 
@@ -94,7 +94,7 @@ Up and Running - Provisioning and Deployment
 
 Once you've created your project you can use the bundled `make` commands to allow you to easily deploy and provision your site on  platfroms like Linode and Digital Ocean. This is illustrated in the video below for a DigitalOcean droplet running Ubuntu 16.04.  
 
-.. image:: http://img.youtube.com/vi/jNu11gMleuY/sddefault.jpg
+.. image:: http://img.youtube.com/vi/mSffkWuCkgQ/sddefault.jpg
    :target: https://youtu.be/mSffkWuCkgQ
 
 

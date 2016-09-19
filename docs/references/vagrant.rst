@@ -1,5 +1,5 @@
-Using Vagrant for Development
-=============================
+Vagrant for Development
+=======================
 
 Alternatively you may prefer to use Vagrant_ to run your project locally in
 its own virtual machine. This will allow you to use PostgreSQL, Elasticsearch
