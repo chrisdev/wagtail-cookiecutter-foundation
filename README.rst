@@ -10,9 +10,6 @@ Wagtail Cookiecutter Foundation
 A cookiecutter_ template for `Wagtail CMS`_ was built using `Zurb Foundation`_ 
 front-end framework. A demo of a default project generated from this cookiecutter is available at https://wagtail.chrisdev.com.
 
-.. figure:: http://i.imgur.com/FGJtr78.gif :alt: Wagtail Cookiecutter Foundation
-
-
 Read the Docs: http://wagtail-cookiecutter-foundation.readthedocs.org/en/latest/
 
 Features
@@ -126,21 +123,6 @@ This will:
 * Configure and install a Celery worker process
 
 Once the the playbook in done, you can check out your site at https://production_host_name.  The Admin back-end is available at http://production_host_name/admin/.  The Django SuperUser name and password are to be found in your project's `ansible/host_vars/production_host_name`: 
-
-App Modules
-------------
-We provide a comprehensive suite of apps to use for building your site. We take  a modular approach so that can pick and choose the functionality you want to include. We provide separate modules for:
-
-    - ``pages`` - Different pages including Homepage, Standard & Faqs Page etc.
-    - ``blog`` - Blog or site news
-    - ``contact`` - Contact Page with included contact us form
-    - ``documents_gallery`` - Organize documents in folders using wagtail tags
-    - ``events`` - Events
-    - ``people`` - For the people in your organization or team.
-    - ``photo_gallery`` - Create photo galleries using wagtail tags
-    - ``products`` - Ideal for a product or portfolio showcase
-    - ``faq`` - FAQ and answers.
-    - ``utils`` - Various utility functions, templatetags and filters
 
 
 Contributing
