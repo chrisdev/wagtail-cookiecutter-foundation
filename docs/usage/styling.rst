@@ -6,6 +6,7 @@ SCSS
 * SCSS has been reduced 
 * Now using colors $primary, $secondary, $tertiary so changing site colors can be done in seconds
 
+
 Modify the default styles of Foundation
 ---------------------------------------
 
