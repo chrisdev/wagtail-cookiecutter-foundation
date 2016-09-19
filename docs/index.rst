@@ -28,21 +28,19 @@ front-end framework. A demo of a default project generated from this cookiecutte
 
 .. toctree::
    :maxdepth: 3
-   :caption: Installation
+   :caption: Creating A Project
+   
+   creating_project/prerequisites
+   creating_project/creating_project
+   creating_project/manual_installation
 
-   installation/prerequisites
-   installation/installation
-   installation/manual_installation
 
-
-.. _using_make:
+.. _project_usage:
 
 .. toctree::
    :maxdepth: 5
    :caption: Usage
    
-   editor_manual/index
-   usage/using_make
    usage/styling
    usage/template_tags
    usage/included_apps
@@ -57,10 +55,7 @@ front-end framework. A demo of a default project generated from this cookiecutte
    :caption: Provisioning and Deployment
 
    ansible/index
-   provisioning_deployment/deployment
-   provisioning_deployment/provisioning
-   provisioning_deployment/deployment_to_aldryn_cloud
-   provisioning_deployment/vagrant 
+   provisioning_deployment/index
 
 
 .. _contributing:
