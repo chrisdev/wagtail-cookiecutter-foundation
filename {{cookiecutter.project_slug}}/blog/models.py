@@ -1,14 +1,16 @@
 from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.models import Page, Orderable
-from wagtail.wagtailcore.fields import RichTextField
+from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailimages.blocks import ImageChooserBlock
 
 from wagtail.wagtailsearch import index
 
 from wagtail.wagtailadmin.edit_handlers import (
-    FieldPanel, InlinePanel
+    FieldPanel, InlinePanel, StreamFieldPanel
 )
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
@@ -86,7 +88,11 @@ class BlogPageTag(TaggedItemBase):
 
 class BlogPage(Page):
     intro = RichTextField()
-    body = RichTextField()
+    body = StreamField([
+        ('heading', blocks.CharBlock(classname="full title")),
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+    ])
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     date = models.DateField("Post date")
     feed_image = models.ForeignKey(
@@ -110,7 +116,7 @@ BlogPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('date'),
     FieldPanel('intro', classname="full"),
-    FieldPanel('body', classname="full"),
+    StreamFieldPanel('body'),
     InlinePanel('carousel_items', label="Carousel items"),
     InlinePanel('related_links', label="Related links"),
 ]
