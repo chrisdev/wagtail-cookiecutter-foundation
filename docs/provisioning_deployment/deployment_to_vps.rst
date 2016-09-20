@@ -25,7 +25,7 @@ Creating a Deployment User
 .. raw:: html
 
     <div>
-       <iframe width="640" height="360" src="https://www.youtube.com/embed/pXLaquzbTk0?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+       <iframe width="640" height="360" src="https://www.youtube.com/embed/mSffkWuCkgQ?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
     </div>
     
 Next we want to create a deployment user. To create the deploy user for the production ::
@@ -39,16 +39,13 @@ In addition,  to creating the deploy user, this make command will download the R
 
 Provisioning your Server and Deploying your Site
 ------------------------------------------------
-
-.. raw:: html
-
-    <div>
-       <iframe width="640" height="360" src="https://www.youtube.com/embed/mSffkWuCkgQ?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-    </div>
     
 Now we want to populate your site with all the project's requirements ::
 
     make provision
 
+=============================================
+Populate .env With Your Environment Variables
+=============================================
 
 Some of these services rely on environment variables set by you. There is an env.example file in the root directory of this project as a starting point. Add your own variables to the file, then move it to the ``ansible/{{cookiecutter.project_slug}}_keystore/`` folder and change the file name to ``env.production``. After you have change the file name set the ``DJANGO_DEBUG`` to ``off``.

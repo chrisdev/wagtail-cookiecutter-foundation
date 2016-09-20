@@ -42,14 +42,6 @@ Events
 * New Event Feed design with scroll access which allows for multiple events to be presented in the feed.
 
 
-Feeds
-------
-
-The app is moved to a separate PyPI project. To setup feeds, see the docs_ of 
-Django Wagtail Feeds.
-
-.. _docs: https://github.com/chrisdev/django-wagtail-feeds
-
 Pages
 ------
 * Standard Index now supports Feed Images

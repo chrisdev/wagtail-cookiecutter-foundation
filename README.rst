@@ -1,5 +1,5 @@
 Wagtail Cookiecutter Foundation
-================================
+===============================
 
 .. image:: https://pyup.io/repos/github/chrisdev/wagtail-cookiecutter-foundation/shield.svg
      :target: https://pyup.io/repos/github/chrisdev/wagtail-cookiecutter-foundation/
@@ -10,13 +10,10 @@ Wagtail Cookiecutter Foundation
 A cookiecutter_ template for `Wagtail CMS`_ was built using `Zurb Foundation`_ 
 front-end framework. A demo of a default project generated from this cookiecutter is available at https://wagtail.chrisdev.com.
 
-.. figure:: http://i.imgur.com/FGJtr78.gif :alt: Wagtail Cookiecutter Foundation
-
-
 Read the Docs: http://wagtail-cookiecutter-foundation.readthedocs.org/en/latest/
 
 Features
-----------
+--------
 
 A Django project with `Wagtail CMS`_ pre-installed with support for all the `Zurb Foundation`_ components.
 
@@ -45,7 +42,7 @@ A Django project with `Wagtail CMS`_ pre-installed with support for all the `Zur
  These projects come with a number of useful pages and a prebuilt content structure that will save you a tonne of work. Did I say that it automatically sets up SSL for your site using Letsencrypt!
  
 Getting Started
-----------------
+---------------
 Here is how we create a new Django project quickly while letting cookiecutter_ to do all the work.
 
 To get started we assume the following dependencies are intalled on your development enviornment ::
@@ -90,7 +87,7 @@ You can access your site at ``http://localhost:8000``. The Admin back-end is ava
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
 
 Up and Running - Provisioning and Deployment
----------------------------------------------
+--------------------------------------------
 
 Once you've created your project you can use the bundled `make` commands to allow you to easily deploy and provision your site on  platfroms like Linode and Digital Ocean. This is illustrated in the video below for a DigitalOcean droplet running Ubuntu 16.04.  
 
@@ -127,24 +124,9 @@ This will:
 
 Once the the playbook in done, you can check out your site at https://production_host_name.  The Admin back-end is available at http://production_host_name/admin/.  The Django SuperUser name and password are to be found in your project's `ansible/host_vars/production_host_name`: 
 
-App Modules
-------------
-We provide a comprehensive suite of apps to use for building your site. We take  a modular approach so that can pick and choose the functionality you want to include. We provide separate modules for:
-
-    - ``pages`` - Different pages including Homepage, Standard & Faqs Page etc.
-    - ``blog`` - Blog or site news
-    - ``contact`` - Contact Page with included contact us form
-    - ``documents_gallery`` - Organize documents in folders using wagtail tags
-    - ``events`` - Events
-    - ``people`` - For the people in your organization or team.
-    - ``photo_gallery`` - Create photo galleries using wagtail tags
-    - ``products`` - Ideal for a product or portfolio showcase
-    - ``faq`` - FAQ and answers.
-    - ``utils`` - Various utility functions, templatetags and filters
-
 
 Contributing
---------------
+------------
 
 Contributions are always welcome to improve this project. If you think you've found a bug or are interested in contributing fork this project and send the pull request. After review, your pull request will be merged. We are always happy to receive pull requests. If you identify any issue, please raise it in the issues section.
 
