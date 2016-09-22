@@ -56,25 +56,28 @@ Firstly, open up a command line shell in your new projects directory.
 
 .. _Fabric: http://www.fabfile.org/
 
-4. **Create the database and migrate**
+4. **Create the database*
 
   By default require ``PostgreSQL`` to be installed
 
 .. code-block:: sh
 
     createdb my_site
-   ./manage.py migrate
 
 5. **Load the Initial Data**
    The cookiecutter comes with some pages already created for your
    convenience including the Homepage with a working ``bx_slider`` slide show, 
    contact page, events and news/blog pages. To generate these pages run:
 
-  :code:`./manage.py load_initial_data`
+  :code:`psql -d my_site -f ansible/roles/web/files/initial_data.sql`
   
   The default Admin username is *admin*
   
   The default Admin password is *admin123*
+
+  To copy the media directory to project root.
+
+  :code:`./manage.py copy_media`
 
 6. **Install Packages (Foundation, Font-Awesome etc.) using Bower package manager**
 

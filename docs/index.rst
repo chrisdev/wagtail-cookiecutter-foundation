@@ -54,6 +54,7 @@ front-end framework. A demo of a default project generated from this cookiecutte
    :caption: Provisioning and Deployment
 
    provisioning_deployment/deployment_to_vps
+   provisioning_deployment/deployment_to_pythonanywhere
    provisioning_deployment/deployment_to_aldryn_cloud
    
    
