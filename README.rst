@@ -23,7 +23,7 @@ A Django project with `Wagtail CMS`_ pre-installed with support for all the `Zur
 * 12-Factor_ based settings via django-environ_
 * Optimized development and production settings
 * Built with `Let's Encrypt`_
-* Comes with a number of handy Custom Page models and templates (blog, photo_gallery, FAQ, events and so on..) to kickstart your site
+* Comes with a number of Custom Page models & templates such as Blog, Photo Gallery, Events and much more) to kickstart your site
 * Uses Grunt for image compression
 * Livereloading via python-livereload_
 * Ansible for provisioning to and deployment to services like Digital Ocean and Linode
