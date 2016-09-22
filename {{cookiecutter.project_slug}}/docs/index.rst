@@ -4,22 +4,27 @@
    contain the root `toctree` directive.
 
 Welcome to {{ cookiecutter.project_name }}'s documentation!
-====================================
+===========================================================
 
-Contents:
+.. _getting_started:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
+   :caption: Getting Started
+   
+   intro
+   getting_started
+   
+   
+.. _user_guide:
 
-   install
-   deploy
-   tests
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. toctree::
+   :maxdepth: 1
+   :caption: User Guide
+   
+   intro
+   getting_started
+   finding_your_way_around/index
+   new_pages/index
+   editing_existing_pages
+   documents_images_snippets/index
