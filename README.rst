@@ -21,9 +21,9 @@ A Django project with `Wagtail CMS`_ pre-installed with support for all the `Zur
 * Renders `Django`_ projects with 100% starting test coverage
 * `Zurb Foundation`_
 * 12-Factor_ based settings via django-environ_
-* Optimized development and production settings
+* Optimised development and production settings
 * Built with `Let's Encrypt`_
-* Comes with a number of handy Custom Page models and templates (blog, photo_gallery, FAQ, events and so on..) to kickstart your site
+* Comes with a number of Custom Page models & templates such as Blog, Photo Gallery, Events and much more) to kickstart your site
 * Uses Grunt for image compression
 * Livereloading via python-livereload_
 * Ansible for provisioning to and deployment to services like Digital Ocean and Linode
@@ -45,7 +45,7 @@ Getting Started
 ---------------
 Here is how we create a new Django project quickly while letting cookiecutter_ to do all the work.
 
-To get started we assume the following dependencies are intalled on your development enviornment ::
+To get started we assume the following dependencies are installed on your development enviroment ::
     
     pip
     virtualenv/pyvenv/virtualenvwrapper
@@ -86,10 +86,11 @@ You can access your site at ``http://localhost:8000``. The Admin back-end is ava
 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
 
+
 Up and Running - Provisioning and Deployment
 --------------------------------------------
 
-Once you've created your project you can use the bundled `make` commands to allow you to easily deploy and provision your site on  platfroms like Linode and Digital Ocean. This is illustrated in the video below for a DigitalOcean droplet running Ubuntu 16.04.  
+Once you've created your project you can use the bundled `make` commands to allow you to easily deploy and provision your site on platforms like Linode and Digital Ocean. This is illustrated in the video below for a DigitalOcean droplet running Ubuntu 16.04.  
 
 .. image:: http://img.youtube.com/vi/mSffkWuCkgQ/sddefault.jpg
    :target: https://youtu.be/mSffkWuCkgQ
@@ -103,9 +104,9 @@ Next we run ::
 
     $ make deploy_user
 
-This creates a deployment  user on the Droplet. The playbook will pause so you can copy your SSH public key to your projects  keystore directory. At the end of this task (play) , the deployment user is created and the public keys are downloaded to the keystore.  You must add them to  the Bitbucket or GitHub  VCS repo that your project.  We support both private and pulic repos here. 
+This creates a deployment user on the Droplet. The playbook will pause so you can copy your SSH public key to your projects keystore directory. At the end of this task (play), the deployment user is created and the public keys are downloaded to the keystore. You must add them to  the Bitbucket or GitHub VCS repo that your project. We support both private and public repos here. 
 
-At this point, you're ready to provision, secure your server and deploy your code to the droplet.  However, you may wish to pause and make changes to your project's 12 Factor settings which are stored  in file called `env.example`. The secrets have been automagically generated using `Sys random` but you may want to use your own values.  Once you are satisfied run ::
+At this point, you're ready to provision, secure your server and deploy your code to the droplet. However, you may wish to pause and make changes to your project's 12 Factor settings which are stored  in file called `env.example`. The secrets have been automagically generated using `Sys random` but you may want to use your own values. Once you are satisfied run ::
 
    $ make provision
 
@@ -122,7 +123,7 @@ This will:
 * Setup Gunicorn and Supervisor
 * Configure and install a Celery worker process
 
-Once the the playbook in done, you can check out your site at https://production_host_name.  The Admin back-end is available at http://production_host_name/admin/.  The Django SuperUser name and password are to be found in your project's `ansible/host_vars/production_host_name`: 
+Once the the playbook in done, you can check out your site at https://production_host_name. The Admin back-end is available at http://production_host_name/admin/. The Django SuperUser name and password are to be found in your project's `ansible/host_vars/production_host_name`: 
 
 
 Contributing

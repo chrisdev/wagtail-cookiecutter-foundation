@@ -25,8 +25,8 @@ The Explorer page allows you to view the a page's children and perform actions o
 Reordering pages
 ________________
 
-.. image:: ../_static/images/screen085_reorder_page_handles.png
+.. image:: ../_static/images/screen08.5_reorder_page_handles.png
 
 * Clicking the icon to the far left of the child pages table will enable the reordering handles. This allows you to reorder the way that content displays in the main menu of your website.
-* Reorder by dragging the pages by the handles on the far left (the icon made up of 8 dots).
+* Reorder by dragging the pages by the handles on the far left (the icon made up of 6 dots).
 * Your new order will be automatically saved each time you drag and drop an item.
