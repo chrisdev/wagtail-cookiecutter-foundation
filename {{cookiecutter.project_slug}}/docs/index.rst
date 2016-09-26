@@ -6,18 +6,6 @@
 Welcome to {{ cookiecutter.project_name }}'s documentation!
 ===========================================================
 
-.. _getting_started:
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Getting Started
-   
-   intro
-   getting_started
-   
-   
-.. _user_guide:
-
 .. toctree::
    :maxdepth: 1
    :caption: User Guide
@@ -28,3 +16,4 @@ Welcome to {{ cookiecutter.project_name }}'s documentation!
    new_pages/index
    editing_existing_pages
    documents_images_snippets/index
+   administrator_tasks/index
