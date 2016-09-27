@@ -64,6 +64,7 @@ front-end framework. A demo of a default project generated from this cookiecutte
    :maxdepth: 3
    :caption: References
 
+   references/project_settings
    references/ansible/index
    references/using_make
    references/vagrant
