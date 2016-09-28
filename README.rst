@@ -90,13 +90,13 @@ You can access your site at ``http://localhost:8000``. The Admin back-end is ava
 Up and Running - Provisioning and Deployment
 --------------------------------------------
 
-Once you've created your project you can use the bundled `make` commands to allow you to easily deploy and provision your site on platforms like Linode and Digital Ocean. This is illustrated in the video below for a DigitalOcean droplet running Ubuntu 16.04.  
+Once you've created your project you can use the bundled `make` commands to to easily deploy and provision your site on platforms like Linode and Digital Ocean. We also support platforms like PythonAnywhere and Aldryn Cloud.  The video below shows the process for a DigitalOcean droplet running Ubuntu 16.04.  
 
 .. image:: http://img.youtube.com/vi/mSffkWuCkgQ/sddefault.jpg
    :target: https://youtu.be/mSffkWuCkgQ
 
 
-We're assuming that you've already created a DO droplet and the SSH keys for the project owner have been added to DO. Due to the fact the DO Ubuntu 16.04 droplets don't come with the necessary Python dependencies to support serverside Ansible, the first thing we need to run is::
+We're assuming that you've already created a DO droplet and you've added the project owner's public SSH keys to the droplet. Due to the fact the DO Ubuntu 16.04 droplets don't come with the necessary Python dependencies to support serverside Ansible, the first thing we need to run is::
 
    $ make pre_task 
 
@@ -115,15 +115,19 @@ This will:
 * Install all the required Linux packages and libraries on the server.
 * Setup basic security on the using UFW Firewall and fail2ban.
 * Install and configure PostgresSQL.
-* Install and configure Nginx
-* Install and configure your Nginx for SSL using Letsencrypt
+* Install and configure Nginx for SSL serving using Letsencrypt
 * Install and configure Redis and ElasticSearch.
-* Clone the project’s VCS repository,
-* Setup a virtual environment and install all python dependencies
+* Clone the project’s VCS repository, setup a virtual environment and install all Python dependencies
 * Setup Gunicorn and Supervisor
 * Configure and install a Celery worker process
 
 Once the the playbook in done, you can check out your site at https://production_host_name. The Admin back-end is available at http://production_host_name/admin/. The Django SuperUser name and password are to be found in your project's `ansible/host_vars/production_host_name`: 
+
+Our `Documentation`_ provides deatiled instructions for deploying on `PythonAnywhere`_ and `Aldryn Cloud`_.
+
+.. _`Documentation`:  http://wagtail-cookiecutter-foundation.readthedocs.io/en/latest/index.html#
+.. _`PythonAnywhere`:  http://wagtail-cookiecutter-foundation.readthedocs.io/en/latest/provisioning_deployment/deployment_to_pythonanywhere.html
+.. _`Aldryn Cloud`: http://wagtail-cookiecutter-foundation.readthedocs.io/en/latest/provisioning_deployment/deployment_to_aldryn_cloud.html
 
 
 Contributing
