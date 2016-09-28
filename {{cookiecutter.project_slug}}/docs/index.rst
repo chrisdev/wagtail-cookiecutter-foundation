@@ -17,3 +17,7 @@ Welcome to {{ cookiecutter.project_name }}'s documentation!
    editing_existing_pages
    documents_images_snippets/index
    administrator_tasks/index
+   
+For documentation check the `Wagtail Documentation`_.
+
+.. _`Wagtail Documentation`: http://docs.wagtail.io/en/v1.6.2/

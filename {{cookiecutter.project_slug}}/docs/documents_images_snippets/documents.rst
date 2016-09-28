@@ -18,3 +18,6 @@ Documents such as PDFs can be managed from the Documents interface, available in
 
 .. Warning:: 
 	Deleted documents cannot be recovered.
+	
+Documents Gallery
+-----------------
