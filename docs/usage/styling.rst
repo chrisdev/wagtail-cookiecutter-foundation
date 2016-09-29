@@ -19,10 +19,10 @@ We are now using colors $primary, $secondary, $tertiary, so changing the look of
 
 By default your project is set:
 
-Primary - Topbar, Header Backgrounds and Links
-Secondary - Social Bar and Sub-headers
-Tertiary - Buttons and Hovers
-Tundora - Headers and Paragraph 
+* ``$primary`` - Topbar, Header Backgrounds and Links
+* ``$secondary`` - Social Bar and Sub-headers
+* ``$tertiary`` - Buttons and Hovers
+* ``$tundora`` - Headers and Paragraph 
 
 For further documentation on using sass check out `Foundation SASS`_.
 
