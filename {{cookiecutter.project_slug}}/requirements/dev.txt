@@ -1,6 +1,6 @@
 -r base.txt
 
-django-debug-toolbar==1.5
+django-debug-toolbar==1.6
 django-extensions==1.7.4
 git+https://github.com/alsoicode/django-medusa
 django-sendfile==0.3.11
