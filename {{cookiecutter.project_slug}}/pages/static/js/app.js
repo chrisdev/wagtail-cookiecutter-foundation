@@ -1,5 +1,3 @@
-$(document).foundation();
-
  $(document).ready(function(){
 
     $('.testimonials').bxSlider({
