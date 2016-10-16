@@ -35,6 +35,14 @@
       tags:
            - django
 
+    - name: Run Django makemigrations
+      shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
+            && python manage.py makemigrations --noinput --settings={{ project_name }}.settings.production
+      args:
+           chdir: "{{ sites_dir }}/{{ project_name }}"
+      tags:
+            - django
+
     - name: Run Django migrations
       shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
             && python manage.py migrate --noinput --settings={{ project_name }}.settings.production
