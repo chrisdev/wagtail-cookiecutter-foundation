@@ -37,7 +37,7 @@
 
     - name: Run Django makemigrations
       shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
-            && python manage.py makemigrations --noinput --settings={{ project_name }}.settings.production
+            && python manage.py makemigrations --merge --noinput --settings={{ project_name }}.settings.production
       args:
            chdir: "{{ sites_dir }}/{{ project_name }}"
       tags:
