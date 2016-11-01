@@ -25,12 +25,14 @@
     	        {% for block in self.content_items.all %}
     	        <div class="column icon grow">
     	            <a href="{{ block.link }}" target="_blank">
-    	                <div class="callout">
+    	                <div class="card">
     	                 {% if block.image %}
     	                    {% image block.image fill-70x70 %}
     	                 {% endif %}
     	                 <h5><strong>{{ block.title}}</strong></h5>
-    	                 {{ block.content|richtext }}
+    	                 <div class="info" style="padding: 5px;">
+    	                 	{{ block.content|richtext }}
+    	                 </div>
     	                </div>
     	            </a>
     	        </div>

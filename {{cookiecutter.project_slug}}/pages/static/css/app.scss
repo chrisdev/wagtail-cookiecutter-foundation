@@ -77,6 +77,8 @@ $header-font-color: $tundora !default;
   height: 100%;
 }
 
+body {background: #f8f8fa;}
+.off-canvas-content, .off-canvas-content {background: transparent;}
 .row{max-width: 68em;}
 .pad {padding: 20px 0;}
 a {color: $primary;}
@@ -129,6 +131,17 @@ button:hover, .button:hover {background: $primary;}
     transform: scale(1.05);
     transition: 1s ease;
 }
+
+.card {
+    background-color: #fff;
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+    display: block;
+    transform: translate3d(0px, 0px, 0px);
+    transition: box-shadow 0.2s cubic-bezier(0, 0.2, 0.4, 1) 0s; 
+    margin-bottom: 25px;
+}
+
+.info {padding: 15px;}
 
 .off-canvas {
     a{color: $white;}
@@ -244,7 +257,7 @@ ul.share-buttons .fa {min-width: 30px;}
     h6, li {margin-bottom :5px;}
     li{list-style: none; font-size:14px; margin-bottom: 0px;}
     p{font-size: 14px; margin-bottom:10px;}
-    hr {border-color: $tundora;}
+    hr {border-color: #ccc;}
     hr:last-of-type{border: 0px;}
     .button{margin-bottom:5px; padding:5px 8px; float: right;}
 }
@@ -258,10 +271,27 @@ ul.share-buttons .fa {min-width: 30px;}
     h6.title{background: $primary; padding: 6px; color: $white;}
     h6.date{margin-top: 0px; color: $black;}
     h6.event {padding:3px 0; margin:0;}
-    .event{border-bottom: 1px solid $tundora;padding: 11px 0;}
+    .event{border-bottom: 1px solid #ccc ;padding: 11px 0;}
     .event:last-of-type {border-bottom: 0px;}
     a {color: $tundora}
     hr:last-of-type {border: 0px;}
+}
+
+#event_grid { 
+  .column {padding: 0 7px;}
+  
+  h6 {
+      color: $tundora;
+      font-weight: 700;
+      line-height: 1; 
+      margin-top: 8px;
+      margin-bottom: 8px;
+  }
+  
+  li {color: $tundora; list-style: none; font-size: 13.5px;}
+  i {color: $tundora; font-sie: 20px;}
+  p {font-size: 14px; margin-bottom: 10px;}
+  a p {color: $tundora; font-size: 13.5px;}      
 }
 
 #testimonials {

@@ -1,7 +1,9 @@
 {% raw %}{% extends "blog/blog_base.html" %}
 {% load wagtailcore_tags %}
 
-{% block article_content %}
+{% block content %}
+	<div id="content" class="row">
+		<div class="medium-9 medium-centered columns">
             <a href="{% url 'extended_feed' %}" target="_blank" class="button float-right" style="border-radius: 100%;"><i class="fa fa-rss" id="blog-rss"></i></a>
             {% if request.GET.tag|length %}
                 <h4>Showing posts tagged as {{ request.GET.tag|safe }} <a href=" {% pageurl self %} ">Show all</a></h4>
@@ -32,5 +34,7 @@
                     {% endif %}
               </ul>
           </div>
+      </div>
+  </div>
 
 {% endblock %}{% endraw %}
