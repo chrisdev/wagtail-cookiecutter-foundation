@@ -2,8 +2,8 @@
 
 {% if self.date %}
     {% block heading %}
-        <h4>{{ self.title }}</h4>
-        <h6>{{ self.date|date:"j F Y" }}</h6>
+        <h4><strong>{{ self.title }}</strong></h4>
+        <h6><strong>{{ self.date|date:"j F Y" }}</strong></h6>
     {% endblock %}
 {% endif %}
 

@@ -5,7 +5,7 @@
 {% block content %}
     <div id="content" class="row">
         <div class="medium-9 columns">
-            <h4>{{ self.title }}</h4>
+            <h4><strong>{{ self.title }}</strong></h4>
             <h5 class="subheader">{{ self.subtitle }}</h5>
             <hr>
             {% include "pages/includes/intro.html" with intro=self.intro only %}
@@ -20,7 +20,6 @@
               {% news_feed %}
               
               {% upcoming_events %}
-              
         </div>
     </div>
 {% endblock %}{% endraw %}
