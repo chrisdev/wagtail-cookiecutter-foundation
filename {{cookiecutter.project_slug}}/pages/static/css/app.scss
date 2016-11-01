@@ -311,13 +311,15 @@ ul.share-buttons .fa {min-width: 30px;}
 
 .tag-names li
 {
-  background: $primary;
+  background: transparent;
+  border: 1px $primary solid;
   border-radius: 2px;
   color: #fff;
-  padding: 5px;
+  padding: 4px 8px;
+  font-size: 12px;
   display:inline;
   margin: 0px 3px;
-  a{color:$white;};
+  a{color:$primary;};
 }
 
 #faq {
