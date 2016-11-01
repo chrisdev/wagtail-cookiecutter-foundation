@@ -17,8 +17,14 @@
                     {% for page in pages %}
                         <div class="column text-center" data-equalizer-watch>
                             <a href="{{ page.url }}">
-                                <i class="fa fa-file fa-3x" style="margin-bottom: 10px;"></i>
-                                <h5 style="margin-bottom: 0;">{{ page.title }}</h5>
+                            	<div class="card" style="border-radius: 5px;">
+                            	    <div class="info">
+                            	    	<i class="fa fa-file fa-4x" style="margin-bottom: 10px;"></i>
+                            			<center>
+                            				<h6 style="margin-bottom: 0;"><strong>{{ page.title }}</strong></h6>
+                            			</center>
+                            		</div>
+                            	</div>
                             </a>
                         </div>
                     {% endfor %}
