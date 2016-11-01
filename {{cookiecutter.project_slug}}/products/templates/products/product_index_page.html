@@ -5,8 +5,8 @@
     <div id="content" class="row">
         <div class="medium-12 columns">
             <center>
-                <h3>{{ self.title }}</h3>
-                <h4 class="subheader">{{ self.subtitle }}</h4>
+                <h4>{{ self.title }}</h4>
+                <h5 class="subheader">{{ self.subtitle }}</h5>
                 {% include "products/includes/intro.html" with intro=self.intro only %}
             </center>   
             <hr> 
@@ -16,7 +16,7 @@
                         <div class="column">
                            
                             <div class="row">
-                                <div class="callout secondary" data-equalizer>
+                                <div class="card" data-equalizer>
                                     <div class="row stack-for-small">
                                         <div class="medium-4 columns">
                                             <div class="thumbnail">

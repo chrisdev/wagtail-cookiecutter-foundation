@@ -2,12 +2,12 @@
 {% load wagtailcore_tags foundation_formtags %}
 
 {% block contact_content %}
-         <div class="callout secondary">
-             <div class="form-panel">
+         <div class="card" style="border-radius: 10px;">
+             <div class="info form-panel">
                  <form class="contact-form" action="{% pageurl self %}" method="POST">
                      {% csrf_token %}
                      {{ form|as_foundation }}
-                     <input class="button radius float-right" name="Send" type="submit" value="Send">
+                     <input class="button radius float-right" name="Send" type="submit" value="Send" style="border-radius: 5px;">
                      <br>
                      <br>
                  </form>

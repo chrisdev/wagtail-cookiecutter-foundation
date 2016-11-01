@@ -126,9 +126,9 @@ button:hover, .button:hover {background: $primary;}
     transition: 1s ease;
 }
 .grow:hover{
-    -webkit-transform: scale(1.05);
-    -ms-transform: scale(1.05);
-    transform: scale(1.05);
+    -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
     transition: 1s ease;
 }
 
@@ -186,30 +186,26 @@ ul.share-buttons .fa {min-width: 30px;}
     a {color: $white; margin-right: 8px; font-size: 17px;}
 }
 
-#intro
-{
+#intro {
   padding: 50px 0 30px;
   background: #5e9cd1;
   
   h3, p {color: $white;}
   
-  h3{font-weight: 800;line-height: 1;}
+  h3{font-weight: 500;line-height: 1;}
   
   .rich-text{margin-bottom: 20px;}
 }
 
-#carousel
-{
+#carousel {
   margin-top: 30px;
 }
 
-#section
-{
+#section {
   background: $off-white;
   padding: 20px 10px;
   
-  .callout {padding: 0; border-radius: 5px;}
-  h3{color: $primary;font-weight: 800;line-height: 1;}
+  h4 {color: $primary;font-weight: 450;line-height: 1;}
   h5 {background: $primary; color: $white; padding: 4px 0;}
   p {color: $primary; padding: 5px;}
   img {padding: 15px 0;}
@@ -337,6 +333,12 @@ ul.share-buttons .fa {min-width: 30px;}
     .block-faq_question.close {background-image:url('/#{$static}/img/faq/close.png');}
     .block-faq_question {border-top: 1px solid $tundora;}
     .block-faq_question:first-of-type {border: 0;}
+}
+
+.contact-form {
+	[type="text"], [type="password"], [type="date"], [type="datetime"], [type="datetime-local"], [type="month"], [type="week"], [type="email"], [type="number"], [type="search"], [type="tel"], [type="time"], [type="url"], [type="color"], textarea {border-radius: 4px;}
+	
+	textarea {max-height: 60px;} 
 }
 
 footer {
