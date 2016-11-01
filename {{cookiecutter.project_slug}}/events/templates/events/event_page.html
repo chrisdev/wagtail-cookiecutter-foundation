@@ -6,13 +6,13 @@
 {% include "utils/includes/social_share.html" %}
 <div class="row">
       <div class="card">
-      	<div class="row">
-      		<div class="medium-6 columns">
+      	<div class="row" style="margin-bottom: 0;">
+      		<div class="medium-7 columns">
       			{% if self.feed_image %} 
-      			   {% image self.feed_image fill-1200x1200 %}
+      			   {% image self.feed_image fill-1200x880 %}
       			{% endif %}
       		</div>
-      		<div class="medium-6 columns">  
+      		<div class="medium-5 columns">  
       			<br>              
                 <h4><strong>{{ self.title }}</strong></h4>
         		
@@ -48,7 +48,7 @@
      	         {% endif %}
                  
                  
-                 <p class="add"><a id="calendar" class='button tiny radius' href= "{{ self.url }}?format=ical"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Add to calendar</a></p>
+                 <p class="add"><a id="calendar" class='button tiny radius' style="border-radius: 3px;" href= "{{ self.url }}?format=ical"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Add to calendar</a></p>
             </div>
          </div>
        </div>
