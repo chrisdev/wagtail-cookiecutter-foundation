@@ -44,7 +44,7 @@ the staging server.
 
 Because of the way Vagrant is setup we need to run a special play book to copy
 your ``ssh`` public key (``id_rsa.pub``) to the root account on the Vagrant staging machine
-i.e. to ``authorised_keys``.
+i.e. to ``authorized_keys``.
 
 .. code-block:: sh
 
