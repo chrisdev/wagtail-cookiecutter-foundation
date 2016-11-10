@@ -42,9 +42,9 @@
 
 // Colors
 
-$primary: #3E50B4;
-$secondary: #303F9F;
-$tertiary: #FF3F80;
+$primary: map-get($foundation-palette, primary);
+$secondary: map-get($foundation-palette, secondary);
+$primary-dark: #303F9F;
 $off-white : #F8F8FA;
 $dove-gray: #666666;
 $dark-metal: #222222;
@@ -82,12 +82,13 @@ body {background: $off-white; color: $dove-gray;}
 .pad {padding: 20px 0;}
 a {color: $primary;}
 a:hover {color: $secondary;}
-button, .button {background: $tertiary;}
-button:hover, .button:hover {background: $primary;}
+button, .button {background: $primary;}
+button.secondary, .button.secondary {background: $dove-gray;color: $secondary;}
+button:hover, .button:hover {background: $primary-dark;}
 
 #social_bar {
 	padding: 3px 0;
-    background: $secondary;
+    background: $primary-dark;
     text-align: right;
     a {color: $white; margin-right: 8px; font-size: 17px;}
 }
@@ -99,12 +100,12 @@ button:hover, .button:hover {background: $primary;}
     a {color: $white;}
     a:hover {color: $white;}
     li {font-size: 13px;}
-    li a:hover{background-color:$tertiary;}
+    li a:hover{background-color:$secondary;}
     li.menu-text{font-size: 18px; color: $white;a:hover{background: transparent;}}
     .menu li:not(.menu-text) a {padding: 13px 15px;}
-    .menu .active a {background: $tertiary;}
+    .menu .active a {background: $secondary;}
     ul, .dropdown.menu .submenu {background: $primary; border: 0px;}
-    .dropdown.menu .submenu {border-top: 3px solid $tertiary;}
+    .dropdown.menu .submenu {border-top: 3px solid $secondary;}
     .top-bar-right {margin-top: 1px;}
     .dropdown.menu .is-dropdown-submenu-parent a::after {
       margin-top: 5px; border-color: $white transparent transparent; border-style: solid;}
@@ -130,7 +131,7 @@ button:hover, .button:hover {background: $primary;}
 
 .off-canvas {
     a{color: $white;}
-    a:hover{color: $tertiary;}
+    a:hover{color: $secondary;}
     .is-accordion-submenu-parent > a::after {border-color: $white transparent transparent;}
 }
 .off-canvas-wrapper{button {background: transparent;}}
@@ -202,8 +203,8 @@ ul.share-buttons .fa {min-width: 30px;}
   img {padding: 15px 0;}
   
   .column:hover {
-      h5 {background: $tertiary;}
-      p {color: $tertiary;}    
+      h5 {background: $secondary;}
+      p {color: $secondary;}    
   }
   
   .grow {
@@ -348,7 +349,7 @@ ul.share-buttons .fa {min-width: 30px;}
 
 footer {
   background-color: #333;
-  color: white;
+  color: $white;
   padding: 20px 0 0;    
   
   a, h5{color: $white;}

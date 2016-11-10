@@ -1,6 +1,5 @@
 {% raw %}{% load wagtailcore_tags wagtailimages_tags %}
-    <div id="blog_list" class="medium-12 columns">
-        <article class="blog">
+    <article class="blog">
             <a href="{% pageurl blog %}">
             	<div class="card">
                 	{% if blog.feed_image %}
@@ -26,5 +25,4 @@
 	            </div>
             </a>
         </article>
-        <hr />
-    </div>{% endraw %}
+        <hr />{% endraw %}
