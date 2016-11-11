@@ -1,21 +1,21 @@
 {% raw %}<ul class="share-buttons hide-for-small-only">
       <li>
-          <a class="button tiny secondary facebook" href="http://www.facebook.com/sharer.php?u=http://{{site_name}}{{ request.path }}" target="_blank" title="Share on Facebook"><i class="fa fa-facebook"></i></a>
+          <a class="button tiny secondary facebook" href="https://www.facebook.com/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" title="Share on Facebook"><i class="fa fa-facebook"></i></a>
       </li>
       <li>
-          <a class="button tiny secondary twitter" href="https://twitter.com/share?url=http://{{site_name}}{{ request.path }}"><i class="fa fa-twitter"></i></a>
+          <a class="button tiny secondary twitter" href="https://twitter.com/share?url={{ request.build_absolute_uri }}" target="_blank"><i class="fa fa-twitter"></i></a>
       </li>
       <li>
-          <a class="button tiny secondary google" href="https://plus.google.com/share?url=http://{{site_name}}{{ request.path }}" target="_blank" title="Share on Google+"><i class="fa fa-google-plus"></i></a>
+          <a class="button tiny secondary google" href="https://plus.google.com/share?url={{ request.build_absolute_uri }}" target="_blank" title="Share on Google+"><i class="fa fa-google-plus"></i></a>
       </li>
       <li>
-          <a class="button tiny secondary linkedin" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://{{site_name}}{{ request.path }}" target="_blank" title="Share on LinkedIn"><i class="fa fa-linkedin"></i></a>
+          <a class="button tiny secondary linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.build_absolute_uri }}" target="_blank" title="Share on LinkedIn"><i class="fa fa-linkedin"></i></a>
       </li>
       <li>
           <a class="button tiny secondary pin" href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());" target="_blank" title="Pin it"><i class="fa fa-pinterest-square"></i></a>
       </li>
       <li>
-          <a class="button tiny secondary mail" href="mailto:?subject={{self.title}}&body=http://{{site_name}}{{ request.path }}" target="_blank" title="Email"><i class="fa fa-envelope"></i></a>
+          <a class="button tiny secondary mail" href="mailto:?subject={{self.title}}&body={{ request.build_absolute_uri }}" target="_blank" title="Email"><i class="fa fa-envelope"></i></a>
       </li>
       <li>
           <a class="button tiny secondary" href="javascript:window.print()" target="_blank" title="Print"><i class="fa fa-print"></i></a>
@@ -24,22 +24,22 @@
 
 <div class="share-buttons show-for-small-only small-up-6">
     <div class="column">
-        <a class="button tiny secondary facebook" href="http://www.facebook.com/sharer.php?u=http://{{site_name}}{{ request.path }}" target="_blank" title="Share on Facebook"><i class="fa fa-facebook"></i></a>
+        <a class="button tiny secondary facebook" href="https://www.facebook.com/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" title="Share on Facebook"><i class="fa fa-facebook"></i></a>
         
     </div>
     <div class="column">
-        <a class="button tiny secondary twitter" href="https://twitter.com/share?url=http://{{site_name}}{{ request.path }}"><i class="fa fa-twitter"></i></a>
+        <a class="button tiny secondary twitter" href="https://twitter.com/share?url={{ request.build_absolute_uri }}"><i class="fa fa-twitter"></i></a>
     </div>
     <div class="column">
-         <a class="button tiny secondary whatsapp" href="whatsapp://send?text=http://{{site_name}}{{ request.path }}" target="_blank" title="Whatsapp"><i class="fa fa-whatsapp"></i></a>
+         <a class="button tiny secondary whatsapp" href="whatsapp://send?text={{ request.build_absolute_uri }}" target="_blank" title="Whatsapp"><i class="fa fa-whatsapp"></i></a>
     </div>
     <div class="column">
-        <a class="button tiny secondary linkedin" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://{{site_name}}{{ request.path }}" target="_blank" title="Share on LinkedIn"><i class="fa fa-linkedin"></i></a>
+        <a class="button tiny secondary linkedin" href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ request.build_absolute_uri }}" target="_blank" title="Share on LinkedIn"><i class="fa fa-linkedin"></i></a>
     </div>
     <div class="column">
         <a class="button tiny secondary pin" href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());" target="_blank" title="Pin it"><i class="fa fa-pinterest-square"></i></a>
     </div>
     <div class="column">
-         <a class="button tiny secondary mail" href="mailto:?subject={{self.title}}&body=http://{{site_name}}{{ request.path }}" target="_blank" title="Email"><i class="fa fa-envelope"></i></a>
+         <a class="button tiny secondary mail" href="mailto:?subject={{self.title}}&body={{ request.build_absolute_uri }}" target="_blank" title="Email"><i class="fa fa-envelope"></i></a>
     </div>
 </div>{% endraw %}
