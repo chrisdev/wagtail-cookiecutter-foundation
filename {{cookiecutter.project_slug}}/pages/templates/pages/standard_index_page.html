@@ -6,20 +6,15 @@
     <div id="content" class="row">
         <div class="medium-9 columns">
             <div class="medium-12 columns">
-                
-                <h2>{{ self.title }}</h2>
-                <h3 class="subheader">{{ self.subtitle }}</h3>
-                <hr> 
+                <h4><strong>{{ self.title }}</strong></h4>
+                <h5 class="subheader">{{ self.subtitle }}</h5>
+                <hr>
+                 
                 {% include "pages/includes/intro.html" with intro=self.intro only %}
             </div>
         </div>
         <div id="sidebar" class="hide-for-small-only medium-3 columns">
               {% secondary_menu calling_page=self %}
-              
-              {% news_feed %}
-              
-              {% upcoming_events %}
-              
         </div>
     </div>
 {% endblock %}{% endraw %}

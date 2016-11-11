@@ -8,7 +8,7 @@
     <div id="intro">
         <div class="row text-center">
             <div class="medium-10 medium-centered columns">
-                <h3><strong>{{ self.title_text|richtext }}</strong></h3>
+                <h3>{{ self.title_text|richtext }}</h3>
                 {{ self.body|richtext }}
                 <div id="carousel">
                     {% include "pages/includes/bx_carousel.html" with carousel_items=self.carousel_items.all only  %}
@@ -19,18 +19,20 @@
 
 	<div id="section">
 	    <div id="icons" class="row text-center">
-	        <h3><strong>Featuring</strong></h3>
+	        <h4>Featuring</h4>
 	        <br>
     	    <div class="medium-up-3 small-up-1" data>
     	        {% for block in self.content_items.all %}
     	        <div class="column icon grow">
     	            <a href="{{ block.link }}" target="_blank">
-    	                <div class="callout">
+    	                <div class="card">
     	                 {% if block.image %}
     	                    {% image block.image fill-70x70 %}
     	                 {% endif %}
     	                 <h5><strong>{{ block.title}}</strong></h5>
-    	                 {{ block.content|richtext }}
+    	                 <div class="info" style="padding: 5px;">
+    	                 	{{ block.content|richtext }}
+    	                 </div>
     	                </div>
     	            </a>
     	        </div>

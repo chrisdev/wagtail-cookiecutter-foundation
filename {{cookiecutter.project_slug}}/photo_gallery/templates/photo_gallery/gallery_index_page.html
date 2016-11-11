@@ -6,7 +6,7 @@
     <div id="content" class="row">
         <div class="medium-12 columns">
             <center>
-                <h3>{{ self.title }}</h3>
+                <h4><strong>{{ self.title }}</strong></h4>
                 {{ self.intro|richtext }}
             </center>
 
@@ -15,14 +15,21 @@
                     <div class="medium-up-4 small-up-1" data-equalizer>
                     {% for page in pages %}
                         <div class="column" data-equalizer-watch>
-                            <a href="{{ page.url }}" class="thumbnail">
-                                {% if page.feed_image %}
-                                    {% image page.feed_image fill-500x350 %}
-                                {% endif %}
-                                <center><h5 style="margin-bottom: 0;">{{ page.title }}</h5></center>
+                            <a href="{{ page.url }}">
+                            	<div class="card">
+                                    {% if page.feed_image %}
+                                        {% image page.feed_image fill-500x350 %}
+                                    {% endif %}
+                                    <div class="info" style="padding: 10px;">
+                                		<center>
+                                			<h6 style="margin-bottom: 0;"><strong>{{ page.title }}</strong></h6>
+                                		</center>
+                                	</div>
+                                </div>
                             </a>
                         </div>
                     {% endfor %}
+                    
                     </div>
                 </div>
             {% else %}

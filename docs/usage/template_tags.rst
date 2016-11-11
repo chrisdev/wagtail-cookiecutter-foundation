@@ -6,7 +6,7 @@ The listing of template tags can be found in ``{{project_slug}}/utils/templateta
 
 Top Menu to Offcanvas
 ---------------------
-To switch to the regular top menu to the foundation offcanvas menu change ``{% top_menu parent=site_root calling_page=self %}`` to ``{% off_canvas_top_menu parent=site_root calling_page=self %}`` in the file ``{{project_slug}}/pages/templates/base.html``.
+To switch to the regular top menu to the foundation offcanvas menu change ``{% top_menu parent=site_root calling_page=self %}`` to ``{% offcanvas_top_menu parent=site_root calling_page=self %}`` in the file ``{{project_slug}}/pages/templates/base.html``.
 
 
 Upcoming Events

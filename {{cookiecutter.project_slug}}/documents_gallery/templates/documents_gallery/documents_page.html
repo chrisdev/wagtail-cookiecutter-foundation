@@ -7,7 +7,7 @@
 {% block content %}
     <div id="content" class="row">
         <div class="medium-12 columns">
-            <center><h3>{{ self.title }}</h3></center>
+            <center><h4><strong>{{ self.title }}</strong></h4></center>
             {% if self.tags %}
                 {% include "documents_gallery/includes/tags.html" %}
             {% endif %}
@@ -19,7 +19,8 @@
                     {% for document in documents %}
                         <div class="column">
                             <a href="{{ document.url }}">
-                                <div class="callout text-center" style="border-radius: 5px;">
+                                <div class="card info text-center" style="border-radius: 5px;">
+                                	<br>
                                     {% if document.file_extension == 'pdf' %}
                                         <i class="fa fa-file-pdf-o fa-3x"></i>
                                     {% elif document.file_extension == 'docx' or 'doc' %}
@@ -27,8 +28,9 @@
                                     {% else %}
                                         <i class="fa fa-file fa-3x"></i>
                                     {% endif %}
-                                    <p style="margin-top: 10px; margin-bottom: 0;"><strong>{{ document.filename}}</strong></p>
-                                    <p>{{ document.created_at }}</p>
+                                    <div class="info">
+                                    	<h6 style="margin-bottom: 0;"><strong>{{ document.filename}}</strong></h6>
+                                    </div>
                                 </div>
                             </a>
                         </div>
@@ -38,6 +40,8 @@
                 <p>No documents are tagged with your {{ self.title }} gallery or no {{ self.title }} tags defined.</p>
             {% endif %}        
         </div>
+        
+        <br>
         
         <div class="medium-12 columns">    
             <ul class="pagination text-center" role="navigation" aria-label="Pagination">

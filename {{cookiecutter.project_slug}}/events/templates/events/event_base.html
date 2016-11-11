@@ -3,13 +3,8 @@
 
 {% block content %}
 <div id="content" class="row">
-     <div class="medium-9 columns" role="content">
+     <div class="medium-10 medium-centered columns" role="content">
          {% block event_content %}{% endblock %}
      </div>
-     <aside id="sidebar" class="hide-for-small-only medium-3 columns">
-          {% block sidebar %}
-          {% include "events/includes/sidebar.html" %} 
-          {% endblock %}
-     </aside>
 </div>
 {% endblock %}{% endraw %}

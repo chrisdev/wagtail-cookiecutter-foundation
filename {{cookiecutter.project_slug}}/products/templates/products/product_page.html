@@ -7,7 +7,7 @@
         <div class="medium-12 columns">
             {% include "utils/includes/social_share.html" %}
             <div class="medium-12 columns center">
-                <center><h2>{{ self.title }}</h2></center>
+                <center><h4><strong>{{ self.title }}</strong></h4></center>
                 <center><h6>{% include "products/includes/intro.html" with intro=self.intro only %}</h6></center>
             </div>
             <hr>
@@ -19,7 +19,7 @@
                     {% endif %}
                 </div>
                 <div class="medium-2 columns" style="border:solid 1px;height:240px;text-align:center;">
-                    <h3 >Price</h3><br><br>
+                    <h5>Price</h5><br><br>
                     {% if self.price %}
                         <h1 class="stat"><strong>{{ self.price }}</strong></h1>
                     {% else %}
