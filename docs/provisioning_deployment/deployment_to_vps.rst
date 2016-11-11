@@ -36,6 +36,7 @@ Next copy your ``id_rsa.pub`` to the ``ansible/{{cookiecutter.project_slug}}_key
 
 In addition,  to creating the deploy user, this make command will download the RSA ``ssh`` public key for the deployment user into your ``ansible/{{cookiecutter.project_slug}}_keystore/`` directory. Add this key as a deployment key on sites like github.com or bitbucket.org
 
+**Note**: If your repository is private. Make sure to add ``ssh`` key to the repository level deploy keys. You can add deploy keys to the repository from the repository's settings tab.
 
 Provisioning your Server and Deploying your Site
 ------------------------------------------------
@@ -43,6 +44,31 @@ Provisioning your Server and Deploying your Site
 Now we want to populate your site with all the project's requirements ::
 
     make provision
+
+**Note**: You can also run individual tasks using tags. You can complete provisioning using the above command or run the below commands in order ::
+
+	ansible-playbook -i ansible/production ansible/provision.yml --tags=le
+	ansible-playbook -i ansible/production ansible/provision.yml --tags=nginx
+
+	ansible-playbook -i ansible/production ansible/provision.yml --tags=vcs_repo
+
+	cp env.example ansible/wagtail_project_keystore/env.production
+	ansible-playbook -i ansible/production ansible/provision.yml --tags=venv
+
+
+	ansible-playbook -i ansible/production ansible/provision.yml --tags=bower
+	ansible-playbook -i ansible/production ansible/provision.yml --tags=redis
+
+	ansible-playbook -i ansible/production ansible/provision.yml --tags=django
+	ansible-playbook -i ansible/production ansible/provision.yml --tags=initial_data
+	ansible-playbook -i ansible/production ansible/provision.yml --tags=gunicorn
+	ansible-playbook -i ansible/production ansible/provision.yml --tags=celery
+
+	ansible-playbook -i ansible/production ansible/provision.yml --tags=clean_up
+
+Once your site is up and running. You can push the changes to the live site using ::
+
+	make deploy
 
 =============================================
 Populate .env With Your Environment Variables
