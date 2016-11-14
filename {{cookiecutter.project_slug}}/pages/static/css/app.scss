@@ -107,8 +107,7 @@ button:hover, .button:hover {background: $primary-dark;}
     ul, .dropdown.menu .submenu {background: $primary; border: 0px;}
     .dropdown.menu .submenu {border-top: 3px solid $secondary;}
     .top-bar-right {margin-top: 1px;}
-    .dropdown.menu .is-dropdown-submenu-parent a::after {
-      margin-top: 5px; border-color: $white transparent transparent; border-style: solid;}
+    .dropdown.menu .is-dropdown-submenu-parent a::after {border-color: transparent $white transparent transparent; border-style: solid;}
     .is-drilldown-submenu-parent>a::after {border-color: transparent transparent transparent $white;}
     .js-drilldown-back::before {border-color: transparent $white transparent transparent;} 
     .has-form {
