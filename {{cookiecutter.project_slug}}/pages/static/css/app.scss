@@ -131,11 +131,17 @@ button:hover, .button:hover {background: $primary-dark;}
 .off-canvas {
     a{color: $white;}
     a:hover{color: $secondary;}
-    .is-accordion-submenu-parent > a::after {border-color: $white transparent transparent;}
+    .is-accordion-submenu-parent a::after {border-color: $white transparent transparent;}
 }
-.off-canvas-wrapper{button {background: transparent;}}
+.off-canvas-wrapper{
+    button {background: transparent;}
+    .close-button {z-index: 9999;right: 0.5rem;top: 0rem;font-size: 1.5em;}
+    .off-canvas.position-left,
+    .off-canvas.position-right {background: $primary; height: 100%;}
+    .is-drilldown-submenu {background: $primary; height: 100%;}
+}
 .off-canvas-content {box-shadow: none;}
-.off-canvas.position-left {height: 100%;background: $primary;}
+.off-canvas-content, .off-canvas-content {background: transparent;}
 
 .breadcrumbs {
     margin: 20px 0 10px;
