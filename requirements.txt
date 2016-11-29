@@ -1,6 +1,6 @@
 cookiecutter==1.4.0
 flake8==3.0.4
-sh==1.11
+sh==1.12.1
 virtualenv==15.0.3
 Sphinx==1.4.8
 sphinx-rtd-theme==0.1.9
