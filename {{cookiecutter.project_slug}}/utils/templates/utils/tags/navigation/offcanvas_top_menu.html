@@ -20,11 +20,11 @@
    </div>
    <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
      <div class="off-canvas position-left" id="offCanvas" data-off-canvas>     
-         <ul class="vertical menu" data-accordion-menu>
-           <li><a href="{% pageurl site_root %}"><strong>Home</strong></a></li>
+         <ul class="vertical menu" data-drilldown>
+           <li><a href="{% pageurl site_root %}">Home</a></li>
             {% for menuitem in menuitems %}
             <li>
-                <a href="{% pageurl menuitem %}"><strong>{{ menuitem.title }}</strong></a>
+                <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
                 {% if menuitem.show_dropdown %}
                   <ul class="menu vertical nested">
                     <li><a href="{% pageurl menuitem %}">{{ menuitem.title }}</a></li>

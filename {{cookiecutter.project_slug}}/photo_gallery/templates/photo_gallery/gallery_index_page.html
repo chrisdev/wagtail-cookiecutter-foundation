@@ -14,13 +14,13 @@
                 <div>
                     <div class="medium-up-4 small-up-1" data-equalizer>
                     {% for page in pages %}
-                        <div class="column" data-equalizer-watch>
+                        <div class="column">
                             <a href="{{ page.url }}">
                             	<div class="card">
                                     {% if page.feed_image %}
                                         {% image page.feed_image fill-500x350 %}
                                     {% endif %}
-                                    <div class="info" style="padding: 10px;">
+                                    <div class="info" style="padding: 10px;" date-equalizer-watch>
                                 		<center>
                                 			<h6 style="margin-bottom: 0;"><strong>{{ page.title }}</strong></h6>
                                 		</center>

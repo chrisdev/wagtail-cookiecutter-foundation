@@ -107,8 +107,7 @@ button:hover, .button:hover {background: $primary-dark;}
     ul, .dropdown.menu .submenu {background: $primary; border: 0px;}
     .dropdown.menu .submenu {border-top: 3px solid $secondary;}
     .top-bar-right {margin-top: 1px;}
-    .dropdown.menu .is-dropdown-submenu-parent a::after {
-      margin-top: 5px; border-color: $white transparent transparent; border-style: solid;}
+    .dropdown.menu .is-dropdown-submenu-parent a::after {border-color: transparent $white transparent transparent; border-style: solid;}
     .is-drilldown-submenu-parent>a::after {border-color: transparent transparent transparent $white;}
     .js-drilldown-back::before {border-color: transparent $white transparent transparent;} 
     .has-form {
@@ -132,11 +131,26 @@ button:hover, .button:hover {background: $primary-dark;}
 .off-canvas {
     a{color: $white;}
     a:hover{color: $secondary;}
-    .is-accordion-submenu-parent > a::after {border-color: $white transparent transparent;}
+    .is-accordion-submenu-parent a::after {border-color: $white transparent transparent;}
 }
-.off-canvas-wrapper{button {background: transparent;}}
+.off-canvas-wrapper{
+    button {background: transparent;}
+    .off-canvas.position-left, .off-canvas.position-right{
+        background: $primary;
+        height: 100%;
+        .menu {
+            li a {padding: 1rem; color: $white;}
+            .divider {border-bottom: 1px solid rgba(0, 0, 0, 0.1);}
+            li ul li a {padding: .8rem; color: $white; border-bottom: 0px}
+        }
+        .menu.nested {margin: 0;}
+    }
+    .is-drilldown-submenu {background: $primary; height: 100%;}
+    .js-drilldown-back > a::before {border-color: transparent $white transparent transparent;}
+    .is-drilldown-submenu-parent a::after {border-color: transparent transparent transparent $white;}
+}
 .off-canvas-content {box-shadow: none;}
-.off-canvas.position-left {height: 100%;background: $primary;}
+.off-canvas-content, .off-canvas-content {background: transparent;}
 
 .breadcrumbs {
     margin: 20px 0 10px;
