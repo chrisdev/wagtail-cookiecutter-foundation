@@ -5,6 +5,6 @@ django-extensions==1.7.4
 git+https://github.com/alsoicode/django-medusa
 django-sendfile==0.3.11
 
-livereload==2.4.1
+livereload==2.5.0
 
 selenium==3.0.1
