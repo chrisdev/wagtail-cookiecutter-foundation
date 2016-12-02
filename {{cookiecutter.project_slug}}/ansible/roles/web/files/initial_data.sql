@@ -3418,7 +3418,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 115, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 120, true);
 
 
 --
@@ -3596,7 +3596,7 @@ COPY events_eventpagetag (id, content_object_id, tag_id) FROM stdin;
 -- Name: events_eventpagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('events_eventpagetag_id_seq', 4, true);
+SELECT pg_catalog.setval('events_eventpagetag_id_seq', 6, true);
 
 
 --
@@ -3909,7 +3909,7 @@ COPY photo_gallery_gallerypagetag (id, content_object_id, tag_id) FROM stdin;
 -- Name: photo_gallery_gallerypagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('photo_gallery_gallerypagetag_id_seq', 2, true);
+SELECT pg_catalog.setval('photo_gallery_gallerypagetag_id_seq', 3, true);
 
 
 --
@@ -4180,7 +4180,7 @@ COPY wagtailcore_pagerevision (id, submitted_for_moderation, created_at, content
 -- Name: wagtailcore_pagerevision_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailcore_pagerevision_id_seq', 36, true);
+SELECT pg_catalog.setval('wagtailcore_pagerevision_id_seq', 38, true);
 
 
 --
@@ -4290,7 +4290,7 @@ COPY wagtailimages_filter (id, spec) FROM stdin;
 -- Name: wagtailimages_filter_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailimages_filter_id_seq', 12, true);
+SELECT pg_catalog.setval('wagtailimages_filter_id_seq', 15, true);
 
 
 --
@@ -4380,7 +4380,7 @@ COPY wagtailimages_rendition (id, file, width, height, focal_point_key, filter_i
 -- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 45, true);
+SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 49, true);
 
 
 --
