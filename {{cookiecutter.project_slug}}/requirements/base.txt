@@ -10,7 +10,7 @@ django-wagtail-feeds==0.0.6
 django-libsass==0.7
 django-redis==4.5.0
 elasticsearch==5.0.1
-libsass==0.11.2
+libsass==0.12.0
 psycopg2==2.6.2
 {% if cookiecutter.use_wagalytics_app == 'y' %}wagalytics==0.6 {% endif %}
 {% if cookiecutter.use_django_cachalot == 'y' %}django-cachalot==1.2.1 {% endif %}
