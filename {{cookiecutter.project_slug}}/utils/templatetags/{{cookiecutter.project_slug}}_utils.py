@@ -1,4 +1,5 @@
 from django import template
+from datetime import date
 from wagtail.wagtaildocs.models import Document
 from contact.models import ContactPage
 from blog.models import BlogPage
@@ -48,6 +49,7 @@ def news_feed(context, count=2):
 def upcoming_events(context, count=8):
 
     events = EventPage.objects.filter(live=True)
+    events = events.filter(date_from__gte=date.today())
     events = events.all().order_by('date_from')
     return {
         'events': events[:count],
