@@ -45,47 +45,28 @@ Now we want to populate your site with all the project's requirements ::
 
     make provision
 
-You may also choose to run tasks using tag by making use of the ansible tags.
+You may also choose to run the individual tasks using tag by making use of the ansible tags.
 
 **Install and configure various Ubuntu packages** ::
 
-    ansible-playbook -i ansible/production ansible/provision.yml --tags=packages 
+    ansible-playbook -i ansible/production ansible/provision.yml --tags packages 
     
 **Add basic security (UFW and Fail2Ban)**::
 
-    ansible-playbook -i ansible/production ansible/provision.yml --tags=secure
+    ansible-playbook -i ansible/production ansible/provision.yml --tags secure
 
 **Install and configure PostgreSQL, set up the project's database** ::
 
-   ansible-playbook -i ansible/production ansible/provision.yml --tags=database 
+    ansible-playbook -i ansible/production ansible/provision.yml --tags database 
   
 **Install and Configure LetsEncrypyt and Nginx** ::
 
-	ansible-playbook -i ansible/production ansible/provision.yml --tags=le
-	ansible-playbook -i ansible/production ansible/provision.yml --tags=nginx
+	ansible-playbook -i ansible/production ansible/provision.yml --tags nginx_le	
 
-**Configure the Production enviroment** ::
+**Install VCS, Venv, Bower, Redis, Django, Load Initial Data, Gunicorn Celery** ::	
 
-	ansible-playbook -i ansible/production ansible/provision.yml --tags=vcs_repo
-
+	ansible-playbook -i ansible/production ansible/provision.yml --tags webapp
 	cp env.example ansible/wagtail_project_keystore/env.production
-	ansible-playbook -i ansible/production ansible/provision.yml --tags=venv
-
-**Install and configure bower and redis** ::
-
-	ansible-playbook -i ansible/production ansible/provision.yml --tags=bower
-	ansible-playbook -i ansible/production ansible/provision.yml --tags=redis
-    
-**Setup and configure the django project** ::
-
-	ansible-playbook -i ansible/production ansible/provision.yml --tags=django
-	ansible-playbook -i ansible/production ansible/provision.yml --tags=initial_data
-	ansible-playbook -i ansible/production ansible/provision.yml --tags=gunicorn
-	ansible-playbook -i ansible/production ansible/provision.yml --tags=celery
-    
-**Baisc House keeping Tasks** ::
-
-	ansible-playbook -i ansible/production ansible/provision.yml --tags=clean_up
 
 Once your site is up and running. You can push the changes to the live site using ::
 
