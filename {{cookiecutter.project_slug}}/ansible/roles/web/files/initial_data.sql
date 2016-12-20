@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.4.5
--- Dumped by pg_dump version 9.5.1
+-- Dumped from database version 9.5.5
+-- Dumped by pg_dump version 9.5.5
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1865,8 +1865,39 @@ ALTER SEQUENCE wagtailcore_pagerevision_id_seq OWNED BY wagtailcore_pagerevision
 CREATE TABLE wagtailcore_pageviewrestriction (
     id integer NOT NULL,
     password character varying(255) NOT NULL,
-    page_id integer NOT NULL
+    page_id integer NOT NULL,
+    restriction_type character varying(20) NOT NULL
 );
+
+
+--
+-- Name: wagtailcore_pageviewrestriction_groups; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE wagtailcore_pageviewrestriction_groups (
+    id integer NOT NULL,
+    pageviewrestriction_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+--
+-- Name: wagtailcore_pageviewrestriction_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE wagtailcore_pageviewrestriction_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wagtailcore_pageviewrestriction_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE wagtailcore_pageviewrestriction_groups_id_seq OWNED BY wagtailcore_pageviewrestriction_groups.id;
 
 
 --
@@ -2624,6 +2655,13 @@ ALTER TABLE ONLY wagtailcore_pagerevision ALTER COLUMN id SET DEFAULT nextval('w
 --
 
 ALTER TABLE ONLY wagtailcore_pageviewrestriction ALTER COLUMN id SET DEFAULT nextval('wagtailcore_pageviewrestriction_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY wagtailcore_pageviewrestriction_groups ALTER COLUMN id SET DEFAULT nextval('wagtailcore_pageviewrestriction_groups_id_seq'::regclass);
 
 
 --
@@ -3411,6 +3449,9 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 118	wagtailimages	0014_add_filter_spec_field	2016-11-01 11:10:16.215124-04
 119	wagtailimages	0015_fill_filter_spec_field	2016-11-01 11:10:16.245419-04
 120	wagtailusers	0005_make_related_name_wagtail_specific	2016-11-01 11:10:16.389153-04
+121	wagtailcore	0031_add_page_view_restriction_types	2016-12-20 08:34:59.588823-04
+122	wagtailcore	0032_add_bulk_delete_page_permission	2016-12-20 08:35:00.308858-04
+123	wagtailimages	0016_deprecate_rendition_filter_relation	2016-12-20 08:35:01.271027-04
 \.
 
 
@@ -3418,7 +3459,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 120, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 123, true);
 
 
 --
@@ -4187,8 +4228,23 @@ SELECT pg_catalog.setval('wagtailcore_pagerevision_id_seq', 38, true);
 -- Data for Name: wagtailcore_pageviewrestriction; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailcore_pageviewrestriction (id, password, page_id) FROM stdin;
+COPY wagtailcore_pageviewrestriction (id, password, page_id, restriction_type) FROM stdin;
 \.
+
+
+--
+-- Data for Name: wagtailcore_pageviewrestriction_groups; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY wagtailcore_pageviewrestriction_groups (id, pageviewrestriction_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Name: wagtailcore_pageviewrestriction_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('wagtailcore_pageviewrestriction_groups_id_seq', 1, false);
 
 
 --
@@ -5107,6 +5163,22 @@ ALTER TABLE ONLY wagtailcore_pagerevision
 
 
 --
+-- Name: wagtailcore_pageviewrestri_pageviewrestriction_id_d23f80bb_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY wagtailcore_pageviewrestriction_groups
+    ADD CONSTRAINT wagtailcore_pageviewrestri_pageviewrestriction_id_d23f80bb_uniq UNIQUE (pageviewrestriction_id, group_id);
+
+
+--
+-- Name: wagtailcore_pageviewrestriction_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY wagtailcore_pageviewrestriction_groups
+    ADD CONSTRAINT wagtailcore_pageviewrestriction_groups_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: wagtailcore_pageviewrestriction_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5187,11 +5259,11 @@ ALTER TABLE ONLY wagtailimages_image
 
 
 --
--- Name: wagtailimages_rendition_image_id_03110280_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: wagtailimages_rendition_image_id_323c8fe0_uniq; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY wagtailimages_rendition
-    ADD CONSTRAINT wagtailimages_rendition_image_id_03110280_uniq UNIQUE (image_id, filter_id, focal_point_key);
+    ADD CONSTRAINT wagtailimages_rendition_image_id_323c8fe0_uniq UNIQUE (image_id, filter_spec, focal_point_key);
 
 
 --
@@ -6220,6 +6292,20 @@ CREATE INDEX wagtailcore_pageviewrestriction_1a63c800 ON wagtailcore_pageviewres
 
 
 --
+-- Name: wagtailcore_pageviewrestriction_groups_0e939a4f; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_pageviewrestriction_groups_0e939a4f ON wagtailcore_pageviewrestriction_groups USING btree (group_id);
+
+
+--
+-- Name: wagtailcore_pageviewrestriction_groups_9bdbac54; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_pageviewrestriction_groups_9bdbac54 ON wagtailcore_pageviewrestriction_groups USING btree (pageviewrestriction_id);
+
+
+--
 -- Name: wagtailcore_site_0897acf4; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6365,6 +6451,14 @@ CREATE INDEX wagtailsearch_querydailyhits_0bbeda9c ON wagtailsearch_querydailyhi
 
 ALTER TABLE ONLY documents_gallery_documentspagetag
     ADD CONSTRAINT "D17c8edd4821aee444fb5a22b2e0a831" FOREIGN KEY (content_object_id) REFERENCES documents_gallery_documentspage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: D6153c3498c9836c76562dfe1e22f279; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY wagtailcore_pageviewrestriction_groups
+    ADD CONSTRAINT "D6153c3498c9836c76562dfe1e22f279" FOREIGN KEY (pageviewrestriction_id) REFERENCES wagtailcore_pageviewrestriction(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -7445,6 +7539,14 @@ ALTER TABLE ONLY wagtailcore_pagerevision
 
 ALTER TABLE ONLY wagtailcore_pageviewrestriction
     ADD CONSTRAINT wagtailcore_pageviewres_page_id_15a8bea6_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_pageviewrestrict_group_id_6460f223_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY wagtailcore_pageviewrestriction_groups
+    ADD CONSTRAINT wagtailcore_pageviewrestrict_group_id_6460f223_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
