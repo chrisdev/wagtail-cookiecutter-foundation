@@ -5,7 +5,7 @@
 <div id="social_bar">
     <div class="row" style="max-width: 95%;">
      <a href="{{ settings.pages.SocialMediaSettings.facebook }}" title="Facebook" target="_blank"><i class="fa fa-facebook-square"></i></a>
-     <a href="{{ settings.pages.SocialMediaSettings.twitter_name }}" title="Twitter" target="_blank"><i class="fa fa-twitter-square"></i></a>
+     <a href="https://twitter.com/{{ settings.pages.SocialMediaSettings.twitter_name }}" title="Twitter" target="_blank"><i class="fa fa-twitter-square"></i></a>
      <a href="{{ settings.pages.SocialMediaSettings.github }}" title="Github" target="_blank"><i class="fa fa-github-square"></i></a>
      <a href="mailto:cclarke@chrisdev.com" title="Mail" target="_blank"><i class="fa fa-envelope"></i></a>
      </div>
@@ -19,7 +19,7 @@
      </div>
    </div>
    <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
-     <div class="off-canvas position-left" id="offCanvas" data-off-canvas>     
+     <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
          <ul class="vertical menu" data-drilldown>
            <li><a href="{% pageurl site_root %}">Home</a></li>
             {% for menuitem in menuitems %}
