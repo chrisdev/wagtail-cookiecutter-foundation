@@ -20,6 +20,7 @@
     - zlib1g-dev 
     - libfreetype6-dev 
     - liblcms2-dev
+    - libmagickwand-dev
     - python-opencv
     - python-numpy
     - python-pip

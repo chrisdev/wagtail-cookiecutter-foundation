@@ -7,7 +7,7 @@ Group Variables
 ===============     ====================================================
 Variable            Default
 ===============     ====================================================
-project_repo        ssh://hg@bitbucket.org/username/wagtail_project
+project_slug        ssh://hg@bitbucket.org/username/wagtail_project
 project_title       Wagtail Project
 project_name        Wagtail Project
 virtualenvs_dir     /home/django/virtualenvs/
@@ -27,7 +27,6 @@ Host Variables
 Variable                Default
 ======================  ====================================================
 use_ssl                 True
-SECRET_KEY              The Django secret key. Generate a new key especially
                         if this is going to be a production deployment
 DJANGO_SETTINGS_MODULE  wagtail_project.settings.production
 HOST_NAME               ``server_name``
