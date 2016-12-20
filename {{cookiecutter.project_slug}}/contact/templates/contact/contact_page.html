@@ -3,7 +3,7 @@
 
 {% block contact_content %}
          <div class="card" style="border-radius: 10px;">
-             <div class="info form-panel">
+             <div class="card-section form-panel">
                  <form class="contact-form" action="{% pageurl self %}" method="POST">
                      {% csrf_token %}
                      {{ form|as_foundation }}

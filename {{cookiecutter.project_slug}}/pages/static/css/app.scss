@@ -5,29 +5,33 @@
 
 @include foundation-global-styles;
 @include foundation-grid;
+// @include foundation-flex-grid;
 @include foundation-typography;
 @include foundation-button;
 @include foundation-forms;
-@include foundation-visibility-classes;
-@include foundation-float-classes;
+// @include foundation-range-input;
 @include foundation-accordion;
 @include foundation-accordion-menu;
 @include foundation-badge;
 @include foundation-breadcrumbs;
 @include foundation-button-group;
 @include foundation-callout;
+@include foundation-card;
 @include foundation-close-button;
+@include foundation-menu;
+@include foundation-menu-icon;
 @include foundation-drilldown-menu;
 @include foundation-dropdown;
 @include foundation-dropdown-menu;
-@include foundation-flex-video;
+@include foundation-responsive-embed;
 @include foundation-label;
 @include foundation-media-object;
-@include foundation-menu;
 @include foundation-off-canvas;
 @include foundation-orbit;
 @include foundation-pagination;
 @include foundation-progress-bar;
+// @include foundation-progress-element;
+// @include foundation-meter-element;
 @include foundation-slider;
 @include foundation-sticky;
 @include foundation-reveal;
@@ -38,7 +42,9 @@
 @include foundation-title-bar;
 @include foundation-tooltip;
 @include foundation-top-bar;
-@include foundation-menu-icon;
+@include foundation-visibility-classes;
+@include foundation-float-classes;
+// @include foundation-flex-classes;
 
 // Colors
 
@@ -108,6 +114,7 @@ button:hover, .button:hover {background: $primary-dark;}
     .dropdown.menu .submenu {border-top: 3px solid $secondary;}
     .top-bar-right {margin-top: 1px;}
     .dropdown.menu .is-dropdown-submenu-parent a::after {border-color: transparent $white transparent transparent; border-style: solid;}
+    .dropdown.menu.medium-horizontal li.is-dropdown-submenu-parent a::after {border-color: $white transparent transparent;}
     .is-drilldown-submenu-parent>a::after {border-color: transparent transparent transparent $white;}
     .js-drilldown-back::before {border-color: transparent $white transparent transparent;} 
     .has-form {
@@ -180,16 +187,10 @@ ul.share-buttons .fa {min-width: 30px;}
 #content {padding: 15px 0;min-height: 100vh;}
 
 .card {
-    background-color: $white;
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
-    display: block;
     transform: translate3d(0px, 0px, 0px);
     transition: box-shadow 0.2s cubic-bezier(0, 0.2, 0.4, 1) 0s; 
-    margin-bottom: 25px;
 }
-
-.info {padding: 15px;}
-
 
 #carousel {
   margin-top: 30px;
