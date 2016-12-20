@@ -43,8 +43,6 @@
 
 @import 'libs/foundation-sites/scss/util/util';
 
-$keppel: #43b1b0;
-
 // 1. Global
 // ---------
 
@@ -54,9 +52,9 @@ $global-lineheight: 1.5;
 $foundation-palette: (
   primary: #3E50B4,
   secondary: #FF3F80,
-  success: #2ECC71,
-  warning: #E74C3C,
-  alert: #EC5840,
+  success: #3adb76,
+  warning: #ffae00,
+  alert: #cc4b37,
 );
 $light-gray: #e6e6e6;
 $medium-gray: #cacaca;
