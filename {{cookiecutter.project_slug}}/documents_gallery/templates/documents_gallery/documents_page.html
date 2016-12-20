@@ -3,58 +3,63 @@
 
 {% block body_class %}{{ self.get_verbose_name|slugify }}{% endblock %}
 
+{% block extra_css %}
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/zf/dt-1.10.12/r-2.1.0/datatables.min.css"/>
+{% endblock %}
 
 {% block content %}
     <div id="content" class="row">
         <div class="medium-12 columns">
             <center><h3>{{ self.title }}</h3></center>
-            {% if self.tags %}
-                {% include "documents_gallery/includes/tags.html" %}
-            {% endif %}
-            
-            <br>
-            
-            {% if documents %}
-                <div class="medium-up-3 small-up-1" id="documents">
+			
+			<div class="medium-9 medium-centered columns">
+			<hr>
+	            {% if documents %}
+				<table id="document-table">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Date added</th>
+							<th>Download</th>
+						</tr>
+					</thead>
+
+				    <tbody>
                     {% for document in documents %}
-                        <div class="column">
-                            <a href="{{ document.url }}">
-                                <div class="callout text-center" style="border-radius: 5px;">
-                                    {% if document.file_extension == 'pdf' %}
-                                        <i class="fa fa-file-pdf-o fa-3x"></i>
-                                    {% elif document.file_extension == 'docx' or 'doc' %}
-                                        <i class="fa fa-file-word-o fa-3x"></i>
-                                    {% else %}
-                                        <i class="fa fa-file fa-3x"></i>
-                                    {% endif %}
-                                    <p style="margin-top: 10px; margin-bottom: 0;"><strong>{{ document.filename}}</strong></p>
-                                    <p>{{ document.created_at }}</p>
-                                </div>
-                            </a>
-                        </div>
+                    	<tr>
+	                        <td>
+	                            {{ document.title }}
+	                        </td>
+	                        <td>
+	                            {{ document.created_at|date:"Y/m/d" }}
+	                        </td>
+	                        <td class="text-center">
+	                            <a href="{{ document.url }}">
+	                                 <i class="fa fa-download"></i>
+	                            </a>
+	                        </td>
+                        </tr>
                     {% endfor %}
-                </div>
-            {% else %}
-                <p>No documents are tagged with your {{ self.title }} gallery or no {{ self.title }} tags defined.</p>
-            {% endif %}        
-        </div>
-        
-        <div class="medium-12 columns">    
-            <ul class="pagination text-center" role="navigation" aria-label="Pagination">
-                  {% if documents.has_previous %}
-                      <li class="pagination-previous">
-                          <a href="?page={{ documents.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Previous page">Previous</a></li>
-                      {% else %} 
-                      <li class="pagination-previous disabled">Previous</li>
-                  {% endif %}
-                  <li class="unavailable">Page {{ documents.number }} of {{ documents.paginator.num_pages }}</li>
-                  {% if documents.has_next %}
-                      <li class="pagination-next">
-                          <a href="?page={{ documents.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a></li>
-                      {% else %}
-                      <li class="pagination-next disabled">Next</li>
-                  {% endif %}
-            </ul>
+	            	</tbody>
+	        	</table>
+
+	            {% else %}
+	                <p>No documents are tagged with your {{ self.title }} gallery or no {{ self.title }} tags defined.</p>
+	            {% endif %}
+            </div>        
         </div>
     </div>
+
+{% endblock %}
+
+{% block extra_js %}
+	<script type="text/javascript" src="https://cdn.datatables.net/v/zf/dt-1.10.12/r-2.1.0/datatables.min.js"></script>
+	<script type="text/javascript">
+        $(document).ready(function() {
+            $('#document-table').DataTable({
+                "pageLength": 15,
+                responsive: true
+            });
+        });
+	</script>
 {% endblock %}{% endraw %}

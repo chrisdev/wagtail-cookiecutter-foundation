@@ -5,8 +5,7 @@
 {% block content %} 
     <div id="content" class="row"> 
         <div class="medium-12 columns">          
-            <center><h3>{{ self.title }}</h3></center>
-            <h4 class="subheader">{{ self.subtitle }}</h4>
+            <center><h4><strong>{{ self.title }}</strong></h4></center>
             {% include "people/includes/intro.html" with intro=self.intro only %}
             
             <br>
@@ -15,12 +14,16 @@
                 {% for person in persons %}
                      <div class="column" data-equalizer-watch>
                          <a href="{% pageurl person %}">
-                             <div class="callout" style="padding: 3px;">
-                                 {% image person.image fill-400x400 %}
-                                 <center><h5 style="margin-top: 5px;">{{ person.title}}</h5></center>
-                                 {% if person.role %}
-                                 <center><h6 class="subheader">{{ person.role }}</h6></center>
-                                 {% endif %}
+                             <div class="card" style="border-radius: 5px;">
+                             	<div style="padding: 5px;">
+                                 	{% image person.image fill-400x400 %}
+                                 </div>
+                                 <div class="card-section" style="padding: 5px;">
+                                 	<center><h6><strong>{{ person.title}}</strong></h6></center>
+                                 	{% if person.role %}
+                                 		<center><h6 class="subheader">{{ person.role }}</h6></center>
+                                 	{% endif %}
+                                 </div>
                              </div>
                          </a>
                      </div>
