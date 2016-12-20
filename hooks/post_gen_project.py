@@ -2,7 +2,7 @@
 Does the following:
 1. Generates and saves random secret keys for django and database access in
 env.example
-ansible/host_vars/{{production_hostname}}
+ansible/host_vars/{{cookiecutter.production_host_name}}
 A portion of this code was adopted from Django's standard crypto functions and
 utilities, specifically:
     https://github.com/django/django/blob/master/django/utils/crypto.py
