@@ -3456,6 +3456,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 125	pages	0008_auto_20161220_1345	2016-12-20 09:45:49.94612-04
 126	products	0006_auto_20161220_1345	2016-12-20 09:45:50.397166-04
 127	wagtail_feeds	0003_auto_20161220_1345	2016-12-20 09:45:53.166736-04
+128	products	0006_auto_20161220_1353	2016-12-20 10:02:55.218137-04
 \.
 
 
@@ -3463,7 +3464,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 127, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 128, true);
 
 
 --
