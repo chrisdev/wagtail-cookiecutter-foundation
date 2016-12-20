@@ -3452,6 +3452,10 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 121	wagtailcore	0031_add_page_view_restriction_types	2016-12-20 08:34:59.588823-04
 122	wagtailcore	0032_add_bulk_delete_page_permission	2016-12-20 08:35:00.308858-04
 123	wagtailimages	0016_deprecate_rendition_filter_relation	2016-12-20 08:35:01.271027-04
+124	blog	0004_auto_20161220_1345	2016-12-20 09:45:47.918503-04
+125	pages	0008_auto_20161220_1345	2016-12-20 09:45:49.94612-04
+126	products	0006_auto_20161220_1345	2016-12-20 09:45:50.397166-04
+127	wagtail_feeds	0003_auto_20161220_1345	2016-12-20 09:45:53.166736-04
 \.
 
 
@@ -3459,7 +3463,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 123, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 127, true);
 
 
 --
