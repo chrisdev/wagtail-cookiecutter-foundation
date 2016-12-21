@@ -3,13 +3,13 @@
 
 {% block content %}
 <div id="content" class="row">
-    <div class="medium-9 columns" role="content">
-         {% block article_content %}{% endblock %}
-    </div>
-    <aside id="sidebar" class="hide-for-small-only medium-3 columns">
-         {% block sidebar %}
-         {% include "blog/includes/sidebar.html" %} 
-         {% endblock %}
-    </aside>
+  <div class="medium-9 columns" role="content">
+   {% block article_content %}{% endblock %}
+ </div>
+ <aside id="sidebar" class="hide-for-small-only medium-3 columns">
+   {% block sidebar %}
+   {% include "blog/includes/sidebar.html" %}
+   {% endblock %}
+ </aside>
 </div>
 {% endblock %}{% endraw %}

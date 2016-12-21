@@ -2,11 +2,11 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block article_content %}
-    <article>
-        {% include "utils/includes/social_share.html" %}
-        {% include "blog/includes/blog_header.html" %}
-        {% include "blog/includes/blog_body.html" with body=self.body only %}
-        <br>
-        {% include "utils/includes/related_links.html" with related_links=self.related_links.all only %}     
-    </article>
+<article>
+  {% include "utils/includes/social_share.html" %}
+  {% include "blog/includes/blog_header.html" %}
+  {% include "blog/includes/blog_body.html" with body=self.body only %}
+  <br>
+  {% include "utils/includes/related_links.html" with related_links=self.related_links.all only %}
+</article>
 {% endblock %}{% endraw %}

@@ -2,7 +2,7 @@
 {% load compress staticfiles %}
 
 {% block extra_css %}
-    {% compress css %}
-        <link rel="stylesheet" type="text/x-scss" href="{% static 'photo_gallery/css/main.scss' %}">
-    {% endcompress %}
+{% compress css %}
+<link rel="stylesheet" type="text/x-scss" href="{% static 'photo_gallery/css/main.scss' %}">
+{% endcompress %}
 {% endblock %}{% endraw %}
