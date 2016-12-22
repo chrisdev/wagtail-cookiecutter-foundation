@@ -16,9 +16,9 @@ CHANGES
 
 **Support Updates**
 
-- Django has been updated to 1.10
-- Wagtail has been updated to 1.8
-- Foundation has been updated to 6.3.0
+- Added support for Django 1.10
+- Added support for Wagtail 1.8
+- Added support for Foundation 6.3.0
 
 **Bug Fixes**
 
