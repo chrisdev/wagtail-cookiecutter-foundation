@@ -100,7 +100,7 @@
   <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
   {% endcompress %}
 
-  {% block site_js %}
+  {% block extra_js %}
   <script>
     $(document).foundation();
   </script>
@@ -120,12 +120,12 @@
   <script>
     $('.reveal_modal').click(function(event) {
       event.preventDefault();
+
       $('#modal-content').empty();
       var link = $(this).attr("href");
       $('#modal-content').load(link + " .modal-content");
     });
   </script>
   {% endblock %}
-  {% block extra_js %}{% endblock %}
   </body>
 </html>{% endraw %}

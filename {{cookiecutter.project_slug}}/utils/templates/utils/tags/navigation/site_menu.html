@@ -3,12 +3,12 @@
 {% get_site_root as site_root %}
 
 <ul class="vertical menu" data-accordion-menu>
-    {% for menuitem in menuitems %}
-        <li data-accordion-item><a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
-        {% if menuitem.show_dropdown %}
-            <ul class="menu vertical nested">
-                {% site_menu_children parent=menuitem %}
-            </ul>
-        {% endif %}</li>
-    {% endfor %}
+  {% for menuitem in menuitems %}
+  <li data-accordion-item><a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+  {% if menuitem.show_dropdown %}
+  <ul class="menu vertical nested">
+    {% site_menu_children parent=menuitem %}
+  </ul>
+  {% endif %}</li>
+  {% endfor %}
 </ul>{% endraw %}

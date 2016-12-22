@@ -3,14 +3,14 @@
 {% load wagtailcore_tags %}
 
 {% block content %}
-    <div id="content" class="row">
-        <div id="people" class="medium-9 columns" role="content">
-             {% block product_content %}{% endblock %}
-        </div>
-        <aside id="sidebar" class="hide-for-small-only medium-3 columns">
-             {% block sidebar %}
-                 {% include "products/includes/sidebar.html" %} 
-             {% endblock %}
-        </aside>
-    </div>
+<div id="content" class="row">
+  <div id="people" class="medium-9 columns" role="content">
+   {% block product_content %}{% endblock %}
+ </div>
+ <aside id="sidebar" class="hide-for-small-only medium-3 columns">
+   {% block sidebar %}
+   {% include "products/includes/sidebar.html" %}
+   {% endblock %}
+ </aside>
+</div>
 {% endblock %}{% endraw %}
