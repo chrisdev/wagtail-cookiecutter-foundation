@@ -100,7 +100,7 @@
   <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
   {% endcompress %}
 
-  {% block extra_js %}
+  {% block site_js %}
   <script>
     $(document).foundation();
   </script>
@@ -127,5 +127,6 @@
     });
   </script>
   {% endblock %}
+  {% block extra_js %}{% endblock %}
   </body>
 </html>{% endraw %}
