@@ -1,12 +1,12 @@
 {% raw %}{% if related_links %}
-    <div class="row">
-        <div class="links large-12 columns">
-            <h5><strong>Related Links</strong></h5>
-            <div>
-                {% for related_link in related_links %}
-                    <h5 class="subheader" style="margin-bottom: 12px;"><a href="{{ related_link.link }}">{{ related_link.title }}</a></h5>
-                {% endfor %}
-            </div>
-        </div>
+<div class="row">
+  <div class="links large-12 columns">
+    <h5><strong>Related Links</strong></h5>
+    <div>
+      {% for related_link in related_links %}
+      <h5 class="subheader" style="margin-bottom: 12px;"><a href="{{ related_link.link }}">{{ related_link.title }}</a></h5>
+      {% endfor %}
     </div>
+  </div>
+</div>
 {% endif %}{% endraw %}

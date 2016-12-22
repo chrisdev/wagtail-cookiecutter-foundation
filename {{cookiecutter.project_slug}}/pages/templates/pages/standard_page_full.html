@@ -4,16 +4,16 @@
 {% load {% endraw %}{{ cookiecutter.project_slug }}{% raw %}_utils %}
 
 {% block content %}
-    <div id="content" class="row">
-        <div class="medium-10 medium-centered columns">
-            <h4><strong>{{ self.title }}</strong></h4>
-            <h5 class="subheader">{{ self.subtitle }}</h5>
-            <hr>
-            {% include "pages/includes/intro.html" with intro=self.intro only %}
-        
-            {% include "pages/includes/standard_carousel.html" with image_items=self.image_items.all only %}
-            
-            {% include "pages/includes/body.html" with body=self.body only %}
-        </div>
-    </div>
+<div id="content" class="row">
+  <div class="medium-10 medium-centered columns">
+    <h4><strong>{{ self.title }}</strong></h4>
+    <h5 class="subheader">{{ self.subtitle }}</h5>
+    <hr>
+    {% include "pages/includes/intro.html" with intro=self.intro only %}
+
+    {% include "pages/includes/standard_carousel.html" with image_items=self.image_items.all only %}
+
+    {% include "pages/includes/body.html" with body=self.body only %}
+  </div>
+</div>
 {% endblock %}{% endraw %}

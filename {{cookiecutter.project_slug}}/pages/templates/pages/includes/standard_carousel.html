@@ -1,21 +1,21 @@
 {% raw %}{% load static wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
 {% if carousel_items %}
-    <div class="royalSlider rsDefault">
-    {% for carousel_item in carousel_items %}
-        <div class="rsContent">
-          {% if carousel.embed_url %}
-          <image class="rsImg" data-rsVideo="{{ carousel.embed_url }}" />
-          {% else %}
-            {% image carousel_item.image width-1400 as carousel_imagedata %}
-                <img class="rsImg" src="{{ carousel_imagedata.url }}" alt="{{ carousel_imagedata.alt }}"/>
-           {% endif %}
-               <img src="{% static 'img/overlay.png' %}" style="position:absolute; top:0; opacity: 0.15;"> 
-            {% if carousel_item.caption %}
-            <div class="infoBlock infoBlockLeftBlack rsABlock" data-fade-effect="" data-move-offset="10" data-move-effect="bottom" data-speed="200">
-                {{ carousel_item.caption|richtext }}
-            </div>
-            {% endif %}
-        </div>
-    {% endfor %}
+<div class="royalSlider rsDefault">
+  {% for carousel_item in carousel_items %}
+  <div class="rsContent">
+    {% if carousel.embed_url %}
+    <image class="rsImg" data-rsVideo="{{ carousel.embed_url }}" />
+    {% else %}
+    {% image carousel_item.image width-1400 as carousel_imagedata %}
+    <img class="rsImg" src="{{ carousel_imagedata.url }}" alt="{{ carousel_imagedata.alt }}"/>
+    {% endif %}
+    <img src="{% static 'img/overlay.png' %}" style="position:absolute; top:0; opacity: 0.15;">
+    {% if carousel_item.caption %}
+    <div class="infoBlock infoBlockLeftBlack rsABlock" data-fade-effect="" data-move-offset="10" data-move-effect="bottom" data-speed="200">
+      {{ carousel_item.caption|richtext }}
     </div>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
 {% endif %}{% endraw %}

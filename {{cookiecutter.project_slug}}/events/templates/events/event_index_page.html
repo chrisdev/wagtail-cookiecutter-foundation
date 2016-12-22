@@ -2,38 +2,38 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-    <div id="content" class="row">
-        <center><h4><strong>{{ self.title }}</strong></h4></center>
-        
-        {% include "events/includes/tags.html" %}
-        <br>
+<div id="content" class="row">
+  <center><h4><strong>{{ self.title }}</strong></h4></center>
 
-        <div id="event_grid" class="medium-12 columns">
-            {% if events %}    
-                <div class="medium-up-3 small-up-1 columns" data-equalizer>
-                    {% for event in events %}
-                        {% include "events/includes/event_list_item.html" %}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
-        
-        <div class="medium-12 columns">    
-            <ul class="pagination text-center" role="navigation" aria-label="Pagination">
-                  {% if events.has_previous %}
-                      <li class="pagination-previous">
-                          <a href="?page={{ events.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Previous page">Previous</a></li>
-                      {% else %} 
-                      <li class="pagination-previous disabled">Previous</li>
-                  {% endif %}
-                  <li class="unavailable">Page {{ events.number }} of {{ events.paginator.num_pages }}</li>
-                  {% if events.has_next %}
-                      <li class="pagination-next">
-                          <a href="?page={{ events.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a></li>
-                      {% else %}
-                      <li class="pagination-next disabled">Next</li>
-                  {% endif %}
-            </ul>
-        </div>
+  {% include "events/includes/tags.html" %}
+  <br>
+
+  <div id="event_grid" class="medium-12 columns">
+    {% if events %}
+    <div class="medium-up-3 small-up-1 columns" data-equalizer>
+      {% for event in events %}
+      {% include "events/includes/event_list_item.html" %}
+      {% endfor %}
     </div>
-{% endblock %}{% endraw %}
+    {% endif %}
+  </div>
+
+  <div class="medium-12 columns">
+    <ul class="pagination text-center" role="navigation" aria-label="Pagination">
+      {% if events.has_previous %}
+      <li class="pagination-previous">
+        <a href="?page={{ events.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Previous page">Previous</a></li>
+        {% else %}
+        <li class="pagination-previous disabled">Previous</li>
+        {% endif %}
+        <li class="unavailable">Page {{ events.number }} of {{ events.paginator.num_pages }}</li>
+        {% if events.has_next %}
+        <li class="pagination-next">
+          <a href="?page={{ events.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a></li>
+          {% else %}
+          <li class="pagination-next disabled">Next</li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+    {% endblock %}{% endraw %}

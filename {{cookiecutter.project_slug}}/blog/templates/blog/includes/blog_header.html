@@ -1,23 +1,23 @@
 {% raw %}{% load wagtailcore_tags %}
 
 {% if self.date %}
-    {% block heading %}
-        <h4><strong>{{ self.title }}</strong></h4>
-        <h6><strong>{{ self.date|date:"j F Y" }}</strong></h6>
-    {% endblock %}
+{% block heading %}
+<h4><strong>{{ self.title }}</strong></h4>
+<h6><strong>{{ self.date|date:"j F Y" }}</strong></h6>
+{% endblock %}
 {% endif %}
 
 {% with self.tags.all as tags %}
-    {% if tags %}
-        <div id="tags" style="margin-bottom:10px">
-            <span class="radius label success" style="font-size: 14px">
-                TAGS
-            </span>
-            {% for tag in tags %}
-            <span class="radius label" style="font-size: 14px">
-                <a href="{% pageurl self.blog_index %}?tag={{ tag }}">{{ tag }}</a>
-            </span>
-            {% endfor %}
-        </div>
-    {% endif %}
+{% if tags %}
+<div id="tags" style="margin-bottom:10px">
+  <span class="radius label success" style="font-size: 14px">
+    TAGS
+  </span>
+  {% for tag in tags %}
+  <span class="radius label" style="font-size: 14px">
+    <a href="{% pageurl self.blog_index %}?tag={{ tag }}">{{ tag }}</a>
+  </span>
+  {% endfor %}
+</div>
+{% endif %}
 {% endwith %}{% endraw %}

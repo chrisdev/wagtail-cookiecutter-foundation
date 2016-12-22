@@ -2,50 +2,50 @@
 {% load wagtailcore_tags %}
 {% load wagtailimages_tags %}
 
-{% block content %} 
-    <div id="content" class="row"> 
-        <div class="medium-12 columns">          
-            <center><h4><strong>{{ self.title }}</strong></h4></center>
-            {% include "people/includes/intro.html" with intro=self.intro only %}
-            
-            <br>
-            
-           <div class="people medium-up-4 small-up-1 text-center" data-equalizer>
-                {% for person in persons %}
-                     <div class="column" data-equalizer-watch>
-                         <a href="{% pageurl person %}">
-                             <div class="card" style="border-radius: 5px;">
-                             	<div style="padding: 5px;">
-                                 	{% image person.image fill-400x400 %}
-                                 </div>
-                                 <div class="card-section" style="padding: 5px;">
-                                 	<center><h6><strong>{{ person.title}}</strong></h6></center>
-                                 	{% if person.role %}
-                                 		<center><h6 class="subheader">{{ person.role }}</h6></center>
-                                 	{% endif %}
-                                 </div>
-                             </div>
-                         </a>
-                     </div>
-                {% endfor %}
+{% block content %}
+<div id="content" class="row">
+  <div class="medium-12 columns">
+    <center><h4><strong>{{ self.title }}</strong></h4></center>
+    {% include "people/includes/intro.html" with intro=self.intro only %}
+
+    <br>
+
+    <div class="people medium-up-4 small-up-1 text-center" data-equalizer>
+      {% for person in persons %}
+      <div class="column" data-equalizer-watch>
+        <a href="{% pageurl person %}">
+          <div class="card" style="border-radius: 5px;">
+            <div style="padding: 5px;">
+              {% image person.image fill-400x400 %}
             </div>
-        </div>
-        <div class="medium-12 columns">    
-            <ul class="pagination text-center" role="navigation" aria-label="Pagination">
-                  {% if persons.has_previous %}
-                      <li class="pagination-previous">
-                          <a href="?page={{ persons.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Previous page">Previous</a></li>
-                      {% else %} 
-                      <li class="pagination-previous disabled">Previous</li>
-                  {% endif %}
-                  <li class="unavailable">Page {{ persons.number }} of {{ persons.paginator.num_pages }}</li>
-                  {% if persons.has_next %}
-                      <li class="pagination-next">
-                          <a href="?page={{ persons.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a></li>
-                      {% else %}
-                      <li class="pagination-next disabled">Next</li>
-                  {% endif %}
-            </ul>
-        </div>
+            <div class="card-section" style="padding: 5px;">
+              <center><h6><strong>{{ person.title}}</strong></h6></center>
+              {% if person.role %}
+              <center><h6 class="subheader">{{ person.role }}</h6></center>
+              {% endif %}
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
     </div>
+  </div>
+  <div class="medium-12 columns">
+    <ul class="pagination text-center" role="navigation" aria-label="Pagination">
+      {% if persons.has_previous %}
+      <li class="pagination-previous">
+        <a href="?page={{ persons.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Previous page">Previous</a></li>
+        {% else %}
+      <li class="pagination-previous disabled">Previous</li>
+      {% endif %}
+      <li class="unavailable">Page {{ persons.number }} of {{ persons.paginator.num_pages }}</li>
+      {% if persons.has_next %}
+      <li class="pagination-next">
+        <a href="?page={{ persons.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a></li>
+        {% else %}
+      <li class="pagination-next disabled">Next</li>
+        {% endif %}
+    </ul>
+  </div>
+</div>
 {% endblock %}{% endraw %}

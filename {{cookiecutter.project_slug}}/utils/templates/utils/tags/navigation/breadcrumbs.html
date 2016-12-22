@@ -1,20 +1,20 @@
 {% raw %}{% load wagtailcore_tags %}
 
 <div class="row">
-    <div class="medium-12 medium-centered columns">
+  <div class="medium-12 medium-centered columns">
     {% if ancestors %}
-      <nav aria-label="You are here:" role="navigation">
-        <ul class="breadcrumbs">
-          <li><a href="/"> Home</a></li>
+    <nav aria-label="You are here:" role="navigation">
+      <ul class="breadcrumbs">
+        <li><a href="/"> Home</a></li>
         {% for ancestor in ancestors %}
-          {% if forloop.last %}
-            <li class="current">{{ ancestor }}</li>
-          {% else %}
-            <li><a href="{% pageurl ancestor %}">{{ ancestor }}</a></li>
-          {% endif %}
+        {% if forloop.last %}
+        <li class="current">{{ ancestor }}</li>
+        {% else %}
+        <li><a href="{% pageurl ancestor %}">{{ ancestor }}</a></li>
+        {% endif %}
         {% endfor %}
       </ul>
-      </nav>
-      {% endif %}
-    </div>
+    </nav>
+    {% endif %}
+  </div>
 </div>{% endraw %}
