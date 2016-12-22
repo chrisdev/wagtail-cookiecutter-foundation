@@ -6,4 +6,5 @@ Contributions
 - `Parbhat Puri  <https://parbhatpuri.com/>`_
 - `Sule Marshall <https://github.com/suledev>`_
 - `Fygul Hether  <https://github.com/fygul>`_
-- `Diane DeMers Chen  <https://github.com/purplediane>`_
+- `Diane Demers Chen  <https://github.com/purplediane>`_
+- `Matt Westcott  <https://github.com/gasman>`_

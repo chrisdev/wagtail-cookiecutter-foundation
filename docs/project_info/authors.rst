@@ -18,9 +18,11 @@ Contributors
 ------------
 
 * Fygul Hether (`@fygul`_)
+* Matt Westcott (`@gasman`_)
 
 
 .. _`@chrisdev`: https://github.com/chrisdev
 .. _`@ilendl2`: https://github.com/ilendl2
 .. _`@parbhat`: https://github.com/parbhat
 .. _`@fygul`: https://github.com/fygul
+.. _`@gasman`: https://github.com/gasman
