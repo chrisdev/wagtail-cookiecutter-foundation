@@ -3,134 +3,129 @@
 {% load settings_tags %}
 {% get_settings %}
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-     <head>
-            <meta charset="utf-8" />
-            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-            <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
-            <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}"/>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
+    <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}"/>
 
-            {% compress css %}
-                <link rel="stylesheet" type="text/css" href="{% static 'libs/bxslider-4/dist/jquery.bxslider.min.css' %}">
-                <link rel="stylesheet" href="{% static 'libs/font-awesome/css/font-awesome.min.css' %}">
-                <link rel="stylesheet" type="text/css" href="{% static 'libs/lightbox2/src/css/lightbox.css' %}" />
-                <link rel="stylesheet" type="text/x-scss" href="{% static 'css/app.scss' %}">
-            {% endcompress %}
+    {% compress css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/bxslider-4/dist/jquery.bxslider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'libs/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'libs/lightbox2/src/css/lightbox.css' %}" />
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'css/app.scss' %}">
+    {% endcompress %}
 
-            {% block extra_css %}{% endblock %}
+    {% block extra_css %}{% endblock %}
 
-            {% block facebook_og %}
-                {% include "utils/includes/facebook_opengraph.html" %}
-            {% endblock %}
+    {% block facebook_og %}
+    {% include "utils/includes/facebook_opengraph.html" %}
+    {% endblock %}
 
-            {% block twitter_og %}
-                {% include "utils/includes/twitter_cards.html" %}
-            {% endblock %}
+    {% block twitter_og %}
+    {% include "utils/includes/twitter_cards.html" %}
+    {% endblock %}
 
-            {% block google_analytics %}
-                {% include "utils/includes/google_analytics.html" %}
-            {% endblock %}
+    {% block google_analytics %}
+    {% include "utils/includes/google_analytics.html" %}
+    {% endblock %}
 
-        </head>
+  </head>
 
-        <body class="{% block body_class %}{% endblock %}">
-            {% wagtailuserbar %}
+  <body class="{% block body_class %}{% endblock %}">
+    {% wagtailuserbar %}
 
-            {% get_site_root as site_root %}
-            {% top_menu parent=site_root calling_page=self %}
+    {% get_site_root as site_root %}
+    {% top_menu parent=site_root calling_page=self %}
 
-            <div class="off-canvas-content" data-off-canvas-content>
+    <div class="off-canvas-content" data-off-canvas-content>
 
-                    {% block breadcrumbs %}
-                        {% breadcrumbs %}
-                    {% endblock %}
+      {% block breadcrumbs %}
+      {% breadcrumbs %}
+      {% endblock %}
 
-                    {% block content %}{% endblock %}
+      {% block content %}{% endblock %}
 
-                    <a href="#" class="scrollup"><img src="{% static 'img/top.png' %}"></i></a>
+      <a href="#" class="scrollup"><img src="{% static 'img/top.png' %}"></i></a>
 
-                    <footer>
-                        <div class="row" style="max-width: 96%; padding-bottom: 20px;">
-                            <div id="contact-us" class="medium-4 columns">
-                                <h5><strong>Get in Contact</strong></h5>
-                                {% get_contact_fields as contact %}
-                                {% include "contact/includes/contact_card.html" with contact=contact only %}
+      <footer>
+        <div class="row" style="max-width: 96%; padding-bottom: 20px;">
+          <div id="contact-us" class="medium-4 columns">
+            <h5><strong>Get in Contact</strong></h5>
+            {% get_contact_fields as contact %}
+            {% include "contact/includes/contact_card.html" with contact=contact only %}
 
-                                <br>
+            <br>
 
-                                <h5><strong>Follow Us</strong></h5>
-                                <div class="social">
-                                    <a href="{{ settings.pages.SocialMediaSettings.facebook }}" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
-                                    <a href="https://twitter.com/{{ settings.pages.SocialMediaSettings.twitter_name }}" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
-                                    <a href="{{ settings.pages.SocialMediaSettings.github }}" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
-                                </div>
-                            </div>
-
-                            <div id="sitemap" class="medium-3 columns hide-for-small-only">
-                                <h5><strong>Explore Our Site</strong></h5>
-
-                                {% site_menu parent=site_root calling_page=self %}
-                            </div>
-
-                            <div class="medium-4 columns hide-for-small-only">
-                                {%  if contact.post_code %}
-                                    {% get_google_maps_key as google_maps_key %}
-                                    <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ contact.post_code }}&zoom=13&size=300x280&maptype=roadmap
-                                    &sensor=false&markers=color:green|{{ contact.post_code }}{% if google_maps_key %}&key={{ google_maps_key }}{% endif %}"/>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <div id="copyright">
-                            <div class="row text-center">
-                                <p>Copyright © 2016 ChrisDev. All rights reserved</p>
-                            </div>
-                        </div>
-                    </footer>
-                </div>
+            <h5><strong>Follow Us</strong></h5>
+            <div class="social">
+              <a href="{{ settings.pages.SocialMediaSettings.facebook }}" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
+              <a href="https://twitter.com/{{ settings.pages.SocialMediaSettings.twitter_name }}" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+              <a href="{{ settings.pages.SocialMediaSettings.github }}" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
             </div>
+          </div>
 
-            {% compress js %}
-                <script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
-                <script src="{% static 'libs/foundation-sites/dist/js/foundation.min.js' %}"></script>
-                <script src="{% static 'libs/what-input/dist/what-input.min.js' %}"></script>
-                <script src="{% static 'libs/bxslider-4/dist/jquery.bxslider.min.js' %}"></script>
-                <script src="{% static 'libs/lightbox2/src/js/lightbox.js' %}"></script>
-                <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
-            {% endcompress %}
+          <div id="sitemap" class="medium-3 columns hide-for-small-only">
+            <h5><strong>Explore Our Site</strong></h5>
 
-            {% block site_js %}
-                <script>
-                  $(document).foundation();
-                </script>
-                <script>
-                  $(document).ready(function(){
-                      $('.bxslider').bxSlider();
-                    });
-                </script>
-                <script>
-                    $(document).ready(function() {
-                        $('#faq .block-faq_question').click(function() {
-                            $(this).next('.block-faq_answer').slideToggle(500);
-                            $(this).toggleClass('close');
-                        });
-                    });
-                </script>
-                <script>
-                    $('.reveal_modal').click(function(event) {
-                        event.preventDefault();
+            {% site_menu parent=site_root calling_page=self %}
+          </div>
 
-                        $('#modal-content').empty();
-                        var link = $(this).attr("href");
-                        $('#modal-content').load(link + " .modal-content");
-                    });
-                </script>
-            {% endblock %}
-            
-            {% block extra_js %}{% endblock %}
-        </body>
-    </html>{% endraw %}
+          <div class="medium-4 columns hide-for-small-only">
+            {%  if contact.post_code %}
+            {% get_google_maps_key as google_maps_key %}
+            <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ contact.post_code }}&zoom=13&size=300x280&maptype=roadmap
+            &sensor=false&markers=color:green|{{ contact.post_code }}{% if google_maps_key %}&key={{ google_maps_key }}{% endif %}"/>
+            {% endif %}
+          </div>
+        </div>
+        <div id="copyright">
+          <div class="row text-center">
+            <p>Copyright © 2016 ChrisDev. All rights reserved</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  {% compress js %}
+  <script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'libs/foundation-sites/dist/js/foundation.min.js' %}"></script>
+  <script src="{% static 'libs/what-input/dist/what-input.min.js' %}"></script>
+  <script src="{% static 'libs/bxslider-4/dist/jquery.bxslider.min.js' %}"></script>
+  <script src="{% static 'libs/lightbox2/src/js/lightbox.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+  {% endcompress %}
+
+  {% block site_js %}
+  <script>
+    $(document).foundation();
+  </script>
+  <script>
+    $(document).ready(function(){
+      $('.bxslider').bxSlider();
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      $('#faq .block-faq_question').click(function() {
+        $(this).next('.block-faq_answer').slideToggle(500);
+        $(this).toggleClass('close');
+      });
+    });
+  </script>
+  <script>
+    $('.reveal_modal').click(function(event) {
+      event.preventDefault();
+      $('#modal-content').empty();
+      var link = $(this).attr("href");
+      $('#modal-content').load(link + " .modal-content");
+    });
+  </script>
+  {% endblock %}
+  {% block extra_js %}{% endblock %}
+  </body>
+</html>{% endraw %}
