@@ -76,8 +76,7 @@ class HomePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+'
-    )
-    
+    )  
     search_fields = Page.search_fields + [
         index.SearchField('body'),
     ]
@@ -98,6 +97,7 @@ HomePage.promote_panels = [
     MultiFieldPanel(Page.promote_panels, "Common page configuration"),
     ImageChooserPanel('feed_image'),
 ]
+
 
 class StandardIndexPageRelatedLink(Orderable, RelatedLink):
     page = ParentalKey('pages.StandardIndexPage', related_name='related_links')
