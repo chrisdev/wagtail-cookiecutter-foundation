@@ -77,10 +77,8 @@ class HomePage(Page):
         on_delete=models.SET_NULL,
         related_name='+'
     )
-     
-    search_fields = Page.search_fields + [
-        index.SearchField('body'),
-    ]
+
+    indexed_fields = ('body', )
 
     class Meta:
         verbose_name = "Homepage"
