@@ -76,7 +76,8 @@ class HomePage(Page):
         blank=True,
         on_delete=models.SET_NULL,
         related_name='+'
-    )  
+    )
+     
     search_fields = Page.search_fields + [
         index.SearchField('body'),
     ]
