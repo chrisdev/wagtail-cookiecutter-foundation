@@ -69,10 +69,16 @@ class HomePageRelatedLink(Orderable, RelatedLink):
 class HomePage(Page):
     title_text = RichTextField(null=True, blank=True)
     body = RichTextField(null=True, blank=True)
+    feed_image = models.ForeignKey(
+        Image,
+        help_text="An optional image to represent the page",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
-    search_fields = Page.search_fields + [
-        index.SearchField('body'),
-    ]
+    indexed_fields = ('body', )
 
     class Meta:
         verbose_name = "Homepage"
@@ -86,7 +92,10 @@ HomePage.content_panels = [
     InlinePanel('related_links', label="Related links"),
 ]
 
-HomePage.promote_panels = Page.promote_panels
+HomePage.promote_panels = [
+    MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+    ImageChooserPanel('feed_image'),
+]
 
 
 class StandardIndexPageRelatedLink(Orderable, RelatedLink):
