@@ -1,7 +1,7 @@
 {% raw %}---
 - name: Ensure that debug is set off for production 
   lineinfile: dest={{ sites_dir }}/{{ project_name }}/.env
-              regexp='^DJANGO_DEBUG' line='DJANGO_DEBUG=funky'
+              regexp='^DJANGO_DEBUG' line='DJANGO_DEBUG=off'
   tags:
       - django 
 
