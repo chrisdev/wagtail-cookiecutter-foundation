@@ -931,7 +931,8 @@ CREATE TABLE pages_faqspage (
 CREATE TABLE pages_homepage (
     page_ptr_id integer NOT NULL,
     title_text text,
-    body text
+    body text,
+    feed_image_id integer
 );
 
 
@@ -3458,6 +3459,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 127	wagtailimages	0016_deprecate_rendition_filter_relation	2016-12-20 10:43:11.450252-04
 128	pages	0008_auto_20161220_1345	2016-12-20 10:47:33.789864-04
 129	pages	0010_merge_20161220_1442	2016-12-20 10:47:33.806261-04
+130	pages	0011_auto_20170105_1742	2017-01-05 14:06:39.171288-04
 \.
 
 
@@ -3465,7 +3467,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 129, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 130, true);
 
 
 --
@@ -3689,8 +3691,8 @@ COPY pages_faqspage (page_ptr_id, body) FROM stdin;
 -- Data for Name: pages_homepage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_homepage (page_ptr_id, title_text, body) FROM stdin;
-3	<h3>Welcome to Wagtail Cookiecutter Foundation</h3>	<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>
+COPY pages_homepage (page_ptr_id, title_text, body, feed_image_id) FROM stdin;
+3	<h3>Welcome to Wagtail Cookiecutter Foundation</h3>	<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>	\N
 \.
 
 
@@ -5760,6 +5762,13 @@ CREATE INDEX pages_contentblock_slug_946a161b_like ON pages_contentblock USING b
 
 
 --
+-- Name: pages_homepage_92482941; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX pages_homepage_92482941 ON pages_homepage USING btree (feed_image_id);
+
+
+--
 -- Name: pages_homepagecarouselitem_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6986,6 +6995,14 @@ ALTER TABLE ONLY pages_homepagecarouselitem
 
 ALTER TABLE ONLY pages_homepagecontentitem
     ADD CONSTRAINT pages_home_link_document_id_a2552580_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pages_homepage_feed_image_id_4ebba3a8_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY pages_homepage
+    ADD CONSTRAINT pages_homepage_feed_image_id_4ebba3a8_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
