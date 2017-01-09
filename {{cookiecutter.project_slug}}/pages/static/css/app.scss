@@ -174,7 +174,7 @@ button:hover, .button:hover {background: $primary-dark;}
 ul.share-buttons li{display: inline; margin-right: 10px;}
 ul.share-buttons .fa {min-width: 30px;}
 .share-buttons {
-  .button.expanded, .button.tiny{padding:6px 8px;font-size: 1.2rem; border-radius: 5px;}
+  .button.expanded, .button.tiny{padding:6px 8px;font-size: 1.2rem; border-radius: 5px; color: $white;}
   .button.expanded {margin-bottom: 0;}
   .facebook {background: #3b5998;}
   .twitter {background: #00aced;}
