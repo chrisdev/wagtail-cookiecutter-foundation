@@ -197,8 +197,12 @@ ul.share-buttons .fa {min-width: 30px;}
   margin-top: 30px;
 }
 
+#carousel_business {
+    .bx-pager {display: none;}
+}
 
-#intro {
+
+#intro, #testimonials {
   padding: 50px 0 30px;
   background: #5E9CD1;
 
@@ -207,6 +211,10 @@ ul.share-buttons .fa {min-width: 30px;}
   h3 {font-weight: 500;line-height: 1;}
 
   .rich-text{margin-bottom: 20px;}
+}
+
+#testimonials, #media {
+    padding: 50px 0;
 }
 
 
@@ -258,10 +266,18 @@ ul.share-buttons .fa {min-width: 30px;}
   h6.title{background: $primary; padding: 6px; color: $white;}
   h6, li {margin-bottom :5px;}
   li{list-style: none; font-size:14px; margin-bottom: 0px;}
-  p{font-size: 14px; margin-bottom:10px;}
+  p{font-size: 14px; color: $dove-gray; margin-bottom:10px;}
   hr {border-color: $dove-gray;}
   hr:last-of-type{border: 0px;}
   .button{margin-bottom:5px; padding:5px 8px; float: right;}
+}
+
+#more_news {
+    h6.title{background: $primary; padding: 6px; color: $white;}
+    h5{color: $primary; margin-bottom: 2px;}
+    .card-section {padding: 8px;}
+    img {display:none;}
+    img:first-of-type {display: block;}
 }
 
 #event_feed

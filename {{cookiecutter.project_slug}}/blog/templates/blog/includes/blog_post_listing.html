@@ -6,7 +6,6 @@
     {% for blog in blogs %}
     <div class="news">
       <h6><strong><a href="{% pageurl blog %}">{{ blog.title }}</a></strong></h6>
-      <li><strong>{{ blog.date|date:"j F Y" }}</strong></li>
       {{ blog.intro|truncatewords:8|richtext }}
       <p><a href="{% pageurl blog %}" style="border-radius: 3px;" class="button right tiny">Read More</a></p>
     </div>
