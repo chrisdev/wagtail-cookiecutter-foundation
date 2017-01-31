@@ -2,12 +2,12 @@ cookiecutter==1.4.0
 flake8==3.0.4
 sh==1.12.9
 virtualenv==15.1.0
-Sphinx==1.5.1
+Sphinx==1.5.2
 sphinx-rtd-theme==0.1.9
 
 # Testing
-pytest==3.0.5
+pytest==3.0.6
 pep8==1.7.0
-pyflakes==1.4.0
+pyflakes==1.5.0
 tox==2.5.0
 pytest-cookies==0.2.0
