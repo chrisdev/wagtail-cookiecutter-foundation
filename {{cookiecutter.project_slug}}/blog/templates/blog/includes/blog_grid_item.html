@@ -1,6 +1,6 @@
 {% raw %}{% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="medium-8 medium-centered columns">
+<div class="medium-up-3">
 {% for blog in blogs %}
     <div id="article" class="column">
         <article class="blog">
@@ -25,7 +25,7 @@
                 </div>
             </a>
         </article>
-    </div>
+    </div>    
 {% empty %}
     No blogs found
 {% endfor %}

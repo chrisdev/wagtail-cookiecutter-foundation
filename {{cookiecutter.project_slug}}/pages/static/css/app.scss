@@ -118,21 +118,22 @@ button:hover, .button:hover {background: $primary-dark;}
   .is-drilldown-submenu-parent>a::after {border-color: transparent transparent transparent $white;}
   .js-drilldown-back::before {border-color: transparent $white transparent transparent;}
   .has-form {
-    padding-left: 20px;
-    input {max-width: 300px;}
-    input.field {
-      margin-right: 0px;
-      border-top-left-radius: 2px;
-      border-bottom-left-radius: 2px;
-    }
-    input.button {
-      padding-bottom: 11px;
-      padding-top: 9px;
-      border-top-right-radius: 2px;
-      border-bottom-right-radius: 2px;
-    }
-    [type="text"],[type="submit"]  {height: 2.1rem;}
-  }
+      .input-group {margin-bottom: 0;}
+      input {max-width: 140px; font-size: 13px; margin-right: 0;}
+      [type="text"] {
+          border-top-left-radius: 2px;
+          border-bottom-left-radius: 2px;
+      }
+      input.button {
+          padding-bottom: 11px;
+          padding-top: 7px;
+          border-top-right-radius: 2px;
+          border-bottom-right-radius: 2px;
+          background: $dove-gray;
+          color: $white;
+      }
+      [type="text"],[type="submit"]  {height: 1.8rem;}
+  }   
 }
 
 .off-canvas {
@@ -173,7 +174,7 @@ button:hover, .button:hover {background: $primary-dark;}
 ul.share-buttons li{display: inline; margin-right: 10px;}
 ul.share-buttons .fa {min-width: 30px;}
 .share-buttons {
-  .button.expanded, .button.tiny{padding:6px 8px;font-size: 1.2rem; border-radius: 5px;}
+  .button.expanded, .button.tiny{padding:6px 8px;font-size: 1.2rem; border-radius: 5px; color: $white;}
   .button.expanded {margin-bottom: 0;}
   .facebook {background: #3b5998;}
   .twitter {background: #00aced;}
@@ -196,8 +197,12 @@ ul.share-buttons .fa {min-width: 30px;}
   margin-top: 30px;
 }
 
+#carousel_business {
+    .bx-pager {display: none;}
+}
 
-#intro {
+
+#intro, #testimonials {
   padding: 50px 0 30px;
   background: #5E9CD1;
 
@@ -206,6 +211,10 @@ ul.share-buttons .fa {min-width: 30px;}
   h3 {font-weight: 500;line-height: 1;}
 
   .rich-text{margin-bottom: 20px;}
+}
+
+#testimonials, #media {
+    padding: 50px 0;
 }
 
 
@@ -257,10 +266,18 @@ ul.share-buttons .fa {min-width: 30px;}
   h6.title{background: $primary; padding: 6px; color: $white;}
   h6, li {margin-bottom :5px;}
   li{list-style: none; font-size:14px; margin-bottom: 0px;}
-  p{font-size: 14px; margin-bottom:10px;}
+  p{font-size: 14px; color: $dove-gray; margin-bottom:10px;}
   hr {border-color: $dove-gray;}
   hr:last-of-type{border: 0px;}
   .button{margin-bottom:5px; padding:5px 8px; float: right;}
+}
+
+#more_news {
+    h6.title{background: $primary; padding: 6px; color: $white;}
+    h5{color: $primary; margin-bottom: 2px;}
+    .card-section {padding: 8px;}
+    img {display:none;}
+    img:first-of-type {display: block;}
 }
 
 #event_feed

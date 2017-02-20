@@ -44,6 +44,16 @@ def news_feed(context, count=2):
     }
 
 
+@register.inclusion_tag('blog/includes/blog_more_list.html', takes_context=True)
+def more_news(context, count=2):
+    blogs = BlogPage.objects.filter(live=True).order_by('-date')
+    return {
+        'blogs': blogs[:count],
+        # required by the pageurl tag that we want to use within this template
+        'request': context['request'],
+    }
+
+
 @register.inclusion_tag('events/includes/event_listing.html',
                         takes_context=True)
 def upcoming_events(context, count=8):
