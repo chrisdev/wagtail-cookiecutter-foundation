@@ -1,4 +1,4 @@
-Django==1.10.5
+Django==1.10.6
 wagtail==1.8.1
 wagtailfontawesome==1.0.6
 celery==4.0.2
