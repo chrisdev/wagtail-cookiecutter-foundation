@@ -7,4 +7,4 @@ django-sendfile==0.3.11
 
 livereload==2.5.1
 
-selenium==3.0.2
+selenium==3.3.3
