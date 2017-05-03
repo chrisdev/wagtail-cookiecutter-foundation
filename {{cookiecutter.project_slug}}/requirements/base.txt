@@ -1,5 +1,5 @@
 Django==1.10.5
-wagtail==1.9
+wagtail==1.10
 wagtailfontawesome==1.0.6
 celery==4.0.2
 django-cachalot==1.4.1
