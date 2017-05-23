@@ -6,5 +6,4 @@ git+https://github.com/alsoicode/django-medusa
 django-sendfile==0.3.11
 
 livereload==2.5.1
-
 selenium==3.4.1
