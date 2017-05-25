@@ -275,9 +275,10 @@ ul.share-buttons .fa {min-width: 30px;}
 #more_news {
     h6.title{background: $primary; padding: 6px; color: $white;}
     h5{color: $primary; margin-bottom: 2px;}
-    .card-section {padding: 8px;}
-    img {display:none;}
+    img {display:none; border-radius: 3px; margin-bottom: 5px;}
     img:first-of-type {display: block;}
+    hr{margin: 12px 0; border-color: #ccc;}
+    hr:last-of-type {border: 0px;}
 }
 
 #event_feed
