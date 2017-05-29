@@ -9,7 +9,6 @@ django-foundation-formtags==0.0.8
 django-wagtail-feeds==0.0.7
 django-libsass==0.7
 django-redis==4.8.0
-elasticsearch==5.4.0
 libsass==0.12.3
 psycopg2==2.7.1
 wand==0.4.4

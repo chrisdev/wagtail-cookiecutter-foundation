@@ -56,6 +56,7 @@ INSTALLED_APPS = (
 
     'wagtail.contrib.wagtailsitemaps',
     'wagtail.contrib.wagtailsearchpromotions',
+    'wagtail.contrib.postgres_search',
     'wagtail.contrib.settings',
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
@@ -204,13 +205,13 @@ WAGTAIL_SITE_NAME = "{{ cookiecutter.project_name }}"
 
 WAGTAILSEARCH_RESULTS_TEMPLATE = 'utils/tags/search/search_results.html'
 
+# Good for sites having less than a million pages.
 # Use Elasticsearch as the search backend for extra performance search results
-# WAGTAILSEARCH_BACKENDS = {
-#     'default': {
-#         'BACKEND': 'wagtail.wagtailsearch.backends.elasticsearch.ElasticSearch',
-#         'INDEX': '{{ cookiecutter.project_slug }}',
-#     },
-# }
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.contrib.postgres_search.backend',
+    },
+}
 
 # Celery settings
 # When you have multiple sites using the same Redis server,
