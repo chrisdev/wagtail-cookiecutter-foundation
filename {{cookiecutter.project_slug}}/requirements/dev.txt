@@ -6,4 +6,4 @@ django-extensions==1.7.9
 wagtail-bakery==0.1.0
 
 livereload==2.5.1
-selenium==3.4.1
+selenium==3.4.3
