@@ -9,6 +9,15 @@ TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 INSTALLED_APPS += (
     'debug_toolbar',
     'django_extensions',
+    'bakery',
+    'wagtailbakery',
+)
+
+# Generating static sites with wagtail bakery
+BUILD_DIR = root('static_build')
+
+BAKERY_VIEWS = (
+    'wagtailbakery.views.AllPublishedPagesView',
 )
 
 INTERNAL_IPS = ('127.0.0.1',)
