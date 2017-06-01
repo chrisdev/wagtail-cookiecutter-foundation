@@ -7,6 +7,7 @@ from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtailsearch import urls as wagtailsearch_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
+from wagtail.wagtailimages.views.serve import ServeView
 from wagtail.contrib.wagtailsitemaps.views import sitemap
 
 from wagtail_feeds.feeds import BasicFeed, ExtendedFeed
@@ -25,6 +26,10 @@ urlpatterns = [
     url(r'^blog/feed/basic$', BasicFeed(), name='basic_feed'),
     url(r'^blog/feed/extended$', ExtendedFeed(), name='extended_feed'),
 
+    url(
+        r'^images/([^/]*)/(\d*)/([^/]*)/[^/]*$',
+        ServeView.as_view(), name='wagtailimages_serve'
+    ),
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's serving mechanism
     url(r'', include(wagtail_urls)),
