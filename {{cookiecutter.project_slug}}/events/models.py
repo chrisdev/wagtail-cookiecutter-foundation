@@ -148,6 +148,8 @@ class EventPage(Page):
         index.SearchField('body'),
     ]
 
+    parent_page_types = ['events.EventIndexPage']
+
     @property
     def event_index(self):
         return self.get_ancestors().type(EventIndexPage).last()

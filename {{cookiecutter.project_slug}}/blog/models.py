@@ -107,6 +107,8 @@ class BlogPage(Page):
         index.SearchField('body'),
     ]
 
+    parent_page_types = ['blog.BlogIndexPage']
+
     @property
     def blog_index(self):
         # Find closest ancestor which is a blog index
