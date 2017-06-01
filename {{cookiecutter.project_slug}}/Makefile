@@ -42,7 +42,7 @@ ECHO_RED = @echo "\033[33;31m $1\033[0m"
 HOST ?= localhost:8000
 DEPLOY_ENV = production
 
-virtualenv: 
+virtualenv:
 	virtualenv $(VIRTUALENV_NAME)
 
 requirements:
@@ -83,7 +83,7 @@ runserver:
 
 superuser:
 	echo "from django.contrib.auth.models import User; User.objects.create_superuser('superuser', 'superuser@example.com', 'pass')" | ./manage.py shell
-	
+
 update: update_pip update_bower
 
 update_pip:
@@ -116,10 +116,9 @@ func_test:
 static_site:
 # Static Site generation
 	$(call ECHO_BLUE,Generating Static Site)
-	$(MANAGE_CMD) staticsitegen
+	$(MANAGE_CMD) build
 	$(MANAGE_CMD) collectstatic
 	rsync -av static static_build/
-	rsync -av media static_build/
 
 node_modules:
 # Install Node modules
@@ -135,7 +134,7 @@ pre_task:
 		cd ansible; \
 		$(PLAYBOOK) -i $(DEPLOY_ENV) pre_task.yml; \
 	)
-	
+
 deploy_user:
 ifeq ($(DEPLOY_ENV), vagrant)
 	$(call ECHO_BLUE, Create the deploy user for vagrant based staging VM)

@@ -2,8 +2,8 @@
 
 django-debug-toolbar==1.8
 django-extensions==1.7.9
-git+https://github.com/alsoicode/django-medusa
-django-sendfile==0.3.11
+
+wagtail-bakery==0.1.0
 
 livereload==2.5.1
-selenium==3.4.1
+selenium==3.4.3
