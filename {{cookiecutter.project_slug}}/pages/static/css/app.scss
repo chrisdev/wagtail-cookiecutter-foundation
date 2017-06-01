@@ -197,6 +197,28 @@ ul.share-buttons .fa {min-width: 30px;}
   margin-top: 30px;
 }
 
+.bx-wrapper {
+    .bx-caption {
+        background: rgba(0,0,0,.8);
+        span {font-size: .9em;}
+        h5 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+        p {margin-bottom: .5rem;}
+        a {
+            float: right;
+            background: $primary;
+            color: $white;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 3px 8px;
+            border-radius: 3px; 
+        }
+    }
+}
+
 #carousel_business {
     .bx-pager {display: none;}
 }
