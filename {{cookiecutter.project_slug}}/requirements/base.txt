@@ -2,7 +2,7 @@ Django==1.11.1
 wagtail==1.10.1
 wagtailfontawesome==1.0.6
 celery==4.0.2
-django-cachalot==1.4.1
+django-cachalot==1.5.0
 django-compressor==2.1.1
 django-environ==0.4.3
 django-foundation-formtags==0.0.8
