@@ -108,7 +108,7 @@ class BlogPage(Page):
     search_fields = Page.search_fields + [
         index.SearchField('body'),
     ]
-    
+
     parent_page_types = ['blog.BlogIndexPage']
 
     @property
