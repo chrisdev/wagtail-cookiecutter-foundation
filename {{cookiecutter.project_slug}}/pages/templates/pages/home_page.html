@@ -6,10 +6,12 @@
 
 {% block content %}
 <div id="intro">
-  <div class="row text-center">
+  <div class="row">
     <div class="medium-10 medium-centered columns">
-      <h3>{{ self.title_text|richtext }}</h3>
-      {{ self.body|richtext }}
+      <center>
+          <h3>{{ self.title_text|richtext }}</h3>
+          {{ self.body|richtext }}
+      </center>
       <div id="carousel">
         {% include "pages/includes/bx_carousel.html" with carousel_items=self.carousel_items.all only  %}
       </div>

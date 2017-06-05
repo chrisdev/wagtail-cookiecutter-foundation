@@ -70,6 +70,7 @@ INSTALLED_APPS = (
     'wagtail.wagtailadmin',
     'wagtail.wagtailcore',
     'wagtailfontawesome',
+    'wagtailmarkdown',
     {% if cookiecutter.use_wagalytics_app == 'y' %} 'wagalytics', {% endif %}
     {% if cookiecutter.use_django_cachalot == "y" %} 'cachalot', {% endif %}
     'utils',
