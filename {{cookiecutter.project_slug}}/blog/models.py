@@ -4,6 +4,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField, StreamField
+from wagtailmarkdown.fields import MarkdownBlock, MarkdownField, MarkdownPanel
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 
@@ -91,7 +92,9 @@ class BlogPage(Page):
     body = StreamField([
         ('heading', blocks.CharBlock(classname="full title")),
         ('paragraph', blocks.RichTextBlock()),
+        ('markdown', MarkdownBlock(icon="code")),
         ('image', ImageChooserBlock()),
+        ('html', blocks.RawHTMLBlock()),
     ])
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     date = models.DateField("Post date")
@@ -106,7 +109,7 @@ class BlogPage(Page):
     search_fields = Page.search_fields + [
         index.SearchField('body'),
     ]
-
+    
     parent_page_types = ['blog.BlogIndexPage']
 
     @property
