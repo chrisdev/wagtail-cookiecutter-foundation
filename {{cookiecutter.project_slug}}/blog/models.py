@@ -90,7 +90,6 @@ class BlogPageTag(TaggedItemBase):
 class BlogPage(Page):
     intro = RichTextField()
     body = StreamField([
-        ('heading', blocks.CharBlock(classname="full title")),
         ('paragraph', blocks.RichTextBlock()),
         ('markdown', MarkdownBlock(icon="code")),
         ('image', ImageChooserBlock()),
