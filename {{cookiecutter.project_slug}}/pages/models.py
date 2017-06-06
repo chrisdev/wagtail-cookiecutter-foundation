@@ -4,6 +4,8 @@ from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailimages.blocks import ImageChooserBlock
+from wagtailmarkdown.fields import MarkdownBlock
 from wagtail.wagtailimages.models import Image
 from wagtail.wagtailsnippets.models import register_snippet
 from modelcluster.fields import ParentalKey
@@ -146,7 +148,12 @@ class StandardPage(Page):
     ]
     subtitle = models.CharField(max_length=255, blank=True)
     intro = RichTextField(blank=True)
-    body = RichTextField(blank=True)
+    body = StreamField([
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock()),
+        ('markdown', MarkdownBlock(icon="code")),
+        ('html', blocks.RawHTMLBlock()),
+    ])
     template_string = models.CharField(
         max_length=255, choices=TEMPLATE_CHOICES,
         default='pages/standard_page.html'
@@ -173,7 +180,7 @@ StandardPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('subtitle', classname="full title"),
     FieldPanel('intro', classname="full"),
-    FieldPanel('body', classname="full"),
+    StreamFieldPanel('body'),
     FieldPanel('template_string'),
     InlinePanel('carousel_items', label="Carousel items"),
     InlinePanel('related_links', label="Related links"),
