@@ -1,0 +1,75 @@
+@charset 'utf-8';
+
+@import 'css/settings';
+@import 'libs/foundation-sites/scss/foundation';
+
+// @include foundation-global-styles;
+@include foundation-grid;
+// @include foundation-flex-grid;
+// @include foundation-typography;
+// @include foundation-button;
+// @include foundation-forms;
+// @include foundation-range-input;
+// @include foundation-accordion;
+// @include foundation-accordion-menu;
+// @include foundation-badge;
+@include foundation-breadcrumbs;
+// @include foundation-button-group;
+// @include foundation-callout;
+// @include foundation-card;
+// @include foundation-close-button;
+// @include foundation-menu;
+// @include foundation-menu-icon;
+// @include foundation-drilldown-menu;
+// @include foundation-dropdown;
+// @include foundation-dropdown-menu;
+// @include foundation-responsive-embed;
+// @include foundation-label;
+// @include foundation-media-object;
+// @include foundation-off-canvas;
+// @include foundation-orbit;//
+// @include foundation-pagination;
+// @include foundation-progress-bar;
+// @include foundation-progress-element;
+// @include foundation-meter-element;
+// @include foundation-slider;
+// @include foundation-sticky;
+// @include foundation-switch;
+// @include foundation-table;
+// @include foundation-tabs;
+// @include foundation-thumbnail;
+// @include foundation-title-bar;
+// @include foundation-tooltip;
+// @include foundation-top-bar;
+// @include foundation-visibility-classes;
+// @include foundation-float-classes;
+// @include foundation-flex-classes;
+
+// Colors
+
+$primary: map-get($foundation-palette, primary);
+$secondary: map-get($foundation-palette, secondary);
+$primary-dark: #303F9F;
+$off-white : #F8F8FA;
+$dove-gray: #666666;
+$dark-metal: #222222;
+$static: static;
+
+
+// Fonts
+$header-font-family: 'Roboto', sans-serif;
+$body-font-family: 'Roboto', sans-serif;
+$paragraph-font-family: 'Roboto', sans-serif;
+
+$header-font-color: $dove-gray !default;
+
+body {background: $off-white; color: $dove-gray; font-family: 'Roboto', sans-serif;}
+.off-canvas-content, .off-canvas-content {background: transparent;}
+.row{max-width: 68em;}
+.pad {padding: 20px 0;}
+a {color: $primary;}
+a:hover {color: $secondary;}
+button, .button {background: $primary;}
+button.secondary, .button.secondary {background: $dove-gray;color: $secondary;}
+button:hover, .button:hover {background: $primary-dark;}
+

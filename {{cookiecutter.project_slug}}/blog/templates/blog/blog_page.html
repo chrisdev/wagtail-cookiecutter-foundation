@@ -1,5 +1,9 @@
 {% raw %}{% extends "blog/blog_base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags %}
+
+{% block canonical_url %}
+    <link rel="amphtml" href="{{ request.site.root_url }}{% routablepageurl page "amp" %}" />
+{% endblock %}
 
 {% block article_content %}
 <article>

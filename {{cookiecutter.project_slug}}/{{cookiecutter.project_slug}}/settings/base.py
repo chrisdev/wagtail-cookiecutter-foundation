@@ -54,6 +54,7 @@ INSTALLED_APPS = (
     'taggit',
     'modelcluster',
 
+    "wagtail.contrib.wagtailroutablepage",
     'wagtail.contrib.wagtailsitemaps',
     'wagtail.contrib.wagtailsearchpromotions',
     'wagtail.contrib.postgres_search',

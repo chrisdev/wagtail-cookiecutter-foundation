@@ -1,0 +1,51 @@
+{% raw %}{% extends 'amp_base.html' %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block canonical_url %}
+    <link rel="canonical" href="{{ page.full_url }}"/>
+{% endblock %}
+
+{% block schema %}
+    {% image self.feed_image fill-100x100 as feed_img %}
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "headline": "{{ self.title }}",
+        "datePublished": "{{ self.date }}",
+        "image": [
+          "{{ request.site.root_url }}{{ feed_img.url }}"
+        ]
+      }
+    </script>
+{% endblock %}
+
+{% block content %}
+<div id="content" class="row">
+  <div class="medium-12 columns" role="content">
+    {% if self.body %}
+    <article>
+      {% for block in self.body %}
+      {% if block.block_type == 'heading' %}
+
+      <h1>{{ block.value }}</h1>
+
+      {% elif block.block_type == 'image' %}
+      {% image block.value fill-800x400 as img %}
+      <div class="halfwidth">
+        <amp-img src="{{ img.url }}" width="{{ img.width }}" height="{{ img.height }}" layout="responsive">
+        </amp-img>
+      </div>
+
+      {% else %}
+      <section class="block-{{ block.block_type }}">
+        {% include_block block %}
+      </section>
+
+      {% endif %}
+      {% endfor %}
+    </article>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}{% endraw %}
