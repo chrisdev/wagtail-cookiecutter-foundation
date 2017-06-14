@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.template.response import TemplateResponse
 
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.models import Page, Orderable
@@ -9,6 +10,7 @@ from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 
 from wagtail.wagtailsearch import index
+from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 
 from wagtail.wagtailadmin.edit_handlers import (
     FieldPanel, InlinePanel, StreamFieldPanel
@@ -87,13 +89,12 @@ class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey('blog.BlogPage', related_name='tagged_items')
 
 
-class BlogPage(Page):
+class BlogPage(RoutablePageMixin, Page):
     intro = RichTextField()
     body = StreamField([
+        ('heading', blocks.CharBlock(classname="full title")),
         ('paragraph', blocks.RichTextBlock()),
-        ('markdown', MarkdownBlock(icon="code")),
         ('image', ImageChooserBlock()),
-        ('html', blocks.RawHTMLBlock()),
     ])
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     date = models.DateField("Post date")
@@ -115,6 +116,21 @@ class BlogPage(Page):
     def blog_index(self):
         # Find closest ancestor which is a blog index
         return self.get_ancestors().type(BlogIndexPage).last()
+
+    @route(r'^$')
+    def normal_page(self, request):
+        return Page.serve(self, request)
+
+    @route(r'^amp/$')
+    def amp(self, request):
+        context = self.get_context(request)
+        context['is_amp'] = True
+        context['base_template'] = 'amp_base.html'
+        response = TemplateResponse(
+            request, 'blog/blog_page_amp.html', context
+        )
+        return response
+
 
 BlogPage.content_panels = [
     FieldPanel('title', classname="full title"),

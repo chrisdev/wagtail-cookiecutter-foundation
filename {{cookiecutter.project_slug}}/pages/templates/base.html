@@ -11,6 +11,7 @@
     <meta name="description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}"/>
+    {% block canonical_url %}{% endblock %}
 
     {% compress css %}
     <link rel="stylesheet" type="text/css" href="{% static 'libs/bxslider-4/dist/jquery.bxslider.min.css' %}">
