@@ -45,7 +45,9 @@ class LinkFields(models.Model):
 class ContactFields(models.Model):
     name_organization = models.CharField(max_length=255, blank=True)
     telephone = models.CharField(max_length=20, blank=True)
+    telephone_2 = models.CharField(max_length=20, blank=True)
     email = models.EmailField(blank=True)
+    email_2 = models.EmailField(blank=True)
     address_1 = models.CharField(max_length=255, blank=True)
     address_2 = models.CharField(max_length=255, blank=True)
     city = models.CharField(max_length=255, blank=True)
@@ -56,7 +58,9 @@ class ContactFields(models.Model):
         FieldPanel('name_organization',
                    'The full/formatted name of the person or organisation'),
         FieldPanel('telephone'),
+        FieldPanel('telephone_2'),
         FieldPanel('email'),
+        FieldPanel('email_2'),
         FieldPanel('address_1'),
         FieldPanel('address_2'),
         FieldPanel('city'),
