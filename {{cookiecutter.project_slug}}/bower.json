@@ -1,7 +1,7 @@
 {
   "name": "{{ cookiecutter.project_slug }}",
   "dependencies": {
-    "foundation-sites": "~6.3.1",
+    "foundation-sites": "~6.4.0",
     "font-awesome": "~4.7.0",
     "bxslider-4": "~4.2.12",
     "lightbox2": "~2.9.0"
