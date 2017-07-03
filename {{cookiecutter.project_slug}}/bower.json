@@ -6,4 +6,7 @@
     "bxslider-4": "~4.2.12",
     "lightbox2": "~2.9.0"
   }
+  "resolutions": {
+    "jquery": ">= 3.0.0"
+  }
 }
