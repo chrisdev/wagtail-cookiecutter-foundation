@@ -6,7 +6,7 @@
    {% if carousel_item.link %}<a href="{{ carousel_item.link }}" target="_blank">{% endif %}
 
    {% if carousel_item.embed_url %}
-   {% embed carousel_item.embed_url 1000 %}
+   {% embed carousel_item.embed_url %}
    {% else %}
    {% image carousel_item.image width-1400 as carousel_imagedata %}
    <img class="rsImg" src="{{ carousel_imagedata.url }}" title="{{ carousel_item.caption }}" alt="{{ carousel_imagedata.alt }}"/>
