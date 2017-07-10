@@ -6,6 +6,7 @@
 @include foundation-global-styles;
 @include foundation-grid;
 // @include foundation-flex-grid;
+@include foundation-xy-grid-classes;
 @include foundation-typography;
 @include foundation-button;
 @include foundation-forms;
@@ -31,6 +32,7 @@
 @include foundation-pagination;
 @include foundation-progress-bar;
 // @include foundation-progress-element;
+// @include foundation-progress-element;
 // @include foundation-meter-element;
 @include foundation-slider;
 @include foundation-sticky;
@@ -44,7 +46,9 @@
 @include foundation-top-bar;
 @include foundation-visibility-classes;
 @include foundation-float-classes;
-// @include foundation-flex-classes;
+@include foundation-flex-classes;
+// @include foundation-prototype-classes;
+
 
 // Colors
 
@@ -56,13 +60,6 @@ $dove-gray: #666666;
 $dark-metal: #222222;
 $static: static;
 
-
-// Fonts
-$header-font-family: 'Lato', Helvetica, sans;
-$body-font-family: 'Lato', Helvetica, sans;
-$paragraph-font-family: 'Lato', Helvetica, sans;
-
-$header-font-color: $dove-gray !default;
 
 // Responsive image/video classes
 .rich-text img {
@@ -99,66 +96,45 @@ button:hover, .button:hover {background: $primary-dark;}
   a {color: $white; margin-right: 8px; font-size: 17px;}
 }
 
-.title-bar {background: $primary;}
-.top-bar {
-  background: $primary;
-  padding: 0;
-  a {color: $white;}
-  a:hover {color: $white;}
-  li {font-size: 13px;}
-  li a:hover{background-color:$secondary;}
-  li.menu-text{font-size: 18px; color: $white;a:hover{background: transparent;}}
-  .menu li:not(.menu-text) a {padding: 13px 15px;}
-  .menu .active a {background: $secondary;}
-  ul, .dropdown.menu .submenu {background: $primary; border: 0px;}
-  .dropdown.menu .submenu {border-top: 3px solid $secondary;}
-  .top-bar-right {margin-top: 1px;}
-  .dropdown.menu .is-dropdown-submenu-parent a::after {border-color: transparent $white transparent transparent; border-style: solid;}
-  .dropdown.menu.medium-horizontal li.is-dropdown-submenu-parent a::after {border-color: $white transparent transparent;}
-  .is-drilldown-submenu-parent>a::after {border-color: transparent transparent transparent $white;}
-  .js-drilldown-back::before {border-color: transparent $white transparent transparent;}
-  .has-form {
-      .input-group {margin-bottom: 0;}
-      input {max-width: 140px; font-size: 13px; margin-right: 0;}
-      [type="text"] {
-          border-top-left-radius: 2px;
-          border-bottom-left-radius: 2px;
-      }
-      input.button {
-          padding-bottom: 11px;
-          padding-top: 7px;
-          border-top-right-radius: 2px;
-          border-bottom-right-radius: 2px;
-          background: $dove-gray;
-          color: $white;
-      }
-      [type="text"],[type="submit"]  {height: 1.8rem;}
-  }   
-}
-
-.off-canvas {
-  a{color: $white;}
-  a:hover{color: $secondary;}
-  .is-accordion-submenu-parent a::after {border-color: $white transparent transparent;}
-}
-.off-canvas-wrapper{
-  button {background: transparent;}
-  .off-canvas.position-left, .off-canvas.position-right{
+@include breakpoint(medium) {
+  .top-bar {
     background: $primary;
-    height: 100%;
-    .menu {
-      li a {padding: 1rem; color: $white;}
-      .divider {border-bottom: 1px solid rgba(0, 0, 0, 0.1);}
-      li ul li a {padding: .8rem; color: $white; border-bottom: 0px}
+    a {color: $white;}
+    a:hover {color: $white;}
+    li {font-size: 13px;}
+    li a:hover{background-color:$secondary;}
+    li.menu-text{font-size: 18px; color: $white;a:hover{background: transparent;}}
+    .menu li:not(.menu-text) a {padding: 13px 15px;}
+    .menu .is-active > a {
+        background: $secondary;
+        color: $white;
     }
-    .menu.nested {margin: 0;}
+    ul, .dropdown.menu .submenu {background: $primary; border: 0px;}
+    .dropdown.menu .submenu {border-top: 3px solid $secondary;}
+    .top-bar-right {margin-top: 1px;}
+    .dropdown.menu .is-dropdown-submenu-parent a::after {border-color: transparent $white transparent transparent; border-style: solid;}
+    .dropdown.menu.medium-horizontal li.is-dropdown-submenu-parent a::after {border-color: $white transparent transparent;}
+    .is-drilldown-submenu-parent>a::after {border-color: transparent transparent transparent $white;}
+    .js-drilldown-back::before {border-color: transparent $white transparent transparent;}
+    .has-form {
+        .input-group {margin-bottom: 0;}
+        input {max-width: 140px; font-size: 13px; margin-right: 0;}
+        [type="text"] {
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+        }
+        input.button {
+            padding-bottom: 11px;
+            padding-top: 7px;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+            background: $dove-gray;
+            color: $white;
+        }
+        [type="text"],[type="submit"]  {height: 1.8rem;}
+    }
   }
-  .is-drilldown-submenu {background: $primary; height: 100%;}
-  .js-drilldown-back > a::before {border-color: transparent $white transparent transparent;}
-  .is-drilldown-submenu-parent a::after {border-color: transparent transparent transparent $white;}
 }
-.off-canvas-content {box-shadow: none;}
-.off-canvas-content, .off-canvas-content {background: transparent;}
 
 .breadcrumbs {
   margin: 20px 0 10px;
@@ -198,29 +174,29 @@ ul.share-buttons .fa {min-width: 30px;}
 }
 
 .bx-wrapper {
-    .bx-caption {
-        background: rgba(0,0,0,.8);
-        span {font-size: .9em;}
-        h5 {
-            font-size: 1.4rem;
-            font-weight: 500;
-            margin-bottom: 3px;
-        }
-        p {margin-bottom: .5rem;}
-        a {
-            float: right;
-            background: $primary;
-            color: $white;
-            font-size: 12px;
-            font-weight: 500;
-            padding: 3px 8px;
-            border-radius: 3px; 
-        }
+  .bx-caption {
+    background: rgba(0,0,0,.8);
+    span {font-size: .9em;}
+    h5 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-bottom: 3px;
     }
+    p {margin-bottom: .5rem;}
+    a {
+      float: right;
+      background: $primary;
+      color: $white;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+  }
 }
 
 #carousel_business {
-    .bx-pager {display: none;}
+  .bx-pager {display: none;}
 }
 
 
@@ -295,12 +271,12 @@ ul.share-buttons .fa {min-width: 30px;}
 }
 
 #more_news {
-    h6.title{background: $primary; padding: 6px; color: $white;}
-    h5{color: $primary; margin-bottom: 2px;}
-    img {display:none; border-radius: 3px; margin-bottom: 5px;}
-    img:first-of-type {display: block;}
-    hr{margin: 12px 0; border-color: #ccc;}
-    hr:last-of-type {border: 0px;}
+  h6.title{background: $primary; padding: 6px; color: $white;}
+  h5{color: $primary; margin-bottom: 2px;}
+  img {display:none; border-radius: 3px; margin-bottom: 5px;}
+  img:first-of-type {display: block;}
+  hr{margin: 12px 0; border-color: #ccc;}
+  hr:last-of-type {border: 0px;}
 }
 
 #event_feed
