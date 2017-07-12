@@ -183,6 +183,10 @@ COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
 
+COMPRESS_CACHEABLE_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
+
 COMPRESS_OFFLINE = False
 
 {% if cookiecutter.use_wagalytics_app == 'y' %}
