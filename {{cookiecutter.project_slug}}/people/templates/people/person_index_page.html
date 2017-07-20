@@ -13,7 +13,7 @@
     <div class="people medium-up-4 small-up-1 text-center" data-equalizer>
       {% for person in persons %}
       <div class="column" data-equalizer-watch>
-        <a href="{% pageurl person %}">
+        {% if person.biography %}<a href="{% pageurl person %}">{% endif %}
           <div class="card" style="border-radius: 5px;">
             <div style="padding: 5px;">
               {% image person.image fill-400x400 %}
@@ -25,7 +25,7 @@
               {% endif %}
             </div>
           </div>
-        </a>
+        {% if person.biography %}</a>{% endif %}
       </div>
       {% endfor %}
     </div>
