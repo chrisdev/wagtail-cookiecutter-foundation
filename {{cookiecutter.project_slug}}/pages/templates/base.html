@@ -85,7 +85,7 @@
         </div>
         <div id="copyright">
           <div class="row text-center">
-            <p>Copyright © 2016 ChrisDev. All rights reserved</p>
+            <p>Copyright © 2017 ChrisDev. All rights reserved</p>
           </div>
         </div>
       </footer>
@@ -104,22 +104,19 @@
   {% block site_js %}
   <script>
     $(document).foundation();
-  </script>
-  <script>
+
     $('.bxslider').bxSlider({
       mode: 'fade',
       captions: true
     });
-  </script>
-  <script>
+
     $(document).ready(function() {
       $('#faq .block-faq_question').click(function() {
         $(this).next('.block-faq_answer').slideToggle(500);
         $(this).toggleClass('close');
       });
     });
-  </script>
-  <script>
+
     $('.reveal_modal').click(function(event) {
       event.preventDefault();
 

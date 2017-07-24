@@ -25,7 +25,7 @@
           <li class="menu-text"><a href="{% pageurl site_root %}" style="padding: 0;">ChrisDev Wagtail</a></li>
         </ul>
       </div>
-      <div class="top-bar-right">
+      <div class="top-bar-left">
         <ul class="vertical medium-horizontal menu" data-responsive-menu="drilldown medium-dropdown">
           <li class="{% if calling_page.url == site_root %} is-active{% endif %}"><a href="{% pageurl site_root %}"><strong>Home</strong></a></li>
           {% for menuitem in menuitems %}
