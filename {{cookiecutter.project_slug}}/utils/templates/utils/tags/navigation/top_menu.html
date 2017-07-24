@@ -25,12 +25,12 @@
           <li class="menu-text"><a href="{% pageurl site_root %}" style="padding: 0;">ChrisDev Wagtail</a></li>
         </ul>
       </div>
-      <div class="top-bar-right">
+      <div class="top-bar-left">
         <ul class="vertical medium-horizontal menu" data-responsive-menu="drilldown medium-dropdown">
-          <li class="{% if calling_page.url == site_root %} active{% endif %}"><a href="{% pageurl site_root %}"><strong>Home</strong></a></li>
+          <li class="{% if calling_page.url == site_root %} is-active{% endif %}"><a href="{% pageurl site_root %}"><strong>Home</strong></a></li>
           {% for menuitem in menuitems %}
           <li class="{% if menuitem.show_dropdown %}has-submenu{% endif %}
-          {% if calling_page.url == menuitem.url %} active{% endif %}">
+          {% if calling_page.url == menuitem.url %} is-active{% endif %}">
             <a href="{% pageurl menuitem %}"><strong>{{ menuitem.title }}</strong></a>
             {% if menuitem.show_dropdown %}
             <ul class="submenu menu vertical" data-submenu>
