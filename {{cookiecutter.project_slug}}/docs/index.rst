@@ -9,7 +9,7 @@ Welcome to {{ cookiecutter.project_name }}'s documentation!
 .. toctree::
    :maxdepth: 1
    :caption: User Guide
-   
+
    intro
    getting_started
    finding_your_way_around/index
@@ -17,7 +17,8 @@ Welcome to {{ cookiecutter.project_name }}'s documentation!
    editing_existing_pages
    documents_images_snippets/index
    administrator_tasks/index
-   
+   managing_redirects
+
 For documentation check the `Wagtail Documentation`_.
 
-.. _`Wagtail Documentation`: http://docs.wagtail.io/en/v1.6.2/
+.. _`Wagtail Documentation`: http://docs.wagtail.io/en/latest/
