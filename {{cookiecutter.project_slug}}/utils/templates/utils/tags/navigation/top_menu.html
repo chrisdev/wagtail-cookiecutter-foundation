@@ -5,7 +5,7 @@
 <div data-sticky-container>
   <div data-sticky data-options="marginTop:0;" style="width:100%;z-index:10000;">
 
-    <div id="social_bar">
+    <div id="social_bar" class="hide-for-print">
       <div class="row" style="max-width: 95%;">
         <a href="{{ settings.pages.SocialMediaSettings.facebook }}" title="Facebook" target="_blank"><i class="fa fa-facebook-square"></i></a>
         <a href="https://twitter.com/{{ settings.pages.SocialMediaSettings.twitter_name }}" title="Twitter" target="_blank"><i class="fa fa-twitter-square"></i></a>
@@ -14,12 +14,12 @@
       </div>
     </div>
 
-    <div class="title-bar" data-responsive-toggle="menu" data-hide-for="large">
+    <div class="title-bar hide-for-print" data-responsive-toggle="menu" data-hide-for="large">
       <button class="menu-icon" type="button" style="background: transparent;"data-toggle></button>
       <div class="title-bar-title">ChrisDev Wagtail</div>
     </div>
 
-    <div class="top-bar" id="menu">
+    <div class="top-bar hide-for-print" id="menu">
       <div class="top-bar-left hide-for-small-only">
         <ul class="dropdown menu">
           <li class="menu-text"><a href="{% pageurl site_root %}" style="padding: 0;">ChrisDev Wagtail</a></li>
