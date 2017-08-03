@@ -39,14 +39,18 @@ $print-hrefs: true !default;
     a,
     a:visited { text-decoration: underline;}
     @if $print-hrefs {
-      a[href]:after { content: ' (' attr(href) ')'; }
+      a[href]:after {
+          content: none !important;
+      }
     }
 
     // Don't display the URL for images or JavaScript/internal links
     .ir a:after,
     a[href^='javascript:']:after,
-    a[href^='#']:after { content: ''; }
-
+    a[href]:after {
+        content: none !important;
+      }
+    
     // Display what an abbreviation stands for after the text
     abbr[title]:after { content: ' (' attr(title) ')'; }
 
