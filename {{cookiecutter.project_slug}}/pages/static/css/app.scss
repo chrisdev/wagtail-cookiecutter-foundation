@@ -2,6 +2,7 @@
 
 @import 'css/settings';
 @import 'libs/foundation-sites/scss/foundation';
+@import 'css/print';
 
 @include foundation-global-styles;
 @include foundation-grid;
