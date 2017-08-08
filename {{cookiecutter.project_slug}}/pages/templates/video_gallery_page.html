@@ -1,0 +1,11 @@
+{% raw %}{% extends "base.html" %}
+{% load static wagtailcore_tags navigation_tags wagtailimages_tags wagtailembeds_tags %}
+{% load {% endraw %}{{ cookiecutter.project_slug }}{% raw %}_utils %}
+
+{% block content %}
+    <div id="content" class="row">
+        <center><h4><strong>{{ self.title }}</strong></h4></center>
+        
+        {% include "pages/includes/video_gallery_list.html" with carousel_items=self.carousel_items.all only  %}
+    </div>
+{% endblock %}{% endraw %}

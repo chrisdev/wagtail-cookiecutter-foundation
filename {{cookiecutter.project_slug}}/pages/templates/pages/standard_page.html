@@ -14,7 +14,7 @@
 
     {% include "pages/includes/body.html" with body=self.body only %}
   </div>
-  <div id="sidebar" class="hide-for-small-only medium-3 columns">
+  <div id="sidebar" class="hide-for-print hide-for-small-only medium-3 columns">
     {% secondary_menu calling_page=self %}
 
     {% news_feed %}

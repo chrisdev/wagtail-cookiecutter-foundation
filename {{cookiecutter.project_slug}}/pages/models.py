@@ -145,6 +145,7 @@ class StandardPage(Page):
     TEMPLATE_CHOICES = [
         ('pages/standard_page.html', 'Default Template'),
         ('pages/standard_page_full.html', 'Standard Page Full'),
+        ('pages/video_gallery_page.html', 'Videos Page'),
     ]
     subtitle = models.CharField(max_length=255, blank=True)
     intro = RichTextField(blank=True)
