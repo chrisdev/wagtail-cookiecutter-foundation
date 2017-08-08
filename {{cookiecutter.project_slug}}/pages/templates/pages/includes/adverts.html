@@ -1,15 +1,17 @@
 {% raw %}{% load wagtailcore_tags wagtailimages_tags %}
 {% if adverts %}
-<ul class="adverts" style="margin-left: 0;">
-  {% for t in adverts %}
-  <li>
-    <blockquote>
-      {% if t.image %}
-      {% image t.image width-500 %}
-      {% endif %}
-      <p>{{ t.text }}</p>
-    </blockquote>
-  </li>
-  {% endfor %}
-</ul>
+    {% for t in adverts %}
+        {% if t.link %}<a href="{{ t.link }}">{% endif %}
+        <div class="card">
+            {% if t.image %}
+                {% image t.image width-500 %}
+            {% endif %}
+            {% if t.text %}
+                <div class="card-section" style="padding: 8px;">
+                    {{ t.text|richtext }}
+                </div>
+            {% endif %}
+        </div>
+        {% if t.link %}</a>{% endif %}
+    {% endfor %}
 {% endif %}{% endraw %}
