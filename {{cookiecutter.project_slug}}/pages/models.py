@@ -191,8 +191,10 @@ StandardPage.promote_panels = Page.promote_panels + [
     ImageChooserPanel('feed_image'),
 ]
 
+
 class VideoPageCarouselItem(Orderable, CarouselItem):
     page = ParentalKey('pages.VideoPage', related_name='carousel_items')
+
     
 class VideoPage(Page):
     TEMPLATE_CHOICES = [
@@ -227,6 +229,7 @@ VideoPage.content_panels = [
     InlinePanel('carousel_items', label="Carousel items"),
 
 ]
+
 
 VideoPage.promote_panels = Page.promote_panels + [
     ImageChooserPanel('feed_image'),
