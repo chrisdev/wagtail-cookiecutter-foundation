@@ -124,5 +124,4 @@ def adverts(context):
         'non_page_associated_adverts': all_adverts.filter(page__isnull=True),
         'adverts': all_adverts,
         'request': context['request'],
-    }
-    
+}
