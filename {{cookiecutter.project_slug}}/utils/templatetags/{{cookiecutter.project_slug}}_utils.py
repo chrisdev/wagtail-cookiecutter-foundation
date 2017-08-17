@@ -125,4 +125,4 @@ def adverts(context):
         'adverts': all_adverts,
         'request': context['request'],
     }
-        
+    
