@@ -1,16 +1,44 @@
 {% raw %}{% load wagtailcore_tags wagtailimages_tags %}
 {% if testimonials %}
-<ul class="testimonials" style="margin-left: 0;">
-  {% for t in testimonials %}
-  <li>
-    <blockquote>
-      {% if t.photo %}
-      {% image t.photo width-100 %}
-      {% endif %}
-      <p>{{ t.text }}</p>
-      <h6><strong>{{t.name}}</strong></h6>
-    </blockquote>
-  </li>
-  {% endfor %}
-</ul>
+    <ul class="testimonials" style="margin-left: 0; padding: 15px 0;" data-equalizer>
+        {% for t in page_testimonials %}
+            <li data-equalizer-watch>
+                {% if t.link %}<a href="{{ t.link }}">{% endif %} 
+                    <blockquote>
+                        <div class="row">
+                            <div class="small-3 columns" style="padding: 0;">
+                                {% if t.photo %}
+                                    {% image t.photo fill-140x140 %}
+                                {% endif %}
+                            </div>
+                            <div class="small-9 columns" style="padding-left: 0;">
+                                {{ t.text|truncatewords:40|richtext }}
+                                <h6><strong>{{t.name}}</strong></h6>
+                            </div>
+                        </div>
+                    </blockquote>
+                {% if t.link %}</a>{% endif %}
+            </li> 
+        {% endfor %} 
+        
+        {% for t in non_page_associated_testimonials %}
+            <li data-equalizer-watch>
+                {% if t.link %}<a href="{{ t.link }}">{% endif %} 
+                    <blockquote>
+                        <div class="row">
+                            <div class="small-3 columns" style="padding: 0;">
+                                {% if t.photo %}
+                                    {% image t.photo fill-140x140 %}
+                                {% endif %}
+                            </div>
+                            <div class="small-9 columns" style="padding-left: 0;">
+                                {{ t.text|truncatewords:40|richtext }}
+                                <h6><strong>{{t.name}}</strong></h6>
+                            </div>
+                        </div>
+                    </blockquote>
+                {% if t.link %}</a>{% endif %}
+            </li> 
+        {% endfor %}     
+    </ul>
 {% endif %}{% endraw %}

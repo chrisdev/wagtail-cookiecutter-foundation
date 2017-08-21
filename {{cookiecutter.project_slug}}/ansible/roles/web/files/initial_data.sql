@@ -1248,22 +1248,21 @@ ALTER SEQUENCE pages_testimonial_id_seq OWNED BY pages_testimonial.id;
 
 
 --
--- Name: pages_videopage; Type: TABLE; Schema: public; Owner: -
+-- Name: pages_videogallerypage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_videopage (
+CREATE TABLE pages_videogallerypage (
     page_ptr_id integer NOT NULL,
     intro text NOT NULL,
-    template_string character varying(255) NOT NULL,
     feed_image_id integer
 );
 
 
 --
--- Name: pages_videopagecarouselitem; Type: TABLE; Schema: public; Owner: -
+-- Name: pages_videogallerypagecarouselitem; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_videopagecarouselitem (
+CREATE TABLE pages_videogallerypagecarouselitem (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -1292,7 +1291,7 @@ CREATE SEQUENCE pages_videopagecarouselitem_id_seq
 -- Name: pages_videopagecarouselitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE pages_videopagecarouselitem_id_seq OWNED BY pages_videopagecarouselitem.id;
+ALTER SEQUENCE pages_videopagecarouselitem_id_seq OWNED BY pages_videogallerypagecarouselitem.id;
 
 
 --
@@ -2660,7 +2659,7 @@ ALTER TABLE ONLY pages_testimonial ALTER COLUMN id SET DEFAULT nextval('pages_te
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_videopagecarouselitem ALTER COLUMN id SET DEFAULT nextval('pages_videopagecarouselitem_id_seq'::regclass);
+ALTER TABLE ONLY pages_videogallerypagecarouselitem ALTER COLUMN id SET DEFAULT nextval('pages_videopagecarouselitem_id_seq'::regclass);
 
 
 --
@@ -3176,6 +3175,12 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 236	Can add video page carousel item	80	add_videopagecarouselitem
 237	Can change video page carousel item	80	change_videopagecarouselitem
 238	Can delete video page carousel item	80	delete_videopagecarouselitem
+239	Can add video gallery page carousel item	80	add_videogallerypagecarouselitem
+240	Can change video gallery page carousel item	80	change_videogallerypagecarouselitem
+241	Can delete video gallery page carousel item	80	delete_videogallerypagecarouselitem
+242	Can add video gallery page	81	add_videogallerypage
+243	Can change video gallery page	81	change_videogallerypage
+244	Can delete video gallery page	81	delete_videogallerypage
 \.
 
 
@@ -3183,7 +3188,7 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('auth_permission_id_seq', 238, true);
+SELECT pg_catalog.setval('auth_permission_id_seq', 244, true);
 
 
 --
@@ -3468,7 +3473,8 @@ COPY django_content_type (id, app_label, model) FROM stdin;
 77	postgres_search	indexentry
 78	wagtailcore	collectionviewrestriction
 79	pages	videopage
-80	pages	videopagecarouselitem
+80	pages	videogallerypagecarouselitem
+81	pages	videogallerypage
 \.
 
 
@@ -3476,7 +3482,7 @@ COPY django_content_type (id, app_label, model) FROM stdin;
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_content_type_id_seq', 80, true);
+SELECT pg_catalog.setval('django_content_type_id_seq', 81, true);
 
 
 --
@@ -3634,6 +3640,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 148	pages	0013_videopage_videopagecarouselitem	2017-08-08 10:09:35.7815-04
 149	people	0003_personpage_telephone_2	2017-08-08 10:09:36.253624-04
 150	people	0004_personpage_email_2	2017-08-08 10:09:36.83787-04
+151	pages	0014_auto_20170817_1705	2017-08-17 13:06:05.105908-04
 \.
 
 
@@ -3641,7 +3648,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 150, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 151, true);
 
 
 --
@@ -4023,18 +4030,18 @@ SELECT pg_catalog.setval('pages_testimonial_id_seq', 1, false);
 
 
 --
--- Data for Name: pages_videopage; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: pages_videogallerypage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_videopage (page_ptr_id, intro, template_string, feed_image_id) FROM stdin;
+COPY pages_videogallerypage (page_ptr_id, intro, feed_image_id) FROM stdin;
 \.
 
 
 --
--- Data for Name: pages_videopagecarouselitem; Type: TABLE DATA; Schema: public; Owner: -
+-- Data for Name: pages_videogallerypagecarouselitem; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_videopagecarouselitem (id, sort_order, link_external, embed_url, caption, image_id, link_document_id, link_page_id, page_id) FROM stdin;
+COPY pages_videogallerypagecarouselitem (id, sort_order, link_external, embed_url, caption, image_id, link_document_id, link_page_id, page_id) FROM stdin;
 \.
 
 
@@ -5204,18 +5211,18 @@ ALTER TABLE ONLY pages_testimonial
 
 
 --
--- Name: pages_videopage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: pages_videogallerypage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_videopage
-    ADD CONSTRAINT pages_videopage_pkey PRIMARY KEY (page_ptr_id);
+ALTER TABLE ONLY pages_videogallerypage
+    ADD CONSTRAINT pages_videogallerypage_pkey PRIMARY KEY (page_ptr_id);
 
 
 --
 -- Name: pages_videopagecarouselitem_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_videopagecarouselitem
+ALTER TABLE ONLY pages_videogallerypagecarouselitem
     ADD CONSTRAINT pages_videopagecarouselitem_pkey PRIMARY KEY (id);
 
 
@@ -6276,38 +6283,38 @@ CREATE INDEX pages_testimonial_b4e75e23 ON pages_testimonial USING btree (photo_
 
 
 --
--- Name: pages_videopage_feed_image_id_0d7b4a97; Type: INDEX; Schema: public; Owner: -
+-- Name: pages_videogallerypage_feed_image_id_250d9360; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_videopage_feed_image_id_0d7b4a97 ON pages_videopage USING btree (feed_image_id);
+CREATE INDEX pages_videogallerypage_feed_image_id_250d9360 ON pages_videogallerypage USING btree (feed_image_id);
 
 
 --
 -- Name: pages_videopagecarouselitem_image_id_2817929a; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_videopagecarouselitem_image_id_2817929a ON pages_videopagecarouselitem USING btree (image_id);
+CREATE INDEX pages_videopagecarouselitem_image_id_2817929a ON pages_videogallerypagecarouselitem USING btree (image_id);
 
 
 --
 -- Name: pages_videopagecarouselitem_link_document_id_b7d2ab0f; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_videopagecarouselitem_link_document_id_b7d2ab0f ON pages_videopagecarouselitem USING btree (link_document_id);
+CREATE INDEX pages_videopagecarouselitem_link_document_id_b7d2ab0f ON pages_videogallerypagecarouselitem USING btree (link_document_id);
 
 
 --
 -- Name: pages_videopagecarouselitem_link_page_id_16ed2e64; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_videopagecarouselitem_link_page_id_16ed2e64 ON pages_videopagecarouselitem USING btree (link_page_id);
+CREATE INDEX pages_videopagecarouselitem_link_page_id_16ed2e64 ON pages_videogallerypagecarouselitem USING btree (link_page_id);
 
 
 --
 -- Name: pages_videopagecarouselitem_page_id_762410b6; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_videopagecarouselitem_page_id_762410b6 ON pages_videopagecarouselitem USING btree (page_id);
+CREATE INDEX pages_videopagecarouselitem_page_id_762410b6 ON pages_videogallerypagecarouselitem USING btree (page_id);
 
 
 --
@@ -7596,26 +7603,26 @@ ALTER TABLE ONLY pages_testimonial
 
 
 --
--- Name: pages_videopage_feed_image_id_0d7b4a97_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: pages_videogallerypa_feed_image_id_250d9360_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_videopage
-    ADD CONSTRAINT pages_videopage_feed_image_id_0d7b4a97_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY pages_videogallerypage
+    ADD CONSTRAINT pages_videogallerypa_feed_image_id_250d9360_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: pages_videopage_page_ptr_id_14375112_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: pages_videogallerypa_page_ptr_id_e99012e4_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_videopage
-    ADD CONSTRAINT pages_videopage_page_ptr_id_14375112_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY pages_videogallerypage
+    ADD CONSTRAINT pages_videogallerypa_page_ptr_id_e99012e4_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_videopagecarou_image_id_2817929a_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_videopagecarouselitem
+ALTER TABLE ONLY pages_videogallerypagecarouselitem
     ADD CONSTRAINT pages_videopagecarou_image_id_2817929a_fk_wagtailim FOREIGN KEY (image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
@@ -7623,7 +7630,7 @@ ALTER TABLE ONLY pages_videopagecarouselitem
 -- Name: pages_videopagecarou_link_document_id_b7d2ab0f_fk_wagtaildo; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_videopagecarouselitem
+ALTER TABLE ONLY pages_videogallerypagecarouselitem
     ADD CONSTRAINT pages_videopagecarou_link_document_id_b7d2ab0f_fk_wagtaildo FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
@@ -7631,16 +7638,8 @@ ALTER TABLE ONLY pages_videopagecarouselitem
 -- Name: pages_videopagecarou_link_page_id_16ed2e64_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_videopagecarouselitem
+ALTER TABLE ONLY pages_videogallerypagecarouselitem
     ADD CONSTRAINT pages_videopagecarou_link_page_id_16ed2e64_fk_wagtailco FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: pages_videopagecarou_page_id_762410b6_fk_pages_vid; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY pages_videopagecarouselitem
-    ADD CONSTRAINT pages_videopagecarou_page_id_762410b6_fk_pages_vid FOREIGN KEY (page_id) REFERENCES pages_videopage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

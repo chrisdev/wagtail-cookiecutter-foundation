@@ -105,15 +105,23 @@ def time_display(time):
 
 @register.inclusion_tag('pages/includes/testimonials.html', takes_context=True)
 def testimonials(context):
+    the_page = context['page']
+    all_testimonials = Testimonial.objects.select_related()
     return {
-        'testimonials': Testimonial.objects.select_related('page'),
+        'page_testimonials': all_testimonials.filter(page=the_page),
+        'non_page_associated_testimonials': all_testimonials.filter(page__isnull=True),
+        'testimonials': all_testimonials,
         'request': context['request'],
     }
 
 
 @register.inclusion_tag('pages/includes/adverts.html', takes_context=True)
 def adverts(context):
+    the_page = context['page']
+    all_adverts = Advert.objects.select_related()
     return {
-        'adverts': Advert.objects.select_related('page'),
+        'page_advert': all_adverts.filter(page=the_page),
+        'non_page_associated_adverts': all_adverts.filter(page__isnull=True),
+        'adverts': all_adverts,
         'request': context['request'],
     }

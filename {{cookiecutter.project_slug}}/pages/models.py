@@ -192,19 +192,12 @@ StandardPage.promote_panels = Page.promote_panels + [
 ]
 
 
-class VideoPageCarouselItem(Orderable, CarouselItem):
-    page = ParentalKey('pages.VideoPage', related_name='carousel_items')
+class VideoGalleryPageCarouselItem(Orderable, CarouselItem):
+    page = ParentalKey('pages.VideoGalleryPage', related_name='carousel_items')
 
 
-class VideoPage(Page):
-    TEMPLATE_CHOICES = [
-        ('pages/video_gallery_page.html', 'Videos Page'),
-    ]
+class VideoGalleryPage(Page):
     intro = RichTextField(blank=True)
-    template_string = models.CharField(
-        max_length=255, choices=TEMPLATE_CHOICES,
-        default='pages/video_gallery_page.html'
-    )
     feed_image = models.ForeignKey(
         Image,
         null=True,
@@ -217,20 +210,15 @@ class VideoPage(Page):
         index.SearchField('intro'),
     ]
 
-    @property
-    def template(self):
-        return self.template_string
 
-
-VideoPage.content_panels = [
+VideoGalleryPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('intro', classname="full"),
-    FieldPanel('template_string'),
     InlinePanel('carousel_items', label="Carousel items"),
 
 ]
 
-VideoPage.promote_panels = Page.promote_panels + [
+VideoGalleryPage.promote_panels = Page.promote_panels + [
     ImageChooserPanel('feed_image'),
 ]
 
