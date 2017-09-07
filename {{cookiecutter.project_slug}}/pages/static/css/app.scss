@@ -263,7 +263,7 @@ $large-article-header-height: rem-calc(500);
 .large-article-header {
   background: no-repeat center;
   background-size: cover;
-  height: 300px;
+  height: 250px;
   position: relative;
 
   @include breakpoint(small only) {
@@ -277,7 +277,7 @@ $large-article-header-height: rem-calc(500);
   flex-direction: column;
   position: absolute;
   height: 100%;
-  padding-top: 50px;
+  padding-top: 60px;
   left: 0;
   right: 0;
 
