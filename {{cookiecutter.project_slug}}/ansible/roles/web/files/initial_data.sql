@@ -3197,7 +3197,7 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 244, true);
 --
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$36000$5HkCiQD2wOPy$quuP34M/87omK0yq4oSkulez1de4DadLKB28QDGhFz0=	2017-09-07 10:17:16.904598-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
+1	pbkdf2_sha256$36000$5HkCiQD2wOPy$quuP34M/87omK0yq4oSkulez1de4DadLKB28QDGhFz0=	2017-09-07 11:17:04.10623-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
 \.
 
 
@@ -3643,6 +3643,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 150	people	0004_personpage_email_2	2017-08-08 10:09:36.83787-04
 151	pages	0014_auto_20170817_1705	2017-08-17 13:06:05.105908-04
 152	wagtailcore	0040_page_draft_title	2017-09-07 10:14:59.367452-04
+153	contact	0006_auto_20170907_1451	2017-09-07 11:16:04.271249-04
 \.
 
 
@@ -3650,7 +3651,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 152, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 153, true);
 
 
 --
@@ -3699,6 +3700,7 @@ sk3q2jzh0mudb8zlgczrf9iq51vlwz9c	ZGE0MjFjYzI3MWIyYzRkMWU0Y2E0MGMzNWNmMTU0Njg3OTF
 f7mzlb668r0y8j3s8ifhx9y1lp5oa5n5	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-06-12 02:47:56.456764-04
 fe632xaodlns0yx8u27dzxgzfvz56zuy	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-06-20 09:20:47.466637-04
 3e8ibx9rj4x991ad7katd4ct9pkwtlgb	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-09-21 10:17:16.955274-04
+ufz0a91jvzhyo6qwu244wuh6m2m07u1w	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-09-21 11:17:04.180546-04
 \.
 
 
