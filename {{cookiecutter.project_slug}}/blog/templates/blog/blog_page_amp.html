@@ -15,7 +15,9 @@
         "datePublished": "{{ self.date }}",
         "image": [
           "{{ request.site.root_url }}{{ feed_img.url }}"
-        ]
+        ],
+        "author": "{{ user.first_name }} {{ user.last_name }}",
+        "publisher": "{{ request.site.site_name }}",
       }
     </script>
 {% endblock %}
