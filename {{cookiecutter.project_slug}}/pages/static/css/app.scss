@@ -257,6 +257,80 @@ ul.share-buttons .fa {min-width: 30px;}
   color: $white;
 }
 
+$large-article-header-color: $white;
+$large-article-header-height: rem-calc(500);
+
+.large-article-header {
+  background: no-repeat center;
+  background-size: cover;
+  height: 300px;
+  position: relative;
+
+  @include breakpoint(small only) {
+    height: ($large-article-header-height / 1.5);
+  }
+}
+
+.large-article-header-content {
+  background: rgba(0,0,0, 0.65) url("/#{$static}/img/overlay.png") top center repeat;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: 100%;
+  padding-top: 50px;
+  left: 0;
+  right: 0;
+
+  @include breakpoint(small only) {
+    bottom: rem-calc(20);
+  }
+
+  .center-container {
+    width: 60%;
+    margin: 0 auto;
+
+    @include breakpoint(small only) {
+      width: 100%;
+      padding: 0 rem-calc(20);
+    }
+  }
+
+  .article-date {
+    color: $large-article-header-color;
+  }
+  .article-title {
+    h1 {
+      line-height: rem-calc(50);
+      color: $large-article-header-color;
+      font-weight: 600;
+
+      @include breakpoint(small only) {
+        line-height: rem-calc(30);
+      }
+    }
+  }
+  .article-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      color: $large-article-header-color;
+    }
+  }
+  .article-author {
+    display: flex;
+    align-items: center;
+    margin: $global-margin 0;
+    img {
+      border-radius: rem-calc(50);
+    }
+    a {
+      margin-left: $global-margin;
+    }
+  }
+}
+
 #blog_post, #standard_page {
     blockquote {
       background: #f9f9f9;
