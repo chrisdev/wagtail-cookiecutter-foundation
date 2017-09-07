@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.response import TemplateResponse
+from django.utils.safestring import mark_safe
 
 from wagtail.wagtailcore import blocks
 from wagtail.wagtailcore.models import Page, Orderable
@@ -18,6 +19,7 @@ from wagtail.wagtailadmin.edit_handlers import (
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
 from taggit.models import TaggedItemBase
+from bs4 import BeautifulSoup
 from utils.models import RelatedLink, CarouselItem
 
 
@@ -125,6 +127,25 @@ class BlogPage(RoutablePageMixin, Page):
     @route(r'^amp/$')
     def amp(self, request):
         context = self.get_context(request)
+        body_html = self.body.__html__()
+        soup = BeautifulSoup(body_html, 'html.parser')
+        # Remove style attribute to remove large bottom padding
+        for div in soup.find_all("div", {'class': 'responsive-object'}):
+            del div['style']
+
+        # Change img tags to amp-img
+        for img_tag in soup.findAll('img'):
+            img_tag.name = 'amp-img'
+            img_tag.append(BeautifulSoup('</amp-img>', 'html.parser'))
+            img_tag['layout'] = 'responsive'
+
+        # Change iframe tags to amp-iframe
+        for iframe in soup.findAll('iframe'):
+            iframe.name = 'amp-iframe'
+            iframe['sandbox'] = 'allow-scripts allow-same-origin'
+            iframe['layout'] = 'responsive'
+
+        context['body_html'] = mark_safe(soup.prettify(formatter="html"))
         context['is_amp'] = True
         context['base_template'] = 'amp_base.html'
         response = TemplateResponse(
