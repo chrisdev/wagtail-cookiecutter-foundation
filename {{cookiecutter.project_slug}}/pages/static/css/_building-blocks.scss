@@ -24,6 +24,7 @@ $social-brand-print: #777;
   padding: 0;
   margin: 0; 
   top: 50%;
+  z-index: 9999;
   transform: translateY(-50%);
   width: $social-bar-width;
   background-color: $social-bar-background;
@@ -203,4 +204,18 @@ $large-article-header-height: rem-calc(500);
     }
   }
 }
+
+@include breakpoint(small only) {
+    .large-article-header {
+        .large-article-header-content {bottom: 0;}
+        .article-title {
+            h1 {
+              line-height: 2rem;
+              font-weight: 400;
+              font-size: 1.5rem;
+            }
+          }
+      }
+}
+
 // END BLOG HEADER
