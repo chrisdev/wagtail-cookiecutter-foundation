@@ -355,13 +355,14 @@ ul.share-buttons .fa {min-width: 30px;}
 
 
 #testimonials {
-  .bx-wrapper .bx-viewport{background: transparent; border:0px; box-shadow: none;}
-  img{float: left; margin-right: 10px; border-radius: 100%;}
-  h3{color: $white;}
-  h6,p,li {color: $primary;}
-  p{margin-top: 10px; margin-bottom: 10px; text-align: left; font-style: italic; font-size: 15px;}
-  h6{text-align: right;}
-  blockquote {border-left: 0px;}
+    background: $secondary;
+    .bx-wrapper {padding: 10px 0;background: transparent; border:0px; box-shadow: none;}
+    img{border-radius: 100%;}
+    h4{color: $white; font-weight: 700;line-height: 1;}
+    h6,p,li {color: $white;}
+    p{margin-top: 10px; margin-bottom: 10px; font-style: italic; font-size: 16px; font-weight: 400;}
+    h6{text-align: right;}     
+    blockquote {border-left: 0px;}
 }
 
 
