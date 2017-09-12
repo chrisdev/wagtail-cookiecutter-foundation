@@ -1,4 +1,5 @@
 $primary: map-get($foundation-palette, primary);
+$secondary: map-get($foundation-palette, secondary);
 $static: static;
 
 // SOCIAL BAR
@@ -255,7 +256,7 @@ $large-article-header-height: rem-calc(500);
 .notification-callout-alert-header {
  font-weight:600;
  font-size:19px;
- color: $secondary;
+ color: $primary;
  margin-bottom:0px
 }
 .notification-callout-alert-text {
@@ -273,12 +274,8 @@ $large-article-header-height: rem-calc(500);
 
 // TESTIMONIAL 
  
-$full-width-testimonial-quote-color: $warning-color;
-$full-width-testimonial-vertical-padding: 2rem;
-
-.full-width-testimonial {
-  background: $secondary;
-}
+$full-width-testimonial-quote-color: $white;
+$full-width-testimonial-vertical-padding: 1rem;
 
 .full-width-testimonial-icon {
   .quote-path {

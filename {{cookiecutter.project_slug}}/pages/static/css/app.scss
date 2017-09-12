@@ -355,8 +355,8 @@ ul.share-buttons .fa {min-width: 30px;}
 
 
 #testimonials {
-    background: $secondary;
-    .bx-wrapper {padding: 10px 0;background: transparent; border:0px; box-shadow: none;}
+    padding: 10px;
+    .bx-wrapper {padding: 10px 0;background: transparent; border:0px; box-shadow: none; margin-bottom: 0;}
     img{border-radius: 100%;}
     h4{color: $white; font-weight: 700;line-height: 1;}
     h6,p,li {color: $white;}
