@@ -1,0 +1,221 @@
+$primary: map-get($foundation-palette, primary);
+$static: static;
+
+// SOCIAL BAR
+$social-bar-position: left; // Change this value to `right` for changing sidebar's position.
+$social-bar-transformation: rem-calc(140);
+$social-bar-width: rem-calc(180);
+$social-bar-background: #333333;
+$social-icon-color: $white;
+$social-icon-transition: all 0.3s ease-in-out;
+$social-icon-font-size: 1.1rem;
+$social-icon-padding: 0.5rem;
+
+// Source: https://designpieces.com/2012/12/social-media-colours-hex-and-rgb/
+$social-brand-facebook: #3b5998;
+$social-brand-twitter: #55acee;
+$social-brand-linkedin: #007bb5;
+$social-brand-google: #3cba54;
+$social-brand-pinterest: #cb2027;
+$social-brand-mail: $primary;
+$social-brand-print: #777;
+
+.sticky-social-bar {
+  padding: 0;
+  margin: 0; 
+  top: 50%;
+  z-index: 9999;
+  transform: translateY(-50%);
+  width: $social-bar-width;
+  background-color: $social-bar-background;
+  position: fixed;
+	
+  @if $social-bar-position == left {
+	  left: $social-bar-transformation * -1;
+  }
+  @if $social-bar-position == right {
+	  right: $social-bar-transformation * -1;
+  }
+
+  .social-icon {
+    list-style-type: none;
+    color: $social-icon-color;
+    background-color: inherit;
+    margin: 0;
+    transition: $social-icon-transition;
+    cursor: pointer;
+    font-size: $social-icon-font-size;
+    padding: 0.25rem 0.25rem 0.5rem;
+
+    &:first-of-type {
+	    padding-top: 0.375rem;
+    }
+    &:last-of-type {
+	    padding-bottom: 0.625rem;
+    }
+
+    > a {
+      color: inherit;
+      background-color: inherit;
+
+      > .fa {
+        padding: $social-icon-padding;
+        width: 2rem;
+        height: 2rem;
+
+        @if $social-bar-position == left {
+          float: right;
+          margin-left: 0.5rem;
+        }
+        @if $social-bar-position == right {
+          float: left;
+          margin-right: 0.5rem;
+        }
+
+        &.fa-facebook {
+          background-color: $social-brand-facebook;
+        }
+        &.fa-twitter {
+          background-color: $social-brand-twitter;
+        }
+        &.fa-linkedin {
+          background-color: $social-brand-linkedin;
+        }
+        &.fa-google-plus {
+          background-color: $social-brand-google;
+        }
+        &.fa-pinterest-p {
+          background-color: $social-brand-pinterest;
+        }
+        &.fa-envelope {
+          background-color: $social-brand-mail;
+        }
+        &.fa-print {
+          background-color: $social-brand-print;
+        }
+      }
+
+      > .social-icon-text {
+        font-size: 80%;
+        color: $social-icon-color;
+        text-transform: uppercase;
+
+        @if $social-bar-position == left {
+          margin-right: 0.5rem;
+        }
+        @if $social-bar-position == right {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+
+    &:hover {
+
+      @if $social-bar-position == left {
+        transform:translateX($social-bar-transformation * 1);
+      }
+      @if $social-bar-position == right {
+        transform:translateX($social-bar-transformation * -1);
+      }
+
+      > a {
+        color: inherit;
+        background-color: inherit;
+      }
+    }
+  }
+}
+// END SOCIAL BAR
+
+
+
+
+// BLOG HEADER
+$large-article-header-color: $white;
+$large-article-header-height: rem-calc(500);
+
+.large-article-header {
+  background: no-repeat center;
+  background-size: cover;
+  height: 250px;
+  position: relative;
+
+  @include breakpoint(small only) {
+    height: ($large-article-header-height / 1.5);
+  }
+}
+
+.large-article-header-content {
+  background: rgba(0,0,0, 0.65) url("/#{$static}/img/overlay.png") top center repeat;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: 100%;
+  padding-top: 60px;
+  left: 0;
+  right: 0;
+
+  @include breakpoint(small only) {
+    bottom: rem-calc(20);
+  }
+
+  .center-container {
+    width: 60%;
+    margin: 0 auto;
+
+    @include breakpoint(small only) {
+      width: 100%;
+      padding: 0 rem-calc(20);
+    }
+  }
+
+  .article-date {
+    color: $large-article-header-color;
+  }
+  .article-title {
+    h1 {
+      line-height: rem-calc(50);
+      color: $large-article-header-color;
+      font-weight: 600;
+
+      @include breakpoint(small only) {
+        line-height: rem-calc(30);
+      }
+    }
+  }
+  .article-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      color: $large-article-header-color;
+    }
+  }
+  .article-author {
+    display: flex;
+    align-items: center;
+    margin: $global-margin 0;
+    img {
+      border-radius: rem-calc(50);
+    }
+    a {
+      margin-left: $global-margin;
+    }
+  }
+}
+
+@include breakpoint(small only) {
+    .large-article-header {
+        .large-article-header-content {bottom: 0;}
+        .article-title {
+            h1 {
+              line-height: 2rem;
+              font-weight: 400;
+              font-size: 1.5rem;
+            }
+          }
+      }
+}
+
+// END BLOG HEADER

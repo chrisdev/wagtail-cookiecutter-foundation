@@ -1946,6 +1946,7 @@ CREATE TABLE wagtailcore_page (
     first_published_at timestamp with time zone,
     live_revision_id integer,
     last_published_at timestamp with time zone,
+    draft_title character varying(255) NOT NULL,
     CONSTRAINT wagtailcore_page_depth_check CHECK ((depth >= 0)),
     CONSTRAINT wagtailcore_page_numchild_check CHECK ((numchild >= 0))
 );
@@ -3196,7 +3197,7 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 244, true);
 --
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$36000$5HkCiQD2wOPy$quuP34M/87omK0yq4oSkulez1de4DadLKB28QDGhFz0=	2017-06-06 09:20:47.394988-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
+1	pbkdf2_sha256$36000$5HkCiQD2wOPy$quuP34M/87omK0yq4oSkulez1de4DadLKB28QDGhFz0=	2017-09-07 11:17:04.10623-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
 \.
 
 
@@ -3641,6 +3642,8 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 149	people	0003_personpage_telephone_2	2017-08-08 10:09:36.253624-04
 150	people	0004_personpage_email_2	2017-08-08 10:09:36.83787-04
 151	pages	0014_auto_20170817_1705	2017-08-17 13:06:05.105908-04
+152	wagtailcore	0040_page_draft_title	2017-09-07 10:14:59.367452-04
+153	contact	0006_auto_20170907_1451	2017-09-07 11:16:04.271249-04
 \.
 
 
@@ -3648,7 +3651,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 151, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 153, true);
 
 
 --
@@ -3696,6 +3699,8 @@ fhs7v7i4w6goldqc6yursm2xqhx7x7j4	ZGE0MjFjYzI3MWIyYzRkMWU0Y2E0MGMzNWNmMTU0Njg3OTF
 sk3q2jzh0mudb8zlgczrf9iq51vlwz9c	ZGE0MjFjYzI3MWIyYzRkMWU0Y2E0MGMzNWNmMTU0Njg3OTFkNDJjNzp7Il9hdXRoX3VzZXJfaGFzaCI6ImZiMjZiOTA0ZTBjZDRjNzUxYTA2YmRlZmQ2Mzk5MGYwMWZlNTdjOTIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-01-03 04:16:05.124968-04
 f7mzlb668r0y8j3s8ifhx9y1lp5oa5n5	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-06-12 02:47:56.456764-04
 fe632xaodlns0yx8u27dzxgzfvz56zuy	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-06-20 09:20:47.466637-04
+3e8ibx9rj4x991ad7katd4ct9pkwtlgb	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-09-21 10:17:16.955274-04
+ufz0a91jvzhyo6qwu244wuh6m2m07u1w	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-09-21 11:17:04.180546-04
 \.
 
 
@@ -4436,30 +4441,30 @@ SELECT pg_catalog.setval('wagtailcore_grouppagepermission_id_seq', 6, true);
 -- Data for Name: wagtailcore_page; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailcore_page (id, path, depth, numchild, title, slug, live, has_unpublished_changes, url_path, seo_title, show_in_menus, search_description, go_live_at, expire_at, expired, content_type_id, owner_id, locked, latest_revision_created_at, first_published_at, live_revision_id, last_published_at) FROM stdin;
-16	000100010004	3	3	Blog Index	blog-index	t	t	/home/blog-index/		t		\N	\N	f	43	1	f	2017-05-29 02:48:04.286239-04	2016-07-20 04:11:32.157776-04	\N	\N
-1	0001	1	1	Root	root	t	f	/		f		\N	\N	f	1	\N	f	\N	\N	\N	\N
-14	0001000100030002	4	0	Event Page 2	event-page-2	t	f	/home/event-index/event-page-2/		t		\N	\N	f	54	1	f	2016-07-20 04:09:41.447057-04	2016-07-20 04:09:41.570505-04	\N	2016-07-20 04:09:41.447057-04
-12	000100010003	3	3	Event Index	event-index	t	f	/home/event-index/		t		\N	\N	f	49	1	f	2016-07-20 04:06:58.286914-04	2016-07-20 04:06:58.53047-04	\N	2016-07-20 04:06:58.286914-04
-15	0001000100030003	4	0	Event Page 3	event-page-3	t	f	/home/event-index/event-page-3/		t		\N	\N	f	54	1	f	2016-07-20 04:10:44.402947-04	2016-07-20 04:10:44.51417-04	\N	2016-07-20 04:10:44.402947-04
-4	000100010001	3	2	Standard Index	standard-index	t	f	/home/standard-index/		t		\N	\N	f	34	1	f	2016-07-20 03:46:10.872621-04	2016-07-20 03:46:10.958228-04	\N	2016-07-20 03:46:10.872621-04
-22	000100010006	3	1	Photo Gallery	photo-gallery	t	f	/home/photo-gallery/		t		\N	\N	f	65	1	f	2016-07-20 04:26:14.850905-04	2016-07-20 04:26:14.950408-04	\N	2016-07-20 04:26:14.850905-04
-8	0001000100020001	4	0	Person Page 1	person-page-1	t	f	/home/person-index/person-page-1/		t		\N	\N	f	64	1	f	2016-07-20 03:53:19.593846-04	2016-07-20 03:53:19.687868-04	\N	2016-07-20 03:53:19.593846-04
-9	0001000100020002	4	0	Person Page 2	person-page-2	t	f	/home/person-index/person-page-2/		t		\N	\N	f	64	1	f	2016-07-20 03:54:19.879143-04	2016-07-20 03:54:19.97687-04	\N	2016-07-20 03:54:19.879143-04
-10	0001000100020003	4	0	Person Page 3	person-page-3	t	f	/home/person-index/person-page-3/		t		\N	\N	f	64	1	f	2016-07-20 03:54:52.366369-04	2016-07-20 03:54:52.464716-04	\N	2016-07-20 03:54:52.366369-04
-7	000100010002	3	4	Person Index	person-index	t	f	/home/person-index/		t		\N	\N	f	60	1	f	2016-07-20 03:52:02.385824-04	2016-07-20 03:52:02.470385-04	\N	2016-07-20 03:52:02.385824-04
-11	0001000100020004	4	0	Person Page 4	person-page-4	t	f	/home/person-index/person-page-4/		t		\N	\N	f	64	1	f	2016-07-20 03:55:24.424289-04	2016-07-20 03:55:24.520241-04	\N	2016-07-20 03:55:24.424289-04
-20	000100010005	3	1	Documents Gallery	documents-gallery	t	f	/home/documents-gallery/		t		\N	\N	f	73	1	f	2016-07-20 04:22:02.975756-04	2016-07-20 04:22:03.069215-04	\N	2016-07-20 04:22:02.975756-04
-21	0001000100050001	4	0	Sample Documents	sample-documents	t	f	/home/documents-gallery/sample-documents/		t		\N	\N	f	75	1	f	2016-07-20 04:24:12.663501-04	2016-07-20 04:24:12.780898-04	\N	2016-07-20 04:24:12.663501-04
-24	000100010007	3	0	Contact Us	contact-us	t	f	/home/contact-us/		t		\N	\N	f	58	1	f	2016-07-20 04:33:22.946592-04	2016-07-20 04:32:19.773581-04	\N	2016-07-20 04:33:22.946592-04
-3	00010001	2	7	Homepage	home	t	f	/home/		t		\N	\N	f	4	\N	f	2016-07-20 03:45:12.484088-04	2016-07-20 03:37:34.678451-04	\N	2016-07-20 03:45:12.484088-04
-17	0001000100040001	4	0	Blog Page 1	blog-page-1	t	f	/home/blog-index/blog-page-1/		t		\N	\N	f	47	1	f	2016-09-20 08:31:13.370445-04	2016-07-20 04:13:43.63026-04	\N	2016-09-20 08:31:13.370445-04
-18	0001000100040002	4	0	Blog Page 2	blog-page-2	t	f	/home/blog-index/blog-page-2/		t		\N	\N	f	47	1	f	2016-09-20 08:38:28.178672-04	2016-07-20 04:15:09.479097-04	\N	2016-09-20 08:38:28.178672-04
-19	0001000100040003	4	0	Blog Page 3	blog-page-3	t	f	/home/blog-index/blog-page-3/		t		\N	\N	f	47	1	f	2016-09-20 08:39:24.91435-04	2016-07-20 04:17:15.679154-04	\N	2016-09-20 08:39:24.91435-04
-23	0001000100060001	4	0	Sample Gallery	sample-gallery	t	f	/home/photo-gallery/sample-gallery/		t		\N	\N	f	67	1	f	2016-11-01 11:21:54.076719-04	2016-07-20 04:27:21.803486-04	\N	2016-11-01 11:21:54.076719-04
-13	0001000100030001	4	0	Event Page 1	event-page-1	t	f	/home/event-index/event-page-1/		t		\N	\N	f	54	1	f	2016-11-01 11:23:02.738075-04	2016-07-20 04:08:44.515126-04	\N	2016-11-01 11:23:02.738075-04
-5	0001000100010001	4	0	Standard Page w/o Sidebar	standard-page-wo-sidebar	t	f	/home/standard-index/standard-page-wo-sidebar/		t		\N	\N	f	37	1	f	2017-06-06 09:21:53.664968-04	2016-07-20 03:48:57.449331-04	\N	2017-06-06 09:21:53.664968-04
-6	0001000100010002	4	0	Standard Page	standard-page	t	f	/home/standard-index/standard-page/		t		\N	\N	f	37	1	f	2017-06-06 09:22:33.296026-04	2016-07-20 03:50:19.479521-04	\N	2017-06-06 09:22:33.296026-04
+COPY wagtailcore_page (id, path, depth, numchild, title, slug, live, has_unpublished_changes, url_path, seo_title, show_in_menus, search_description, go_live_at, expire_at, expired, content_type_id, owner_id, locked, latest_revision_created_at, first_published_at, live_revision_id, last_published_at, draft_title) FROM stdin;
+16	000100010004	3	3	Blog Index	blog-index	t	t	/home/blog-index/		t		\N	\N	f	43	1	f	2017-05-29 02:48:04.286239-04	2016-07-20 04:11:32.157776-04	\N	\N	Blog Index
+1	0001	1	1	Root	root	t	f	/		f		\N	\N	f	1	\N	f	\N	\N	\N	\N	Root
+14	0001000100030002	4	0	Event Page 2	event-page-2	t	f	/home/event-index/event-page-2/		t		\N	\N	f	54	1	f	2016-07-20 04:09:41.447057-04	2016-07-20 04:09:41.570505-04	\N	2016-07-20 04:09:41.447057-04	Event Page 2
+12	000100010003	3	3	Event Index	event-index	t	f	/home/event-index/		t		\N	\N	f	49	1	f	2016-07-20 04:06:58.286914-04	2016-07-20 04:06:58.53047-04	\N	2016-07-20 04:06:58.286914-04	Event Index
+15	0001000100030003	4	0	Event Page 3	event-page-3	t	f	/home/event-index/event-page-3/		t		\N	\N	f	54	1	f	2016-07-20 04:10:44.402947-04	2016-07-20 04:10:44.51417-04	\N	2016-07-20 04:10:44.402947-04	Event Page 3
+4	000100010001	3	2	Standard Index	standard-index	t	f	/home/standard-index/		t		\N	\N	f	34	1	f	2016-07-20 03:46:10.872621-04	2016-07-20 03:46:10.958228-04	\N	2016-07-20 03:46:10.872621-04	Standard Index
+22	000100010006	3	1	Photo Gallery	photo-gallery	t	f	/home/photo-gallery/		t		\N	\N	f	65	1	f	2016-07-20 04:26:14.850905-04	2016-07-20 04:26:14.950408-04	\N	2016-07-20 04:26:14.850905-04	Photo Gallery
+8	0001000100020001	4	0	Person Page 1	person-page-1	t	f	/home/person-index/person-page-1/		t		\N	\N	f	64	1	f	2016-07-20 03:53:19.593846-04	2016-07-20 03:53:19.687868-04	\N	2016-07-20 03:53:19.593846-04	Person Page 1
+9	0001000100020002	4	0	Person Page 2	person-page-2	t	f	/home/person-index/person-page-2/		t		\N	\N	f	64	1	f	2016-07-20 03:54:19.879143-04	2016-07-20 03:54:19.97687-04	\N	2016-07-20 03:54:19.879143-04	Person Page 2
+10	0001000100020003	4	0	Person Page 3	person-page-3	t	f	/home/person-index/person-page-3/		t		\N	\N	f	64	1	f	2016-07-20 03:54:52.366369-04	2016-07-20 03:54:52.464716-04	\N	2016-07-20 03:54:52.366369-04	Person Page 3
+7	000100010002	3	4	Person Index	person-index	t	f	/home/person-index/		t		\N	\N	f	60	1	f	2016-07-20 03:52:02.385824-04	2016-07-20 03:52:02.470385-04	\N	2016-07-20 03:52:02.385824-04	Person Index
+11	0001000100020004	4	0	Person Page 4	person-page-4	t	f	/home/person-index/person-page-4/		t		\N	\N	f	64	1	f	2016-07-20 03:55:24.424289-04	2016-07-20 03:55:24.520241-04	\N	2016-07-20 03:55:24.424289-04	Person Page 4
+20	000100010005	3	1	Documents Gallery	documents-gallery	t	f	/home/documents-gallery/		t		\N	\N	f	73	1	f	2016-07-20 04:22:02.975756-04	2016-07-20 04:22:03.069215-04	\N	2016-07-20 04:22:02.975756-04	Documents Gallery
+21	0001000100050001	4	0	Sample Documents	sample-documents	t	f	/home/documents-gallery/sample-documents/		t		\N	\N	f	75	1	f	2016-07-20 04:24:12.663501-04	2016-07-20 04:24:12.780898-04	\N	2016-07-20 04:24:12.663501-04	Sample Documents
+24	000100010007	3	0	Contact Us	contact-us	t	f	/home/contact-us/		t		\N	\N	f	58	1	f	2016-07-20 04:33:22.946592-04	2016-07-20 04:32:19.773581-04	\N	2016-07-20 04:33:22.946592-04	Contact Us
+3	00010001	2	7	Homepage	home	t	f	/home/		t		\N	\N	f	4	\N	f	2016-07-20 03:45:12.484088-04	2016-07-20 03:37:34.678451-04	\N	2016-07-20 03:45:12.484088-04	Homepage
+17	0001000100040001	4	0	Blog Page 1	blog-page-1	t	f	/home/blog-index/blog-page-1/		t		\N	\N	f	47	1	f	2016-09-20 08:31:13.370445-04	2016-07-20 04:13:43.63026-04	\N	2016-09-20 08:31:13.370445-04	Blog Page 1
+18	0001000100040002	4	0	Blog Page 2	blog-page-2	t	f	/home/blog-index/blog-page-2/		t		\N	\N	f	47	1	f	2016-09-20 08:38:28.178672-04	2016-07-20 04:15:09.479097-04	\N	2016-09-20 08:38:28.178672-04	Blog Page 2
+19	0001000100040003	4	0	Blog Page 3	blog-page-3	t	f	/home/blog-index/blog-page-3/		t		\N	\N	f	47	1	f	2016-09-20 08:39:24.91435-04	2016-07-20 04:17:15.679154-04	\N	2016-09-20 08:39:24.91435-04	Blog Page 3
+23	0001000100060001	4	0	Sample Gallery	sample-gallery	t	f	/home/photo-gallery/sample-gallery/		t		\N	\N	f	67	1	f	2016-11-01 11:21:54.076719-04	2016-07-20 04:27:21.803486-04	\N	2016-11-01 11:21:54.076719-04	Sample Gallery
+13	0001000100030001	4	0	Event Page 1	event-page-1	t	f	/home/event-index/event-page-1/		t		\N	\N	f	54	1	f	2016-11-01 11:23:02.738075-04	2016-07-20 04:08:44.515126-04	\N	2016-11-01 11:23:02.738075-04	Event Page 1
+5	0001000100010001	4	0	Standard Page w/o Sidebar	standard-page-wo-sidebar	t	f	/home/standard-index/standard-page-wo-sidebar/		t		\N	\N	f	37	1	f	2017-06-06 09:21:53.664968-04	2016-07-20 03:48:57.449331-04	\N	2017-06-06 09:21:53.664968-04	Standard Page w/o Sidebar
+6	0001000100010002	4	0	Standard Page	standard-page	t	f	/home/standard-index/standard-page/		t		\N	\N	f	37	1	f	2017-06-06 09:22:33.296026-04	2016-07-20 03:50:19.479521-04	\N	2017-06-06 09:22:33.296026-04	Standard Page
 \.
 
 
@@ -4559,7 +4564,7 @@ SELECT pg_catalog.setval('wagtailcore_pageviewrestriction_id_seq', 1, false);
 --
 
 COPY wagtailcore_site (id, hostname, port, is_default_site, root_page_id, site_name) FROM stdin;
-2	localhost	80	t	3	\N
+2	localhost	80	t	3	Chrisdev Wagtail
 \.
 
 
@@ -4701,6 +4706,7 @@ COPY wagtailimages_rendition (id, file, width, height, focal_point_key, image_id
 49	images/wagtail.2e16d0ba.fill-500x350.jpg	500	350	2e16d0ba	9	fill-500x350
 50	images/wagtail.2e16d0ba.fill-1200x440.jpg	1200	440	2e16d0ba	9	fill-1200x440
 51	images/foundation.2e16d0ba.fill-1200x440.jpg	1200	440	2e16d0ba	3	fill-1200x440
+52	images/wagtail.2e16d0ba.fill-100x100.jpg	100	100	2e16d0ba	9	fill-100x100
 \.
 
 
@@ -4708,7 +4714,7 @@ COPY wagtailimages_rendition (id, file, width, height, focal_point_key, image_id
 -- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 51, true);
+SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 52, true);
 
 
 --
