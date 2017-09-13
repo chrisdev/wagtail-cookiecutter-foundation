@@ -97,6 +97,7 @@ button:hover, .button:hover {background: $primary-dark;}
   a {color: $white; margin-right: 8px; font-size: 17px;}
 }
 
+.title-bar {background: $primary;}
 @include breakpoint(medium) {
   .top-bar {
     background: $primary;
