@@ -7,51 +7,53 @@
 <div class="row">
   <div class="medium-12 columns">
     <div class="card" style="margin-bottom: 0;">
-      <div class="medium-7 columns">
-        {% if self.feed_image %}
-        {% image self.feed_image fill-1200x880 %}
-        {% endif %}
-      </div>
-      <div class="medium-5 columns">
-        <br>
-        <h4><strong>{{ self.title }}</strong></h4>
-
-        <p>Date: <strong>{{ self.date_from|date:"j F Y" }}</strong>
-
-          {% if self.date_to %}
-          - <strong>{{ self.date_to|date:"j F Y" }}</strong>
-          {% endif %}
-        </p>
-
-        <p>
-          {% if self.time_from %}
-          Time: <strong>{{ self.time_from|time_display }}</strong>
-          {% endif %}
-
-          {% if self.time_to %}
-          - <strong>{{ self.time_to|time_display }}</strong>
-          {% endif %}
-        </p>
-
-        {% if self.location %}
-        <p>Location: <strong>{{ self.location }}</strong></p>
-        {% endif %}
-
-        {% if self.cost %}
-        <p>Cost: <strong>{{ self.cost|safe }}</strong></p>
-        {% endif %}
-
-        {% if self.audience %}
-        <p>Audience: <strong>{{ self.get_audience_display }}</strong></p>
-        {% endif %}
-
-        {% if self.signup_link %}
-        <p>Sign up: <a href="{{ self.signup_link }}">{{ self.signup_link }}</a></p>
-        {% endif %}
-
-
-        <p class="add"><a id="calendar" class='button tiny radius' style="border-radius: 3px;" href= "{{ self.url }}?format=ical"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Add to calendar</a></p>
-      </div>
+    	<div class="row">
+    	      <div class="medium-7 columns">
+    	        {% if self.feed_image %}
+    	        {% image self.feed_image fill-1200x880 %}
+    	        {% endif %}
+    	      </div>
+    	      <div class="medium-5 columns">
+    	        <br>
+    	        <h4><strong>{{ self.title }}</strong></h4>
+    	
+    	        <p>Date: <strong>{{ self.date_from|date:"j F Y" }}</strong>
+    	
+    	          {% if self.date_to %}
+    	          - <strong>{{ self.date_to|date:"j F Y" }}</strong>
+    	          {% endif %}
+    	        </p>
+    	
+    	        <p>
+    	          {% if self.time_from %}
+    	          Time: <strong>{{ self.time_from|time_display }}</strong>
+    	          {% endif %}
+    	
+    	          {% if self.time_to %}
+    	          - <strong>{{ self.time_to|time_display }}</strong>
+    	          {% endif %}
+    	        </p>
+    	
+    	        {% if self.location %}
+    	        <p>Location: <strong>{{ self.location }}</strong></p>
+    	        {% endif %}
+    	
+    	        {% if self.cost %}
+    	        <p>Cost: <strong>{{ self.cost|safe }}</strong></p>
+    	        {% endif %}
+    	
+    	        {% if self.audience %}
+    	        <p>Audience: <strong>{{ self.get_audience_display }}</strong></p>
+    	        {% endif %}
+    	
+    	        {% if self.signup_link %}
+    	        <p>Sign up: <a href="{{ self.signup_link }}">{{ self.signup_link }}</a></p>
+    	        {% endif %}
+    	
+    	
+    	        <p class="add" style="margin-bottom: 0;"><a id="calendar" class='button tiny radius' style="border-radius: 3px;" href= "{{ self.url }}?format=ical"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Add to calendar</a></p>
+    	      </div>
+    	 </div>
     </div>
   </div>
   <div class="medium-12 columns">
