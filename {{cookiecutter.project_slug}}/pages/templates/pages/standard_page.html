@@ -24,9 +24,8 @@
 <div id="content" class="row">
   <div id="standard_page" class="medium-9 columns">
     {% if self.feed_image %}{% else %}
-        <center>
-            <h3>{{ self.title }}</h3>
-        </center>
+        <h3>{{ self.title }}</h3>
+        <hr>
     {% endif %}
     
     {% include "pages/includes/intro.html" with intro=self.intro only %}
