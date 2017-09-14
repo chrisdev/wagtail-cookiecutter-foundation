@@ -56,7 +56,7 @@ def more_news(context, count=2):
 
 @register.inclusion_tag('events/includes/event_listing.html',
                         takes_context=True)
-def upcoming_events(context, count=8):
+def upcoming_events(context, count=3):
 
     events = EventPage.objects.filter(live=True)
     events = events.filter(date_from__gte=date.today())
