@@ -4,11 +4,32 @@
 {% load {% endraw %}{{ cookiecutter.project_slug }}{% raw %}_utils %}
 
 {% block content %}
+
+{% if self.feed_image %}
+{% image self.feed_image original as feed_image %}
+<div class="row expanded collapse">
+  <div class="column">
+    <div class="large-article-header page" style="background-image:url('{{ feed_image.url }}')">
+      <div class="large-article-header-content">
+        <div class="center-container">
+          <div class="article-title">
+            <center><h1>{{ self.title }}</h1></center>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
 <div id="content" class="row">
   <div id="standard_page" class="medium-10 medium-centered columns">
-    <h4><strong>{{ self.title }}</strong></h4>
-    <h5 class="subheader">{{ self.subtitle }}</h5>
-    <hr>
+    {% if self.feed_image %}{% else %}
+        <center>
+            <h3>{{ self.title }}</h3>
+        </center>
+    {% endif %}
+    
     {% include "pages/includes/intro.html" with intro=self.intro only %}
 
     {% include "pages/includes/standard_carousel.html" with image_items=self.image_items.all only %}
