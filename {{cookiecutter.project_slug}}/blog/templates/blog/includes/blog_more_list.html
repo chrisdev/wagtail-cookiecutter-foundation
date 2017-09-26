@@ -1,14 +1,23 @@
 {% raw %}{% load wagtailcore_tags wagtailimages_tags %}
 
-{% for blog in blogs %}
-    {% if blog.feed_image %}
-        {% image blog.feed_image fill-1200x500 %}
-    {% endif %}
-    <h5><a href="{% pageurl blog %}"><strong>{{ blog.title }}</strong></a></h5>
-    <li style="list-style: none;"><strong>{{ blog.date|date:"j F Y" }}</strong></li>
-    
-    {{ blog.intro|truncatewords:40|richtext }}
-
-    <a class="button radius tiny float-right" style="margin-bottom: 10px; border-radius: 4px;" href="{% pageurl blog %}">Read Article &raquo;</a>
-<hr>
-{% endfor %}{% endraw %}  
+<div class="article-row-section pad">
+	<div class="article-row-section-inner">
+  		<center>
+    		<h3 class="article-row-section-header">Latest Posts</h3>
+    	</center>
+        {% for blog in blogs %}
+        	<a href="{% pageurl blog %}">
+        	      <article class="article-row">
+        	        <div class="article-row-content">
+        	          <h1 class="article-row-content-header">{{ blog.title }}</h1>
+        	
+        	          {{ blog.intro|truncatewords:40|richtext }}
+        	
+        	          <time class="article-row-content-time" datetime="2008-02-14 20:00"><strong>{{ blog.date|date:"j F Y" }}</strong></time>
+        	        </div>
+        	      </article>
+        	</a>
+        {% endfor %}
+    </div>
+</div> 
+{% endraw %}  

@@ -1,26 +1,34 @@
-{% raw %}{% load wagtailcore_tags %}
-<div id="event_feed" class="card text-center" style="padding: 0;">
-  <center><h6 class="title" style="font-variant: small-caps;"><strong>Upcoming Events</strong></h6></center>
+{% raw %}{% load wagtailcore_tags wagtailimages_tags %}
 
-  <div class="feed" style="padding: 5px; padding-top: 0;">
-    {% for event in events %}
-    <div class="event">
-      <a href="{% pageurl event %}">
-        <div>
-          <h6 class="date" style="margin-bottom: 2px;">{{ event.date_from|date:"d" }} {{ event.date_from|date:"F" }} {{ event.date_from|date:"Y" }}</h6>
-          <h6 class="event"><strong>{{ event.title }}</strong></h6>
+{% if events %}
+    <div id="event_grid" class="row pad">
+        <center>
+        	<h3 class="article-row-section-header">Upcoming Events</h3>
+        </center>
+        <div class="medium-12 columns">
+            <div class="medium-up-3 small-up-1 columns" data-equalizer>
+                {% for event in events %}
+                    <div class="column">
+                      <a href="{% pageurl event %}">
+                        <div class="card" data-equalizer-watch>
+                          {% if event.feed_image %}
+                          {% image event.feed_image fill-800x350 %}
+                          {% endif %}
+                    
+                          <div class="card-section">
+                            <h6>{{ event.title }}</h6>
+                            
+                            <li style="margin-bottom: 6px;"><i class="fa fa-clock-o" aria-hidden="true"></i> {{ event.date_from|date:"j F Y" }} {% if event.time_from %}@ {{ event.time_from }}{% endif %}</li>
+                    
+                            {% if event.location %}
+                            <li><i class="fa fa-map-marker" aria-hidden="true"></i> {{ event.location }}</li>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-      </a>
     </div>
-    {% empty %}
-    <div class="event">
-      <div style="text-align: center;">
-        <h6 class="date">NO UPCOMING EVENTS</h6>
-        <div class="details">
-          <p>We currently have no upcoming events scheduled.</p>
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-</div>{% endraw %}
+{% endif %}{% endraw %}

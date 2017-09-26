@@ -2,17 +2,39 @@
 {% load wagtailcore_tags navigation_tags wagtailimages_tags %}
 {% load {% endraw %}{{ cookiecutter.project_slug }}{% raw %}_utils %}
 
+{% block breadcrumbs %}{% endblock %}
+
 {% block content %}
+
+{% if self.feed_image %}
+{% image self.feed_image original as feed_image %}
+<div class="row expanded collapse">
+  <div class="column">
+    <div class="large-article-header page" style="background-image:url('{{ feed_image.url }}')">
+      <div class="large-article-header-content">
+        <div class="center-container">
+          <div class="article-title">
+            <center><h1>{{ self.title }}</h1></center>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+{% endif %}
+
 <div id="content" class="row">
-  <div id="standard_page" class="medium-9 columns">
-      <h4><strong>{{ self.title }}</strong></h4>
-      <h5 class="subheader">{{ self.subtitle }}</h5>
-      <hr>
+  <div id="standard_page" class="medium-9 medium-centered columns">
+      {% if self.feed_image %}{% else %}
+          <center>
+              <h3>{{ self.title }}</h3>
+          </center>
+          <br>
+      {% endif %}
 
       {% include "pages/includes/intro.html" with intro=self.intro only %}
-  </div>
-  <div id="sidebar" class="hide-for-print hide-for-small-only medium-3 columns">
-    {% secondary_menu calling_page=self %}
   </div>
 </div>
 {% endblock %}{% endraw %}
