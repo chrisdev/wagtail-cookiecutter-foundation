@@ -13,6 +13,6 @@ libsass==0.13.2
 psycopg2==2.7.3.1
 wand==0.4.4
 git+https://github.com/andrivet/wagtail-markdown.git
-bleach==2.0.0
+bleach==2.1
 {% if cookiecutter.use_wagalytics_app == 'y' %}wagalytics==0.6 {% endif %}
 {% if cookiecutter.use_django_cachalot == 'y' %}django-cachalot==1.2.1 {% endif %}
