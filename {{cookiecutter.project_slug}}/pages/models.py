@@ -287,6 +287,7 @@ class Advert(LinkFields):
     image = models.ForeignKey(
         Image, null=True, blank=True, on_delete=models.SET_NULL
     )
+    button_text = models.CharField(max_length=150, null=True)
     text = RichTextField(blank=True)
 
     panels = [
@@ -294,6 +295,7 @@ class Advert(LinkFields):
         FieldPanel('title'),
         ImageChooserPanel('image'),
         FieldPanel('text'),
+        FieldPanel('button_text'),
         MultiFieldPanel(LinkFields.panels, "Link"),
     ]
 

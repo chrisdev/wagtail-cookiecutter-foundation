@@ -857,7 +857,8 @@ CREATE TABLE pages_advert (
     image_id integer,
     link_document_id integer,
     link_page_id integer,
-    page_id integer
+    page_id integer,
+    button_text character varying(150)
 );
 
 
@@ -3197,7 +3198,7 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 244, true);
 --
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$36000$5HkCiQD2wOPy$quuP34M/87omK0yq4oSkulez1de4DadLKB28QDGhFz0=	2017-09-07 11:17:04.10623-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
+1	pbkdf2_sha256$36000$5HkCiQD2wOPy$quuP34M/87omK0yq4oSkulez1de4DadLKB28QDGhFz0=	2017-10-05 10:52:02.151502-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
 \.
 
 
@@ -3644,6 +3645,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 151	pages	0014_auto_20170817_1705	2017-08-17 13:06:05.105908-04
 152	wagtailcore	0040_page_draft_title	2017-09-07 10:14:59.367452-04
 153	contact	0006_auto_20170907_1451	2017-09-07 11:16:04.271249-04
+154	pages	0015_advert_button_text	2017-10-05 10:51:20.806368-04
 \.
 
 
@@ -3651,7 +3653,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 153, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 154, true);
 
 
 --
@@ -3701,6 +3703,7 @@ f7mzlb668r0y8j3s8ifhx9y1lp5oa5n5	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJ
 fe632xaodlns0yx8u27dzxgzfvz56zuy	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-06-20 09:20:47.466637-04
 3e8ibx9rj4x991ad7katd4ct9pkwtlgb	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-09-21 10:17:16.955274-04
 ufz0a91jvzhyo6qwu244wuh6m2m07u1w	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-09-21 11:17:04.180546-04
+uw6t4ywi903n5ydri8zemcx1e1861r3m	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-10-19 10:52:02.176801-04
 \.
 
 
@@ -3841,7 +3844,8 @@ SELECT pg_catalog.setval('events_eventpagetag_id_seq', 6, true);
 -- Data for Name: pages_advert; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_advert (id, link_external, title, text, image_id, link_document_id, link_page_id, page_id) FROM stdin;
+COPY pages_advert (id, link_external, title, text, image_id, link_document_id, link_page_id, page_id, button_text) FROM stdin;
+1		This is a notification!	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris libero dolor, volutpat vulputate aliquet vel, elementum nec risus.</p>	10	\N	4	\N	Check it out!
 \.
 
 
@@ -3849,7 +3853,7 @@ COPY pages_advert (id, link_external, title, text, image_id, link_document_id, l
 -- Name: pages_advert_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('pages_advert_id_seq', 1, false);
+SELECT pg_catalog.setval('pages_advert_id_seq', 1, true);
 
 
 --
@@ -4707,6 +4711,7 @@ COPY wagtailimages_rendition (id, file, width, height, focal_point_key, image_id
 50	images/wagtail.2e16d0ba.fill-1200x440.jpg	1200	440	2e16d0ba	9	fill-1200x440
 51	images/foundation.2e16d0ba.fill-1200x440.jpg	1200	440	2e16d0ba	3	fill-1200x440
 52	images/wagtail.2e16d0ba.fill-100x100.jpg	100	100	2e16d0ba	9	fill-100x100
+53	images/wagtail.width-90.png	90	90		10	width-90
 \.
 
 
@@ -4714,7 +4719,7 @@ COPY wagtailimages_rendition (id, file, width, height, focal_point_key, image_id
 -- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 52, true);
+SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 53, true);
 
 
 --
