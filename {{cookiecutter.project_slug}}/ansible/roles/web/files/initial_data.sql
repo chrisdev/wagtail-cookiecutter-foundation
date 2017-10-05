@@ -3845,7 +3845,6 @@ SELECT pg_catalog.setval('events_eventpagetag_id_seq', 6, true);
 --
 
 COPY pages_advert (id, link_external, title, text, image_id, link_document_id, link_page_id, page_id, button_text) FROM stdin;
-1		This is a notification!	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris libero dolor, volutpat vulputate aliquet vel, elementum nec risus.</p>	10	\N	4	\N	Check it out!
 \.
 
 
