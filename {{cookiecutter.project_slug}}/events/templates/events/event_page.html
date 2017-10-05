@@ -1,6 +1,5 @@
 {% raw %}{% extends "events/event_base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
-{% load {% endraw %}{{ cookiecutter.project_slug }}{% raw %}_utils %}
+{% load {% endraw %}{{ cookiecutter.project_slug }}{% raw %}_utils wagtailcore_tags wagtailimages_tags %}
 
 {% block event_content %}
 {% include "utils/includes/social_share.html" %}
