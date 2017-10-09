@@ -80,19 +80,15 @@ $static: static;
   height: 100%;
 }
 
-$header-color: #555;
 $body-font-color: $emperor;
 
-body {background: $white; color: $emperor;}
-.off-canvas-content, .off-canvas-content {background: transparent;}
-.row{max-width: 68em;}
+body {background: $white;}
 .pad {padding: 20px 0;}
 a {color: $primary;}
 a:hover {color: $secondary;}
 button, .button {background: $primary;}
-button.secondary, .button.secondary {background: $emperor;color: $secondary;}
 button:hover, .button:hover {background: $primary-dark;}
-hr {border-color: $emperor;}
+hr {border-color: $light-gray;}
 
 #social_bar {
   padding: 3px 0;
@@ -434,6 +430,7 @@ footer {
   #copyright
   {
     background-color:$dark-metal;
+    margin-top: 20px;
     p {
       margin-bottom: 0;
       padding: 8px 0;
