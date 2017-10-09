@@ -139,24 +139,25 @@ button:hover, .button:hover {background: $primary-dark;}
 }
 
 .off-canvas {
-    background: $primary;
+    background: $off-white;
     .is-drilldown {
-        margin-top: 30px;
-        .drilldown a {background: $primary; color: $white; padding: 1rem;}
-        .drilldown a:hover {background: $primary-dark; color: $white;}
-        .drilldown .is-drilldown-submenu-parent a::after {border-color: transparent transparent transparent $white;}
-        .drilldown .js-drilldown-back a::before {border-color: transparent $white transparent transparent;}
-        .is-drilldown-submenu {background: $primary;}
+        margin-top: 40px;
+        .drilldown a {background: $off-white; color: $primary; padding: 1rem; border-bottom: 1px solid #f2f2f2;}
+        .drilldown a:hover {background: $white; color: $primary-dark;}
+        .drilldown .is-drilldown-submenu-parent a::after {border-color: transparent transparent transparent $primary;}
+        .drilldown .js-drilldown-back a::before {border-color: transparent $primary transparent transparent;}
+        .is-drilldown-submenu {background: $off-white;}
     }
     .close-button {
         z-index: 9999;
         background: transparent;
-        color: $white;
+        color: $dove-gray;
         right: .5rem;
         top: 0.2rem;
     }
     z-index: 9999;
 }
+.off-canvas.is-transition-overlap {z-index: 99999;}
 
 .breadcrumbs {
   margin: 20px 0 10px;
