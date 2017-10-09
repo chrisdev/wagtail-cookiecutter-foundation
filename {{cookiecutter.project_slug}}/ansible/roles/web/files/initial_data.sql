@@ -486,7 +486,8 @@ CREATE TABLE contact_formpage (
     from_address character varying(255) NOT NULL,
     subject character varying(255) NOT NULL,
     intro text NOT NULL,
-    thank_you_text text NOT NULL
+    thank_you_text text NOT NULL,
+    feed_image_id integer
 );
 
 
@@ -3377,7 +3378,7 @@ SELECT pg_catalog.setval('contact_formfield_id_seq', 1, false);
 -- Data for Name: contact_formpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY contact_formpage (page_ptr_id, to_address, from_address, subject, intro, thank_you_text) FROM stdin;
+COPY contact_formpage (page_ptr_id, to_address, from_address, subject, intro, thank_you_text, feed_image_id) FROM stdin;
 \.
 
 
@@ -3656,6 +3657,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 157	events	0005_eventindexpage_feed_image	2017-10-09 14:21:07.336926-04
 158	people	0005_personindexpage_feed_image	2017-10-09 14:21:08.248952-04
 159	products	0007_productindexpage_feed_image	2017-10-09 14:21:09.411912-04
+160	contact	0008_formpage_feed_image	2017-10-09 14:34:02.210929-04
 \.
 
 
@@ -3663,7 +3665,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 159, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 160, true);
 
 
 --
@@ -5869,6 +5871,13 @@ CREATE INDEX contact_formfield_1a63c800 ON contact_formfield USING btree (page_i
 
 
 --
+-- Name: contact_formpage_feed_image_id_0303d2c9; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX contact_formpage_feed_image_id_0303d2c9 ON contact_formpage USING btree (feed_image_id);
+
+
+--
 -- Name: django_admin_log_417f1b1c; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7119,6 +7128,14 @@ ALTER TABLE ONLY contact_contactpage
 
 ALTER TABLE ONLY contact_formfield
     ADD CONSTRAINT contact_formfi_page_id_3ee48e6d_fk_contact_formpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES contact_formpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: contact_formpage_feed_image_id_0303d2c9_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY contact_formpage
+    ADD CONSTRAINT contact_formpage_feed_image_id_0303d2c9_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
