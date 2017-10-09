@@ -5,6 +5,8 @@ from wagtail.wagtailadmin.edit_handlers import (
     FieldPanel, MultiFieldPanel, InlinePanel
 )
 
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
 from modelcluster.fields import ParentalKey
 from utils.models import ContactFields
@@ -17,6 +19,13 @@ class FormField(AbstractFormField):
 class FormPage(AbstractEmailForm):
     intro = RichTextField(blank=True)
     thank_you_text = RichTextField(blank=True)
+    feed_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
 
 FormPage.content_panels = [
@@ -32,6 +41,10 @@ FormPage.content_panels = [
     ], "Email")
 ]
 
+FormPage.promote_panels = Page.promote_panels + [
+    ImageChooserPanel('feed_image'),
+]
+
 
 class ContactFormField(AbstractFormField):
     page = ParentalKey('contact.ContactPage', related_name='form_fields')
@@ -40,6 +53,13 @@ class ContactFormField(AbstractFormField):
 class ContactPage(AbstractEmailForm, ContactFields):
     intro = models.CharField(max_length=255, blank=True)
     thank_you_text = RichTextField(blank=True)
+    feed_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
 
 ContactPage.content_panels = [
@@ -53,4 +73,8 @@ ContactPage.content_panels = [
         FieldPanel('subject', classname="full"),
     ], "Form Submission Email"),
     MultiFieldPanel(ContactFields.panels, "Your Contact Information"),
+]
+
+ContactPage.promote_panels = Page.promote_panels + [
+    ImageChooserPanel('feed_image'),
 ]
