@@ -57,7 +57,7 @@ $primary: map-get($foundation-palette, primary);
 $secondary: map-get($foundation-palette, secondary);
 $primary-dark: #303F9F;
 $off-white : #F8F8FA;
-$dove-gray: #666666;
+$emperor: #777777;
 $dark-metal: #222222;
 $static: static;
 
@@ -80,15 +80,19 @@ $static: static;
   height: 100%;
 }
 
-body {background: $off-white; color: $dove-gray;}
+$header-color: #555;
+$body-font-color: $emperor;
+
+body {background: $white; color: $emperor;}
 .off-canvas-content, .off-canvas-content {background: transparent;}
 .row{max-width: 68em;}
 .pad {padding: 20px 0;}
 a {color: $primary;}
 a:hover {color: $secondary;}
 button, .button {background: $primary;}
-button.secondary, .button.secondary {background: $dove-gray;color: $secondary;}
+button.secondary, .button.secondary {background: $emperor;color: $secondary;}
 button:hover, .button:hover {background: $primary-dark;}
+hr {border-color: $emperor;}
 
 #social_bar {
   padding: 3px 0;
@@ -130,7 +134,7 @@ button:hover, .button:hover {background: $primary-dark;}
             padding-top: 7px;
             border-top-right-radius: 2px;
             border-bottom-right-radius: 2px;
-            background: $dove-gray;
+            background: $emperor;
             color: $white;
         }
         [type="text"],[type="submit"]  {height: 1.8rem;}
@@ -151,7 +155,7 @@ button:hover, .button:hover {background: $primary-dark;}
     .close-button {
         z-index: 9999;
         background: transparent;
-        color: $dove-gray;
+        color: $emperor;
         right: .5rem;
         top: 0.2rem;
     }
@@ -244,7 +248,7 @@ ul.share-buttons .fa {min-width: 30px;}
 
   h3 {color: $primary; font-weight: 400;}
   h5 {margin-bottom: 0;}
-  p {color: #777;}
+  a p, a h5 {color: $emperor;}
   img {padding: 15px 0;}
 }
 
@@ -257,7 +261,7 @@ ul.share-buttons .fa {min-width: 30px;}
 
 #blog_list {
   hr:last-of-type {border:0px;}
-  a p{color: $dove-gray;}
+  a p{color: $emperor;}
 }
 
 #blog-rss
@@ -301,8 +305,7 @@ ul.share-buttons .fa {min-width: 30px;}
   h6.title{background: $primary; padding: 6px; color: $white;}
   h6, li {margin-bottom :5px;}
   li{list-style: none; font-size:14px; margin-bottom: 0px;}
-  p{font-size: 14px; color: $dove-gray; margin-bottom:10px;}
-  hr {border-color: $dove-gray;}
+  p{font-size: 14px; margin-bottom:10px;}
   hr:last-of-type{border: 0px;}
   .button{margin-bottom:5px; padding:5px 8px; float: right;}
 }
@@ -325,9 +328,9 @@ ul.share-buttons .fa {min-width: 30px;}
   h6.title{background: $primary; padding: 6px; color: $white;}
   h6.date{margin-top: 0px; color: $black;}
   h6.event {padding:3px 0; margin:0;}
-  .event{border-bottom: 1px solid $dove-gray ;padding: 11px 0;}
+  .event{border-bottom: 1px solid $emperor ;padding: 11px 0;}
   .event:last-of-type {border-bottom: 0px;}
-  a {color: $dove-gray}
+  a {color: $emperor}
   hr:last-of-type {border: 0px;}
 }
 
@@ -335,17 +338,17 @@ ul.share-buttons .fa {min-width: 30px;}
   .column {padding: 0 7px;}
 
   h6 {
-    color: $dove-gray;
+    color: $emperor;
     font-weight: 700;
     line-height: 1;
     margin-top: 8px;
     margin-bottom: 8px;
   }
 
-  li {color: $dove-gray; list-style: none; font-size: 13.5px;}
-  i {color: $dove-gray; font-sie: 20px;}
+  li {color: $emperor; list-style: none; font-size: 13.5px;}
+  i {color: $emperor; font-sie: 20px;}
   p {font-size: 14px; margin-bottom: 10px;}
-  a p {color: $dove-gray; font-size: 13.5px;}
+  a p {color: $emperor; font-size: 13.5px;}
 }
 
 
@@ -398,7 +401,7 @@ ul.share-buttons .fa {min-width: 30px;}
     font-weight: 400;}
     .block-faq_question:hover {color: $primary;}
     .block-faq_question.close {background-image:url('/#{$static}/img/faq/close.png');}
-    .block-faq_question {border-top: 1px solid $dove-gray;}
+    .block-faq_question {border-top: 1px solid $emperor;}
     .block-faq_question:first-of-type {border: 0;}
 }
 
