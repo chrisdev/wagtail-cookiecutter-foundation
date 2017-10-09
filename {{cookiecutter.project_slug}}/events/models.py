@@ -31,6 +31,13 @@ class EventIndexPageRelatedLink(Orderable, RelatedLink):
 
 class EventIndexPage(Page):
     intro = RichTextField(blank=True)
+    feed_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
@@ -77,7 +84,11 @@ EventIndexPage.content_panels = [
     InlinePanel('related_links', label="Related links"),
 ]
 
-EventIndexPage.promote_panels = Page.promote_panels
+
+EventIndexPage.promote_panels = [
+    MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+    ImageChooserPanel('feed_image'),
+]
 
 
 class EventPageCarouselItem(Orderable, CarouselItem):

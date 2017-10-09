@@ -333,7 +333,7 @@ $large-article-header-height: rem-calc(500);
  position:fixed;
  bottom:2.5rem;
  right:2.2rem;
- z-index:100;
+ z-index: 9999;
  box-shadow:0 2px 20px 0 rgba(0,0,0,.13);
  border-radius:8px;
  transition:all .5s ease-in-out

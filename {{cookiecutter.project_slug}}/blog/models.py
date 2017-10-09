@@ -14,7 +14,7 @@ from wagtail.wagtailsearch import index
 from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 
 from wagtail.wagtailadmin.edit_handlers import (
-    FieldPanel, InlinePanel, StreamFieldPanel
+    FieldPanel, InlinePanel, StreamFieldPanel, MultiFieldPanel,
 )
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
@@ -29,7 +29,13 @@ class BlogIndexPageRelatedLink(Orderable, RelatedLink):
 
 class BlogIndexPage(Page):
     intro = RichTextField(blank=True)
-
+    feed_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
     ]
@@ -74,7 +80,11 @@ BlogIndexPage.content_panels = [
     InlinePanel('related_links', label="Related links"),
 ]
 
-BlogIndexPage.promote_panels = Page.promote_panels
+
+BlogIndexPage.promote_panels = [
+    MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+    ImageChooserPanel('feed_image'),
+]
 
 
 # Blog page

@@ -27,6 +27,13 @@ class PersonIndexPageRelatedLink(Orderable, RelatedLink):
 class PersonIndexPage(Page):
     subtitle = models.CharField(max_length=255, blank=True)
     intro = RichTextField(blank=True)
+    feed_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     indexed_fields = ('intro', )
 
@@ -70,6 +77,12 @@ PersonIndexPage.content_panels = [
     FieldPanel('subtitle'),
     FieldPanel('intro', classname="full"),
     InlinePanel('related_links', label="Related links"),
+]
+
+
+PersonIndexPage.promote_panels = [
+    MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+    ImageChooserPanel('feed_image'),
 ]
 
 

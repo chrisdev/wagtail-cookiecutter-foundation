@@ -227,7 +227,8 @@ ALTER SEQUENCE auth_user_user_permissions_id_seq OWNED BY auth_user_user_permiss
 
 CREATE TABLE blog_blogindexpage (
     page_ptr_id integer NOT NULL,
-    intro text NOT NULL
+    intro text NOT NULL,
+    feed_image_id integer
 );
 
 
@@ -434,7 +435,8 @@ CREATE TABLE contact_contactpage (
     intro character varying(255) NOT NULL,
     thank_you_text text NOT NULL,
     telephone_2 character varying(20) NOT NULL,
-    email_2 character varying(254) NOT NULL
+    email_2 character varying(254) NOT NULL,
+    feed_image_id integer
 );
 
 
@@ -484,7 +486,8 @@ CREATE TABLE contact_formpage (
     from_address character varying(255) NOT NULL,
     subject character varying(255) NOT NULL,
     intro text NOT NULL,
-    thank_you_text text NOT NULL
+    thank_you_text text NOT NULL,
+    feed_image_id integer
 );
 
 
@@ -653,7 +656,8 @@ ALTER SEQUENCE documents_gallery_documentspagetag_id_seq OWNED BY documents_gall
 
 CREATE TABLE events_eventindexpage (
     page_ptr_id integer NOT NULL,
-    intro text NOT NULL
+    intro text NOT NULL,
+    feed_image_id integer
 );
 
 
@@ -1302,7 +1306,8 @@ ALTER SEQUENCE pages_videopagecarouselitem_id_seq OWNED BY pages_videogallerypag
 CREATE TABLE people_personindexpage (
     page_ptr_id integer NOT NULL,
     subtitle character varying(255) NOT NULL,
-    intro text NOT NULL
+    intro text NOT NULL,
+    feed_image_id integer
 );
 
 
@@ -1546,7 +1551,8 @@ ALTER SEQUENCE postgres_search_indexentry_id_seq OWNED BY postgres_search_indexe
 CREATE TABLE products_productindexpage (
     page_ptr_id integer NOT NULL,
     subtitle character varying(255) NOT NULL,
-    intro text NOT NULL
+    intro text NOT NULL,
+    feed_image_id integer
 );
 
 
@@ -3243,8 +3249,8 @@ SELECT pg_catalog.setval('auth_user_user_permissions_id_seq', 1, false);
 -- Data for Name: blog_blogindexpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY blog_blogindexpage (page_ptr_id, intro) FROM stdin;
-16	
+COPY blog_blogindexpage (page_ptr_id, intro, feed_image_id) FROM stdin;
+16		\N
 \.
 
 
@@ -3348,8 +3354,8 @@ SELECT pg_catalog.setval('contact_contactformfield_id_seq', 4, true);
 -- Data for Name: contact_contactpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY contact_contactpage (page_ptr_id, to_address, from_address, subject, name_organization, telephone, email, address_1, address_2, city, country, post_code, intro, thank_you_text, telephone_2, email_2) FROM stdin;
-24				ChrisDev	+1 868-773-4644		A3 St Benedicts Gardens,		Tunapuna,	Trinidad & Tobago	tunapuna	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi.	<p>Thank you for submitting.</p>		
+COPY contact_contactpage (page_ptr_id, to_address, from_address, subject, name_organization, telephone, email, address_1, address_2, city, country, post_code, intro, thank_you_text, telephone_2, email_2, feed_image_id) FROM stdin;
+24				ChrisDev	+1 868-773-4644		A3 St Benedicts Gardens,		Tunapuna,	Trinidad & Tobago	tunapuna	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi.	<p>Thank you for submitting.</p>			\N
 \.
 
 
@@ -3372,7 +3378,7 @@ SELECT pg_catalog.setval('contact_formfield_id_seq', 1, false);
 -- Data for Name: contact_formpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY contact_formpage (page_ptr_id, to_address, from_address, subject, intro, thank_you_text) FROM stdin;
+COPY contact_formpage (page_ptr_id, to_address, from_address, subject, intro, thank_you_text, feed_image_id) FROM stdin;
 \.
 
 
@@ -3646,6 +3652,12 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 152	wagtailcore	0040_page_draft_title	2017-09-07 10:14:59.367452-04
 153	contact	0006_auto_20170907_1451	2017-09-07 11:16:04.271249-04
 154	pages	0015_advert_button_text	2017-10-05 10:51:20.806368-04
+155	blog	0007_blogindexpage_feed_image	2017-10-09 14:21:05.028094-04
+156	contact	0007_contactpage_feed_image	2017-10-09 14:21:06.459621-04
+157	events	0005_eventindexpage_feed_image	2017-10-09 14:21:07.336926-04
+158	people	0005_personindexpage_feed_image	2017-10-09 14:21:08.248952-04
+159	products	0007_productindexpage_feed_image	2017-10-09 14:21:09.411912-04
+160	contact	0008_formpage_feed_image	2017-10-09 14:34:02.210929-04
 \.
 
 
@@ -3653,7 +3665,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 154, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 160, true);
 
 
 --
@@ -3745,8 +3757,8 @@ SELECT pg_catalog.setval('documents_gallery_documentspagetag_id_seq', 2, true);
 -- Data for Name: events_eventindexpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY events_eventindexpage (page_ptr_id, intro) FROM stdin;
-12	
+COPY events_eventindexpage (page_ptr_id, intro, feed_image_id) FROM stdin;
+12		\N
 \.
 
 
@@ -4064,8 +4076,8 @@ SELECT pg_catalog.setval('pages_videopagecarouselitem_id_seq', 1, false);
 -- Data for Name: people_personindexpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY people_personindexpage (page_ptr_id, subtitle, intro) FROM stdin;
-7		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>
+COPY people_personindexpage (page_ptr_id, subtitle, intro, feed_image_id) FROM stdin;
+7		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>	\N
 \.
 
 
@@ -4232,7 +4244,7 @@ SELECT pg_catalog.setval('postgres_search_indexentry_id_seq', 42, true);
 -- Data for Name: products_productindexpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY products_productindexpage (page_ptr_id, subtitle, intro) FROM stdin;
+COPY products_productindexpage (page_ptr_id, subtitle, intro, feed_image_id) FROM stdin;
 \.
 
 
@@ -5740,6 +5752,13 @@ CREATE INDEX auth_user_username_6821ab7c_like ON auth_user USING btree (username
 
 
 --
+-- Name: blog_blogindexpage_feed_image_id_5cb947e1; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX blog_blogindexpage_feed_image_id_5cb947e1 ON blog_blogindexpage USING btree (feed_image_id);
+
+
+--
 -- Name: blog_blogindexpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5838,10 +5857,24 @@ CREATE INDEX contact_contactformfield_1a63c800 ON contact_contactformfield USING
 
 
 --
+-- Name: contact_contactpage_feed_image_id_1f79cfe3; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX contact_contactpage_feed_image_id_1f79cfe3 ON contact_contactpage USING btree (feed_image_id);
+
+
+--
 -- Name: contact_formfield_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX contact_formfield_1a63c800 ON contact_formfield USING btree (page_id);
+
+
+--
+-- Name: contact_formpage_feed_image_id_0303d2c9; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX contact_formpage_feed_image_id_0303d2c9 ON contact_formpage USING btree (feed_image_id);
 
 
 --
@@ -5898,6 +5931,13 @@ CREATE INDEX documents_gallery_documentspagetag_09a80f33 ON documents_gallery_do
 --
 
 CREATE INDEX documents_gallery_documentspagetag_76f094bc ON documents_gallery_documentspagetag USING btree (tag_id);
+
+
+--
+-- Name: events_eventindexpage_feed_image_id_d6958e2f; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX events_eventindexpage_feed_image_id_d6958e2f ON events_eventindexpage USING btree (feed_image_id);
 
 
 --
@@ -6328,6 +6368,13 @@ CREATE INDEX pages_videopagecarouselitem_page_id_762410b6 ON pages_videogalleryp
 
 
 --
+-- Name: people_personindexpage_feed_image_id_ea7ff652; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX people_personindexpage_feed_image_id_ea7ff652 ON people_personindexpage USING btree (feed_image_id);
+
+
+--
 -- Name: people_personindexpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6444,6 +6491,13 @@ CREATE INDEX postgres_search_indexentry_body_search ON postgres_search_indexentr
 --
 
 CREATE INDEX postgres_search_indexentry_content_type_id_d805086f ON postgres_search_indexentry USING btree (content_type_id);
+
+
+--
+-- Name: products_productindexpage_feed_image_id_f1b46ba8; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX products_productindexpage_feed_image_id_f1b46ba8 ON products_productindexpage USING btree (feed_image_id);
 
 
 --
@@ -6941,6 +6995,14 @@ ALTER TABLE ONLY blog_blogindexpagerelatedlink
 
 
 --
+-- Name: blog_blogindexpage_feed_image_id_5cb947e1_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY blog_blogindexpage
+    ADD CONSTRAINT blog_blogindexpage_feed_image_id_5cb947e1_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
 -- Name: blog_blogindexpage_link_page_id_fdd456c7_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7045,6 +7107,14 @@ ALTER TABLE ONLY contact_contactformfield
 
 
 --
+-- Name: contact_contactpage_feed_image_id_1f79cfe3_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY contact_contactpage
+    ADD CONSTRAINT contact_contactpage_feed_image_id_1f79cfe3_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
 -- Name: contact_contactpage_page_ptr_id_143c93c1_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7058,6 +7128,14 @@ ALTER TABLE ONLY contact_contactpage
 
 ALTER TABLE ONLY contact_formfield
     ADD CONSTRAINT contact_formfi_page_id_3ee48e6d_fk_contact_formpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES contact_formpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: contact_formpage_feed_image_id_0303d2c9_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY contact_formpage
+    ADD CONSTRAINT contact_formpage_feed_image_id_0303d2c9_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -7194,6 +7272,14 @@ ALTER TABLE ONLY events_eventindexpagerelatedlink
 
 ALTER TABLE ONLY events_eventindexpage
     ADD CONSTRAINT events_eventindexpa_page_ptr_id_d4ed8796_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: events_eventindexpag_feed_image_id_d6958e2f_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY events_eventindexpage
+    ADD CONSTRAINT events_eventindexpag_feed_image_id_d6958e2f_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -7709,6 +7795,14 @@ ALTER TABLE ONLY people_personindexpage
 
 
 --
+-- Name: people_personindexpa_feed_image_id_ea7ff652_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY people_personindexpage
+    ADD CONSTRAINT people_personindexpa_feed_image_id_ea7ff652_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
 -- Name: people_personp_feed_image_id_c8aaeda0_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7858,6 +7952,14 @@ ALTER TABLE ONLY products_productindexpagerelatedlink
 
 ALTER TABLE ONLY products_productindexpage
     ADD CONSTRAINT products_productind_page_ptr_id_896e5596_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: products_productinde_feed_image_id_f1b46ba8_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY products_productindexpage
+    ADD CONSTRAINT products_productinde_feed_image_id_f1b46ba8_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
