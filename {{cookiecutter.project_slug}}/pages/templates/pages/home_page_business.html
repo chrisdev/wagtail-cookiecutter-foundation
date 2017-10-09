@@ -1,6 +1,5 @@
 {% raw %}{% extends "base.html" %}
-{% load static wagtailcore_tags wagtailimages_tags %}
-{% load {% endraw %}{{ cookiecutter.project_slug }}{% raw %}_utils %}
+{% load static wagtailcore_tags wagtailimages_tags {% endraw %}{{ cookiecutter.project_slug }}{% raw %}_utils %}
 
 {% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
 

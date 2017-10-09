@@ -1,5 +1,4 @@
-{% raw %}{% load {% endraw %}{{ cookiecutter.project_slug }}{% raw %}_utils %}
-{% load settings_tags %}
+{% raw %}{% load {% endraw %}{{ cookiecutter.project_slug }}{% raw %}_utils settings_tags %}
 
 {% get_contact_fields as contact %}
 {% include "contact/includes/contact_card.html" with contact=contact only %}
