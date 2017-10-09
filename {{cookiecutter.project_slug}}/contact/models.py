@@ -6,7 +6,7 @@ from wagtail.wagtailadmin.edit_handlers import (
 )
 
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailcore.models import Page, Orderable
+from wagtail.wagtailcore.models import Page
 from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
 from modelcluster.fields import ParentalKey
 from utils.models import ContactFields
