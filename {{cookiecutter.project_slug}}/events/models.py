@@ -84,6 +84,7 @@ EventIndexPage.content_panels = [
     InlinePanel('related_links', label="Related links"),
 ]
 
+
 EventIndexPage.promote_panels = [
     MultiFieldPanel(Page.promote_panels, "Common page configuration"),
     ImageChooserPanel('feed_image'),

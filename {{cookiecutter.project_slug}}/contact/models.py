@@ -41,6 +41,7 @@ FormPage.content_panels = [
     ], "Email")
 ]
 
+
 FormPage.promote_panels = Page.promote_panels + [
     ImageChooserPanel('feed_image'),
 ]
@@ -74,6 +75,7 @@ ContactPage.content_panels = [
     ], "Form Submission Email"),
     MultiFieldPanel(ContactFields.panels, "Your Contact Information"),
 ]
+
 
 ContactPage.promote_panels = Page.promote_panels + [
     ImageChooserPanel('feed_image'),
