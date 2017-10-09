@@ -239,27 +239,12 @@ ul.share-buttons .fa {min-width: 30px;}
 
 
 #section {
-  padding: 20px 10px;
+  padding: 20px;
 
-  h4 {color: $primary;font-weight: 450;line-height: 1;}
-  h5 {background: $primary; color: $white; padding: 4px 0;}
-  p {color: $primary; padding: 5px;}
+  h3 {color: $primary; font-weight: 400;}
+  h5 {margin-bottom: 0;}
+  p {color: #777;}
   img {padding: 15px 0;}
-
-  .column:hover {
-    h5 {background: $secondary;}
-    p {color: $secondary;}
-  }
-
-  .grow {
-    transition: 1s ease;
-  }
-  .grow:hover{
-    -webkit-transform: scale(1.03);
-    -ms-transform: scale(1.03);
-    transform: scale(1.03);
-    transition: 1s ease;
-  }
 }
 
 
