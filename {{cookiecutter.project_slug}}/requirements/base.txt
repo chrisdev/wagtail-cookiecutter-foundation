@@ -5,7 +5,7 @@ celery==4.1.0
 django-cachalot==1.5.0
 django-compressor==2.2
 django-environ==0.4.4
-django-foundation-formtags==0.0.9
+django-foundation-formtags==0.1.0
 django-wagtail-feeds==0.0.8
 django-libsass==0.7
 django-redis==4.8.0
