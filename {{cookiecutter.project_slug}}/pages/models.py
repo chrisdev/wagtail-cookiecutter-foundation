@@ -35,6 +35,7 @@ class SocialMediaSettings(BaseSetting):
     facebook_appid = models.CharField(
         max_length=255, help_text='Your Facbook AppID', null=True, blank=True)
 
+
 @register_setting
 class SiteBranding(BaseSetting):
     logo = models.ForeignKey(
