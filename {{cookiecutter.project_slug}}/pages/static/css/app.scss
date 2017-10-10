@@ -106,7 +106,7 @@ hr {border-color: $light-gray;}
         li {font-size: 13px;}
         li a:hover{background-color:$secondary;}
         li.menu-text{font-size: 18px; color: $white;a:hover{background: transparent;}}
-        .menu li:not(.menu-text) a {padding: 13px 18px;}
+        .menu li:not(.menu-text) a {padding: 13px 16px;}
         .menu .is-active > a {
             background: $secondary;
             color: $white;
