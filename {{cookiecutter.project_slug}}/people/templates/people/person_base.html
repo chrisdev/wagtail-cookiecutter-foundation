@@ -4,13 +4,8 @@
 
 {% block content %}
 <div id="content" class="row">
-  <div id="people" class="medium-9 columns" role="content">
-   {% block people_content %}{% endblock %}
- </div>
- <aside id="sidebar" class="hide-for-print hide-for-small-only medium-3 columns">
-   {% block sidebar %}
-   {% include "people/includes/sidebar.html" %}
-   {% endblock %}
- </aside>
+    <div id="people" class="medium-10 medium-centered columns">
+        {% block people_content %}{% endblock %}
+    </div>
 </div>
 {% endblock %}{% endraw %}

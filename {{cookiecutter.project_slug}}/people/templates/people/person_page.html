@@ -2,34 +2,26 @@
 {% load wagtailimages_tags %}
 
 {% block people_content %}
-<div class="modal-content">
-  {% include "utils/includes/social_share.html" %}
-  <div id="content" class="row">
-    <div class="medium-12 columns">
+    {% include "utils/includes/social_share.html" %}
 
-      {% if self.image %}
-      {# Person image - first store image as a variable in order to construct an image tag with a class applied #}
-      {% image self.image width-180 as photo %}
-      <img src="{{ photo.url }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="{{ photo.alt }}" class="img-thumbnail" style="float: left; margin-right: 15px; border-radius: 5px;" />
-      {% endif %}
+    {% if self.image %}
+        {% image self.image width-180 as photo %}
+        <img src="{{ photo.url }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="{{ photo.alt }}" class="img-thumbnail" style="float: left; margin-right: 15px; border-radius: 5px;" />
+    {% endif %}
 
-      <h3>{{ self.title }}</h3>
+    <h3>{{ self.title }}</h3>
 
-      {% if self.role %}
-      <h4>( {{ self.role }} )</h4>
-      {% else %}
-      {% endif %}
+    {% if self.role %}
+        <h4>( {{ self.role }} )</h4>
+    {% else %}{% endif %}
 
-      {% if self.biography %}
-      <h5>Biography</h5>
-      {% endif %}
+    {% if self.biography %}
+        <h5>Biography</h5>
+    {% endif %}
 
-      {% include "people/includes/body.html" with body=self.biography only %}
+    {% include "people/includes/body.html" with body=self.biography only %}
 
-      <br>
+    <br>
 
-      {% include "people/includes/contact.html" with contact=self only %}
-    </div>
-  </div>
-</div>
+    {% include "people/includes/contact.html" with contact=self only %}
 {% endblock %}{% endraw %}
