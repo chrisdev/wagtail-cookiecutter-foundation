@@ -148,9 +148,7 @@ $social-brand-print: #777;
   .hero-section-text {
     width: 60%;
     color: $white;
-    h2 {font-weight: 600;}
-    h4 {font-weight: 400;}
-    .button {border: 1px solid $white; border-radius: 3px; margin-top: 10px; color: $white;}
+    h1 {color: $white; font-weight: 400;}
   }
 }
 
@@ -169,9 +167,9 @@ $social-brand-print: #777;
 	.hero-section-text {
 	  width: 100%;
 	}
-	height: 200px;
+	height: 180px;
 	@include breakpoint(small only) {
-	  max-height: 160px;
+	  max-height: 150px;
 	}
 }
 
