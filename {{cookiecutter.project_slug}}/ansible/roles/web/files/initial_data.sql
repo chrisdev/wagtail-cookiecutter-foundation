@@ -4003,7 +4003,7 @@ SELECT pg_catalog.setval('pages_homepagerelatedlink_id_seq', 1, false);
 --
 
 COPY pages_sitebranding (id, site_name, logo_id, site_id) FROM stdin;
-1	ChrisDev Wagtail Project	10	2
+1	ChrisDev Wagtail Project	12	2
 \.
 
 
@@ -4290,6 +4290,7 @@ COPY postgres_search_indexentry (id, object_id, body_search, content_type_id) FR
 37	20	'document':1B 'galleri':2B	73
 38	21	'document':2B 'sampl':1B	75
 19	5	'ac':119,141 'accumsan':48 'adipisc':11 'aenean':65 'aliquam':13 'aliquet':176 'amet':9,22,118,146 'ant':106 'auctor':68 'blandit':19 'consectetur':10 'consequat':135 'curabitur':84 'cursus':61 'dapibus':50,98 'diam':33,39,100,112,198 'dictum':56 'dolor':7,130,137 'donec':53,78 'dui':81,173 'egesta':124 'eget':80,179,193 'eleifend':139 'elementum':18,162 'elit':12 'enim':23 'erat':175 'ero':138,150 'et':14,111,129 'eu':16,49,71,168 'euismod':116 'ex':143 'facilisi':64 'faucibus':69 'fermentum':60,191 'feugiat':52,79 'fringilla':169 'fusc':110 'gravida':152 'hendrerit':155 'id':35,107,172 'imperdiet':85 'integ':154 'interdum':41 'ipsum':6,114,186 'justo':67 'lacinia':44 'laoreet':165 'lectus':92 'leo':26,36 'libero':120 'ligula':123,189 'lorem':5,167 'luctus':108 'magna':93,163 'massa':25,45 'matti':29 'mauri':15,122 'maximus':188 'mi':42 'molesti':153 'molli':156 'morbi':91,101,164 'nec':40,75,151 'nibh':17,62,77,133 'nisi':140 'nisl':73,174 'non':127 'nulla':144,170 'nunc':43,47 'odio':51,157,166 'ornar':27 'page':2B 'phasellus':34 'placerat':37,57 'porttitor':58,132,159,194 'porttutor':201 'posuer':136,185 'proin':121,131 'pulvinar':115 'quam':55,88,182,195 'qui':113,134,199 'quisqu':24 'rhoncus':83 'risus':70 'sagitti':90 'sed':160,183 'semper':72,142 'sidebar':4B 'sit':8,21,117,145 'sodal':105 'sollicitudin':99 'standard':1B 'suscipit':76,104 'tempor':128 'tempus':89,126 'tortor':86,178 'tristiqu':46,190 'turpi':96 'ullamcorp':180 'urna':103,147 'ut':74,87,95,148,161,187,192 'varius':20,54,181,197 'vehicula':31,38 'vel':102 'velit':109 'venenati':149,171,184 'vestibulum':32 'vita':30,158 'vivamus':59 'viverra':94,200 'w/o':3B	37
+43	12	'chrisdev':1A 'logo':2A	2
 \.
 
 
@@ -4297,7 +4298,7 @@ COPY postgres_search_indexentry (id, object_id, body_search, content_type_id) FR
 -- Name: postgres_search_indexentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('postgres_search_indexentry_id_seq', 42, true);
+SELECT pg_catalog.setval('postgres_search_indexentry_id_seq', 44, true);
 
 
 --
@@ -4715,6 +4716,7 @@ COPY wagtailimages_image (id, title, file, width, height, created_at, focal_poin
 7	sass.jpg	original_images/sass.jpg	1300	500	2016-07-20 03:38:06.406475-04	\N	\N	\N	\N	1	158244	1
 5	postgresql.jpg	original_images/postgresql.jpg	1300	500	2016-07-20 03:38:06.2173-04	\N	\N	\N	\N	1	117964	1
 3	foundation.jpg	original_images/foundation.jpg	1300	500	2016-07-20 03:38:06.005665-04	\N	\N	\N	\N	1	131208	1
+12	chrisdev logo	original_images/chrisdevf_favicon.png	500	500	2017-10-10 10:30:40.591611-04	\N	\N	\N	\N	1	\N	1
 \.
 
 
@@ -4722,7 +4724,7 @@ COPY wagtailimages_image (id, title, file, width, height, created_at, focal_poin
 -- Name: wagtailimages_image_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailimages_image_id_seq', 11, true);
+SELECT pg_catalog.setval('wagtailimages_image_id_seq', 12, true);
 
 
 --
@@ -4784,6 +4786,8 @@ COPY wagtailimages_rendition (id, file, width, height, focal_point_key, image_id
 52	images/wagtail.2e16d0ba.fill-100x100.jpg	100	100	2e16d0ba	9	fill-100x100
 53	images/wagtail.width-90.png	90	90		10	width-90
 54	images/wagtail.width-80.png	80	80		10	width-80
+55	images/chrisdevf_favicon.max-165x165.png	165	165		12	max-165x165
+56	images/chrisdevf_favicon.width-80.png	80	80		12	width-80
 \.
 
 
@@ -4791,7 +4795,7 @@ COPY wagtailimages_rendition (id, file, width, height, focal_point_key, image_id
 -- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 54, true);
+SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 56, true);
 
 
 --
