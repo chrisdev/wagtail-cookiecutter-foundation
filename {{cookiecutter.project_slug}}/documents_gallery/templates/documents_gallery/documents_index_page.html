@@ -13,11 +13,11 @@
 
     {% if pages|length %}
     <div>
-      <div class="medium-up-4 small-up-1" data-equalizer id="documents-index">
+      <div class="medium-up-3 small-up-1" data-equalizer id="documents-index">
         {% for page in pages %}
         <div class="column text-center" data-equalizer-watch>
           <a href="{{ page.url }}">
-           <div class="card" style="border-radius: 5px;">
+           <div class="card" style="border-radius: 5px; padding: 20px;">
              <div class="card-section">
               <i class="fa fa-file fa-4x" style="margin-bottom: 10px;"></i>
               <center>

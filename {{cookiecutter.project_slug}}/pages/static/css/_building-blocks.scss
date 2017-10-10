@@ -130,6 +130,55 @@ $social-brand-print: #777;
 
 
 
+// PAGE HERO
+
+.hero-section {
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.3), 
+    rgba(0, 0, 0, 0.4)
+  );
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .hero-section-text {
+    width: 60%;
+    color: $white;
+    h2 {font-weight: 600;}
+    h4 {font-weight: 400;}
+    .button {border: 1px solid $white; border-radius: 3px; margin-top: 10px; color: $white;}
+  }
+}
+
+.hero-section.page {
+	.hero-content {
+		background: linear-gradient(
+		  rgba(0, 0, 0, 0.7), 
+		  rgba(0, 0, 0, 0.8)
+		);
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.hero-section-text {
+	  width: 100%;
+	}
+	height: 200px;
+	@include breakpoint(small only) {
+	  max-height: 160px;
+	}
+}
+
+// END PAGE HERO
+
+
+
 // MORE NEWS FEED
 
 .article-row-section {
@@ -238,8 +287,6 @@ $large-article-header-height: rem-calc(500);
     height: ($large-article-header-height / 1.5);
   }
 }
-
-.large-article-header.page {height: 200px;}
 
 .large-article-header-content {
   background: rgba(0,0,0, 0.65) url("/#{$static}/img/overlay.png") top center repeat;
