@@ -36,6 +36,23 @@ class SocialMediaSettings(BaseSetting):
         max_length=255, help_text='Your Facbook AppID', null=True, blank=True)
 
 
+@register_setting
+class SiteBranding(BaseSetting):
+    logo = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    site_name = models.CharField(max_length=250, null=True, blank=True)
+    
+    panels = [
+        ImageChooserPanel('logo'),
+        FieldPanel('site_name'),
+    ]
+    
+
 class HomePageContentItem(Orderable, LinkFields):
     page = ParentalKey('pages.HomePage', related_name='content_items')
     image = models.ForeignKey(

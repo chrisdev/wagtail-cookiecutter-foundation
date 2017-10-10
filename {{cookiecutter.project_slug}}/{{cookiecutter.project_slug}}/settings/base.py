@@ -54,8 +54,21 @@ INSTALLED_APPS = (
     'compressor',
     'taggit',
     'modelcluster',
+    
+    'utils',
+    'pages',
+    'blog',
+    'events',
+    'contact',
+    'people',
+    'photo_gallery',
+    'products',
+    'documents_gallery',
 
-    "wagtail.contrib.wagtailroutablepage",
+    'foundation_formtags',
+    'wagtail_feeds',
+    
+    'wagtail.contrib.wagtailroutablepage',
     'wagtail.contrib.wagtailsitemaps',
     'wagtail.contrib.wagtailsearchpromotions',
     'wagtail.contrib.postgres_search',
@@ -75,18 +88,6 @@ INSTALLED_APPS = (
     'wagtailmarkdown',
     {% if cookiecutter.use_wagalytics_app == 'y' %} 'wagalytics', {% endif %}
     {% if cookiecutter.use_django_cachalot == "y" %} 'cachalot', {% endif %}
-    'utils',
-    'pages',
-    'blog',
-    'events',
-    'contact',
-    'people',
-    'photo_gallery',
-    'products',
-    'documents_gallery',
-
-    'foundation_formtags',
-    'wagtail_feeds',
 )
 
 MIDDLEWARE_CLASSES = (

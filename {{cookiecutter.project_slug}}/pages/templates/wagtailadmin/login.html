@@ -1,0 +1,7 @@
+{% raw %}{% extends "wagtailadmin/login.html" %}
+{% load wagtailcore_tags wagtailsettings_tags %}
+{% get_settings %}
+
+{% block branding_login %}
+    Login {% if settings.pages.SiteBranding.site_name %}to {{ settings.pages.SiteBranding.site_name }}{% endif %}
+{% endblock %}{% endraw %}

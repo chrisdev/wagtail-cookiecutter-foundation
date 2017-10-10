@@ -1052,6 +1052,37 @@ ALTER SEQUENCE pages_homepagerelatedlink_id_seq OWNED BY pages_homepagerelatedli
 
 
 --
+-- Name: pages_sitebranding; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE pages_sitebranding (
+    id integer NOT NULL,
+    site_name character varying(250),
+    logo_id integer,
+    site_id integer NOT NULL
+);
+
+
+--
+-- Name: pages_sitebranding_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE pages_sitebranding_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: pages_sitebranding_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE pages_sitebranding_id_seq OWNED BY pages_sitebranding.id;
+
+
+--
 -- Name: pages_socialmediasettings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2632,6 +2663,13 @@ ALTER TABLE ONLY pages_homepagerelatedlink ALTER COLUMN id SET DEFAULT nextval('
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY pages_sitebranding ALTER COLUMN id SET DEFAULT nextval('pages_sitebranding_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY pages_socialmediasettings ALTER COLUMN id SET DEFAULT nextval('pages_socialmediasettings_id_seq'::regclass);
 
 
@@ -3189,6 +3227,9 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 242	Can add video gallery page	81	add_videogallerypage
 243	Can change video gallery page	81	change_videogallerypage
 244	Can delete video gallery page	81	delete_videogallerypage
+245	Can add site branding	82	add_sitebranding
+246	Can change site branding	82	change_sitebranding
+247	Can delete site branding	82	delete_sitebranding
 \.
 
 
@@ -3196,7 +3237,7 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('auth_permission_id_seq', 244, true);
+SELECT pg_catalog.setval('auth_permission_id_seq', 247, true);
 
 
 --
@@ -3204,7 +3245,7 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 244, true);
 --
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$36000$5HkCiQD2wOPy$quuP34M/87omK0yq4oSkulez1de4DadLKB28QDGhFz0=	2017-10-05 10:52:02.151502-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
+1	pbkdf2_sha256$36000$5HkCiQD2wOPy$quuP34M/87omK0yq4oSkulez1de4DadLKB28QDGhFz0=	2017-10-10 10:21:18.20304-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
 \.
 
 
@@ -3483,6 +3524,7 @@ COPY django_content_type (id, app_label, model) FROM stdin;
 79	pages	videopage
 80	pages	videogallerypagecarouselitem
 81	pages	videogallerypage
+82	pages	sitebranding
 \.
 
 
@@ -3490,7 +3532,7 @@ COPY django_content_type (id, app_label, model) FROM stdin;
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_content_type_id_seq', 81, true);
+SELECT pg_catalog.setval('django_content_type_id_seq', 82, true);
 
 
 --
@@ -3658,6 +3700,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 158	people	0005_personindexpage_feed_image	2017-10-09 14:21:08.248952-04
 159	products	0007_productindexpage_feed_image	2017-10-09 14:21:09.411912-04
 160	contact	0008_formpage_feed_image	2017-10-09 14:34:02.210929-04
+161	pages	0016_sitebranding	2017-10-10 10:20:23.643092-04
 \.
 
 
@@ -3665,7 +3708,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 160, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 161, true);
 
 
 --
@@ -3716,6 +3759,7 @@ fe632xaodlns0yx8u27dzxgzfvz56zuy	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJ
 3e8ibx9rj4x991ad7katd4ct9pkwtlgb	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-09-21 10:17:16.955274-04
 ufz0a91jvzhyo6qwu244wuh6m2m07u1w	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-09-21 11:17:04.180546-04
 uw6t4ywi903n5ydri8zemcx1e1861r3m	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-10-19 10:52:02.176801-04
+zbvjagpokjc7v8pqef73wp8lt9bxcm3f	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-10-24 10:21:18.228257-04
 \.
 
 
@@ -3952,6 +3996,22 @@ COPY pages_homepagerelatedlink (id, sort_order, link_external, title, link_docum
 --
 
 SELECT pg_catalog.setval('pages_homepagerelatedlink_id_seq', 1, false);
+
+
+--
+-- Data for Name: pages_sitebranding; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY pages_sitebranding (id, site_name, logo_id, site_id) FROM stdin;
+1	ChrisDev Wagtail Project	10	2
+\.
+
+
+--
+-- Name: pages_sitebranding_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('pages_sitebranding_id_seq', 1, true);
 
 
 --
@@ -4723,6 +4783,7 @@ COPY wagtailimages_rendition (id, file, width, height, focal_point_key, image_id
 51	images/foundation.2e16d0ba.fill-1200x440.jpg	1200	440	2e16d0ba	3	fill-1200x440
 52	images/wagtail.2e16d0ba.fill-100x100.jpg	100	100	2e16d0ba	9	fill-100x100
 53	images/wagtail.width-90.png	90	90		10	width-90
+54	images/wagtail.width-80.png	80	80		10	width-80
 \.
 
 
@@ -4730,7 +4791,7 @@ COPY wagtailimages_rendition (id, file, width, height, focal_point_key, image_id
 -- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 53, true);
+SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 54, true);
 
 
 --
@@ -5166,6 +5227,22 @@ ALTER TABLE ONLY pages_homepagecontentitem
 
 ALTER TABLE ONLY pages_homepagerelatedlink
     ADD CONSTRAINT pages_homepagerelatedlink_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pages_sitebranding_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY pages_sitebranding
+    ADD CONSTRAINT pages_sitebranding_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pages_sitebranding_site_id_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY pages_sitebranding
+    ADD CONSTRAINT pages_sitebranding_site_id_key UNIQUE (site_id);
 
 
 --
@@ -6218,6 +6295,13 @@ CREATE INDEX pages_homepagerelatedlink_1a63c800 ON pages_homepagerelatedlink USI
 --
 
 CREATE INDEX pages_homepagerelatedlink_5b76e141 ON pages_homepagerelatedlink USING btree (link_page_id);
+
+
+--
+-- Name: pages_sitebranding_logo_id_2841159b; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX pages_sitebranding_logo_id_2841159b ON pages_sitebranding USING btree (logo_id);
 
 
 --
@@ -7552,6 +7636,22 @@ ALTER TABLE ONLY pages_homepagerelatedlink
 
 ALTER TABLE ONLY pages_standardindexpagerelatedlink
     ADD CONSTRAINT pages_s_page_id_d0df6fde_fk_pages_standardindexpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES pages_standardindexpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pages_sitebranding_logo_id_2841159b_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY pages_sitebranding
+    ADD CONSTRAINT pages_sitebranding_logo_id_2841159b_fk_wagtailimages_image_id FOREIGN KEY (logo_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pages_sitebranding_site_id_04cc1128_fk_wagtailcore_site_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY pages_sitebranding
+    ADD CONSTRAINT pages_sitebranding_site_id_04cc1128_fk_wagtailcore_site_id FOREIGN KEY (site_id) REFERENCES wagtailcore_site(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
