@@ -49,7 +49,7 @@ class SiteBranding(BaseSetting):
     panels = [
         ImageChooserPanel('logo'),
         FieldPanel('site_name'),
-    ] 
+    ]
 
 
 class HomePageContentItem(Orderable, LinkFields):
