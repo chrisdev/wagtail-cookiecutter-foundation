@@ -46,12 +46,11 @@ class SiteBranding(BaseSetting):
         related_name='+'
     )
     site_name = models.CharField(max_length=250, null=True, blank=True)
-    
     panels = [
         ImageChooserPanel('logo'),
         FieldPanel('site_name'),
-    ]
-    
+    ] 
+
 
 class HomePageContentItem(Orderable, LinkFields):
     page = ParentalKey('pages.HomePage', related_name='content_items')
