@@ -27,11 +27,11 @@
       </div>
       <div class="top-bar-right">
         <ul class="vertical medium-horizontal menu" data-responsive-menu="drilldown medium-dropdown">
-          <li class="{% if calling_page.url == site_root %} is-active{% endif %}"><a href="{% pageurl site_root %}"><strong>Home</strong></a></li>
+          <li class="{% if calling_page.url == site_root %} is-active{% endif %}"><a href="{% pageurl site_root %}">Home</a></li>
           {% for menuitem in menuitems %}
           <li class="{% if menuitem.show_dropdown %}has-submenu{% endif %}
           {% if calling_page.url == menuitem.url %} is-active{% endif %}">
-            <a href="{% pageurl menuitem %}"><strong>{{ menuitem.title }}</strong></a>
+            <a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
             {% if menuitem.show_dropdown %}
             <ul class="submenu menu vertical" data-submenu>
               {% top_menu_children parent=menuitem %}
@@ -46,7 +46,7 @@
                   <input class="field" type="text" placeholder="Search" name="q"{% if query_string %} value="{{ query_string }}"{% endif %}>
                 </div>
                 <div class="small-4 columns">
-                  <input type="submit" class="secondary button expand" value="Search">
+                  <input type="submit" class="button expand" value="Search">
                 </div>
               </div>
             </form>
