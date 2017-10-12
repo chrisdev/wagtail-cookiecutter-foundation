@@ -98,44 +98,50 @@ hr {border-color: $light-gray;}
 }
 
 .title-bar {background: $primary;}
-@include breakpoint(medium) {
-  .top-bar {
-    background: $primary;
-    a {color: $white;}
-    a:hover {color: $white;}
-    li {font-size: 13px;}
-    li a:hover{background-color:$secondary;}
-    li.menu-text{font-size: 18px; color: $white;a:hover{background: transparent;}}
-    .menu li:not(.menu-text) a {padding: 13px 15px;}
-    .menu .is-active > a {
-        background: $secondary;
-        color: $white;
-    }
-    ul, .dropdown.menu .submenu {background: $primary; border: 0px;}
-    .dropdown.menu .submenu {border-top: 3px solid $secondary;}
-    .top-bar-right {margin-top: 1px;}
-    .dropdown.menu .is-dropdown-submenu-parent a::after {border-color: transparent $white transparent transparent; border-style: solid;}
-    .dropdown.menu.medium-horizontal li.is-dropdown-submenu-parent a::after {border-color: $white transparent transparent;}
-    .is-drilldown-submenu-parent>a::after {border-color: transparent transparent transparent $white;}
-    .js-drilldown-back::before {border-color: transparent $white transparent transparent;}
-    .has-form {
-        .input-group {margin-bottom: 0;}
-        input {max-width: 140px; font-size: 13px; margin-right: 0;}
-        [type="text"] {
-            border-top-left-radius: 2px;
-            border-bottom-left-radius: 2px;
-        }
-        input.button {
-            padding-bottom: 11px;
-            padding-top: 7px;
-            border-top-right-radius: 2px;
-            border-bottom-right-radius: 2px;
-            background: $emperor;
+.top-bar {
+    @include breakpoint(medium) {
+        background: $primary;
+        a {color: $white;}
+        a:hover {color: $white;}
+        li {font-size: 13px;}
+        li a:hover{background-color:$secondary;}
+        li.menu-text{font-size: 18px; color: $white;a:hover{background: transparent;}}
+        .menu li:not(.menu-text) a {padding: 13px 16px;}
+        .menu .is-active > a {
+            background: $secondary;
             color: $white;
         }
-        [type="text"],[type="submit"]  {height: 1.8rem;}
+        ul, .dropdown.menu .submenu {background: $primary; border: 0px;}
+        .dropdown.menu .submenu {border-top: 3px solid $secondary;}
+        .top-bar-right {margin-top: 1px;}
+        .dropdown.menu .is-dropdown-submenu-parent a::after {border-color: transparent $white transparent transparent; border-style: solid;}
+        .dropdown.menu.medium-horizontal li.is-dropdown-submenu-parent a::after {border-color: $white transparent transparent;}
+        .is-drilldown-submenu-parent>a::after {border-color: transparent transparent transparent $white;}
+        .js-drilldown-back::before {border-color: transparent $white transparent transparent;}
+        .has-form {
+            .input-group {margin-bottom: 0;}
+            input {max-width: 140px; font-size: 13px; margin-right: 0;}
+            [type="text"] {
+                border-top-left-radius: 2px;
+                border-bottom-left-radius: 2px;
+            }
+            input.button {
+                padding-bottom: 11px;
+                padding-top: 7px;
+                border-top-right-radius: 2px;
+                border-bottom-right-radius: 2px;
+                background: $emperor;
+                color: $white;
+            }
+            [type="text"],[type="submit"]  {height: 1.8rem;}
+        }
     }
-  }
+    @include breakpoint(small) {
+        .has-form {
+            input {max-width: 100%;}
+            input.button {width: 100%;}
+       }
+   }
 }
 
 .off-canvas {
@@ -160,8 +166,8 @@ hr {border-color: $light-gray;}
 .off-canvas.is-transition-overlap {z-index: 99999;}
 
 .breadcrumbs {
-  margin: 20px 0 10px;
-  background: $white;
+  margin: 20px 0;
+  background: $off-white;
   border-radius: 15px;
   padding: 15px;
   a {color: $primary;}

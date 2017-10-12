@@ -1,0 +1,8 @@
+{% raw %}{% extends "wagtailadmin/base.html" %}
+{% load wagtailcore_tags wagtailimages_tags wagtailsettings_tags %}
+{% get_settings %}
+
+{% if settings.pages.SiteBranding.logo %}
+{% block branding_logo %}
+    {% image settings.pages.SiteBranding.logo width-80 %}
+{% endblock %}{% endif %}{% endraw %}

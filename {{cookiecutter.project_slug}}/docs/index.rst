@@ -1,14 +1,12 @@
-.. {{ cookiecutter.project_name }} documentation master file, created by
-   sphinx-quickstart on Sun Feb 17 11:46:20 2013.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. _editor_manual:
 
-Welcome to {{ cookiecutter.project_name }}'s documentation!
-===========================================================
+Using Wagtail: an Editor's guide
+================================
+
+This section of the documentation is written for the users of a Wagtail-powered site. That is, the content editors, moderators and administrators who will be running things on a day-to-day basis.
 
 .. toctree::
-   :maxdepth: 1
-   :caption: User Guide
+   :maxdepth: 3
 
    intro
    getting_started
@@ -16,9 +14,6 @@ Welcome to {{ cookiecutter.project_name }}'s documentation!
    new_pages/index
    editing_existing_pages
    documents_images_snippets/index
-   administrator_tasks/index
    managing_redirects
-
-For documentation check the `Wagtail Documentation`_.
-
-.. _`Wagtail Documentation`: http://docs.wagtail.io/en/latest/
+   administrator_tasks/index
+   browser_issues

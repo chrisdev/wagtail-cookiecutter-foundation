@@ -5,27 +5,12 @@
 
 {% block content %}
 
-{% if self.feed_image %}
-{% image self.feed_image original as feed_image %}
-<div class="row expanded collapse">
-  <div class="column">
-    <div class="large-article-header page" style="background-image:url('{{ feed_image.url }}')">
-      <div class="large-article-header-content">
-        <div class="center-container">
-          <div class="article-title">
-            <center><h1>{{ self.title }}</h1></center>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<br>
-{% endif %}
+{% include "pages/includes/feed_image_title.html" %}
 
 <div id="content" class="row">
-  <div id="standard_page" class="medium-9 medium-centered columns">
+  <div id="standard_page" class="medium-10 medium-centered columns">
+      {% breadcrumbs %}
+      
       {% if self.feed_image %}{% else %}
           <center>
               <h3>{{ self.title }}</h3>

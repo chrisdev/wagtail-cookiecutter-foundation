@@ -39,15 +39,17 @@
 
 
 <article id="blog_post" class="row">
-  <br>
-  {% include "utils/includes/social_share.html" %}
-  
-  {% if self.feed_image %}{% else %}
-  {% include "blog/includes/blog_header.html" %}
-  {% endif %}
-  {% include "blog/includes/blog_body.html" with body=self.body only %}
-  <br>
-  {% include "utils/includes/related_links.html" with related_links=self.related_links.all only %}
+  <div class="medium-11 medium-centered columns">
+      <br>
+      {% include "utils/includes/social_share.html" %}
+      
+      {% if self.feed_image %}{% else %}
+      {% include "blog/includes/blog_header.html" %}
+      {% endif %}
+      {% include "blog/includes/blog_body.html" with body=self.body only %}
+      <br>
+      {% include "utils/includes/related_links.html" with related_links=self.related_links.all only %}
+  </div>
 </article>
 {% endblock %}
 {% endraw %}

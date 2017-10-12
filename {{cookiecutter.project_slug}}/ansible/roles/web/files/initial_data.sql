@@ -1052,6 +1052,37 @@ ALTER SEQUENCE pages_homepagerelatedlink_id_seq OWNED BY pages_homepagerelatedli
 
 
 --
+-- Name: pages_sitebranding; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE pages_sitebranding (
+    id integer NOT NULL,
+    site_name character varying(250),
+    logo_id integer,
+    site_id integer NOT NULL
+);
+
+
+--
+-- Name: pages_sitebranding_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE pages_sitebranding_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: pages_sitebranding_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE pages_sitebranding_id_seq OWNED BY pages_sitebranding.id;
+
+
+--
 -- Name: pages_socialmediasettings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2632,6 +2663,13 @@ ALTER TABLE ONLY pages_homepagerelatedlink ALTER COLUMN id SET DEFAULT nextval('
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY pages_sitebranding ALTER COLUMN id SET DEFAULT nextval('pages_sitebranding_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY pages_socialmediasettings ALTER COLUMN id SET DEFAULT nextval('pages_socialmediasettings_id_seq'::regclass);
 
 
@@ -3189,6 +3227,9 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 242	Can add video gallery page	81	add_videogallerypage
 243	Can change video gallery page	81	change_videogallerypage
 244	Can delete video gallery page	81	delete_videogallerypage
+245	Can add site branding	82	add_sitebranding
+246	Can change site branding	82	change_sitebranding
+247	Can delete site branding	82	delete_sitebranding
 \.
 
 
@@ -3196,7 +3237,7 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('auth_permission_id_seq', 244, true);
+SELECT pg_catalog.setval('auth_permission_id_seq', 247, true);
 
 
 --
@@ -3204,7 +3245,7 @@ SELECT pg_catalog.setval('auth_permission_id_seq', 244, true);
 --
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$36000$5HkCiQD2wOPy$quuP34M/87omK0yq4oSkulez1de4DadLKB28QDGhFz0=	2017-10-05 10:52:02.151502-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
+1	pbkdf2_sha256$36000$5HkCiQD2wOPy$quuP34M/87omK0yq4oSkulez1de4DadLKB28QDGhFz0=	2017-10-10 10:21:18.20304-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
 \.
 
 
@@ -3483,6 +3524,7 @@ COPY django_content_type (id, app_label, model) FROM stdin;
 79	pages	videopage
 80	pages	videogallerypagecarouselitem
 81	pages	videogallerypage
+82	pages	sitebranding
 \.
 
 
@@ -3490,7 +3532,7 @@ COPY django_content_type (id, app_label, model) FROM stdin;
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_content_type_id_seq', 81, true);
+SELECT pg_catalog.setval('django_content_type_id_seq', 82, true);
 
 
 --
@@ -3658,6 +3700,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 158	people	0005_personindexpage_feed_image	2017-10-09 14:21:08.248952-04
 159	products	0007_productindexpage_feed_image	2017-10-09 14:21:09.411912-04
 160	contact	0008_formpage_feed_image	2017-10-09 14:34:02.210929-04
+161	pages	0016_sitebranding	2017-10-10 10:20:23.643092-04
 \.
 
 
@@ -3665,7 +3708,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 160, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 161, true);
 
 
 --
@@ -3716,6 +3759,7 @@ fe632xaodlns0yx8u27dzxgzfvz56zuy	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJ
 3e8ibx9rj4x991ad7katd4ct9pkwtlgb	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-09-21 10:17:16.955274-04
 ufz0a91jvzhyo6qwu244wuh6m2m07u1w	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-09-21 11:17:04.180546-04
 uw6t4ywi903n5ydri8zemcx1e1861r3m	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-10-19 10:52:02.176801-04
+zbvjagpokjc7v8pqef73wp8lt9bxcm3f	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-10-24 10:21:18.228257-04
 \.
 
 
@@ -3952,6 +3996,22 @@ COPY pages_homepagerelatedlink (id, sort_order, link_external, title, link_docum
 --
 
 SELECT pg_catalog.setval('pages_homepagerelatedlink_id_seq', 1, false);
+
+
+--
+-- Data for Name: pages_sitebranding; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY pages_sitebranding (id, site_name, logo_id, site_id) FROM stdin;
+1	ChrisDev Wagtail Project	12	2
+\.
+
+
+--
+-- Name: pages_sitebranding_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('pages_sitebranding_id_seq', 1, true);
 
 
 --
@@ -4230,6 +4290,7 @@ COPY postgres_search_indexentry (id, object_id, body_search, content_type_id) FR
 37	20	'document':1B 'galleri':2B	73
 38	21	'document':2B 'sampl':1B	75
 19	5	'ac':119,141 'accumsan':48 'adipisc':11 'aenean':65 'aliquam':13 'aliquet':176 'amet':9,22,118,146 'ant':106 'auctor':68 'blandit':19 'consectetur':10 'consequat':135 'curabitur':84 'cursus':61 'dapibus':50,98 'diam':33,39,100,112,198 'dictum':56 'dolor':7,130,137 'donec':53,78 'dui':81,173 'egesta':124 'eget':80,179,193 'eleifend':139 'elementum':18,162 'elit':12 'enim':23 'erat':175 'ero':138,150 'et':14,111,129 'eu':16,49,71,168 'euismod':116 'ex':143 'facilisi':64 'faucibus':69 'fermentum':60,191 'feugiat':52,79 'fringilla':169 'fusc':110 'gravida':152 'hendrerit':155 'id':35,107,172 'imperdiet':85 'integ':154 'interdum':41 'ipsum':6,114,186 'justo':67 'lacinia':44 'laoreet':165 'lectus':92 'leo':26,36 'libero':120 'ligula':123,189 'lorem':5,167 'luctus':108 'magna':93,163 'massa':25,45 'matti':29 'mauri':15,122 'maximus':188 'mi':42 'molesti':153 'molli':156 'morbi':91,101,164 'nec':40,75,151 'nibh':17,62,77,133 'nisi':140 'nisl':73,174 'non':127 'nulla':144,170 'nunc':43,47 'odio':51,157,166 'ornar':27 'page':2B 'phasellus':34 'placerat':37,57 'porttitor':58,132,159,194 'porttutor':201 'posuer':136,185 'proin':121,131 'pulvinar':115 'quam':55,88,182,195 'qui':113,134,199 'quisqu':24 'rhoncus':83 'risus':70 'sagitti':90 'sed':160,183 'semper':72,142 'sidebar':4B 'sit':8,21,117,145 'sodal':105 'sollicitudin':99 'standard':1B 'suscipit':76,104 'tempor':128 'tempus':89,126 'tortor':86,178 'tristiqu':46,190 'turpi':96 'ullamcorp':180 'urna':103,147 'ut':74,87,95,148,161,187,192 'varius':20,54,181,197 'vehicula':31,38 'vel':102 'velit':109 'venenati':149,171,184 'vestibulum':32 'vita':30,158 'vivamus':59 'viverra':94,200 'w/o':3B	37
+43	12	'chrisdev':1A 'logo':2A	2
 \.
 
 
@@ -4237,7 +4298,7 @@ COPY postgres_search_indexentry (id, object_id, body_search, content_type_id) FR
 -- Name: postgres_search_indexentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('postgres_search_indexentry_id_seq', 42, true);
+SELECT pg_catalog.setval('postgres_search_indexentry_id_seq', 44, true);
 
 
 --
@@ -4655,6 +4716,7 @@ COPY wagtailimages_image (id, title, file, width, height, created_at, focal_poin
 7	sass.jpg	original_images/sass.jpg	1300	500	2016-07-20 03:38:06.406475-04	\N	\N	\N	\N	1	158244	1
 5	postgresql.jpg	original_images/postgresql.jpg	1300	500	2016-07-20 03:38:06.2173-04	\N	\N	\N	\N	1	117964	1
 3	foundation.jpg	original_images/foundation.jpg	1300	500	2016-07-20 03:38:06.005665-04	\N	\N	\N	\N	1	131208	1
+12	chrisdev logo	original_images/chrisdevf_favicon.png	500	500	2017-10-10 10:30:40.591611-04	\N	\N	\N	\N	1	\N	1
 \.
 
 
@@ -4662,7 +4724,7 @@ COPY wagtailimages_image (id, title, file, width, height, created_at, focal_poin
 -- Name: wagtailimages_image_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailimages_image_id_seq', 11, true);
+SELECT pg_catalog.setval('wagtailimages_image_id_seq', 12, true);
 
 
 --
@@ -4723,6 +4785,9 @@ COPY wagtailimages_rendition (id, file, width, height, focal_point_key, image_id
 51	images/foundation.2e16d0ba.fill-1200x440.jpg	1200	440	2e16d0ba	3	fill-1200x440
 52	images/wagtail.2e16d0ba.fill-100x100.jpg	100	100	2e16d0ba	9	fill-100x100
 53	images/wagtail.width-90.png	90	90		10	width-90
+54	images/wagtail.width-80.png	80	80		10	width-80
+55	images/chrisdevf_favicon.max-165x165.png	165	165		12	max-165x165
+56	images/chrisdevf_favicon.width-80.png	80	80		12	width-80
 \.
 
 
@@ -4730,7 +4795,7 @@ COPY wagtailimages_rendition (id, file, width, height, focal_point_key, image_id
 -- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 53, true);
+SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 56, true);
 
 
 --
@@ -5166,6 +5231,22 @@ ALTER TABLE ONLY pages_homepagecontentitem
 
 ALTER TABLE ONLY pages_homepagerelatedlink
     ADD CONSTRAINT pages_homepagerelatedlink_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pages_sitebranding_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY pages_sitebranding
+    ADD CONSTRAINT pages_sitebranding_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pages_sitebranding_site_id_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY pages_sitebranding
+    ADD CONSTRAINT pages_sitebranding_site_id_key UNIQUE (site_id);
 
 
 --
@@ -6218,6 +6299,13 @@ CREATE INDEX pages_homepagerelatedlink_1a63c800 ON pages_homepagerelatedlink USI
 --
 
 CREATE INDEX pages_homepagerelatedlink_5b76e141 ON pages_homepagerelatedlink USING btree (link_page_id);
+
+
+--
+-- Name: pages_sitebranding_logo_id_2841159b; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX pages_sitebranding_logo_id_2841159b ON pages_sitebranding USING btree (logo_id);
 
 
 --
@@ -7552,6 +7640,22 @@ ALTER TABLE ONLY pages_homepagerelatedlink
 
 ALTER TABLE ONLY pages_standardindexpagerelatedlink
     ADD CONSTRAINT pages_s_page_id_d0df6fde_fk_pages_standardindexpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES pages_standardindexpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pages_sitebranding_logo_id_2841159b_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY pages_sitebranding
+    ADD CONSTRAINT pages_sitebranding_logo_id_2841159b_fk_wagtailimages_image_id FOREIGN KEY (logo_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pages_sitebranding_site_id_04cc1128_fk_wagtailcore_site_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY pages_sitebranding
+    ADD CONSTRAINT pages_sitebranding_site_id_04cc1128_fk_wagtailcore_site_id FOREIGN KEY (site_id) REFERENCES wagtailcore_site(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
