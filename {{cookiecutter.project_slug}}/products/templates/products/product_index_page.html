@@ -3,56 +3,27 @@
 
 {% block content %}
 <div id="content" class="row">
-  <div class="medium-12 columns">
-    <center>
-      <h3>{{ self.title }}</h3>
-      <h5 class="subheader">{{ self.subtitle }}</h5>
-      {% include "products/includes/intro.html" with intro=self.intro only %}
-    </center>
-    <hr>
-    <div class="medium-12 columns">
-      <div class="people medium-up-1 small-up-1" data-equalizer>
-        {% for product in products %}
-        <div class="column">
-
-          <div class="row">
-            <div class="card" data-equalizer>
-              <div class="row stack-for-small">
-                <div class="medium-4 columns">
-                  <div class="thumbnail">
-                    {% image product.image fill-300x250 %}
+  <div class="medium-10 medium-centered columns">
+      <center>
+          <h3>{{ self.title }}</h3>
+          <h5 class="subheader">{{ self.subtitle }}</h5>
+          {% include "products/includes/intro.html" with intro=self.intro only %}
+      </center>
+  </div>
+  <div class="people medium-up-4 small-up-1" data-equalizer>
+      {% for product in products %}
+          <div class="column text-center">
+              <a href="{% pageurl product %}">
+                  <div class="card" data-equalizer>
+                      {% image product.image fill-500x400 %}
+                      <div class="card-section" style="padding: 8px;">
+                          <h5>{{ product.title}}</h5>
+                          <h6>{{ product.price}}</h6>
+                      </div>
                   </div>
-                </div>
-
-                <div class="medium-8 columns">
-                  <div class="row">
-                    <div class="medium-8 columns"><h5><strong>{{ product.title}}</strong></h5></div>
-                    <div class="medium-4 columns"><h6 class="stat">{{ product.price}}</h6></div>
-                  </div>
-                  <h6>{% include "products/includes/intro.html" with intro=product.intro only %}</h6>
-                  <ul>
-                    <p>Feature Tags:</p>
-                    {% for tag in product.tags.all %}
-                    <li class="label"> {{ tag }}</li>
-                    {% endfor %}
-                  </ul>
-                  <div class="row">
-                    <div class="medium-8 columns"></div>
-                    <div class="medium-4 columns"><a class="hollow button" href="{% pageurl product %}">View</a>
-                      {% if product.link_demo %}
-                      <a class="hollow button alert" href="{{product.link_demo}}">Demo</a>
-                      {% endif %}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              </a>
           </div>
-
-        </div>
-        {% endfor %}
-      </div>
-    </div>
+      {% endfor %}
   </div>
   <div class="medium-12 columns hide-for-print">
     <ul class="pagination text-center" role="navigation" aria-label="Pagination">
@@ -71,4 +42,5 @@
       {% endif %}
     </ul>
   </div>
-</div>{% endblock %}{% endraw %}
+</div>
+{% endblock %}{% endraw %}

@@ -3,7 +3,7 @@
 
 {% block content %}
     <div id="content" class="row">
-        <center><h3><strong>{{ self.title }}</strong></h3></center>
+        <center><h3>{{ self.title }}</h3></center>
         <br>        
         {% include "pages/includes/video_gallery_list.html" with carousel_items=self.carousel_items.all only  %}
     </div>
