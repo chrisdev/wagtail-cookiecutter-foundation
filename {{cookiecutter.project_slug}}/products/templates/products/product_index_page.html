@@ -10,18 +10,23 @@
           {% include "products/includes/intro.html" with intro=self.intro only %}
       </center>
   </div>
-  <div class="people medium-up-4 small-up-1" data-equalizer>
+  <div class="product medium-up-3 small-up-1" data-equalizer>
       {% for product in products %}
-          <div class="column text-center">
-              <a href="{% pageurl product %}">
-                  <div class="card" data-equalizer>
-                      {% image product.image fill-500x400 %}
-                      <div class="card-section" style="padding: 8px;">
-                          <h5>{{ product.title}}</h5>
-                          <h6>{{ product.price}}</h6>
-                      </div>
+          <div class="column">
+              <a href="{% pageurl product %}">                   
+                  <div class="card-user-profile card" style="border-radius: 3px;">
+                    {% image product.image fill-500x250 %}
+                    <div class="card-user-profile-content card-section" style="padding: 0;">
+                      <center>
+                          <p class="card-user-profile-name" style="margin-bottom: 0;">{{ product.title }}</p>
+                      </center>
+                    </div>
+                  
+                    <div class="card-user-profile-actions">
+                      <a href="{% pageurl product %}" class="card-user-profile-button button hollow secondary" style="border-radius: 3px;">More Info</a>
+                    </div>
                   </div>
-              </a>
+              </a>            
           </div>
       {% endfor %}
   </div>
