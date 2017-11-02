@@ -1,5 +1,6 @@
 $primary: map-get($foundation-palette, primary);
 $secondary: map-get($foundation-palette, secondary);
+$emperor: #777;
 $static: static;
 
 // SOCIAL BAR
@@ -517,6 +518,108 @@ $full-width-testimonial-vertical-padding: 1rem;
 }
  
 // END TESTIMONIAL
+
+
+
+
+// TESTIMONIAL LIST
+  
+  .featured-testimonials-section {
+    padding: 1rem;
+  
+    .featured-testimonials-container {
+      .orbit-previous {
+        color: $black;
+        left: -1rem;
+      }
+  
+      .orbit-next {
+        color: $black;
+        right: -1rem;
+      }
+  }
+  
+    .testimonial {
+      display: flex;
+      align-items: center;
+      margin: 2.5rem 1rem;
+    }
+  
+    .profile-pic {
+      max-width: 100px;
+      border-radius: 50%;
+  
+    }
+    
+    h6 {color: $white;}
+  
+    p {
+      margin-left: 2rem;
+      margin-bottom: 0rem;
+      padding: .5rem;
+      position: relative;
+      color: $emperor;
+  
+      &::before {
+        content: "“";
+        font-size: 4rem;
+        color: $primary;
+        position: absolute;
+        top: -2.5rem;
+        left: -1.5rem;
+      }
+  
+      &::after {
+        content: "”";
+        font-size: 4rem;
+        color: $primary;
+        position: absolute;
+        bottom: -4rem;
+        right: -.5rem;
+      }
+  
+      @include breakpoint(small only){
+        margin-left: 0;
+      }
+    }
+  }
+  
+  .reveal.testimonial {
+      padding: 2rem;
+      border-radius: 5px;
+      img {border-radius: 5px; margin-right: 10px;}
+      .rich-text {
+          margin-left: 2rem;
+          margin-bottom: 0rem;
+          padding: .5rem;
+          position: relative;
+          color: $secondary;
+      
+          &::before {
+            content: "“";
+            font-size: 4rem;
+            color: $secondary;
+            position: absolute;
+            top: -2.5rem;
+            left: -1.5rem;
+          }
+      
+          &::after {
+            content: "”";
+            font-size: 4rem;
+            color: $secondary;
+            position: absolute;
+            bottom: -4rem;
+            right: -.5rem;
+          }
+      
+          @include breakpoint(small only){
+            margin-left: 0;
+          }
+        }
+  }
+  
+// END TESTIMONIAL LIST 
 
 
 
