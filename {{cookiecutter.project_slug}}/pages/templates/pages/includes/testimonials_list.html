@@ -6,7 +6,7 @@
             <div class="small-12 medium-6 columns" style="min-height: 235px;">
                 <div class="testimonial">
                     {% if t.photo %}
-                        {% image t.photo fill-120x120 class="profile-pic hide-for-small-only" %}
+                        {% image t.photo fill-165x165 class="profile-pic hide-for-small-only" %}
                     {% endif %}
                     {{ t.text|truncatewords:20|richtext }}
                 </div>
