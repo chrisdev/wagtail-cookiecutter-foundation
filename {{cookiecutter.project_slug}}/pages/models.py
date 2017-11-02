@@ -141,7 +141,7 @@ class StandardIndexPage(Page):
     )
 
     indexed_fields = ('intro', )
-    
+
     @property
     def template(self):
         return self.template_string
