@@ -121,8 +121,16 @@ class StandardIndexPageRelatedLink(Orderable, RelatedLink):
 
 
 class StandardIndexPage(Page):
+    TEMPLATE_CHOICES = [
+        ('pages/standard_index_page.html', 'Default Template'),
+        ('pages/standard_index_page_grid.html', 'Grid Also In This Section'),
+    ]
     subtitle = models.CharField(max_length=255, blank=True)
     intro = RichTextField(blank=True)
+    template_string = models.CharField(
+        max_length=255, choices=TEMPLATE_CHOICES,
+        default='pages/standard_index_page.html'
+    )
     feed_image = models.ForeignKey(
         Image,
         help_text="An optional image to represent the page",
@@ -133,11 +141,16 @@ class StandardIndexPage(Page):
     )
 
     indexed_fields = ('intro', )
+    
+    @property
+    def template(self):
+        return self.template_string
 
 StandardIndexPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('subtitle', classname="full title"),
     FieldPanel('intro', classname="full"),
+    FieldPanel('template_string'),
     InlinePanel('related_links', label="Related links"),
 ]
 
