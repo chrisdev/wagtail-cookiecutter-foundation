@@ -3622,6 +3622,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 161	pages	0016_sitebranding	2017-10-10 10:20:23.643092-04
 162	pages	0017_standardindexpage_template_string	2017-11-02 11:50:45.755233-04
 163	pages	0018_auto_20171102_1809	2017-11-02 14:11:16.642647-04
+164	pages	0019_auto_20171102_1856	2017-11-02 14:56:52.102349-04
 \.
 
 
@@ -4413,6 +4414,7 @@ COPY wagtailimages_rendition (id, file, width, height, focal_point_key, image_id
 55	images/chrisdevf_favicon.max-165x165.png	165	165		12	max-165x165
 56	images/chrisdevf_favicon.width-80.png	80	80		12	width-80
 57	images/yeti.2e16d0ba.fill-120x120.png	120	120	2e16d0ba	11	fill-120x120
+58	images/postgresql.2e16d0ba.fill-120x120_Hwm1dC1.png	120	120	2e16d0ba	6	fill-120x120
 \.
 
 
@@ -4566,7 +4568,7 @@ SELECT pg_catalog.setval('django_content_type_id_seq', 83, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 163, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 164, true);
 
 
 --
@@ -4881,7 +4883,7 @@ SELECT pg_catalog.setval('wagtailimages_image_id_seq', 12, true);
 -- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 57, true);
+SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 58, true);
 
 
 --
