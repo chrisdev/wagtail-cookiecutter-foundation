@@ -252,6 +252,31 @@ VideoGalleryPage.promote_panels = Page.promote_panels + [
 ]
 
 
+class TestimonialPage(Page):
+    intro = RichTextField(blank=True)
+    feed_image = models.ForeignKey(
+        Image,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    search_fields = Page.search_fields + [
+        index.SearchField('intro'),
+    ]
+
+
+TestimonialPage.content_panels = [
+    FieldPanel('title', classname="full title"),
+    FieldPanel('intro', classname="full"),
+]
+
+TestimonialPage.promote_panels = Page.promote_panels + [
+    ImageChooserPanel('feed_image'),
+]
+
+
 class ContentBlock(LinkFields):
     page = models.ForeignKey(
         Page,

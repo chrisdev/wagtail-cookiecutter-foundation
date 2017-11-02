@@ -1258,7 +1258,7 @@ CREATE TABLE pages_testimonial (
     id integer NOT NULL,
     link_external character varying(200) NOT NULL,
     name character varying(150) NOT NULL,
-    text character varying(255) NOT NULL,
+    text text NOT NULL,
     link_document_id integer,
     link_page_id integer,
     page_id integer,
@@ -1283,6 +1283,17 @@ CREATE SEQUENCE pages_testimonial_id_seq
 --
 
 ALTER SEQUENCE pages_testimonial_id_seq OWNED BY pages_testimonial.id;
+
+
+--
+-- Name: pages_testimonialpage; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE pages_testimonialpage (
+    page_ptr_id integer NOT NULL,
+    intro text NOT NULL,
+    feed_image_id integer
+);
 
 
 --
@@ -3218,6 +3229,9 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 245	Can add site branding	82	add_sitebranding
 246	Can change site branding	82	change_sitebranding
 247	Can delete site branding	82	delete_sitebranding
+248	Can add testimonial page	83	add_testimonialpage
+249	Can change testimonial page	83	change_testimonialpage
+250	Can delete testimonial page	83	delete_testimonialpage
 \.
 
 
@@ -3226,7 +3240,7 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$36000$5HkCiQD2wOPy$quuP34M/87omK0yq4oSkulez1de4DadLKB28QDGhFz0=	2017-11-02 11:53:26.130545-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
+1	pbkdf2_sha256$36000$5HkCiQD2wOPy$quuP34M/87omK0yq4oSkulez1de4DadLKB28QDGhFz0=	2017-11-02 14:12:18.870248-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
 \.
 
 
@@ -3436,6 +3450,7 @@ COPY django_content_type (id, app_label, model) FROM stdin;
 80	pages	videogallerypagecarouselitem
 81	pages	videogallerypage
 82	pages	sitebranding
+83	pages	testimonialpage
 \.
 
 
@@ -3606,6 +3621,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 160	contact	0008_formpage_feed_image	2017-10-09 14:34:02.210929-04
 161	pages	0016_sitebranding	2017-10-10 10:20:23.643092-04
 162	pages	0017_standardindexpage_template_string	2017-11-02 11:50:45.755233-04
+163	pages	0018_auto_20171102_1809	2017-11-02 14:11:16.642647-04
 \.
 
 
@@ -3659,6 +3675,7 @@ ufz0a91jvzhyo6qwu244wuh6m2m07u1w	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJ
 uw6t4ywi903n5ydri8zemcx1e1861r3m	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-10-19 10:52:02.176801-04
 zbvjagpokjc7v8pqef73wp8lt9bxcm3f	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-10-24 10:21:18.228257-04
 7lv8o8s8srob6k2h5bfxwzvd83bryqb6	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-11-16 11:53:26.37437-04
+hzwc6ny9pettf5hcou8xbl1ec75fu84b	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-11-16 14:12:19.196485-04
 \.
 
 
@@ -3886,6 +3903,17 @@ COPY pages_standardpagerelatedlink (id, sort_order, link_external, title, link_d
 --
 
 COPY pages_testimonial (id, link_external, name, text, link_document_id, link_page_id, page_id, photo_id) FROM stdin;
+1		Christopher Clarke	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \nleo, ornare in mattis vitae, vehicula vestibulum diam.</p>	\N	\N	\N	11
+2		Lendl Smith	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \nleo, ornare in mattis vitae, vehicula vestibulum diam.</p>	\N	\N	\N	6
+\.
+
+
+--
+-- Data for Name: pages_testimonialpage; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY pages_testimonialpage (page_ptr_id, intro, feed_image_id) FROM stdin;
+27		\N
 \.
 
 
@@ -4029,6 +4057,7 @@ COPY postgres_search_indexentry (id, object_id, body_search, content_type_id) FR
 38	21	'document':2B 'sampl':1B	75
 19	5	'ac':119,141 'accumsan':48 'adipisc':11 'aenean':65 'aliquam':13 'aliquet':176 'amet':9,22,118,146 'ant':106 'auctor':68 'blandit':19 'consectetur':10 'consequat':135 'curabitur':84 'cursus':61 'dapibus':50,98 'diam':33,39,100,112,198 'dictum':56 'dolor':7,130,137 'donec':53,78 'dui':81,173 'egesta':124 'eget':80,179,193 'eleifend':139 'elementum':18,162 'elit':12 'enim':23 'erat':175 'ero':138,150 'et':14,111,129 'eu':16,49,71,168 'euismod':116 'ex':143 'facilisi':64 'faucibus':69 'fermentum':60,191 'feugiat':52,79 'fringilla':169 'fusc':110 'gravida':152 'hendrerit':155 'id':35,107,172 'imperdiet':85 'integ':154 'interdum':41 'ipsum':6,114,186 'justo':67 'lacinia':44 'laoreet':165 'lectus':92 'leo':26,36 'libero':120 'ligula':123,189 'lorem':5,167 'luctus':108 'magna':93,163 'massa':25,45 'matti':29 'mauri':15,122 'maximus':188 'mi':42 'molesti':153 'molli':156 'morbi':91,101,164 'nec':40,75,151 'nibh':17,62,77,133 'nisi':140 'nisl':73,174 'non':127 'nulla':144,170 'nunc':43,47 'odio':51,157,166 'ornar':27 'page':2B 'phasellus':34 'placerat':37,57 'porttitor':58,132,159,194 'porttutor':201 'posuer':136,185 'proin':121,131 'pulvinar':115 'quam':55,88,182,195 'qui':113,134,199 'quisqu':24 'rhoncus':83 'risus':70 'sagitti':90 'sed':160,183 'semper':72,142 'sidebar':4B 'sit':8,21,117,145 'sodal':105 'sollicitudin':99 'standard':1B 'suscipit':76,104 'tempor':128 'tempus':89,126 'tortor':86,178 'tristiqu':46,190 'turpi':96 'ullamcorp':180 'urna':103,147 'ut':74,87,95,148,161,187,192 'varius':20,54,181,197 'vehicula':31,38 'vel':102 'velit':109 'venenati':149,171,184 'vestibulum':32 'vita':30,158 'vivamus':59 'viverra':94,200 'w/o':3B	37
 43	12	'chrisdev':1A 'logo':2A	2
+49	27	'testimoni':1B	83
 \.
 
 
@@ -4186,7 +4215,6 @@ COPY wagtailcore_page (id, path, depth, numchild, title, slug, live, has_unpubli
 20	000100010005	3	1	Documents Gallery	documents-gallery	t	f	/home/documents-gallery/		t		\N	\N	f	73	1	f	2016-07-20 04:22:02.975756-04	2016-07-20 04:22:03.069215-04	\N	2016-07-20 04:22:02.975756-04	Documents Gallery
 21	0001000100050001	4	0	Sample Documents	sample-documents	t	f	/home/documents-gallery/sample-documents/		t		\N	\N	f	75	1	f	2016-07-20 04:24:12.663501-04	2016-07-20 04:24:12.780898-04	\N	2016-07-20 04:24:12.663501-04	Sample Documents
 24	000100010007	3	0	Contact Us	contact-us	t	f	/home/contact-us/		t		\N	\N	f	58	1	f	2016-07-20 04:33:22.946592-04	2016-07-20 04:32:19.773581-04	\N	2016-07-20 04:33:22.946592-04	Contact Us
-3	00010001	2	7	Homepage	home	t	f	/home/		t		\N	\N	f	4	\N	f	2016-07-20 03:45:12.484088-04	2016-07-20 03:37:34.678451-04	\N	2016-07-20 03:45:12.484088-04	Homepage
 17	0001000100040001	4	0	Blog Page 1	blog-page-1	t	f	/home/blog-index/blog-page-1/		t		\N	\N	f	47	1	f	2016-09-20 08:31:13.370445-04	2016-07-20 04:13:43.63026-04	\N	2016-09-20 08:31:13.370445-04	Blog Page 1
 18	0001000100040002	4	0	Blog Page 2	blog-page-2	t	f	/home/blog-index/blog-page-2/		t		\N	\N	f	47	1	f	2016-09-20 08:38:28.178672-04	2016-07-20 04:15:09.479097-04	\N	2016-09-20 08:38:28.178672-04	Blog Page 2
 19	0001000100040003	4	0	Blog Page 3	blog-page-3	t	f	/home/blog-index/blog-page-3/		t		\N	\N	f	47	1	f	2016-09-20 08:39:24.91435-04	2016-07-20 04:17:15.679154-04	\N	2016-09-20 08:39:24.91435-04	Blog Page 3
@@ -4195,6 +4223,8 @@ COPY wagtailcore_page (id, path, depth, numchild, title, slug, live, has_unpubli
 5	0001000100010001	4	0	Standard Page w/o Sidebar	standard-page-wo-sidebar	t	f	/home/standard-index/standard-page-wo-sidebar/		t		\N	\N	f	37	1	f	2017-06-06 09:21:53.664968-04	2016-07-20 03:48:57.449331-04	\N	2017-06-06 09:21:53.664968-04	Standard Page w/o Sidebar
 6	0001000100010002	4	0	Standard Page	standard-page	t	f	/home/standard-index/standard-page/		t		\N	\N	f	37	1	f	2017-06-06 09:22:33.296026-04	2016-07-20 03:50:19.479521-04	\N	2017-06-06 09:22:33.296026-04	Standard Page
 4	000100010001	3	2	Standard Index	standard-index	t	f	/home/standard-index/		t		\N	\N	f	34	1	f	2017-11-02 12:04:54.025129-04	2016-07-20 03:46:10.958228-04	43	2017-11-02 12:04:54.895424-04	Standard Index
+3	00010001	2	8	Homepage	home	t	f	/home/		t		\N	\N	f	4	\N	f	2016-07-20 03:45:12.484088-04	2016-07-20 03:37:34.678451-04	\N	2016-07-20 03:45:12.484088-04	Homepage
+27	000100010008	3	0	Testimonials	testimonials	t	f	/home/testimonials/		f		\N	\N	f	83	1	f	2017-11-02 14:14:43.001594-04	2017-11-02 14:14:43.872807-04	44	2017-11-02 14:14:43.872807-04	Testimonials
 \.
 
 
@@ -4244,6 +4274,7 @@ COPY wagtailcore_pagerevision (id, submitted_for_moderation, created_at, content
 4	f	2016-07-20 03:46:10.872621-04	{"subtitle": "", "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>", "latest_revision_created_at": null, "go_live_at": null, "feed_image": null, "related_links": [], "title": "Standard Index", "seo_title": "", "slug": "standard-index", "live": true, "has_unpublished_changes": false, "numchild": 0, "content_type": 34, "show_in_menus": true, "path": "000100010001", "url_path": "/home/standard-index/", "expired": false, "pk": 4, "locked": false, "depth": 3, "first_published_at": null, "expire_at": null}	\N	4	1
 42	f	2017-11-02 11:54:05.836356-04	{"subtitle": "", "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>", "latest_revision_created_at": "2016-07-20T07:46:10.872Z", "go_live_at": null, "feed_image": null, "related_links": [], "title": "Standard Index", "seo_title": "", "draft_title": "Standard Index", "template_string": "pages/standard_index_page_grid.html", "live": true, "last_published_at": "2016-07-20T07:46:10.872Z", "has_unpublished_changes": false, "numchild": 2, "content_type": 34, "show_in_menus": true, "path": "000100010001", "url_path": "/home/standard-index/", "expired": false, "slug": "standard-index", "locked": false, "pk": 4, "depth": 3, "first_published_at": "2016-07-20T07:46:10.958Z", "expire_at": null, "live_revision": null}	\N	4	1
 43	f	2017-11-02 12:04:54.025129-04	{"subtitle": "", "search_description": "", "owner": 1, "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>", "latest_revision_created_at": "2017-11-02T15:54:05.836Z", "go_live_at": null, "feed_image": null, "related_links": [], "title": "Standard Index", "seo_title": "", "draft_title": "Standard Index", "template_string": "pages/standard_index_page.html", "live": true, "last_published_at": "2017-11-02T15:54:06.830Z", "has_unpublished_changes": false, "numchild": 2, "content_type": 34, "show_in_menus": true, "path": "000100010001", "url_path": "/home/standard-index/", "expired": false, "slug": "standard-index", "locked": false, "pk": 4, "depth": 3, "first_published_at": "2016-07-20T07:46:10.958Z", "expire_at": null, "live_revision": 42}	\N	4	1
+44	f	2017-11-02 14:14:43.001594-04	{"search_description": "", "owner": 1, "intro": "", "latest_revision_created_at": null, "go_live_at": null, "feed_image": null, "title": "Testimonials", "seo_title": "", "draft_title": "Testimonials", "live": true, "last_published_at": null, "has_unpublished_changes": false, "numchild": 0, "content_type": 83, "show_in_menus": false, "path": "000100010008", "url_path": "/home/testimonials/", "expired": false, "slug": "testimonials", "locked": false, "pk": 27, "depth": 3, "first_published_at": null, "expire_at": null, "live_revision": null}	\N	27	1
 \.
 
 
@@ -4381,6 +4412,7 @@ COPY wagtailimages_rendition (id, file, width, height, focal_point_key, image_id
 54	images/wagtail.width-80.png	80	80		10	width-80
 55	images/chrisdevf_favicon.max-165x165.png	165	165		12	max-165x165
 56	images/chrisdevf_favicon.width-80.png	80	80		12	width-80
+57	images/yeti.2e16d0ba.fill-120x120.png	120	120	2e16d0ba	11	fill-120x120
 \.
 
 
@@ -4450,7 +4482,7 @@ SELECT pg_catalog.setval('auth_group_permissions_id_seq', 14, true);
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('auth_permission_id_seq', 247, true);
+SELECT pg_catalog.setval('auth_permission_id_seq', 250, true);
 
 
 --
@@ -4527,14 +4559,14 @@ SELECT pg_catalog.setval('django_admin_log_id_seq', 1, false);
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_content_type_id_seq', 82, true);
+SELECT pg_catalog.setval('django_content_type_id_seq', 83, true);
 
 
 --
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 162, true);
+SELECT pg_catalog.setval('django_migrations_id_seq', 163, true);
 
 
 --
@@ -4653,7 +4685,7 @@ SELECT pg_catalog.setval('pages_standardpagerelatedlink_id_seq', 1, false);
 -- Name: pages_testimonial_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('pages_testimonial_id_seq', 1, false);
+SELECT pg_catalog.setval('pages_testimonial_id_seq', 2, true);
 
 
 --
@@ -4702,7 +4734,7 @@ SELECT pg_catalog.setval('photo_gallery_gallerypagetag_id_seq', 3, true);
 -- Name: postgres_search_indexentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('postgres_search_indexentry_id_seq', 48, true);
+SELECT pg_catalog.setval('postgres_search_indexentry_id_seq', 51, true);
 
 
 --
@@ -4786,14 +4818,14 @@ SELECT pg_catalog.setval('wagtailcore_grouppagepermission_id_seq', 6, true);
 -- Name: wagtailcore_page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailcore_page_id_seq', 26, true);
+SELECT pg_catalog.setval('wagtailcore_page_id_seq', 27, true);
 
 
 --
 -- Name: wagtailcore_pagerevision_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailcore_pagerevision_id_seq', 43, true);
+SELECT pg_catalog.setval('wagtailcore_pagerevision_id_seq', 44, true);
 
 
 --
@@ -4849,7 +4881,7 @@ SELECT pg_catalog.setval('wagtailimages_image_id_seq', 12, true);
 -- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 56, true);
+SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 57, true);
 
 
 --
@@ -5317,6 +5349,14 @@ ALTER TABLE ONLY pages_standardpagerelatedlink
 
 ALTER TABLE ONLY pages_testimonial
     ADD CONSTRAINT pages_testimonial_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pages_testimonialpage pages_testimonialpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY pages_testimonialpage
+    ADD CONSTRAINT pages_testimonialpage_pkey PRIMARY KEY (page_ptr_id);
 
 
 --
@@ -6424,6 +6464,13 @@ CREATE INDEX pages_testimonial_5b76e141 ON pages_testimonial USING btree (link_p
 --
 
 CREATE INDEX pages_testimonial_b4e75e23 ON pages_testimonial USING btree (photo_id);
+
+
+--
+-- Name: pages_testimonialpage_feed_image_id_598eb509; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX pages_testimonialpage_feed_image_id_598eb509 ON pages_testimonialpage USING btree (feed_image_id);
 
 
 --
@@ -7806,6 +7853,22 @@ ALTER TABLE ONLY pages_testimonial
 
 ALTER TABLE ONLY pages_testimonial
     ADD CONSTRAINT pages_testimonial_photo_id_29360729_fk_wagtailimages_image_id FOREIGN KEY (photo_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pages_testimonialpage pages_testimonialpag_feed_image_id_598eb509_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY pages_testimonialpage
+    ADD CONSTRAINT pages_testimonialpag_feed_image_id_598eb509_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pages_testimonialpage pages_testimonialpag_page_ptr_id_2ec75089_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY pages_testimonialpage
+    ADD CONSTRAINT pages_testimonialpag_page_ptr_id_2ec75089_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
