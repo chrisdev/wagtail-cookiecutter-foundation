@@ -314,7 +314,7 @@ class Testimonial(LinkFields):
     photo = models.ForeignKey(
         Image, null=True, blank=True, on_delete=models.SET_NULL
     )
-    text = models.CharField(max_length=255)
+    text = RichTextField(blank=True)
 
     panels = [
         PageChooserPanel('page'),

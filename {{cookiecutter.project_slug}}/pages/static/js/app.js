@@ -2,7 +2,6 @@
 
   $('.testimonials').bxSlider({
     auto: true,
-    mode: 'vertical',
     pager: false,
     controls: false,
     slideMargin:3,
