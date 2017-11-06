@@ -34,7 +34,9 @@
     	        </p>
     	
     	        {% if self.location %}
-    	        <p>Location: <strong>{{ self.location }}</strong></p>
+    	        <p class="hide-for-small-only">Location: <strong><a href="http://maps.google.com/?q={{ self.location }}" target="_blank">{{ self.location }}</a></strong></p>
+    	        
+    	        <p class="show-for-small-only">Location: <strong><a href="waze://?q={{ self.location }}">{{ self.location }}</a></strong></p>
     	        {% endif %}
     	
     	        {% if self.cost %}
