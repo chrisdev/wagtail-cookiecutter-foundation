@@ -1,0 +1,19 @@
+{% raw %}{% load wagtailcore_tags wagtailimages_tags wagtailimages_tags %}
+{% if pages %}
+    <div class="medium-up-3">
+        {% for page in pages %}
+            <div class="column">
+                <a href="{% pageurl page %}">
+                    <div class="card">
+                        {% if page.specific.feed_image %}
+                            {% image page.specific.feed_image fill-1200x700 %}
+                        {% endif %}
+                        <div class="card-section text-center" style="padding: 8px;">
+                            <h5>{{ page.title }}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}{% endraw %}

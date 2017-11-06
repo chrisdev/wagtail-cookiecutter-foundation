@@ -108,6 +108,29 @@ def secondary_menu(context, calling_page=None):
 
 
 @register.inclusion_tag(
+    'utils/tags/navigation/secondary_menu_grid.html', takes_context=True)
+def secondary_menu_grid(context, calling_page=None):
+    pages = []
+    if calling_page:
+        pages = calling_page.get_children().filter(
+            live=True,
+            show_in_menus=True
+        )
+
+        # If no children, get siblings instead
+        if len(pages) == 0:
+            pages = calling_page.get_siblings().filter(
+                live=True,
+                show_in_menus=True
+            )
+    return {
+        'pages': pages,
+        # required by the pageurl tag that we want to use within this template
+        'request': context['request'],
+    }
+
+
+@register.inclusion_tag(
     'utils/tags/navigation/breadcrumbs.html', takes_context=True)
 def breadcrumbs(context):
     self = context.get('self')

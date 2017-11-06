@@ -115,6 +115,18 @@ def testimonials(context):
     }
 
 
+@register.inclusion_tag('pages/includes/testimonials_list.html', takes_context=True)
+def testimonials_list(context):
+    the_page = context['page']
+    all_testimonials = Testimonial.objects.select_related()
+    return {
+        'page_testimonials': all_testimonials.filter(page=the_page),
+        'non_page_associated_testimonials': all_testimonials.filter(page__isnull=True),
+        'testimonials': all_testimonials,
+        'request': context['request'],
+    }
+
+
 @register.inclusion_tag('pages/includes/adverts.html', takes_context=True)
 def adverts(context):
     the_page = context['page']

@@ -3,56 +3,32 @@
 
 {% block content %}
 <div id="content" class="row">
-  <div class="medium-12 columns">
-    <center>
-      <h3>{{ self.title }}</h3>
-      <h5 class="subheader">{{ self.subtitle }}</h5>
-      {% include "products/includes/intro.html" with intro=self.intro only %}
-    </center>
-    <hr>
-    <div class="medium-12 columns">
-      <div class="people medium-up-1 small-up-1" data-equalizer>
-        {% for product in products %}
-        <div class="column">
-
-          <div class="row">
-            <div class="card" data-equalizer>
-              <div class="row stack-for-small">
-                <div class="medium-4 columns">
-                  <div class="thumbnail">
-                    {% image product.image fill-300x250 %}
-                  </div>
-                </div>
-
-                <div class="medium-8 columns">
-                  <div class="row">
-                    <div class="medium-8 columns"><h5><strong>{{ product.title}}</strong></h5></div>
-                    <div class="medium-4 columns"><h6 class="stat">{{ product.price}}</h6></div>
-                  </div>
-                  <h6>{% include "products/includes/intro.html" with intro=product.intro only %}</h6>
-                  <ul>
-                    <p>Feature Tags:</p>
-                    {% for tag in product.tags.all %}
-                    <li class="label"> {{ tag }}</li>
-                    {% endfor %}
-                  </ul>
-                  <div class="row">
-                    <div class="medium-8 columns"></div>
-                    <div class="medium-4 columns"><a class="hollow button" href="{% pageurl product %}">View</a>
-                      {% if product.link_demo %}
-                      <a class="hollow button alert" href="{{product.link_demo}}">Demo</a>
-                      {% endif %}
+  <div class="medium-10 medium-centered columns">
+      <center>
+          <h3>{{ self.title }}</h3>
+          <h5 class="subheader">{{ self.subtitle }}</h5>
+          {% include "products/includes/intro.html" with intro=self.intro only %}
+      </center>
+  </div>
+  <div class="product medium-up-3 small-up-1" data-equalizer>
+      {% for product in products %}
+          <div class="column">
+              <a href="{% pageurl product %}">                   
+                  <div class="card-user-profile card" style="border-radius: 3px;">
+                    {% image product.image fill-500x250 %}
+                    <div class="card-user-profile-content card-section" style="padding: 0;">
+                      <center>
+                          <p class="card-user-profile-name" style="margin-bottom: 0;">{{ product.title }}</p>
+                      </center>
+                    </div>
+                  
+                    <div class="card-user-profile-actions">
+                      <a href="{% pageurl product %}" class="card-user-profile-button button hollow secondary" style="border-radius: 3px;">More Info</a>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
+              </a>            
           </div>
-
-        </div>
-        {% endfor %}
-      </div>
-    </div>
+      {% endfor %}
   </div>
   <div class="medium-12 columns hide-for-print">
     <ul class="pagination text-center" role="navigation" aria-label="Pagination">
@@ -71,4 +47,5 @@
       {% endif %}
     </ul>
   </div>
-</div>{% endblock %}{% endraw %}
+</div>
+{% endblock %}{% endraw %}

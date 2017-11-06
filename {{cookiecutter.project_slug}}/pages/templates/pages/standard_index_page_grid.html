@@ -8,7 +8,7 @@
 {% include "pages/includes/feed_image_title.html" %}
 
 <div id="content" class="row">
-  <div id="standard_page" class="medium-9 columns">
+  <div id="standard_page" class="medium-10 medium-centered columns text-center">
       {% if self.feed_image %}{% else %}
           <center>
               <h3>{{ self.title }}</h3>
@@ -17,9 +17,10 @@
       {% endif %}
 
       {% include "pages/includes/intro.html" with intro=self.intro only %}
+      
+      <br>
+      
+      {% secondary_menu_grid calling_page=self %}
   </div>
-  <div id="sidebar" class="hide-for-print hide-for-small-only medium-3 columns">
-      {% secondary_menu calling_page=self %}
-    </div>
 </div>
 {% endblock %}{% endraw %}

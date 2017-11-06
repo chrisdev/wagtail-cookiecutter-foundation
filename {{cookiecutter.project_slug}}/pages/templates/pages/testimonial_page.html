@@ -1,0 +1,18 @@
+{% raw %}{% extends "base.html" %}
+{% load wagtailimages_tags wagtailcore_tags navigation_tags {% endraw %}{{ cookiecutter.project_slug }}{% raw %}_utils %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+    <div id="content">
+        <div id="testimonial_list" class="row">
+            <center><h3>{{ self.title }}</h3></center>
+            
+            <div class="featured-testimonials-section">
+                <div class="featured-testimonials row" style="max-width: 74em;" data-equalizer>
+                    {% testimonials_list %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}{% endraw %}
