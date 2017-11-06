@@ -36,8 +36,19 @@
     	        {% if self.location %}
     	        <p class="hide-for-small-only">Location: <strong><a href="http://maps.google.com/?q={{ self.location }}" target="_blank">{{ self.location }}</a></strong></p>
     	        
-    	        <p class="show-for-small-only">Location: <strong><a href="waze://?q={{ self.location }}">{{ self.location }}</a></strong></p>
+    	        <div class="show-for-small-only">
+    	        	<p>Location: <strong>{{ self.location }}</strong></p>
+    	        	<div class="row">
+    	            	<div class="small-6 columns">
+    	            		<a class="button small" href="waze://?q={{ self.location }}" style="width: 100%; border-radius: 3px;">Open with Waze</a></strong>
+    	            	</div>
+    	            	<div class="small-6 columns">
+    	            		<a class="button small" href="http://maps.google.com/?q={{ self.location }}" target="_blank" style="width: 100%; border-radius: 3px;">Open with Google Maps</a>
+    	            	</div>
+    	            </div>
+    	        </div>
     	        {% endif %}
+    	        
     	
     	        {% if self.cost %}
     	        <p>Cost: <strong>{{ self.cost|safe }}</strong></p>
