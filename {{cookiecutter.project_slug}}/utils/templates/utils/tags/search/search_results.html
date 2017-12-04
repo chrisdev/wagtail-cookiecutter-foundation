@@ -28,11 +28,13 @@
       {% for result in search_results %}
       <div class="column text-center" data-equalizer-watch>
         <a href="{{ result.specific.url }}">
-          {% if result.specific.feed_image %}
-          {% image result.specific.feed_image fill-1200x440 %}
-          {% endif %}
-          <div class="callout" style="padding: 8px;">
-            <h6><strong>{{ result.title }}</strong></h6>
+          <div class="card" style="border-radius: 5px;">
+          	{% if result.specific.feed_image %}
+          		{% image result.specific.feed_image fill-1200x550 %}
+          	{% endif %}
+          	<div class="card-section" style="padding: 8px;">
+            	<h6><strong>{{ result.title }}</strong></h6>
+            </div>
           </div>
         </a>
       </div>
