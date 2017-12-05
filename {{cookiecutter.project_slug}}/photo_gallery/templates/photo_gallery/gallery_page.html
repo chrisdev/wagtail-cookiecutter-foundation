@@ -12,14 +12,15 @@
     {% endif %}
 
     {% if images %}
-    <div class="medium-up-4" data-equalizer>
+    <div class="medium-up-5" data-equalizer>
       {% for gallery_image in images %}
-      {% image gallery_image width-1200 as gallery_imagedata %}
-      <div class="column" data-equalizer-watch>
-        <a class="thumbnail" href="{{ gallery_imagedata.url }}" data-lightbox="{{ self.title }}">
-          <img src="{{ gallery_imagedata.url }}" alt="{{ gallery_imagedata.alt }}" style="width: 100%; height: 150px;"/>
-        </a>
-      </div>
+      	{% image gallery_image fill-400x300 as img_thumb %}
+      	{% image gallery_image original as gallery_imagedata %}
+          <div class="column" data-equalizer-watch>
+            <a class="thumbnail" href="{{ gallery_imagedata.url }}" data-lightbox="{{ self.title }}">
+              <img src="{{ img_thumb.url }}" alt="{{ gallery_imagedata.alt }}"/>
+            </a>
+          </div>
       {% endfor %}
     </div>
     {% else %}
