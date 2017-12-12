@@ -10,4 +10,5 @@ Wagtail allows you to manage all of your documents and images through their own 
 
    documents
    images
+   photo_gallery
    snippets
