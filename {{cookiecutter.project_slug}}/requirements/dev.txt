@@ -3,7 +3,7 @@
 django-debug-toolbar==1.9.1
 django-extensions==1.9.1
 
-wagtail-bakery==0.1.0
+wagtail-bakery==0.2.0
 
 livereload==2.5.1
 selenium==3.6.0
