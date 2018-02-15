@@ -9,6 +9,8 @@
 
 {% block content %}
 
+{% include "utils/includes/social_share.html" %}
+
 {% if self.feed_image %}
 {% image self.feed_image original as feed_image %}
 <div class="row expanded collapse">
@@ -40,9 +42,7 @@
 
 <article id="blog_post" class="row">
   <div class="medium-11 medium-centered columns">
-      <br>
-      {% include "utils/includes/social_share.html" %}
-      
+      <br>    
       {% if self.feed_image %}{% else %}
       {% include "blog/includes/blog_header.html" %}
       {% endif %}
