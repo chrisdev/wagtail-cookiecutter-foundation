@@ -6,7 +6,7 @@ Sphinx==1.6.5
 sphinx-rtd-theme==0.2.4
 
 # Testing
-pytest==3.2.3
+pytest==3.4.2
 pep8==1.7.1
 pyflakes==1.6.0
 tox==2.9.1
