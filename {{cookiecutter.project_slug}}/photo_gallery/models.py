@@ -42,7 +42,7 @@ class GalleryIndexPage(Page):
 
     def get_context(self, request):
         # Get list of live Gallery pages that are descendants of this page
-        pages = GalleryPage.objects.live().descendant_of(self)
+        pages = GalleryPage.objects.live().descendant_of(self).order_by('-first_published_at')
 
         # Update template context
         context = super(GalleryIndexPage, self).get_context(request)
