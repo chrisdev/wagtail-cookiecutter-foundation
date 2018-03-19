@@ -1,62 +1,28 @@
-{% raw %}<!DOCTYPE html>
-
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
-<head>
-	<meta charset="utf-8" />
-
-	<!-- Set the viewport width to device width for mobile -->
-	<meta name="viewport" content="width=device-width" />
-
-	<title>Site Under Maintenance</title>
+{% raw %}<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Under Maintenance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
+  </head>
   
-	<!-- Included CSS Files -->
-	<link rel="stylesheet" href="https://s3.amazonaws.com/foundation_static/stylesheets/foundation.css">
-	<link rel="stylesheet" href="https://s3.amazonaws.com/foundation_static/stylesheets/app.css">
+  <body>
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x">
+        <div class="large-12 cell">
+          <center>
+          	<img src="https://pbs.twimg.com/profile_images/431430088890916864/goZLpqVe_400x400.png" alt="site" title="site" style="margin-top: 80px; margin-bottom: 40px; border-radius: 100%;" width="300"/>
+          	<h3>Site is Temporarily Down For Maintenance</h3>
+          	<h5>We are performing scheduled maintenance. We will be back online shortly</h5>
+          </center>
+        </div>
+      </div>
+    </div>
 
-	<!--[if lt IE 9]>
-	<link rel="stylesheet" href="https://s3.amazonaws.com/foundation_static/stylesheets/ie.css">
-	<![endif]-->
-
-
-	<!-- IE Fix for HTML5 Tags -->
-	<!--[if lt IE 9]>
-	<script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
-</head>
-<body>
-
-	<!-- container -->
-	<div class="container">
-		<div class="row">
-			<div class="four columns centered" style="margin-top: 80px; margin-bottom: 40px;">
-				<img src="https://pbs.twimg.com/profile_images/431430088890916864/goZLpqVe_400x400.png" style="border-radius: 100%;" alt="site" title="site"/>
-			</div>
-		</div>
-		<div class="row">
-			<div class="eight columns centered">
-			    <center>
-				<h3>Site is Temporarily Down For Maintenance</h3>
-				<h5>We are performing scheduled maintenance. We will be back online shortly</h5>
-				</center>
-			</div>
-		</div>
-
-	</div>
-	<!-- container -->
-
-
-
-
-	<!-- Included JS Files -->
-	<script src="https://s3.amazonaws.com/foundation_static/javascripts/jquery.min.js"></script>
-	<script src="https://s3.amazonaws.com/foundation_static/javascripts/modernizr.foundation.js"></script>
-	<script src="https://s3.amazonaws.com/foundation_static/javascripts/foundation.js"></script>
-	<script src="https://s3.amazonaws.com/foundation_static/javascripts/app.js"></script>
-
-</body>
-</html>{% endraw %}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/js/foundation.min.js"></script>
+  </body>
+</html>
+{% endraw %}
