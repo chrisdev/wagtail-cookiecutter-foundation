@@ -9,7 +9,7 @@ django-foundation-formtags==0.1.0
 django-wagtail-feeds==0.0.8
 django-libsass==0.7
 django-redis==4.8.0
-libsass==0.13.4
+libsass==0.14.5
 psycopg2==2.7.3.2
 wand==0.4.4
 git+https://github.com/andrivet/wagtail-markdown.git
