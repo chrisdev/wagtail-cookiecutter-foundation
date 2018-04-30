@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 from django.db import migrations, models
 import django.db.models.deletion
 import modelcluster.fields
-import wagtail.core.fields
+import wagtail.wagtailcore.fields
 
 
 class Migration(migrations.Migration):
@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
             name='VideoPage',
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('intro', wagtail.core.fields.RichTextField(blank=True)),
+                ('intro', wagtail.wagtailcore.fields.RichTextField(blank=True)),
                 ('template_string', models.CharField(choices=[(b'pages/video_gallery_page.html', b'Videos Page')], default=b'pages/video_gallery_page.html', max_length=255)),
                 ('feed_image', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image')),
             ],
@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
                 ('sort_order', models.IntegerField(blank=True, editable=False, null=True)),
                 ('link_external', models.URLField(blank=True, verbose_name=b'External link')),
                 ('embed_url', models.URLField(blank=True, verbose_name=b'Embed URL')),
-                ('caption', wagtail.core.fields.RichTextField(blank=True)),
+                ('caption', wagtail.wagtailcore.fields.RichTextField(blank=True)),
                 ('image', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image')),
                 ('link_document', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='wagtaildocs.Document')),
                 ('link_page', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='+', to='wagtailcore.Page')),

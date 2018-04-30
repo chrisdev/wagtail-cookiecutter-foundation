@@ -1,13 +1,13 @@
 from django.db import models
-from wagtail.core.fields import RichTextField
+from wagtail.wagtailcore.fields import RichTextField
 
-from wagtail.admin.edit_handlers import (
+from wagtail.wagtailadmin.edit_handlers import (
     FieldPanel, MultiFieldPanel, InlinePanel
 )
 
-from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.core.models import Page
-from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailcore.models import Page
+from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
 from modelcluster.fields import ParentalKey
 from utils.models import ContactFields
 

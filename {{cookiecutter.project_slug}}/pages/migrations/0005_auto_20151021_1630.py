@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.wagtailcore.blocks
+import wagtail.wagtailcore.fields
 
 
 class Migration(migrations.Migration):
@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='faqspage',
             name='body',
-            field=wagtail.core.fields.StreamField((('faq_question', wagtail.core.blocks.CharBlock(classname='full title')), ('faq_answer', wagtail.core.blocks.RichTextBlock()))),
+            field=wagtail.wagtailcore.fields.StreamField((('faq_question', wagtail.wagtailcore.blocks.CharBlock(classname='full title')), ('faq_answer', wagtail.wagtailcore.blocks.RichTextBlock()))),
         ),
         migrations.AlterField(
             model_name='homepagecarouselitem',

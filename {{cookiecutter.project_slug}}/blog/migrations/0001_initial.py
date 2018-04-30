@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.db import models, migrations
 import django.db.models.deletion
 import modelcluster.fields
-import wagtail.core.fields
+import wagtail.wagtailcore.fields
 import modelcluster.contrib.taggit
 
 
@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
             name='BlogIndexPage',
             fields=[
                 ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('intro', wagtail.core.fields.RichTextField(blank=True)),
+                ('intro', wagtail.wagtailcore.fields.RichTextField(blank=True)),
             ],
             options={
                 'abstract': False,
@@ -47,8 +47,8 @@ class Migration(migrations.Migration):
             name='BlogPage',
             fields=[
                 ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('intro', wagtail.core.fields.RichTextField()),
-                ('body', wagtail.core.fields.RichTextField()),
+                ('intro', wagtail.wagtailcore.fields.RichTextField()),
+                ('body', wagtail.wagtailcore.fields.RichTextField()),
                 ('date', models.DateField(verbose_name=b'Post date')),
                 ('feed_image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', null=True)),
             ],
@@ -64,7 +64,7 @@ class Migration(migrations.Migration):
                 ('sort_order', models.IntegerField(null=True, editable=False, blank=True)),
                 ('link_external', models.URLField(verbose_name=b'External link', blank=True)),
                 ('embed_url', models.URLField(verbose_name=b'Embed URL', blank=True)),
-                ('caption', wagtail.core.fields.RichTextField(blank=True)),
+                ('caption', wagtail.wagtailcore.fields.RichTextField(blank=True)),
                 ('image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', null=True)),
                 ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
                 ('link_page', models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True)),

@@ -1,13 +1,13 @@
 from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from wagtail.core.models import Page, Orderable
-from wagtail.core.fields import RichTextField
-from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.images.models import Image
+from wagtail.wagtailcore.models import Page, Orderable
+from wagtail.wagtailcore.fields import RichTextField
+from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.wagtailimages.models import Image
 
 
-from wagtail.admin.edit_handlers import (
+from wagtail.wagtailadmin.edit_handlers import (
     FieldPanel, MultiFieldPanel, InlinePanel
 )
 from modelcluster.fields import ParentalKey

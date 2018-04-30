@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 from django.db import models, migrations
 import django.db.models.deletion
 import modelcluster.fields
-import wagtail.core.fields
-import wagtail.core.blocks
+import wagtail.wagtailcore.fields
+import wagtail.wagtailcore.blocks
 
 
 class Migration(migrations.Migration):
@@ -23,8 +23,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('link_external', models.URLField(verbose_name=b'External link', blank=True)),
                 ('title', models.CharField(max_length=255)),
-                ('body', wagtail.core.fields.RichTextField()),
-                ('summary', wagtail.core.fields.RichTextField(blank=True)),
+                ('body', wagtail.wagtailcore.fields.RichTextField()),
+                ('summary', wagtail.wagtailcore.fields.RichTextField(blank=True)),
                 ('slug', models.SlugField()),
                 ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
             ],
@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
             name='FaqsPage',
             fields=[
                 ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('body', wagtail.core.fields.StreamField([(b'faq_question', wagtail.core.blocks.CharBlock(classname=b'full title')), (b'faq_answer', wagtail.core.blocks.RichTextBlock())])),
+                ('body', wagtail.wagtailcore.fields.StreamField([(b'faq_question', wagtail.wagtailcore.blocks.CharBlock(classname=b'full title')), (b'faq_answer', wagtail.wagtailcore.blocks.RichTextBlock())])),
             ],
             options={
                 'abstract': False,
@@ -47,8 +47,8 @@ class Migration(migrations.Migration):
             name='HomePage',
             fields=[
                 ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
-                ('title_text', wagtail.core.fields.RichTextField(null=True, blank=True)),
-                ('body', wagtail.core.fields.RichTextField(null=True, blank=True)),
+                ('title_text', wagtail.wagtailcore.fields.RichTextField(null=True, blank=True)),
+                ('body', wagtail.wagtailcore.fields.RichTextField(null=True, blank=True)),
             ],
             options={
                 'verbose_name': 'Homepage',
@@ -62,7 +62,7 @@ class Migration(migrations.Migration):
                 ('sort_order', models.IntegerField(null=True, editable=False, blank=True)),
                 ('link_external', models.URLField(verbose_name=b'External link', blank=True)),
                 ('embed_url', models.URLField(verbose_name=b'Embed URL', blank=True)),
-                ('caption', wagtail.core.fields.RichTextField(blank=True)),
+                ('caption', wagtail.wagtailcore.fields.RichTextField(blank=True)),
                 ('image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', null=True)),
                 ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
             ],
@@ -78,8 +78,8 @@ class Migration(migrations.Migration):
                 ('sort_order', models.IntegerField(null=True, editable=False, blank=True)),
                 ('link_external', models.URLField(verbose_name=b'External link', blank=True)),
                 ('title', models.CharField(max_length=100)),
-                ('content', wagtail.core.fields.RichTextField(null=True, blank=True)),
-                ('summary', wagtail.core.fields.RichTextField(blank=True)),
+                ('content', wagtail.wagtailcore.fields.RichTextField(null=True, blank=True)),
+                ('summary', wagtail.wagtailcore.fields.RichTextField(blank=True)),
                 ('slug', models.SlugField()),
                 ('image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', null=True)),
                 ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
@@ -108,7 +108,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('subtitle', models.CharField(max_length=255, blank=True)),
-                ('intro', wagtail.core.fields.RichTextField(blank=True)),
+                ('intro', wagtail.wagtailcore.fields.RichTextField(blank=True)),
                 ('feed_image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', help_text=b'An optional image to represent the page', null=True)),
             ],
             options={
@@ -135,8 +135,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('subtitle', models.CharField(max_length=255, blank=True)),
-                ('intro', wagtail.core.fields.RichTextField(blank=True)),
-                ('body', wagtail.core.fields.RichTextField(blank=True)),
+                ('intro', wagtail.wagtailcore.fields.RichTextField(blank=True)),
+                ('body', wagtail.wagtailcore.fields.RichTextField(blank=True)),
                 ('feed_image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', null=True)),
             ],
             options={
@@ -151,7 +151,7 @@ class Migration(migrations.Migration):
                 ('sort_order', models.IntegerField(null=True, editable=False, blank=True)),
                 ('link_external', models.URLField(verbose_name=b'External link', blank=True)),
                 ('embed_url', models.URLField(verbose_name=b'Embed URL', blank=True)),
-                ('caption', wagtail.core.fields.RichTextField(blank=True)),
+                ('caption', wagtail.wagtailcore.fields.RichTextField(blank=True)),
                 ('image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', null=True)),
                 ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
                 ('link_page', models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True)),

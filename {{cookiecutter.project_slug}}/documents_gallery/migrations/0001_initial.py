@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import modelcluster.contrib.taggit
-import wagtail.core.fields
+import wagtail.wagtailcore.fields
 import modelcluster.fields
 import django.db.models.deletion
 
@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
             name='DocumentsIndexPage',
             fields=[
                 ('page_ptr', models.OneToOneField(parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page', auto_created=True)),
-                ('intro', wagtail.core.fields.RichTextField(blank=True)),
+                ('intro', wagtail.wagtailcore.fields.RichTextField(blank=True)),
                 ('feed_image', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, blank=True, related_name='+', to='wagtailimages.Image', null=True)),
             ],
             options={

@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.db import models, migrations
 import django.db.models.deletion
 import modelcluster.fields
-import wagtail.core.fields
+import wagtail.wagtailcore.fields
 import modelcluster.contrib.taggit
 
 
@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('subtitle', models.CharField(max_length=255, blank=True)),
-                ('intro', wagtail.core.fields.RichTextField(blank=True)),
+                ('intro', wagtail.wagtailcore.fields.RichTextField(blank=True)),
             ],
             options={
                 'abstract': False,
@@ -49,7 +49,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('price', models.CharField(max_length=255, blank=True)),
-                ('description', wagtail.core.fields.RichTextField(blank=True)),
+                ('description', wagtail.wagtailcore.fields.RichTextField(blank=True)),
                 ('feed_image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', null=True)),
                 ('image', models.ForeignKey(related_name='+', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', null=True)),
             ],
