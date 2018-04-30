@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
-import wagtail.wagtailcore.fields
+import wagtail.core.fields
 import modelcluster.fields
 
 
@@ -46,7 +46,7 @@ class Migration(migrations.Migration):
                 ('country', models.CharField(max_length=255, blank=True)),
                 ('post_code', models.CharField(max_length=10, blank=True)),
                 ('intro', models.CharField(max_length=255, blank=True)),
-                ('thank_you_text', wagtail.wagtailcore.fields.RichTextField(blank=True)),
+                ('thank_you_text', wagtail.core.fields.RichTextField(blank=True)),
             ],
             options={
                 'abstract': False,
@@ -77,8 +77,8 @@ class Migration(migrations.Migration):
                 ('to_address', models.CharField(help_text='Optional - form submissions will be emailed to this address', max_length=255, verbose_name='To address', blank=True)),
                 ('from_address', models.CharField(max_length=255, verbose_name='From address', blank=True)),
                 ('subject', models.CharField(max_length=255, verbose_name='Subject', blank=True)),
-                ('intro', wagtail.wagtailcore.fields.RichTextField(blank=True)),
-                ('thank_you_text', wagtail.wagtailcore.fields.RichTextField(blank=True)),
+                ('intro', wagtail.core.fields.RichTextField(blank=True)),
+                ('thank_you_text', wagtail.core.fields.RichTextField(blank=True)),
             ],
             options={
                 'abstract': False,

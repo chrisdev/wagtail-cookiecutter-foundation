@@ -2,14 +2,15 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.5
--- Dumped by pg_dump version 10.0
+-- Dumped from database version 9.6.8
+-- Dumped by pg_dump version 10.3
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
@@ -28,8 +29,6 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
-SET search_path = public, pg_catalog;
-
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -38,7 +37,7 @@ SET default_with_oids = false;
 -- Name: auth_group; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE auth_group (
+CREATE TABLE public.auth_group (
     id integer NOT NULL,
     name character varying(80) NOT NULL
 );
@@ -48,7 +47,7 @@ CREATE TABLE auth_group (
 -- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE auth_group_id_seq
+CREATE SEQUENCE public.auth_group_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -60,14 +59,14 @@ CREATE SEQUENCE auth_group_id_seq
 -- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE auth_group_id_seq OWNED BY auth_group.id;
+ALTER SEQUENCE public.auth_group_id_seq OWNED BY public.auth_group.id;
 
 
 --
 -- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE auth_group_permissions (
+CREATE TABLE public.auth_group_permissions (
     id integer NOT NULL,
     group_id integer NOT NULL,
     permission_id integer NOT NULL
@@ -78,7 +77,7 @@ CREATE TABLE auth_group_permissions (
 -- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE auth_group_permissions_id_seq
+CREATE SEQUENCE public.auth_group_permissions_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -90,14 +89,14 @@ CREATE SEQUENCE auth_group_permissions_id_seq
 -- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE auth_group_permissions_id_seq OWNED BY auth_group_permissions.id;
+ALTER SEQUENCE public.auth_group_permissions_id_seq OWNED BY public.auth_group_permissions.id;
 
 
 --
 -- Name: auth_permission; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE auth_permission (
+CREATE TABLE public.auth_permission (
     id integer NOT NULL,
     name character varying(255) NOT NULL,
     content_type_id integer NOT NULL,
@@ -109,7 +108,7 @@ CREATE TABLE auth_permission (
 -- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE auth_permission_id_seq
+CREATE SEQUENCE public.auth_permission_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -121,14 +120,14 @@ CREATE SEQUENCE auth_permission_id_seq
 -- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE auth_permission_id_seq OWNED BY auth_permission.id;
+ALTER SEQUENCE public.auth_permission_id_seq OWNED BY public.auth_permission.id;
 
 
 --
 -- Name: auth_user; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE auth_user (
+CREATE TABLE public.auth_user (
     id integer NOT NULL,
     password character varying(128) NOT NULL,
     last_login timestamp with time zone,
@@ -147,7 +146,7 @@ CREATE TABLE auth_user (
 -- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE auth_user_groups (
+CREATE TABLE public.auth_user_groups (
     id integer NOT NULL,
     user_id integer NOT NULL,
     group_id integer NOT NULL
@@ -158,7 +157,7 @@ CREATE TABLE auth_user_groups (
 -- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE auth_user_groups_id_seq
+CREATE SEQUENCE public.auth_user_groups_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -170,14 +169,14 @@ CREATE SEQUENCE auth_user_groups_id_seq
 -- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE auth_user_groups_id_seq OWNED BY auth_user_groups.id;
+ALTER SEQUENCE public.auth_user_groups_id_seq OWNED BY public.auth_user_groups.id;
 
 
 --
 -- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE auth_user_id_seq
+CREATE SEQUENCE public.auth_user_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -189,14 +188,14 @@ CREATE SEQUENCE auth_user_id_seq
 -- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE auth_user_id_seq OWNED BY auth_user.id;
+ALTER SEQUENCE public.auth_user_id_seq OWNED BY public.auth_user.id;
 
 
 --
 -- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE auth_user_user_permissions (
+CREATE TABLE public.auth_user_user_permissions (
     id integer NOT NULL,
     user_id integer NOT NULL,
     permission_id integer NOT NULL
@@ -207,7 +206,7 @@ CREATE TABLE auth_user_user_permissions (
 -- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE auth_user_user_permissions_id_seq
+CREATE SEQUENCE public.auth_user_user_permissions_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -219,14 +218,14 @@ CREATE SEQUENCE auth_user_user_permissions_id_seq
 -- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE auth_user_user_permissions_id_seq OWNED BY auth_user_user_permissions.id;
+ALTER SEQUENCE public.auth_user_user_permissions_id_seq OWNED BY public.auth_user_user_permissions.id;
 
 
 --
 -- Name: blog_blogindexpage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE blog_blogindexpage (
+CREATE TABLE public.blog_blogindexpage (
     page_ptr_id integer NOT NULL,
     intro text NOT NULL,
     feed_image_id integer
@@ -237,7 +236,7 @@ CREATE TABLE blog_blogindexpage (
 -- Name: blog_blogindexpagerelatedlink; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE blog_blogindexpagerelatedlink (
+CREATE TABLE public.blog_blogindexpagerelatedlink (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -252,7 +251,7 @@ CREATE TABLE blog_blogindexpagerelatedlink (
 -- Name: blog_blogindexpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE blog_blogindexpagerelatedlink_id_seq
+CREATE SEQUENCE public.blog_blogindexpagerelatedlink_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -264,14 +263,14 @@ CREATE SEQUENCE blog_blogindexpagerelatedlink_id_seq
 -- Name: blog_blogindexpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE blog_blogindexpagerelatedlink_id_seq OWNED BY blog_blogindexpagerelatedlink.id;
+ALTER SEQUENCE public.blog_blogindexpagerelatedlink_id_seq OWNED BY public.blog_blogindexpagerelatedlink.id;
 
 
 --
 -- Name: blog_blogpage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE blog_blogpage (
+CREATE TABLE public.blog_blogpage (
     page_ptr_id integer NOT NULL,
     intro text NOT NULL,
     body text NOT NULL,
@@ -284,7 +283,7 @@ CREATE TABLE blog_blogpage (
 -- Name: blog_blogpagecarouselitem; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE blog_blogpagecarouselitem (
+CREATE TABLE public.blog_blogpagecarouselitem (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -301,7 +300,7 @@ CREATE TABLE blog_blogpagecarouselitem (
 -- Name: blog_blogpagecarouselitem_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE blog_blogpagecarouselitem_id_seq
+CREATE SEQUENCE public.blog_blogpagecarouselitem_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -313,14 +312,14 @@ CREATE SEQUENCE blog_blogpagecarouselitem_id_seq
 -- Name: blog_blogpagecarouselitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE blog_blogpagecarouselitem_id_seq OWNED BY blog_blogpagecarouselitem.id;
+ALTER SEQUENCE public.blog_blogpagecarouselitem_id_seq OWNED BY public.blog_blogpagecarouselitem.id;
 
 
 --
 -- Name: blog_blogpagerelatedlink; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE blog_blogpagerelatedlink (
+CREATE TABLE public.blog_blogpagerelatedlink (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -335,7 +334,7 @@ CREATE TABLE blog_blogpagerelatedlink (
 -- Name: blog_blogpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE blog_blogpagerelatedlink_id_seq
+CREATE SEQUENCE public.blog_blogpagerelatedlink_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -347,14 +346,14 @@ CREATE SEQUENCE blog_blogpagerelatedlink_id_seq
 -- Name: blog_blogpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE blog_blogpagerelatedlink_id_seq OWNED BY blog_blogpagerelatedlink.id;
+ALTER SEQUENCE public.blog_blogpagerelatedlink_id_seq OWNED BY public.blog_blogpagerelatedlink.id;
 
 
 --
 -- Name: blog_blogpagetag; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE blog_blogpagetag (
+CREATE TABLE public.blog_blogpagetag (
     id integer NOT NULL,
     content_object_id integer NOT NULL,
     tag_id integer NOT NULL
@@ -365,7 +364,7 @@ CREATE TABLE blog_blogpagetag (
 -- Name: blog_blogpagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE blog_blogpagetag_id_seq
+CREATE SEQUENCE public.blog_blogpagetag_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -377,14 +376,14 @@ CREATE SEQUENCE blog_blogpagetag_id_seq
 -- Name: blog_blogpagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE blog_blogpagetag_id_seq OWNED BY blog_blogpagetag.id;
+ALTER SEQUENCE public.blog_blogpagetag_id_seq OWNED BY public.blog_blogpagetag.id;
 
 
 --
 -- Name: contact_contactformfield; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE contact_contactformfield (
+CREATE TABLE public.contact_contactformfield (
     id integer NOT NULL,
     sort_order integer,
     label character varying(255) NOT NULL,
@@ -401,7 +400,7 @@ CREATE TABLE contact_contactformfield (
 -- Name: contact_contactformfield_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE contact_contactformfield_id_seq
+CREATE SEQUENCE public.contact_contactformfield_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -413,14 +412,14 @@ CREATE SEQUENCE contact_contactformfield_id_seq
 -- Name: contact_contactformfield_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE contact_contactformfield_id_seq OWNED BY contact_contactformfield.id;
+ALTER SEQUENCE public.contact_contactformfield_id_seq OWNED BY public.contact_contactformfield.id;
 
 
 --
 -- Name: contact_contactpage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE contact_contactpage (
+CREATE TABLE public.contact_contactpage (
     page_ptr_id integer NOT NULL,
     to_address character varying(255) NOT NULL,
     from_address character varying(255) NOT NULL,
@@ -445,7 +444,7 @@ CREATE TABLE contact_contactpage (
 -- Name: contact_formfield; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE contact_formfield (
+CREATE TABLE public.contact_formfield (
     id integer NOT NULL,
     sort_order integer,
     label character varying(255) NOT NULL,
@@ -462,7 +461,7 @@ CREATE TABLE contact_formfield (
 -- Name: contact_formfield_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE contact_formfield_id_seq
+CREATE SEQUENCE public.contact_formfield_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -474,14 +473,14 @@ CREATE SEQUENCE contact_formfield_id_seq
 -- Name: contact_formfield_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE contact_formfield_id_seq OWNED BY contact_formfield.id;
+ALTER SEQUENCE public.contact_formfield_id_seq OWNED BY public.contact_formfield.id;
 
 
 --
 -- Name: contact_formpage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE contact_formpage (
+CREATE TABLE public.contact_formpage (
     page_ptr_id integer NOT NULL,
     to_address character varying(255) NOT NULL,
     from_address character varying(255) NOT NULL,
@@ -496,7 +495,7 @@ CREATE TABLE contact_formpage (
 -- Name: django_admin_log; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE django_admin_log (
+CREATE TABLE public.django_admin_log (
     id integer NOT NULL,
     action_time timestamp with time zone NOT NULL,
     object_id text,
@@ -513,7 +512,7 @@ CREATE TABLE django_admin_log (
 -- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE django_admin_log_id_seq
+CREATE SEQUENCE public.django_admin_log_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -525,14 +524,14 @@ CREATE SEQUENCE django_admin_log_id_seq
 -- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE django_admin_log_id_seq OWNED BY django_admin_log.id;
+ALTER SEQUENCE public.django_admin_log_id_seq OWNED BY public.django_admin_log.id;
 
 
 --
 -- Name: django_content_type; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE django_content_type (
+CREATE TABLE public.django_content_type (
     id integer NOT NULL,
     app_label character varying(100) NOT NULL,
     model character varying(100) NOT NULL
@@ -543,7 +542,7 @@ CREATE TABLE django_content_type (
 -- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE django_content_type_id_seq
+CREATE SEQUENCE public.django_content_type_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -555,14 +554,14 @@ CREATE SEQUENCE django_content_type_id_seq
 -- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE django_content_type_id_seq OWNED BY django_content_type.id;
+ALTER SEQUENCE public.django_content_type_id_seq OWNED BY public.django_content_type.id;
 
 
 --
 -- Name: django_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE django_migrations (
+CREATE TABLE public.django_migrations (
     id integer NOT NULL,
     app character varying(255) NOT NULL,
     name character varying(255) NOT NULL,
@@ -574,7 +573,7 @@ CREATE TABLE django_migrations (
 -- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE django_migrations_id_seq
+CREATE SEQUENCE public.django_migrations_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -586,14 +585,14 @@ CREATE SEQUENCE django_migrations_id_seq
 -- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE django_migrations_id_seq OWNED BY django_migrations.id;
+ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
 
 
 --
 -- Name: django_session; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE django_session (
+CREATE TABLE public.django_session (
     session_key character varying(40) NOT NULL,
     session_data text NOT NULL,
     expire_date timestamp with time zone NOT NULL
@@ -604,7 +603,7 @@ CREATE TABLE django_session (
 -- Name: documents_gallery_documentsindexpage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE documents_gallery_documentsindexpage (
+CREATE TABLE public.documents_gallery_documentsindexpage (
     page_ptr_id integer NOT NULL,
     intro text NOT NULL,
     feed_image_id integer
@@ -615,7 +614,7 @@ CREATE TABLE documents_gallery_documentsindexpage (
 -- Name: documents_gallery_documentspage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE documents_gallery_documentspage (
+CREATE TABLE public.documents_gallery_documentspage (
     page_ptr_id integer NOT NULL,
     feed_image_id integer
 );
@@ -625,7 +624,7 @@ CREATE TABLE documents_gallery_documentspage (
 -- Name: documents_gallery_documentspagetag; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE documents_gallery_documentspagetag (
+CREATE TABLE public.documents_gallery_documentspagetag (
     id integer NOT NULL,
     content_object_id integer NOT NULL,
     tag_id integer NOT NULL
@@ -636,7 +635,7 @@ CREATE TABLE documents_gallery_documentspagetag (
 -- Name: documents_gallery_documentspagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE documents_gallery_documentspagetag_id_seq
+CREATE SEQUENCE public.documents_gallery_documentspagetag_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -648,14 +647,14 @@ CREATE SEQUENCE documents_gallery_documentspagetag_id_seq
 -- Name: documents_gallery_documentspagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE documents_gallery_documentspagetag_id_seq OWNED BY documents_gallery_documentspagetag.id;
+ALTER SEQUENCE public.documents_gallery_documentspagetag_id_seq OWNED BY public.documents_gallery_documentspagetag.id;
 
 
 --
 -- Name: events_eventindexpage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE events_eventindexpage (
+CREATE TABLE public.events_eventindexpage (
     page_ptr_id integer NOT NULL,
     intro text NOT NULL,
     feed_image_id integer
@@ -666,7 +665,7 @@ CREATE TABLE events_eventindexpage (
 -- Name: events_eventindexpagerelatedlink; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE events_eventindexpagerelatedlink (
+CREATE TABLE public.events_eventindexpagerelatedlink (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -681,7 +680,7 @@ CREATE TABLE events_eventindexpagerelatedlink (
 -- Name: events_eventindexpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE events_eventindexpagerelatedlink_id_seq
+CREATE SEQUENCE public.events_eventindexpagerelatedlink_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -693,14 +692,14 @@ CREATE SEQUENCE events_eventindexpagerelatedlink_id_seq
 -- Name: events_eventindexpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE events_eventindexpagerelatedlink_id_seq OWNED BY events_eventindexpagerelatedlink.id;
+ALTER SEQUENCE public.events_eventindexpagerelatedlink_id_seq OWNED BY public.events_eventindexpagerelatedlink.id;
 
 
 --
 -- Name: events_eventpage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE events_eventpage (
+CREATE TABLE public.events_eventpage (
     page_ptr_id integer NOT NULL,
     date_from date NOT NULL,
     date_to date,
@@ -719,7 +718,7 @@ CREATE TABLE events_eventpage (
 -- Name: events_eventpagecarouselitem; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE events_eventpagecarouselitem (
+CREATE TABLE public.events_eventpagecarouselitem (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -736,7 +735,7 @@ CREATE TABLE events_eventpagecarouselitem (
 -- Name: events_eventpagecarouselitem_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE events_eventpagecarouselitem_id_seq
+CREATE SEQUENCE public.events_eventpagecarouselitem_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -748,14 +747,14 @@ CREATE SEQUENCE events_eventpagecarouselitem_id_seq
 -- Name: events_eventpagecarouselitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE events_eventpagecarouselitem_id_seq OWNED BY events_eventpagecarouselitem.id;
+ALTER SEQUENCE public.events_eventpagecarouselitem_id_seq OWNED BY public.events_eventpagecarouselitem.id;
 
 
 --
 -- Name: events_eventpagerelatedlink; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE events_eventpagerelatedlink (
+CREATE TABLE public.events_eventpagerelatedlink (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -770,7 +769,7 @@ CREATE TABLE events_eventpagerelatedlink (
 -- Name: events_eventpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE events_eventpagerelatedlink_id_seq
+CREATE SEQUENCE public.events_eventpagerelatedlink_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -782,14 +781,14 @@ CREATE SEQUENCE events_eventpagerelatedlink_id_seq
 -- Name: events_eventpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE events_eventpagerelatedlink_id_seq OWNED BY events_eventpagerelatedlink.id;
+ALTER SEQUENCE public.events_eventpagerelatedlink_id_seq OWNED BY public.events_eventpagerelatedlink.id;
 
 
 --
 -- Name: events_eventpagespeaker; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE events_eventpagespeaker (
+CREATE TABLE public.events_eventpagespeaker (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -805,7 +804,7 @@ CREATE TABLE events_eventpagespeaker (
 -- Name: events_eventpagespeaker_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE events_eventpagespeaker_id_seq
+CREATE SEQUENCE public.events_eventpagespeaker_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -817,14 +816,14 @@ CREATE SEQUENCE events_eventpagespeaker_id_seq
 -- Name: events_eventpagespeaker_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE events_eventpagespeaker_id_seq OWNED BY events_eventpagespeaker.id;
+ALTER SEQUENCE public.events_eventpagespeaker_id_seq OWNED BY public.events_eventpagespeaker.id;
 
 
 --
 -- Name: events_eventpagetag; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE events_eventpagetag (
+CREATE TABLE public.events_eventpagetag (
     id integer NOT NULL,
     content_object_id integer NOT NULL,
     tag_id integer NOT NULL
@@ -835,7 +834,7 @@ CREATE TABLE events_eventpagetag (
 -- Name: events_eventpagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE events_eventpagetag_id_seq
+CREATE SEQUENCE public.events_eventpagetag_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -847,14 +846,14 @@ CREATE SEQUENCE events_eventpagetag_id_seq
 -- Name: events_eventpagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE events_eventpagetag_id_seq OWNED BY events_eventpagetag.id;
+ALTER SEQUENCE public.events_eventpagetag_id_seq OWNED BY public.events_eventpagetag.id;
 
 
 --
 -- Name: pages_advert; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_advert (
+CREATE TABLE public.pages_advert (
     id integer NOT NULL,
     link_external character varying(200) NOT NULL,
     title character varying(150),
@@ -871,7 +870,7 @@ CREATE TABLE pages_advert (
 -- Name: pages_advert_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE pages_advert_id_seq
+CREATE SEQUENCE public.pages_advert_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -883,14 +882,14 @@ CREATE SEQUENCE pages_advert_id_seq
 -- Name: pages_advert_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE pages_advert_id_seq OWNED BY pages_advert.id;
+ALTER SEQUENCE public.pages_advert_id_seq OWNED BY public.pages_advert.id;
 
 
 --
 -- Name: pages_contentblock; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_contentblock (
+CREATE TABLE public.pages_contentblock (
     id integer NOT NULL,
     link_external character varying(200) NOT NULL,
     title character varying(255) NOT NULL,
@@ -907,7 +906,7 @@ CREATE TABLE pages_contentblock (
 -- Name: pages_contentblock_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE pages_contentblock_id_seq
+CREATE SEQUENCE public.pages_contentblock_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -919,14 +918,14 @@ CREATE SEQUENCE pages_contentblock_id_seq
 -- Name: pages_contentblock_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE pages_contentblock_id_seq OWNED BY pages_contentblock.id;
+ALTER SEQUENCE public.pages_contentblock_id_seq OWNED BY public.pages_contentblock.id;
 
 
 --
 -- Name: pages_faqspage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_faqspage (
+CREATE TABLE public.pages_faqspage (
     page_ptr_id integer NOT NULL,
     body text NOT NULL
 );
@@ -936,7 +935,7 @@ CREATE TABLE pages_faqspage (
 -- Name: pages_homepage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_homepage (
+CREATE TABLE public.pages_homepage (
     page_ptr_id integer NOT NULL,
     title_text text,
     body text,
@@ -948,7 +947,7 @@ CREATE TABLE pages_homepage (
 -- Name: pages_homepagecarouselitem; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_homepagecarouselitem (
+CREATE TABLE public.pages_homepagecarouselitem (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -965,7 +964,7 @@ CREATE TABLE pages_homepagecarouselitem (
 -- Name: pages_homepagecarouselitem_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE pages_homepagecarouselitem_id_seq
+CREATE SEQUENCE public.pages_homepagecarouselitem_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -977,14 +976,14 @@ CREATE SEQUENCE pages_homepagecarouselitem_id_seq
 -- Name: pages_homepagecarouselitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE pages_homepagecarouselitem_id_seq OWNED BY pages_homepagecarouselitem.id;
+ALTER SEQUENCE public.pages_homepagecarouselitem_id_seq OWNED BY public.pages_homepagecarouselitem.id;
 
 
 --
 -- Name: pages_homepagecontentitem; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_homepagecontentitem (
+CREATE TABLE public.pages_homepagecontentitem (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -1003,7 +1002,7 @@ CREATE TABLE pages_homepagecontentitem (
 -- Name: pages_homepagecontentitem_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE pages_homepagecontentitem_id_seq
+CREATE SEQUENCE public.pages_homepagecontentitem_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1015,14 +1014,14 @@ CREATE SEQUENCE pages_homepagecontentitem_id_seq
 -- Name: pages_homepagecontentitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE pages_homepagecontentitem_id_seq OWNED BY pages_homepagecontentitem.id;
+ALTER SEQUENCE public.pages_homepagecontentitem_id_seq OWNED BY public.pages_homepagecontentitem.id;
 
 
 --
 -- Name: pages_homepagerelatedlink; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_homepagerelatedlink (
+CREATE TABLE public.pages_homepagerelatedlink (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -1037,7 +1036,7 @@ CREATE TABLE pages_homepagerelatedlink (
 -- Name: pages_homepagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE pages_homepagerelatedlink_id_seq
+CREATE SEQUENCE public.pages_homepagerelatedlink_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1049,14 +1048,14 @@ CREATE SEQUENCE pages_homepagerelatedlink_id_seq
 -- Name: pages_homepagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE pages_homepagerelatedlink_id_seq OWNED BY pages_homepagerelatedlink.id;
+ALTER SEQUENCE public.pages_homepagerelatedlink_id_seq OWNED BY public.pages_homepagerelatedlink.id;
 
 
 --
 -- Name: pages_sitebranding; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_sitebranding (
+CREATE TABLE public.pages_sitebranding (
     id integer NOT NULL,
     site_name character varying(250),
     logo_id integer,
@@ -1068,7 +1067,7 @@ CREATE TABLE pages_sitebranding (
 -- Name: pages_sitebranding_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE pages_sitebranding_id_seq
+CREATE SEQUENCE public.pages_sitebranding_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1080,14 +1079,14 @@ CREATE SEQUENCE pages_sitebranding_id_seq
 -- Name: pages_sitebranding_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE pages_sitebranding_id_seq OWNED BY pages_sitebranding.id;
+ALTER SEQUENCE public.pages_sitebranding_id_seq OWNED BY public.pages_sitebranding.id;
 
 
 --
 -- Name: pages_socialmediasettings; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_socialmediasettings (
+CREATE TABLE public.pages_socialmediasettings (
     id integer NOT NULL,
     facebook character varying(200),
     instagram character varying(255),
@@ -1104,7 +1103,7 @@ CREATE TABLE pages_socialmediasettings (
 -- Name: pages_socialmediasettings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE pages_socialmediasettings_id_seq
+CREATE SEQUENCE public.pages_socialmediasettings_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1116,14 +1115,14 @@ CREATE SEQUENCE pages_socialmediasettings_id_seq
 -- Name: pages_socialmediasettings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE pages_socialmediasettings_id_seq OWNED BY pages_socialmediasettings.id;
+ALTER SEQUENCE public.pages_socialmediasettings_id_seq OWNED BY public.pages_socialmediasettings.id;
 
 
 --
 -- Name: pages_standardindexpage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_standardindexpage (
+CREATE TABLE public.pages_standardindexpage (
     page_ptr_id integer NOT NULL,
     subtitle character varying(255) NOT NULL,
     intro text NOT NULL,
@@ -1136,7 +1135,7 @@ CREATE TABLE pages_standardindexpage (
 -- Name: pages_standardindexpagerelatedlink; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_standardindexpagerelatedlink (
+CREATE TABLE public.pages_standardindexpagerelatedlink (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -1151,7 +1150,7 @@ CREATE TABLE pages_standardindexpagerelatedlink (
 -- Name: pages_standardindexpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE pages_standardindexpagerelatedlink_id_seq
+CREATE SEQUENCE public.pages_standardindexpagerelatedlink_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1163,14 +1162,14 @@ CREATE SEQUENCE pages_standardindexpagerelatedlink_id_seq
 -- Name: pages_standardindexpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE pages_standardindexpagerelatedlink_id_seq OWNED BY pages_standardindexpagerelatedlink.id;
+ALTER SEQUENCE public.pages_standardindexpagerelatedlink_id_seq OWNED BY public.pages_standardindexpagerelatedlink.id;
 
 
 --
 -- Name: pages_standardpage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_standardpage (
+CREATE TABLE public.pages_standardpage (
     page_ptr_id integer NOT NULL,
     subtitle character varying(255) NOT NULL,
     intro text NOT NULL,
@@ -1184,7 +1183,7 @@ CREATE TABLE pages_standardpage (
 -- Name: pages_standardpagecarouselitem; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_standardpagecarouselitem (
+CREATE TABLE public.pages_standardpagecarouselitem (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -1201,7 +1200,7 @@ CREATE TABLE pages_standardpagecarouselitem (
 -- Name: pages_standardpagecarouselitem_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE pages_standardpagecarouselitem_id_seq
+CREATE SEQUENCE public.pages_standardpagecarouselitem_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1213,14 +1212,14 @@ CREATE SEQUENCE pages_standardpagecarouselitem_id_seq
 -- Name: pages_standardpagecarouselitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE pages_standardpagecarouselitem_id_seq OWNED BY pages_standardpagecarouselitem.id;
+ALTER SEQUENCE public.pages_standardpagecarouselitem_id_seq OWNED BY public.pages_standardpagecarouselitem.id;
 
 
 --
 -- Name: pages_standardpagerelatedlink; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_standardpagerelatedlink (
+CREATE TABLE public.pages_standardpagerelatedlink (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -1235,7 +1234,7 @@ CREATE TABLE pages_standardpagerelatedlink (
 -- Name: pages_standardpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE pages_standardpagerelatedlink_id_seq
+CREATE SEQUENCE public.pages_standardpagerelatedlink_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1247,14 +1246,14 @@ CREATE SEQUENCE pages_standardpagerelatedlink_id_seq
 -- Name: pages_standardpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE pages_standardpagerelatedlink_id_seq OWNED BY pages_standardpagerelatedlink.id;
+ALTER SEQUENCE public.pages_standardpagerelatedlink_id_seq OWNED BY public.pages_standardpagerelatedlink.id;
 
 
 --
 -- Name: pages_testimonial; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_testimonial (
+CREATE TABLE public.pages_testimonial (
     id integer NOT NULL,
     link_external character varying(200) NOT NULL,
     name character varying(150) NOT NULL,
@@ -1270,7 +1269,7 @@ CREATE TABLE pages_testimonial (
 -- Name: pages_testimonial_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE pages_testimonial_id_seq
+CREATE SEQUENCE public.pages_testimonial_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1282,14 +1281,14 @@ CREATE SEQUENCE pages_testimonial_id_seq
 -- Name: pages_testimonial_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE pages_testimonial_id_seq OWNED BY pages_testimonial.id;
+ALTER SEQUENCE public.pages_testimonial_id_seq OWNED BY public.pages_testimonial.id;
 
 
 --
 -- Name: pages_testimonialpage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_testimonialpage (
+CREATE TABLE public.pages_testimonialpage (
     page_ptr_id integer NOT NULL,
     intro text NOT NULL,
     feed_image_id integer
@@ -1300,7 +1299,7 @@ CREATE TABLE pages_testimonialpage (
 -- Name: pages_videogallerypage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_videogallerypage (
+CREATE TABLE public.pages_videogallerypage (
     page_ptr_id integer NOT NULL,
     intro text NOT NULL,
     feed_image_id integer
@@ -1311,7 +1310,7 @@ CREATE TABLE pages_videogallerypage (
 -- Name: pages_videogallerypagecarouselitem; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE pages_videogallerypagecarouselitem (
+CREATE TABLE public.pages_videogallerypagecarouselitem (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -1328,7 +1327,7 @@ CREATE TABLE pages_videogallerypagecarouselitem (
 -- Name: pages_videopagecarouselitem_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE pages_videopagecarouselitem_id_seq
+CREATE SEQUENCE public.pages_videopagecarouselitem_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1340,14 +1339,14 @@ CREATE SEQUENCE pages_videopagecarouselitem_id_seq
 -- Name: pages_videopagecarouselitem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE pages_videopagecarouselitem_id_seq OWNED BY pages_videogallerypagecarouselitem.id;
+ALTER SEQUENCE public.pages_videopagecarouselitem_id_seq OWNED BY public.pages_videogallerypagecarouselitem.id;
 
 
 --
 -- Name: people_personindexpage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE people_personindexpage (
+CREATE TABLE public.people_personindexpage (
     page_ptr_id integer NOT NULL,
     subtitle character varying(255) NOT NULL,
     intro text NOT NULL,
@@ -1359,7 +1358,7 @@ CREATE TABLE people_personindexpage (
 -- Name: people_personindexpagerelatedlink; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE people_personindexpagerelatedlink (
+CREATE TABLE public.people_personindexpagerelatedlink (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -1374,7 +1373,7 @@ CREATE TABLE people_personindexpagerelatedlink (
 -- Name: people_personindexpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE people_personindexpagerelatedlink_id_seq
+CREATE SEQUENCE public.people_personindexpagerelatedlink_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1386,14 +1385,14 @@ CREATE SEQUENCE people_personindexpagerelatedlink_id_seq
 -- Name: people_personindexpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE people_personindexpagerelatedlink_id_seq OWNED BY people_personindexpagerelatedlink.id;
+ALTER SEQUENCE public.people_personindexpagerelatedlink_id_seq OWNED BY public.people_personindexpagerelatedlink.id;
 
 
 --
 -- Name: people_personpage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE people_personpage (
+CREATE TABLE public.people_personpage (
     page_ptr_id integer NOT NULL,
     name_organization character varying(255) NOT NULL,
     telephone character varying(20) NOT NULL,
@@ -1417,7 +1416,7 @@ CREATE TABLE people_personpage (
 -- Name: people_personpagerelatedlink; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE people_personpagerelatedlink (
+CREATE TABLE public.people_personpagerelatedlink (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -1432,7 +1431,7 @@ CREATE TABLE people_personpagerelatedlink (
 -- Name: people_personpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE people_personpagerelatedlink_id_seq
+CREATE SEQUENCE public.people_personpagerelatedlink_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1444,14 +1443,14 @@ CREATE SEQUENCE people_personpagerelatedlink_id_seq
 -- Name: people_personpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE people_personpagerelatedlink_id_seq OWNED BY people_personpagerelatedlink.id;
+ALTER SEQUENCE public.people_personpagerelatedlink_id_seq OWNED BY public.people_personpagerelatedlink.id;
 
 
 --
 -- Name: people_personpagetag; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE people_personpagetag (
+CREATE TABLE public.people_personpagetag (
     id integer NOT NULL,
     content_object_id integer NOT NULL,
     tag_id integer NOT NULL
@@ -1462,7 +1461,7 @@ CREATE TABLE people_personpagetag (
 -- Name: people_personpagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE people_personpagetag_id_seq
+CREATE SEQUENCE public.people_personpagetag_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1474,14 +1473,14 @@ CREATE SEQUENCE people_personpagetag_id_seq
 -- Name: people_personpagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE people_personpagetag_id_seq OWNED BY people_personpagetag.id;
+ALTER SEQUENCE public.people_personpagetag_id_seq OWNED BY public.people_personpagetag.id;
 
 
 --
 -- Name: people_personrole; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE people_personrole (
+CREATE TABLE public.people_personrole (
     id integer NOT NULL,
     name character varying(255) NOT NULL
 );
@@ -1491,7 +1490,7 @@ CREATE TABLE people_personrole (
 -- Name: people_personrole_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE people_personrole_id_seq
+CREATE SEQUENCE public.people_personrole_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1503,14 +1502,14 @@ CREATE SEQUENCE people_personrole_id_seq
 -- Name: people_personrole_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE people_personrole_id_seq OWNED BY people_personrole.id;
+ALTER SEQUENCE public.people_personrole_id_seq OWNED BY public.people_personrole.id;
 
 
 --
 -- Name: photo_gallery_galleryindexpage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE photo_gallery_galleryindexpage (
+CREATE TABLE public.photo_gallery_galleryindexpage (
     page_ptr_id integer NOT NULL,
     intro text NOT NULL,
     feed_image_id integer
@@ -1521,7 +1520,7 @@ CREATE TABLE photo_gallery_galleryindexpage (
 -- Name: photo_gallery_gallerypage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE photo_gallery_gallerypage (
+CREATE TABLE public.photo_gallery_gallerypage (
     page_ptr_id integer NOT NULL,
     feed_image_id integer
 );
@@ -1531,7 +1530,7 @@ CREATE TABLE photo_gallery_gallerypage (
 -- Name: photo_gallery_gallerypagetag; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE photo_gallery_gallerypagetag (
+CREATE TABLE public.photo_gallery_gallerypagetag (
     id integer NOT NULL,
     content_object_id integer NOT NULL,
     tag_id integer NOT NULL
@@ -1542,7 +1541,7 @@ CREATE TABLE photo_gallery_gallerypagetag (
 -- Name: photo_gallery_gallerypagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE photo_gallery_gallerypagetag_id_seq
+CREATE SEQUENCE public.photo_gallery_gallerypagetag_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1554,14 +1553,14 @@ CREATE SEQUENCE photo_gallery_gallerypagetag_id_seq
 -- Name: photo_gallery_gallerypagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE photo_gallery_gallerypagetag_id_seq OWNED BY photo_gallery_gallerypagetag.id;
+ALTER SEQUENCE public.photo_gallery_gallerypagetag_id_seq OWNED BY public.photo_gallery_gallerypagetag.id;
 
 
 --
 -- Name: postgres_search_indexentry; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE postgres_search_indexentry (
+CREATE TABLE public.postgres_search_indexentry (
     id integer NOT NULL,
     object_id text NOT NULL,
     body_search tsvector NOT NULL,
@@ -1573,7 +1572,7 @@ CREATE TABLE postgres_search_indexentry (
 -- Name: postgres_search_indexentry_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE postgres_search_indexentry_id_seq
+CREATE SEQUENCE public.postgres_search_indexentry_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1585,14 +1584,14 @@ CREATE SEQUENCE postgres_search_indexentry_id_seq
 -- Name: postgres_search_indexentry_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE postgres_search_indexentry_id_seq OWNED BY postgres_search_indexentry.id;
+ALTER SEQUENCE public.postgres_search_indexentry_id_seq OWNED BY public.postgres_search_indexentry.id;
 
 
 --
 -- Name: products_productindexpage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE products_productindexpage (
+CREATE TABLE public.products_productindexpage (
     page_ptr_id integer NOT NULL,
     subtitle character varying(255) NOT NULL,
     intro text NOT NULL,
@@ -1604,7 +1603,7 @@ CREATE TABLE products_productindexpage (
 -- Name: products_productindexpagerelatedlink; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE products_productindexpagerelatedlink (
+CREATE TABLE public.products_productindexpagerelatedlink (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -1619,7 +1618,7 @@ CREATE TABLE products_productindexpagerelatedlink (
 -- Name: products_productindexpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE products_productindexpagerelatedlink_id_seq
+CREATE SEQUENCE public.products_productindexpagerelatedlink_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1631,14 +1630,14 @@ CREATE SEQUENCE products_productindexpagerelatedlink_id_seq
 -- Name: products_productindexpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE products_productindexpagerelatedlink_id_seq OWNED BY products_productindexpagerelatedlink.id;
+ALTER SEQUENCE public.products_productindexpagerelatedlink_id_seq OWNED BY public.products_productindexpagerelatedlink.id;
 
 
 --
 -- Name: products_productpage; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE products_productpage (
+CREATE TABLE public.products_productpage (
     page_ptr_id integer NOT NULL,
     price character varying(255) NOT NULL,
     description text NOT NULL,
@@ -1653,7 +1652,7 @@ CREATE TABLE products_productpage (
 -- Name: products_productpagerelatedlink; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE products_productpagerelatedlink (
+CREATE TABLE public.products_productpagerelatedlink (
     id integer NOT NULL,
     sort_order integer,
     link_external character varying(200) NOT NULL,
@@ -1668,7 +1667,7 @@ CREATE TABLE products_productpagerelatedlink (
 -- Name: products_productpagerelatedlink_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE products_productpagerelatedlink_id_seq
+CREATE SEQUENCE public.products_productpagerelatedlink_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1680,14 +1679,14 @@ CREATE SEQUENCE products_productpagerelatedlink_id_seq
 -- Name: products_productpagerelatedlink_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE products_productpagerelatedlink_id_seq OWNED BY products_productpagerelatedlink.id;
+ALTER SEQUENCE public.products_productpagerelatedlink_id_seq OWNED BY public.products_productpagerelatedlink.id;
 
 
 --
 -- Name: products_productpagetag; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE products_productpagetag (
+CREATE TABLE public.products_productpagetag (
     id integer NOT NULL,
     content_object_id integer NOT NULL,
     tag_id integer NOT NULL
@@ -1698,7 +1697,7 @@ CREATE TABLE products_productpagetag (
 -- Name: products_productpagetag_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE products_productpagetag_id_seq
+CREATE SEQUENCE public.products_productpagetag_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1710,14 +1709,14 @@ CREATE SEQUENCE products_productpagetag_id_seq
 -- Name: products_productpagetag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE products_productpagetag_id_seq OWNED BY products_productpagetag.id;
+ALTER SEQUENCE public.products_productpagetag_id_seq OWNED BY public.products_productpagetag.id;
 
 
 --
 -- Name: taggit_tag; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE taggit_tag (
+CREATE TABLE public.taggit_tag (
     id integer NOT NULL,
     name character varying(100) NOT NULL,
     slug character varying(100) NOT NULL
@@ -1728,7 +1727,7 @@ CREATE TABLE taggit_tag (
 -- Name: taggit_tag_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE taggit_tag_id_seq
+CREATE SEQUENCE public.taggit_tag_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1740,14 +1739,14 @@ CREATE SEQUENCE taggit_tag_id_seq
 -- Name: taggit_tag_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE taggit_tag_id_seq OWNED BY taggit_tag.id;
+ALTER SEQUENCE public.taggit_tag_id_seq OWNED BY public.taggit_tag.id;
 
 
 --
 -- Name: taggit_taggeditem; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE taggit_taggeditem (
+CREATE TABLE public.taggit_taggeditem (
     id integer NOT NULL,
     object_id integer NOT NULL,
     content_type_id integer NOT NULL,
@@ -1759,7 +1758,7 @@ CREATE TABLE taggit_taggeditem (
 -- Name: taggit_taggeditem_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE taggit_taggeditem_id_seq
+CREATE SEQUENCE public.taggit_taggeditem_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1771,14 +1770,14 @@ CREATE SEQUENCE taggit_taggeditem_id_seq
 -- Name: taggit_taggeditem_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE taggit_taggeditem_id_seq OWNED BY taggit_taggeditem.id;
+ALTER SEQUENCE public.taggit_taggeditem_id_seq OWNED BY public.taggit_taggeditem.id;
 
 
 --
 -- Name: wagtail_feeds_rssfeedssettings; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtail_feeds_rssfeedssettings (
+CREATE TABLE public.wagtail_feeds_rssfeedssettings (
     id integer NOT NULL,
     feed_app_label character varying(255),
     feed_model_name character varying(255),
@@ -1798,7 +1797,7 @@ CREATE TABLE wagtail_feeds_rssfeedssettings (
 -- Name: wagtail_feeds_rssfeedssettings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtail_feeds_rssfeedssettings_id_seq
+CREATE SEQUENCE public.wagtail_feeds_rssfeedssettings_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1810,14 +1809,14 @@ CREATE SEQUENCE wagtail_feeds_rssfeedssettings_id_seq
 -- Name: wagtail_feeds_rssfeedssettings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtail_feeds_rssfeedssettings_id_seq OWNED BY wagtail_feeds_rssfeedssettings.id;
+ALTER SEQUENCE public.wagtail_feeds_rssfeedssettings_id_seq OWNED BY public.wagtail_feeds_rssfeedssettings.id;
 
 
 --
 -- Name: wagtailcore_collection; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailcore_collection (
+CREATE TABLE public.wagtailcore_collection (
     id integer NOT NULL,
     path character varying(255) COLLATE pg_catalog."C" NOT NULL,
     depth integer NOT NULL,
@@ -1832,7 +1831,7 @@ CREATE TABLE wagtailcore_collection (
 -- Name: wagtailcore_collection_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailcore_collection_id_seq
+CREATE SEQUENCE public.wagtailcore_collection_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1844,14 +1843,14 @@ CREATE SEQUENCE wagtailcore_collection_id_seq
 -- Name: wagtailcore_collection_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailcore_collection_id_seq OWNED BY wagtailcore_collection.id;
+ALTER SEQUENCE public.wagtailcore_collection_id_seq OWNED BY public.wagtailcore_collection.id;
 
 
 --
 -- Name: wagtailcore_collectionviewrestriction; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailcore_collectionviewrestriction (
+CREATE TABLE public.wagtailcore_collectionviewrestriction (
     id integer NOT NULL,
     restriction_type character varying(20) NOT NULL,
     password character varying(255) NOT NULL,
@@ -1863,7 +1862,7 @@ CREATE TABLE wagtailcore_collectionviewrestriction (
 -- Name: wagtailcore_collectionviewrestriction_groups; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailcore_collectionviewrestriction_groups (
+CREATE TABLE public.wagtailcore_collectionviewrestriction_groups (
     id integer NOT NULL,
     collectionviewrestriction_id integer NOT NULL,
     group_id integer NOT NULL
@@ -1874,7 +1873,7 @@ CREATE TABLE wagtailcore_collectionviewrestriction_groups (
 -- Name: wagtailcore_collectionviewrestriction_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailcore_collectionviewrestriction_groups_id_seq
+CREATE SEQUENCE public.wagtailcore_collectionviewrestriction_groups_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1886,14 +1885,14 @@ CREATE SEQUENCE wagtailcore_collectionviewrestriction_groups_id_seq
 -- Name: wagtailcore_collectionviewrestriction_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailcore_collectionviewrestriction_groups_id_seq OWNED BY wagtailcore_collectionviewrestriction_groups.id;
+ALTER SEQUENCE public.wagtailcore_collectionviewrestriction_groups_id_seq OWNED BY public.wagtailcore_collectionviewrestriction_groups.id;
 
 
 --
 -- Name: wagtailcore_collectionviewrestriction_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailcore_collectionviewrestriction_id_seq
+CREATE SEQUENCE public.wagtailcore_collectionviewrestriction_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1905,14 +1904,14 @@ CREATE SEQUENCE wagtailcore_collectionviewrestriction_id_seq
 -- Name: wagtailcore_collectionviewrestriction_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailcore_collectionviewrestriction_id_seq OWNED BY wagtailcore_collectionviewrestriction.id;
+ALTER SEQUENCE public.wagtailcore_collectionviewrestriction_id_seq OWNED BY public.wagtailcore_collectionviewrestriction.id;
 
 
 --
 -- Name: wagtailcore_groupcollectionpermission; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailcore_groupcollectionpermission (
+CREATE TABLE public.wagtailcore_groupcollectionpermission (
     id integer NOT NULL,
     collection_id integer NOT NULL,
     group_id integer NOT NULL,
@@ -1924,7 +1923,7 @@ CREATE TABLE wagtailcore_groupcollectionpermission (
 -- Name: wagtailcore_groupcollectionpermission_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailcore_groupcollectionpermission_id_seq
+CREATE SEQUENCE public.wagtailcore_groupcollectionpermission_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1936,14 +1935,14 @@ CREATE SEQUENCE wagtailcore_groupcollectionpermission_id_seq
 -- Name: wagtailcore_groupcollectionpermission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailcore_groupcollectionpermission_id_seq OWNED BY wagtailcore_groupcollectionpermission.id;
+ALTER SEQUENCE public.wagtailcore_groupcollectionpermission_id_seq OWNED BY public.wagtailcore_groupcollectionpermission.id;
 
 
 --
 -- Name: wagtailcore_grouppagepermission; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailcore_grouppagepermission (
+CREATE TABLE public.wagtailcore_grouppagepermission (
     id integer NOT NULL,
     permission_type character varying(20) NOT NULL,
     group_id integer NOT NULL,
@@ -1955,7 +1954,7 @@ CREATE TABLE wagtailcore_grouppagepermission (
 -- Name: wagtailcore_grouppagepermission_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailcore_grouppagepermission_id_seq
+CREATE SEQUENCE public.wagtailcore_grouppagepermission_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1967,14 +1966,14 @@ CREATE SEQUENCE wagtailcore_grouppagepermission_id_seq
 -- Name: wagtailcore_grouppagepermission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailcore_grouppagepermission_id_seq OWNED BY wagtailcore_grouppagepermission.id;
+ALTER SEQUENCE public.wagtailcore_grouppagepermission_id_seq OWNED BY public.wagtailcore_grouppagepermission.id;
 
 
 --
 -- Name: wagtailcore_page; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailcore_page (
+CREATE TABLE public.wagtailcore_page (
     id integer NOT NULL,
     path character varying(255) COLLATE pg_catalog."C" NOT NULL,
     depth integer NOT NULL,
@@ -2007,7 +2006,7 @@ CREATE TABLE wagtailcore_page (
 -- Name: wagtailcore_page_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailcore_page_id_seq
+CREATE SEQUENCE public.wagtailcore_page_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2019,14 +2018,14 @@ CREATE SEQUENCE wagtailcore_page_id_seq
 -- Name: wagtailcore_page_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailcore_page_id_seq OWNED BY wagtailcore_page.id;
+ALTER SEQUENCE public.wagtailcore_page_id_seq OWNED BY public.wagtailcore_page.id;
 
 
 --
 -- Name: wagtailcore_pagerevision; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailcore_pagerevision (
+CREATE TABLE public.wagtailcore_pagerevision (
     id integer NOT NULL,
     submitted_for_moderation boolean NOT NULL,
     created_at timestamp with time zone NOT NULL,
@@ -2041,7 +2040,7 @@ CREATE TABLE wagtailcore_pagerevision (
 -- Name: wagtailcore_pagerevision_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailcore_pagerevision_id_seq
+CREATE SEQUENCE public.wagtailcore_pagerevision_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2053,14 +2052,14 @@ CREATE SEQUENCE wagtailcore_pagerevision_id_seq
 -- Name: wagtailcore_pagerevision_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailcore_pagerevision_id_seq OWNED BY wagtailcore_pagerevision.id;
+ALTER SEQUENCE public.wagtailcore_pagerevision_id_seq OWNED BY public.wagtailcore_pagerevision.id;
 
 
 --
 -- Name: wagtailcore_pageviewrestriction; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailcore_pageviewrestriction (
+CREATE TABLE public.wagtailcore_pageviewrestriction (
     id integer NOT NULL,
     password character varying(255) NOT NULL,
     page_id integer NOT NULL,
@@ -2072,7 +2071,7 @@ CREATE TABLE wagtailcore_pageviewrestriction (
 -- Name: wagtailcore_pageviewrestriction_groups; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailcore_pageviewrestriction_groups (
+CREATE TABLE public.wagtailcore_pageviewrestriction_groups (
     id integer NOT NULL,
     pageviewrestriction_id integer NOT NULL,
     group_id integer NOT NULL
@@ -2083,7 +2082,7 @@ CREATE TABLE wagtailcore_pageviewrestriction_groups (
 -- Name: wagtailcore_pageviewrestriction_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailcore_pageviewrestriction_groups_id_seq
+CREATE SEQUENCE public.wagtailcore_pageviewrestriction_groups_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2095,14 +2094,14 @@ CREATE SEQUENCE wagtailcore_pageviewrestriction_groups_id_seq
 -- Name: wagtailcore_pageviewrestriction_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailcore_pageviewrestriction_groups_id_seq OWNED BY wagtailcore_pageviewrestriction_groups.id;
+ALTER SEQUENCE public.wagtailcore_pageviewrestriction_groups_id_seq OWNED BY public.wagtailcore_pageviewrestriction_groups.id;
 
 
 --
 -- Name: wagtailcore_pageviewrestriction_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailcore_pageviewrestriction_id_seq
+CREATE SEQUENCE public.wagtailcore_pageviewrestriction_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2114,14 +2113,14 @@ CREATE SEQUENCE wagtailcore_pageviewrestriction_id_seq
 -- Name: wagtailcore_pageviewrestriction_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailcore_pageviewrestriction_id_seq OWNED BY wagtailcore_pageviewrestriction.id;
+ALTER SEQUENCE public.wagtailcore_pageviewrestriction_id_seq OWNED BY public.wagtailcore_pageviewrestriction.id;
 
 
 --
 -- Name: wagtailcore_site; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailcore_site (
+CREATE TABLE public.wagtailcore_site (
     id integer NOT NULL,
     hostname character varying(255) NOT NULL,
     port integer NOT NULL,
@@ -2135,7 +2134,7 @@ CREATE TABLE wagtailcore_site (
 -- Name: wagtailcore_site_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailcore_site_id_seq
+CREATE SEQUENCE public.wagtailcore_site_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2147,14 +2146,14 @@ CREATE SEQUENCE wagtailcore_site_id_seq
 -- Name: wagtailcore_site_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailcore_site_id_seq OWNED BY wagtailcore_site.id;
+ALTER SEQUENCE public.wagtailcore_site_id_seq OWNED BY public.wagtailcore_site.id;
 
 
 --
 -- Name: wagtaildocs_document; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtaildocs_document (
+CREATE TABLE public.wagtaildocs_document (
     id integer NOT NULL,
     title character varying(255) NOT NULL,
     file character varying(100) NOT NULL,
@@ -2168,7 +2167,7 @@ CREATE TABLE wagtaildocs_document (
 -- Name: wagtaildocs_document_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtaildocs_document_id_seq
+CREATE SEQUENCE public.wagtaildocs_document_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2180,14 +2179,14 @@ CREATE SEQUENCE wagtaildocs_document_id_seq
 -- Name: wagtaildocs_document_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtaildocs_document_id_seq OWNED BY wagtaildocs_document.id;
+ALTER SEQUENCE public.wagtaildocs_document_id_seq OWNED BY public.wagtaildocs_document.id;
 
 
 --
 -- Name: wagtailembeds_embed; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailembeds_embed (
+CREATE TABLE public.wagtailembeds_embed (
     id integer NOT NULL,
     url character varying(200) NOT NULL,
     max_width smallint,
@@ -2207,7 +2206,7 @@ CREATE TABLE wagtailembeds_embed (
 -- Name: wagtailembeds_embed_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailembeds_embed_id_seq
+CREATE SEQUENCE public.wagtailembeds_embed_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2219,14 +2218,14 @@ CREATE SEQUENCE wagtailembeds_embed_id_seq
 -- Name: wagtailembeds_embed_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailembeds_embed_id_seq OWNED BY wagtailembeds_embed.id;
+ALTER SEQUENCE public.wagtailembeds_embed_id_seq OWNED BY public.wagtailembeds_embed.id;
 
 
 --
 -- Name: wagtailforms_formsubmission; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailforms_formsubmission (
+CREATE TABLE public.wagtailforms_formsubmission (
     id integer NOT NULL,
     form_data text NOT NULL,
     submit_time timestamp with time zone NOT NULL,
@@ -2238,7 +2237,7 @@ CREATE TABLE wagtailforms_formsubmission (
 -- Name: wagtailforms_formsubmission_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailforms_formsubmission_id_seq
+CREATE SEQUENCE public.wagtailforms_formsubmission_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2250,14 +2249,14 @@ CREATE SEQUENCE wagtailforms_formsubmission_id_seq
 -- Name: wagtailforms_formsubmission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailforms_formsubmission_id_seq OWNED BY wagtailforms_formsubmission.id;
+ALTER SEQUENCE public.wagtailforms_formsubmission_id_seq OWNED BY public.wagtailforms_formsubmission.id;
 
 
 --
 -- Name: wagtailimages_image; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailimages_image (
+CREATE TABLE public.wagtailimages_image (
     id integer NOT NULL,
     title character varying(255) NOT NULL,
     file character varying(100) NOT NULL,
@@ -2283,7 +2282,7 @@ CREATE TABLE wagtailimages_image (
 -- Name: wagtailimages_image_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailimages_image_id_seq
+CREATE SEQUENCE public.wagtailimages_image_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2295,14 +2294,14 @@ CREATE SEQUENCE wagtailimages_image_id_seq
 -- Name: wagtailimages_image_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailimages_image_id_seq OWNED BY wagtailimages_image.id;
+ALTER SEQUENCE public.wagtailimages_image_id_seq OWNED BY public.wagtailimages_image.id;
 
 
 --
 -- Name: wagtailimages_rendition; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailimages_rendition (
+CREATE TABLE public.wagtailimages_rendition (
     id integer NOT NULL,
     file character varying(100) NOT NULL,
     width integer NOT NULL,
@@ -2317,7 +2316,7 @@ CREATE TABLE wagtailimages_rendition (
 -- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailimages_rendition_id_seq
+CREATE SEQUENCE public.wagtailimages_rendition_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2329,14 +2328,14 @@ CREATE SEQUENCE wagtailimages_rendition_id_seq
 -- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailimages_rendition_id_seq OWNED BY wagtailimages_rendition.id;
+ALTER SEQUENCE public.wagtailimages_rendition_id_seq OWNED BY public.wagtailimages_rendition.id;
 
 
 --
 -- Name: wagtailredirects_redirect; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailredirects_redirect (
+CREATE TABLE public.wagtailredirects_redirect (
     id integer NOT NULL,
     old_path character varying(255) NOT NULL,
     is_permanent boolean NOT NULL,
@@ -2350,7 +2349,7 @@ CREATE TABLE wagtailredirects_redirect (
 -- Name: wagtailredirects_redirect_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailredirects_redirect_id_seq
+CREATE SEQUENCE public.wagtailredirects_redirect_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2362,14 +2361,14 @@ CREATE SEQUENCE wagtailredirects_redirect_id_seq
 -- Name: wagtailredirects_redirect_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailredirects_redirect_id_seq OWNED BY wagtailredirects_redirect.id;
+ALTER SEQUENCE public.wagtailredirects_redirect_id_seq OWNED BY public.wagtailredirects_redirect.id;
 
 
 --
 -- Name: wagtailsearchpromotions_searchpromotion; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailsearchpromotions_searchpromotion (
+CREATE TABLE public.wagtailsearchpromotions_searchpromotion (
     id integer NOT NULL,
     sort_order integer,
     description text NOT NULL,
@@ -2382,7 +2381,7 @@ CREATE TABLE wagtailsearchpromotions_searchpromotion (
 -- Name: wagtailsearch_editorspick_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailsearch_editorspick_id_seq
+CREATE SEQUENCE public.wagtailsearch_editorspick_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2394,14 +2393,14 @@ CREATE SEQUENCE wagtailsearch_editorspick_id_seq
 -- Name: wagtailsearch_editorspick_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailsearch_editorspick_id_seq OWNED BY wagtailsearchpromotions_searchpromotion.id;
+ALTER SEQUENCE public.wagtailsearch_editorspick_id_seq OWNED BY public.wagtailsearchpromotions_searchpromotion.id;
 
 
 --
 -- Name: wagtailsearch_query; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailsearch_query (
+CREATE TABLE public.wagtailsearch_query (
     id integer NOT NULL,
     query_string character varying(255) NOT NULL
 );
@@ -2411,7 +2410,7 @@ CREATE TABLE wagtailsearch_query (
 -- Name: wagtailsearch_query_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailsearch_query_id_seq
+CREATE SEQUENCE public.wagtailsearch_query_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2423,14 +2422,14 @@ CREATE SEQUENCE wagtailsearch_query_id_seq
 -- Name: wagtailsearch_query_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailsearch_query_id_seq OWNED BY wagtailsearch_query.id;
+ALTER SEQUENCE public.wagtailsearch_query_id_seq OWNED BY public.wagtailsearch_query.id;
 
 
 --
 -- Name: wagtailsearch_querydailyhits; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailsearch_querydailyhits (
+CREATE TABLE public.wagtailsearch_querydailyhits (
     id integer NOT NULL,
     date date NOT NULL,
     hits integer NOT NULL,
@@ -2442,7 +2441,7 @@ CREATE TABLE wagtailsearch_querydailyhits (
 -- Name: wagtailsearch_querydailyhits_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailsearch_querydailyhits_id_seq
+CREATE SEQUENCE public.wagtailsearch_querydailyhits_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2454,14 +2453,14 @@ CREATE SEQUENCE wagtailsearch_querydailyhits_id_seq
 -- Name: wagtailsearch_querydailyhits_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailsearch_querydailyhits_id_seq OWNED BY wagtailsearch_querydailyhits.id;
+ALTER SEQUENCE public.wagtailsearch_querydailyhits_id_seq OWNED BY public.wagtailsearch_querydailyhits.id;
 
 
 --
 -- Name: wagtailusers_userprofile; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE wagtailusers_userprofile (
+CREATE TABLE public.wagtailusers_userprofile (
     id integer NOT NULL,
     submitted_notifications boolean NOT NULL,
     approved_notifications boolean NOT NULL,
@@ -2475,7 +2474,7 @@ CREATE TABLE wagtailusers_userprofile (
 -- Name: wagtailusers_userprofile_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE wagtailusers_userprofile_id_seq
+CREATE SEQUENCE public.wagtailusers_userprofile_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2487,469 +2486,469 @@ CREATE SEQUENCE wagtailusers_userprofile_id_seq
 -- Name: wagtailusers_userprofile_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE wagtailusers_userprofile_id_seq OWNED BY wagtailusers_userprofile.id;
+ALTER SEQUENCE public.wagtailusers_userprofile_id_seq OWNED BY public.wagtailusers_userprofile.id;
 
 
 --
 -- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_group ALTER COLUMN id SET DEFAULT nextval('auth_group_id_seq'::regclass);
+ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
 
 
 --
 -- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('auth_group_permissions_id_seq'::regclass);
+ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
 
 
 --
 -- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_permission ALTER COLUMN id SET DEFAULT nextval('auth_permission_id_seq'::regclass);
+ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
 
 
 --
 -- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_user ALTER COLUMN id SET DEFAULT nextval('auth_user_id_seq'::regclass);
+ALTER TABLE ONLY public.auth_user ALTER COLUMN id SET DEFAULT nextval('public.auth_user_id_seq'::regclass);
 
 
 --
 -- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_user_groups ALTER COLUMN id SET DEFAULT nextval('auth_user_groups_id_seq'::regclass);
+ALTER TABLE ONLY public.auth_user_groups ALTER COLUMN id SET DEFAULT nextval('public.auth_user_groups_id_seq'::regclass);
 
 
 --
 -- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('auth_user_user_permissions_id_seq'::regclass);
+ALTER TABLE ONLY public.auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_user_user_permissions_id_seq'::regclass);
 
 
 --
 -- Name: blog_blogindexpagerelatedlink id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogindexpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('blog_blogindexpagerelatedlink_id_seq'::regclass);
+ALTER TABLE ONLY public.blog_blogindexpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('public.blog_blogindexpagerelatedlink_id_seq'::regclass);
 
 
 --
 -- Name: blog_blogpagecarouselitem id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpagecarouselitem ALTER COLUMN id SET DEFAULT nextval('blog_blogpagecarouselitem_id_seq'::regclass);
+ALTER TABLE ONLY public.blog_blogpagecarouselitem ALTER COLUMN id SET DEFAULT nextval('public.blog_blogpagecarouselitem_id_seq'::regclass);
 
 
 --
 -- Name: blog_blogpagerelatedlink id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('blog_blogpagerelatedlink_id_seq'::regclass);
+ALTER TABLE ONLY public.blog_blogpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('public.blog_blogpagerelatedlink_id_seq'::regclass);
 
 
 --
 -- Name: blog_blogpagetag id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpagetag ALTER COLUMN id SET DEFAULT nextval('blog_blogpagetag_id_seq'::regclass);
+ALTER TABLE ONLY public.blog_blogpagetag ALTER COLUMN id SET DEFAULT nextval('public.blog_blogpagetag_id_seq'::regclass);
 
 
 --
 -- Name: contact_contactformfield id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY contact_contactformfield ALTER COLUMN id SET DEFAULT nextval('contact_contactformfield_id_seq'::regclass);
+ALTER TABLE ONLY public.contact_contactformfield ALTER COLUMN id SET DEFAULT nextval('public.contact_contactformfield_id_seq'::regclass);
 
 
 --
 -- Name: contact_formfield id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY contact_formfield ALTER COLUMN id SET DEFAULT nextval('contact_formfield_id_seq'::regclass);
+ALTER TABLE ONLY public.contact_formfield ALTER COLUMN id SET DEFAULT nextval('public.contact_formfield_id_seq'::regclass);
 
 
 --
 -- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY django_admin_log ALTER COLUMN id SET DEFAULT nextval('django_admin_log_id_seq'::regclass);
+ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
 
 
 --
 -- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY django_content_type ALTER COLUMN id SET DEFAULT nextval('django_content_type_id_seq'::regclass);
+ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
 
 
 --
 -- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY django_migrations ALTER COLUMN id SET DEFAULT nextval('django_migrations_id_seq'::regclass);
+ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
 
 
 --
 -- Name: documents_gallery_documentspagetag id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY documents_gallery_documentspagetag ALTER COLUMN id SET DEFAULT nextval('documents_gallery_documentspagetag_id_seq'::regclass);
+ALTER TABLE ONLY public.documents_gallery_documentspagetag ALTER COLUMN id SET DEFAULT nextval('public.documents_gallery_documentspagetag_id_seq'::regclass);
 
 
 --
 -- Name: events_eventindexpagerelatedlink id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventindexpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('events_eventindexpagerelatedlink_id_seq'::regclass);
+ALTER TABLE ONLY public.events_eventindexpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('public.events_eventindexpagerelatedlink_id_seq'::regclass);
 
 
 --
 -- Name: events_eventpagecarouselitem id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagecarouselitem ALTER COLUMN id SET DEFAULT nextval('events_eventpagecarouselitem_id_seq'::regclass);
+ALTER TABLE ONLY public.events_eventpagecarouselitem ALTER COLUMN id SET DEFAULT nextval('public.events_eventpagecarouselitem_id_seq'::regclass);
 
 
 --
 -- Name: events_eventpagerelatedlink id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('events_eventpagerelatedlink_id_seq'::regclass);
+ALTER TABLE ONLY public.events_eventpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('public.events_eventpagerelatedlink_id_seq'::regclass);
 
 
 --
 -- Name: events_eventpagespeaker id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagespeaker ALTER COLUMN id SET DEFAULT nextval('events_eventpagespeaker_id_seq'::regclass);
+ALTER TABLE ONLY public.events_eventpagespeaker ALTER COLUMN id SET DEFAULT nextval('public.events_eventpagespeaker_id_seq'::regclass);
 
 
 --
 -- Name: events_eventpagetag id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagetag ALTER COLUMN id SET DEFAULT nextval('events_eventpagetag_id_seq'::regclass);
+ALTER TABLE ONLY public.events_eventpagetag ALTER COLUMN id SET DEFAULT nextval('public.events_eventpagetag_id_seq'::regclass);
 
 
 --
 -- Name: pages_advert id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_advert ALTER COLUMN id SET DEFAULT nextval('pages_advert_id_seq'::regclass);
+ALTER TABLE ONLY public.pages_advert ALTER COLUMN id SET DEFAULT nextval('public.pages_advert_id_seq'::regclass);
 
 
 --
 -- Name: pages_contentblock id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_contentblock ALTER COLUMN id SET DEFAULT nextval('pages_contentblock_id_seq'::regclass);
+ALTER TABLE ONLY public.pages_contentblock ALTER COLUMN id SET DEFAULT nextval('public.pages_contentblock_id_seq'::regclass);
 
 
 --
 -- Name: pages_homepagecarouselitem id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepagecarouselitem ALTER COLUMN id SET DEFAULT nextval('pages_homepagecarouselitem_id_seq'::regclass);
+ALTER TABLE ONLY public.pages_homepagecarouselitem ALTER COLUMN id SET DEFAULT nextval('public.pages_homepagecarouselitem_id_seq'::regclass);
 
 
 --
 -- Name: pages_homepagecontentitem id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepagecontentitem ALTER COLUMN id SET DEFAULT nextval('pages_homepagecontentitem_id_seq'::regclass);
+ALTER TABLE ONLY public.pages_homepagecontentitem ALTER COLUMN id SET DEFAULT nextval('public.pages_homepagecontentitem_id_seq'::regclass);
 
 
 --
 -- Name: pages_homepagerelatedlink id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepagerelatedlink ALTER COLUMN id SET DEFAULT nextval('pages_homepagerelatedlink_id_seq'::regclass);
+ALTER TABLE ONLY public.pages_homepagerelatedlink ALTER COLUMN id SET DEFAULT nextval('public.pages_homepagerelatedlink_id_seq'::regclass);
 
 
 --
 -- Name: pages_sitebranding id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_sitebranding ALTER COLUMN id SET DEFAULT nextval('pages_sitebranding_id_seq'::regclass);
+ALTER TABLE ONLY public.pages_sitebranding ALTER COLUMN id SET DEFAULT nextval('public.pages_sitebranding_id_seq'::regclass);
 
 
 --
 -- Name: pages_socialmediasettings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_socialmediasettings ALTER COLUMN id SET DEFAULT nextval('pages_socialmediasettings_id_seq'::regclass);
+ALTER TABLE ONLY public.pages_socialmediasettings ALTER COLUMN id SET DEFAULT nextval('public.pages_socialmediasettings_id_seq'::regclass);
 
 
 --
 -- Name: pages_standardindexpagerelatedlink id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardindexpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('pages_standardindexpagerelatedlink_id_seq'::regclass);
+ALTER TABLE ONLY public.pages_standardindexpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('public.pages_standardindexpagerelatedlink_id_seq'::regclass);
 
 
 --
 -- Name: pages_standardpagecarouselitem id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardpagecarouselitem ALTER COLUMN id SET DEFAULT nextval('pages_standardpagecarouselitem_id_seq'::regclass);
+ALTER TABLE ONLY public.pages_standardpagecarouselitem ALTER COLUMN id SET DEFAULT nextval('public.pages_standardpagecarouselitem_id_seq'::regclass);
 
 
 --
 -- Name: pages_standardpagerelatedlink id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('pages_standardpagerelatedlink_id_seq'::regclass);
+ALTER TABLE ONLY public.pages_standardpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('public.pages_standardpagerelatedlink_id_seq'::regclass);
 
 
 --
 -- Name: pages_testimonial id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_testimonial ALTER COLUMN id SET DEFAULT nextval('pages_testimonial_id_seq'::regclass);
+ALTER TABLE ONLY public.pages_testimonial ALTER COLUMN id SET DEFAULT nextval('public.pages_testimonial_id_seq'::regclass);
 
 
 --
 -- Name: pages_videogallerypagecarouselitem id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_videogallerypagecarouselitem ALTER COLUMN id SET DEFAULT nextval('pages_videopagecarouselitem_id_seq'::regclass);
+ALTER TABLE ONLY public.pages_videogallerypagecarouselitem ALTER COLUMN id SET DEFAULT nextval('public.pages_videopagecarouselitem_id_seq'::regclass);
 
 
 --
 -- Name: people_personindexpagerelatedlink id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personindexpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('people_personindexpagerelatedlink_id_seq'::regclass);
+ALTER TABLE ONLY public.people_personindexpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('public.people_personindexpagerelatedlink_id_seq'::regclass);
 
 
 --
 -- Name: people_personpagerelatedlink id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('people_personpagerelatedlink_id_seq'::regclass);
+ALTER TABLE ONLY public.people_personpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('public.people_personpagerelatedlink_id_seq'::regclass);
 
 
 --
 -- Name: people_personpagetag id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personpagetag ALTER COLUMN id SET DEFAULT nextval('people_personpagetag_id_seq'::regclass);
+ALTER TABLE ONLY public.people_personpagetag ALTER COLUMN id SET DEFAULT nextval('public.people_personpagetag_id_seq'::regclass);
 
 
 --
 -- Name: people_personrole id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personrole ALTER COLUMN id SET DEFAULT nextval('people_personrole_id_seq'::regclass);
+ALTER TABLE ONLY public.people_personrole ALTER COLUMN id SET DEFAULT nextval('public.people_personrole_id_seq'::regclass);
 
 
 --
 -- Name: photo_gallery_gallerypagetag id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY photo_gallery_gallerypagetag ALTER COLUMN id SET DEFAULT nextval('photo_gallery_gallerypagetag_id_seq'::regclass);
+ALTER TABLE ONLY public.photo_gallery_gallerypagetag ALTER COLUMN id SET DEFAULT nextval('public.photo_gallery_gallerypagetag_id_seq'::regclass);
 
 
 --
 -- Name: postgres_search_indexentry id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY postgres_search_indexentry ALTER COLUMN id SET DEFAULT nextval('postgres_search_indexentry_id_seq'::regclass);
+ALTER TABLE ONLY public.postgres_search_indexentry ALTER COLUMN id SET DEFAULT nextval('public.postgres_search_indexentry_id_seq'::regclass);
 
 
 --
 -- Name: products_productindexpagerelatedlink id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productindexpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('products_productindexpagerelatedlink_id_seq'::regclass);
+ALTER TABLE ONLY public.products_productindexpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('public.products_productindexpagerelatedlink_id_seq'::regclass);
 
 
 --
 -- Name: products_productpagerelatedlink id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('products_productpagerelatedlink_id_seq'::regclass);
+ALTER TABLE ONLY public.products_productpagerelatedlink ALTER COLUMN id SET DEFAULT nextval('public.products_productpagerelatedlink_id_seq'::regclass);
 
 
 --
 -- Name: products_productpagetag id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productpagetag ALTER COLUMN id SET DEFAULT nextval('products_productpagetag_id_seq'::regclass);
+ALTER TABLE ONLY public.products_productpagetag ALTER COLUMN id SET DEFAULT nextval('public.products_productpagetag_id_seq'::regclass);
 
 
 --
 -- Name: taggit_tag id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taggit_tag ALTER COLUMN id SET DEFAULT nextval('taggit_tag_id_seq'::regclass);
+ALTER TABLE ONLY public.taggit_tag ALTER COLUMN id SET DEFAULT nextval('public.taggit_tag_id_seq'::regclass);
 
 
 --
 -- Name: taggit_taggeditem id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taggit_taggeditem ALTER COLUMN id SET DEFAULT nextval('taggit_taggeditem_id_seq'::regclass);
+ALTER TABLE ONLY public.taggit_taggeditem ALTER COLUMN id SET DEFAULT nextval('public.taggit_taggeditem_id_seq'::regclass);
 
 
 --
 -- Name: wagtail_feeds_rssfeedssettings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtail_feeds_rssfeedssettings ALTER COLUMN id SET DEFAULT nextval('wagtail_feeds_rssfeedssettings_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtail_feeds_rssfeedssettings ALTER COLUMN id SET DEFAULT nextval('public.wagtail_feeds_rssfeedssettings_id_seq'::regclass);
 
 
 --
 -- Name: wagtailcore_collection id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_collection ALTER COLUMN id SET DEFAULT nextval('wagtailcore_collection_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailcore_collection ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_collection_id_seq'::regclass);
 
 
 --
 -- Name: wagtailcore_collectionviewrestriction id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_collectionviewrestriction ALTER COLUMN id SET DEFAULT nextval('wagtailcore_collectionviewrestriction_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailcore_collectionviewrestriction ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_collectionviewrestriction_id_seq'::regclass);
 
 
 --
 -- Name: wagtailcore_collectionviewrestriction_groups id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_collectionviewrestriction_groups ALTER COLUMN id SET DEFAULT nextval('wagtailcore_collectionviewrestriction_groups_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailcore_collectionviewrestriction_groups ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_collectionviewrestriction_groups_id_seq'::regclass);
 
 
 --
 -- Name: wagtailcore_groupcollectionpermission id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_groupcollectionpermission ALTER COLUMN id SET DEFAULT nextval('wagtailcore_groupcollectionpermission_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailcore_groupcollectionpermission ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_groupcollectionpermission_id_seq'::regclass);
 
 
 --
 -- Name: wagtailcore_grouppagepermission id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_grouppagepermission ALTER COLUMN id SET DEFAULT nextval('wagtailcore_grouppagepermission_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailcore_grouppagepermission ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_grouppagepermission_id_seq'::regclass);
 
 
 --
 -- Name: wagtailcore_page id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_page ALTER COLUMN id SET DEFAULT nextval('wagtailcore_page_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailcore_page ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_page_id_seq'::regclass);
 
 
 --
 -- Name: wagtailcore_pagerevision id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_pagerevision ALTER COLUMN id SET DEFAULT nextval('wagtailcore_pagerevision_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailcore_pagerevision ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_pagerevision_id_seq'::regclass);
 
 
 --
 -- Name: wagtailcore_pageviewrestriction id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_pageviewrestriction ALTER COLUMN id SET DEFAULT nextval('wagtailcore_pageviewrestriction_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailcore_pageviewrestriction ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_pageviewrestriction_id_seq'::regclass);
 
 
 --
 -- Name: wagtailcore_pageviewrestriction_groups id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_pageviewrestriction_groups ALTER COLUMN id SET DEFAULT nextval('wagtailcore_pageviewrestriction_groups_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailcore_pageviewrestriction_groups ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_pageviewrestriction_groups_id_seq'::regclass);
 
 
 --
 -- Name: wagtailcore_site id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_site ALTER COLUMN id SET DEFAULT nextval('wagtailcore_site_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailcore_site ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_site_id_seq'::regclass);
 
 
 --
 -- Name: wagtaildocs_document id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtaildocs_document ALTER COLUMN id SET DEFAULT nextval('wagtaildocs_document_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtaildocs_document ALTER COLUMN id SET DEFAULT nextval('public.wagtaildocs_document_id_seq'::regclass);
 
 
 --
 -- Name: wagtailembeds_embed id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailembeds_embed ALTER COLUMN id SET DEFAULT nextval('wagtailembeds_embed_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailembeds_embed ALTER COLUMN id SET DEFAULT nextval('public.wagtailembeds_embed_id_seq'::regclass);
 
 
 --
 -- Name: wagtailforms_formsubmission id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailforms_formsubmission ALTER COLUMN id SET DEFAULT nextval('wagtailforms_formsubmission_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailforms_formsubmission ALTER COLUMN id SET DEFAULT nextval('public.wagtailforms_formsubmission_id_seq'::regclass);
 
 
 --
 -- Name: wagtailimages_image id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailimages_image ALTER COLUMN id SET DEFAULT nextval('wagtailimages_image_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailimages_image ALTER COLUMN id SET DEFAULT nextval('public.wagtailimages_image_id_seq'::regclass);
 
 
 --
 -- Name: wagtailimages_rendition id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailimages_rendition ALTER COLUMN id SET DEFAULT nextval('wagtailimages_rendition_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailimages_rendition ALTER COLUMN id SET DEFAULT nextval('public.wagtailimages_rendition_id_seq'::regclass);
 
 
 --
 -- Name: wagtailredirects_redirect id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailredirects_redirect ALTER COLUMN id SET DEFAULT nextval('wagtailredirects_redirect_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailredirects_redirect ALTER COLUMN id SET DEFAULT nextval('public.wagtailredirects_redirect_id_seq'::regclass);
 
 
 --
 -- Name: wagtailsearch_query id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailsearch_query ALTER COLUMN id SET DEFAULT nextval('wagtailsearch_query_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailsearch_query ALTER COLUMN id SET DEFAULT nextval('public.wagtailsearch_query_id_seq'::regclass);
 
 
 --
 -- Name: wagtailsearch_querydailyhits id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailsearch_querydailyhits ALTER COLUMN id SET DEFAULT nextval('wagtailsearch_querydailyhits_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailsearch_querydailyhits ALTER COLUMN id SET DEFAULT nextval('public.wagtailsearch_querydailyhits_id_seq'::regclass);
 
 
 --
 -- Name: wagtailsearchpromotions_searchpromotion id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailsearchpromotions_searchpromotion ALTER COLUMN id SET DEFAULT nextval('wagtailsearch_editorspick_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailsearchpromotions_searchpromotion ALTER COLUMN id SET DEFAULT nextval('public.wagtailsearch_editorspick_id_seq'::regclass);
 
 
 --
 -- Name: wagtailusers_userprofile id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailusers_userprofile ALTER COLUMN id SET DEFAULT nextval('wagtailusers_userprofile_id_seq'::regclass);
+ALTER TABLE ONLY public.wagtailusers_userprofile ALTER COLUMN id SET DEFAULT nextval('public.wagtailusers_userprofile_id_seq'::regclass);
 
 
 --
 -- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY auth_group (id, name) FROM stdin;
+COPY public.auth_group (id, name) FROM stdin;
 1	Moderators
 2	Editors
 \.
@@ -2959,7 +2958,7 @@ COPY auth_group (id, name) FROM stdin;
 -- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY auth_group_permissions (id, group_id, permission_id) FROM stdin;
+COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
 1	1	1
 2	1	2
 3	1	3
@@ -2981,7 +2980,7 @@ COPY auth_group_permissions (id, group_id, permission_id) FROM stdin;
 -- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
+COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 1	Can add image	2	add_image
 2	Can change image	2	change_image
 3	Can delete image	2	delete_image
@@ -3239,8 +3238,8 @@ COPY auth_permission (id, name, content_type_id, codename) FROM stdin;
 -- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$36000$5HkCiQD2wOPy$quuP34M/87omK0yq4oSkulez1de4DadLKB28QDGhFz0=	2017-11-02 14:12:18.870248-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
+COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+1	pbkdf2_sha256$36000$5HkCiQD2wOPy$quuP34M/87omK0yq4oSkulez1de4DadLKB28QDGhFz0=	2018-04-30 11:40:57.676644-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
 \.
 
 
@@ -3248,7 +3247,7 @@ COPY auth_user (id, password, last_login, is_superuser, username, first_name, la
 -- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY auth_user_groups (id, user_id, group_id) FROM stdin;
+COPY public.auth_user_groups (id, user_id, group_id) FROM stdin;
 \.
 
 
@@ -3256,7 +3255,7 @@ COPY auth_user_groups (id, user_id, group_id) FROM stdin;
 -- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
 \.
 
 
@@ -3264,7 +3263,7 @@ COPY auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
 -- Data for Name: blog_blogindexpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY blog_blogindexpage (page_ptr_id, intro, feed_image_id) FROM stdin;
+COPY public.blog_blogindexpage (page_ptr_id, intro, feed_image_id) FROM stdin;
 16		\N
 \.
 
@@ -3273,7 +3272,7 @@ COPY blog_blogindexpage (page_ptr_id, intro, feed_image_id) FROM stdin;
 -- Data for Name: blog_blogindexpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY blog_blogindexpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.blog_blogindexpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
 \.
 
 
@@ -3281,7 +3280,7 @@ COPY blog_blogindexpagerelatedlink (id, sort_order, link_external, title, link_d
 -- Data for Name: blog_blogpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY blog_blogpage (page_ptr_id, intro, body, date, feed_image_id) FROM stdin;
+COPY public.blog_blogpage (page_ptr_id, intro, body, date, feed_image_id) FROM stdin;
 19	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>	[{"type": "image", "value": 9}, {"type": "paragraph", "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>"}, {"type": "heading", "value": "Test Heading 1"}, {"type": "heading", "value": "Test Heading 2"}]	2016-06-17	9
 17	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>	[{"type": "heading", "value": "Test Heading 1"}, {"type": "paragraph", "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent lobortis orci ex, a interdum justo dapibus eu. Vestibulum sit amet risus et dolor tempor faucibus non ac enim. Sed et sapien gravida, sollicitudin enim at, facilisis sapien. Nunc eget nibh ac libero tempus placerat. Duis quis turpis libero. Donec vel tincidunt arcu. Nulla congue at risus eget egestas.</p><p>Ut eget sapien ut diam feugiat fringilla. Curabitur malesuada mauris felis, id blandit odio consequat vitae. Ut hendrerit hendrerit ante et fermentum. Mauris aliquam varius lorem, sed feugiat justo iaculis eget. Etiam ornare non neque at ultrices. Phasellus quam elit, lobortis ac imperdiet vitae, scelerisque convallis felis. Fusce a vehicula orci, et semper nibh. Aenean id lacus eget odio dignissim venenatis. Cras sagittis lectus diam, ut pulvinar neque venenatis in.</p>"}, {"type": "image", "value": 9}, {"type": "heading", "value": "Test Heading 2"}, {"type": "image", "value": 3}, {"type": "paragraph", "value": "<p>Praesent a massa id est egestas volutpat sed vitae dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis sed dolor metus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc porttitor lacus eget bibendum commodo. Donec faucibus ipsum sit amet sem interdum, et sagittis tortor ornare. Quisque tristique neque gravida nisi sodales mattis. Morbi malesuada ante nisi, vel venenatis lacus ultricies eu. Pellentesque id risus sit amet enim lobortis luctus. Nullam dolor purus, efficitur in massa ac, pellentesque pulvinar dui.</p>"}]	2016-06-17	9
 18	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>	[{"type": "paragraph", "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>"}, {"type": "heading", "value": "Test Heading"}, {"type": "image", "value": 9}, {"type": "image", "value": 7}]	2016-06-17	3
@@ -3292,7 +3291,7 @@ COPY blog_blogpage (page_ptr_id, intro, body, date, feed_image_id) FROM stdin;
 -- Data for Name: blog_blogpagecarouselitem; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY blog_blogpagecarouselitem (id, sort_order, link_external, embed_url, caption, image_id, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.blog_blogpagecarouselitem (id, sort_order, link_external, embed_url, caption, image_id, link_document_id, link_page_id, page_id) FROM stdin;
 \.
 
 
@@ -3300,7 +3299,7 @@ COPY blog_blogpagecarouselitem (id, sort_order, link_external, embed_url, captio
 -- Data for Name: blog_blogpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY blog_blogpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.blog_blogpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
 3	0		Blog Page 2	\N	18	17
 4	1		Blog Page 3	\N	19	17
 5	0		Blog Page 1	\N	17	18
@@ -3314,7 +3313,7 @@ COPY blog_blogpagerelatedlink (id, sort_order, link_external, title, link_docume
 -- Data for Name: blog_blogpagetag; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY blog_blogpagetag (id, content_object_id, tag_id) FROM stdin;
+COPY public.blog_blogpagetag (id, content_object_id, tag_id) FROM stdin;
 \.
 
 
@@ -3322,7 +3321,7 @@ COPY blog_blogpagetag (id, content_object_id, tag_id) FROM stdin;
 -- Data for Name: contact_contactformfield; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY contact_contactformfield (id, sort_order, label, field_type, required, choices, default_value, help_text, page_id) FROM stdin;
+COPY public.contact_contactformfield (id, sort_order, label, field_type, required, choices, default_value, help_text, page_id) FROM stdin;
 1	0	Name	singleline	t				24
 2	1	Email	email	t				24
 3	2	Subject	singleline	t				24
@@ -3334,7 +3333,7 @@ COPY contact_contactformfield (id, sort_order, label, field_type, required, choi
 -- Data for Name: contact_contactpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY contact_contactpage (page_ptr_id, to_address, from_address, subject, name_organization, telephone, email, address_1, address_2, city, country, post_code, intro, thank_you_text, telephone_2, email_2, feed_image_id) FROM stdin;
+COPY public.contact_contactpage (page_ptr_id, to_address, from_address, subject, name_organization, telephone, email, address_1, address_2, city, country, post_code, intro, thank_you_text, telephone_2, email_2, feed_image_id) FROM stdin;
 24				ChrisDev	+1 868-773-4644		A3 St Benedicts Gardens,		Tunapuna,	Trinidad & Tobago	tunapuna	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi.	<p>Thank you for submitting.</p>			\N
 \.
 
@@ -3343,7 +3342,7 @@ COPY contact_contactpage (page_ptr_id, to_address, from_address, subject, name_o
 -- Data for Name: contact_formfield; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY contact_formfield (id, sort_order, label, field_type, required, choices, default_value, help_text, page_id) FROM stdin;
+COPY public.contact_formfield (id, sort_order, label, field_type, required, choices, default_value, help_text, page_id) FROM stdin;
 \.
 
 
@@ -3351,7 +3350,7 @@ COPY contact_formfield (id, sort_order, label, field_type, required, choices, de
 -- Data for Name: contact_formpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY contact_formpage (page_ptr_id, to_address, from_address, subject, intro, thank_you_text, feed_image_id) FROM stdin;
+COPY public.contact_formpage (page_ptr_id, to_address, from_address, subject, intro, thank_you_text, feed_image_id) FROM stdin;
 \.
 
 
@@ -3359,7 +3358,7 @@ COPY contact_formpage (page_ptr_id, to_address, from_address, subject, intro, th
 -- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
 \.
 
 
@@ -3367,7 +3366,7 @@ COPY django_admin_log (id, action_time, object_id, object_repr, action_flag, cha
 -- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY django_content_type (id, app_label, model) FROM stdin;
+COPY public.django_content_type (id, app_label, model) FROM stdin;
 1	wagtailcore	page
 2	wagtailimages	image
 3	wagtaildocs	document
@@ -3458,7 +3457,7 @@ COPY django_content_type (id, app_label, model) FROM stdin;
 -- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY django_migrations (id, app, name, applied) FROM stdin;
+COPY public.django_migrations (id, app, name, applied) FROM stdin;
 1	contenttypes	0001_initial	2016-07-20 03:23:49.795951-04
 2	auth	0001_initial	2016-07-20 03:23:50.664572-04
 3	admin	0001_initial	2016-07-20 03:23:50.897853-04
@@ -3623,6 +3622,10 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 162	pages	0017_standardindexpage_template_string	2017-11-02 11:50:45.755233-04
 163	pages	0018_auto_20171102_1809	2017-11-02 14:11:16.642647-04
 164	pages	0019_auto_20171102_1856	2017-11-02 14:56:52.102349-04
+165	blog	0008_auto_20180430_1539	2018-04-30 11:40:15.509195-04
+166	contact	0009_auto_20180430_1539	2018-04-30 11:40:16.0466-04
+167	pages	0020_auto_20180430_1539	2018-04-30 11:40:17.187369-04
+168	wagtail_feeds	0003_auto_20180430_1539	2018-04-30 11:40:17.554125-04
 \.
 
 
@@ -3630,7 +3633,7 @@ COPY django_migrations (id, app, name, applied) FROM stdin;
 -- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY django_session (session_key, session_data, expire_date) FROM stdin;
+COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
 oyqo7t9nan14i7hf6vmcp1pa8ay3xjcg	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 03:35:18.505671-04
 4u3kgp7wto1smt5erv1vpp9xx1t51px9	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 03:35:59.272477-04
 936hrg921e5wm2143wg7z5oj9os9ckpd	NTRkOGQ5MzM4ZmNiNzc5ODhmNTY1ZGNlYWY2OTcwZjg2ZWU0NTRjODp7Il9hdXRoX3VzZXJfaGFzaCI6IjBjYjNmOTRmNjQxNmYyOGYwZDk2ZjIyMGRkMzgwNDNkZmQxZWRmOTQiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2016-08-03 03:44:22.768627-04
@@ -3677,6 +3680,7 @@ uw6t4ywi903n5ydri8zemcx1e1861r3m	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJ
 zbvjagpokjc7v8pqef73wp8lt9bxcm3f	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-10-24 10:21:18.228257-04
 7lv8o8s8srob6k2h5bfxwzvd83bryqb6	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-11-16 11:53:26.37437-04
 hzwc6ny9pettf5hcou8xbl1ec75fu84b	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-11-16 14:12:19.196485-04
+c3lk4u24jmtkj0ylvtt06b4vnyuo5eq0	NWM0M2E2ZWI2MWY0MDVmY2ZhOGEyNDM0ZDJmZTgzMzI1YTZkNTg2NTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJjNDViMjI3ODJkZTNiYmM1NjYxZGYzZjNkNjMzYjQ3ZDg4ZDJlYTdjIn0=	2018-05-14 11:40:57.74554-04
 \.
 
 
@@ -3684,7 +3688,7 @@ hzwc6ny9pettf5hcou8xbl1ec75fu84b	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJ
 -- Data for Name: documents_gallery_documentsindexpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY documents_gallery_documentsindexpage (page_ptr_id, intro, feed_image_id) FROM stdin;
+COPY public.documents_gallery_documentsindexpage (page_ptr_id, intro, feed_image_id) FROM stdin;
 20		\N
 \.
 
@@ -3693,7 +3697,7 @@ COPY documents_gallery_documentsindexpage (page_ptr_id, intro, feed_image_id) FR
 -- Data for Name: documents_gallery_documentspage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY documents_gallery_documentspage (page_ptr_id, feed_image_id) FROM stdin;
+COPY public.documents_gallery_documentspage (page_ptr_id, feed_image_id) FROM stdin;
 21	\N
 \.
 
@@ -3702,7 +3706,7 @@ COPY documents_gallery_documentspage (page_ptr_id, feed_image_id) FROM stdin;
 -- Data for Name: documents_gallery_documentspagetag; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY documents_gallery_documentspagetag (id, content_object_id, tag_id) FROM stdin;
+COPY public.documents_gallery_documentspagetag (id, content_object_id, tag_id) FROM stdin;
 2	21	5
 \.
 
@@ -3711,7 +3715,7 @@ COPY documents_gallery_documentspagetag (id, content_object_id, tag_id) FROM std
 -- Data for Name: events_eventindexpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY events_eventindexpage (page_ptr_id, intro, feed_image_id) FROM stdin;
+COPY public.events_eventindexpage (page_ptr_id, intro, feed_image_id) FROM stdin;
 12		\N
 \.
 
@@ -3720,7 +3724,7 @@ COPY events_eventindexpage (page_ptr_id, intro, feed_image_id) FROM stdin;
 -- Data for Name: events_eventindexpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY events_eventindexpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.events_eventindexpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
 \.
 
 
@@ -3728,7 +3732,7 @@ COPY events_eventindexpagerelatedlink (id, sort_order, link_external, title, lin
 -- Data for Name: events_eventpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY events_eventpage (page_ptr_id, date_from, date_to, time_from, time_to, audience, location, body, cost, signup_link, feed_image_id) FROM stdin;
+COPY public.events_eventpage (page_ptr_id, date_from, date_to, time_from, time_to, audience, location, body, cost, signup_link, feed_image_id) FROM stdin;
 14	2020-06-17	\N	\N	\N	\N					3
 15	2021-08-12	\N	\N	\N	\N					9
 13	2019-06-01	2020-11-13	10:00:00	14:00:00	public	ChrisDev Headquaters	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque \nporttitor ullamcorper ullamcorper. Vestibulum ante ipsum primis in \nfaucibus orci luctus et ultrices posuere cubilia Curae; Curabitur \nposuere imperdiet lacus ut faucibus. Donec aliquam nisi eu varius \nvestibulum.</p><p>Fusce porttitor facilisis sapien. Duis a gravida elit. Sed \nblandit mollis enim quis pharetra. Vivamus faucibus facilisis metus \nconvallis venenatis. Vestibulum sollicitudin ac turpis sit amet blandit.\n</p>	FREE	http://chrisdev.com	9
@@ -3739,7 +3743,7 @@ COPY events_eventpage (page_ptr_id, date_from, date_to, time_from, time_to, audi
 -- Data for Name: events_eventpagecarouselitem; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY events_eventpagecarouselitem (id, sort_order, link_external, embed_url, caption, image_id, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.events_eventpagecarouselitem (id, sort_order, link_external, embed_url, caption, image_id, link_document_id, link_page_id, page_id) FROM stdin;
 \.
 
 
@@ -3747,7 +3751,7 @@ COPY events_eventpagecarouselitem (id, sort_order, link_external, embed_url, cap
 -- Data for Name: events_eventpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY events_eventpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.events_eventpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
 \.
 
 
@@ -3755,7 +3759,7 @@ COPY events_eventpagerelatedlink (id, sort_order, link_external, title, link_doc
 -- Data for Name: events_eventpagespeaker; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY events_eventpagespeaker (id, sort_order, link_external, full_name, image_id, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.events_eventpagespeaker (id, sort_order, link_external, full_name, image_id, link_document_id, link_page_id, page_id) FROM stdin;
 \.
 
 
@@ -3763,7 +3767,7 @@ COPY events_eventpagespeaker (id, sort_order, link_external, full_name, image_id
 -- Data for Name: events_eventpagetag; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY events_eventpagetag (id, content_object_id, tag_id) FROM stdin;
+COPY public.events_eventpagetag (id, content_object_id, tag_id) FROM stdin;
 3	14	3
 4	15	4
 5	13	1
@@ -3775,7 +3779,7 @@ COPY events_eventpagetag (id, content_object_id, tag_id) FROM stdin;
 -- Data for Name: pages_advert; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_advert (id, link_external, title, text, image_id, link_document_id, link_page_id, page_id, button_text) FROM stdin;
+COPY public.pages_advert (id, link_external, title, text, image_id, link_document_id, link_page_id, page_id, button_text) FROM stdin;
 \.
 
 
@@ -3783,7 +3787,7 @@ COPY pages_advert (id, link_external, title, text, image_id, link_document_id, l
 -- Data for Name: pages_contentblock; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_contentblock (id, link_external, title, body, summary, slug, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.pages_contentblock (id, link_external, title, body, summary, slug, link_document_id, link_page_id, page_id) FROM stdin;
 \.
 
 
@@ -3791,7 +3795,7 @@ COPY pages_contentblock (id, link_external, title, body, summary, slug, link_doc
 -- Data for Name: pages_faqspage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_faqspage (page_ptr_id, body) FROM stdin;
+COPY public.pages_faqspage (page_ptr_id, body) FROM stdin;
 \.
 
 
@@ -3799,7 +3803,7 @@ COPY pages_faqspage (page_ptr_id, body) FROM stdin;
 -- Data for Name: pages_homepage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_homepage (page_ptr_id, title_text, body, feed_image_id) FROM stdin;
+COPY public.pages_homepage (page_ptr_id, title_text, body, feed_image_id) FROM stdin;
 3	<h3>Welcome to Wagtail Cookiecutter Foundation</h3>	<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>	\N
 \.
 
@@ -3808,7 +3812,7 @@ COPY pages_homepage (page_ptr_id, title_text, body, feed_image_id) FROM stdin;
 -- Data for Name: pages_homepagecarouselitem; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_homepagecarouselitem (id, sort_order, link_external, embed_url, caption, image_id, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.pages_homepagecarouselitem (id, sort_order, link_external, embed_url, caption, image_id, link_document_id, link_page_id, page_id) FROM stdin;
 1	0				3	\N	\N	3
 2	1				9	\N	\N	3
 3	2				5	\N	\N	3
@@ -3820,7 +3824,7 @@ COPY pages_homepagecarouselitem (id, sort_order, link_external, embed_url, capti
 -- Data for Name: pages_homepagecontentitem; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_homepagecontentitem (id, sort_order, link_external, title, content, summary, slug, image_id, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.pages_homepagecontentitem (id, sort_order, link_external, title, content, summary, slug, image_id, link_document_id, link_page_id, page_id) FROM stdin;
 1	0	http://foundation.zurb.com/	Foundation 6	<p>The most advanced responsive front-end framework in the world.</p>	<p><br/></p>	foundation	11	\N	\N	3
 2	1	https://wagtail.io/	Wagtail	<p>Wagtail is an open source CMS written in Python and built on the Django framework.</p>		Wagtail	10	\N	\N	3
 3	2	https://www.ansible.com/	Ansible	<p>Ansible for easy Provisioning and Deployment.</p>		ansible	1	\N	\N	3
@@ -3834,7 +3838,7 @@ COPY pages_homepagecontentitem (id, sort_order, link_external, title, content, s
 -- Data for Name: pages_homepagerelatedlink; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_homepagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.pages_homepagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
 \.
 
 
@@ -3842,7 +3846,7 @@ COPY pages_homepagerelatedlink (id, sort_order, link_external, title, link_docum
 -- Data for Name: pages_sitebranding; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_sitebranding (id, site_name, logo_id, site_id) FROM stdin;
+COPY public.pages_sitebranding (id, site_name, logo_id, site_id) FROM stdin;
 1	ChrisDev Wagtail Project	12	2
 \.
 
@@ -3851,7 +3855,7 @@ COPY pages_sitebranding (id, site_name, logo_id, site_id) FROM stdin;
 -- Data for Name: pages_socialmediasettings; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_socialmediasettings (id, facebook, instagram, twitter_name, youtube, linkedin, github, facebook_appid, site_id) FROM stdin;
+COPY public.pages_socialmediasettings (id, facebook, instagram, twitter_name, youtube, linkedin, github, facebook_appid, site_id) FROM stdin;
 1	https://www.facebook.com/bot.chrisdev?fref=ts		realchrisdev			https://www.github.com/chrisdev		2
 \.
 
@@ -3860,7 +3864,7 @@ COPY pages_socialmediasettings (id, facebook, instagram, twitter_name, youtube, 
 -- Data for Name: pages_standardindexpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_standardindexpage (page_ptr_id, subtitle, intro, feed_image_id, template_string) FROM stdin;
+COPY public.pages_standardindexpage (page_ptr_id, subtitle, intro, feed_image_id, template_string) FROM stdin;
 4		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>	\N	pages/standard_index_page.html
 \.
 
@@ -3869,7 +3873,7 @@ COPY pages_standardindexpage (page_ptr_id, subtitle, intro, feed_image_id, templ
 -- Data for Name: pages_standardindexpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_standardindexpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.pages_standardindexpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
 \.
 
 
@@ -3877,7 +3881,7 @@ COPY pages_standardindexpagerelatedlink (id, sort_order, link_external, title, l
 -- Data for Name: pages_standardpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_standardpage (page_ptr_id, subtitle, intro, body, feed_image_id, template_string) FROM stdin;
+COPY public.pages_standardpage (page_ptr_id, subtitle, intro, body, feed_image_id, template_string) FROM stdin;
 5		<p><br/></p>	[{"type": "paragraph", "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p>"}, {"type": "image", "value": 9}, {"type": "paragraph", "value": "<p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin \\nmauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, \\nnibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex \\nnulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer \\nhendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi \\nlaoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, \\naliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere \\nipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In\\n varius diam quis viverra porttutor.</p>"}]	\N	pages/standard_page_full.html
 6			[{"type": "paragraph", "value": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p>"}, {"type": "image", "value": 3}, {"type": "paragraph", "value": "<p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin \\nmauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, \\nnibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex \\nnulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer \\nhendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi \\nlaoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, \\naliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere \\nipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In\\n varius diam quis viverra porttutor.</p>"}]	\N	pages/standard_page.html
 \.
@@ -3887,7 +3891,7 @@ COPY pages_standardpage (page_ptr_id, subtitle, intro, body, feed_image_id, temp
 -- Data for Name: pages_standardpagecarouselitem; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_standardpagecarouselitem (id, sort_order, link_external, embed_url, caption, image_id, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.pages_standardpagecarouselitem (id, sort_order, link_external, embed_url, caption, image_id, link_document_id, link_page_id, page_id) FROM stdin;
 \.
 
 
@@ -3895,7 +3899,7 @@ COPY pages_standardpagecarouselitem (id, sort_order, link_external, embed_url, c
 -- Data for Name: pages_standardpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_standardpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.pages_standardpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
 \.
 
 
@@ -3903,7 +3907,7 @@ COPY pages_standardpagerelatedlink (id, sort_order, link_external, title, link_d
 -- Data for Name: pages_testimonial; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_testimonial (id, link_external, name, text, link_document_id, link_page_id, page_id, photo_id) FROM stdin;
+COPY public.pages_testimonial (id, link_external, name, text, link_document_id, link_page_id, page_id, photo_id) FROM stdin;
 1		Christopher Clarke	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \nleo, ornare in mattis vitae, vehicula vestibulum diam.</p>	\N	\N	\N	11
 2		Lendl Smith	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \nleo, ornare in mattis vitae, vehicula vestibulum diam.</p>	\N	\N	\N	6
 \.
@@ -3913,7 +3917,7 @@ COPY pages_testimonial (id, link_external, name, text, link_document_id, link_pa
 -- Data for Name: pages_testimonialpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_testimonialpage (page_ptr_id, intro, feed_image_id) FROM stdin;
+COPY public.pages_testimonialpage (page_ptr_id, intro, feed_image_id) FROM stdin;
 27		\N
 \.
 
@@ -3922,7 +3926,7 @@ COPY pages_testimonialpage (page_ptr_id, intro, feed_image_id) FROM stdin;
 -- Data for Name: pages_videogallerypage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_videogallerypage (page_ptr_id, intro, feed_image_id) FROM stdin;
+COPY public.pages_videogallerypage (page_ptr_id, intro, feed_image_id) FROM stdin;
 \.
 
 
@@ -3930,7 +3934,7 @@ COPY pages_videogallerypage (page_ptr_id, intro, feed_image_id) FROM stdin;
 -- Data for Name: pages_videogallerypagecarouselitem; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY pages_videogallerypagecarouselitem (id, sort_order, link_external, embed_url, caption, image_id, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.pages_videogallerypagecarouselitem (id, sort_order, link_external, embed_url, caption, image_id, link_document_id, link_page_id, page_id) FROM stdin;
 \.
 
 
@@ -3938,7 +3942,7 @@ COPY pages_videogallerypagecarouselitem (id, sort_order, link_external, embed_ur
 -- Data for Name: people_personindexpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY people_personindexpage (page_ptr_id, subtitle, intro, feed_image_id) FROM stdin;
+COPY public.people_personindexpage (page_ptr_id, subtitle, intro, feed_image_id) FROM stdin;
 7		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>	\N
 \.
 
@@ -3947,7 +3951,7 @@ COPY people_personindexpage (page_ptr_id, subtitle, intro, feed_image_id) FROM s
 -- Data for Name: people_personindexpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY people_personindexpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.people_personindexpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
 \.
 
 
@@ -3955,7 +3959,7 @@ COPY people_personindexpagerelatedlink (id, sort_order, link_external, title, li
 -- Data for Name: people_personpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY people_personpage (page_ptr_id, name_organization, telephone, email, address_1, address_2, city, country, post_code, intro, biography, feed_image_id, image_id, role_id, telephone_2, email_2) FROM stdin;
+COPY public.people_personpage (page_ptr_id, name_organization, telephone, email, address_1, address_2, city, country, post_code, intro, biography, feed_image_id, image_id, role_id, telephone_2, email_2) FROM stdin;
 8										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttutor.</p>	\N	4	\N		
 9										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttutor.</p>	\N	4	\N		
 10										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p><p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, nibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In varius diam quis viverra porttutor.</p>	\N	4	\N		
@@ -3967,7 +3971,7 @@ COPY people_personpage (page_ptr_id, name_organization, telephone, email, addres
 -- Data for Name: people_personpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY people_personpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.people_personpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
 \.
 
 
@@ -3975,7 +3979,7 @@ COPY people_personpagerelatedlink (id, sort_order, link_external, title, link_do
 -- Data for Name: people_personpagetag; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY people_personpagetag (id, content_object_id, tag_id) FROM stdin;
+COPY public.people_personpagetag (id, content_object_id, tag_id) FROM stdin;
 \.
 
 
@@ -3983,7 +3987,7 @@ COPY people_personpagetag (id, content_object_id, tag_id) FROM stdin;
 -- Data for Name: people_personrole; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY people_personrole (id, name) FROM stdin;
+COPY public.people_personrole (id, name) FROM stdin;
 \.
 
 
@@ -3991,7 +3995,7 @@ COPY people_personrole (id, name) FROM stdin;
 -- Data for Name: photo_gallery_galleryindexpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY photo_gallery_galleryindexpage (page_ptr_id, intro, feed_image_id) FROM stdin;
+COPY public.photo_gallery_galleryindexpage (page_ptr_id, intro, feed_image_id) FROM stdin;
 22		\N
 \.
 
@@ -4000,7 +4004,7 @@ COPY photo_gallery_galleryindexpage (page_ptr_id, intro, feed_image_id) FROM std
 -- Data for Name: photo_gallery_gallerypage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY photo_gallery_gallerypage (page_ptr_id, feed_image_id) FROM stdin;
+COPY public.photo_gallery_gallerypage (page_ptr_id, feed_image_id) FROM stdin;
 23	9
 \.
 
@@ -4009,7 +4013,7 @@ COPY photo_gallery_gallerypage (page_ptr_id, feed_image_id) FROM stdin;
 -- Data for Name: photo_gallery_gallerypagetag; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY photo_gallery_gallerypagetag (id, content_object_id, tag_id) FROM stdin;
+COPY public.photo_gallery_gallerypagetag (id, content_object_id, tag_id) FROM stdin;
 3	23	6
 2	23	6
 \.
@@ -4019,7 +4023,7 @@ COPY photo_gallery_gallerypagetag (id, content_object_id, tag_id) FROM stdin;
 -- Data for Name: postgres_search_indexentry; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY postgres_search_indexentry (id, object_id, body_search, content_type_id) FROM stdin;
+COPY public.postgres_search_indexentry (id, object_id, body_search, content_type_id) FROM stdin;
 2	1	'document':1A 'document.doc':2A	3
 3	2	'document':1A 'example.docx':2A	3
 4	3	'document':1A 'sample.pdf':2A	3
@@ -4066,7 +4070,7 @@ COPY postgres_search_indexentry (id, object_id, body_search, content_type_id) FR
 -- Data for Name: products_productindexpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY products_productindexpage (page_ptr_id, subtitle, intro, feed_image_id) FROM stdin;
+COPY public.products_productindexpage (page_ptr_id, subtitle, intro, feed_image_id) FROM stdin;
 \.
 
 
@@ -4074,7 +4078,7 @@ COPY products_productindexpage (page_ptr_id, subtitle, intro, feed_image_id) FRO
 -- Data for Name: products_productindexpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY products_productindexpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.products_productindexpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
 \.
 
 
@@ -4082,7 +4086,7 @@ COPY products_productindexpagerelatedlink (id, sort_order, link_external, title,
 -- Data for Name: products_productpage; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY products_productpage (page_ptr_id, price, description, feed_image_id, image_id, intro, link_demo) FROM stdin;
+COPY public.products_productpage (page_ptr_id, price, description, feed_image_id, image_id, intro, link_demo) FROM stdin;
 \.
 
 
@@ -4090,7 +4094,7 @@ COPY products_productpage (page_ptr_id, price, description, feed_image_id, image
 -- Data for Name: products_productpagerelatedlink; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY products_productpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
+COPY public.products_productpagerelatedlink (id, sort_order, link_external, title, link_document_id, link_page_id, page_id) FROM stdin;
 \.
 
 
@@ -4098,7 +4102,7 @@ COPY products_productpagerelatedlink (id, sort_order, link_external, title, link
 -- Data for Name: products_productpagetag; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY products_productpagetag (id, content_object_id, tag_id) FROM stdin;
+COPY public.products_productpagetag (id, content_object_id, tag_id) FROM stdin;
 \.
 
 
@@ -4106,7 +4110,7 @@ COPY products_productpagetag (id, content_object_id, tag_id) FROM stdin;
 -- Data for Name: taggit_tag; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY taggit_tag (id, name, slug) FROM stdin;
+COPY public.taggit_tag (id, name, slug) FROM stdin;
 1	wagtail	wagtail
 2	event1	event1
 3	events2	events2
@@ -4122,7 +4126,7 @@ COPY taggit_tag (id, name, slug) FROM stdin;
 -- Data for Name: taggit_taggeditem; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY taggit_taggeditem (id, object_id, content_type_id, tag_id) FROM stdin;
+COPY public.taggit_taggeditem (id, object_id, content_type_id, tag_id) FROM stdin;
 1	3	3	5
 2	2	3	5
 3	1	3	5
@@ -4137,7 +4141,7 @@ COPY taggit_taggeditem (id, object_id, content_type_id, tag_id) FROM stdin;
 -- Data for Name: wagtail_feeds_rssfeedssettings; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtail_feeds_rssfeedssettings (id, feed_app_label, feed_model_name, feed_title, feed_link, feed_description, feed_author_email, feed_author_link, feed_item_description_field, feed_item_content_field, site_id, feed_image_in_content) FROM stdin;
+COPY public.wagtail_feeds_rssfeedssettings (id, feed_app_label, feed_model_name, feed_title, feed_link, feed_description, feed_author_email, feed_author_link, feed_item_description_field, feed_item_content_field, site_id, feed_image_in_content) FROM stdin;
 1	blog	BlogPage	From the Desk of John Blog	http://www.example.com/news/	News and views from around the Web	john@johnblog.com	https://johnblog.com	intro	body	2	t
 \.
 
@@ -4146,7 +4150,7 @@ COPY wagtail_feeds_rssfeedssettings (id, feed_app_label, feed_model_name, feed_t
 -- Data for Name: wagtailcore_collection; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailcore_collection (id, path, depth, numchild, name) FROM stdin;
+COPY public.wagtailcore_collection (id, path, depth, numchild, name) FROM stdin;
 1	0001	1	0	Root
 \.
 
@@ -4155,7 +4159,7 @@ COPY wagtailcore_collection (id, path, depth, numchild, name) FROM stdin;
 -- Data for Name: wagtailcore_collectionviewrestriction; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailcore_collectionviewrestriction (id, restriction_type, password, collection_id) FROM stdin;
+COPY public.wagtailcore_collectionviewrestriction (id, restriction_type, password, collection_id) FROM stdin;
 \.
 
 
@@ -4163,7 +4167,7 @@ COPY wagtailcore_collectionviewrestriction (id, restriction_type, password, coll
 -- Data for Name: wagtailcore_collectionviewrestriction_groups; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailcore_collectionviewrestriction_groups (id, collectionviewrestriction_id, group_id) FROM stdin;
+COPY public.wagtailcore_collectionviewrestriction_groups (id, collectionviewrestriction_id, group_id) FROM stdin;
 \.
 
 
@@ -4171,7 +4175,7 @@ COPY wagtailcore_collectionviewrestriction_groups (id, collectionviewrestriction
 -- Data for Name: wagtailcore_groupcollectionpermission; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailcore_groupcollectionpermission (id, collection_id, group_id, permission_id) FROM stdin;
+COPY public.wagtailcore_groupcollectionpermission (id, collection_id, group_id, permission_id) FROM stdin;
 1	1	1	4
 2	1	2	4
 3	1	1	5
@@ -4187,7 +4191,7 @@ COPY wagtailcore_groupcollectionpermission (id, collection_id, group_id, permiss
 -- Data for Name: wagtailcore_grouppagepermission; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailcore_grouppagepermission (id, permission_type, group_id, page_id) FROM stdin;
+COPY public.wagtailcore_grouppagepermission (id, permission_type, group_id, page_id) FROM stdin;
 1	add	1	1
 2	edit	1	1
 3	publish	1	1
@@ -4201,7 +4205,7 @@ COPY wagtailcore_grouppagepermission (id, permission_type, group_id, page_id) FR
 -- Data for Name: wagtailcore_page; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailcore_page (id, path, depth, numchild, title, slug, live, has_unpublished_changes, url_path, seo_title, show_in_menus, search_description, go_live_at, expire_at, expired, content_type_id, owner_id, locked, latest_revision_created_at, first_published_at, live_revision_id, last_published_at, draft_title) FROM stdin;
+COPY public.wagtailcore_page (id, path, depth, numchild, title, slug, live, has_unpublished_changes, url_path, seo_title, show_in_menus, search_description, go_live_at, expire_at, expired, content_type_id, owner_id, locked, latest_revision_created_at, first_published_at, live_revision_id, last_published_at, draft_title) FROM stdin;
 16	000100010004	3	3	Blog Index	blog-index	t	t	/home/blog-index/		t		\N	\N	f	43	1	f	2017-05-29 02:48:04.286239-04	2016-07-20 04:11:32.157776-04	\N	\N	Blog Index
 1	0001	1	1	Root	root	t	f	/		f		\N	\N	f	1	\N	f	\N	\N	\N	\N	Root
 14	0001000100030002	4	0	Event Page 2	event-page-2	t	f	/home/event-index/event-page-2/		t		\N	\N	f	54	1	f	2016-07-20 04:09:41.447057-04	2016-07-20 04:09:41.570505-04	\N	2016-07-20 04:09:41.447057-04	Event Page 2
@@ -4233,7 +4237,7 @@ COPY wagtailcore_page (id, path, depth, numchild, title, slug, live, has_unpubli
 -- Data for Name: wagtailcore_pagerevision; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailcore_pagerevision (id, submitted_for_moderation, created_at, content_json, approved_go_live_at, page_id, user_id) FROM stdin;
+COPY public.wagtailcore_pagerevision (id, submitted_for_moderation, created_at, content_json, approved_go_live_at, page_id, user_id) FROM stdin;
 1	f	2016-07-20 03:37:34.562365-04	{"carousel_items": [{"link_page": null, "embed_url": "", "image": null, "link_external": "", "caption": "", "sort_order": 0, "link_document": null, "pk": null, "page": 3}], "search_description": "", "owner": null, "latest_revision_created_at": null, "go_live_at": null, "related_links": [], "title": "Homepage", "seo_title": "", "slug": "home", "live": true, "has_unpublished_changes": false, "body": "<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>", "content_items": [], "numchild": 0, "title_text": "<h3>Welcome to Wagtail Cookiecutter Foundation</h3>", "content_type": 4, "show_in_menus": false, "path": "00010001", "url_path": "/home/", "expired": false, "pk": 3, "locked": false, "depth": 2, "first_published_at": null, "expire_at": null}	\N	3	1
 3	f	2016-07-20 03:45:12.484088-04	{"carousel_items": [{"link_page": null, "embed_url": "", "image": 3, "link_external": "", "caption": "", "sort_order": 0, "link_document": null, "pk": 1, "page": 3}, {"link_page": null, "embed_url": "", "image": 9, "link_external": "", "caption": "", "sort_order": 1, "link_document": null, "pk": 2, "page": 3}, {"link_page": null, "embed_url": "", "image": 5, "link_external": "", "caption": "", "sort_order": 2, "link_document": null, "pk": 3, "page": 3}, {"link_page": null, "embed_url": "", "image": 7, "link_external": "", "caption": "", "sort_order": 3, "link_document": null, "pk": 4, "page": 3}], "search_description": "", "owner": null, "latest_revision_created_at": "2016-07-20T07:43:14.265Z", "go_live_at": null, "related_links": [], "title": "Homepage", "seo_title": "", "slug": "home", "live": true, "has_unpublished_changes": false, "body": "<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>", "content_items": [{"slug": "foundation", "link_page": null, "title": "Foundation 6", "image": 11, "link_external": "http://foundation.zurb.com/", "summary": "<p><br/></p>", "content": "<p>The most advanced responsive front-end framework in the world.</p>", "sort_order": 0, "link_document": null, "pk": 1, "page": 3}, {"slug": "Wagtail", "link_page": null, "title": "Wagtail", "image": 10, "link_external": "https://wagtail.io/", "summary": "", "content": "<p>Wagtail is an open source CMS written in Python and built on the Django framework.</p>", "sort_order": 1, "link_document": null, "pk": 2, "page": 3}, {"slug": "ansible", "link_page": null, "title": "Ansible", "image": 1, "link_external": "https://www.ansible.com/", "summary": "", "content": "<p>Ansible for easy Provisioning and Deployment.</p>", "sort_order": 2, "link_document": null, "pk": 3, "page": 3}, {"slug": "sass", "link_page": null, "title": "Sass", "image": 8, "link_external": "http://sass-lang.com/", "summary": "", "content": "<p>Sass 100%</p>", "sort_order": 3, "link_document": null, "pk": 4, "page": 3}, {"slug": "postgresql", "link_page": null, "title": "PostgreSQL", "image": 6, "link_external": "https://www.postgresql.org/", "summary": "", "content": "<p>PostgreSQL everywhere!</p>", "sort_order": 4, "link_document": null, "pk": 5, "page": 3}, {"slug": "digital-ocean", "link_page": null, "title": "Digital Ocean", "image": 2, "link_external": "https://www.digitalocean.com/", "summary": "", "content": "<p>Spin up servers with the Digital Ocean API</p>", "sort_order": 5, "link_document": null, "pk": 6, "page": 3}], "numchild": 0, "title_text": "<h3>Welcome to Wagtail Cookiecutter Foundation</h3>", "content_type": 4, "show_in_menus": true, "path": "00010001", "url_path": "/home/", "expired": false, "pk": 3, "locked": false, "depth": 2, "first_published_at": "2016-07-20T07:37:34.678Z", "expire_at": null}	\N	3	1
 2	f	2016-07-20 03:43:14.265204-04	{"carousel_items": [{"link_page": null, "embed_url": "", "image": 3, "link_external": "", "caption": "", "sort_order": 0, "link_document": null, "pk": 1, "page": 3}, {"link_page": null, "embed_url": "", "image": 9, "link_external": "", "caption": "", "sort_order": 1, "link_document": null, "pk": null, "page": 3}, {"link_page": null, "embed_url": "", "image": 5, "link_external": "", "caption": "", "sort_order": 2, "link_document": null, "pk": null, "page": 3}, {"link_page": null, "embed_url": "", "image": 7, "link_external": "", "caption": "", "sort_order": 3, "link_document": null, "pk": null, "page": 3}], "search_description": "", "owner": null, "latest_revision_created_at": "2016-07-20T07:37:34.562Z", "go_live_at": null, "related_links": [], "title": "Homepage", "seo_title": "", "slug": "home", "live": true, "has_unpublished_changes": false, "body": "<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>", "content_items": [{"slug": "foundation", "link_page": null, "title": "Foundation 6", "image": 11, "link_external": "http://foundation.zurb.com/", "summary": "<p><br/></p>", "content": "<p>The most advanced responsive front-end framework in the world.</p>", "sort_order": 0, "link_document": null, "pk": null, "page": 3}, {"slug": "Wagtail", "link_page": null, "title": "Wagtail", "image": 10, "link_external": "https://wagtail.io/", "summary": "", "content": "<p>Wagtail is an open source CMS written in Python and built on the Django framework.</p>", "sort_order": 1, "link_document": null, "pk": null, "page": 3}, {"slug": "ansible", "link_page": null, "title": "Ansible", "image": 1, "link_external": "https://www.ansible.com/", "summary": "", "content": "<p>Ansible for easy Provisioning and Deployment.</p>", "sort_order": 2, "link_document": null, "pk": null, "page": 3}, {"slug": "sass", "link_page": null, "title": "Sass", "image": 8, "link_external": "http://sass-lang.com/", "summary": "", "content": "<p>Sass 100%</p>", "sort_order": 3, "link_document": null, "pk": null, "page": 3}, {"slug": "postgresql", "link_page": null, "title": "PostgreSQL", "image": 6, "link_external": "https://www.postgresql.org/", "summary": "", "content": "<p>PostgreSQL everywhere!</p>", "sort_order": 4, "link_document": null, "pk": null, "page": 3}, {"slug": "digital-ocean", "link_page": null, "title": "Digital Ocean", "image": 2, "link_external": "https://www.digitalocean.com/", "summary": "", "content": "<p>Spin up servers with the Digital Ocean API</p>", "sort_order": 5, "link_document": null, "pk": null, "page": 3}], "numchild": 0, "title_text": "<h3>Welcome to Wagtail Cookiecutter Foundation</h3>", "content_type": 4, "show_in_menus": false, "path": "00010001", "url_path": "/home/", "expired": false, "pk": 3, "locked": false, "depth": 2, "first_published_at": "2016-07-20T07:37:34.678Z", "expire_at": null}	\N	3	1
@@ -4283,7 +4287,7 @@ COPY wagtailcore_pagerevision (id, submitted_for_moderation, created_at, content
 -- Data for Name: wagtailcore_pageviewrestriction; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailcore_pageviewrestriction (id, password, page_id, restriction_type) FROM stdin;
+COPY public.wagtailcore_pageviewrestriction (id, password, page_id, restriction_type) FROM stdin;
 \.
 
 
@@ -4291,7 +4295,7 @@ COPY wagtailcore_pageviewrestriction (id, password, page_id, restriction_type) F
 -- Data for Name: wagtailcore_pageviewrestriction_groups; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailcore_pageviewrestriction_groups (id, pageviewrestriction_id, group_id) FROM stdin;
+COPY public.wagtailcore_pageviewrestriction_groups (id, pageviewrestriction_id, group_id) FROM stdin;
 \.
 
 
@@ -4299,7 +4303,7 @@ COPY wagtailcore_pageviewrestriction_groups (id, pageviewrestriction_id, group_i
 -- Data for Name: wagtailcore_site; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailcore_site (id, hostname, port, is_default_site, root_page_id, site_name) FROM stdin;
+COPY public.wagtailcore_site (id, hostname, port, is_default_site, root_page_id, site_name) FROM stdin;
 2	localhost	80	t	3	Chrisdev Wagtail
 \.
 
@@ -4308,7 +4312,7 @@ COPY wagtailcore_site (id, hostname, port, is_default_site, root_page_id, site_n
 -- Data for Name: wagtaildocs_document; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtaildocs_document (id, title, file, created_at, uploaded_by_user_id, collection_id) FROM stdin;
+COPY public.wagtaildocs_document (id, title, file, created_at, uploaded_by_user_id, collection_id) FROM stdin;
 3	sample.pdf	documents/sample.pdf	2016-07-20 04:20:05.885324-04	1	1
 2	example.docx	documents/example.docx	2016-07-20 04:20:05.773672-04	1	1
 1	document.doc	documents/document.doc	2016-07-20 04:20:05.540446-04	1	1
@@ -4319,7 +4323,7 @@ COPY wagtaildocs_document (id, title, file, created_at, uploaded_by_user_id, col
 -- Data for Name: wagtailembeds_embed; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailembeds_embed (id, url, max_width, type, html, title, author_name, provider_name, thumbnail_url, width, height, last_updated) FROM stdin;
+COPY public.wagtailembeds_embed (id, url, max_width, type, html, title, author_name, provider_name, thumbnail_url, width, height, last_updated) FROM stdin;
 \.
 
 
@@ -4327,7 +4331,7 @@ COPY wagtailembeds_embed (id, url, max_width, type, html, title, author_name, pr
 -- Data for Name: wagtailforms_formsubmission; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailforms_formsubmission (id, form_data, submit_time, page_id) FROM stdin;
+COPY public.wagtailforms_formsubmission (id, form_data, submit_time, page_id) FROM stdin;
 1	{"message": "Test Message", "subject": "Test Subject", "name": "Test", "email": "test@test.com"}	2016-07-20 04:32:59.957933-04	24
 \.
 
@@ -4336,7 +4340,7 @@ COPY wagtailforms_formsubmission (id, form_data, submit_time, page_id) FROM stdi
 -- Data for Name: wagtailimages_image; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailimages_image (id, title, file, width, height, created_at, focal_point_x, focal_point_y, focal_point_width, focal_point_height, uploaded_by_user_id, file_size, collection_id) FROM stdin;
+COPY public.wagtailimages_image (id, title, file, width, height, created_at, focal_point_x, focal_point_y, focal_point_width, focal_point_height, uploaded_by_user_id, file_size, collection_id) FROM stdin;
 1	ansible.png	original_images/ansible.png	512	512	2016-07-20 03:38:05.682273-04	\N	\N	\N	\N	1	43211	1
 2	digital_ocean.png	original_images/digital_ocean.png	512	512	2016-07-20 03:38:05.875039-04	\N	\N	\N	\N	1	58324	1
 4	placeholder_person.png	original_images/placeholder_person.png	600	568	2016-07-20 03:38:06.108297-04	\N	\N	\N	\N	1	10449	1
@@ -4356,7 +4360,7 @@ COPY wagtailimages_image (id, title, file, width, height, created_at, focal_poin
 -- Data for Name: wagtailimages_rendition; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailimages_rendition (id, file, width, height, focal_point_key, image_id, filter_spec) FROM stdin;
+COPY public.wagtailimages_rendition (id, file, width, height, focal_point_key, image_id, filter_spec) FROM stdin;
 1	images/yeti.max-165x165.png	165	165		11	max-165x165
 2	images/wagtail.max-165x165.png	165	165		10	max-165x165
 3	images/wagtail.max-165x165.jpg	165	63		9	max-165x165
@@ -4422,7 +4426,7 @@ COPY wagtailimages_rendition (id, file, width, height, focal_point_key, image_id
 -- Data for Name: wagtailredirects_redirect; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailredirects_redirect (id, old_path, is_permanent, redirect_link, redirect_page_id, site_id) FROM stdin;
+COPY public.wagtailredirects_redirect (id, old_path, is_permanent, redirect_link, redirect_page_id, site_id) FROM stdin;
 \.
 
 
@@ -4430,7 +4434,7 @@ COPY wagtailredirects_redirect (id, old_path, is_permanent, redirect_link, redir
 -- Data for Name: wagtailsearch_query; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailsearch_query (id, query_string) FROM stdin;
+COPY public.wagtailsearch_query (id, query_string) FROM stdin;
 1	blog
 2	photo
 3	home
@@ -4442,7 +4446,7 @@ COPY wagtailsearch_query (id, query_string) FROM stdin;
 -- Data for Name: wagtailsearch_querydailyhits; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailsearch_querydailyhits (id, date, hits, query_id) FROM stdin;
+COPY public.wagtailsearch_querydailyhits (id, date, hits, query_id) FROM stdin;
 2	2017-05-29	1	2
 3	2017-05-29	1	3
 4	2017-05-29	1	4
@@ -4454,7 +4458,7 @@ COPY wagtailsearch_querydailyhits (id, date, hits, query_id) FROM stdin;
 -- Data for Name: wagtailsearchpromotions_searchpromotion; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailsearchpromotions_searchpromotion (id, sort_order, description, page_id, query_id) FROM stdin;
+COPY public.wagtailsearchpromotions_searchpromotion (id, sort_order, description, page_id, query_id) FROM stdin;
 \.
 
 
@@ -4462,7 +4466,7 @@ COPY wagtailsearchpromotions_searchpromotion (id, sort_order, description, page_
 -- Data for Name: wagtailusers_userprofile; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY wagtailusers_userprofile (id, submitted_notifications, approved_notifications, rejected_notifications, user_id, preferred_language) FROM stdin;
+COPY public.wagtailusers_userprofile (id, submitted_notifications, approved_notifications, rejected_notifications, user_id, preferred_language) FROM stdin;
 \.
 
 
@@ -4470,462 +4474,462 @@ COPY wagtailusers_userprofile (id, submitted_notifications, approved_notificatio
 -- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('auth_group_id_seq', 2, true);
+SELECT pg_catalog.setval('public.auth_group_id_seq', 2, true);
 
 
 --
 -- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('auth_group_permissions_id_seq', 14, true);
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 14, true);
 
 
 --
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('auth_permission_id_seq', 250, true);
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 250, true);
 
 
 --
 -- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('auth_user_groups_id_seq', 1, false);
+SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
 
 
 --
 -- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('auth_user_id_seq', 1, true);
+SELECT pg_catalog.setval('public.auth_user_id_seq', 1, true);
 
 
 --
 -- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('auth_user_user_permissions_id_seq', 1, false);
+SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
 
 
 --
 -- Name: blog_blogindexpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('blog_blogindexpagerelatedlink_id_seq', 1, false);
+SELECT pg_catalog.setval('public.blog_blogindexpagerelatedlink_id_seq', 1, false);
 
 
 --
 -- Name: blog_blogpagecarouselitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('blog_blogpagecarouselitem_id_seq', 1, false);
+SELECT pg_catalog.setval('public.blog_blogpagecarouselitem_id_seq', 1, false);
 
 
 --
 -- Name: blog_blogpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('blog_blogpagerelatedlink_id_seq', 6, true);
+SELECT pg_catalog.setval('public.blog_blogpagerelatedlink_id_seq', 6, true);
 
 
 --
 -- Name: blog_blogpagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('blog_blogpagetag_id_seq', 1, false);
+SELECT pg_catalog.setval('public.blog_blogpagetag_id_seq', 1, false);
 
 
 --
 -- Name: contact_contactformfield_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('contact_contactformfield_id_seq', 4, true);
+SELECT pg_catalog.setval('public.contact_contactformfield_id_seq', 4, true);
 
 
 --
 -- Name: contact_formfield_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('contact_formfield_id_seq', 1, false);
+SELECT pg_catalog.setval('public.contact_formfield_id_seq', 1, false);
 
 
 --
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_admin_log_id_seq', 1, false);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1, false);
 
 
 --
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_content_type_id_seq', 83, true);
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 83, true);
 
 
 --
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('django_migrations_id_seq', 164, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 168, true);
 
 
 --
 -- Name: documents_gallery_documentspagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('documents_gallery_documentspagetag_id_seq', 2, true);
+SELECT pg_catalog.setval('public.documents_gallery_documentspagetag_id_seq', 2, true);
 
 
 --
 -- Name: events_eventindexpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('events_eventindexpagerelatedlink_id_seq', 1, false);
+SELECT pg_catalog.setval('public.events_eventindexpagerelatedlink_id_seq', 1, false);
 
 
 --
 -- Name: events_eventpagecarouselitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('events_eventpagecarouselitem_id_seq', 1, false);
+SELECT pg_catalog.setval('public.events_eventpagecarouselitem_id_seq', 1, false);
 
 
 --
 -- Name: events_eventpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('events_eventpagerelatedlink_id_seq', 1, false);
+SELECT pg_catalog.setval('public.events_eventpagerelatedlink_id_seq', 1, false);
 
 
 --
 -- Name: events_eventpagespeaker_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('events_eventpagespeaker_id_seq', 1, false);
+SELECT pg_catalog.setval('public.events_eventpagespeaker_id_seq', 1, false);
 
 
 --
 -- Name: events_eventpagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('events_eventpagetag_id_seq', 6, true);
+SELECT pg_catalog.setval('public.events_eventpagetag_id_seq', 6, true);
 
 
 --
 -- Name: pages_advert_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('pages_advert_id_seq', 1, true);
+SELECT pg_catalog.setval('public.pages_advert_id_seq', 1, true);
 
 
 --
 -- Name: pages_contentblock_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('pages_contentblock_id_seq', 1, false);
+SELECT pg_catalog.setval('public.pages_contentblock_id_seq', 1, false);
 
 
 --
 -- Name: pages_homepagecarouselitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('pages_homepagecarouselitem_id_seq', 4, true);
+SELECT pg_catalog.setval('public.pages_homepagecarouselitem_id_seq', 4, true);
 
 
 --
 -- Name: pages_homepagecontentitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('pages_homepagecontentitem_id_seq', 6, true);
+SELECT pg_catalog.setval('public.pages_homepagecontentitem_id_seq', 6, true);
 
 
 --
 -- Name: pages_homepagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('pages_homepagerelatedlink_id_seq', 1, false);
+SELECT pg_catalog.setval('public.pages_homepagerelatedlink_id_seq', 1, false);
 
 
 --
 -- Name: pages_sitebranding_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('pages_sitebranding_id_seq', 1, true);
+SELECT pg_catalog.setval('public.pages_sitebranding_id_seq', 1, true);
 
 
 --
 -- Name: pages_socialmediasettings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('pages_socialmediasettings_id_seq', 2, true);
+SELECT pg_catalog.setval('public.pages_socialmediasettings_id_seq', 2, true);
 
 
 --
 -- Name: pages_standardindexpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('pages_standardindexpagerelatedlink_id_seq', 1, false);
+SELECT pg_catalog.setval('public.pages_standardindexpagerelatedlink_id_seq', 1, false);
 
 
 --
 -- Name: pages_standardpagecarouselitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('pages_standardpagecarouselitem_id_seq', 1, false);
+SELECT pg_catalog.setval('public.pages_standardpagecarouselitem_id_seq', 1, false);
 
 
 --
 -- Name: pages_standardpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('pages_standardpagerelatedlink_id_seq', 1, false);
+SELECT pg_catalog.setval('public.pages_standardpagerelatedlink_id_seq', 1, false);
 
 
 --
 -- Name: pages_testimonial_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('pages_testimonial_id_seq', 2, true);
+SELECT pg_catalog.setval('public.pages_testimonial_id_seq', 2, true);
 
 
 --
 -- Name: pages_videopagecarouselitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('pages_videopagecarouselitem_id_seq', 1, false);
+SELECT pg_catalog.setval('public.pages_videopagecarouselitem_id_seq', 1, false);
 
 
 --
 -- Name: people_personindexpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('people_personindexpagerelatedlink_id_seq', 1, false);
+SELECT pg_catalog.setval('public.people_personindexpagerelatedlink_id_seq', 1, false);
 
 
 --
 -- Name: people_personpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('people_personpagerelatedlink_id_seq', 1, false);
+SELECT pg_catalog.setval('public.people_personpagerelatedlink_id_seq', 1, false);
 
 
 --
 -- Name: people_personpagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('people_personpagetag_id_seq', 1, false);
+SELECT pg_catalog.setval('public.people_personpagetag_id_seq', 1, false);
 
 
 --
 -- Name: people_personrole_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('people_personrole_id_seq', 1, false);
+SELECT pg_catalog.setval('public.people_personrole_id_seq', 1, false);
 
 
 --
 -- Name: photo_gallery_gallerypagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('photo_gallery_gallerypagetag_id_seq', 3, true);
+SELECT pg_catalog.setval('public.photo_gallery_gallerypagetag_id_seq', 3, true);
 
 
 --
 -- Name: postgres_search_indexentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('postgres_search_indexentry_id_seq', 51, true);
+SELECT pg_catalog.setval('public.postgres_search_indexentry_id_seq', 51, true);
 
 
 --
 -- Name: products_productindexpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('products_productindexpagerelatedlink_id_seq', 1, false);
+SELECT pg_catalog.setval('public.products_productindexpagerelatedlink_id_seq', 1, false);
 
 
 --
 -- Name: products_productpagerelatedlink_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('products_productpagerelatedlink_id_seq', 1, false);
+SELECT pg_catalog.setval('public.products_productpagerelatedlink_id_seq', 1, false);
 
 
 --
 -- Name: products_productpagetag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('products_productpagetag_id_seq', 2, true);
+SELECT pg_catalog.setval('public.products_productpagetag_id_seq', 2, true);
 
 
 --
 -- Name: taggit_tag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('taggit_tag_id_seq', 8, true);
+SELECT pg_catalog.setval('public.taggit_tag_id_seq', 8, true);
 
 
 --
 -- Name: taggit_taggeditem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('taggit_taggeditem_id_seq', 7, true);
+SELECT pg_catalog.setval('public.taggit_taggeditem_id_seq', 7, true);
 
 
 --
 -- Name: wagtail_feeds_rssfeedssettings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtail_feeds_rssfeedssettings_id_seq', 1, true);
+SELECT pg_catalog.setval('public.wagtail_feeds_rssfeedssettings_id_seq', 1, true);
 
 
 --
 -- Name: wagtailcore_collection_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailcore_collection_id_seq', 1, true);
+SELECT pg_catalog.setval('public.wagtailcore_collection_id_seq', 1, true);
 
 
 --
 -- Name: wagtailcore_collectionviewrestriction_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailcore_collectionviewrestriction_groups_id_seq', 1, false);
+SELECT pg_catalog.setval('public.wagtailcore_collectionviewrestriction_groups_id_seq', 1, false);
 
 
 --
 -- Name: wagtailcore_collectionviewrestriction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailcore_collectionviewrestriction_id_seq', 1, false);
+SELECT pg_catalog.setval('public.wagtailcore_collectionviewrestriction_id_seq', 1, false);
 
 
 --
 -- Name: wagtailcore_groupcollectionpermission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailcore_groupcollectionpermission_id_seq', 8, true);
+SELECT pg_catalog.setval('public.wagtailcore_groupcollectionpermission_id_seq', 8, true);
 
 
 --
 -- Name: wagtailcore_grouppagepermission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailcore_grouppagepermission_id_seq', 6, true);
+SELECT pg_catalog.setval('public.wagtailcore_grouppagepermission_id_seq', 6, true);
 
 
 --
 -- Name: wagtailcore_page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailcore_page_id_seq', 27, true);
+SELECT pg_catalog.setval('public.wagtailcore_page_id_seq', 27, true);
 
 
 --
 -- Name: wagtailcore_pagerevision_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailcore_pagerevision_id_seq', 44, true);
+SELECT pg_catalog.setval('public.wagtailcore_pagerevision_id_seq', 44, true);
 
 
 --
 -- Name: wagtailcore_pageviewrestriction_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailcore_pageviewrestriction_groups_id_seq', 1, false);
+SELECT pg_catalog.setval('public.wagtailcore_pageviewrestriction_groups_id_seq', 1, false);
 
 
 --
 -- Name: wagtailcore_pageviewrestriction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailcore_pageviewrestriction_id_seq', 1, false);
+SELECT pg_catalog.setval('public.wagtailcore_pageviewrestriction_id_seq', 1, false);
 
 
 --
 -- Name: wagtailcore_site_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailcore_site_id_seq', 2, true);
+SELECT pg_catalog.setval('public.wagtailcore_site_id_seq', 2, true);
 
 
 --
 -- Name: wagtaildocs_document_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtaildocs_document_id_seq', 3, true);
+SELECT pg_catalog.setval('public.wagtaildocs_document_id_seq', 3, true);
 
 
 --
 -- Name: wagtailembeds_embed_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailembeds_embed_id_seq', 1, false);
+SELECT pg_catalog.setval('public.wagtailembeds_embed_id_seq', 1, false);
 
 
 --
 -- Name: wagtailforms_formsubmission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailforms_formsubmission_id_seq', 1, true);
+SELECT pg_catalog.setval('public.wagtailforms_formsubmission_id_seq', 1, true);
 
 
 --
 -- Name: wagtailimages_image_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailimages_image_id_seq', 12, true);
+SELECT pg_catalog.setval('public.wagtailimages_image_id_seq', 12, true);
 
 
 --
 -- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailimages_rendition_id_seq', 58, true);
+SELECT pg_catalog.setval('public.wagtailimages_rendition_id_seq', 58, true);
 
 
 --
 -- Name: wagtailredirects_redirect_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailredirects_redirect_id_seq', 1, false);
+SELECT pg_catalog.setval('public.wagtailredirects_redirect_id_seq', 1, false);
 
 
 --
 -- Name: wagtailsearch_editorspick_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailsearch_editorspick_id_seq', 1, false);
+SELECT pg_catalog.setval('public.wagtailsearch_editorspick_id_seq', 1, false);
 
 
 --
 -- Name: wagtailsearch_query_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailsearch_query_id_seq', 4, true);
+SELECT pg_catalog.setval('public.wagtailsearch_query_id_seq', 4, true);
 
 
 --
 -- Name: wagtailsearch_querydailyhits_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailsearch_querydailyhits_id_seq', 4, true);
+SELECT pg_catalog.setval('public.wagtailsearch_querydailyhits_id_seq', 4, true);
 
 
 --
 -- Name: wagtailusers_userprofile_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('wagtailusers_userprofile_id_seq', 1, false);
+SELECT pg_catalog.setval('public.wagtailusers_userprofile_id_seq', 1, false);
 
 
 --
 -- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_group
+ALTER TABLE ONLY public.auth_group
     ADD CONSTRAINT auth_group_name_key UNIQUE (name);
 
 
@@ -4933,7 +4937,7 @@ ALTER TABLE ONLY auth_group
 -- Name: auth_group_permissions auth_group_permissions_group_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_group_permissions
+ALTER TABLE ONLY public.auth_group_permissions
     ADD CONSTRAINT auth_group_permissions_group_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
 
 
@@ -4941,7 +4945,7 @@ ALTER TABLE ONLY auth_group_permissions
 -- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_group_permissions
+ALTER TABLE ONLY public.auth_group_permissions
     ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
 
 
@@ -4949,7 +4953,7 @@ ALTER TABLE ONLY auth_group_permissions
 -- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_group
+ALTER TABLE ONLY public.auth_group
     ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
 
 
@@ -4957,7 +4961,7 @@ ALTER TABLE ONLY auth_group
 -- Name: auth_permission auth_permission_content_type_id_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_permission
+ALTER TABLE ONLY public.auth_permission
     ADD CONSTRAINT auth_permission_content_type_id_01ab375a_uniq UNIQUE (content_type_id, codename);
 
 
@@ -4965,7 +4969,7 @@ ALTER TABLE ONLY auth_permission
 -- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_permission
+ALTER TABLE ONLY public.auth_permission
     ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
 
 
@@ -4973,7 +4977,7 @@ ALTER TABLE ONLY auth_permission
 -- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_user_groups
+ALTER TABLE ONLY public.auth_user_groups
     ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
 
 
@@ -4981,7 +4985,7 @@ ALTER TABLE ONLY auth_user_groups
 -- Name: auth_user_groups auth_user_groups_user_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_user_groups
+ALTER TABLE ONLY public.auth_user_groups
     ADD CONSTRAINT auth_user_groups_user_id_94350c0c_uniq UNIQUE (user_id, group_id);
 
 
@@ -4989,7 +4993,7 @@ ALTER TABLE ONLY auth_user_groups
 -- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_user
+ALTER TABLE ONLY public.auth_user
     ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
 
 
@@ -4997,7 +5001,7 @@ ALTER TABLE ONLY auth_user
 -- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_user_user_permissions
+ALTER TABLE ONLY public.auth_user_user_permissions
     ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
 
 
@@ -5005,7 +5009,7 @@ ALTER TABLE ONLY auth_user_user_permissions
 -- Name: auth_user_user_permissions auth_user_user_permissions_user_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_user_user_permissions
+ALTER TABLE ONLY public.auth_user_user_permissions
     ADD CONSTRAINT auth_user_user_permissions_user_id_14a6b632_uniq UNIQUE (user_id, permission_id);
 
 
@@ -5013,7 +5017,7 @@ ALTER TABLE ONLY auth_user_user_permissions
 -- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_user
+ALTER TABLE ONLY public.auth_user
     ADD CONSTRAINT auth_user_username_key UNIQUE (username);
 
 
@@ -5021,7 +5025,7 @@ ALTER TABLE ONLY auth_user
 -- Name: blog_blogindexpage blog_blogindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogindexpage
+ALTER TABLE ONLY public.blog_blogindexpage
     ADD CONSTRAINT blog_blogindexpage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5029,7 +5033,7 @@ ALTER TABLE ONLY blog_blogindexpage
 -- Name: blog_blogindexpagerelatedlink blog_blogindexpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogindexpagerelatedlink
+ALTER TABLE ONLY public.blog_blogindexpagerelatedlink
     ADD CONSTRAINT blog_blogindexpagerelatedlink_pkey PRIMARY KEY (id);
 
 
@@ -5037,7 +5041,7 @@ ALTER TABLE ONLY blog_blogindexpagerelatedlink
 -- Name: blog_blogpage blog_blogpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpage
+ALTER TABLE ONLY public.blog_blogpage
     ADD CONSTRAINT blog_blogpage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5045,7 +5049,7 @@ ALTER TABLE ONLY blog_blogpage
 -- Name: blog_blogpagecarouselitem blog_blogpagecarouselitem_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpagecarouselitem
+ALTER TABLE ONLY public.blog_blogpagecarouselitem
     ADD CONSTRAINT blog_blogpagecarouselitem_pkey PRIMARY KEY (id);
 
 
@@ -5053,7 +5057,7 @@ ALTER TABLE ONLY blog_blogpagecarouselitem
 -- Name: blog_blogpagerelatedlink blog_blogpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpagerelatedlink
+ALTER TABLE ONLY public.blog_blogpagerelatedlink
     ADD CONSTRAINT blog_blogpagerelatedlink_pkey PRIMARY KEY (id);
 
 
@@ -5061,7 +5065,7 @@ ALTER TABLE ONLY blog_blogpagerelatedlink
 -- Name: blog_blogpagetag blog_blogpagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpagetag
+ALTER TABLE ONLY public.blog_blogpagetag
     ADD CONSTRAINT blog_blogpagetag_pkey PRIMARY KEY (id);
 
 
@@ -5069,7 +5073,7 @@ ALTER TABLE ONLY blog_blogpagetag
 -- Name: contact_contactformfield contact_contactformfield_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY contact_contactformfield
+ALTER TABLE ONLY public.contact_contactformfield
     ADD CONSTRAINT contact_contactformfield_pkey PRIMARY KEY (id);
 
 
@@ -5077,7 +5081,7 @@ ALTER TABLE ONLY contact_contactformfield
 -- Name: contact_contactpage contact_contactpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY contact_contactpage
+ALTER TABLE ONLY public.contact_contactpage
     ADD CONSTRAINT contact_contactpage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5085,7 +5089,7 @@ ALTER TABLE ONLY contact_contactpage
 -- Name: contact_formfield contact_formfield_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY contact_formfield
+ALTER TABLE ONLY public.contact_formfield
     ADD CONSTRAINT contact_formfield_pkey PRIMARY KEY (id);
 
 
@@ -5093,7 +5097,7 @@ ALTER TABLE ONLY contact_formfield
 -- Name: contact_formpage contact_formpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY contact_formpage
+ALTER TABLE ONLY public.contact_formpage
     ADD CONSTRAINT contact_formpage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5101,7 +5105,7 @@ ALTER TABLE ONLY contact_formpage
 -- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY django_admin_log
+ALTER TABLE ONLY public.django_admin_log
     ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
 
 
@@ -5109,7 +5113,7 @@ ALTER TABLE ONLY django_admin_log
 -- Name: django_content_type django_content_type_app_label_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY django_content_type
+ALTER TABLE ONLY public.django_content_type
     ADD CONSTRAINT django_content_type_app_label_76bd3d3b_uniq UNIQUE (app_label, model);
 
 
@@ -5117,7 +5121,7 @@ ALTER TABLE ONLY django_content_type
 -- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY django_content_type
+ALTER TABLE ONLY public.django_content_type
     ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
 
 
@@ -5125,7 +5129,7 @@ ALTER TABLE ONLY django_content_type
 -- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY django_migrations
+ALTER TABLE ONLY public.django_migrations
     ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
 
 
@@ -5133,7 +5137,7 @@ ALTER TABLE ONLY django_migrations
 -- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY django_session
+ALTER TABLE ONLY public.django_session
     ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
 
 
@@ -5141,7 +5145,7 @@ ALTER TABLE ONLY django_session
 -- Name: documents_gallery_documentsindexpage documents_gallery_documentsindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY documents_gallery_documentsindexpage
+ALTER TABLE ONLY public.documents_gallery_documentsindexpage
     ADD CONSTRAINT documents_gallery_documentsindexpage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5149,7 +5153,7 @@ ALTER TABLE ONLY documents_gallery_documentsindexpage
 -- Name: documents_gallery_documentspage documents_gallery_documentspage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY documents_gallery_documentspage
+ALTER TABLE ONLY public.documents_gallery_documentspage
     ADD CONSTRAINT documents_gallery_documentspage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5157,7 +5161,7 @@ ALTER TABLE ONLY documents_gallery_documentspage
 -- Name: documents_gallery_documentspagetag documents_gallery_documentspagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY documents_gallery_documentspagetag
+ALTER TABLE ONLY public.documents_gallery_documentspagetag
     ADD CONSTRAINT documents_gallery_documentspagetag_pkey PRIMARY KEY (id);
 
 
@@ -5165,7 +5169,7 @@ ALTER TABLE ONLY documents_gallery_documentspagetag
 -- Name: events_eventindexpage events_eventindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventindexpage
+ALTER TABLE ONLY public.events_eventindexpage
     ADD CONSTRAINT events_eventindexpage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5173,7 +5177,7 @@ ALTER TABLE ONLY events_eventindexpage
 -- Name: events_eventindexpagerelatedlink events_eventindexpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventindexpagerelatedlink
+ALTER TABLE ONLY public.events_eventindexpagerelatedlink
     ADD CONSTRAINT events_eventindexpagerelatedlink_pkey PRIMARY KEY (id);
 
 
@@ -5181,7 +5185,7 @@ ALTER TABLE ONLY events_eventindexpagerelatedlink
 -- Name: events_eventpage events_eventpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpage
+ALTER TABLE ONLY public.events_eventpage
     ADD CONSTRAINT events_eventpage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5189,7 +5193,7 @@ ALTER TABLE ONLY events_eventpage
 -- Name: events_eventpagecarouselitem events_eventpagecarouselitem_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagecarouselitem
+ALTER TABLE ONLY public.events_eventpagecarouselitem
     ADD CONSTRAINT events_eventpagecarouselitem_pkey PRIMARY KEY (id);
 
 
@@ -5197,7 +5201,7 @@ ALTER TABLE ONLY events_eventpagecarouselitem
 -- Name: events_eventpagerelatedlink events_eventpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagerelatedlink
+ALTER TABLE ONLY public.events_eventpagerelatedlink
     ADD CONSTRAINT events_eventpagerelatedlink_pkey PRIMARY KEY (id);
 
 
@@ -5205,7 +5209,7 @@ ALTER TABLE ONLY events_eventpagerelatedlink
 -- Name: events_eventpagespeaker events_eventpagespeaker_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagespeaker
+ALTER TABLE ONLY public.events_eventpagespeaker
     ADD CONSTRAINT events_eventpagespeaker_pkey PRIMARY KEY (id);
 
 
@@ -5213,7 +5217,7 @@ ALTER TABLE ONLY events_eventpagespeaker
 -- Name: events_eventpagetag events_eventpagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagetag
+ALTER TABLE ONLY public.events_eventpagetag
     ADD CONSTRAINT events_eventpagetag_pkey PRIMARY KEY (id);
 
 
@@ -5221,7 +5225,7 @@ ALTER TABLE ONLY events_eventpagetag
 -- Name: pages_advert pages_advert_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_advert
+ALTER TABLE ONLY public.pages_advert
     ADD CONSTRAINT pages_advert_pkey PRIMARY KEY (id);
 
 
@@ -5229,7 +5233,7 @@ ALTER TABLE ONLY pages_advert
 -- Name: pages_contentblock pages_contentblock_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_contentblock
+ALTER TABLE ONLY public.pages_contentblock
     ADD CONSTRAINT pages_contentblock_pkey PRIMARY KEY (id);
 
 
@@ -5237,7 +5241,7 @@ ALTER TABLE ONLY pages_contentblock
 -- Name: pages_faqspage pages_faqspage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_faqspage
+ALTER TABLE ONLY public.pages_faqspage
     ADD CONSTRAINT pages_faqspage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5245,7 +5249,7 @@ ALTER TABLE ONLY pages_faqspage
 -- Name: pages_homepage pages_homepage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepage
+ALTER TABLE ONLY public.pages_homepage
     ADD CONSTRAINT pages_homepage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5253,7 +5257,7 @@ ALTER TABLE ONLY pages_homepage
 -- Name: pages_homepagecarouselitem pages_homepagecarouselitem_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepagecarouselitem
+ALTER TABLE ONLY public.pages_homepagecarouselitem
     ADD CONSTRAINT pages_homepagecarouselitem_pkey PRIMARY KEY (id);
 
 
@@ -5261,7 +5265,7 @@ ALTER TABLE ONLY pages_homepagecarouselitem
 -- Name: pages_homepagecontentitem pages_homepagecontentitem_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepagecontentitem
+ALTER TABLE ONLY public.pages_homepagecontentitem
     ADD CONSTRAINT pages_homepagecontentitem_pkey PRIMARY KEY (id);
 
 
@@ -5269,7 +5273,7 @@ ALTER TABLE ONLY pages_homepagecontentitem
 -- Name: pages_homepagerelatedlink pages_homepagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepagerelatedlink
+ALTER TABLE ONLY public.pages_homepagerelatedlink
     ADD CONSTRAINT pages_homepagerelatedlink_pkey PRIMARY KEY (id);
 
 
@@ -5277,7 +5281,7 @@ ALTER TABLE ONLY pages_homepagerelatedlink
 -- Name: pages_sitebranding pages_sitebranding_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_sitebranding
+ALTER TABLE ONLY public.pages_sitebranding
     ADD CONSTRAINT pages_sitebranding_pkey PRIMARY KEY (id);
 
 
@@ -5285,7 +5289,7 @@ ALTER TABLE ONLY pages_sitebranding
 -- Name: pages_sitebranding pages_sitebranding_site_id_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_sitebranding
+ALTER TABLE ONLY public.pages_sitebranding
     ADD CONSTRAINT pages_sitebranding_site_id_key UNIQUE (site_id);
 
 
@@ -5293,7 +5297,7 @@ ALTER TABLE ONLY pages_sitebranding
 -- Name: pages_socialmediasettings pages_socialmediasettings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_socialmediasettings
+ALTER TABLE ONLY public.pages_socialmediasettings
     ADD CONSTRAINT pages_socialmediasettings_pkey PRIMARY KEY (id);
 
 
@@ -5301,7 +5305,7 @@ ALTER TABLE ONLY pages_socialmediasettings
 -- Name: pages_socialmediasettings pages_socialmediasettings_site_id_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_socialmediasettings
+ALTER TABLE ONLY public.pages_socialmediasettings
     ADD CONSTRAINT pages_socialmediasettings_site_id_key UNIQUE (site_id);
 
 
@@ -5309,7 +5313,7 @@ ALTER TABLE ONLY pages_socialmediasettings
 -- Name: pages_standardindexpage pages_standardindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardindexpage
+ALTER TABLE ONLY public.pages_standardindexpage
     ADD CONSTRAINT pages_standardindexpage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5317,7 +5321,7 @@ ALTER TABLE ONLY pages_standardindexpage
 -- Name: pages_standardindexpagerelatedlink pages_standardindexpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardindexpagerelatedlink
+ALTER TABLE ONLY public.pages_standardindexpagerelatedlink
     ADD CONSTRAINT pages_standardindexpagerelatedlink_pkey PRIMARY KEY (id);
 
 
@@ -5325,7 +5329,7 @@ ALTER TABLE ONLY pages_standardindexpagerelatedlink
 -- Name: pages_standardpage pages_standardpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardpage
+ALTER TABLE ONLY public.pages_standardpage
     ADD CONSTRAINT pages_standardpage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5333,7 +5337,7 @@ ALTER TABLE ONLY pages_standardpage
 -- Name: pages_standardpagecarouselitem pages_standardpagecarouselitem_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardpagecarouselitem
+ALTER TABLE ONLY public.pages_standardpagecarouselitem
     ADD CONSTRAINT pages_standardpagecarouselitem_pkey PRIMARY KEY (id);
 
 
@@ -5341,7 +5345,7 @@ ALTER TABLE ONLY pages_standardpagecarouselitem
 -- Name: pages_standardpagerelatedlink pages_standardpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardpagerelatedlink
+ALTER TABLE ONLY public.pages_standardpagerelatedlink
     ADD CONSTRAINT pages_standardpagerelatedlink_pkey PRIMARY KEY (id);
 
 
@@ -5349,7 +5353,7 @@ ALTER TABLE ONLY pages_standardpagerelatedlink
 -- Name: pages_testimonial pages_testimonial_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_testimonial
+ALTER TABLE ONLY public.pages_testimonial
     ADD CONSTRAINT pages_testimonial_pkey PRIMARY KEY (id);
 
 
@@ -5357,7 +5361,7 @@ ALTER TABLE ONLY pages_testimonial
 -- Name: pages_testimonialpage pages_testimonialpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_testimonialpage
+ALTER TABLE ONLY public.pages_testimonialpage
     ADD CONSTRAINT pages_testimonialpage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5365,7 +5369,7 @@ ALTER TABLE ONLY pages_testimonialpage
 -- Name: pages_videogallerypage pages_videogallerypage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_videogallerypage
+ALTER TABLE ONLY public.pages_videogallerypage
     ADD CONSTRAINT pages_videogallerypage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5373,7 +5377,7 @@ ALTER TABLE ONLY pages_videogallerypage
 -- Name: pages_videogallerypagecarouselitem pages_videopagecarouselitem_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_videogallerypagecarouselitem
+ALTER TABLE ONLY public.pages_videogallerypagecarouselitem
     ADD CONSTRAINT pages_videopagecarouselitem_pkey PRIMARY KEY (id);
 
 
@@ -5381,7 +5385,7 @@ ALTER TABLE ONLY pages_videogallerypagecarouselitem
 -- Name: people_personindexpage people_personindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personindexpage
+ALTER TABLE ONLY public.people_personindexpage
     ADD CONSTRAINT people_personindexpage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5389,7 +5393,7 @@ ALTER TABLE ONLY people_personindexpage
 -- Name: people_personindexpagerelatedlink people_personindexpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personindexpagerelatedlink
+ALTER TABLE ONLY public.people_personindexpagerelatedlink
     ADD CONSTRAINT people_personindexpagerelatedlink_pkey PRIMARY KEY (id);
 
 
@@ -5397,7 +5401,7 @@ ALTER TABLE ONLY people_personindexpagerelatedlink
 -- Name: people_personpage people_personpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personpage
+ALTER TABLE ONLY public.people_personpage
     ADD CONSTRAINT people_personpage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5405,7 +5409,7 @@ ALTER TABLE ONLY people_personpage
 -- Name: people_personpagerelatedlink people_personpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personpagerelatedlink
+ALTER TABLE ONLY public.people_personpagerelatedlink
     ADD CONSTRAINT people_personpagerelatedlink_pkey PRIMARY KEY (id);
 
 
@@ -5413,7 +5417,7 @@ ALTER TABLE ONLY people_personpagerelatedlink
 -- Name: people_personpagetag people_personpagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personpagetag
+ALTER TABLE ONLY public.people_personpagetag
     ADD CONSTRAINT people_personpagetag_pkey PRIMARY KEY (id);
 
 
@@ -5421,7 +5425,7 @@ ALTER TABLE ONLY people_personpagetag
 -- Name: people_personrole people_personrole_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personrole
+ALTER TABLE ONLY public.people_personrole
     ADD CONSTRAINT people_personrole_pkey PRIMARY KEY (id);
 
 
@@ -5429,7 +5433,7 @@ ALTER TABLE ONLY people_personrole
 -- Name: photo_gallery_galleryindexpage photo_gallery_galleryindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY photo_gallery_galleryindexpage
+ALTER TABLE ONLY public.photo_gallery_galleryindexpage
     ADD CONSTRAINT photo_gallery_galleryindexpage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5437,7 +5441,7 @@ ALTER TABLE ONLY photo_gallery_galleryindexpage
 -- Name: photo_gallery_gallerypage photo_gallery_gallerypage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY photo_gallery_gallerypage
+ALTER TABLE ONLY public.photo_gallery_gallerypage
     ADD CONSTRAINT photo_gallery_gallerypage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5445,7 +5449,7 @@ ALTER TABLE ONLY photo_gallery_gallerypage
 -- Name: photo_gallery_gallerypagetag photo_gallery_gallerypagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY photo_gallery_gallerypagetag
+ALTER TABLE ONLY public.photo_gallery_gallerypagetag
     ADD CONSTRAINT photo_gallery_gallerypagetag_pkey PRIMARY KEY (id);
 
 
@@ -5453,7 +5457,7 @@ ALTER TABLE ONLY photo_gallery_gallerypagetag
 -- Name: postgres_search_indexentry postgres_search_indexent_content_type_id_object_i_bae8f946_uniq; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY postgres_search_indexentry
+ALTER TABLE ONLY public.postgres_search_indexentry
     ADD CONSTRAINT postgres_search_indexent_content_type_id_object_i_bae8f946_uniq UNIQUE (content_type_id, object_id);
 
 
@@ -5461,7 +5465,7 @@ ALTER TABLE ONLY postgres_search_indexentry
 -- Name: postgres_search_indexentry postgres_search_indexentry_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY postgres_search_indexentry
+ALTER TABLE ONLY public.postgres_search_indexentry
     ADD CONSTRAINT postgres_search_indexentry_pkey PRIMARY KEY (id);
 
 
@@ -5469,7 +5473,7 @@ ALTER TABLE ONLY postgres_search_indexentry
 -- Name: products_productindexpage products_productindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productindexpage
+ALTER TABLE ONLY public.products_productindexpage
     ADD CONSTRAINT products_productindexpage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5477,7 +5481,7 @@ ALTER TABLE ONLY products_productindexpage
 -- Name: products_productindexpagerelatedlink products_productindexpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productindexpagerelatedlink
+ALTER TABLE ONLY public.products_productindexpagerelatedlink
     ADD CONSTRAINT products_productindexpagerelatedlink_pkey PRIMARY KEY (id);
 
 
@@ -5485,7 +5489,7 @@ ALTER TABLE ONLY products_productindexpagerelatedlink
 -- Name: products_productpage products_productpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productpage
+ALTER TABLE ONLY public.products_productpage
     ADD CONSTRAINT products_productpage_pkey PRIMARY KEY (page_ptr_id);
 
 
@@ -5493,7 +5497,7 @@ ALTER TABLE ONLY products_productpage
 -- Name: products_productpagerelatedlink products_productpagerelatedlink_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productpagerelatedlink
+ALTER TABLE ONLY public.products_productpagerelatedlink
     ADD CONSTRAINT products_productpagerelatedlink_pkey PRIMARY KEY (id);
 
 
@@ -5501,7 +5505,7 @@ ALTER TABLE ONLY products_productpagerelatedlink
 -- Name: products_productpagetag products_productpagetag_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productpagetag
+ALTER TABLE ONLY public.products_productpagetag
     ADD CONSTRAINT products_productpagetag_pkey PRIMARY KEY (id);
 
 
@@ -5509,7 +5513,7 @@ ALTER TABLE ONLY products_productpagetag
 -- Name: taggit_tag taggit_tag_name_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taggit_tag
+ALTER TABLE ONLY public.taggit_tag
     ADD CONSTRAINT taggit_tag_name_key UNIQUE (name);
 
 
@@ -5517,7 +5521,7 @@ ALTER TABLE ONLY taggit_tag
 -- Name: taggit_tag taggit_tag_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taggit_tag
+ALTER TABLE ONLY public.taggit_tag
     ADD CONSTRAINT taggit_tag_pkey PRIMARY KEY (id);
 
 
@@ -5525,7 +5529,7 @@ ALTER TABLE ONLY taggit_tag
 -- Name: taggit_tag taggit_tag_slug_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taggit_tag
+ALTER TABLE ONLY public.taggit_tag
     ADD CONSTRAINT taggit_tag_slug_key UNIQUE (slug);
 
 
@@ -5533,7 +5537,7 @@ ALTER TABLE ONLY taggit_tag
 -- Name: taggit_taggeditem taggit_taggeditem_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taggit_taggeditem
+ALTER TABLE ONLY public.taggit_taggeditem
     ADD CONSTRAINT taggit_taggeditem_pkey PRIMARY KEY (id);
 
 
@@ -5541,7 +5545,7 @@ ALTER TABLE ONLY taggit_taggeditem
 -- Name: wagtail_feeds_rssfeedssettings wagtail_feeds_rssfeedssettings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtail_feeds_rssfeedssettings
+ALTER TABLE ONLY public.wagtail_feeds_rssfeedssettings
     ADD CONSTRAINT wagtail_feeds_rssfeedssettings_pkey PRIMARY KEY (id);
 
 
@@ -5549,7 +5553,7 @@ ALTER TABLE ONLY wagtail_feeds_rssfeedssettings
 -- Name: wagtail_feeds_rssfeedssettings wagtail_feeds_rssfeedssettings_site_id_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtail_feeds_rssfeedssettings
+ALTER TABLE ONLY public.wagtail_feeds_rssfeedssettings
     ADD CONSTRAINT wagtail_feeds_rssfeedssettings_site_id_key UNIQUE (site_id);
 
 
@@ -5557,7 +5561,7 @@ ALTER TABLE ONLY wagtail_feeds_rssfeedssettings
 -- Name: wagtailcore_collection wagtailcore_collection_path_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_collection
+ALTER TABLE ONLY public.wagtailcore_collection
     ADD CONSTRAINT wagtailcore_collection_path_key UNIQUE (path);
 
 
@@ -5565,7 +5569,7 @@ ALTER TABLE ONLY wagtailcore_collection
 -- Name: wagtailcore_collection wagtailcore_collection_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_collection
+ALTER TABLE ONLY public.wagtailcore_collection
     ADD CONSTRAINT wagtailcore_collection_pkey PRIMARY KEY (id);
 
 
@@ -5573,7 +5577,7 @@ ALTER TABLE ONLY wagtailcore_collection
 -- Name: wagtailcore_collectionviewrestriction_groups wagtailcore_collectionvi_collectionviewrestrictio_988995ae_uniq; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_collectionviewrestriction_groups
+ALTER TABLE ONLY public.wagtailcore_collectionviewrestriction_groups
     ADD CONSTRAINT wagtailcore_collectionvi_collectionviewrestrictio_988995ae_uniq UNIQUE (collectionviewrestriction_id, group_id);
 
 
@@ -5581,7 +5585,7 @@ ALTER TABLE ONLY wagtailcore_collectionviewrestriction_groups
 -- Name: wagtailcore_collectionviewrestriction_groups wagtailcore_collectionviewrestriction_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_collectionviewrestriction_groups
+ALTER TABLE ONLY public.wagtailcore_collectionviewrestriction_groups
     ADD CONSTRAINT wagtailcore_collectionviewrestriction_groups_pkey PRIMARY KEY (id);
 
 
@@ -5589,7 +5593,7 @@ ALTER TABLE ONLY wagtailcore_collectionviewrestriction_groups
 -- Name: wagtailcore_collectionviewrestriction wagtailcore_collectionviewrestriction_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_collectionviewrestriction
+ALTER TABLE ONLY public.wagtailcore_collectionviewrestriction
     ADD CONSTRAINT wagtailcore_collectionviewrestriction_pkey PRIMARY KEY (id);
 
 
@@ -5597,7 +5601,7 @@ ALTER TABLE ONLY wagtailcore_collectionviewrestriction
 -- Name: wagtailcore_groupcollectionpermission wagtailcore_groupcollectionpermission_group_id_a21cefe9_uniq; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_groupcollectionpermission
+ALTER TABLE ONLY public.wagtailcore_groupcollectionpermission
     ADD CONSTRAINT wagtailcore_groupcollectionpermission_group_id_a21cefe9_uniq UNIQUE (group_id, collection_id, permission_id);
 
 
@@ -5605,7 +5609,7 @@ ALTER TABLE ONLY wagtailcore_groupcollectionpermission
 -- Name: wagtailcore_groupcollectionpermission wagtailcore_groupcollectionpermission_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_groupcollectionpermission
+ALTER TABLE ONLY public.wagtailcore_groupcollectionpermission
     ADD CONSTRAINT wagtailcore_groupcollectionpermission_pkey PRIMARY KEY (id);
 
 
@@ -5613,7 +5617,7 @@ ALTER TABLE ONLY wagtailcore_groupcollectionpermission
 -- Name: wagtailcore_grouppagepermission wagtailcore_grouppagepermission_group_id_0898bdf8_uniq; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_grouppagepermission
+ALTER TABLE ONLY public.wagtailcore_grouppagepermission
     ADD CONSTRAINT wagtailcore_grouppagepermission_group_id_0898bdf8_uniq UNIQUE (group_id, page_id, permission_type);
 
 
@@ -5621,7 +5625,7 @@ ALTER TABLE ONLY wagtailcore_grouppagepermission
 -- Name: wagtailcore_grouppagepermission wagtailcore_grouppagepermission_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_grouppagepermission
+ALTER TABLE ONLY public.wagtailcore_grouppagepermission
     ADD CONSTRAINT wagtailcore_grouppagepermission_pkey PRIMARY KEY (id);
 
 
@@ -5629,7 +5633,7 @@ ALTER TABLE ONLY wagtailcore_grouppagepermission
 -- Name: wagtailcore_page wagtailcore_page_path_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_page
+ALTER TABLE ONLY public.wagtailcore_page
     ADD CONSTRAINT wagtailcore_page_path_key UNIQUE (path);
 
 
@@ -5637,7 +5641,7 @@ ALTER TABLE ONLY wagtailcore_page
 -- Name: wagtailcore_page wagtailcore_page_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_page
+ALTER TABLE ONLY public.wagtailcore_page
     ADD CONSTRAINT wagtailcore_page_pkey PRIMARY KEY (id);
 
 
@@ -5645,7 +5649,7 @@ ALTER TABLE ONLY wagtailcore_page
 -- Name: wagtailcore_pagerevision wagtailcore_pagerevision_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_pagerevision
+ALTER TABLE ONLY public.wagtailcore_pagerevision
     ADD CONSTRAINT wagtailcore_pagerevision_pkey PRIMARY KEY (id);
 
 
@@ -5653,7 +5657,7 @@ ALTER TABLE ONLY wagtailcore_pagerevision
 -- Name: wagtailcore_pageviewrestriction_groups wagtailcore_pageviewrestri_pageviewrestriction_id_d23f80bb_uniq; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_pageviewrestriction_groups
+ALTER TABLE ONLY public.wagtailcore_pageviewrestriction_groups
     ADD CONSTRAINT wagtailcore_pageviewrestri_pageviewrestriction_id_d23f80bb_uniq UNIQUE (pageviewrestriction_id, group_id);
 
 
@@ -5661,7 +5665,7 @@ ALTER TABLE ONLY wagtailcore_pageviewrestriction_groups
 -- Name: wagtailcore_pageviewrestriction_groups wagtailcore_pageviewrestriction_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_pageviewrestriction_groups
+ALTER TABLE ONLY public.wagtailcore_pageviewrestriction_groups
     ADD CONSTRAINT wagtailcore_pageviewrestriction_groups_pkey PRIMARY KEY (id);
 
 
@@ -5669,7 +5673,7 @@ ALTER TABLE ONLY wagtailcore_pageviewrestriction_groups
 -- Name: wagtailcore_pageviewrestriction wagtailcore_pageviewrestriction_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_pageviewrestriction
+ALTER TABLE ONLY public.wagtailcore_pageviewrestriction
     ADD CONSTRAINT wagtailcore_pageviewrestriction_pkey PRIMARY KEY (id);
 
 
@@ -5677,7 +5681,7 @@ ALTER TABLE ONLY wagtailcore_pageviewrestriction
 -- Name: wagtailcore_site wagtailcore_site_hostname_2c626d70_uniq; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_site
+ALTER TABLE ONLY public.wagtailcore_site
     ADD CONSTRAINT wagtailcore_site_hostname_2c626d70_uniq UNIQUE (hostname, port);
 
 
@@ -5685,7 +5689,7 @@ ALTER TABLE ONLY wagtailcore_site
 -- Name: wagtailcore_site wagtailcore_site_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_site
+ALTER TABLE ONLY public.wagtailcore_site
     ADD CONSTRAINT wagtailcore_site_pkey PRIMARY KEY (id);
 
 
@@ -5693,7 +5697,7 @@ ALTER TABLE ONLY wagtailcore_site
 -- Name: wagtaildocs_document wagtaildocs_document_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtaildocs_document
+ALTER TABLE ONLY public.wagtaildocs_document
     ADD CONSTRAINT wagtaildocs_document_pkey PRIMARY KEY (id);
 
 
@@ -5701,7 +5705,7 @@ ALTER TABLE ONLY wagtaildocs_document
 -- Name: wagtailembeds_embed wagtailembeds_embed_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailembeds_embed
+ALTER TABLE ONLY public.wagtailembeds_embed
     ADD CONSTRAINT wagtailembeds_embed_pkey PRIMARY KEY (id);
 
 
@@ -5709,7 +5713,7 @@ ALTER TABLE ONLY wagtailembeds_embed
 -- Name: wagtailembeds_embed wagtailembeds_embed_url_8a2922d8_uniq; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailembeds_embed
+ALTER TABLE ONLY public.wagtailembeds_embed
     ADD CONSTRAINT wagtailembeds_embed_url_8a2922d8_uniq UNIQUE (url, max_width);
 
 
@@ -5717,7 +5721,7 @@ ALTER TABLE ONLY wagtailembeds_embed
 -- Name: wagtailforms_formsubmission wagtailforms_formsubmission_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailforms_formsubmission
+ALTER TABLE ONLY public.wagtailforms_formsubmission
     ADD CONSTRAINT wagtailforms_formsubmission_pkey PRIMARY KEY (id);
 
 
@@ -5725,7 +5729,7 @@ ALTER TABLE ONLY wagtailforms_formsubmission
 -- Name: wagtailimages_image wagtailimages_image_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailimages_image
+ALTER TABLE ONLY public.wagtailimages_image
     ADD CONSTRAINT wagtailimages_image_pkey PRIMARY KEY (id);
 
 
@@ -5733,7 +5737,7 @@ ALTER TABLE ONLY wagtailimages_image
 -- Name: wagtailimages_rendition wagtailimages_rendition_image_id_323c8fe0_uniq; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailimages_rendition
+ALTER TABLE ONLY public.wagtailimages_rendition
     ADD CONSTRAINT wagtailimages_rendition_image_id_323c8fe0_uniq UNIQUE (image_id, filter_spec, focal_point_key);
 
 
@@ -5741,7 +5745,7 @@ ALTER TABLE ONLY wagtailimages_rendition
 -- Name: wagtailimages_rendition wagtailimages_rendition_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailimages_rendition
+ALTER TABLE ONLY public.wagtailimages_rendition
     ADD CONSTRAINT wagtailimages_rendition_pkey PRIMARY KEY (id);
 
 
@@ -5749,7 +5753,7 @@ ALTER TABLE ONLY wagtailimages_rendition
 -- Name: wagtailredirects_redirect wagtailredirects_redirect_old_path_783622d7_uniq; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailredirects_redirect
+ALTER TABLE ONLY public.wagtailredirects_redirect
     ADD CONSTRAINT wagtailredirects_redirect_old_path_783622d7_uniq UNIQUE (old_path, site_id);
 
 
@@ -5757,7 +5761,7 @@ ALTER TABLE ONLY wagtailredirects_redirect
 -- Name: wagtailredirects_redirect wagtailredirects_redirect_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailredirects_redirect
+ALTER TABLE ONLY public.wagtailredirects_redirect
     ADD CONSTRAINT wagtailredirects_redirect_pkey PRIMARY KEY (id);
 
 
@@ -5765,7 +5769,7 @@ ALTER TABLE ONLY wagtailredirects_redirect
 -- Name: wagtailsearchpromotions_searchpromotion wagtailsearch_editorspick_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailsearchpromotions_searchpromotion
+ALTER TABLE ONLY public.wagtailsearchpromotions_searchpromotion
     ADD CONSTRAINT wagtailsearch_editorspick_pkey PRIMARY KEY (id);
 
 
@@ -5773,7 +5777,7 @@ ALTER TABLE ONLY wagtailsearchpromotions_searchpromotion
 -- Name: wagtailsearch_query wagtailsearch_query_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailsearch_query
+ALTER TABLE ONLY public.wagtailsearch_query
     ADD CONSTRAINT wagtailsearch_query_pkey PRIMARY KEY (id);
 
 
@@ -5781,7 +5785,7 @@ ALTER TABLE ONLY wagtailsearch_query
 -- Name: wagtailsearch_query wagtailsearch_query_query_string_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailsearch_query
+ALTER TABLE ONLY public.wagtailsearch_query
     ADD CONSTRAINT wagtailsearch_query_query_string_key UNIQUE (query_string);
 
 
@@ -5789,7 +5793,7 @@ ALTER TABLE ONLY wagtailsearch_query
 -- Name: wagtailsearch_querydailyhits wagtailsearch_querydailyhits_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailsearch_querydailyhits
+ALTER TABLE ONLY public.wagtailsearch_querydailyhits
     ADD CONSTRAINT wagtailsearch_querydailyhits_pkey PRIMARY KEY (id);
 
 
@@ -5797,7 +5801,7 @@ ALTER TABLE ONLY wagtailsearch_querydailyhits
 -- Name: wagtailsearch_querydailyhits wagtailsearch_querydailyhits_query_id_1dd232e6_uniq; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailsearch_querydailyhits
+ALTER TABLE ONLY public.wagtailsearch_querydailyhits
     ADD CONSTRAINT wagtailsearch_querydailyhits_query_id_1dd232e6_uniq UNIQUE (query_id, date);
 
 
@@ -5805,7 +5809,7 @@ ALTER TABLE ONLY wagtailsearch_querydailyhits
 -- Name: wagtailusers_userprofile wagtailusers_userprofile_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailusers_userprofile
+ALTER TABLE ONLY public.wagtailusers_userprofile
     ADD CONSTRAINT wagtailusers_userprofile_pkey PRIMARY KEY (id);
 
 
@@ -5813,7 +5817,7 @@ ALTER TABLE ONLY wagtailusers_userprofile
 -- Name: wagtailusers_userprofile wagtailusers_userprofile_user_id_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailusers_userprofile
+ALTER TABLE ONLY public.wagtailusers_userprofile
     ADD CONSTRAINT wagtailusers_userprofile_user_id_key UNIQUE (user_id);
 
 
@@ -5821,2608 +5825,2608 @@ ALTER TABLE ONLY wagtailusers_userprofile
 -- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX auth_group_name_a6ea08ec_like ON auth_group USING btree (name varchar_pattern_ops);
+CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (name varchar_pattern_ops);
 
 
 --
 -- Name: auth_group_permissions_0e939a4f; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX auth_group_permissions_0e939a4f ON auth_group_permissions USING btree (group_id);
+CREATE INDEX auth_group_permissions_0e939a4f ON public.auth_group_permissions USING btree (group_id);
 
 
 --
 -- Name: auth_group_permissions_8373b171; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX auth_group_permissions_8373b171 ON auth_group_permissions USING btree (permission_id);
+CREATE INDEX auth_group_permissions_8373b171 ON public.auth_group_permissions USING btree (permission_id);
 
 
 --
 -- Name: auth_permission_417f1b1c; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX auth_permission_417f1b1c ON auth_permission USING btree (content_type_id);
+CREATE INDEX auth_permission_417f1b1c ON public.auth_permission USING btree (content_type_id);
 
 
 --
 -- Name: auth_user_groups_0e939a4f; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX auth_user_groups_0e939a4f ON auth_user_groups USING btree (group_id);
+CREATE INDEX auth_user_groups_0e939a4f ON public.auth_user_groups USING btree (group_id);
 
 
 --
 -- Name: auth_user_groups_e8701ad4; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX auth_user_groups_e8701ad4 ON auth_user_groups USING btree (user_id);
+CREATE INDEX auth_user_groups_e8701ad4 ON public.auth_user_groups USING btree (user_id);
 
 
 --
 -- Name: auth_user_user_permissions_8373b171; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX auth_user_user_permissions_8373b171 ON auth_user_user_permissions USING btree (permission_id);
+CREATE INDEX auth_user_user_permissions_8373b171 ON public.auth_user_user_permissions USING btree (permission_id);
 
 
 --
 -- Name: auth_user_user_permissions_e8701ad4; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX auth_user_user_permissions_e8701ad4 ON auth_user_user_permissions USING btree (user_id);
+CREATE INDEX auth_user_user_permissions_e8701ad4 ON public.auth_user_user_permissions USING btree (user_id);
 
 
 --
 -- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX auth_user_username_6821ab7c_like ON auth_user USING btree (username varchar_pattern_ops);
+CREATE INDEX auth_user_username_6821ab7c_like ON public.auth_user USING btree (username varchar_pattern_ops);
 
 
 --
 -- Name: blog_blogindexpage_feed_image_id_5cb947e1; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX blog_blogindexpage_feed_image_id_5cb947e1 ON blog_blogindexpage USING btree (feed_image_id);
+CREATE INDEX blog_blogindexpage_feed_image_id_5cb947e1 ON public.blog_blogindexpage USING btree (feed_image_id);
 
 
 --
 -- Name: blog_blogindexpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX blog_blogindexpagerelatedlink_121087a8 ON blog_blogindexpagerelatedlink USING btree (link_document_id);
+CREATE INDEX blog_blogindexpagerelatedlink_121087a8 ON public.blog_blogindexpagerelatedlink USING btree (link_document_id);
 
 
 --
 -- Name: blog_blogindexpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX blog_blogindexpagerelatedlink_1a63c800 ON blog_blogindexpagerelatedlink USING btree (page_id);
+CREATE INDEX blog_blogindexpagerelatedlink_1a63c800 ON public.blog_blogindexpagerelatedlink USING btree (page_id);
 
 
 --
 -- Name: blog_blogindexpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX blog_blogindexpagerelatedlink_5b76e141 ON blog_blogindexpagerelatedlink USING btree (link_page_id);
+CREATE INDEX blog_blogindexpagerelatedlink_5b76e141 ON public.blog_blogindexpagerelatedlink USING btree (link_page_id);
 
 
 --
 -- Name: blog_blogpage_92482941; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX blog_blogpage_92482941 ON blog_blogpage USING btree (feed_image_id);
+CREATE INDEX blog_blogpage_92482941 ON public.blog_blogpage USING btree (feed_image_id);
 
 
 --
 -- Name: blog_blogpagecarouselitem_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX blog_blogpagecarouselitem_121087a8 ON blog_blogpagecarouselitem USING btree (link_document_id);
+CREATE INDEX blog_blogpagecarouselitem_121087a8 ON public.blog_blogpagecarouselitem USING btree (link_document_id);
 
 
 --
 -- Name: blog_blogpagecarouselitem_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX blog_blogpagecarouselitem_1a63c800 ON blog_blogpagecarouselitem USING btree (page_id);
+CREATE INDEX blog_blogpagecarouselitem_1a63c800 ON public.blog_blogpagecarouselitem USING btree (page_id);
 
 
 --
 -- Name: blog_blogpagecarouselitem_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX blog_blogpagecarouselitem_5b76e141 ON blog_blogpagecarouselitem USING btree (link_page_id);
+CREATE INDEX blog_blogpagecarouselitem_5b76e141 ON public.blog_blogpagecarouselitem USING btree (link_page_id);
 
 
 --
 -- Name: blog_blogpagecarouselitem_f33175e6; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX blog_blogpagecarouselitem_f33175e6 ON blog_blogpagecarouselitem USING btree (image_id);
+CREATE INDEX blog_blogpagecarouselitem_f33175e6 ON public.blog_blogpagecarouselitem USING btree (image_id);
 
 
 --
 -- Name: blog_blogpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX blog_blogpagerelatedlink_121087a8 ON blog_blogpagerelatedlink USING btree (link_document_id);
+CREATE INDEX blog_blogpagerelatedlink_121087a8 ON public.blog_blogpagerelatedlink USING btree (link_document_id);
 
 
 --
 -- Name: blog_blogpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX blog_blogpagerelatedlink_1a63c800 ON blog_blogpagerelatedlink USING btree (page_id);
+CREATE INDEX blog_blogpagerelatedlink_1a63c800 ON public.blog_blogpagerelatedlink USING btree (page_id);
 
 
 --
 -- Name: blog_blogpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX blog_blogpagerelatedlink_5b76e141 ON blog_blogpagerelatedlink USING btree (link_page_id);
+CREATE INDEX blog_blogpagerelatedlink_5b76e141 ON public.blog_blogpagerelatedlink USING btree (link_page_id);
 
 
 --
 -- Name: blog_blogpagetag_09a80f33; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX blog_blogpagetag_09a80f33 ON blog_blogpagetag USING btree (content_object_id);
+CREATE INDEX blog_blogpagetag_09a80f33 ON public.blog_blogpagetag USING btree (content_object_id);
 
 
 --
 -- Name: blog_blogpagetag_76f094bc; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX blog_blogpagetag_76f094bc ON blog_blogpagetag USING btree (tag_id);
+CREATE INDEX blog_blogpagetag_76f094bc ON public.blog_blogpagetag USING btree (tag_id);
 
 
 --
 -- Name: contact_contactformfield_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX contact_contactformfield_1a63c800 ON contact_contactformfield USING btree (page_id);
+CREATE INDEX contact_contactformfield_1a63c800 ON public.contact_contactformfield USING btree (page_id);
 
 
 --
 -- Name: contact_contactpage_feed_image_id_1f79cfe3; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX contact_contactpage_feed_image_id_1f79cfe3 ON contact_contactpage USING btree (feed_image_id);
+CREATE INDEX contact_contactpage_feed_image_id_1f79cfe3 ON public.contact_contactpage USING btree (feed_image_id);
 
 
 --
 -- Name: contact_formfield_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX contact_formfield_1a63c800 ON contact_formfield USING btree (page_id);
+CREATE INDEX contact_formfield_1a63c800 ON public.contact_formfield USING btree (page_id);
 
 
 --
 -- Name: contact_formpage_feed_image_id_0303d2c9; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX contact_formpage_feed_image_id_0303d2c9 ON contact_formpage USING btree (feed_image_id);
+CREATE INDEX contact_formpage_feed_image_id_0303d2c9 ON public.contact_formpage USING btree (feed_image_id);
 
 
 --
 -- Name: django_admin_log_417f1b1c; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX django_admin_log_417f1b1c ON django_admin_log USING btree (content_type_id);
+CREATE INDEX django_admin_log_417f1b1c ON public.django_admin_log USING btree (content_type_id);
 
 
 --
 -- Name: django_admin_log_e8701ad4; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX django_admin_log_e8701ad4 ON django_admin_log USING btree (user_id);
+CREATE INDEX django_admin_log_e8701ad4 ON public.django_admin_log USING btree (user_id);
 
 
 --
 -- Name: django_session_de54fa62; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX django_session_de54fa62 ON django_session USING btree (expire_date);
+CREATE INDEX django_session_de54fa62 ON public.django_session USING btree (expire_date);
 
 
 --
 -- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX django_session_session_key_c0390e0f_like ON django_session USING btree (session_key varchar_pattern_ops);
+CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
 
 
 --
 -- Name: documents_gallery_documentsindexpage_92482941; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX documents_gallery_documentsindexpage_92482941 ON documents_gallery_documentsindexpage USING btree (feed_image_id);
+CREATE INDEX documents_gallery_documentsindexpage_92482941 ON public.documents_gallery_documentsindexpage USING btree (feed_image_id);
 
 
 --
 -- Name: documents_gallery_documentspage_92482941; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX documents_gallery_documentspage_92482941 ON documents_gallery_documentspage USING btree (feed_image_id);
+CREATE INDEX documents_gallery_documentspage_92482941 ON public.documents_gallery_documentspage USING btree (feed_image_id);
 
 
 --
 -- Name: documents_gallery_documentspagetag_09a80f33; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX documents_gallery_documentspagetag_09a80f33 ON documents_gallery_documentspagetag USING btree (content_object_id);
+CREATE INDEX documents_gallery_documentspagetag_09a80f33 ON public.documents_gallery_documentspagetag USING btree (content_object_id);
 
 
 --
 -- Name: documents_gallery_documentspagetag_76f094bc; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX documents_gallery_documentspagetag_76f094bc ON documents_gallery_documentspagetag USING btree (tag_id);
+CREATE INDEX documents_gallery_documentspagetag_76f094bc ON public.documents_gallery_documentspagetag USING btree (tag_id);
 
 
 --
 -- Name: events_eventindexpage_feed_image_id_d6958e2f; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventindexpage_feed_image_id_d6958e2f ON events_eventindexpage USING btree (feed_image_id);
+CREATE INDEX events_eventindexpage_feed_image_id_d6958e2f ON public.events_eventindexpage USING btree (feed_image_id);
 
 
 --
 -- Name: events_eventindexpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventindexpagerelatedlink_121087a8 ON events_eventindexpagerelatedlink USING btree (link_document_id);
+CREATE INDEX events_eventindexpagerelatedlink_121087a8 ON public.events_eventindexpagerelatedlink USING btree (link_document_id);
 
 
 --
 -- Name: events_eventindexpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventindexpagerelatedlink_1a63c800 ON events_eventindexpagerelatedlink USING btree (page_id);
+CREATE INDEX events_eventindexpagerelatedlink_1a63c800 ON public.events_eventindexpagerelatedlink USING btree (page_id);
 
 
 --
 -- Name: events_eventindexpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventindexpagerelatedlink_5b76e141 ON events_eventindexpagerelatedlink USING btree (link_page_id);
+CREATE INDEX events_eventindexpagerelatedlink_5b76e141 ON public.events_eventindexpagerelatedlink USING btree (link_page_id);
 
 
 --
 -- Name: events_eventpage_92482941; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventpage_92482941 ON events_eventpage USING btree (feed_image_id);
+CREATE INDEX events_eventpage_92482941 ON public.events_eventpage USING btree (feed_image_id);
 
 
 --
 -- Name: events_eventpagecarouselitem_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventpagecarouselitem_121087a8 ON events_eventpagecarouselitem USING btree (link_document_id);
+CREATE INDEX events_eventpagecarouselitem_121087a8 ON public.events_eventpagecarouselitem USING btree (link_document_id);
 
 
 --
 -- Name: events_eventpagecarouselitem_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventpagecarouselitem_1a63c800 ON events_eventpagecarouselitem USING btree (page_id);
+CREATE INDEX events_eventpagecarouselitem_1a63c800 ON public.events_eventpagecarouselitem USING btree (page_id);
 
 
 --
 -- Name: events_eventpagecarouselitem_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventpagecarouselitem_5b76e141 ON events_eventpagecarouselitem USING btree (link_page_id);
+CREATE INDEX events_eventpagecarouselitem_5b76e141 ON public.events_eventpagecarouselitem USING btree (link_page_id);
 
 
 --
 -- Name: events_eventpagecarouselitem_f33175e6; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventpagecarouselitem_f33175e6 ON events_eventpagecarouselitem USING btree (image_id);
+CREATE INDEX events_eventpagecarouselitem_f33175e6 ON public.events_eventpagecarouselitem USING btree (image_id);
 
 
 --
 -- Name: events_eventpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventpagerelatedlink_121087a8 ON events_eventpagerelatedlink USING btree (link_document_id);
+CREATE INDEX events_eventpagerelatedlink_121087a8 ON public.events_eventpagerelatedlink USING btree (link_document_id);
 
 
 --
 -- Name: events_eventpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventpagerelatedlink_1a63c800 ON events_eventpagerelatedlink USING btree (page_id);
+CREATE INDEX events_eventpagerelatedlink_1a63c800 ON public.events_eventpagerelatedlink USING btree (page_id);
 
 
 --
 -- Name: events_eventpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventpagerelatedlink_5b76e141 ON events_eventpagerelatedlink USING btree (link_page_id);
+CREATE INDEX events_eventpagerelatedlink_5b76e141 ON public.events_eventpagerelatedlink USING btree (link_page_id);
 
 
 --
 -- Name: events_eventpagespeaker_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventpagespeaker_121087a8 ON events_eventpagespeaker USING btree (link_document_id);
+CREATE INDEX events_eventpagespeaker_121087a8 ON public.events_eventpagespeaker USING btree (link_document_id);
 
 
 --
 -- Name: events_eventpagespeaker_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventpagespeaker_1a63c800 ON events_eventpagespeaker USING btree (page_id);
+CREATE INDEX events_eventpagespeaker_1a63c800 ON public.events_eventpagespeaker USING btree (page_id);
 
 
 --
 -- Name: events_eventpagespeaker_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventpagespeaker_5b76e141 ON events_eventpagespeaker USING btree (link_page_id);
+CREATE INDEX events_eventpagespeaker_5b76e141 ON public.events_eventpagespeaker USING btree (link_page_id);
 
 
 --
 -- Name: events_eventpagespeaker_f33175e6; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventpagespeaker_f33175e6 ON events_eventpagespeaker USING btree (image_id);
+CREATE INDEX events_eventpagespeaker_f33175e6 ON public.events_eventpagespeaker USING btree (image_id);
 
 
 --
 -- Name: events_eventpagetag_09a80f33; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventpagetag_09a80f33 ON events_eventpagetag USING btree (content_object_id);
+CREATE INDEX events_eventpagetag_09a80f33 ON public.events_eventpagetag USING btree (content_object_id);
 
 
 --
 -- Name: events_eventpagetag_76f094bc; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX events_eventpagetag_76f094bc ON events_eventpagetag USING btree (tag_id);
+CREATE INDEX events_eventpagetag_76f094bc ON public.events_eventpagetag USING btree (tag_id);
 
 
 --
 -- Name: pages_advert_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_advert_121087a8 ON pages_advert USING btree (link_document_id);
+CREATE INDEX pages_advert_121087a8 ON public.pages_advert USING btree (link_document_id);
 
 
 --
 -- Name: pages_advert_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_advert_1a63c800 ON pages_advert USING btree (page_id);
+CREATE INDEX pages_advert_1a63c800 ON public.pages_advert USING btree (page_id);
 
 
 --
 -- Name: pages_advert_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_advert_5b76e141 ON pages_advert USING btree (link_page_id);
+CREATE INDEX pages_advert_5b76e141 ON public.pages_advert USING btree (link_page_id);
 
 
 --
 -- Name: pages_advert_f33175e6; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_advert_f33175e6 ON pages_advert USING btree (image_id);
+CREATE INDEX pages_advert_f33175e6 ON public.pages_advert USING btree (image_id);
 
 
 --
 -- Name: pages_contentblock_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_contentblock_121087a8 ON pages_contentblock USING btree (link_document_id);
+CREATE INDEX pages_contentblock_121087a8 ON public.pages_contentblock USING btree (link_document_id);
 
 
 --
 -- Name: pages_contentblock_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_contentblock_1a63c800 ON pages_contentblock USING btree (page_id);
+CREATE INDEX pages_contentblock_1a63c800 ON public.pages_contentblock USING btree (page_id);
 
 
 --
 -- Name: pages_contentblock_2dbcba41; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_contentblock_2dbcba41 ON pages_contentblock USING btree (slug);
+CREATE INDEX pages_contentblock_2dbcba41 ON public.pages_contentblock USING btree (slug);
 
 
 --
 -- Name: pages_contentblock_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_contentblock_5b76e141 ON pages_contentblock USING btree (link_page_id);
+CREATE INDEX pages_contentblock_5b76e141 ON public.pages_contentblock USING btree (link_page_id);
 
 
 --
 -- Name: pages_contentblock_slug_946a161b_like; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_contentblock_slug_946a161b_like ON pages_contentblock USING btree (slug varchar_pattern_ops);
+CREATE INDEX pages_contentblock_slug_946a161b_like ON public.pages_contentblock USING btree (slug varchar_pattern_ops);
 
 
 --
 -- Name: pages_homepage_92482941; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_homepage_92482941 ON pages_homepage USING btree (feed_image_id);
+CREATE INDEX pages_homepage_92482941 ON public.pages_homepage USING btree (feed_image_id);
 
 
 --
 -- Name: pages_homepagecarouselitem_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_homepagecarouselitem_121087a8 ON pages_homepagecarouselitem USING btree (link_document_id);
+CREATE INDEX pages_homepagecarouselitem_121087a8 ON public.pages_homepagecarouselitem USING btree (link_document_id);
 
 
 --
 -- Name: pages_homepagecarouselitem_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_homepagecarouselitem_1a63c800 ON pages_homepagecarouselitem USING btree (page_id);
+CREATE INDEX pages_homepagecarouselitem_1a63c800 ON public.pages_homepagecarouselitem USING btree (page_id);
 
 
 --
 -- Name: pages_homepagecarouselitem_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_homepagecarouselitem_5b76e141 ON pages_homepagecarouselitem USING btree (link_page_id);
+CREATE INDEX pages_homepagecarouselitem_5b76e141 ON public.pages_homepagecarouselitem USING btree (link_page_id);
 
 
 --
 -- Name: pages_homepagecarouselitem_f33175e6; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_homepagecarouselitem_f33175e6 ON pages_homepagecarouselitem USING btree (image_id);
+CREATE INDEX pages_homepagecarouselitem_f33175e6 ON public.pages_homepagecarouselitem USING btree (image_id);
 
 
 --
 -- Name: pages_homepagecontentitem_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_homepagecontentitem_121087a8 ON pages_homepagecontentitem USING btree (link_document_id);
+CREATE INDEX pages_homepagecontentitem_121087a8 ON public.pages_homepagecontentitem USING btree (link_document_id);
 
 
 --
 -- Name: pages_homepagecontentitem_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_homepagecontentitem_1a63c800 ON pages_homepagecontentitem USING btree (page_id);
+CREATE INDEX pages_homepagecontentitem_1a63c800 ON public.pages_homepagecontentitem USING btree (page_id);
 
 
 --
 -- Name: pages_homepagecontentitem_2dbcba41; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_homepagecontentitem_2dbcba41 ON pages_homepagecontentitem USING btree (slug);
+CREATE INDEX pages_homepagecontentitem_2dbcba41 ON public.pages_homepagecontentitem USING btree (slug);
 
 
 --
 -- Name: pages_homepagecontentitem_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_homepagecontentitem_5b76e141 ON pages_homepagecontentitem USING btree (link_page_id);
+CREATE INDEX pages_homepagecontentitem_5b76e141 ON public.pages_homepagecontentitem USING btree (link_page_id);
 
 
 --
 -- Name: pages_homepagecontentitem_f33175e6; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_homepagecontentitem_f33175e6 ON pages_homepagecontentitem USING btree (image_id);
+CREATE INDEX pages_homepagecontentitem_f33175e6 ON public.pages_homepagecontentitem USING btree (image_id);
 
 
 --
 -- Name: pages_homepagecontentitem_slug_2f312148_like; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_homepagecontentitem_slug_2f312148_like ON pages_homepagecontentitem USING btree (slug varchar_pattern_ops);
+CREATE INDEX pages_homepagecontentitem_slug_2f312148_like ON public.pages_homepagecontentitem USING btree (slug varchar_pattern_ops);
 
 
 --
 -- Name: pages_homepagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_homepagerelatedlink_121087a8 ON pages_homepagerelatedlink USING btree (link_document_id);
+CREATE INDEX pages_homepagerelatedlink_121087a8 ON public.pages_homepagerelatedlink USING btree (link_document_id);
 
 
 --
 -- Name: pages_homepagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_homepagerelatedlink_1a63c800 ON pages_homepagerelatedlink USING btree (page_id);
+CREATE INDEX pages_homepagerelatedlink_1a63c800 ON public.pages_homepagerelatedlink USING btree (page_id);
 
 
 --
 -- Name: pages_homepagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_homepagerelatedlink_5b76e141 ON pages_homepagerelatedlink USING btree (link_page_id);
+CREATE INDEX pages_homepagerelatedlink_5b76e141 ON public.pages_homepagerelatedlink USING btree (link_page_id);
 
 
 --
 -- Name: pages_sitebranding_logo_id_2841159b; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_sitebranding_logo_id_2841159b ON pages_sitebranding USING btree (logo_id);
+CREATE INDEX pages_sitebranding_logo_id_2841159b ON public.pages_sitebranding USING btree (logo_id);
 
 
 --
 -- Name: pages_standardindexpage_92482941; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_standardindexpage_92482941 ON pages_standardindexpage USING btree (feed_image_id);
+CREATE INDEX pages_standardindexpage_92482941 ON public.pages_standardindexpage USING btree (feed_image_id);
 
 
 --
 -- Name: pages_standardindexpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_standardindexpagerelatedlink_121087a8 ON pages_standardindexpagerelatedlink USING btree (link_document_id);
+CREATE INDEX pages_standardindexpagerelatedlink_121087a8 ON public.pages_standardindexpagerelatedlink USING btree (link_document_id);
 
 
 --
 -- Name: pages_standardindexpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_standardindexpagerelatedlink_1a63c800 ON pages_standardindexpagerelatedlink USING btree (page_id);
+CREATE INDEX pages_standardindexpagerelatedlink_1a63c800 ON public.pages_standardindexpagerelatedlink USING btree (page_id);
 
 
 --
 -- Name: pages_standardindexpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_standardindexpagerelatedlink_5b76e141 ON pages_standardindexpagerelatedlink USING btree (link_page_id);
+CREATE INDEX pages_standardindexpagerelatedlink_5b76e141 ON public.pages_standardindexpagerelatedlink USING btree (link_page_id);
 
 
 --
 -- Name: pages_standardpage_92482941; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_standardpage_92482941 ON pages_standardpage USING btree (feed_image_id);
+CREATE INDEX pages_standardpage_92482941 ON public.pages_standardpage USING btree (feed_image_id);
 
 
 --
 -- Name: pages_standardpagecarouselitem_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_standardpagecarouselitem_121087a8 ON pages_standardpagecarouselitem USING btree (link_document_id);
+CREATE INDEX pages_standardpagecarouselitem_121087a8 ON public.pages_standardpagecarouselitem USING btree (link_document_id);
 
 
 --
 -- Name: pages_standardpagecarouselitem_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_standardpagecarouselitem_1a63c800 ON pages_standardpagecarouselitem USING btree (page_id);
+CREATE INDEX pages_standardpagecarouselitem_1a63c800 ON public.pages_standardpagecarouselitem USING btree (page_id);
 
 
 --
 -- Name: pages_standardpagecarouselitem_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_standardpagecarouselitem_5b76e141 ON pages_standardpagecarouselitem USING btree (link_page_id);
+CREATE INDEX pages_standardpagecarouselitem_5b76e141 ON public.pages_standardpagecarouselitem USING btree (link_page_id);
 
 
 --
 -- Name: pages_standardpagecarouselitem_f33175e6; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_standardpagecarouselitem_f33175e6 ON pages_standardpagecarouselitem USING btree (image_id);
+CREATE INDEX pages_standardpagecarouselitem_f33175e6 ON public.pages_standardpagecarouselitem USING btree (image_id);
 
 
 --
 -- Name: pages_standardpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_standardpagerelatedlink_121087a8 ON pages_standardpagerelatedlink USING btree (link_document_id);
+CREATE INDEX pages_standardpagerelatedlink_121087a8 ON public.pages_standardpagerelatedlink USING btree (link_document_id);
 
 
 --
 -- Name: pages_standardpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_standardpagerelatedlink_1a63c800 ON pages_standardpagerelatedlink USING btree (page_id);
+CREATE INDEX pages_standardpagerelatedlink_1a63c800 ON public.pages_standardpagerelatedlink USING btree (page_id);
 
 
 --
 -- Name: pages_standardpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_standardpagerelatedlink_5b76e141 ON pages_standardpagerelatedlink USING btree (link_page_id);
+CREATE INDEX pages_standardpagerelatedlink_5b76e141 ON public.pages_standardpagerelatedlink USING btree (link_page_id);
 
 
 --
 -- Name: pages_testimonial_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_testimonial_121087a8 ON pages_testimonial USING btree (link_document_id);
+CREATE INDEX pages_testimonial_121087a8 ON public.pages_testimonial USING btree (link_document_id);
 
 
 --
 -- Name: pages_testimonial_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_testimonial_1a63c800 ON pages_testimonial USING btree (page_id);
+CREATE INDEX pages_testimonial_1a63c800 ON public.pages_testimonial USING btree (page_id);
 
 
 --
 -- Name: pages_testimonial_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_testimonial_5b76e141 ON pages_testimonial USING btree (link_page_id);
+CREATE INDEX pages_testimonial_5b76e141 ON public.pages_testimonial USING btree (link_page_id);
 
 
 --
 -- Name: pages_testimonial_b4e75e23; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_testimonial_b4e75e23 ON pages_testimonial USING btree (photo_id);
+CREATE INDEX pages_testimonial_b4e75e23 ON public.pages_testimonial USING btree (photo_id);
 
 
 --
 -- Name: pages_testimonialpage_feed_image_id_598eb509; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_testimonialpage_feed_image_id_598eb509 ON pages_testimonialpage USING btree (feed_image_id);
+CREATE INDEX pages_testimonialpage_feed_image_id_598eb509 ON public.pages_testimonialpage USING btree (feed_image_id);
 
 
 --
 -- Name: pages_videogallerypage_feed_image_id_250d9360; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_videogallerypage_feed_image_id_250d9360 ON pages_videogallerypage USING btree (feed_image_id);
+CREATE INDEX pages_videogallerypage_feed_image_id_250d9360 ON public.pages_videogallerypage USING btree (feed_image_id);
 
 
 --
 -- Name: pages_videopagecarouselitem_image_id_2817929a; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_videopagecarouselitem_image_id_2817929a ON pages_videogallerypagecarouselitem USING btree (image_id);
+CREATE INDEX pages_videopagecarouselitem_image_id_2817929a ON public.pages_videogallerypagecarouselitem USING btree (image_id);
 
 
 --
 -- Name: pages_videopagecarouselitem_link_document_id_b7d2ab0f; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_videopagecarouselitem_link_document_id_b7d2ab0f ON pages_videogallerypagecarouselitem USING btree (link_document_id);
+CREATE INDEX pages_videopagecarouselitem_link_document_id_b7d2ab0f ON public.pages_videogallerypagecarouselitem USING btree (link_document_id);
 
 
 --
 -- Name: pages_videopagecarouselitem_link_page_id_16ed2e64; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_videopagecarouselitem_link_page_id_16ed2e64 ON pages_videogallerypagecarouselitem USING btree (link_page_id);
+CREATE INDEX pages_videopagecarouselitem_link_page_id_16ed2e64 ON public.pages_videogallerypagecarouselitem USING btree (link_page_id);
 
 
 --
 -- Name: pages_videopagecarouselitem_page_id_762410b6; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX pages_videopagecarouselitem_page_id_762410b6 ON pages_videogallerypagecarouselitem USING btree (page_id);
+CREATE INDEX pages_videopagecarouselitem_page_id_762410b6 ON public.pages_videogallerypagecarouselitem USING btree (page_id);
 
 
 --
 -- Name: people_personindexpage_feed_image_id_ea7ff652; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX people_personindexpage_feed_image_id_ea7ff652 ON people_personindexpage USING btree (feed_image_id);
+CREATE INDEX people_personindexpage_feed_image_id_ea7ff652 ON public.people_personindexpage USING btree (feed_image_id);
 
 
 --
 -- Name: people_personindexpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX people_personindexpagerelatedlink_121087a8 ON people_personindexpagerelatedlink USING btree (link_document_id);
+CREATE INDEX people_personindexpagerelatedlink_121087a8 ON public.people_personindexpagerelatedlink USING btree (link_document_id);
 
 
 --
 -- Name: people_personindexpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX people_personindexpagerelatedlink_1a63c800 ON people_personindexpagerelatedlink USING btree (page_id);
+CREATE INDEX people_personindexpagerelatedlink_1a63c800 ON public.people_personindexpagerelatedlink USING btree (page_id);
 
 
 --
 -- Name: people_personindexpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX people_personindexpagerelatedlink_5b76e141 ON people_personindexpagerelatedlink USING btree (link_page_id);
+CREATE INDEX people_personindexpagerelatedlink_5b76e141 ON public.people_personindexpagerelatedlink USING btree (link_page_id);
 
 
 --
 -- Name: people_personpage_84566833; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX people_personpage_84566833 ON people_personpage USING btree (role_id);
+CREATE INDEX people_personpage_84566833 ON public.people_personpage USING btree (role_id);
 
 
 --
 -- Name: people_personpage_92482941; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX people_personpage_92482941 ON people_personpage USING btree (feed_image_id);
+CREATE INDEX people_personpage_92482941 ON public.people_personpage USING btree (feed_image_id);
 
 
 --
 -- Name: people_personpage_f33175e6; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX people_personpage_f33175e6 ON people_personpage USING btree (image_id);
+CREATE INDEX people_personpage_f33175e6 ON public.people_personpage USING btree (image_id);
 
 
 --
 -- Name: people_personpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX people_personpagerelatedlink_121087a8 ON people_personpagerelatedlink USING btree (link_document_id);
+CREATE INDEX people_personpagerelatedlink_121087a8 ON public.people_personpagerelatedlink USING btree (link_document_id);
 
 
 --
 -- Name: people_personpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX people_personpagerelatedlink_1a63c800 ON people_personpagerelatedlink USING btree (page_id);
+CREATE INDEX people_personpagerelatedlink_1a63c800 ON public.people_personpagerelatedlink USING btree (page_id);
 
 
 --
 -- Name: people_personpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX people_personpagerelatedlink_5b76e141 ON people_personpagerelatedlink USING btree (link_page_id);
+CREATE INDEX people_personpagerelatedlink_5b76e141 ON public.people_personpagerelatedlink USING btree (link_page_id);
 
 
 --
 -- Name: people_personpagetag_09a80f33; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX people_personpagetag_09a80f33 ON people_personpagetag USING btree (content_object_id);
+CREATE INDEX people_personpagetag_09a80f33 ON public.people_personpagetag USING btree (content_object_id);
 
 
 --
 -- Name: people_personpagetag_76f094bc; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX people_personpagetag_76f094bc ON people_personpagetag USING btree (tag_id);
+CREATE INDEX people_personpagetag_76f094bc ON public.people_personpagetag USING btree (tag_id);
 
 
 --
 -- Name: photo_gallery_galleryindexpage_92482941; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX photo_gallery_galleryindexpage_92482941 ON photo_gallery_galleryindexpage USING btree (feed_image_id);
+CREATE INDEX photo_gallery_galleryindexpage_92482941 ON public.photo_gallery_galleryindexpage USING btree (feed_image_id);
 
 
 --
 -- Name: photo_gallery_gallerypage_92482941; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX photo_gallery_gallerypage_92482941 ON photo_gallery_gallerypage USING btree (feed_image_id);
+CREATE INDEX photo_gallery_gallerypage_92482941 ON public.photo_gallery_gallerypage USING btree (feed_image_id);
 
 
 --
 -- Name: photo_gallery_gallerypagetag_09a80f33; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX photo_gallery_gallerypagetag_09a80f33 ON photo_gallery_gallerypagetag USING btree (content_object_id);
+CREATE INDEX photo_gallery_gallerypagetag_09a80f33 ON public.photo_gallery_gallerypagetag USING btree (content_object_id);
 
 
 --
 -- Name: photo_gallery_gallerypagetag_76f094bc; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX photo_gallery_gallerypagetag_76f094bc ON photo_gallery_gallerypagetag USING btree (tag_id);
+CREATE INDEX photo_gallery_gallerypagetag_76f094bc ON public.photo_gallery_gallerypagetag USING btree (tag_id);
 
 
 --
 -- Name: postgres_search_indexentry_body_search; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX postgres_search_indexentry_body_search ON postgres_search_indexentry USING gin (body_search);
+CREATE INDEX postgres_search_indexentry_body_search ON public.postgres_search_indexentry USING gin (body_search);
 
 
 --
 -- Name: postgres_search_indexentry_content_type_id_d805086f; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX postgres_search_indexentry_content_type_id_d805086f ON postgres_search_indexentry USING btree (content_type_id);
+CREATE INDEX postgres_search_indexentry_content_type_id_d805086f ON public.postgres_search_indexentry USING btree (content_type_id);
 
 
 --
 -- Name: products_productindexpage_feed_image_id_f1b46ba8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX products_productindexpage_feed_image_id_f1b46ba8 ON products_productindexpage USING btree (feed_image_id);
+CREATE INDEX products_productindexpage_feed_image_id_f1b46ba8 ON public.products_productindexpage USING btree (feed_image_id);
 
 
 --
 -- Name: products_productindexpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX products_productindexpagerelatedlink_121087a8 ON products_productindexpagerelatedlink USING btree (link_document_id);
+CREATE INDEX products_productindexpagerelatedlink_121087a8 ON public.products_productindexpagerelatedlink USING btree (link_document_id);
 
 
 --
 -- Name: products_productindexpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX products_productindexpagerelatedlink_1a63c800 ON products_productindexpagerelatedlink USING btree (page_id);
+CREATE INDEX products_productindexpagerelatedlink_1a63c800 ON public.products_productindexpagerelatedlink USING btree (page_id);
 
 
 --
 -- Name: products_productindexpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX products_productindexpagerelatedlink_5b76e141 ON products_productindexpagerelatedlink USING btree (link_page_id);
+CREATE INDEX products_productindexpagerelatedlink_5b76e141 ON public.products_productindexpagerelatedlink USING btree (link_page_id);
 
 
 --
 -- Name: products_productpage_92482941; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX products_productpage_92482941 ON products_productpage USING btree (feed_image_id);
+CREATE INDEX products_productpage_92482941 ON public.products_productpage USING btree (feed_image_id);
 
 
 --
 -- Name: products_productpage_f33175e6; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX products_productpage_f33175e6 ON products_productpage USING btree (image_id);
+CREATE INDEX products_productpage_f33175e6 ON public.products_productpage USING btree (image_id);
 
 
 --
 -- Name: products_productpagerelatedlink_121087a8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX products_productpagerelatedlink_121087a8 ON products_productpagerelatedlink USING btree (link_document_id);
+CREATE INDEX products_productpagerelatedlink_121087a8 ON public.products_productpagerelatedlink USING btree (link_document_id);
 
 
 --
 -- Name: products_productpagerelatedlink_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX products_productpagerelatedlink_1a63c800 ON products_productpagerelatedlink USING btree (page_id);
+CREATE INDEX products_productpagerelatedlink_1a63c800 ON public.products_productpagerelatedlink USING btree (page_id);
 
 
 --
 -- Name: products_productpagerelatedlink_5b76e141; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX products_productpagerelatedlink_5b76e141 ON products_productpagerelatedlink USING btree (link_page_id);
+CREATE INDEX products_productpagerelatedlink_5b76e141 ON public.products_productpagerelatedlink USING btree (link_page_id);
 
 
 --
 -- Name: products_productpagetag_09a80f33; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX products_productpagetag_09a80f33 ON products_productpagetag USING btree (content_object_id);
+CREATE INDEX products_productpagetag_09a80f33 ON public.products_productpagetag USING btree (content_object_id);
 
 
 --
 -- Name: products_productpagetag_76f094bc; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX products_productpagetag_76f094bc ON products_productpagetag USING btree (tag_id);
+CREATE INDEX products_productpagetag_76f094bc ON public.products_productpagetag USING btree (tag_id);
 
 
 --
 -- Name: taggit_tag_name_58eb2ed9_like; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX taggit_tag_name_58eb2ed9_like ON taggit_tag USING btree (name varchar_pattern_ops);
+CREATE INDEX taggit_tag_name_58eb2ed9_like ON public.taggit_tag USING btree (name varchar_pattern_ops);
 
 
 --
 -- Name: taggit_tag_slug_6be58b2c_like; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX taggit_tag_slug_6be58b2c_like ON taggit_tag USING btree (slug varchar_pattern_ops);
+CREATE INDEX taggit_tag_slug_6be58b2c_like ON public.taggit_tag USING btree (slug varchar_pattern_ops);
 
 
 --
 -- Name: taggit_taggeditem_417f1b1c; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX taggit_taggeditem_417f1b1c ON taggit_taggeditem USING btree (content_type_id);
+CREATE INDEX taggit_taggeditem_417f1b1c ON public.taggit_taggeditem USING btree (content_type_id);
 
 
 --
 -- Name: taggit_taggeditem_76f094bc; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX taggit_taggeditem_76f094bc ON taggit_taggeditem USING btree (tag_id);
+CREATE INDEX taggit_taggeditem_76f094bc ON public.taggit_taggeditem USING btree (tag_id);
 
 
 --
 -- Name: taggit_taggeditem_af31437c; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX taggit_taggeditem_af31437c ON taggit_taggeditem USING btree (object_id);
+CREATE INDEX taggit_taggeditem_af31437c ON public.taggit_taggeditem USING btree (object_id);
 
 
 --
 -- Name: taggit_taggeditem_content_type_id_196cc965_idx; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX taggit_taggeditem_content_type_id_196cc965_idx ON taggit_taggeditem USING btree (content_type_id, object_id);
+CREATE INDEX taggit_taggeditem_content_type_id_196cc965_idx ON public.taggit_taggeditem USING btree (content_type_id, object_id);
 
 
 --
 -- Name: wagtailcore_collection_path_d848dc19_like; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_collection_path_d848dc19_like ON wagtailcore_collection USING btree (path varchar_pattern_ops);
+CREATE INDEX wagtailcore_collection_path_d848dc19_like ON public.wagtailcore_collection USING btree (path varchar_pattern_ops);
 
 
 --
 -- Name: wagtailcore_collectionview_collectionviewrestriction__47320efd; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_collectionview_collectionviewrestriction__47320efd ON wagtailcore_collectionviewrestriction_groups USING btree (collectionviewrestriction_id);
+CREATE INDEX wagtailcore_collectionview_collectionviewrestriction__47320efd ON public.wagtailcore_collectionviewrestriction_groups USING btree (collectionviewrestriction_id);
 
 
 --
 -- Name: wagtailcore_collectionviewrestriction_collection_id_761908ec; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_collectionviewrestriction_collection_id_761908ec ON wagtailcore_collectionviewrestriction USING btree (collection_id);
+CREATE INDEX wagtailcore_collectionviewrestriction_collection_id_761908ec ON public.wagtailcore_collectionviewrestriction USING btree (collection_id);
 
 
 --
 -- Name: wagtailcore_collectionviewrestriction_groups_group_id_1823f2a3; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_collectionviewrestriction_groups_group_id_1823f2a3 ON wagtailcore_collectionviewrestriction_groups USING btree (group_id);
+CREATE INDEX wagtailcore_collectionviewrestriction_groups_group_id_1823f2a3 ON public.wagtailcore_collectionviewrestriction_groups USING btree (group_id);
 
 
 --
 -- Name: wagtailcore_groupcollectionpermission_0a1a4dd8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_groupcollectionpermission_0a1a4dd8 ON wagtailcore_groupcollectionpermission USING btree (collection_id);
+CREATE INDEX wagtailcore_groupcollectionpermission_0a1a4dd8 ON public.wagtailcore_groupcollectionpermission USING btree (collection_id);
 
 
 --
 -- Name: wagtailcore_groupcollectionpermission_0e939a4f; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_groupcollectionpermission_0e939a4f ON wagtailcore_groupcollectionpermission USING btree (group_id);
+CREATE INDEX wagtailcore_groupcollectionpermission_0e939a4f ON public.wagtailcore_groupcollectionpermission USING btree (group_id);
 
 
 --
 -- Name: wagtailcore_groupcollectionpermission_8373b171; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_groupcollectionpermission_8373b171 ON wagtailcore_groupcollectionpermission USING btree (permission_id);
+CREATE INDEX wagtailcore_groupcollectionpermission_8373b171 ON public.wagtailcore_groupcollectionpermission USING btree (permission_id);
 
 
 --
 -- Name: wagtailcore_grouppagepermission_0e939a4f; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_grouppagepermission_0e939a4f ON wagtailcore_grouppagepermission USING btree (group_id);
+CREATE INDEX wagtailcore_grouppagepermission_0e939a4f ON public.wagtailcore_grouppagepermission USING btree (group_id);
 
 
 --
 -- Name: wagtailcore_grouppagepermission_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_grouppagepermission_1a63c800 ON wagtailcore_grouppagepermission USING btree (page_id);
+CREATE INDEX wagtailcore_grouppagepermission_1a63c800 ON public.wagtailcore_grouppagepermission USING btree (page_id);
 
 
 --
 -- Name: wagtailcore_page_2dbcba41; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_page_2dbcba41 ON wagtailcore_page USING btree (slug);
+CREATE INDEX wagtailcore_page_2dbcba41 ON public.wagtailcore_page USING btree (slug);
 
 
 --
 -- Name: wagtailcore_page_417f1b1c; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_page_417f1b1c ON wagtailcore_page USING btree (content_type_id);
+CREATE INDEX wagtailcore_page_417f1b1c ON public.wagtailcore_page USING btree (content_type_id);
 
 
 --
 -- Name: wagtailcore_page_5e7b1936; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_page_5e7b1936 ON wagtailcore_page USING btree (owner_id);
+CREATE INDEX wagtailcore_page_5e7b1936 ON public.wagtailcore_page USING btree (owner_id);
 
 
 --
 -- Name: wagtailcore_page_first_published_at_2b5dd637_uniq; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_page_first_published_at_2b5dd637_uniq ON wagtailcore_page USING btree (first_published_at);
+CREATE INDEX wagtailcore_page_first_published_at_2b5dd637_uniq ON public.wagtailcore_page USING btree (first_published_at);
 
 
 --
 -- Name: wagtailcore_page_live_revision_id_930bd822; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_page_live_revision_id_930bd822 ON wagtailcore_page USING btree (live_revision_id);
+CREATE INDEX wagtailcore_page_live_revision_id_930bd822 ON public.wagtailcore_page USING btree (live_revision_id);
 
 
 --
 -- Name: wagtailcore_page_path_98eba2c8_like; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_page_path_98eba2c8_like ON wagtailcore_page USING btree (path varchar_pattern_ops);
+CREATE INDEX wagtailcore_page_path_98eba2c8_like ON public.wagtailcore_page USING btree (path varchar_pattern_ops);
 
 
 --
 -- Name: wagtailcore_page_slug_e7c11b8f_like; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_page_slug_e7c11b8f_like ON wagtailcore_page USING btree (slug varchar_pattern_ops);
+CREATE INDEX wagtailcore_page_slug_e7c11b8f_like ON public.wagtailcore_page USING btree (slug varchar_pattern_ops);
 
 
 --
 -- Name: wagtailcore_pagerevision_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_pagerevision_1a63c800 ON wagtailcore_pagerevision USING btree (page_id);
+CREATE INDEX wagtailcore_pagerevision_1a63c800 ON public.wagtailcore_pagerevision USING btree (page_id);
 
 
 --
 -- Name: wagtailcore_pagerevision_created_at_66954e3b_uniq; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_pagerevision_created_at_66954e3b_uniq ON wagtailcore_pagerevision USING btree (created_at);
+CREATE INDEX wagtailcore_pagerevision_created_at_66954e3b_uniq ON public.wagtailcore_pagerevision USING btree (created_at);
 
 
 --
 -- Name: wagtailcore_pagerevision_e8701ad4; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_pagerevision_e8701ad4 ON wagtailcore_pagerevision USING btree (user_id);
+CREATE INDEX wagtailcore_pagerevision_e8701ad4 ON public.wagtailcore_pagerevision USING btree (user_id);
 
 
 --
 -- Name: wagtailcore_pagerevision_submitted_for_moderation_c682e44c_uniq; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_pagerevision_submitted_for_moderation_c682e44c_uniq ON wagtailcore_pagerevision USING btree (submitted_for_moderation);
+CREATE INDEX wagtailcore_pagerevision_submitted_for_moderation_c682e44c_uniq ON public.wagtailcore_pagerevision USING btree (submitted_for_moderation);
 
 
 --
 -- Name: wagtailcore_pageviewrestriction_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_pageviewrestriction_1a63c800 ON wagtailcore_pageviewrestriction USING btree (page_id);
+CREATE INDEX wagtailcore_pageviewrestriction_1a63c800 ON public.wagtailcore_pageviewrestriction USING btree (page_id);
 
 
 --
 -- Name: wagtailcore_pageviewrestriction_groups_0e939a4f; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_pageviewrestriction_groups_0e939a4f ON wagtailcore_pageviewrestriction_groups USING btree (group_id);
+CREATE INDEX wagtailcore_pageviewrestriction_groups_0e939a4f ON public.wagtailcore_pageviewrestriction_groups USING btree (group_id);
 
 
 --
 -- Name: wagtailcore_pageviewrestriction_groups_9bdbac54; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_pageviewrestriction_groups_9bdbac54 ON wagtailcore_pageviewrestriction_groups USING btree (pageviewrestriction_id);
+CREATE INDEX wagtailcore_pageviewrestriction_groups_9bdbac54 ON public.wagtailcore_pageviewrestriction_groups USING btree (pageviewrestriction_id);
 
 
 --
 -- Name: wagtailcore_site_0897acf4; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_site_0897acf4 ON wagtailcore_site USING btree (hostname);
+CREATE INDEX wagtailcore_site_0897acf4 ON public.wagtailcore_site USING btree (hostname);
 
 
 --
 -- Name: wagtailcore_site_8372b497; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_site_8372b497 ON wagtailcore_site USING btree (root_page_id);
+CREATE INDEX wagtailcore_site_8372b497 ON public.wagtailcore_site USING btree (root_page_id);
 
 
 --
 -- Name: wagtailcore_site_hostname_96b20b46_like; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailcore_site_hostname_96b20b46_like ON wagtailcore_site USING btree (hostname varchar_pattern_ops);
+CREATE INDEX wagtailcore_site_hostname_96b20b46_like ON public.wagtailcore_site USING btree (hostname varchar_pattern_ops);
 
 
 --
 -- Name: wagtaildocs_document_0a1a4dd8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtaildocs_document_0a1a4dd8 ON wagtaildocs_document USING btree (collection_id);
+CREATE INDEX wagtaildocs_document_0a1a4dd8 ON public.wagtaildocs_document USING btree (collection_id);
 
 
 --
 -- Name: wagtaildocs_document_ef01e2b6; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtaildocs_document_ef01e2b6 ON wagtaildocs_document USING btree (uploaded_by_user_id);
+CREATE INDEX wagtaildocs_document_ef01e2b6 ON public.wagtaildocs_document USING btree (uploaded_by_user_id);
 
 
 --
 -- Name: wagtailforms_formsubmission_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailforms_formsubmission_1a63c800 ON wagtailforms_formsubmission USING btree (page_id);
+CREATE INDEX wagtailforms_formsubmission_1a63c800 ON public.wagtailforms_formsubmission USING btree (page_id);
 
 
 --
 -- Name: wagtailimages_image_0a1a4dd8; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailimages_image_0a1a4dd8 ON wagtailimages_image USING btree (collection_id);
+CREATE INDEX wagtailimages_image_0a1a4dd8 ON public.wagtailimages_image USING btree (collection_id);
 
 
 --
 -- Name: wagtailimages_image_created_at_86fa6cd4_uniq; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailimages_image_created_at_86fa6cd4_uniq ON wagtailimages_image USING btree (created_at);
+CREATE INDEX wagtailimages_image_created_at_86fa6cd4_uniq ON public.wagtailimages_image USING btree (created_at);
 
 
 --
 -- Name: wagtailimages_image_ef01e2b6; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailimages_image_ef01e2b6 ON wagtailimages_image USING btree (uploaded_by_user_id);
+CREATE INDEX wagtailimages_image_ef01e2b6 ON public.wagtailimages_image USING btree (uploaded_by_user_id);
 
 
 --
 -- Name: wagtailimages_rendition_58c64917; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailimages_rendition_58c64917 ON wagtailimages_rendition USING btree (filter_spec);
+CREATE INDEX wagtailimages_rendition_58c64917 ON public.wagtailimages_rendition USING btree (filter_spec);
 
 
 --
 -- Name: wagtailimages_rendition_f33175e6; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailimages_rendition_f33175e6 ON wagtailimages_rendition USING btree (image_id);
+CREATE INDEX wagtailimages_rendition_f33175e6 ON public.wagtailimages_rendition USING btree (image_id);
 
 
 --
 -- Name: wagtailimages_rendition_filter_spec_1cba3201_like; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailimages_rendition_filter_spec_1cba3201_like ON wagtailimages_rendition USING btree (filter_spec varchar_pattern_ops);
+CREATE INDEX wagtailimages_rendition_filter_spec_1cba3201_like ON public.wagtailimages_rendition USING btree (filter_spec varchar_pattern_ops);
 
 
 --
 -- Name: wagtailredirects_redirect_2fd79f37; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailredirects_redirect_2fd79f37 ON wagtailredirects_redirect USING btree (redirect_page_id);
+CREATE INDEX wagtailredirects_redirect_2fd79f37 ON public.wagtailredirects_redirect USING btree (redirect_page_id);
 
 
 --
 -- Name: wagtailredirects_redirect_9365d6e7; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailredirects_redirect_9365d6e7 ON wagtailredirects_redirect USING btree (site_id);
+CREATE INDEX wagtailredirects_redirect_9365d6e7 ON public.wagtailredirects_redirect USING btree (site_id);
 
 
 --
 -- Name: wagtailredirects_redirect_old_path_bb35247b_like; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailredirects_redirect_old_path_bb35247b_like ON wagtailredirects_redirect USING btree (old_path varchar_pattern_ops);
+CREATE INDEX wagtailredirects_redirect_old_path_bb35247b_like ON public.wagtailredirects_redirect USING btree (old_path varchar_pattern_ops);
 
 
 --
 -- Name: wagtailsearch_editorspick_0bbeda9c; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailsearch_editorspick_0bbeda9c ON wagtailsearchpromotions_searchpromotion USING btree (query_id);
+CREATE INDEX wagtailsearch_editorspick_0bbeda9c ON public.wagtailsearchpromotions_searchpromotion USING btree (query_id);
 
 
 --
 -- Name: wagtailsearch_editorspick_1a63c800; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailsearch_editorspick_1a63c800 ON wagtailsearchpromotions_searchpromotion USING btree (page_id);
+CREATE INDEX wagtailsearch_editorspick_1a63c800 ON public.wagtailsearchpromotions_searchpromotion USING btree (page_id);
 
 
 --
 -- Name: wagtailsearch_query_query_string_e785ea07_like; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailsearch_query_query_string_e785ea07_like ON wagtailsearch_query USING btree (query_string varchar_pattern_ops);
+CREATE INDEX wagtailsearch_query_query_string_e785ea07_like ON public.wagtailsearch_query USING btree (query_string varchar_pattern_ops);
 
 
 --
 -- Name: wagtailsearch_querydailyhits_0bbeda9c; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX wagtailsearch_querydailyhits_0bbeda9c ON wagtailsearch_querydailyhits USING btree (query_id);
+CREATE INDEX wagtailsearch_querydailyhits_0bbeda9c ON public.wagtailsearch_querydailyhits USING btree (query_id);
 
 
 --
 -- Name: documents_gallery_documentspagetag D17c8edd4821aee444fb5a22b2e0a831; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY documents_gallery_documentspagetag
-    ADD CONSTRAINT "D17c8edd4821aee444fb5a22b2e0a831" FOREIGN KEY (content_object_id) REFERENCES documents_gallery_documentspage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.documents_gallery_documentspagetag
+    ADD CONSTRAINT "D17c8edd4821aee444fb5a22b2e0a831" FOREIGN KEY (content_object_id) REFERENCES public.documents_gallery_documentspage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: auth_group_permissions auth_group_permiss_permission_id_84c5c92e_fk_auth_permission_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_group_permissions
-    ADD CONSTRAINT auth_group_permiss_permission_id_84c5c92e_fk_auth_permission_id FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permiss_permission_id_84c5c92e_fk_auth_permission_id FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_group_permissions
-    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: auth_permission auth_permiss_content_type_id_2f476e4b_fk_django_content_type_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_permission
-    ADD CONSTRAINT auth_permiss_content_type_id_2f476e4b_fk_django_content_type_id FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permiss_content_type_id_2f476e4b_fk_django_content_type_id FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: auth_user_groups auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_user_groups
-    ADD CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: auth_user_groups auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_user_groups
-    ADD CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: auth_user_user_permissions auth_user_user_per_permission_id_1fbb5f2c_fk_auth_permission_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_user_user_permissions
-    ADD CONSTRAINT auth_user_user_per_permission_id_1fbb5f2c_fk_auth_permission_id FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_per_permission_id_1fbb5f2c_fk_auth_permission_id FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: auth_user_user_permissions auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY auth_user_user_permissions
-    ADD CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: blog_blogpagetag blog_bl_content_object_id_0dc644d2_fk_blog_blogpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpagetag
-    ADD CONSTRAINT blog_bl_content_object_id_0dc644d2_fk_blog_blogpage_page_ptr_id FOREIGN KEY (content_object_id) REFERENCES blog_blogpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.blog_blogpagetag
+    ADD CONSTRAINT blog_bl_content_object_id_0dc644d2_fk_blog_blogpage_page_ptr_id FOREIGN KEY (content_object_id) REFERENCES public.blog_blogpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: blog_blogindexpagerelatedlink blog_blogi_link_document_id_84c85fbf_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogindexpagerelatedlink
-    ADD CONSTRAINT blog_blogi_link_document_id_84c85fbf_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.blog_blogindexpagerelatedlink
+    ADD CONSTRAINT blog_blogi_link_document_id_84c85fbf_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: blog_blogindexpagerelatedlink blog_blogind_page_id_905f99b7_fk_blog_blogindexpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogindexpagerelatedlink
-    ADD CONSTRAINT blog_blogind_page_id_905f99b7_fk_blog_blogindexpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES blog_blogindexpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.blog_blogindexpagerelatedlink
+    ADD CONSTRAINT blog_blogind_page_id_905f99b7_fk_blog_blogindexpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.blog_blogindexpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: blog_blogindexpage blog_blogindexpage_feed_image_id_5cb947e1_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogindexpage
-    ADD CONSTRAINT blog_blogindexpage_feed_image_id_5cb947e1_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.blog_blogindexpage
+    ADD CONSTRAINT blog_blogindexpage_feed_image_id_5cb947e1_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: blog_blogindexpagerelatedlink blog_blogindexpage_link_page_id_fdd456c7_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogindexpagerelatedlink
-    ADD CONSTRAINT blog_blogindexpage_link_page_id_fdd456c7_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.blog_blogindexpagerelatedlink
+    ADD CONSTRAINT blog_blogindexpage_link_page_id_fdd456c7_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: blog_blogindexpage blog_blogindexpage_page_ptr_id_d87c3ac2_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogindexpage
-    ADD CONSTRAINT blog_blogindexpage_page_ptr_id_d87c3ac2_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.blog_blogindexpage
+    ADD CONSTRAINT blog_blogindexpage_page_ptr_id_d87c3ac2_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: blog_blogpagerelatedlink blog_blogp_link_document_id_358015f9_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpagerelatedlink
-    ADD CONSTRAINT blog_blogp_link_document_id_358015f9_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.blog_blogpagerelatedlink
+    ADD CONSTRAINT blog_blogp_link_document_id_358015f9_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: blog_blogpagecarouselitem blog_blogp_link_document_id_944c5996_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpagecarouselitem
-    ADD CONSTRAINT blog_blogp_link_document_id_944c5996_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.blog_blogpagecarouselitem
+    ADD CONSTRAINT blog_blogp_link_document_id_944c5996_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: blog_blogpage blog_blogpage_feed_image_id_5f46dd6e_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpage
-    ADD CONSTRAINT blog_blogpage_feed_image_id_5f46dd6e_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.blog_blogpage
+    ADD CONSTRAINT blog_blogpage_feed_image_id_5f46dd6e_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: blog_blogpage blog_blogpage_page_ptr_id_1d78e2b7_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpage
-    ADD CONSTRAINT blog_blogpage_page_ptr_id_1d78e2b7_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.blog_blogpage
+    ADD CONSTRAINT blog_blogpage_page_ptr_id_1d78e2b7_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: blog_blogpagecarouselitem blog_blogpagecaro_page_id_41128629_fk_blog_blogpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpagecarouselitem
-    ADD CONSTRAINT blog_blogpagecaro_page_id_41128629_fk_blog_blogpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES blog_blogpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.blog_blogpagecarouselitem
+    ADD CONSTRAINT blog_blogpagecaro_page_id_41128629_fk_blog_blogpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.blog_blogpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: blog_blogpagecarouselitem blog_blogpagecarou_link_page_id_86ebc051_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpagecarouselitem
-    ADD CONSTRAINT blog_blogpagecarou_link_page_id_86ebc051_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.blog_blogpagecarouselitem
+    ADD CONSTRAINT blog_blogpagecarou_link_page_id_86ebc051_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: blog_blogpagecarouselitem blog_blogpagecarous_image_id_d51a8744_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpagecarouselitem
-    ADD CONSTRAINT blog_blogpagecarous_image_id_d51a8744_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.blog_blogpagecarouselitem
+    ADD CONSTRAINT blog_blogpagecarous_image_id_d51a8744_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: blog_blogpagerelatedlink blog_blogpagerela_page_id_31c20323_fk_blog_blogpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpagerelatedlink
-    ADD CONSTRAINT blog_blogpagerela_page_id_31c20323_fk_blog_blogpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES blog_blogpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.blog_blogpagerelatedlink
+    ADD CONSTRAINT blog_blogpagerela_page_id_31c20323_fk_blog_blogpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.blog_blogpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: blog_blogpagerelatedlink blog_blogpagerelat_link_page_id_1edfe541_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpagerelatedlink
-    ADD CONSTRAINT blog_blogpagerelat_link_page_id_1edfe541_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.blog_blogpagerelatedlink
+    ADD CONSTRAINT blog_blogpagerelat_link_page_id_1edfe541_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: blog_blogpagetag blog_blogpagetag_tag_id_81dc0e5f_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY blog_blogpagetag
-    ADD CONSTRAINT blog_blogpagetag_tag_id_81dc0e5f_fk_taggit_tag_id FOREIGN KEY (tag_id) REFERENCES taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.blog_blogpagetag
+    ADD CONSTRAINT blog_blogpagetag_tag_id_81dc0e5f_fk_taggit_tag_id FOREIGN KEY (tag_id) REFERENCES public.taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: contact_contactformfield contact_con_page_id_95a7af80_fk_contact_contactpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY contact_contactformfield
-    ADD CONSTRAINT contact_con_page_id_95a7af80_fk_contact_contactpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES contact_contactpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.contact_contactformfield
+    ADD CONSTRAINT contact_con_page_id_95a7af80_fk_contact_contactpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.contact_contactpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: contact_contactpage contact_contactpage_feed_image_id_1f79cfe3_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY contact_contactpage
-    ADD CONSTRAINT contact_contactpage_feed_image_id_1f79cfe3_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.contact_contactpage
+    ADD CONSTRAINT contact_contactpage_feed_image_id_1f79cfe3_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: contact_contactpage contact_contactpage_page_ptr_id_143c93c1_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY contact_contactpage
-    ADD CONSTRAINT contact_contactpage_page_ptr_id_143c93c1_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.contact_contactpage
+    ADD CONSTRAINT contact_contactpage_page_ptr_id_143c93c1_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: contact_formfield contact_formfi_page_id_3ee48e6d_fk_contact_formpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY contact_formfield
-    ADD CONSTRAINT contact_formfi_page_id_3ee48e6d_fk_contact_formpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES contact_formpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.contact_formfield
+    ADD CONSTRAINT contact_formfi_page_id_3ee48e6d_fk_contact_formpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.contact_formpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: contact_formpage contact_formpage_feed_image_id_0303d2c9_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY contact_formpage
-    ADD CONSTRAINT contact_formpage_feed_image_id_0303d2c9_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.contact_formpage
+    ADD CONSTRAINT contact_formpage_feed_image_id_0303d2c9_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: contact_formpage contact_formpage_page_ptr_id_93c16e67_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY contact_formpage
-    ADD CONSTRAINT contact_formpage_page_ptr_id_93c16e67_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.contact_formpage
+    ADD CONSTRAINT contact_formpage_page_ptr_id_93c16e67_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: products_productpagetag content_object_id_1985a884_fk_products_productpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productpagetag
-    ADD CONSTRAINT content_object_id_1985a884_fk_products_productpage_page_ptr_id FOREIGN KEY (content_object_id) REFERENCES products_productpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.products_productpagetag
+    ADD CONSTRAINT content_object_id_1985a884_fk_products_productpage_page_ptr_id FOREIGN KEY (content_object_id) REFERENCES public.products_productpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: django_admin_log django_admin_content_type_id_c4bce8eb_fk_django_content_type_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY django_admin_log
-    ADD CONSTRAINT django_admin_content_type_id_c4bce8eb_fk_django_content_type_id FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_content_type_id_c4bce8eb_fk_django_content_type_id FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY django_admin_log
-    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: documents_gallery_documentspage documents_gall_feed_image_id_72f32dc7_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY documents_gallery_documentspage
-    ADD CONSTRAINT documents_gall_feed_image_id_72f32dc7_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.documents_gallery_documentspage
+    ADD CONSTRAINT documents_gall_feed_image_id_72f32dc7_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: documents_gallery_documentsindexpage documents_gall_feed_image_id_732ac53b_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY documents_gallery_documentsindexpage
-    ADD CONSTRAINT documents_gall_feed_image_id_732ac53b_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.documents_gallery_documentsindexpage
+    ADD CONSTRAINT documents_gall_feed_image_id_732ac53b_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: documents_gallery_documentspage documents_gallery_d_page_ptr_id_ef81894a_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY documents_gallery_documentspage
-    ADD CONSTRAINT documents_gallery_d_page_ptr_id_ef81894a_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.documents_gallery_documentspage
+    ADD CONSTRAINT documents_gallery_d_page_ptr_id_ef81894a_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: documents_gallery_documentsindexpage documents_gallery_d_page_ptr_id_f7fa951f_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY documents_gallery_documentsindexpage
-    ADD CONSTRAINT documents_gallery_d_page_ptr_id_f7fa951f_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.documents_gallery_documentsindexpage
+    ADD CONSTRAINT documents_gallery_d_page_ptr_id_f7fa951f_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: documents_gallery_documentspagetag documents_gallery_documentspag_tag_id_50625f82_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY documents_gallery_documentspagetag
-    ADD CONSTRAINT documents_gallery_documentspag_tag_id_50625f82_fk_taggit_tag_id FOREIGN KEY (tag_id) REFERENCES taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.documents_gallery_documentspagetag
+    ADD CONSTRAINT documents_gallery_documentspag_tag_id_50625f82_fk_taggit_tag_id FOREIGN KEY (tag_id) REFERENCES public.taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventpagetag even_content_object_id_a9eee66f_fk_events_eventpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagetag
-    ADD CONSTRAINT even_content_object_id_a9eee66f_fk_events_eventpage_page_ptr_id FOREIGN KEY (content_object_id) REFERENCES events_eventpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventpagetag
+    ADD CONSTRAINT even_content_object_id_a9eee66f_fk_events_eventpage_page_ptr_id FOREIGN KEY (content_object_id) REFERENCES public.events_eventpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventindexpagerelatedlink events_ev_page_id_7ac7d364_fk_events_eventindexpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventindexpagerelatedlink
-    ADD CONSTRAINT events_ev_page_id_7ac7d364_fk_events_eventindexpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES events_eventindexpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventindexpagerelatedlink
+    ADD CONSTRAINT events_ev_page_id_7ac7d364_fk_events_eventindexpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.events_eventindexpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventpagespeaker events_eve_link_document_id_0252ea0f_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagespeaker
-    ADD CONSTRAINT events_eve_link_document_id_0252ea0f_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventpagespeaker
+    ADD CONSTRAINT events_eve_link_document_id_0252ea0f_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventpagecarouselitem events_eve_link_document_id_85c089ab_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagecarouselitem
-    ADD CONSTRAINT events_eve_link_document_id_85c089ab_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventpagecarouselitem
+    ADD CONSTRAINT events_eve_link_document_id_85c089ab_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventpagerelatedlink events_eve_link_document_id_bc602f32_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagerelatedlink
-    ADD CONSTRAINT events_eve_link_document_id_bc602f32_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventpagerelatedlink
+    ADD CONSTRAINT events_eve_link_document_id_bc602f32_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventindexpagerelatedlink events_eve_link_document_id_f50895d4_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventindexpagerelatedlink
-    ADD CONSTRAINT events_eve_link_document_id_f50895d4_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventindexpagerelatedlink
+    ADD CONSTRAINT events_eve_link_document_id_f50895d4_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventindexpagerelatedlink events_eventindexp_link_page_id_4c88907b_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventindexpagerelatedlink
-    ADD CONSTRAINT events_eventindexp_link_page_id_4c88907b_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventindexpagerelatedlink
+    ADD CONSTRAINT events_eventindexp_link_page_id_4c88907b_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventindexpage events_eventindexpa_page_ptr_id_d4ed8796_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventindexpage
-    ADD CONSTRAINT events_eventindexpa_page_ptr_id_d4ed8796_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventindexpage
+    ADD CONSTRAINT events_eventindexpa_page_ptr_id_d4ed8796_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventindexpage events_eventindexpag_feed_image_id_d6958e2f_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventindexpage
-    ADD CONSTRAINT events_eventindexpag_feed_image_id_d6958e2f_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventindexpage
+    ADD CONSTRAINT events_eventindexpag_feed_image_id_d6958e2f_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventpage events_eventpa_feed_image_id_25a625d0_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpage
-    ADD CONSTRAINT events_eventpa_feed_image_id_25a625d0_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventpage
+    ADD CONSTRAINT events_eventpa_feed_image_id_25a625d0_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventpagespeaker events_eventpa_page_id_10883f65_fk_events_eventpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagespeaker
-    ADD CONSTRAINT events_eventpa_page_id_10883f65_fk_events_eventpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES events_eventpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventpagespeaker
+    ADD CONSTRAINT events_eventpa_page_id_10883f65_fk_events_eventpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.events_eventpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventpagerelatedlink events_eventpa_page_id_2da96f87_fk_events_eventpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagerelatedlink
-    ADD CONSTRAINT events_eventpa_page_id_2da96f87_fk_events_eventpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES events_eventpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventpagerelatedlink
+    ADD CONSTRAINT events_eventpa_page_id_2da96f87_fk_events_eventpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.events_eventpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventpagecarouselitem events_eventpa_page_id_eec52587_fk_events_eventpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagecarouselitem
-    ADD CONSTRAINT events_eventpa_page_id_eec52587_fk_events_eventpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES events_eventpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventpagecarouselitem
+    ADD CONSTRAINT events_eventpa_page_id_eec52587_fk_events_eventpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.events_eventpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventpage events_eventpage_page_ptr_id_c6701067_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpage
-    ADD CONSTRAINT events_eventpage_page_ptr_id_c6701067_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventpage
+    ADD CONSTRAINT events_eventpage_page_ptr_id_c6701067_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventpagecarouselitem events_eventpageca_link_page_id_388fd2d0_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagecarouselitem
-    ADD CONSTRAINT events_eventpageca_link_page_id_388fd2d0_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventpagecarouselitem
+    ADD CONSTRAINT events_eventpageca_link_page_id_388fd2d0_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventpagecarouselitem events_eventpagecar_image_id_fb4b4dcd_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagecarouselitem
-    ADD CONSTRAINT events_eventpagecar_image_id_fb4b4dcd_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventpagecarouselitem
+    ADD CONSTRAINT events_eventpagecar_image_id_fb4b4dcd_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventpagerelatedlink events_eventpagere_link_page_id_378ea87f_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagerelatedlink
-    ADD CONSTRAINT events_eventpagere_link_page_id_378ea87f_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventpagerelatedlink
+    ADD CONSTRAINT events_eventpagere_link_page_id_378ea87f_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventpagespeaker events_eventpagesp_link_page_id_f4549a64_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagespeaker
-    ADD CONSTRAINT events_eventpagesp_link_page_id_f4549a64_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventpagespeaker
+    ADD CONSTRAINT events_eventpagesp_link_page_id_f4549a64_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventpagespeaker events_eventpagespe_image_id_f48678eb_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagespeaker
-    ADD CONSTRAINT events_eventpagespe_image_id_f48678eb_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventpagespeaker
+    ADD CONSTRAINT events_eventpagespe_image_id_f48678eb_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: events_eventpagetag events_eventpagetag_tag_id_b811cfc5_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY events_eventpagetag
-    ADD CONSTRAINT events_eventpagetag_tag_id_b811cfc5_fk_taggit_tag_id FOREIGN KEY (tag_id) REFERENCES taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.events_eventpagetag
+    ADD CONSTRAINT events_eventpagetag_tag_id_b811cfc5_fk_taggit_tag_id FOREIGN KEY (tag_id) REFERENCES public.taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: photo_gallery_gallerypagetag f30176145dc37361fd7bcfd229367ca4; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY photo_gallery_gallerypagetag
-    ADD CONSTRAINT f30176145dc37361fd7bcfd229367ca4 FOREIGN KEY (content_object_id) REFERENCES photo_gallery_gallerypage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.photo_gallery_gallerypagetag
+    ADD CONSTRAINT f30176145dc37361fd7bcfd229367ca4 FOREIGN KEY (content_object_id) REFERENCES public.photo_gallery_gallerypage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_advert pages_adve_link_document_id_d804b3dc_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_advert
-    ADD CONSTRAINT pages_adve_link_document_id_d804b3dc_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_advert
+    ADD CONSTRAINT pages_adve_link_document_id_d804b3dc_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_advert pages_advert_image_id_c3df93a1_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_advert
-    ADD CONSTRAINT pages_advert_image_id_c3df93a1_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_advert
+    ADD CONSTRAINT pages_advert_image_id_c3df93a1_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_advert pages_advert_link_page_id_ae00fe23_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_advert
-    ADD CONSTRAINT pages_advert_link_page_id_ae00fe23_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_advert
+    ADD CONSTRAINT pages_advert_link_page_id_ae00fe23_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_advert pages_advert_page_id_21245cc0_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_advert
-    ADD CONSTRAINT pages_advert_page_id_21245cc0_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_advert
+    ADD CONSTRAINT pages_advert_page_id_21245cc0_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_contentblock pages_cont_link_document_id_0b825445_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_contentblock
-    ADD CONSTRAINT pages_cont_link_document_id_0b825445_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_contentblock
+    ADD CONSTRAINT pages_cont_link_document_id_0b825445_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_contentblock pages_contentblock_link_page_id_84f7b516_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_contentblock
-    ADD CONSTRAINT pages_contentblock_link_page_id_84f7b516_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_contentblock
+    ADD CONSTRAINT pages_contentblock_link_page_id_84f7b516_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_contentblock pages_contentblock_page_id_d29244b9_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_contentblock
-    ADD CONSTRAINT pages_contentblock_page_id_d29244b9_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_contentblock
+    ADD CONSTRAINT pages_contentblock_page_id_d29244b9_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_faqspage pages_faqspage_page_ptr_id_15a8d513_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_faqspage
-    ADD CONSTRAINT pages_faqspage_page_ptr_id_15a8d513_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_faqspage
+    ADD CONSTRAINT pages_faqspage_page_ptr_id_15a8d513_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_homepagerelatedlink pages_home_link_document_id_1364f817_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepagerelatedlink
-    ADD CONSTRAINT pages_home_link_document_id_1364f817_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_homepagerelatedlink
+    ADD CONSTRAINT pages_home_link_document_id_1364f817_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_homepagecarouselitem pages_home_link_document_id_902c9e7d_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepagecarouselitem
-    ADD CONSTRAINT pages_home_link_document_id_902c9e7d_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_homepagecarouselitem
+    ADD CONSTRAINT pages_home_link_document_id_902c9e7d_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_homepagecontentitem pages_home_link_document_id_a2552580_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepagecontentitem
-    ADD CONSTRAINT pages_home_link_document_id_a2552580_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_homepagecontentitem
+    ADD CONSTRAINT pages_home_link_document_id_a2552580_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_homepage pages_homepage_feed_image_id_4ebba3a8_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepage
-    ADD CONSTRAINT pages_homepage_feed_image_id_4ebba3a8_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_homepage
+    ADD CONSTRAINT pages_homepage_feed_image_id_4ebba3a8_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_homepage pages_homepage_page_ptr_id_5b805d74_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepage
-    ADD CONSTRAINT pages_homepage_page_ptr_id_5b805d74_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_homepage
+    ADD CONSTRAINT pages_homepage_page_ptr_id_5b805d74_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_homepagecarouselitem pages_homepageca_page_id_915b43c4_fk_pages_homepage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepagecarouselitem
-    ADD CONSTRAINT pages_homepageca_page_id_915b43c4_fk_pages_homepage_page_ptr_id FOREIGN KEY (page_id) REFERENCES pages_homepage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_homepagecarouselitem
+    ADD CONSTRAINT pages_homepageca_page_id_915b43c4_fk_pages_homepage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.pages_homepage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_homepagecarouselitem pages_homepagecaro_link_page_id_799b1594_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepagecarouselitem
-    ADD CONSTRAINT pages_homepagecaro_link_page_id_799b1594_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_homepagecarouselitem
+    ADD CONSTRAINT pages_homepagecaro_link_page_id_799b1594_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_homepagecarouselitem pages_homepagecarou_image_id_45b3424e_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepagecarouselitem
-    ADD CONSTRAINT pages_homepagecarou_image_id_45b3424e_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_homepagecarouselitem
+    ADD CONSTRAINT pages_homepagecarou_image_id_45b3424e_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_homepagecontentitem pages_homepageco_page_id_8b646417_fk_pages_homepage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepagecontentitem
-    ADD CONSTRAINT pages_homepageco_page_id_8b646417_fk_pages_homepage_page_ptr_id FOREIGN KEY (page_id) REFERENCES pages_homepage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_homepagecontentitem
+    ADD CONSTRAINT pages_homepageco_page_id_8b646417_fk_pages_homepage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.pages_homepage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_homepagecontentitem pages_homepagecont_link_page_id_9aa371ca_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepagecontentitem
-    ADD CONSTRAINT pages_homepagecont_link_page_id_9aa371ca_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_homepagecontentitem
+    ADD CONSTRAINT pages_homepagecont_link_page_id_9aa371ca_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_homepagecontentitem pages_homepageconte_image_id_85ec39f6_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepagecontentitem
-    ADD CONSTRAINT pages_homepageconte_image_id_85ec39f6_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_homepagecontentitem
+    ADD CONSTRAINT pages_homepageconte_image_id_85ec39f6_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_homepagerelatedlink pages_homepagere_page_id_b0a3517a_fk_pages_homepage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepagerelatedlink
-    ADD CONSTRAINT pages_homepagere_page_id_b0a3517a_fk_pages_homepage_page_ptr_id FOREIGN KEY (page_id) REFERENCES pages_homepage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_homepagerelatedlink
+    ADD CONSTRAINT pages_homepagere_page_id_b0a3517a_fk_pages_homepage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.pages_homepage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_homepagerelatedlink pages_homepagerela_link_page_id_87ab8ff4_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_homepagerelatedlink
-    ADD CONSTRAINT pages_homepagerela_link_page_id_87ab8ff4_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_homepagerelatedlink
+    ADD CONSTRAINT pages_homepagerela_link_page_id_87ab8ff4_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_standardindexpagerelatedlink pages_s_page_id_d0df6fde_fk_pages_standardindexpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardindexpagerelatedlink
-    ADD CONSTRAINT pages_s_page_id_d0df6fde_fk_pages_standardindexpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES pages_standardindexpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_standardindexpagerelatedlink
+    ADD CONSTRAINT pages_s_page_id_d0df6fde_fk_pages_standardindexpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.pages_standardindexpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_sitebranding pages_sitebranding_logo_id_2841159b_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_sitebranding
-    ADD CONSTRAINT pages_sitebranding_logo_id_2841159b_fk_wagtailimages_image_id FOREIGN KEY (logo_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_sitebranding
+    ADD CONSTRAINT pages_sitebranding_logo_id_2841159b_fk_wagtailimages_image_id FOREIGN KEY (logo_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_sitebranding pages_sitebranding_site_id_04cc1128_fk_wagtailcore_site_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_sitebranding
-    ADD CONSTRAINT pages_sitebranding_site_id_04cc1128_fk_wagtailcore_site_id FOREIGN KEY (site_id) REFERENCES wagtailcore_site(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_sitebranding
+    ADD CONSTRAINT pages_sitebranding_site_id_04cc1128_fk_wagtailcore_site_id FOREIGN KEY (site_id) REFERENCES public.wagtailcore_site(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_socialmediasettings pages_socialmediasettin_site_id_48a3ffb9_fk_wagtailcore_site_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_socialmediasettings
-    ADD CONSTRAINT pages_socialmediasettin_site_id_48a3ffb9_fk_wagtailcore_site_id FOREIGN KEY (site_id) REFERENCES wagtailcore_site(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_socialmediasettings
+    ADD CONSTRAINT pages_socialmediasettin_site_id_48a3ffb9_fk_wagtailcore_site_id FOREIGN KEY (site_id) REFERENCES public.wagtailcore_site(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_standardpagecarouselitem pages_stan_link_document_id_1e821170_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardpagecarouselitem
-    ADD CONSTRAINT pages_stan_link_document_id_1e821170_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_standardpagecarouselitem
+    ADD CONSTRAINT pages_stan_link_document_id_1e821170_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_standardindexpagerelatedlink pages_stan_link_document_id_ab0a20f8_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardindexpagerelatedlink
-    ADD CONSTRAINT pages_stan_link_document_id_ab0a20f8_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_standardindexpagerelatedlink
+    ADD CONSTRAINT pages_stan_link_document_id_ab0a20f8_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_standardpagerelatedlink pages_stan_link_document_id_c02096ae_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardpagerelatedlink
-    ADD CONSTRAINT pages_stan_link_document_id_c02096ae_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_standardpagerelatedlink
+    ADD CONSTRAINT pages_stan_link_document_id_c02096ae_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_standardpagerelatedlink pages_standa_page_id_1c982abb_fk_pages_standardpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardpagerelatedlink
-    ADD CONSTRAINT pages_standa_page_id_1c982abb_fk_pages_standardpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES pages_standardpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_standardpagerelatedlink
+    ADD CONSTRAINT pages_standa_page_id_1c982abb_fk_pages_standardpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.pages_standardpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_standardpagecarouselitem pages_standa_page_id_ab87f566_fk_pages_standardpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardpagecarouselitem
-    ADD CONSTRAINT pages_standa_page_id_ab87f566_fk_pages_standardpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES pages_standardpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_standardpagecarouselitem
+    ADD CONSTRAINT pages_standa_page_id_ab87f566_fk_pages_standardpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.pages_standardpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_standardpage pages_standard_feed_image_id_41c2eccd_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardpage
-    ADD CONSTRAINT pages_standard_feed_image_id_41c2eccd_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_standardpage
+    ADD CONSTRAINT pages_standard_feed_image_id_41c2eccd_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_standardindexpage pages_standard_feed_image_id_a65c3494_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardindexpage
-    ADD CONSTRAINT pages_standard_feed_image_id_a65c3494_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_standardindexpage
+    ADD CONSTRAINT pages_standard_feed_image_id_a65c3494_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_standardindexpagerelatedlink pages_standardinde_link_page_id_8ad61c91_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardindexpagerelatedlink
-    ADD CONSTRAINT pages_standardinde_link_page_id_8ad61c91_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_standardindexpagerelatedlink
+    ADD CONSTRAINT pages_standardinde_link_page_id_8ad61c91_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_standardindexpage pages_standardindex_page_ptr_id_70a0d3dc_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardindexpage
-    ADD CONSTRAINT pages_standardindex_page_ptr_id_70a0d3dc_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_standardindexpage
+    ADD CONSTRAINT pages_standardindex_page_ptr_id_70a0d3dc_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_standardpagecarouselitem pages_standardpage_link_page_id_28e4472a_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardpagecarouselitem
-    ADD CONSTRAINT pages_standardpage_link_page_id_28e4472a_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_standardpagecarouselitem
+    ADD CONSTRAINT pages_standardpage_link_page_id_28e4472a_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_standardpagerelatedlink pages_standardpage_link_page_id_29341951_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardpagerelatedlink
-    ADD CONSTRAINT pages_standardpage_link_page_id_29341951_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_standardpagerelatedlink
+    ADD CONSTRAINT pages_standardpage_link_page_id_29341951_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_standardpage pages_standardpage_page_ptr_id_8d8149d9_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardpage
-    ADD CONSTRAINT pages_standardpage_page_ptr_id_8d8149d9_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_standardpage
+    ADD CONSTRAINT pages_standardpage_page_ptr_id_8d8149d9_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_standardpagecarouselitem pages_standardpagec_image_id_8d81528b_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_standardpagecarouselitem
-    ADD CONSTRAINT pages_standardpagec_image_id_8d81528b_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_standardpagecarouselitem
+    ADD CONSTRAINT pages_standardpagec_image_id_8d81528b_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_testimonial pages_test_link_document_id_3c7b9377_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_testimonial
-    ADD CONSTRAINT pages_test_link_document_id_3c7b9377_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_testimonial
+    ADD CONSTRAINT pages_test_link_document_id_3c7b9377_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_testimonial pages_testimonial_link_page_id_70b58081_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_testimonial
-    ADD CONSTRAINT pages_testimonial_link_page_id_70b58081_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_testimonial
+    ADD CONSTRAINT pages_testimonial_link_page_id_70b58081_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_testimonial pages_testimonial_page_id_aedaf53f_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_testimonial
-    ADD CONSTRAINT pages_testimonial_page_id_aedaf53f_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_testimonial
+    ADD CONSTRAINT pages_testimonial_page_id_aedaf53f_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_testimonial pages_testimonial_photo_id_29360729_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_testimonial
-    ADD CONSTRAINT pages_testimonial_photo_id_29360729_fk_wagtailimages_image_id FOREIGN KEY (photo_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_testimonial
+    ADD CONSTRAINT pages_testimonial_photo_id_29360729_fk_wagtailimages_image_id FOREIGN KEY (photo_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_testimonialpage pages_testimonialpag_feed_image_id_598eb509_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_testimonialpage
-    ADD CONSTRAINT pages_testimonialpag_feed_image_id_598eb509_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_testimonialpage
+    ADD CONSTRAINT pages_testimonialpag_feed_image_id_598eb509_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_testimonialpage pages_testimonialpag_page_ptr_id_2ec75089_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_testimonialpage
-    ADD CONSTRAINT pages_testimonialpag_page_ptr_id_2ec75089_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_testimonialpage
+    ADD CONSTRAINT pages_testimonialpag_page_ptr_id_2ec75089_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_videogallerypage pages_videogallerypa_feed_image_id_250d9360_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_videogallerypage
-    ADD CONSTRAINT pages_videogallerypa_feed_image_id_250d9360_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_videogallerypage
+    ADD CONSTRAINT pages_videogallerypa_feed_image_id_250d9360_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_videogallerypage pages_videogallerypa_page_ptr_id_e99012e4_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_videogallerypage
-    ADD CONSTRAINT pages_videogallerypa_page_ptr_id_e99012e4_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_videogallerypage
+    ADD CONSTRAINT pages_videogallerypa_page_ptr_id_e99012e4_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_videogallerypagecarouselitem pages_videopagecarou_image_id_2817929a_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_videogallerypagecarouselitem
-    ADD CONSTRAINT pages_videopagecarou_image_id_2817929a_fk_wagtailim FOREIGN KEY (image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_videogallerypagecarouselitem
+    ADD CONSTRAINT pages_videopagecarou_image_id_2817929a_fk_wagtailim FOREIGN KEY (image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_videogallerypagecarouselitem pages_videopagecarou_link_document_id_b7d2ab0f_fk_wagtaildo; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_videogallerypagecarouselitem
-    ADD CONSTRAINT pages_videopagecarou_link_document_id_b7d2ab0f_fk_wagtaildo FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_videogallerypagecarouselitem
+    ADD CONSTRAINT pages_videopagecarou_link_document_id_b7d2ab0f_fk_wagtaildo FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: pages_videogallerypagecarouselitem pages_videopagecarou_link_page_id_16ed2e64_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY pages_videogallerypagecarouselitem
-    ADD CONSTRAINT pages_videopagecarou_link_page_id_16ed2e64_fk_wagtailco FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.pages_videogallerypagecarouselitem
+    ADD CONSTRAINT pages_videopagecarou_link_page_id_16ed2e64_fk_wagtailco FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: people_personpagetag peo_content_object_id_219202ed_fk_people_personpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personpagetag
-    ADD CONSTRAINT peo_content_object_id_219202ed_fk_people_personpage_page_ptr_id FOREIGN KEY (content_object_id) REFERENCES people_personpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.people_personpagetag
+    ADD CONSTRAINT peo_content_object_id_219202ed_fk_people_personpage_page_ptr_id FOREIGN KEY (content_object_id) REFERENCES public.people_personpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: people_personindexpagerelatedlink people_p_page_id_9074b56c_fk_people_personindexpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personindexpagerelatedlink
-    ADD CONSTRAINT people_p_page_id_9074b56c_fk_people_personindexpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES people_personindexpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.people_personindexpagerelatedlink
+    ADD CONSTRAINT people_p_page_id_9074b56c_fk_people_personindexpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.people_personindexpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: people_personindexpagerelatedlink people_per_link_document_id_6fb113f2_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personindexpagerelatedlink
-    ADD CONSTRAINT people_per_link_document_id_6fb113f2_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.people_personindexpagerelatedlink
+    ADD CONSTRAINT people_per_link_document_id_6fb113f2_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: people_personpagerelatedlink people_per_link_document_id_d330a140_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personpagerelatedlink
-    ADD CONSTRAINT people_per_link_document_id_d330a140_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.people_personpagerelatedlink
+    ADD CONSTRAINT people_per_link_document_id_d330a140_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: people_personpagerelatedlink people_person_page_id_37654932_fk_people_personpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personpagerelatedlink
-    ADD CONSTRAINT people_person_page_id_37654932_fk_people_personpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES people_personpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.people_personpagerelatedlink
+    ADD CONSTRAINT people_person_page_id_37654932_fk_people_personpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.people_personpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: people_personindexpagerelatedlink people_personindex_link_page_id_9a45cdb2_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personindexpagerelatedlink
-    ADD CONSTRAINT people_personindex_link_page_id_9a45cdb2_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.people_personindexpagerelatedlink
+    ADD CONSTRAINT people_personindex_link_page_id_9a45cdb2_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: people_personindexpage people_personindexp_page_ptr_id_2aafa812_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personindexpage
-    ADD CONSTRAINT people_personindexp_page_ptr_id_2aafa812_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.people_personindexpage
+    ADD CONSTRAINT people_personindexp_page_ptr_id_2aafa812_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: people_personindexpage people_personindexpa_feed_image_id_ea7ff652_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personindexpage
-    ADD CONSTRAINT people_personindexpa_feed_image_id_ea7ff652_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.people_personindexpage
+    ADD CONSTRAINT people_personindexpa_feed_image_id_ea7ff652_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: people_personpage people_personp_feed_image_id_c8aaeda0_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personpage
-    ADD CONSTRAINT people_personp_feed_image_id_c8aaeda0_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.people_personpage
+    ADD CONSTRAINT people_personp_feed_image_id_c8aaeda0_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: people_personpage people_personpage_image_id_f13def2e_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personpage
-    ADD CONSTRAINT people_personpage_image_id_f13def2e_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.people_personpage
+    ADD CONSTRAINT people_personpage_image_id_f13def2e_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: people_personpage people_personpage_page_ptr_id_0f038b98_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personpage
-    ADD CONSTRAINT people_personpage_page_ptr_id_0f038b98_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.people_personpage
+    ADD CONSTRAINT people_personpage_page_ptr_id_0f038b98_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: people_personpage people_personpage_role_id_534a1c51_fk_people_personrole_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personpage
-    ADD CONSTRAINT people_personpage_role_id_534a1c51_fk_people_personrole_id FOREIGN KEY (role_id) REFERENCES people_personrole(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.people_personpage
+    ADD CONSTRAINT people_personpage_role_id_534a1c51_fk_people_personrole_id FOREIGN KEY (role_id) REFERENCES public.people_personrole(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: people_personpagerelatedlink people_personpager_link_page_id_1f38718a_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personpagerelatedlink
-    ADD CONSTRAINT people_personpager_link_page_id_1f38718a_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.people_personpagerelatedlink
+    ADD CONSTRAINT people_personpager_link_page_id_1f38718a_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: people_personpagetag people_personpagetag_tag_id_e0d52d9d_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY people_personpagetag
-    ADD CONSTRAINT people_personpagetag_tag_id_e0d52d9d_fk_taggit_tag_id FOREIGN KEY (tag_id) REFERENCES taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.people_personpagetag
+    ADD CONSTRAINT people_personpagetag_tag_id_e0d52d9d_fk_taggit_tag_id FOREIGN KEY (tag_id) REFERENCES public.taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: photo_gallery_gallerypage photo_gallery__feed_image_id_2efaf002_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY photo_gallery_gallerypage
-    ADD CONSTRAINT photo_gallery__feed_image_id_2efaf002_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.photo_gallery_gallerypage
+    ADD CONSTRAINT photo_gallery__feed_image_id_2efaf002_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: photo_gallery_galleryindexpage photo_gallery__feed_image_id_8fa24cf4_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY photo_gallery_galleryindexpage
-    ADD CONSTRAINT photo_gallery__feed_image_id_8fa24cf4_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.photo_gallery_galleryindexpage
+    ADD CONSTRAINT photo_gallery__feed_image_id_8fa24cf4_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: photo_gallery_gallerypage photo_gallery_galle_page_ptr_id_11be90ff_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY photo_gallery_gallerypage
-    ADD CONSTRAINT photo_gallery_galle_page_ptr_id_11be90ff_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.photo_gallery_gallerypage
+    ADD CONSTRAINT photo_gallery_galle_page_ptr_id_11be90ff_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: photo_gallery_galleryindexpage photo_gallery_galle_page_ptr_id_44a4f590_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY photo_gallery_galleryindexpage
-    ADD CONSTRAINT photo_gallery_galle_page_ptr_id_44a4f590_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.photo_gallery_galleryindexpage
+    ADD CONSTRAINT photo_gallery_galle_page_ptr_id_44a4f590_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: photo_gallery_gallerypagetag photo_gallery_gallerypagetag_tag_id_61ab4280_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY photo_gallery_gallerypagetag
-    ADD CONSTRAINT photo_gallery_gallerypagetag_tag_id_61ab4280_fk_taggit_tag_id FOREIGN KEY (tag_id) REFERENCES taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.photo_gallery_gallerypagetag
+    ADD CONSTRAINT photo_gallery_gallerypagetag_tag_id_61ab4280_fk_taggit_tag_id FOREIGN KEY (tag_id) REFERENCES public.taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: postgres_search_indexentry postgres_search_inde_content_type_id_d805086f_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY postgres_search_indexentry
-    ADD CONSTRAINT postgres_search_inde_content_type_id_d805086f_fk_django_co FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.postgres_search_indexentry
+    ADD CONSTRAINT postgres_search_inde_content_type_id_d805086f_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: products_productindexpagerelatedlink produ_page_id_320a0204_fk_products_productindexpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productindexpagerelatedlink
-    ADD CONSTRAINT produ_page_id_320a0204_fk_products_productindexpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES products_productindexpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.products_productindexpagerelatedlink
+    ADD CONSTRAINT produ_page_id_320a0204_fk_products_productindexpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.products_productindexpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: products_productindexpagerelatedlink products_p_link_document_id_7589e588_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productindexpagerelatedlink
-    ADD CONSTRAINT products_p_link_document_id_7589e588_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.products_productindexpagerelatedlink
+    ADD CONSTRAINT products_p_link_document_id_7589e588_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: products_productpagerelatedlink products_p_link_document_id_d6cd7769_fk_wagtaildocs_document_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productpagerelatedlink
-    ADD CONSTRAINT products_p_link_document_id_d6cd7769_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.products_productpagerelatedlink
+    ADD CONSTRAINT products_p_link_document_id_d6cd7769_fk_wagtaildocs_document_id FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: products_productpagerelatedlink products_p_page_id_855d9c33_fk_products_productpage_page_ptr_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productpagerelatedlink
-    ADD CONSTRAINT products_p_page_id_855d9c33_fk_products_productpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES products_productpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.products_productpagerelatedlink
+    ADD CONSTRAINT products_p_page_id_855d9c33_fk_products_productpage_page_ptr_id FOREIGN KEY (page_id) REFERENCES public.products_productpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: products_productpage products_produ_feed_image_id_fc5dc22b_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productpage
-    ADD CONSTRAINT products_produ_feed_image_id_fc5dc22b_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.products_productpage
+    ADD CONSTRAINT products_produ_feed_image_id_fc5dc22b_fk_wagtailimages_image_id FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: products_productindexpagerelatedlink products_productin_link_page_id_cc9048a1_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productindexpagerelatedlink
-    ADD CONSTRAINT products_productin_link_page_id_cc9048a1_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.products_productindexpagerelatedlink
+    ADD CONSTRAINT products_productin_link_page_id_cc9048a1_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: products_productindexpage products_productind_page_ptr_id_896e5596_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productindexpage
-    ADD CONSTRAINT products_productind_page_ptr_id_896e5596_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.products_productindexpage
+    ADD CONSTRAINT products_productind_page_ptr_id_896e5596_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: products_productindexpage products_productinde_feed_image_id_f1b46ba8_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productindexpage
-    ADD CONSTRAINT products_productinde_feed_image_id_f1b46ba8_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.products_productindexpage
+    ADD CONSTRAINT products_productinde_feed_image_id_f1b46ba8_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: products_productpagerelatedlink products_productpa_link_page_id_39628d87_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productpagerelatedlink
-    ADD CONSTRAINT products_productpa_link_page_id_39628d87_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.products_productpagerelatedlink
+    ADD CONSTRAINT products_productpa_link_page_id_39628d87_fk_wagtailcore_page_id FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: products_productpage products_productpag_image_id_b4d3829e_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productpage
-    ADD CONSTRAINT products_productpag_image_id_b4d3829e_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.products_productpage
+    ADD CONSTRAINT products_productpag_image_id_b4d3829e_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: products_productpage products_productpag_page_ptr_id_d4d9ff65_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productpage
-    ADD CONSTRAINT products_productpag_page_ptr_id_d4d9ff65_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.products_productpage
+    ADD CONSTRAINT products_productpag_page_ptr_id_d4d9ff65_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: products_productpagetag products_productpagetag_tag_id_f0c81f66_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY products_productpagetag
-    ADD CONSTRAINT products_productpagetag_tag_id_f0c81f66_fk_taggit_tag_id FOREIGN KEY (tag_id) REFERENCES taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.products_productpagetag
+    ADD CONSTRAINT products_productpagetag_tag_id_f0c81f66_fk_taggit_tag_id FOREIGN KEY (tag_id) REFERENCES public.taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: taggit_taggeditem taggit_tagge_content_type_id_9957a03c_fk_django_content_type_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taggit_taggeditem
-    ADD CONSTRAINT taggit_tagge_content_type_id_9957a03c_fk_django_content_type_id FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.taggit_taggeditem
+    ADD CONSTRAINT taggit_tagge_content_type_id_9957a03c_fk_django_content_type_id FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: taggit_taggeditem taggit_taggeditem_tag_id_f4f5b767_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY taggit_taggeditem
-    ADD CONSTRAINT taggit_taggeditem_tag_id_f4f5b767_fk_taggit_tag_id FOREIGN KEY (tag_id) REFERENCES taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.taggit_taggeditem
+    ADD CONSTRAINT taggit_taggeditem_tag_id_f4f5b767_fk_taggit_tag_id FOREIGN KEY (tag_id) REFERENCES public.taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtail_feeds_rssfeedssettings wagtail_feeds_rssfeedss_site_id_86fa0b0d_fk_wagtailcore_site_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtail_feeds_rssfeedssettings
-    ADD CONSTRAINT wagtail_feeds_rssfeedss_site_id_86fa0b0d_fk_wagtailcore_site_id FOREIGN KEY (site_id) REFERENCES wagtailcore_site(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtail_feeds_rssfeedssettings
+    ADD CONSTRAINT wagtail_feeds_rssfeedss_site_id_86fa0b0d_fk_wagtailcore_site_id FOREIGN KEY (site_id) REFERENCES public.wagtailcore_site(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailcore_page wagtailcore__content_type_id_c28424df_fk_django_content_type_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_page
-    ADD CONSTRAINT wagtailcore__content_type_id_c28424df_fk_django_content_type_id FOREIGN KEY (content_type_id) REFERENCES django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailcore_page
+    ADD CONSTRAINT wagtailcore__content_type_id_c28424df_fk_django_content_type_id FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailcore_collectionviewrestriction wagtailcore_collecti_collection_id_761908ec_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_collectionviewrestriction
-    ADD CONSTRAINT wagtailcore_collecti_collection_id_761908ec_fk_wagtailco FOREIGN KEY (collection_id) REFERENCES wagtailcore_collection(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailcore_collectionviewrestriction
+    ADD CONSTRAINT wagtailcore_collecti_collection_id_761908ec_fk_wagtailco FOREIGN KEY (collection_id) REFERENCES public.wagtailcore_collection(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailcore_collectionviewrestriction_groups wagtailcore_collecti_collectionviewrestri_47320efd_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_collectionviewrestriction_groups
-    ADD CONSTRAINT wagtailcore_collecti_collectionviewrestri_47320efd_fk_wagtailco FOREIGN KEY (collectionviewrestriction_id) REFERENCES wagtailcore_collectionviewrestriction(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailcore_collectionviewrestriction_groups
+    ADD CONSTRAINT wagtailcore_collecti_collectionviewrestri_47320efd_fk_wagtailco FOREIGN KEY (collectionviewrestriction_id) REFERENCES public.wagtailcore_collectionviewrestriction(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailcore_collectionviewrestriction_groups wagtailcore_collecti_group_id_1823f2a3_fk_auth_grou; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_collectionviewrestriction_groups
-    ADD CONSTRAINT wagtailcore_collecti_group_id_1823f2a3_fk_auth_grou FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailcore_collectionviewrestriction_groups
+    ADD CONSTRAINT wagtailcore_collecti_group_id_1823f2a3_fk_auth_grou FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailcore_groupcollectionpermission wagtailcore_collection_id_5423575a_fk_wagtailcore_collection_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_groupcollectionpermission
-    ADD CONSTRAINT wagtailcore_collection_id_5423575a_fk_wagtailcore_collection_id FOREIGN KEY (collection_id) REFERENCES wagtailcore_collection(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailcore_groupcollectionpermission
+    ADD CONSTRAINT wagtailcore_collection_id_5423575a_fk_wagtailcore_collection_id FOREIGN KEY (collection_id) REFERENCES public.wagtailcore_collection(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailcore_groupcollectionpermission wagtailcore_groupc_permission_id_1b626275_fk_auth_permission_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_groupcollectionpermission
-    ADD CONSTRAINT wagtailcore_groupc_permission_id_1b626275_fk_auth_permission_id FOREIGN KEY (permission_id) REFERENCES auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailcore_groupcollectionpermission
+    ADD CONSTRAINT wagtailcore_groupc_permission_id_1b626275_fk_auth_permission_id FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailcore_groupcollectionpermission wagtailcore_groupcollectionp_group_id_05d61460_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_groupcollectionpermission
-    ADD CONSTRAINT wagtailcore_groupcollectionp_group_id_05d61460_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailcore_groupcollectionpermission
+    ADD CONSTRAINT wagtailcore_groupcollectionp_group_id_05d61460_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailcore_grouppagepermission wagtailcore_grouppagepe_page_id_710b114a_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_grouppagepermission
-    ADD CONSTRAINT wagtailcore_grouppagepe_page_id_710b114a_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailcore_grouppagepermission
+    ADD CONSTRAINT wagtailcore_grouppagepe_page_id_710b114a_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailcore_grouppagepermission wagtailcore_grouppagepermiss_group_id_fc07e671_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_grouppagepermission
-    ADD CONSTRAINT wagtailcore_grouppagepermiss_group_id_fc07e671_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailcore_grouppagepermission
+    ADD CONSTRAINT wagtailcore_grouppagepermiss_group_id_fc07e671_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailcore_page wagtailcore_page_live_revision_id_930bd822_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_page
-    ADD CONSTRAINT wagtailcore_page_live_revision_id_930bd822_fk_wagtailco FOREIGN KEY (live_revision_id) REFERENCES wagtailcore_pagerevision(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailcore_page
+    ADD CONSTRAINT wagtailcore_page_live_revision_id_930bd822_fk_wagtailco FOREIGN KEY (live_revision_id) REFERENCES public.wagtailcore_pagerevision(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailcore_page wagtailcore_page_owner_id_fbf7c332_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_page
-    ADD CONSTRAINT wagtailcore_page_owner_id_fbf7c332_fk_auth_user_id FOREIGN KEY (owner_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailcore_page
+    ADD CONSTRAINT wagtailcore_page_owner_id_fbf7c332_fk_auth_user_id FOREIGN KEY (owner_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailcore_pagerevision wagtailcore_pagerevisio_page_id_d421cc1d_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_pagerevision
-    ADD CONSTRAINT wagtailcore_pagerevisio_page_id_d421cc1d_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailcore_pagerevision
+    ADD CONSTRAINT wagtailcore_pagerevisio_page_id_d421cc1d_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailcore_pagerevision wagtailcore_pagerevision_user_id_2409d2f4_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_pagerevision
-    ADD CONSTRAINT wagtailcore_pagerevision_user_id_2409d2f4_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailcore_pagerevision
+    ADD CONSTRAINT wagtailcore_pagerevision_user_id_2409d2f4_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailcore_pageviewrestriction_groups wagtailcore_pageview_group_id_6460f223_fk_auth_grou; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_pageviewrestriction_groups
-    ADD CONSTRAINT wagtailcore_pageview_group_id_6460f223_fk_auth_grou FOREIGN KEY (group_id) REFERENCES auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailcore_pageviewrestriction_groups
+    ADD CONSTRAINT wagtailcore_pageview_group_id_6460f223_fk_auth_grou FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailcore_pageviewrestriction_groups wagtailcore_pageview_pageviewrestriction__f147a99a_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_pageviewrestriction_groups
-    ADD CONSTRAINT wagtailcore_pageview_pageviewrestriction__f147a99a_fk_wagtailco FOREIGN KEY (pageviewrestriction_id) REFERENCES wagtailcore_pageviewrestriction(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailcore_pageviewrestriction_groups
+    ADD CONSTRAINT wagtailcore_pageview_pageviewrestriction__f147a99a_fk_wagtailco FOREIGN KEY (pageviewrestriction_id) REFERENCES public.wagtailcore_pageviewrestriction(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailcore_pageviewrestriction wagtailcore_pageviewres_page_id_15a8bea6_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_pageviewrestriction
-    ADD CONSTRAINT wagtailcore_pageviewres_page_id_15a8bea6_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailcore_pageviewrestriction
+    ADD CONSTRAINT wagtailcore_pageviewres_page_id_15a8bea6_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailcore_site wagtailcore_site_root_page_id_e02fb95c_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailcore_site
-    ADD CONSTRAINT wagtailcore_site_root_page_id_e02fb95c_fk_wagtailcore_page_id FOREIGN KEY (root_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailcore_site
+    ADD CONSTRAINT wagtailcore_site_root_page_id_e02fb95c_fk_wagtailcore_page_id FOREIGN KEY (root_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtaildocs_document wagtaildocs_collection_id_23881625_fk_wagtailcore_collection_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtaildocs_document
-    ADD CONSTRAINT wagtaildocs_collection_id_23881625_fk_wagtailcore_collection_id FOREIGN KEY (collection_id) REFERENCES wagtailcore_collection(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtaildocs_document
+    ADD CONSTRAINT wagtaildocs_collection_id_23881625_fk_wagtailcore_collection_id FOREIGN KEY (collection_id) REFERENCES public.wagtailcore_collection(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtaildocs_document wagtaildocs_docume_uploaded_by_user_id_17258b41_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtaildocs_document
-    ADD CONSTRAINT wagtaildocs_docume_uploaded_by_user_id_17258b41_fk_auth_user_id FOREIGN KEY (uploaded_by_user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtaildocs_document
+    ADD CONSTRAINT wagtaildocs_docume_uploaded_by_user_id_17258b41_fk_auth_user_id FOREIGN KEY (uploaded_by_user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailforms_formsubmission wagtailforms_formsubmis_page_id_e48e93e7_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailforms_formsubmission
-    ADD CONSTRAINT wagtailforms_formsubmis_page_id_e48e93e7_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailforms_formsubmission
+    ADD CONSTRAINT wagtailforms_formsubmis_page_id_e48e93e7_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailimages_image wagtailimag_collection_id_c2f8af7e_fk_wagtailcore_collection_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailimages_image
-    ADD CONSTRAINT wagtailimag_collection_id_c2f8af7e_fk_wagtailcore_collection_id FOREIGN KEY (collection_id) REFERENCES wagtailcore_collection(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailimages_image
+    ADD CONSTRAINT wagtailimag_collection_id_c2f8af7e_fk_wagtailcore_collection_id FOREIGN KEY (collection_id) REFERENCES public.wagtailcore_collection(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailimages_image wagtailimages_imag_uploaded_by_user_id_5d73dc75_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailimages_image
-    ADD CONSTRAINT wagtailimages_imag_uploaded_by_user_id_5d73dc75_fk_auth_user_id FOREIGN KEY (uploaded_by_user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailimages_image
+    ADD CONSTRAINT wagtailimages_imag_uploaded_by_user_id_5d73dc75_fk_auth_user_id FOREIGN KEY (uploaded_by_user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailimages_rendition wagtailimages_rendi_image_id_3e1fd774_fk_wagtailimages_image_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailimages_rendition
-    ADD CONSTRAINT wagtailimages_rendi_image_id_3e1fd774_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailimages_rendition
+    ADD CONSTRAINT wagtailimages_rendi_image_id_3e1fd774_fk_wagtailimages_image_id FOREIGN KEY (image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailredirects_redirect wagtailredirec_redirect_page_id_b5728a8f_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailredirects_redirect
-    ADD CONSTRAINT wagtailredirec_redirect_page_id_b5728a8f_fk_wagtailcore_page_id FOREIGN KEY (redirect_page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailredirects_redirect
+    ADD CONSTRAINT wagtailredirec_redirect_page_id_b5728a8f_fk_wagtailcore_page_id FOREIGN KEY (redirect_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailredirects_redirect wagtailredirects_redire_site_id_780a0e1e_fk_wagtailcore_site_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailredirects_redirect
-    ADD CONSTRAINT wagtailredirects_redire_site_id_780a0e1e_fk_wagtailcore_site_id FOREIGN KEY (site_id) REFERENCES wagtailcore_site(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailredirects_redirect
+    ADD CONSTRAINT wagtailredirects_redire_site_id_780a0e1e_fk_wagtailcore_site_id FOREIGN KEY (site_id) REFERENCES public.wagtailcore_site(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailsearchpromotions_searchpromotion wagtailsearch_edito_query_id_c6eee4a0_fk_wagtailsearch_query_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailsearchpromotions_searchpromotion
-    ADD CONSTRAINT wagtailsearch_edito_query_id_c6eee4a0_fk_wagtailsearch_query_id FOREIGN KEY (query_id) REFERENCES wagtailsearch_query(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailsearchpromotions_searchpromotion
+    ADD CONSTRAINT wagtailsearch_edito_query_id_c6eee4a0_fk_wagtailsearch_query_id FOREIGN KEY (query_id) REFERENCES public.wagtailsearch_query(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailsearch_querydailyhits wagtailsearch_query_query_id_2185994b_fk_wagtailsearch_query_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailsearch_querydailyhits
-    ADD CONSTRAINT wagtailsearch_query_query_id_2185994b_fk_wagtailsearch_query_id FOREIGN KEY (query_id) REFERENCES wagtailsearch_query(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailsearch_querydailyhits
+    ADD CONSTRAINT wagtailsearch_query_query_id_2185994b_fk_wagtailsearch_query_id FOREIGN KEY (query_id) REFERENCES public.wagtailsearch_query(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailsearchpromotions_searchpromotion wagtailsearchpromotions_page_id_71920f17_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailsearchpromotions_searchpromotion
-    ADD CONSTRAINT wagtailsearchpromotions_page_id_71920f17_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailsearchpromotions_searchpromotion
+    ADD CONSTRAINT wagtailsearchpromotions_page_id_71920f17_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
 -- Name: wagtailusers_userprofile wagtailusers_userprofile_user_id_59c92331_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY wagtailusers_userprofile
-    ADD CONSTRAINT wagtailusers_userprofile_user_id_59c92331_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+ALTER TABLE ONLY public.wagtailusers_userprofile
+    ADD CONSTRAINT wagtailusers_userprofile_user_id_59c92331_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

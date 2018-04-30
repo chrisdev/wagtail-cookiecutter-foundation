@@ -3,17 +3,17 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.response import TemplateResponse
 from django.utils.safestring import mark_safe
 
-from wagtail.wagtailcore import blocks
-from wagtail.wagtailcore.models import Page, Orderable
-from wagtail.wagtailcore.fields import RichTextField, StreamField
+from wagtail.core import blocks
+from wagtail.core.models import Page, Orderable
+from wagtail.core.fields import RichTextField, StreamField
 from wagtailmarkdown.fields import MarkdownBlock
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailimages.blocks import ImageChooserBlock
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.images.blocks import ImageChooserBlock
 
-from wagtail.wagtailsearch import index
-from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
+from wagtail.search import index
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
-from wagtail.wagtailadmin.edit_handlers import (
+from wagtail.admin.edit_handlers import (
     FieldPanel, InlinePanel, StreamFieldPanel, MultiFieldPanel,
 )
 from modelcluster.fields import ParentalKey
