@@ -26,7 +26,7 @@ help:
 .PHONY: requirements
 
 
-develop_env: virtualenv requirements db initial_data migrate copy_media bower runserver
+develop_env: virtualenv requirements db initial_data update_modules migrate copy_media bower runserver
 
 # Command variables
 MANAGE_CMD = python manage.py
@@ -75,6 +75,12 @@ copy_media:
 bower:
 	bower install
 
+update_modules:
+	( \
+		. $(VIRTUALENV_NAME)/bin/activate; \
+		$ wagtail updatemodulepaths; \
+	)
+	
 runserver:
 	( \
 		. $(VIRTUALENV_NAME)/bin/activate; \

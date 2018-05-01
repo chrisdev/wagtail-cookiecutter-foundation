@@ -66,24 +66,23 @@ INSTALLED_APPS = (
     'documents_gallery',
 
     'foundation_formtags',
-    'wagtail_feeds',
     
-    'wagtail.contrib.wagtailroutablepage',
-    'wagtail.contrib.wagtailsitemaps',
-    'wagtail.contrib.wagtailsearchpromotions',
+    'wagtail.contrib.routable_page',
+    'wagtail.contrib.sitemaps',
+    'wagtail.contrib.search_promotions',
     'wagtail.contrib.postgres_search',
     'wagtail.contrib.settings',
-    'wagtail.wagtailforms',
-    'wagtail.wagtailredirects',
-    'wagtail.wagtailembeds',
-    'wagtail.wagtailsites',
-    'wagtail.wagtailusers',
-    'wagtail.wagtailsnippets',
-    'wagtail.wagtaildocs',
-    'wagtail.wagtailimages',
-    'wagtail.wagtailsearch',
-    'wagtail.wagtailadmin',
-    'wagtail.wagtailcore',
+    'wagtail.contrib.forms',
+    'wagtail.contrib.redirects',
+    'wagtail.embeds',
+    'wagtail.sites',
+    'wagtail.users',
+    'wagtail.snippets',
+    'wagtail.documents',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.admin',
+    'wagtail.core',
     'wagtailfontawesome',
     'wagtailmarkdown',
     'cachalot'
@@ -100,8 +99,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
 
-    'wagtail.wagtailcore.middleware.SiteMiddleware',
-    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
+    'wagtail.core.middleware.SiteMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 )
 
 ROOT_URLCONF = '{{ cookiecutter.project_slug }}.urls'
@@ -133,6 +132,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = '{{ cookiecutter.project_slug }}.wsgi.application'
 
+WAGTAILADMIN_RICH_TEXT_EDITORS = {
+    'default': {
+        'WIDGET': 'wagtail.admin.rich_text.HalloRichTextArea'
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases

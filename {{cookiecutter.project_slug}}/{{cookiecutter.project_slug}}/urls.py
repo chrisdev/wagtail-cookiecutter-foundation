@@ -3,16 +3,12 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 
-from wagtail.wagtailadmin import urls as wagtailadmin_urls
-from wagtail.wagtailsearch import urls as wagtailsearch_urls
-from wagtail.wagtaildocs import urls as wagtaildocs_urls
-from wagtail.wagtailcore import urls as wagtail_urls
-from wagtail.wagtailimages.views.serve import ServeView
-from wagtail.contrib.wagtailsitemaps.views import sitemap
-
-from wagtail_feeds.feeds import (
-    BasicFeed, BasicJsonFeed, ExtendedFeed, ExtendedJsonFeed
-)
+from wagtail.admin import urls as wagtailadmin_urls
+from wagtail.search import urls as wagtailsearch_urls
+from wagtail.documents import urls as wagtaildocs_urls
+from wagtail.core import urls as wagtail_urls
+from wagtail.images.views.serve import ServeView
+from wagtail.contrib.sitemaps.views import sitemap
 
 admin.autodiscover()
 
@@ -25,12 +21,6 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
 
     url('^sitemap\.xml$', sitemap),
-    url(r'^blog/feed/basic$', BasicFeed(), name='basic_feed'),
-    url(r'^blog/feed/extended$', ExtendedFeed(), name='extended_feed'),
-
-    # JSON feed
-    url(r'^blog/feed/basic.json$', BasicJsonFeed(), name='basic_json_feed'),
-    url(r'^blog/feed/extended.json$', ExtendedJsonFeed(), name='extended_json_feed'),
 
     url(
         r'^images/([^/]*)/(\d*)/([^/]*)/[^/]*$',

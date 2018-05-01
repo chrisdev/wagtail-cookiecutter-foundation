@@ -22,7 +22,7 @@ ALLOWED_HOSTS = [env("DJANGO_ALLOWED_HOST_NAME"), ]
 DATABASES['default'] = env.db('PROD_DATABASE_URL')
 
 INSTALLED_APPS += (
-    "wagtail.contrib.wagtailfrontendcache",
+    "wagtail.contrib.frontend_cache",
     'gunicorn',
 )
 
@@ -35,8 +35,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'wagtail.wagtailcore.middleware.SiteMiddleware',
-    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
+    'wagtail.core.middleware.SiteMiddleware',
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 )
 
 WAGTAIL_SITE_NAME = '{{ cookiecutter.project_name }}'
