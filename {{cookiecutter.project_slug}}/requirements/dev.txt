@@ -5,5 +5,5 @@ django-extensions==1.9.1
 
 wagtail-bakery==0.1.0
 
-livereload==2.5.1
+livereload==2.5.2
 selenium==3.6.0
