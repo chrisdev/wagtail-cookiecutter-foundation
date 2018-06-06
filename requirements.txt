@@ -3,7 +3,7 @@ flake8==3.0.4
 sh==1.12.14
 virtualenv==15.1.0
 Sphinx==1.6.5
-sphinx-rtd-theme==0.2.4
+sphinx-rtd-theme==0.4.0
 
 # Testing
 pytest==3.2.3
