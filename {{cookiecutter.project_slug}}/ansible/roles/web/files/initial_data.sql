@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.8
--- Dumped by pg_dump version 10.3
+-- Dumped from database version 9.6.9
+-- Dumped by pg_dump version 10.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1789,7 +1789,9 @@ CREATE TABLE public.wagtail_feeds_rssfeedssettings (
     feed_item_description_field character varying(255),
     feed_item_content_field character varying(255),
     site_id integer NOT NULL,
-    feed_image_in_content boolean NOT NULL
+    feed_image_in_content boolean NOT NULL,
+    feed_item_date_field character varying(255) NOT NULL,
+    is_feed_item_date_field_datetime boolean NOT NULL
 );
 
 
@@ -2466,7 +2468,9 @@ CREATE TABLE public.wagtailusers_userprofile (
     approved_notifications boolean NOT NULL,
     rejected_notifications boolean NOT NULL,
     user_id integer NOT NULL,
-    preferred_language character varying(10) NOT NULL
+    preferred_language character varying(10) NOT NULL,
+    current_time_zone character varying(40) NOT NULL,
+    avatar character varying(100) NOT NULL
 );
 
 
@@ -3626,6 +3630,14 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 166	contact	0009_auto_20180501_1341	2018-05-01 09:43:37.343772-04
 167	pages	0020_auto_20180501_1341	2018-05-01 09:43:37.924972-04
 168	wagtail_feeds	0003_auto_20180501_1341	2018-05-01 09:43:38.195556-04
+169	wagtail_feeds	0003_auto_20180130_0818	2018-06-07 09:37:28.536854-04
+170	wagtail_feeds	0004_auto_20180130_0948	2018-06-07 09:37:29.185156-04
+171	wagtail_feeds	0005_auto_20180130_1152	2018-06-07 09:37:29.299385-04
+172	wagtail_feeds	0006_auto_20180216_0933	2018-06-07 09:37:29.402837-04
+173	wagtail_feeds	0007_auto_20180216_1005	2018-06-07 09:37:29.465008-04
+174	wagtailimages	0020_add-verbose-name	2018-06-07 09:42:44.503356-04
+175	wagtailusers	0007_userprofile_current_time_zone	2018-06-07 09:42:44.766962-04
+176	wagtailusers	0008_userprofile_avatar	2018-06-07 09:42:45.01069-04
 \.
 
 
@@ -4140,8 +4152,8 @@ COPY public.taggit_taggeditem (id, object_id, content_type_id, tag_id) FROM stdi
 -- Data for Name: wagtail_feeds_rssfeedssettings; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.wagtail_feeds_rssfeedssettings (id, feed_app_label, feed_model_name, feed_title, feed_link, feed_description, feed_author_email, feed_author_link, feed_item_description_field, feed_item_content_field, site_id, feed_image_in_content) FROM stdin;
-1	blog	BlogPage	From the Desk of John Blog	http://www.example.com/news/	News and views from around the Web	john@johnblog.com	https://johnblog.com	intro	body	2	t
+COPY public.wagtail_feeds_rssfeedssettings (id, feed_app_label, feed_model_name, feed_title, feed_link, feed_description, feed_author_email, feed_author_link, feed_item_description_field, feed_item_content_field, site_id, feed_image_in_content, feed_item_date_field, is_feed_item_date_field_datetime) FROM stdin;
+1	blog	BlogPage	From the Desk of John Blog	http://www.example.com/news/	News and views from around the Web	john@johnblog.com	https://johnblog.com	intro	body	2	t		f
 \.
 
 
@@ -4465,7 +4477,7 @@ COPY public.wagtailsearchpromotions_searchpromotion (id, sort_order, description
 -- Data for Name: wagtailusers_userprofile; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.wagtailusers_userprofile (id, submitted_notifications, approved_notifications, rejected_notifications, user_id, preferred_language) FROM stdin;
+COPY public.wagtailusers_userprofile (id, submitted_notifications, approved_notifications, rejected_notifications, user_id, preferred_language, current_time_zone, avatar) FROM stdin;
 \.
 
 
@@ -4571,7 +4583,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 83, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 168, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 176, true);
 
 
 --
