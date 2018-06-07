@@ -6,7 +6,7 @@ from django.db import migrations
 import wagtail.core.blocks
 import wagtail.core.fields
 import wagtail.images.blocks
-import wagtailmarkdown.fields
+import wagtailmarkdown.blocks
 
 
 class Migration(migrations.Migration):
@@ -19,6 +19,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='blogpage',
             name='body',
-            field=wagtail.core.fields.StreamField((('paragraph', wagtail.core.blocks.RichTextBlock()), ('markdown', wagtailmarkdown.fields.MarkdownBlock(icon='code')), ('image', wagtail.images.blocks.ImageChooserBlock()), ('html', wagtail.core.blocks.RawHTMLBlock()))),
+            field=wagtail.core.fields.StreamField((('paragraph', wagtail.core.blocks.RichTextBlock()), ('markdown', wagtailmarkdown.blocks.MarkdownBlock(icon='code')), ('image', wagtail.images.blocks.ImageChooserBlock()), ('html', wagtail.core.blocks.RawHTMLBlock()))),
         ),
     ]
