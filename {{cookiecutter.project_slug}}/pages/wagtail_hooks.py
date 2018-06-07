@@ -9,7 +9,7 @@ from wagtail.core.whitelist import attribute_rule, check_url
 
 @hooks.register('register_settings_menu_item')
 def register_django_admin_menu_item():
-    return MenuItem(_('Django Admin'), urlresolvers.reverse('admin:index'),
+    return MenuItem(_('Django Admin'), reverse('admin:index'),
                     classnames='icon icon-cogs', order=700)
 
 
