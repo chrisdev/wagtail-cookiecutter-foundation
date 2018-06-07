@@ -24,9 +24,9 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=150, null=True, blank=True)),
                 ('text', wagtail.core.fields.RichTextField(blank=True)),
                 ('image', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, blank=True, to='wagtailimages.Image', null=True)),
-                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
-                ('link_page', models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True)),
-                ('page', models.ForeignKey(related_name='adverts', blank=True, to='wagtailcore.Page', null=True)),
+                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True, on_delete=models.SET_NULL,)),
+                ('link_page', models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True, on_delete=models.SET_NULL,)),
+                ('page', models.ForeignKey(related_name='adverts', blank=True, to='wagtailcore.Page', null=True,on_delete=models.SET_NULL,)),
             ],
             options={
                 'abstract': False,

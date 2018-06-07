@@ -282,7 +282,8 @@ class ContentBlock(LinkFields):
         Page,
         related_name='contentblocks',
         null=True,
-        blank=True
+        blank=True,
+        on_delete=models.SET_NULL
     )
     title = models.CharField(max_length=255)
     body = RichTextField()
@@ -308,7 +309,8 @@ class Testimonial(LinkFields):
         Page,
         related_name='testimonials',
         null=True,
-        blank=True
+        blank=True,
+        on_delete=models.SET_NULL
     )
     name = models.CharField(max_length=150)
     photo = models.ForeignKey(
@@ -335,7 +337,8 @@ class Advert(LinkFields):
         Page,
         related_name='adverts',
         null=True,
-        blank=True
+        blank=True,
+        on_delete=models.SET_NULL,
     )
     title = models.CharField(max_length=150, null=True)
     image = models.ForeignKey(

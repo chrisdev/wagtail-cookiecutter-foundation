@@ -9,7 +9,7 @@ from pages.models import Testimonial, Advert
 register = template.Library()
 
 
-@register.assignment_tag(takes_context=True)
+@register.simple_tag(takes_context=True)
 def get_contact_fields(context):
     try:
         contact_vals = ContactPage.objects.values(

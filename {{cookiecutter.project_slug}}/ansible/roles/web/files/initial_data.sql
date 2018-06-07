@@ -134,7 +134,7 @@ CREATE TABLE public.auth_user (
     is_superuser boolean NOT NULL,
     username character varying(150) NOT NULL,
     first_name character varying(30) NOT NULL,
-    last_name character varying(30) NOT NULL,
+    last_name character varying(150) NOT NULL,
     email character varying(254) NOT NULL,
     is_staff boolean NOT NULL,
     is_active boolean NOT NULL,
@@ -3640,6 +3640,15 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 176	wagtailusers	0008_userprofile_avatar	2018-06-07 09:42:45.01069-04
 177	blog	0009_auto_20180607_1434	2018-06-07 10:39:10.682346-04
 178	pages	0021_auto_20180607_1434	2018-06-07 10:39:10.907412-04
+179	auth	0009_alter_user_last_name_max_length	2018-06-07 14:07:45.761998-04
+180	blog	0010_auto_20180607_1804	2018-06-07 14:07:46.449845-04
+181	contact	0010_auto_20180607_1804	2018-06-07 14:07:47.000952-04
+182	documents_gallery	0002_auto_20180607_1804	2018-06-07 14:07:47.556923-04
+183	events	0006_auto_20180607_1804	2018-06-07 14:07:48.185394-04
+184	pages	0022_auto_20180607_1804	2018-06-07 14:07:49.642705-04
+185	people	0006_auto_20180607_1804	2018-06-07 14:07:50.234547-04
+186	photo_gallery	0002_auto_20180607_1804	2018-06-07 14:07:50.91067-04
+187	products	0008_auto_20180607_1804	2018-06-07 14:07:51.449395-04
 \.
 
 
@@ -4585,7 +4594,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 83, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 178, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 187, true);
 
 
 --
@@ -7347,27 +7356,27 @@ ALTER TABLE ONLY public.documents_gallery_documentsindexpage
 
 
 --
--- Name: documents_gallery_documentspage documents_gallery_d_page_ptr_id_ef81894a_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: documents_gallery_documentspage documents_gallery_do_page_ptr_id_ef81894a_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.documents_gallery_documentspage
-    ADD CONSTRAINT documents_gallery_d_page_ptr_id_ef81894a_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT documents_gallery_do_page_ptr_id_ef81894a_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: documents_gallery_documentsindexpage documents_gallery_d_page_ptr_id_f7fa951f_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: documents_gallery_documentsindexpage documents_gallery_do_page_ptr_id_f7fa951f_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.documents_gallery_documentsindexpage
-    ADD CONSTRAINT documents_gallery_d_page_ptr_id_f7fa951f_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT documents_gallery_do_page_ptr_id_f7fa951f_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: documents_gallery_documentspagetag documents_gallery_documentspag_tag_id_50625f82_fk_taggit_tag_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: documents_gallery_documentspagetag documents_gallery_do_tag_id_50625f82_fk_taggit_ta; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.documents_gallery_documentspagetag
-    ADD CONSTRAINT documents_gallery_documentspag_tag_id_50625f82_fk_taggit_tag_id FOREIGN KEY (tag_id) REFERENCES public.taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT documents_gallery_do_tag_id_50625f82_fk_taggit_ta FOREIGN KEY (tag_id) REFERENCES public.taggit_tag(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -7427,19 +7436,19 @@ ALTER TABLE ONLY public.events_eventindexpagerelatedlink
 
 
 --
--- Name: events_eventindexpage events_eventindexpa_page_ptr_id_d4ed8796_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.events_eventindexpage
-    ADD CONSTRAINT events_eventindexpa_page_ptr_id_d4ed8796_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
 -- Name: events_eventindexpage events_eventindexpag_feed_image_id_d6958e2f_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.events_eventindexpage
     ADD CONSTRAINT events_eventindexpag_feed_image_id_d6958e2f_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: events_eventindexpage events_eventindexpag_page_ptr_id_d4ed8796_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.events_eventindexpage
+    ADD CONSTRAINT events_eventindexpag_page_ptr_id_d4ed8796_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -7803,11 +7812,11 @@ ALTER TABLE ONLY public.pages_standardindexpagerelatedlink
 
 
 --
--- Name: pages_standardindexpage pages_standardindex_page_ptr_id_70a0d3dc_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: pages_standardindexpage pages_standardindexp_page_ptr_id_70a0d3dc_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.pages_standardindexpage
-    ADD CONSTRAINT pages_standardindex_page_ptr_id_70a0d3dc_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT pages_standardindexp_page_ptr_id_70a0d3dc_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -7899,6 +7908,22 @@ ALTER TABLE ONLY public.pages_videogallerypage
 
 
 --
+-- Name: pages_videogallerypagecarouselitem pages_videogallerypa_link_document_id_a39081fb_fk_wagtaildo; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.pages_videogallerypagecarouselitem
+    ADD CONSTRAINT pages_videogallerypa_link_document_id_a39081fb_fk_wagtaildo FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pages_videogallerypagecarouselitem pages_videogallerypa_link_page_id_1fd5a4bb_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.pages_videogallerypagecarouselitem
+    ADD CONSTRAINT pages_videogallerypa_link_page_id_1fd5a4bb_fk_wagtailco FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
 -- Name: pages_videogallerypage pages_videogallerypa_page_ptr_id_e99012e4_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7912,22 +7937,6 @@ ALTER TABLE ONLY public.pages_videogallerypage
 
 ALTER TABLE ONLY public.pages_videogallerypagecarouselitem
     ADD CONSTRAINT pages_videopagecarou_image_id_2817929a_fk_wagtailim FOREIGN KEY (image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: pages_videogallerypagecarouselitem pages_videopagecarou_link_document_id_b7d2ab0f_fk_wagtaildo; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.pages_videogallerypagecarouselitem
-    ADD CONSTRAINT pages_videopagecarou_link_document_id_b7d2ab0f_fk_wagtaildo FOREIGN KEY (link_document_id) REFERENCES public.wagtaildocs_document(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: pages_videogallerypagecarouselitem pages_videopagecarou_link_page_id_16ed2e64_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.pages_videogallerypagecarouselitem
-    ADD CONSTRAINT pages_videopagecarou_link_page_id_16ed2e64_fk_wagtailco FOREIGN KEY (link_page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -7979,19 +7988,19 @@ ALTER TABLE ONLY public.people_personindexpagerelatedlink
 
 
 --
--- Name: people_personindexpage people_personindexp_page_ptr_id_2aafa812_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.people_personindexpage
-    ADD CONSTRAINT people_personindexp_page_ptr_id_2aafa812_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
 -- Name: people_personindexpage people_personindexpa_feed_image_id_ea7ff652_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.people_personindexpage
     ADD CONSTRAINT people_personindexpa_feed_image_id_ea7ff652_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: people_personindexpage people_personindexpa_page_ptr_id_2aafa812_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.people_personindexpage
+    ADD CONSTRAINT people_personindexpa_page_ptr_id_2aafa812_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -8059,19 +8068,19 @@ ALTER TABLE ONLY public.photo_gallery_galleryindexpage
 
 
 --
--- Name: photo_gallery_gallerypage photo_gallery_galle_page_ptr_id_11be90ff_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: photo_gallery_gallerypage photo_gallery_galler_page_ptr_id_11be90ff_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.photo_gallery_gallerypage
-    ADD CONSTRAINT photo_gallery_galle_page_ptr_id_11be90ff_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT photo_gallery_galler_page_ptr_id_11be90ff_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
--- Name: photo_gallery_galleryindexpage photo_gallery_galle_page_ptr_id_44a4f590_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: photo_gallery_galleryindexpage photo_gallery_galler_page_ptr_id_44a4f590_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.photo_gallery_galleryindexpage
-    ADD CONSTRAINT photo_gallery_galle_page_ptr_id_44a4f590_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT photo_gallery_galler_page_ptr_id_44a4f590_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -8139,19 +8148,19 @@ ALTER TABLE ONLY public.products_productindexpagerelatedlink
 
 
 --
--- Name: products_productindexpage products_productind_page_ptr_id_896e5596_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.products_productindexpage
-    ADD CONSTRAINT products_productind_page_ptr_id_896e5596_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
 -- Name: products_productindexpage products_productinde_feed_image_id_f1b46ba8_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.products_productindexpage
     ADD CONSTRAINT products_productinde_feed_image_id_f1b46ba8_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: products_productindexpage products_productinde_page_ptr_id_896e5596_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.products_productindexpage
+    ADD CONSTRAINT products_productinde_page_ptr_id_896e5596_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -8171,11 +8180,11 @@ ALTER TABLE ONLY public.products_productpage
 
 
 --
--- Name: products_productpage products_productpag_page_ptr_id_d4d9ff65_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: products_productpage products_productpage_page_ptr_id_d4d9ff65_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.products_productpage
-    ADD CONSTRAINT products_productpag_page_ptr_id_d4d9ff65_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT products_productpage_page_ptr_id_d4d9ff65_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

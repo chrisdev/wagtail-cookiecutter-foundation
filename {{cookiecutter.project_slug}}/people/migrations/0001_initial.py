@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PersonIndexPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page', on_delete=models.SET_NULL,)),
                 ('subtitle', models.CharField(max_length=255, blank=True)),
                 ('intro', wagtail.core.fields.RichTextField(blank=True)),
             ],
@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
                 ('sort_order', models.IntegerField(null=True, editable=False, blank=True)),
                 ('link_external', models.URLField(verbose_name=b'External link', blank=True)),
                 ('title', models.CharField(help_text=b'Link title', max_length=255)),
-                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
+                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True, on_delete=models.SET_NULL,)),
             ],
             options={
                 'ordering': ['sort_order'],
@@ -47,7 +47,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PersonPage',
             fields=[
-                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
+                ('page_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='wagtailcore.Page', on_delete=models.SET_NULL,)),
                 ('name_organization', models.CharField(max_length=255, blank=True)),
                 ('telephone', models.CharField(max_length=20, blank=True)),
                 ('email', models.EmailField(max_length=254, blank=True)),
@@ -73,8 +73,8 @@ class Migration(migrations.Migration):
                 ('sort_order', models.IntegerField(null=True, editable=False, blank=True)),
                 ('link_external', models.URLField(verbose_name=b'External link', blank=True)),
                 ('title', models.CharField(help_text=b'Link title', max_length=255)),
-                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True)),
-                ('link_page', models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True)),
+                ('link_document', models.ForeignKey(related_name='+', blank=True, to='wagtaildocs.Document', null=True, on_delete=models.SET_NULL,)),
+                ('link_page', models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True, on_delete=models.SET_NULL,)),
                 ('page', modelcluster.fields.ParentalKey(related_name='related_links', to='people.PersonPage')),
             ],
             options={
@@ -87,7 +87,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('content_object', modelcluster.fields.ParentalKey(related_name='tagged_items', to='people.PersonPage')),
-                ('tag', models.ForeignKey(related_name='people_personpagetag_items', to='taggit.Tag')),
+                ('tag', models.ForeignKey(related_name='people_personpagetag_items', to='taggit.Tag', on_delete=models.SET_NULL,)),
             ],
             options={
                 'abstract': False,
@@ -113,7 +113,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='personindexpagerelatedlink',
             name='link_page',
-            field=models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True),
+            field=models.ForeignKey(related_name='+', blank=True, to='wagtailcore.Page', null=True, on_delete=models.SET_NULL,),
         ),
         migrations.AddField(
             model_name='personindexpagerelatedlink',

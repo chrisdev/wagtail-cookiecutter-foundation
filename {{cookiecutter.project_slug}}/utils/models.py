@@ -14,12 +14,14 @@ class LinkFields(models.Model):
         'wagtailcore.Page',
         null=True,
         blank=True,
+        on_delete=models.SET_NULL,
         related_name='+'
     )
     link_document = models.ForeignKey(
         'wagtaildocs.Document',
         null=True,
         blank=True,
+        on_delete=models.SET_NULL,
         related_name='+'
     )
 
