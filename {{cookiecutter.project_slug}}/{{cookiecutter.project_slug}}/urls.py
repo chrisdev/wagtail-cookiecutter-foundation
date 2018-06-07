@@ -27,11 +27,11 @@ urlpatterns = [
     url('^sitemap\.xml$', sitemap),
     url(r'^blog/feed/basic$', BasicFeed(), name='basic_feed'),
     url(r'^blog/feed/extended$', ExtendedFeed(), name='extended_feed'),
-    
+
     # JSON feed
     url(r'^blog/feed/basic.json$', BasicJsonFeed(), name='basic_json_feed'),
     url(r'^blog/feed/extended.json$', ExtendedJsonFeed(), name='extended_json_feed'),
-    
+
     url(
         r'^images/([^/]*)/(\d*)/([^/]*)/[^/]*$',
         ServeView.as_view(), name='wagtailimages_serve'
