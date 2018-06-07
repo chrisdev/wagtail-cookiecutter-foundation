@@ -66,6 +66,7 @@ INSTALLED_APPS = (
     'documents_gallery',
 
     'foundation_formtags',
+    'wagtail_feeds',
     
     'wagtail.contrib.routable_page',
     'wagtail.contrib.sitemaps',

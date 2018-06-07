@@ -10,6 +10,10 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.images.views.serve import ServeView
 from wagtail.contrib.sitemaps.views import sitemap
 
+from wagtail_feeds.feeds import (
+    BasicFeed, BasicJsonFeed, ExtendedFeed, ExtendedJsonFeed
+)
+
 admin.autodiscover()
 
 
@@ -21,7 +25,13 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
 
     url('^sitemap\.xml$', sitemap),
-
+    url(r'^blog/feed/basic$', BasicFeed(), name='basic_feed'),
+    url(r'^blog/feed/extended$', ExtendedFeed(), name='extended_feed'),
+    
+    # JSON feed
+    url(r'^blog/feed/basic.json$', BasicJsonFeed(), name='basic_json_feed'),
+    url(r'^blog/feed/extended.json$', ExtendedJsonFeed(), name='extended_json_feed'),
+    
     url(
         r'^images/([^/]*)/(\d*)/([^/]*)/[^/]*$',
         ServeView.as_view(), name='wagtailimages_serve'

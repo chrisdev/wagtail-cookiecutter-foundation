@@ -43,7 +43,7 @@ HOST ?= localhost:8000
 DEPLOY_ENV = production
 
 virtualenv:
-	virtualenv $(VIRTUALENV_NAME)
+	python3 -m virtualenv $(VIRTUALENV_NAME)
 
 requirements:
 	( \
