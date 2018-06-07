@@ -6,7 +6,7 @@ from django.utils.safestring import mark_safe
 from wagtail.core import blocks
 from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField, StreamField
-from wagtailmarkdown.fields import MarkdownBlock
+from wagtailmarkdown.blocks import MarkdownBlock
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
 

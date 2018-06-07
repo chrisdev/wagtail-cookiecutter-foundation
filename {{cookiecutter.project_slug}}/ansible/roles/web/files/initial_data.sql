@@ -3638,6 +3638,8 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 174	wagtailimages	0020_add-verbose-name	2018-06-07 09:42:44.503356-04
 175	wagtailusers	0007_userprofile_current_time_zone	2018-06-07 09:42:44.766962-04
 176	wagtailusers	0008_userprofile_avatar	2018-06-07 09:42:45.01069-04
+177	blog	0009_auto_20180607_1434	2018-06-07 10:39:10.682346-04
+178	pages	0021_auto_20180607_1434	2018-06-07 10:39:10.907412-04
 \.
 
 
@@ -4583,7 +4585,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 83, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 176, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 178, true);
 
 
 --

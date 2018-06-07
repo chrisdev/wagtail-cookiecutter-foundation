@@ -5,7 +5,7 @@ from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
-from wagtailmarkdown.fields import MarkdownBlock
+from wagtailmarkdown.blocks import MarkdownBlock
 from wagtail.images.models import Image
 from wagtail.snippets.models import register_snippet
 from modelcluster.fields import ParentalKey
