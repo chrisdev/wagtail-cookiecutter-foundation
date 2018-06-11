@@ -17,9 +17,9 @@ Features
 
 A Django project with `Wagtail CMS`_ pre-installed with support for all the `Zurb Foundation`_ components.
 
-* For Django 1.10
+* Supports Django 2.0
 * Renders `Django`_ projects with 100% starting test coverage
-* `Zurb Foundation`_
+* Built using `Zurb Foundation`_
 * 12-Factor_ based settings via django-environ_
 * Optimised development and production settings
 * Built with `Let's Encrypt`_
@@ -27,7 +27,7 @@ A Django project with `Wagtail CMS`_ pre-installed with support for all the `Zur
 * Uses Grunt for image compression
 * Livereloading via python-livereload_
 * Ansible for provisioning to and deployment to services like Digital Ocean and Linode
-* Works with Python 2.7.x or 3.5.x
+* Works with Python 3.6.x
 
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`Wagtail CMS`: https://wagtail.io
