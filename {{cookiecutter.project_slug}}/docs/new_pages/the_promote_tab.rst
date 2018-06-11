@@ -24,5 +24,5 @@ The Settings Tab
 
 The *Settings* tab has two fields by default.
 
-* **Go Live date/time:** Sets the time at which the changes should go live when published. See :ref:`scheduled_publishing` for more details.
+* **Go Live date/time:** Sets the time at which the changes should go live when published.
 * **Expiry date/time:** Sets the time at which this page should be unpublished.
