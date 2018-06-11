@@ -26,7 +26,6 @@ INSTALLED_APPS += (
     'gunicorn',
 )
 
-#support opbeat
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -76,58 +75,6 @@ EMAIL_HOST_USER = env('EMAIL_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_PASSWD')
 EMAIL_PORT = 587
 
-{% if cookiecutter.use_opbeat == 'y' %}
-# OP BEAT Config
-INSTALLED_APPS += ('opbeat.contrib.django',)
-OPBEAT = {
-    'ORGANIZATION_ID': env('OPBEAT_ORGANIZATION_ID'),
-    'APP_ID': env('OPBEAT_APP_ID'),
-    'SECRET_TOKEN': env('OPBEAT_SECRET_TOKEN')
-}
-
-MIDDLEWARE_CLASSES = (
-    'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
-) + MIDDLEWARE_CLASSES
-# OP Beat LOGGING CONFIGURATION
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        },
-    },
-    'handlers': {
-        'opbeat': {
-            'level': 'WARNING',
-            'class': 'opbeat.contrib.django.handlers.OpbeatHandler',
-        },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        }
-    },
-    'loggers': {
-        'django.db.backends': {
-            'level': 'ERROR',
-            'handlers': ['console'],
-            'propagate': False,
-        },
-        '{{ cookiecutter.project_slug }}': {
-            'level': 'WARNING',
-            'handlers': ['opbeat'],
-            'propagate': False,
-        },
-        # Log errors from the Opbeat module to the console (recommended)
-        'opbeat.errors': {
-            'level': 'ERROR',
-            'handlers': ['console'],
-            'propagate': False,
-        },
-    },
-}
-{% elif cookiecutter.use_opbeat == 'n' %}
 # LOGGING CONFIGURATION
 # Sends an email to site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for

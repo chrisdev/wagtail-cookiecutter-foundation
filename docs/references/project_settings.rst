@@ -41,9 +41,6 @@ DJANGO_MAILGUN_API_KEY                  MAILGUN_ACCESS_KEY          n/a         
 DJANGO_MAILGUN_SERVER_NAME              MAILGUN_SERVER_NAME         n/a                                            raises error
 NEW_RELIC_APP_NAME                      NEW_RELIC_APP_NAME          n/a                                            raises error
 NEW_RELIC_LICENSE_KEY                   NEW_RELIC_LICENSE_KEY       n/a                                            raises error
-DJANGO_OPBEAT_APP_ID                    OPBEAT['APP_ID']            n/a                                            raises error
-DJANGO_OPBEAT_SECRET_TOKEN              OPBEAT['SECRET_TOKEN']      n/a                                            raises error
-DJANGO_OPBEAT_ORGANIZATION_ID           OPBEAT['ORGANIZATION_ID']   n/a                                            raises error
 ======================================= =========================== ============================================== ======================================================================
 
 

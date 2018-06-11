@@ -47,7 +47,6 @@ You'll be prompted for some values. Provide them, then a Django project will be 
     version [0.1.0]: 
     use_letsencrypt [y]: 
     use_celery [y]: 
-    use_opbeat [n]: 
     use_django_cachalot [n]: 
     use_wagalytics_app [n]: 
     staging_host_name [wagtail-staging.chrisdev.com]: 
