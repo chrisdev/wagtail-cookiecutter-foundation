@@ -1,5 +1,5 @@
 {% raw %}{% extends "blog/blog_base.html" %}
-{% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags gravatar %}
+{% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags %}
 
 {% block canonical_url %}
     <link rel="amphtml" href="{{ request.site.root_url }}{% routablepageurl page "amp" %}" />
@@ -24,14 +24,11 @@
           <div class="article-title">
             <h1>{{ self.title }}</h1>
           </div>
-          {% comment %}
           <div class="article-details">
             <div class="article-author">
-              <img src="{% gravatar_url user.email 50 %}" width="50"/>
-              <a>By: {{ user.first_name }} {{ user.last_name }}</a>
+              <a>By: {{ self.owner.first_name }} {{ self.owner.last_name }}</a>
             </div>
           </div>
-          {% endcomment %}
         </div>
       </div>
     </div>
