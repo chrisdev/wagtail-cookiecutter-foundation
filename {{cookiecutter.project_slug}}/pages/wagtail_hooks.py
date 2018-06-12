@@ -47,7 +47,7 @@ def editor_js():
 def editor_css():
     # Add extra CSS files to the admin like font-awesome
     css_files = [
-        'libs/font-awesome/css/font-awesome.min.css'
+        'node_modules/font-awesome/css/font-awesome.min.css'
     ]
 
     css_includes = format_html_join(
