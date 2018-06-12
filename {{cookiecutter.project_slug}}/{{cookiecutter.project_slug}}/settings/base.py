@@ -86,8 +86,7 @@ INSTALLED_APPS = (
     'wagtail.core',
     'wagtailfontawesome',
     'wagtailmarkdown',
-    'cachalot'
-    {% if cookiecutter.use_wagalytics_app == 'y' %} 'wagalytics', {% endif %}
+    {% if cookiecutter.use_wagalytics_app == 'y' %}'wagalytics', {% endif %}
 )
 
 MIDDLEWARE = (
