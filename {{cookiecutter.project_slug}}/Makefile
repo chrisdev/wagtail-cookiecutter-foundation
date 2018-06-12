@@ -9,7 +9,6 @@ help:
 	@echo "  migrate                  run the migrations"
 	@echo "  initial_data             populate the site with initial page structure"
 	@echo "  copy_media               copy the media(images and documents) to project root"
-	@echo "  bower                    Install front-end dependencies with bower"
 	@echo "  runserver                Start the django dev server"
 	@echo "  superuser                Create superuser with name superuser and password pass"
 	@echo "  test                     run unit tests"
@@ -26,7 +25,7 @@ help:
 .PHONY: requirements
 
 
-develop_env: virtualenv requirements db initial_data update_modules migrate copy_media bower runserver
+develop_env: virtualenv requirements db initial_data update_modules migrate copy_media node_modules runserver
 
 # Command variables
 MANAGE_CMD = python manage.py
@@ -72,9 +71,6 @@ copy_media:
 		$(MANAGE_CMD) copy_media; \
 	)
 
-bower:
-	bower install
-
 update_modules:
 	( \
 		. $(VIRTUALENV_NAME)/bin/activate; \
@@ -90,7 +86,7 @@ runserver:
 superuser:
 	echo "from django.contrib.auth.models import User; User.objects.create_superuser('superuser', 'superuser@example.com', 'pass')" | ./manage.py shell
 
-update: update_pip update_bower
+update: update_pip update_node_modules
 
 update_pip:
 	$(call ECHO_BLUE,Installing Python requirements)
@@ -100,10 +96,10 @@ update_pip:
 		 $(PIP_INSTALL_CMD) -r requirements.txt; \
 	)
 
-update_bower:
+update_node_modules:
 	$(call ECHO_BLUE,Install static dependencies)
 	@echo '---------------------------'
-	bower update
+	npm install --prefix ./pages/static/
 
 test:
 # Run the test cases
@@ -128,7 +124,7 @@ static_site:
 
 node_modules:
 # Install Node modules
-	npm install
+	npm install --prefix ./pages/static/
 
 compress_images:
 # Minify Images in media

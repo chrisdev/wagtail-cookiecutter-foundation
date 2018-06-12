@@ -12,9 +12,9 @@
     {% block canonical_url %}{% endblock %}
 
     {% compress css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'libs/bxslider-4/dist/jquery.bxslider.min.css' %}">
-    <link rel="stylesheet" href="{% static 'libs/font-awesome/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'libs/lightbox2/src/css/lightbox.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'node_modules/bxslider/dist/jquery.bxslider.min.css' %}">
+    <link rel="stylesheet" href="{% static 'node_modules/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'node_modules/lightbox2/src/css/lightbox.css' %}" />
     <link rel="stylesheet" type="text/x-scss" href="{% static 'css/app.scss' %}">
     {% endcompress %}
 
@@ -83,7 +83,7 @@
         </div>
         <div id="copyright">
           <div class="row text-center">
-            <p>Copyright © 2017 ChrisDev. All rights reserved</p>
+            <p>Copyright © 2018 ChrisDev. All rights reserved</p>
           </div>
         </div>
       </footer>
@@ -91,11 +91,11 @@
   </div>
 
   {% compress js %}
-  <script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
-  <script src="{% static 'libs/foundation-sites/dist/js/foundation.min.js' %}"></script>
-  <script src="{% static 'libs/what-input/dist/what-input.min.js' %}"></script>
-  <script src="{% static 'libs/bxslider-4/dist/jquery.bxslider.min.js' %}"></script>
-  <script src="{% static 'libs/lightbox2/src/js/lightbox.js' %}"></script>
+  <script src="{% static 'node_modules/jquery/dist/jquery.min.js' %}"></script>
+  <script src="{% static 'node_modules/foundation-sites/dist/js/foundation.min.js' %}"></script>
+  <script src="{% static 'node_modules/what-input/dist/what-input.min.js' %}"></script>
+  <script src="{% static 'node_modules/bxslider/dist/jquery.bxslider.min.js' %}"></script>
+  <script src="{% static 'node_modules/lightbox2/src/js/lightbox.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
   {% endcompress %}
 
