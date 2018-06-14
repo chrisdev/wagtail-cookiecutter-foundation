@@ -14,12 +14,10 @@
       		{% for product in products %}
           		<div class="column">
               		<a href="{% pageurl product %}">                   
-                  		<div class="card-user-profile card" style="border-radius: 3px;">
+                  		<div class="card-user-profile card text-center" style="border-radius: 3px;">
                     		{% image product.image fill-500x250 %}
                     		<div class="card-user-profile-content card-section" style="padding: 0;">
-                      			<center>
-                          			<p class="card-user-profile-name" style="margin-bottom: 0;">{{ product.title }}</p>
-                      			</center>
+                          		<p class="card-user-profile-name" style="margin-bottom: 0;">{{ product.title }}</p>
                     		</div>
                     		<div class="card-user-profile-actions">
                       			<a href="{% pageurl product %}" class="card-user-profile-button button hollow secondary" style="border-radius: 3px;">More Info</a>
@@ -29,8 +27,8 @@
           		</div>
       		{% endfor %}
   		</div>
-
-		{% if products.has_other_pages %}
+  
+  		{% if products.has_other_pages %}
   			<div class="medium-12 columns hide-for-print">
     			<ul class="pagination text-center" role="navigation" aria-label="Pagination">
       				{% if products.has_previous %}

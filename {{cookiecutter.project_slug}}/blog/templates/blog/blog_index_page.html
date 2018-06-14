@@ -3,40 +3,38 @@
 
 {% block content %}
 	<div id="content" class="row">
-	    <a href="{% url 'extended_feed' %}" target="_blank" class="button float-right" style="border-radius: 100%;">
-	    	<i class="fa fa-rss" id="blog-rss"></i>
-	    </a>
-	    
-	    {% if request.GET.tag|length %}
-	    	<h4>Showing posts tagged as {{ request.GET.tag|safe }} <a href=" {% pageurl self %} ">Show all</a></h4>
-	    {% endif %}
-	    
-	    <div id="blog_list" class="row" data-equalizer>
-	        {% include "blog/includes/blog_list_item.html" %}
-	    </div>
-		
+    	<a href="{% url 'extended_feed' %}" target="_blank" class="button float-right" style="border-radius: 100%;"><i class="fa fa-rss" id="blog-rss"></i></a>
+    	
+    	{% if request.GET.tag|length %}
+    		<h4>Showing posts tagged as {{ request.GET.tag|safe }} <a href=" {% pageurl self %} ">Show all</a></h4>
+    	{% endif %}
+    	
+    	<div id="blog_list" class="row" data-equalizer>
+        	{% include "blog/includes/blog_list_item.html" %}
+    	</div>
+
 		{% if blogs.has_other_pages %}
-			<div class="row hide-for-print">
-	        	<ul class="pagination text-center" role="navigation" aria-label="Pagination">
-	        		{% if blogs.has_previous %}
-	        			<li class="pagination-previous">
-	          				<a href="?page={{ blogs.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Previous page">Previous</a>
-	          			</li>
-	          		{% else %}
-	          			<li class="pagination-previous disabled">Previous</li>
-	          		{% endif %}
-	          		
-	          		<li class="unavailable">Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}</li>
-	          
-	          		{% if blogs.has_next %}
-	          			<li class="pagination-next">
-	            			<a href="?page={{ blogs.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a>
-	            		</li>
-	            	{% else %}
-	            		<li class="pagination-next disabled">Next</li>
-	            	{% endif %}
-				</ul>
-			</div>
-		{% endif %}   
+    		<div class="row hide-for-print">
+      			<ul class="pagination text-center" role="navigation" aria-label="Pagination">
+        			{% if blogs.has_previous %}
+        				<li class="pagination-previous">
+          					<a href="?page={{ blogs.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Previous page">Previous</a>
+          				</li>
+          			{% else %}
+          				<li class="pagination-previous disabled">Previous</li>
+          			{% endif %}
+          			
+          			<li class="unavailable">Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}</li>
+          
+          			{% if blogs.has_next %}
+          				<li class="pagination-next">
+            				<a href="?page={{ blogs.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a>
+            			</li>
+            		{% else %}
+            			<li class="pagination-next disabled">Next</li>
+            		{% endif %}
+          		</ul>
+      		</div>
+      	{% endif %}
 	</div>
 {% endblock %}{% endraw %}

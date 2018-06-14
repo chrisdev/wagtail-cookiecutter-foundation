@@ -4,28 +4,30 @@
 {% block content %}
 	<div id="content" class="row">
   		<div class="medium-12 columns">
-    		<center><h3>{{ self.title }}</h3></center>
-    		{% include "people/includes/intro.html" with intro=self.intro only %}
+    		<center>
+    			<h3>{{ self.title }}</h3>
+    			{% include "people/includes/intro.html" with intro=self.intro only %}
+    		</center>
 
     		<br>
 
     		<div class="people medium-up-4 small-up-1 text-center" data-equalizer>
       			{% for person in persons %}
-      				<div class="column text-center" data-equalizer-watch>
+      				<div class="column" data-equalizer-watch>
         				{% if person.biography %}<a href="{% pageurl person %}">{% endif %}
-          				<div class="card" style="border-radius: 5px;">
-            				<div class="card-section" style="padding: 5px;">
-              					{% image person.image fill-400x400 %}
-				            	<h6><strong>{{ person.title}}</strong></h6>
-				            	{% if person.role %}<h6 class="subheader">{{ person.role }}</h6>{% endif %}
-				            </div>
-          				</div>
+          					<div class="card" style="border-radius: 5px;">
+	            				<div class="card-section" style="padding: 5px;">
+	              					{% image person.image fill-400x400 %}
+	           						<h6><strong>{{ person.title}}</strong></h6>
+	              					{% if person.role %}<h6 class="subheader">{{ person.role }}</h6>{% endif %}
+	            				</div>
+          					</div>
         				{% if person.biography %}</a>{% endif %}
-        			</div>
-        		{% endfor %}
-			</div>
-		</div>
-
+      				</div>
+      			{% endfor %}
+    		</div>
+  		</div>
+  
   		{% if persons.has_other_pages %}
   			<div class="hide-for-print medium-12 columns">
     			<ul class="pagination text-center" role="navigation" aria-label="Pagination">
@@ -38,7 +40,7 @@
       				{% endif %}
       				
       				<li class="unavailable">Page {{ persons.number }} of {{ persons.paginator.num_pages }}</li>
-      
+      				
       				{% if persons.has_next %}
       					<li class="pagination-next">
         					<a href="?page={{ persons.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a>
@@ -46,7 +48,7 @@
         			{% else %}
       					<li class="pagination-next disabled">Next</li>
         			{% endif %}
-    			</ul>
+   				 </ul>
   			</div>
   		{% endif %}
 	</div>
