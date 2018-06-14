@@ -55,7 +55,6 @@
 
 $primary: map-get($foundation-palette, primary);
 $secondary: map-get($foundation-palette, secondary);
-$primary-dark: #303F9F;
 $off-white : #F8F8FA;
 $emperor: #777777;
 $dark-metal: #222222;
@@ -87,12 +86,12 @@ body {background: $white;}
 a {color: $primary;}
 a:hover {color: $secondary;}
 button, .button {background: $primary;}
-button:hover, .button:hover {background: $primary-dark;}
+button:hover, .button:hover {background: darken($primary, 10%);}
 hr {border-color: $light-gray;}
 
 #social_bar {
   padding: 3px 0;
-  background: $primary-dark;
+  background: darken($primary, 10%);
   text-align: right;
   a {color: $white; margin-right: 8px; font-size: 17px;}
 }
@@ -106,16 +105,16 @@ hr {border-color: $light-gray;}
         li {font-size: 13px;}
         li a:hover{background-color:$secondary;}
         li.menu-text{font-size: 18px; color: $white;a:hover{background: transparent;}}
-        .menu li:not(.menu-text) a {padding: 13px 16px;}
+        .menu li:not(.menu-text) a {padding: 1rem;}
         .menu .is-active > a {
             background: $secondary;
             color: $white;
         }
         ul, .dropdown.menu .submenu {background: $primary; border: 0px;}
         .dropdown.menu .submenu {border-top: 3px solid $secondary;}
-        .top-bar-right {margin-top: 1px;}
         .dropdown.menu .is-dropdown-submenu-parent a::after {border-color: transparent $white transparent transparent; border-style: solid;}
-        .dropdown.menu.medium-horizontal li.is-dropdown-submenu-parent a::after {border-color: $white transparent transparent;}
+        .dropdown.menu.medium-horizontal li.is-dropdown-submenu-parent a {padding: 1rem;}
+        .dropdown.menu.medium-horizontal li.is-dropdown-submenu-parent a::after {border: 0;}
         .is-drilldown-submenu-parent>a::after {border-color: transparent transparent transparent $white;}
         .js-drilldown-back::before {border-color: transparent $white transparent transparent;}
         .has-form {
@@ -149,7 +148,7 @@ hr {border-color: $light-gray;}
     .is-drilldown {
         margin-top: 40px;
         .drilldown a {background: $off-white; color: $primary; padding: 1rem; border-bottom: 1px solid #f2f2f2;}
-        .drilldown a:hover {background: $white; color: $primary-dark;}
+        .drilldown a:hover {background: $white; color: darken($primary, 10%);}
         .drilldown .is-drilldown-submenu-parent a::after {border-color: transparent transparent transparent $primary;}
         .drilldown .js-drilldown-back a::before {border-color: transparent $primary transparent transparent;}
         .is-drilldown-submenu {background: $off-white;}
