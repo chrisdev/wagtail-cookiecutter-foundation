@@ -175,19 +175,20 @@ hr {border-color: $light-gray;}
 
 .list-style {li{list-style: none;}}
 
-.share-buttons{list-style: none;padding: 0; margin:0 0 5px;}
+.share-buttons{list-style: none;padding: 0; margin:0 0 15px;}
 ul.share-buttons li{display: inline; margin-right: 10px;}
 ul.share-buttons .fa {min-width: 30px;}
 .share-buttons {
-  .button.expanded, .button.tiny{padding:6px 8px;font-size: 1.2rem; border-radius: 5px; color: $white;}
+  .button.expanded, .button.tiny{padding:8px 10px;font-size: 1rem; border-radius: 20px; color: $white;}
   .button.expanded {margin-bottom: 0;}
   .facebook {background: #3b5998;}
-  .twitter {background: #00aced;}
-  .google {background: #dd4b39;}
-  .linkedin {background: #007bb6;}
-  .pin {background: #cb2027;}
-  .mail {background: #00bf8f;}
+  .twitter {background: #55acee;}
   .whatsapp {background: #43d854;}
+  .linkedin {background: #007bb5;}
+  .google {background: #3cba54;}
+  .pinterest {background: #cb2027;}
+  .mail {background: #00bf8f;}
+  
 }
 
 #content {padding: 25px 0;min-height: 100vh;}

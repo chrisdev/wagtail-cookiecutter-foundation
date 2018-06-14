@@ -15,3 +15,4 @@ ansible/host_vars/*
 Vagrantfile.local
 docs/_build/
 pages/static/node_modules
+pages/static/package-lock.json
