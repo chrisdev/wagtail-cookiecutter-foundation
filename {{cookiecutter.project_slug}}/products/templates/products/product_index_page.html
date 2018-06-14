@@ -30,6 +30,8 @@
           </div>
       {% endfor %}
   </div>
+  
+  {% if products.has_other_pages %}
   <div class="medium-12 columns hide-for-print">
     <ul class="pagination text-center" role="navigation" aria-label="Pagination">
       {% if products.has_previous %}
@@ -47,5 +49,7 @@
       {% endif %}
     </ul>
   </div>
+  {% endif %}
+
 </div>
 {% endblock %}{% endraw %}

@@ -27,7 +27,8 @@
     <p>No images are tagged with your {{ self.title }} gallery or no {{ self.title }} tags defined.</p>
     {% endif %}
   </div>
-
+  
+  {% if images.has_other_pages %}
   <div class="medium-12 columns">
     <ul class="pagination text-center" role="navigation" aria-label="Pagination">
       {% if images.has_previous %}
@@ -45,4 +46,7 @@
       {% endif %}
     </ul>
   </div>
-</div>{% endblock %}{% endraw %}
+  {% endif %}
+  
+</div>
+{% endblock %}{% endraw %}

@@ -11,7 +11,8 @@
         {% include "blog/includes/blog_list_item.html" %}
     </div>
 
-
+	
+	{% if blogs.has_other_pages %}
     <div class="row hide-for-print">
       <ul class="pagination text-center" role="navigation" aria-label="Pagination">
         {% if blogs.has_previous %}
@@ -28,8 +29,8 @@
             <li class="pagination-next disabled">Next</li>
             {% endif %}
           </ul>
-        </div>
-    </div>
-
-    {% endblock %}
-{% endraw %}
+      </div>
+      {% endif %}
+      
+</div>
+{% endblock %}{% endraw %}
