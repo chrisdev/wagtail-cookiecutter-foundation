@@ -1,8 +1,9 @@
 {% raw %}{% extends "base.html" %}
-{% load compress staticfiles %}
 
-{% block extra_css %}
-{% compress css %}
-<link rel="stylesheet" type="text/x-scss" href="{% static 'photo_gallery/css/main.scss' %}">
-{% endcompress %}
+{% block content %}
+	<div id="content" class="row">
+	    <div class="medium-10 medium-centered columns">
+	        {% block photo_gallery_content %}{% endblock %}
+	    </div>
+	</div>
 {% endblock %}{% endraw %}

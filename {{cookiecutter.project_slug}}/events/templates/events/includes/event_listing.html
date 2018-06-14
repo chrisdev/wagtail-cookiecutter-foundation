@@ -9,23 +9,26 @@
             <div class="medium-up-3 small-up-1 columns" data-equalizer>
                 {% for event in events %}
                     <div class="column">
-                      <a href="{% pageurl event %}">
-                        <div class="card" data-equalizer-watch>
-                          {% if event.feed_image %}
-                          {% image event.feed_image fill-800x350 %}
-                          {% endif %}
+                    	<a href="{% pageurl event %}">
+                        	<div class="card" data-equalizer-watch>
+                          		{% if event.feed_image %}
+                          			{% image event.feed_image fill-800x350 %}
+                          		{% endif %}
                     
-                          <div class="card-section">
-                            <h6>{{ event.title }}</h6>
+                          		<div class="card-section">
+                            		<h6>{{ event.title }}</h6>
                             
-                            <li style="margin-bottom: 6px;"><i class="fab fa-clock-o" aria-hidden="true"></i> {{ event.date_from|date:"j F Y" }} {% if event.time_from %}@ {{ event.time_from }}{% endif %}</li>
+                            		<li style="margin-bottom: 6px;">
+                            			<i class="fab fa-clock-o" aria-hidden="true"></i> 
+                            			{{ event.date_from|date:"j F Y" }} {% if event.time_from %}@ {{ event.time_from }}{% endif %}
+                            		</li>
                     
-                            {% if event.location %}
-                            <li><i class="fab fa-map-marker" aria-hidden="true"></i> {{ event.location }}</li>
-                            {% endif %}
-                          </div>
-                        </div>
-                      </a>
+                            		{% if event.location %}
+                            			<li><i class="fab fa-map-marker" aria-hidden="true"></i> {{ event.location }}</li>
+                            		{% endif %}
+                          		</div>
+                        	</div>
+                     	 </a>
                     </div>
                 {% endfor %}
             </div>

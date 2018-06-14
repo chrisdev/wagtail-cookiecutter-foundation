@@ -2,52 +2,56 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block product_content %}
-<div class="row">
-
-  <div class="medium-12 columns">
-    {% include "utils/includes/social_share.html" %}
-    <div class="medium-12 columns center">
-      <center><h3>{{ self.title }}</h3></center>
-      <center><h5>{% include "products/includes/intro.html" with intro=self.intro only %}</h5></center>
-    </div>
-    <hr>
-    <div class="row" style="margin-bottom:15px;">
-      <div class="medium-10 columns" >
-        {% if self.image %}
-        {% image self.image fill-600x250 as photo %}
-        <img src="{{ photo.url }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="{{ photo.alt }}" class="img-thumbnail" style="float: left;" />
-        {% endif %}
-      </div>
-      <div class="medium-2 columns" style="border:solid 1px;height:240px;text-align:center;">
-        <h5>Price</h5><br><br>
-        {% if self.price %}
-        <h1 class="stat"><strong>{{ self.price }}</strong></h1>
-        {% else %}
-        {% endif %}
-      </div>
-    </div>
-  </div>
-  <br>
-  <hr>
-  <div class="medium-12 columns">
-    {% if self.link_demo %}
-    <center><a class="hollow button alert" href="{{self.link_demo}}">Demo</a></center>
-    {% endif %}
-  </div>
-  <div class="medium-12 columns">
-
-    <h5>Feature Tags</h5>
-    <ul>
-      {% for tag in self.tags.all %}
-      <li class="label" style="line-height:25px;"> {{ tag }}</li>
-      {% endfor %}
-    </ul>
-    {% if self.description %}
-    <h5>Product Description</h5>
-    {% endif %}
-    {% include "products/includes/body.html" with body=self.description only %}
-    <br>
-    {% include "utils/includes/related_links.html" with related_links=self.related_links.all only %}
-  </div>
-</div>
+	<div class="medium-12 columns">
+    	{% include "utils/includes/social_share.html" %}
+  		<center>
+  			<h3>{{ self.title }}</h3>
+  			<h5>{% include "products/includes/intro.html" with intro=self.intro only %}</h5>
+  		</center>
+    	
+    	<div class="row" style="margin-bottom:15px;">
+    		{% if self.price %}
+      		<div class="medium-10 columns">
+      		{% else %}
+      		<div class="medium-12 columns">
+      		{% endif %}
+        		{% if self.image %}
+        			{% image self.image fill-600x250 as photo %}
+        			<img src="{{ photo.url }}" width="{{ photo.width }}" height="{{ photo.height }}" alt="{{ photo.alt }}" class="img-thumbnail" style="float: left;" />
+        		{% endif %}
+      		{% if self.price %}</div>{% else %}</div>{% endif %}
+      		
+      		{% if self.price %}
+      		<div class="medium-2 columns" style="border:solid 1px;height:240px;text-align:center;">
+        		<h5>Price</h5><br><br>
+        		<h1 class="stat"><strong>{{ self.price }}</strong></h1>
+      		</div>
+      		{% endif %}
+    	</div>
+	</div>
+  	
+  	<br>
+  	<hr>
+  	
+  	<div class="medium-12 columns">
+    	{% if self.link_demo %}
+    		<center><a class="hollow button alert" href="{{self.link_demo}}">Demo</a></center>
+    	{% endif %}
+  	</div>
+  	
+  	<div class="medium-12 columns">
+    	<h5>Feature Tags</h5>
+    	<ul>
+      		{% for tag in self.tags.all %}
+      			<li class="label" style="line-height:25px;"> {{ tag }}</li>
+      		{% endfor %}
+   		</ul>
+    	
+    	{% if self.description %}
+    		<h5>Product Description</h5>
+    		{% include "products/includes/body.html" with body=self.description only %}
+    	{% endif %}
+    	<br>
+    	{% include "utils/includes/related_links.html" with related_links=self.related_links.all only %}
+  	</div>
 {% endblock %}{% endraw %}

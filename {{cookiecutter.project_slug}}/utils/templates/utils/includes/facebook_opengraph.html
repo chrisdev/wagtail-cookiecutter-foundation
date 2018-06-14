@@ -1,13 +1,14 @@
 {% raw %}{% load wagtailcore_tags wagtailimages_tags %}
+
 <meta property="og:title" content="{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}"/>
 <meta property="og:url" content="{{ request.build_absolute_uri }}" />
 <meta property="og:site_name" content="{{ request.site.site_name }}" />
 <meta property="og:description" content="{% if self.search_description %}{{ self.search_description }}{% endif %}"/>
 {% if self.feed_image %}
-{% image self.feed_image width-1200 as img %}
-<meta property="og:image" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ img.url }}" />
+	{% image self.feed_image width-1200 as img %}
+	<meta property="og:image" content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ img.url }}" />
 {% else %}
-<meta property="og:image" content="http://yalgoogenetics.com.au/images/no_image.jpg" />
+	<meta property="og:image" content="http://yalgoogenetics.com.au/images/no_image.jpg" />
 {% endif %}
 {% if settings.pages.SocialMediaSettings.facebook_appid  %}
 <meta property="fb:app_id" content="{{ settings.pages.SocialMediaSettings.facebook_appid  }}" />

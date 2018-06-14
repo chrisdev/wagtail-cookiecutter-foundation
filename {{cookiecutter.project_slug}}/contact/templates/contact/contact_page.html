@@ -2,15 +2,15 @@
 {% load wagtailcore_tags foundation_formtags %}
 
 {% block contact_content %}
-<div class="card" style="border-radius: 3px;">
- <div class="card-section form-panel">
-   <form class="contact-form" action="{% pageurl self %}" method="POST">
-     {% csrf_token %}
-     {{ form|as_foundation }}
-     <input class="button radius float-right" name="Send" type="submit" value="Send" style="border-radius: 5px;">
-     <br>
-     <br>
-   </form>
- </div>
-</div>
+	<div class="card" style="border-radius: 3px;">
+		<div class="card-section form-panel">
+   			<form class="contact-form" action="{% pageurl self %}" method="POST">
+     			{% csrf_token %}
+     			{{ form|as_foundation }}
+     			<input class="button radius float-right" name="Send" type="submit" value="Send" style="border-radius: 5px;">
+     			<br>
+     			<br>
+   			</form>
+ 		</div>
+	</div>
 {% endblock %}{% endraw %}

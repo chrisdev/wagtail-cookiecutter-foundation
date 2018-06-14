@@ -1,16 +1,15 @@
 {% raw %}{% load wagtailcore_tags wagtailmarkdown %}
 
 {% if body %}
-<article>
-  {% for block in body %}
-      {% if block.block_type == 'markdown' %}
-          {{ block.value|markdown }}
-          {% else %}
-          <section class="block-{{ block.block_type }}">
-              {% include_block block %}
-          </section>
-      {% endif %}
-  {% endfor %}
-</article>
-{% endif %}
-{% endraw %}
+	<article>
+  		{% for block in body %}
+      		{% if block.block_type == 'markdown' %}
+          		{{ block.value|markdown }}
+          	{% else %}
+          		<section class="block-{{ block.block_type }}">
+              		{% include_block block %}
+          		</section>
+      		{% endif %}
+  		{% endfor %}
+	</article>
+{% endif %}{% endraw %}

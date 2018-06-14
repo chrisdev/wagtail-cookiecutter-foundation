@@ -4,22 +4,18 @@
 {% block breadcrumbs %}{% endblock %}
 
 {% block content %}
-<div id="content" class="row">
-  <div class="medium-8 medium-centered columns">
-    <center><h3>{{ self.title }}</h3></center>
-
-    <br>
-
-    <div class="row">
-      <div class="medium-7 columns">
-        {% block contact_content %}{% endblock %}
-      </div>
-      <aside id="sidebar" class="hide-for-print hide-for-small-only medium-5 columns">
-       {% block sidebar %}
-       {% include "contact/includes/sidebar.html" %}
-       {% endblock %}
-     </aside>
-   </div>
- </div>
-</div>
+	<div id="content" class="row">
+		<div class="medium-8 medium-centered columns">
+	    	<center><h3>{{ self.title }}</h3></center>
+	
+	    	<br>
+	
+	      	<div class="medium-7 columns">
+	        	{% block contact_content %}{% endblock %}
+	      	</div>
+	      	<aside id="sidebar" class="hide-for-print hide-for-small-only medium-5 columns">
+	       		{% include "contact/includes/sidebar.html" %}
+	     	</aside>
+		</div>
+	</div>
 {% endblock %}{% endraw %}

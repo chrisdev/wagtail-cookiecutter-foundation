@@ -5,22 +5,23 @@
 
 {% block content %}
 
-{% include "pages/includes/feed_image_title.html" %}
+	{% include "pages/includes/feed_image_title.html" %}
 
-<div id="content" class="row">
-  <div id="standard_page" class="medium-10 medium-centered columns text-center">
-      {% if self.feed_image %}{% else %}
-          <center>
-              <h3>{{ self.title }}</h3>
-          </center>
-          <br>
-      {% endif %}
+	<div id="content" class="row">
+  		<div id="standard_page" class="medium-10 medium-centered columns text-center">
+      		{% if self.feed_image %}
+      		{% else %}
+	          	<center>
+	              	<h3>{{ self.title }}</h3>
+	          	</center>
+	          	<br>
+      		{% endif %}
 
-      {% include "pages/includes/intro.html" with intro=self.intro only %}
+      		{% include "pages/includes/intro.html" with intro=self.intro only %}
       
-      <br>
+      		<br>
       
-      {% secondary_menu_grid calling_page=self %}
-  </div>
-</div>
+      		{% secondary_menu_grid calling_page=self %}
+  		</div>
+	</div>
 {% endblock %}{% endraw %}

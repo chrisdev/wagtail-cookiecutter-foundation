@@ -2,50 +2,56 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-<div id="content" class="row">
-  <div class="medium-10 medium-centered columns">
-      <center>
-          <h3>{{ self.title }}</h3>
-          <h5 class="subheader">{{ self.subtitle }}</h5>
-          {% include "products/includes/intro.html" with intro=self.intro only %}
-      </center>
-  </div>
-  <div class="product medium-up-3 small-up-1" data-equalizer>
-      {% for product in products %}
-          <div class="column">
-              <a href="{% pageurl product %}">                   
-                  <div class="card-user-profile card" style="border-radius: 3px;">
-                    {% image product.image fill-500x250 %}
-                    <div class="card-user-profile-content card-section" style="padding: 0;">
-                      <center>
-                          <p class="card-user-profile-name" style="margin-bottom: 0;">{{ product.title }}</p>
-                      </center>
-                    </div>
-                  
-                    <div class="card-user-profile-actions">
-                      <a href="{% pageurl product %}" class="card-user-profile-button button hollow secondary" style="border-radius: 3px;">More Info</a>
-                    </div>
-                  </div>
-              </a>            
-          </div>
-      {% endfor %}
-  </div>
-  <div class="medium-12 columns hide-for-print">
-    <ul class="pagination text-center" role="navigation" aria-label="Pagination">
-      {% if products.has_previous %}
-      <li class="pagination-previous">
-        <a href="?page={{ products.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Previous page">Previous</a></li>
-        {% else %}
-      <li class="pagination-previous disabled">Previous</li>
-      {% endif %}
-      <li class="unavailable">Page {{ products.number }} of {{ products.paginator.num_pages }}</li>
-      {% if products.has_next %}
-      <li class="pagination-next">
-        <a href="?page={{ products.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a></li>
-        {% else %}
-      <li class="pagination-next disabled">Next</li>
-      {% endif %}
-    </ul>
-  </div>
-</div>
+	<div id="content" class="row">
+  		<div class="medium-10 medium-centered columns">
+      		<center>
+          		<h3>{{ self.title }}</h3>
+          		<h5 class="subheader">{{ self.subtitle }}</h5>
+          		{% include "products/includes/intro.html" with intro=self.intro only %}
+      		</center>
+  		</div>
+  		<div class="product medium-up-3 small-up-1" data-equalizer>
+      		{% for product in products %}
+          		<div class="column">
+              		<a href="{% pageurl product %}">                   
+                  		<div class="card-user-profile card" style="border-radius: 3px;">
+                    		{% image product.image fill-500x250 %}
+                    		<div class="card-user-profile-content card-section" style="padding: 0;">
+                      			<center>
+                          			<p class="card-user-profile-name" style="margin-bottom: 0;">{{ product.title }}</p>
+                      			</center>
+                    		</div>
+                    		<div class="card-user-profile-actions">
+                      			<a href="{% pageurl product %}" class="card-user-profile-button button hollow secondary" style="border-radius: 3px;">More Info</a>
+                    		</div>
+                  		</div>
+              		</a>            
+          		</div>
+      		{% endfor %}
+  		</div>
+
+		{% if products.has_other_pages %}
+  			<div class="medium-12 columns hide-for-print">
+    			<ul class="pagination text-center" role="navigation" aria-label="Pagination">
+      				{% if products.has_previous %}
+      					<li class="pagination-previous">
+        					<a href="?page={{ products.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Previous page">Previous</a>
+        				</li>
+        			{% else %}
+      					<li class="pagination-previous disabled">Previous</li>
+      				{% endif %}
+      				
+      				<li class="unavailable">Page {{ products.number }} of {{ products.paginator.num_pages }}</li>
+      
+      				{% if products.has_next %}
+      					<li class="pagination-next">
+        					<a href="?page={{ products.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a>
+        				</li>
+        			{% else %}
+      					<li class="pagination-next disabled">Next</li>
+      				{% endif %}
+    			</ul>
+  			</div>
+  		{% endif %}
+	</div>
 {% endblock %}{% endraw %}

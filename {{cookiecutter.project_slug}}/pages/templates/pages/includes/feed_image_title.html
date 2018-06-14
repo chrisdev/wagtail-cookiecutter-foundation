@@ -1,12 +1,12 @@
 {% raw %}{% load static wagtailcore_tags wagtailimages_tags %}
 
 {% if self.feed_image %}
-{% image self.feed_image original as feed_image %}
-<div class="hero-section page" style="background-image: url('{{ feed_image.url }}');">
-	<div class="hero-content">
-	  <div class="hero-section-text">
-	    <center><h1>{{ self.title }}</h1></center>
-	  </div>
+	{% image self.feed_image original as feed_image %}
+	<div class="hero-section page" style="background-image: url('{{ feed_image.url }}');">
+		<div class="hero-content">
+	  		<div class="hero-section-text">
+	    		<center><h1>{{ self.title }}</h1></center>
+	  		</div>
+		</div>
 	</div>
-</div>
 {% endif %}{% endraw %}
