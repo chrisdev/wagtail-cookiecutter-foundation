@@ -10,10 +10,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}"/>
     {% block canonical_url %}{% endblock %}
-
+	
+	{% block cdn_css %}
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	{% endblock %}
+	
     {% compress css %}
     <link rel="stylesheet" type="text/css" href="{% static 'node_modules/bxslider/dist/jquery.bxslider.min.css' %}">
-    <link rel="stylesheet" href="{% static 'node_modules/font-awesome/css/font-awesome.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'node_modules/lightbox2/src/css/lightbox.css' %}" />
     <link rel="stylesheet" type="text/x-scss" href="{% static 'css/app.scss' %}">
     {% endcompress %}
@@ -61,9 +64,9 @@
 
             <h5><strong>Follow Us</strong></h5>
             <div class="social">
-              <a href="{{ settings.pages.SocialMediaSettings.facebook }}" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
-              <a href="https://twitter.com/{{ settings.pages.SocialMediaSettings.twitter_name }}" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
-              <a href="{{ settings.pages.SocialMediaSettings.github }}" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+              <a href="{{ settings.pages.SocialMediaSettings.facebook }}" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a>
+              <a href="https://twitter.com/{{ settings.pages.SocialMediaSettings.twitter_name }}" target="_blank"><i class="fab fa-twitter-square fa-2x"></i></a>
+              <a href="{{ settings.pages.SocialMediaSettings.github }}" target="_blank"><i class="fab fa-github-square fa-2x"></i></a>
             </div>
           </div>
 

@@ -4,11 +4,11 @@
 <h6>
   <a href="{{ document.url }}">
     {% if document.file_extension == 'pdf' %}
-    <i class="fa fa-file-pdf-o"></i>
+    <i class="fab fa-file-pdf-o"></i>
     {% elif document.file_extension == 'docx' or 'doc' %}
-    <i class="fa fa-file-word-o"></i>
+    <i class="fab fa-file-word-o"></i>
     {% else %}
-    <i class="fa fa-file"></i>
+    <i class="fab fa-file"></i>
     {% endif %}
     &nbsp;
     {{ document.title }}

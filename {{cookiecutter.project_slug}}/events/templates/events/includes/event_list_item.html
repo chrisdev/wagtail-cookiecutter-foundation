@@ -7,12 +7,12 @@
       {% endif %}
 
       <div class="card-section">
-        <li><i class="fa fa-clock-o" aria-hidden="true"></i> {{ event.date_from|date:"j F" }} {% if event.time_from %}- {{ event.time_from }}{% endif %}</li>
+        <li><i class="fab fa-clock-o" aria-hidden="true"></i> {{ event.date_from|date:"j F" }} {% if event.time_from %}- {{ event.time_from }}{% endif %}</li>
 
         <h6>{{ event.title }}</h6>
 
         {% if event.location %}
-        <li><i class="fa fa-map-marker" aria-hidden="true"></i> {{ event.location }}</li>
+        <li><i class="fab fa-map-marker" aria-hidden="true"></i> {{ event.location }}</li>
         {% endif %}
       </div>
     </div>

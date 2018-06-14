@@ -60,7 +60,7 @@ $social-brand-print: #777;
       color: inherit;
       background-color: inherit;
 
-      > .fa {
+      > .fab {
         padding: $social-icon-padding;
         width: 2rem;
         height: 2rem;
@@ -74,25 +74,25 @@ $social-brand-print: #777;
           margin-right: 0.5rem;
         }
 
-        &.fa-facebook {
+        &.fab-facebook {
           background-color: $social-brand-facebook;
         }
-        &.fa-twitter {
+        &.fab-twitter {
           background-color: $social-brand-twitter;
         }
-        &.fa-linkedin {
+        &.fab-linkedin {
           background-color: $social-brand-linkedin;
         }
-        &.fa-google-plus {
+        &.fab-google-plus {
           background-color: $social-brand-google;
         }
-        &.fa-pinterest-p {
+        &.fab-pinterest-p {
           background-color: $social-brand-pinterest;
         }
-        &.fa-envelope {
+        &.fab-envelope {
           background-color: $social-brand-mail;
         }
-        &.fa-print {
+        &.fab-print {
           background-color: $social-brand-print;
         }
       }
