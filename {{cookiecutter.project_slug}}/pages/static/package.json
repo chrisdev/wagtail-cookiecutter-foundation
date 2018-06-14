@@ -3,18 +3,10 @@
   "version": "0.0.0",
     "dependencies": {
       "foundation-sites": "~6.4.3",
-      "bxslider": "~4.2.12",
-      "lightbox2": "~2.9.0",
-      "jquery": ">=3.0.0",
       "motion-ui": "~1.2.2",
       "what-input": "^4.1.3"
     },
-    "devDependencies": {
-      "grunt": "^1.0.0",
-      "grunt-bg-shell": "^2.3.3",
-      "grunt-browser-sync": "^2.2.0",
-      "grunt-contrib-imagemin": "^1.0.1"
-    },
+    "devDependencies": {},
     "engines": {
       "node": ">=0.10.0"
     }

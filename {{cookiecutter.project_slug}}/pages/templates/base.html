@@ -12,14 +12,14 @@
     {% block canonical_url %}{% endblock %}
 	
 	{% block cdn_css %}
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/css/lightbox.min.css" />
 	{% endblock %}
 	
-    {% compress css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'node_modules/bxslider/dist/jquery.bxslider.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'node_modules/lightbox2/src/css/lightbox.css' %}" />
-    <link rel="stylesheet" type="text/x-scss" href="{% static 'css/app.scss' %}">
-    {% endcompress %}
+	{% compress css %}
+	<link rel="stylesheet" type="text/x-scss" href="{% static 'css/app.scss' %}">
+	{% endcompress %}
 
     {% block extra_css %}{% endblock %}
 
@@ -93,12 +93,15 @@
     </div>
   </div>
 
+  {% block cdn_js %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox.min.js"></script>
+  {% endblock %}
+  
   {% compress js %}
-  <script src="{% static 'node_modules/jquery/dist/jquery.min.js' %}"></script>
   <script src="{% static 'node_modules/foundation-sites/dist/js/foundation.min.js' %}"></script>
   <script src="{% static 'node_modules/what-input/dist/what-input.min.js' %}"></script>
-  <script src="{% static 'node_modules/bxslider/dist/jquery.bxslider.min.js' %}"></script>
-  <script src="{% static 'node_modules/lightbox2/src/js/lightbox.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
   {% endcompress %}
 
