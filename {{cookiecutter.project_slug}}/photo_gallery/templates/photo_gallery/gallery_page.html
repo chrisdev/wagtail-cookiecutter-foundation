@@ -9,12 +9,6 @@
 			<div class="medium-12 cell">
     			<center><h3>{{ self.title }}</h3></center>
     		</div>
-    		
-    		<div class="medium-12 cell">
-	    		{% if self.tags %}
-	    			{% include "photo_gallery/includes/tags.html" %}
-	    		{% endif %}
-	    	</div>
 
     		{% if images %}
     			<div class="grid-x grid-padding-x" data-equalizer>
