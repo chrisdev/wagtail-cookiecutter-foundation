@@ -4,20 +4,24 @@
 {% block body_class %}{{ self.get_verbose_name|slugify }}{% endblock %}
 
 {% block content %}
-	<div id="content" class="row">
-  		<div class="medium-12 columns">
-    		<center><h3>{{ self.title }}</h3></center>
+	<div id="content" class="grid-container">
+		<div class="grid-x grid-padding-x centered">
+			<div class="medium-12 cell">
+    			<center><h3>{{ self.title }}</h3></center>
+    		</div>
     		
-    		{% if self.tags %}
-    			{% include "photo_gallery/includes/tags.html" %}
-    		{% endif %}
+    		<div class="medium-12 cell">
+	    		{% if self.tags %}
+	    			{% include "photo_gallery/includes/tags.html" %}
+	    		{% endif %}
+	    	</div>
 
     		{% if images %}
-    			<div class="medium-up-5" data-equalizer>
+    			<div class="grid-x grid-padding-x" data-equalizer>
       				{% for gallery_image in images %}
       					{% image gallery_image fill-400x300 as img_thumb %}
       					{% image gallery_image original as gallery_imagedata %}
-          				<div class="column" data-equalizer-watch>
+          				<div class="medium-3 cell" data-equalizer-watch>
             				<a class="thumbnail" href="{{ gallery_imagedata.url }}" data-lightbox="{{ self.title }}">
               					<img src="{{ img_thumb.url }}" alt="{{ gallery_imagedata.alt }}"/>
             				</a>
@@ -27,30 +31,30 @@
     		{% else %}
     			<p>No images are tagged with your {{ self.title }} gallery or no {{ self.title }} tags defined.</p>
     		{% endif %}
-  		</div>
   
-  		{% if images.has_other_pages %}
-  			<div class="medium-12 columns">
-    			<ul class="pagination text-center" role="navigation" aria-label="Pagination">
-      				{% if images.has_previous %}
-      					<li class="pagination-previous">
-        					<a href="?page={{ images.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Previous page">Previous</a>
-        				</li>
-        			{% else %}
-      					<li class="pagination-previous disabled">Previous</li>
-      				{% endif %}
-      				
-      				<li class="unavailable">Page {{ images.number }} of {{ images.paginator.num_pages }}</li>
-      
-      				{% if images.has_next %}
-      					<li class="pagination-next">
-        					<a href="?page={{ images.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a>
-        				</li>
-        			{% else %}
-      					<li class="pagination-next disabled">Next</li>
-      				{% endif %}
-    			</ul>
- 			 </div>
-  		{% endif %}
+	  		{% if images.has_other_pages %}
+	  			<div class="medium-12 cell">
+	    			<ul class="pagination text-center" role="navigation" aria-label="Pagination">
+	      				{% if images.has_previous %}
+	      					<li class="pagination-previous">
+	        					<a href="?page={{ images.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Previous page">Previous</a>
+	        				</li>
+	        			{% else %}
+	      					<li class="pagination-previous disabled">Previous</li>
+	      				{% endif %}
+	      				
+	      				<li class="unavailable">Page {{ images.number }} of {{ images.paginator.num_pages }}</li>
+	      
+	      				{% if images.has_next %}
+	      					<li class="pagination-next">
+	        					<a href="?page={{ images.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a>
+	        				</li>
+	        			{% else %}
+	      					<li class="pagination-next disabled">Next</li>
+	      				{% endif %}
+	    			</ul>
+	 			 </div>
+	  		{% endif %}
+	  	</div>
 	</div>
 {% endblock %}{% endraw %}

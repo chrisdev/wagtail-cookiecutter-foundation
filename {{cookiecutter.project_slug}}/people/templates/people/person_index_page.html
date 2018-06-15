@@ -2,34 +2,34 @@
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-	<div id="content" class="row">
-  		<div class="medium-12 columns">
-    		<center>
-    			<h3>{{ self.title }}</h3>
-    			{% include "people/includes/intro.html" with intro=self.intro only %}
-    		</center>
-
-    		<br>
-
-    		<div class="people medium-up-4 small-up-1 text-center" data-equalizer>
-      			{% for person in persons %}
-      				<div class="column" data-equalizer-watch>
-        				{% if person.biography %}<a href="{% pageurl person %}">{% endif %}
-          					<div class="card" style="border-radius: 5px;">
-	            				<div class="card-section" style="padding: 5px;">
-	              					{% image person.image fill-400x400 %}
-	           						<h6 style="padding: 8px 0;"><strong>{{ person.title}}</strong></h6>
-	              					{% if person.role %}<h6 class="subheader">{{ person.role }}</h6>{% endif %}
-	            				</div>
-          					</div>
-        				{% if person.biography %}</a>{% endif %}
-      				</div>
-      			{% endfor %}
-    		</div>
+	<div id="content" class="grid-container">
+		<div class="grid-x grid-padding-x grid-padding-y centered">
+	  		<div class="medium-11 cell">
+	    		<center>
+	    			<h3>{{ self.title }}</h3>
+	    			{% include "people/includes/intro.html" with intro=self.intro only %}
+	    		</center>
+			</div>
+	    	
+	    	<br>
+	    	
+  			{% for person in persons %}
+  				<div class="medium-3 cell" data-equalizer-watch>
+    				{% if person.biography %}<a href="{% pageurl person %}">{% endif %}
+      					<div class="card text-center" style="border-radius: 5px;">
+            				<div class="card-section" style="padding: 5px;">
+              					{% image person.image fill-400x400 %}
+           						<h6 style="padding: 8px 0;"><strong>{{ person.title}}</strong></h6>
+              					{% if person.role %}<h6 class="subheader">{{ person.role }}</h6>{% endif %}
+            				</div>
+      					</div>
+    				{% if person.biography %}</a>{% endif %}
+  				</div>
+  			{% endfor %}
   		</div>
   
   		{% if persons.has_other_pages %}
-  			<div class="hide-for-print medium-12 columns">
+  			<div class="hide-for-print medium-12 cell">
     			<ul class="pagination text-center" role="navigation" aria-label="Pagination">
       				{% if persons.has_previous %}
       					<li class="pagination-previous">

@@ -1,32 +1,30 @@
 {% raw %}{% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="medium-8 medium-centered columns">
-	{% for blog in blogs %}
-	    <div id="article" class="column">
-	        <article class="blog">
-	            <a href="{% pageurl blog %}">
-	            	<div class="card">
-		                {% if blog.feed_image %}
-		                    {% image blog.feed_image fill-1200x600 %}
-		                {% endif %}
-	                	<div class="card-section" style="padding: 12px;">
-	                    	<h5><strong>{{ blog.title }}</strong></h5>
-	                		<h6><strong>{{ blog.date|date:"j F Y" }}</strong></h6>
-	                		<div class="text" data-equalizer-watch>
-		                    	{% if blog.intro %}
-		                        	{{ blog.intro|richtext|truncatewords:25 }}  
-		                    	{% endif %}
-		                    </div>
-	                    	<div class="medium-12 columns">
-	                        	<p><a class="float-right button tiny" href="{% pageurl blog %}"><strong>Read Article &raquo;</strong></a></p>
-	                        </div>
-	                        <br>
-	                     </div>
-	                </div>
-	            </a>
-	        </article>
-	    </div>
-	{% empty %}
-	    No blogs found
-	{% endfor %}
-</div>{% endraw %}
+{% for blog in blogs %}
+    <div id="article">
+        <article class="blog">
+            <a href="{% pageurl blog %}">
+            	<div class="card">
+	                {% if blog.feed_image %}
+	                    {% image blog.feed_image fill-1200x600 %}
+	                {% endif %}
+                	<div class="card-section" style="padding: 12px;">
+                    	<h5><strong>{{ blog.title }}</strong></h5>
+                		<h6><strong>{{ blog.date|date:"j F Y" }}</strong></h6>
+                		<div class="text" data-equalizer-watch>
+	                    	{% if blog.intro %}
+	                        	{{ blog.intro|richtext|truncatewords:25 }}  
+	                    	{% endif %}
+	                    </div>
+                    	<div class="medium-12 columns">
+                        	<p><a class="float-right button tiny" href="{% pageurl blog %}"><strong>Read Article &raquo;</strong></a></p>
+                        </div>
+                        <br>
+                     </div>
+                </div>
+            </a>
+        </article>
+    </div>
+{% empty %}
+    No blogs found
+{% endfor %}{% endraw %}

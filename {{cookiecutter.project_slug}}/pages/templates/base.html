@@ -54,40 +54,42 @@
       	<a href="#" class="scrollup"><img src="{% static 'img/top.png' %}"></i></a>
 
       	<footer class="hide-for-print">
-        	<div class="row">
-          		<div id="contact-us" class="medium-4 columns">
-            		<h5><strong>Get in Contact</strong></h5>
-            		{% get_contact_fields as contact %}
-            		{% include "contact/includes/contact_card.html" with contact=contact only %}
-
-            		<br>
-
-            		<h5><strong>Follow Us</strong></h5>
-            		<div class="social">
-              			<a href="{{ settings.pages.SocialMediaSettings.facebook }}" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a>
-              			<a href="https://twitter.com/{{ settings.pages.SocialMediaSettings.twitter_name }}" target="_blank"><i class="fab fa-twitter-square fa-2x"></i></a>
-              			<a href="{{ settings.pages.SocialMediaSettings.github }}" target="_blank"><i class="fab fa-github-square fa-2x"></i></a>
-            		</div>
-          		</div>
-
-          		<div id="sitemap" class="medium-3 columns hide-for-small-only">
-            		<h5><strong>Explore Our Site</strong></h5>
-            		{% site_menu parent=site_root calling_page=self %}
-          		</div>
-
-          		<div class="medium-4 columns hide-for-small-only">
-            		{% if contact.post_code %}
-            			{% get_google_maps_key as google_maps_key %}
-            			<img src="https://maps.googleapis.com/maps/api/staticmap?center={{ contact.post_code }}&zoom=13&size=300x280&maptype=roadmap&sensor=false&markers=color:green|{{ contact.post_code }}{% if google_maps_key %}&key={{ google_maps_key }}{% endif %}"/>
-            		{% endif %}
-          		</div>
-        	</div>
-        	<div id="copyright">
-          		<div class="row text-center">
-            		<p>Copyright © 2018 ChrisDev. All rights reserved</p>
-          		</div>
-        	</div>
-      	</footer>
+  	  		<div class="grid-container">
+  	        	<div class="grid-x grid-padding-x">
+  	          		<div id="contact-us" class="medium-4 cell">
+  	            		<h5><strong>Get in Contact</strong></h5>
+  	            		{% get_contact_fields as contact %}
+  	            		{% include "contact/includes/contact_card.html" with contact=contact only %}
+  	
+  	            		<br>
+  	
+  	            		<h5><strong>Follow Us</strong></h5>
+  	            		<div class="social">
+  	              			<a href="{{ settings.pages.SocialMediaSettings.facebook }}" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a>
+  	              			<a href="https://twitter.com/{{ settings.pages.SocialMediaSettings.twitter_name }}" target="_blank"><i class="fab fa-twitter-square fa-2x"></i></a>
+  	              			<a href="{{ settings.pages.SocialMediaSettings.github }}" target="_blank"><i class="fab fa-github-square fa-2x"></i></a>
+  	            		</div>
+  	          		</div>
+  	
+  	          		<div id="sitemap" class="medium-3 cell hide-for-small-only">
+  	            		<h5><strong>Explore Our Site</strong></h5>
+  	            		{% site_menu parent=site_root calling_page=self %}
+  	          		</div>
+  	
+  	          		<div class="medium-4 cell hide-for-small-only">
+  	            		{% if contact.post_code %}
+  	            			{% get_google_maps_key as google_maps_key %}
+  	            			<img src="https://maps.googleapis.com/maps/api/staticmap?center={{ contact.post_code }}&zoom=13&size=300x280&maptype=roadmap&sensor=false&markers=color:green|{{ contact.post_code }}{% if google_maps_key %}&key={{ google_maps_key }}{% endif %}"/>
+  	            		{% endif %}
+  	          		</div>
+  	        	</div>
+  	        </div>
+  	    	<div id="copyright">
+  	      		<div class="grid-x grid-padding-x centered">
+  	        		<p>Copyright © 2018 ChrisDev. All rights reserved</p>
+  	      		</div>
+  	    	</div>
+  	  	</footer>
     </div>
   </div>
 

@@ -82,7 +82,9 @@ $static: static;
 $body-font-color: $emperor;
 
 body {background: $white;}
+.grid-container {max-width: 70rem;}
 .pad {padding: 20px 0;}
+.centered {justify-content: center;}
 a {color: $primary;}
 a:hover {color: $secondary;}
 button, .button {background: $primary;}
@@ -165,7 +167,7 @@ hr {border-color: $light-gray;}
 .off-canvas.is-transition-overlap {z-index: 99999;}
 
 .breadcrumbs {
-  margin: 20px 0;
+  margin: 10px 0;
   background: $off-white;
   border-radius: 15px;
   padding: 15px;
@@ -190,7 +192,7 @@ ul.share-buttons .fa {min-width: 30px;}
   
 }
 
-#content {padding: 25px 0;min-height: 100vh;}
+#content {padding-top: 25px; padding-bottom: 25px; min-height: 100vh;}
 
 .card {
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);

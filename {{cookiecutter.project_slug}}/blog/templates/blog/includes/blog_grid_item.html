@@ -1,8 +1,8 @@
 {% raw %}{% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="medium-up-3">
+<div class="grid-x grid-padding-x">
 	{% for blog in blogs %}
-	    <div id="article" class="column">
+	    <div id="article" class="medium-4 cell">
 	        <article class="blog">
 	            <a href="{% pageurl blog %}">
 	            	<div class="card">

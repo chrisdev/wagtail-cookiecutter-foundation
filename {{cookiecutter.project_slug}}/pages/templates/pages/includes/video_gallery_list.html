@@ -2,7 +2,7 @@
 
 {% if carousel_items %}
     {% for carousel_item in carousel_items %}
-        <div class="medium-4 columns end">
+        <div class="medium-4 cell end">
             {% if carousel_item.embed_url %}
                 <div class="flex-video widescreen">
                 	{% embed carousel_item.embed_url %}

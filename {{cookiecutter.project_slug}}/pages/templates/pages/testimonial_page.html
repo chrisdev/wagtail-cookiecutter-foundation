@@ -4,12 +4,14 @@
 {% block breadcrumbs %}{% endblock %}
 
 {% block content %}
-    <div id="content">
-        <div id="testimonial_list" class="row">
-            <center><h3>{{ self.title }}</h3></center>
+    <div id="content" class="grid-container">
+    	<div id="testimonial_list" class="grid-x grid-padding-x">
+    		<div class="medium-12 cell">
+            	<center><h3>{{ self.title }}</h3></center>
+            </div>
             
             <div class="featured-testimonials-section">
-                <div class="featured-testimonials row" style="max-width: 74em;" data-equalizer>
+                <div class="featured-testimonials row" data-equalizer>
                     {% testimonials_list %}
                 </div>
             </div>

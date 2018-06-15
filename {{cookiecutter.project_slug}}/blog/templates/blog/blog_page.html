@@ -35,17 +35,19 @@
 		</div>
 	{% endif %}
 	
-	<article id="blog_post" class="row">
-		<div class="medium-11 medium-centered columns">
-			<br>    
-			{% if self.feed_image %}
-			{% else %}
-	      		{% include "blog/includes/blog_header.html" %}
-	      	{% endif %}
-	        
-	        {% include "blog/includes/blog_body.html" with body=self.body only %}
-	      	<br>
-	      	{% include "utils/includes/related_links.html" with related_links=self.related_links.all only %}
+	<article id="blog_post" class="grid-container">
+		<div class="grid-x grid-padding-x centered">
+			<div class="medium-10 cell">
+				<br>    
+				{% if self.feed_image %}
+				{% else %}
+		      		{% include "blog/includes/blog_header.html" %}
+		      	{% endif %}
+		        
+		        {% include "blog/includes/blog_body.html" with body=self.body only %}
+		      	<br>
+		      	{% include "utils/includes/related_links.html" with related_links=self.related_links.all only %}
+			</div>
 		</div>
 	</article>
 {% endblock %}{% endraw %}

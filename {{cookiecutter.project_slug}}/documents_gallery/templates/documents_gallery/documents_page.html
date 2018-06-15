@@ -8,13 +8,13 @@
 {% endblock %}
 
 {% block content %}
-	<div id="content" class="row">
-		<div class="medium-12 columns">
-	    	<center><h3>{{ self.title }}</h3></center>
-			
-			<hr>
-			
-	    	<div class="medium-9 medium-centered columns">
+	<div id="content" class="grid-container">
+		<div class="grid-x grid-padding-x grid-padding-y centered">
+			<div class="medium-12 cell">
+	    		<center><h3>{{ self.title }}</h3></center>
+	    	</div>
+						
+	    	<div class="medium-8 cell">
 		     	{% if documents %}
 		     		<table id="document-table">
 		       			<thead>

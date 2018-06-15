@@ -1,5 +1,6 @@
 {% raw %}{% load wagtailcore_tags wagtailimages_tags %}
 
+<div class="medium-12 cell">
 <br>
 {% if request.GET.tag|length %}
 	<h3>Events tagged with <strong>{{ request.GET.tag|safe }}</strong></h3>
@@ -10,5 +11,6 @@
   			{% for tag in tags.all %}
   				<li><a href="{{ request.path }}?tag={{ tag }}" title=""><i class="fa fa-tag"></i> {{ tag }}</a></li>
  		 	{% endfor %}
-</ul>
-{% endif %}{% endraw %}
+	</ul>
+{% endif %}
+</div>{% endraw %}

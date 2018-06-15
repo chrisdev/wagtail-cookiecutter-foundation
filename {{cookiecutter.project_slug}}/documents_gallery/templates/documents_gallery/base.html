@@ -1,9 +1,11 @@
 {% raw %}{% extends "base.html" %}
 
 {% block content %}
-<div id="content" class="row">
-    <div class="medium-10 medium-centered columns">
-        {% block document_content %}{% endblock %}
-    </div>
-</div>
+	<div id="content" class="grid-container">
+		<div class="grid-x grid-padding-x centered">
+			<div class="medium-10 cell">
+	        	{% block document_content %}{% endblock %}
+	    	</div>
+	    </div>
+	</div>
 {% endblock %}{% endraw %}

@@ -2,13 +2,15 @@
 {% load static wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
-	<div id="content" class="row">
-  		<div id="faq" class="medium-8 medium-centered columns panel radius">
-    		<center>
-        		<h3>{{ self.title }}</h3>
-    		</center>
-    		<hr>
-    		{{ self.body }}
+	<div id="content" class="grid-container">
+		<div class="grid-x grid-padding-x centered">
+			<div id="faq" class="medium-8 cell">
+	    		<center>
+	        		<h3>{{ self.title }}</h3>
+	    		</center>
+	    		<hr>
+	    		{{ self.body }}
+	    	</div>
   		</div>
 	</div>
 {% endblock %}{% endraw %}
