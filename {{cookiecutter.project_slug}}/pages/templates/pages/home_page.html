@@ -22,12 +22,12 @@
 	<div id="section">
 		<div class="grid-container">
 	  		<div id="icons" class="grid-x grid-padding-x text-center">
-	    		<div class="medium-12 cells">
+	    		<div class="medium-12 cell">
 	    			<h3>Featuring</h3>
 	    		</div>
 	    		<br>
 	  			{% for block in self.content_items.all %}
-	  				<div class="medium-4 cells" style="margin-bottom: 25px;">
+	  				<div class="medium-4 cell" style="margin-bottom: 25px;">
 	    				<a href="{{ block.link }}" target="_blank">
 	      					{% if block.image %}
 	        					<div class="text-center">

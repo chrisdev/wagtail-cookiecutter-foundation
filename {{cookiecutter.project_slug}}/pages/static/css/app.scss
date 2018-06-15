@@ -98,7 +98,10 @@ hr {border-color: $light-gray;}
   a {color: $white; margin-right: 8px; font-size: 17px;}
 }
 
-.title-bar {background: $primary;}
+.title-bar {
+	background: $primary;
+	a, a:hover {color: $white;}
+}
 .top-bar {
     @include breakpoint(medium) {
         background: $primary;

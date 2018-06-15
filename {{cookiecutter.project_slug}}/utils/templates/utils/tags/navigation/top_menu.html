@@ -16,7 +16,7 @@
 
 	<div class="title-bar" data-responsive-toggle="menu" data-hide-for="large">
   		<button class="menu-icon" type="button" style="background: transparent;"data-toggle></button>
-  		<div class="title-bar-title">ChrisDev Wagtail</div>
+  		<div class="title-bar-title"><a href="{% pageurl site_root %}">ChrisDev Wagtail</a></div>
 	</div>
 
     <div class="top-bar" id="menu">
@@ -33,6 +33,9 @@
             			<a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
             				{% if menuitem.show_dropdown %}
             					<ul class="submenu menu vertical" data-submenu>
+            						<li class="show-for-small-only">
+            							<a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+            						</li>
               						{% top_menu_children parent=menuitem %}
             					</ul>
             				{% endif %}
