@@ -3,7 +3,7 @@ $secondary: map-get($foundation-palette, secondary);
 $emperor: #777;
 $static: static;
 
-// SOCIAL BAR
+// DESKTOP SOCIAL BAR
 
 $social-bar-position: left; 
 $social-bar-transformation: rem-calc(140);
@@ -16,6 +16,7 @@ $social-icon-padding: 0.5rem;
 
 $social-brand-facebook: #3b5998;
 $social-brand-twitter: #55acee;
+$social-brand-whatsapp: #43d854;
 $social-brand-linkedin: #007bb5;
 $social-brand-google: #3cba54;
 $social-brand-pinterest: #cb2027;
@@ -127,6 +128,85 @@ $social-brand-print: #777;
     }
   }
 }
+
+$social-button-size: 1.8rem;
+$social-button-border-width: 0.125rem;
+$social-button-font-size: 1rem;
+$social-button-line-height: 1.6em;
+$social-button-border-radius: 1.6875rem;
+$social-button-transition: all 0.5s ease;
+$social-button-margin: 0.25rem;
+
+@mixin social-button($brand-color, $brand-icon) {
+  background: $brand-color;
+
+  &:before {
+    font-family: "FontAwesome";
+    content: $brand-icon;
+  }
+  &:hover,
+  &:focus {
+    color: $brand-color;
+    background: $white;
+    border-color: $brand-color;
+  }
+}
+
+.rounded-social-buttons {
+  padding: 10px 0;
+  text-align: center;
+
+  .social-button {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    width: $social-button-size;
+    height: $social-button-size;
+    border: $social-button-border-width solid transparent;
+    padding: 0;
+    text-decoration: none;
+    text-align: center;
+    color: $white;
+    font-size: $social-button-font-size;
+    font-weight: normal;
+    line-height: $social-button-line-height;
+    border-radius: $social-button-border-radius;
+    transition: $social-button-transition;
+    margin-right: $social-button-margin;
+    margin-bottom: $social-button-margin;
+
+    &:hover,
+    &:focus {
+      transform: rotate(360deg);
+    }
+
+    &.facebook {
+      @include social-button($social-brand-facebook, "\f09a")
+    }
+
+    &.twitter {
+      @include social-button($social-brand-twitter, "\f099")
+    }
+
+    &.linkedin {
+      @include social-button($social-brand-linkedin, "\f0e1")
+    }
+
+    &.whatsapp {
+      @include social-button($social-brand-whatsapp, "\f232")
+    }
+
+    &.pinterest {
+      @include social-button($social-brand-pinterest, "\f231")
+    }
+
+    &.mail {
+      @include social-button($social-brand-mail, "\f0e0")
+    }
+  }
+}
+
+
 // END SOCIAL BAR
 
 
