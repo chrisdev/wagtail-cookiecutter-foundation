@@ -10,44 +10,24 @@
 {% block content %}
 	{% include "utils/includes/social_share.html" %}
 	
-	{% if self.feed_image %}
-		{% image self.feed_image original as feed_image %}
-		<div class="row expanded collapse">
-			<div class="column">
-	    		<div class="large-article-header" style="background-image:url('{{ feed_image.url }}')">
-	      			<div class="large-article-header-content">
-	        			<div class="center-container">
-	          				<div class="article-date">
-	            				<p>Published on <strong>{{ self.date }}</strong></p>
-	          				</div>
-	          				<div class="article-title">
-	            				<h1>{{ self.title }}</h1>
-	          				</div>
-	          				<div class="article-details">
-	            				<div class="article-author">
-	              					<a>By: {{ self.owner.first_name }} {{ self.owner.last_name }}</a>
-	            				</div>
-	          				</div>
-	        			</div>
-	      			</div>
-	    		</div>
-	  		</div>
-		</div>
-	{% endif %}
-	
-	<article id="blog_post" class="grid-container">
-		<div class="grid-x grid-padding-x centered">
-			<div class="medium-10 cell">
-				<br>    
-				{% if self.feed_image %}
-				{% else %}
-		      		{% include "blog/includes/blog_header.html" %}
-		      	{% endif %}
-		        
-		        {% include "blog/includes/blog_body.html" with body=self.body only %}
-		      	<br>
-		      	{% include "utils/includes/related_links.html" with related_links=self.related_links.all only %}
+	<div class="neat-article-container">
+		{% include "blog/includes/blog_header.html" %}
+		  
+		{% if self.feed_image %}
+			{% image self.feed_image original as feed_image %}
+		  	<div class="neat-article-image">
+		    	<img class="article-image" src="{{ feed_image.url }}">
+		  	</div>
+		{% endif %}
+		
+		<div class="grid-container">  
+			<div class="grid-x grid-padding-x centered neat-article-content">
+				<div class="medium-9 cell">
+					<div class="article-content">
+				    	{% include "blog/includes/blog_body.html" with body=self.body only %}
+				    </div>
+				</div>
 			</div>
 		</div>
-	</article>
+	</div>
 {% endblock %}{% endraw %}

@@ -353,92 +353,67 @@ $social-button-margin: 0.25rem;
 
 
 // BLOG HEADER
-$large-article-header-color: $white;
-$large-article-header-height: rem-calc(500);
 
-.large-article-header {
-  background: no-repeat center;
-  background-size: cover;
-  height: 250px;
-  position: relative;
 
-  @include breakpoint(small only) {
-    height: ($large-article-header-height / 1.5);
-  }
-}
+.neat-article-container {
+  margin-top: 1.5rem;
 
-.large-article-header-content {
-  background: rgba(0,0,0, 0.65) url("/#{$static}/img/overlay.png") top center repeat;
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  height: 100%;
-  padding-top: 60px;
-  left: 0;
-  right: 0;
+  .neat-article-header {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
 
-  @include breakpoint(small only) {
-    bottom: rem-calc(20);
-  }
+    .article-header-author {
+      flex: 1 0 0;
 
-  .center-container {
-    width: 60%;
-    margin: 0 auto;
+      .author-name {
+        color: $emperor;
+        margin-bottom: 0;
+        font-size: 14px;
+      }
 
-    @include breakpoint(small only) {
-      width: 100%;
-      padding: 0 rem-calc(20);
+      .article-date-read {
+        color: $emperor;
+        margin-bottom: 0;
+        font-size: 14px;
+      }
     }
   }
 
-  .article-date {
-    color: $large-article-header-color;
-  }
-  .article-title {
-    h1 {
-      line-height: rem-calc(50);
-      color: $large-article-header-color;
+  .neat-article-title {
+    margin-top: 0rem;
+
+    .article-title {
+      color: $black;
       font-weight: 600;
+    }
+  }
+
+  .neat-article-image {
+    margin-top: 1.5rem;
+
+    .article-image {
+      width: 100%;
+
+      @include breakpoint(medium only) {
+        height: 40vh;
+      }
 
       @include breakpoint(small only) {
-        line-height: rem-calc(30);
+        height: 45vh;
       }
     }
   }
-  .article-details {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 
-    a {
-      color: $large-article-header-color;
-    }
-  }
-  .article-author {
-    display: flex;
-    align-items: center;
-    margin: $global-margin 0;
-    img {
-      border-radius: rem-calc(50);
-    }
-    a {
-      margin-left: $global-margin;
+  .neat-article-content {
+    margin-top: 2rem;
+
+    .article-content {
+      color: $emperor;
     }
   }
 }
 
-@include breakpoint(small only) {
-    .large-article-header {
-        .large-article-header-content {bottom: 0;}
-        .article-title {
-            h1 {
-              line-height: 2rem;
-              font-weight: 400;
-              font-size: 1.5rem;
-            }
-          }
-      }
-}
 
 // END BLOG HEADER
 

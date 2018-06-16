@@ -1,21 +1,32 @@
 {% raw %}{% load wagtailcore_tags %}
 
-{% if self.date %}
-	{% block heading %}
-		<h4><strong>{{ self.title }}</strong></h4>
-		<h6><strong>{{ self.date|date:"j F Y" }}</strong></h6>
-	{% endblock %}
-{% endif %}
-
-{% with self.tags.all as tags %}
-	{% if tags %}
-		<div id="tags" style="margin-bottom:10px">
-  			<span class="radius label success" style="font-size: 14px">TAGS</span>
-  			{% for tag in tags %}
-  				<span class="radius label" style="font-size: 14px">
-    				<a href="{% pageurl self.blog_index %}?tag={{ tag }}">{{ tag }}</a>
-  				</span>
-  			{% endfor %}
+<div class="grid-container">
+	<div class="grid-x grid-padding-x align-center">
+		<div class="medium-9 cell">
+	  		<div class="neat-article-title">
+	    		<h3 class="article-title">{{ self.title }}</h3>
+	  		</div>
+	  		<div class="neat-article-header">
+	    		<div class="article-header-author">
+	      			<p class="author-name">
+	        			<strong>By:</strong> {{ self.owner.first_name }} {{ self.owner.last_name }}
+	      			</p>
+	      			{% if self.date %}
+	      			<p class="article-date-read"><strong>Published on:</strong> {{ self.date }}</p>
+	      			{% endif %}
+	    		</div>
+	  		</div>
+		  	{% with self.tags.all as tags %}
+		  		{% if tags %}
+			  		<section class="tag-cloud-section" style="max-width: none;">
+			  			<div class="tag-cloud" style="text-align: left; margin-left: 0; margin-top: 6px;">
+			  		  		{% for tag in tags.all %}
+			  		    		<a class="tag-cloud-individual-tag" href="{% pageurl self.blog_index %}?tag={{ tag }}"><i class="fa fa-tag" aria-hidden="true"></i> {{ tag }}</a>
+			  		    	{% endfor %}
+			  			</div>
+			  		</section>
+		  		{% endif %}
+		  	{% endwith %}
 		</div>
-	{% endif %}
-{% endwith %}{% endraw %}
+	</div>
+</div>{% endraw %}
