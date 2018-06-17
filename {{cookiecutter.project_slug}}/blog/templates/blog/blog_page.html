@@ -14,7 +14,7 @@
 		{% include "blog/includes/blog_header.html" %}
 		  
 		{% if self.feed_image %}
-			{% image self.feed_image original as feed_image %}
+			{% image self.feed_image fill-1200x400 as feed_image %}
 		  	<div class="neat-article-image">
 		    	<img class="article-image" src="{{ feed_image.url }}">
 		  	</div>
