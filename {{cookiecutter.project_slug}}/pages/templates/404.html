@@ -4,10 +4,12 @@
 {% block title %}404 Page Not Found{% endblock %}
 
 {% block content %}
-<div id="content" class="row">
-	<div class="medium-8 medium-centered columns pad text-center">
-   		<img src="{% static 'img/404.png' %}" style="margin-bottom: 20px;">
-   		<a class="button" href="/" style="border-radius: 2px;">TAKE ME TO THE HOMEPAGE &nbsp;&#8594;</a>
- 	</div>
-</div>
+	<div id="content" class="grid-container">
+		<div class="grid-x grid-padding-x centered">
+			<div id="standard_page" class="medium-8 cell text-center">
+	   			<img src="{% static 'img/404.png' %}" style="margin-bottom: 20px;">
+	   			<a class="button" href="/" style="border-radius: 2px;">TAKE ME TO THE HOMEPAGE &nbsp;&#8594;</a>
+	   		</div>
+	 	</div>
+	</div>
 {% endblock %}{% endraw %}
