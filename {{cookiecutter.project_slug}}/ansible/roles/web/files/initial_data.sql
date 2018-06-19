@@ -1090,12 +1090,12 @@ CREATE TABLE public.pages_socialmediasettings (
     id integer NOT NULL,
     facebook character varying(200),
     instagram character varying(255),
-    twitter_name character varying(255),
     youtube character varying(200),
     linkedin character varying(255),
     github character varying(255),
     facebook_appid character varying(255),
-    site_id integer NOT NULL
+    site_id integer NOT NULL,
+    twitter character varying(255)
 );
 
 
@@ -3243,7 +3243,7 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$36000$5HkCiQD2wOPy$quuP34M/87omK0yq4oSkulez1de4DadLKB28QDGhFz0=	2017-11-02 14:12:18.870248-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
+1	pbkdf2_sha256$100000$PgiXaFsIoaUm$EfE/MY2r65PNDDr7OfKl/8oasyDiUn8vY4d4kndTQsU=	2018-06-19 13:05:56.232384-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
 \.
 
 
@@ -3649,6 +3649,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 185	people	0006_auto_20180607_1804	2018-06-07 14:07:50.234547-04
 186	photo_gallery	0002_auto_20180607_1804	2018-06-07 14:07:50.91067-04
 187	products	0008_auto_20180607_1804	2018-06-07 14:07:51.449395-04
+188	pages	0023_auto_20180619_1705	2018-06-19 13:05:41.612818-04
 \.
 
 
@@ -3703,6 +3704,7 @@ uw6t4ywi903n5ydri8zemcx1e1861r3m	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJ
 zbvjagpokjc7v8pqef73wp8lt9bxcm3f	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-10-24 10:21:18.228257-04
 7lv8o8s8srob6k2h5bfxwzvd83bryqb6	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-11-16 11:53:26.37437-04
 hzwc6ny9pettf5hcou8xbl1ec75fu84b	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJiMTlmMTp7Il9hdXRoX3VzZXJfaGFzaCI6ImM0NWIyMjc4MmRlM2JiYzU2NjFkZjNmM2Q2MzNiNDdkODhkMmVhN2MiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=	2017-11-16 14:12:19.196485-04
+8hlskkdgv0zzgdt40mugckk30zg6pbh4	YzI1N2FjZjk5ZmM2OTJmODM1YTFjYTlkMDE4YTJhZDkzNmIzN2I1OTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1ODU5NDBjYWY3YWFlYWUyYzU3YmExNmQ3MTY4YTEyYjRmYjRhNzk4In0=	2018-07-03 13:05:56.236501-04
 \.
 
 
@@ -3877,8 +3879,8 @@ COPY public.pages_sitebranding (id, site_name, logo_id, site_id) FROM stdin;
 -- Data for Name: pages_socialmediasettings; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.pages_socialmediasettings (id, facebook, instagram, twitter_name, youtube, linkedin, github, facebook_appid, site_id) FROM stdin;
-1	https://www.facebook.com/bot.chrisdev?fref=ts		realchrisdev			https://www.github.com/chrisdev		2
+COPY public.pages_socialmediasettings (id, facebook, instagram, youtube, linkedin, github, facebook_appid, site_id, twitter) FROM stdin;
+1	https://www.facebook.com/bot.chrisdev?fref=ts	\N	\N	\N	https://www.github.com/chrisdev	\N	2	https://www.twitter.com/realchrisdev
 \.
 
 
@@ -4594,7 +4596,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 83, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 187, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 188, true);
 
 
 --
