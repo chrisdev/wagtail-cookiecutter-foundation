@@ -247,6 +247,11 @@ hr {border-color: $light-gray;}
 }
 
 
+#sidebar {
+	.social a{font-size: 18px; padding-right: 8px;}
+}
+
+
 #blog_list {
   hr:last-of-type {border:0px;}
   a p{color: $emperor;}
@@ -424,7 +429,7 @@ footer {
   border: 0px;
   padding: 0;
   margin-bottom: 0px;
-
+  i {font-size: 14px;}
 }
 
 .scrollup {
