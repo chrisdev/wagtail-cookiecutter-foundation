@@ -5,6 +5,7 @@
   become: true
   tags:
     - bower
+    - npm
 
 - name: install bower and dependencies
   become_user: root
@@ -20,6 +21,7 @@
   tags:
     - bower
     - node
+    - npm 
 
 - name: install bower 
   become_user: root
@@ -27,10 +29,12 @@
   shell: npm install -g bower
   tags:
      - bower
+     - npm 
 
 - name: install frontend dependencies 
   shell: bower install
   args:
      chdir: "{{ sites_dir }}/{{ project_name }}"
   tags:
-     - bower{% endraw %}
+     - bower
+     - npm{% endraw %}
