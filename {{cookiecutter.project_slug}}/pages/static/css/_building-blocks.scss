@@ -500,22 +500,25 @@ $tag-cloud-section-width: 800px;
  -ms-flex-align:start;
  align-items:flex-start;
  background: #fff;
- padding: 10px 15px;
+ padding: 15px;
  border:0;
  height:150px;
- width:500px;
+ width:400px;
  position:fixed;
  bottom:2.5rem;
  right:2.2rem;
  z-index: 9999;
  box-shadow:0 2px 20px 0 rgba(0,0,0,.13);
  border-radius:8px;
- transition:all .5s ease-in-out
+ transition:all .5s ease-in-out;
+ 
+ .button {border-radius: 5px;}
 }
 
 .notification-callout-alert img {
  transition:all .5s ease-in-out;
  margin-top: 20px;
+ margin-right: 10px;
 }
 
 @media screen and (max-width:39.9375em) {
@@ -536,7 +539,7 @@ $tag-cloud-section-width: 800px;
 }
 .notification-callout-alert-content {
     .rich-text {
-     font-size:13px;
+     font-size:14px;
      color: #777;
      max-width:350px;
      line-height:19px;
