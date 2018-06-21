@@ -5,7 +5,7 @@
 
 {% block content %}
 	<div id="content" class="grid-container">
-		<div class="grid-x grid-padding-x centered">
+		<div class="grid-x grid-padding-x align-center">
 			<div class="medium-12 cell">
 		    	<center>
 		    		<h3>{{ self.title }}</h3>
@@ -13,9 +13,9 @@
 		    	</center>
 
 	    		{% if pages|length %}
-	      			<div class="grid-x grid-padding-x" data-equalizer>
+	      			<div class="grid-x grid-padding-x medium-up-3" data-equalizer>
 	        			{% for page in pages %}
-	        				<div class="medium-4 cell text-center" data-equalizer-watch>
+	        				<div class="cell text-center" data-equalizer-watch>
 	          					<a href="{{ page.url }}">
 	            					<div class="card">
 	              						{% if page.feed_image %}

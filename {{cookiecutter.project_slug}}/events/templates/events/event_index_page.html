@@ -13,9 +13,11 @@
 	  		<br>
 	
     		{% if events %}
-  				{% for event in events %}
+    			<div class="grid-x grid-padding-x medium-up-3" data-equalizer>
+	  				{% for event in events %}
 						{% include "events/includes/event_list_item.html" %}
-  				{% endfor %}
+	  				{% endfor %}
+	  			</div>
     		{% endif %}
 	 
 	  		{% if events.has_other_pages %}

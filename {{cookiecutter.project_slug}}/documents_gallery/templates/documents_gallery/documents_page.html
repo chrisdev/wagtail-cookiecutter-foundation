@@ -9,7 +9,7 @@
 
 {% block content %}
 	<div id="content" class="grid-container">
-		<div class="grid-x grid-padding-x grid-padding-y centered">
+		<div class="grid-x grid-padding-x grid-padding-y align-center">
 			<div class="medium-12 cell">
 	    		<center><h3>{{ self.title }}</h3></center>
 	    	</div>
@@ -30,7 +30,7 @@
 		      					<tr>
 		       						<td>{{ document.title }}</td>
 		       						<td>{{ document.created_at|date:"Y/m/d" }}</td>
-		       						<td class="text-center"><a href="{{ document.url }}"><i class="fab fa-download"></i></a></td>
+		       						<td class="text-center"><a href="{{ document.url }}"><i class="fa fa-download"></i></a></td>
 		    					</tr>
 		    				{% endfor %}
 		  				</tbody>

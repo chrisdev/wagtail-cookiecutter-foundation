@@ -5,22 +5,22 @@
 
 {% block content %}
 	<div id="content" class="grid-container">
-		<div class="grid-x grid-padding-x centered">
+		<div class="grid-x grid-padding-x align-center">
 			<div class="medium-12 cell">
     			<center><h3>{{ self.title }}</h3></center>
     		</div>
 
     		{% if images %}
-    			<div class="grid-x grid-padding-x" data-equalizer>
-      				{% for gallery_image in images %}
-      					{% image gallery_image fill-400x300 as img_thumb %}
-      					{% image gallery_image original as gallery_imagedata %}
-          				<div class="medium-3 cell" data-equalizer-watch>
-            				<a class="thumbnail" href="{{ gallery_imagedata.url }}" data-lightbox="{{ self.title }}">
-              					<img src="{{ img_thumb.url }}" alt="{{ gallery_imagedata.alt }}"/>
-            				</a>
-          				</div>
-      				{% endfor %}
+    			<div class="grid-x grid-padding-x small-up-2 medium-up-5" data-equalizer>
+					{% for gallery_image in images %}
+						{% image gallery_image fill-400x300 as img_thumb %}
+						{% image gallery_image original as gallery_imagedata %}
+						<div class="cell" data-equalizer-watch>
+							<a class="thumbnail" href="{{ gallery_imagedata.url }}" data-lightbox="{{ self.title }}">
+			  					<img src="{{ img_thumb.url }}" alt="{{ gallery_imagedata.alt }}"/>
+							</a>
+						</div>
+					{% endfor %}
     			</div>
     		{% else %}
     			<p>No images are tagged with your {{ self.title }} gallery or no {{ self.title }} tags defined.</p>

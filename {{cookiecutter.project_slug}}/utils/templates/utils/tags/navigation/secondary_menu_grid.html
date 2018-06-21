@@ -1,8 +1,8 @@
 {% raw %}{% load wagtailcore_tags wagtailimages_tags wagtailimages_tags %}
 {% if pages %}
-    <div class="grid-x grid-padding-x centered">
+	<div class="grid-x grid-padding-x medium-up-3" data-equalizer>
         {% for page in pages %}
-            <div class="medium-4 cell">
+            <div class="cell">
                 <a href="{% pageurl page %}">
                     <div class="card">
                         {% if page.specific.feed_image %}
