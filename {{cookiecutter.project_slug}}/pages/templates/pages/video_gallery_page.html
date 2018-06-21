@@ -7,8 +7,10 @@
     		<div class="medium-12 cell">
             	<center><h3>{{ self.title }}</h3></center>
             </div>
-        	<br>        
-        	{% include "pages/includes/video_gallery_list.html" with carousel_items=self.carousel_items.all only  %}
+        	<br>
+        	<div class="grid-x grid-padding-x medium-up-4" data-equalizer>        
+        		{% include "pages/includes/video_gallery_list.html" with carousel_items=self.carousel_items.all only  %}
+        	</div>
         </div>
     </div>
 {% endblock %}{% endraw %}

@@ -3,7 +3,7 @@ $secondary: map-get($foundation-palette, secondary);
 $emperor: #777;
 $static: static;
 
-// DESKTOP SOCIAL BAR
+// SOCIAL BAR
 
 $social-bar-position: left; 
 $social-bar-transformation: rem-calc(140);
@@ -208,6 +208,34 @@ $social-button-margin: 0.25rem;
 
 
 // END SOCIAL BAR
+
+
+
+
+// HOMEPAGE SLIDER
+
+
+.fullscreen-image-slider {
+  border: 5px solid $white;
+  margin-bottom: 40px;
+  .orbit-image {
+    width: 100%;
+  }
+
+  .orbit-caption {
+    bottom: 50%;
+    transform: translateY(50%);
+    background: none;
+    text-align: center;
+    color: $white;
+    font-weight: bold;
+  }
+}
+
+
+// END HOMEPAGE SLIDER
+
+
 
 
 
