@@ -218,18 +218,21 @@ $social-button-margin: 0.25rem;
 .fullscreen-image-slider {
   border: 5px solid $white;
   margin-bottom: 40px;
+  
   .orbit-image {
     width: 100%;
   }
 
   .orbit-caption {
-    bottom: 50%;
+    bottom: 12px;
     transform: translateY(50%);
-    background: none;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
     text-align: center;
     color: $white;
-    font-weight: bold;
   }
+  
+  button, .button {background: rgba(0, 0, 0, 0.7);}
 }
 
 

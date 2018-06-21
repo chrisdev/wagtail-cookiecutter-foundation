@@ -6,11 +6,11 @@
 	        <ul class="orbit-container">
 	        	<button class="orbit-previous">
 	        		<span class="show-for-sr">Previous Slide</span>
-	        		<span class="nav fa fa-chevron-left fa-3x"></span>
+	        		<span class="nav fa fa-chevron-left"></span>
 	      		</button>
 	      		<button class="orbit-next">
 	        		<span class="show-for-sr">Next Slide</span>
-	        		<span class="nav fa fa-chevron-right fa-3x"></span>
+	        		<span class="nav fa fa-chevron-right"></span>
 	      		</button>
 	      		
 	      		{% for carousel_item in carousel_items %}
@@ -22,7 +22,7 @@
 		      			
 		      			{% if carousel_item.caption %}
 			        		<figcaption class="orbit-caption">
-			          			<h1>{{ carousel_item.caption }}</h1>
+			          			{{ carousel_item.caption|richtext }}
 			        		</figcaption>
 			        	{% endif %}
 			        	
