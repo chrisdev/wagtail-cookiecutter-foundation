@@ -297,7 +297,7 @@ class ContentBlock(LinkFields):
         MultiFieldPanel(LinkFields.panels, "Link"),
     ]
 
-    def __unicode__(self):
+    def __str__(self):
         return u"{0}[{1}]".format(self.title, self.slug)
 
 register_snippet(ContentBlock)
@@ -325,7 +325,7 @@ class Testimonial(LinkFields):
         MultiFieldPanel(LinkFields.panels, "Link"),
     ]
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 register_snippet(Testimonial)
@@ -355,7 +355,7 @@ class Advert(LinkFields):
         MultiFieldPanel(LinkFields.panels, "Link"),
     ]
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
 register_snippet(Advert)

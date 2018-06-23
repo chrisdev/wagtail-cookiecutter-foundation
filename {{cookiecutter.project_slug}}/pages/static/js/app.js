@@ -6,6 +6,15 @@
       $(this).toggleClass('close');
     });
   });
+  
+  $('.testimonials').bxSlider({
+    auto: true,
+    pager: false,
+    controls: false,
+    slideMargin:3,
+    speed: 2000,
+    pause: 6000,
+  });
 
   $('.reveal_modal').click(function(event) {
     event.preventDefault();
