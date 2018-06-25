@@ -1,6 +1,6 @@
 from django import template
 from datetime import date
-from wagtail.wagtaildocs.models import Document
+from wagtail.documents.models import Document
 from contact.models import ContactPage
 from blog.models import BlogPage
 from events.models import EventPage
@@ -9,7 +9,7 @@ from pages.models import Testimonial, Advert
 register = template.Library()
 
 
-@register.assignment_tag(takes_context=True)
+@register.simple_tag(takes_context=True)
 def get_contact_fields(context):
     try:
         contact_vals = ContactPage.objects.values(

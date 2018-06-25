@@ -1,43 +1,40 @@
 {% raw %}{% extends "photo_gallery/base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
+
 {% block body_class %}{{ self.get_verbose_name|slugify }}{% endblock %}
 
 {% block content %}
-<div id="content" class="row">
-  <div class="medium-12 columns">
-    <center>
-      <h3>{{ self.title }}</h3>
-      {{ self.intro|richtext }}
-    </center>
+	<div id="content" class="grid-container">
+		<div class="grid-x grid-padding-x align-center">
+			<div class="medium-12 cell">
+		    	<center>
+		    		<h3>{{ self.title }}</h3>
+		      		{{ self.intro|richtext }}
+		    	</center>
 
-    {% if pages|length %}
-    <div>
-      <div class="medium-up-4 small-up-1" data-equalizer>
-        {% for page in pages %}
-        <div class="column">
-          <a href="{{ page.url }}">
-            <div class="card">
-              {% if page.feed_image %}
-              {% image page.feed_image fill-500x350 %}
-              {% endif %}
-              <div class="card-section" style="padding: 10px;" date-equalizer-watch>
-                <center>
-                  <h6 style="margin-bottom: 0;"><strong>{{ page.title }}</strong></h6>
-                </center>
-              </div>
-            </div>
-          </a>
-        </div>
-        {% endfor %}
-
-      </div>
-    </div>
-    {% else %}
-    <p>
-      Whoops, we don't have any Galleries that match right now.
-    </p>
-    {% endif %}
-
-  </div>
-</div>
+	    		{% if pages|length %}
+	      			<div class="grid-x grid-padding-x medium-up-3" data-equalizer>
+	        			{% for page in pages %}
+	        				<div class="cell text-center" data-equalizer-watch>
+	          					<a href="{{ page.url }}">
+	            					<div class="card">
+	              						{% if page.feed_image %}
+	              							{% image page.feed_image fill-500x350 %}
+	              						{% endif %}
+	              						<div class="card-section" style="padding: 10px;" date-equalizer-watch>
+	                						<center>
+	                  							<h6 style="margin-bottom: 0;"><strong>{{ page.title }}</strong></h6>
+	                						</center>
+	              						</div>
+	            					</div>
+	          					</a>
+	        				</div>
+	        			{% endfor %}
+	      			</div>
+	    		{% else %}
+	    			<p>Whoops, we don't have any Galleries that match right now.</p>
+	    		{% endif %}
+	    	</div>
+  		</div>
+	</div>
 {% endblock %}{% endraw %}

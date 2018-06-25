@@ -2,11 +2,9 @@
 
 {% if carousel_items %}
     {% for carousel_item in carousel_items %}
-        <div class="medium-4 columns end">
+        <div class="cell">
             {% if carousel_item.embed_url %}
-                <div class="flex-video widescreen">
-                	{% embed carousel_item.embed_url %}
-                </div>
+                {% embed carousel_item.embed_url %}
             {% endif %}
         </div>
     {% endfor %}

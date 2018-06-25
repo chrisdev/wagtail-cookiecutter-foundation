@@ -1,12 +1,12 @@
 from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from wagtail.wagtailcore.fields import RichTextField
-from wagtail.wagtailcore.models import Page
-from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel
-from wagtail.wagtailimages.models import Image
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailsearch import index
+from wagtail.core.fields import RichTextField
+from wagtail.core.models import Page
+from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
+from wagtail.images.models import Image
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.search import index
 
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
@@ -42,7 +42,7 @@ class GalleryIndexPage(Page):
 
     def get_context(self, request):
         # Get list of live Gallery pages that are descendants of this page
-        pages = GalleryPage.objects.live().descendant_of(self)
+        pages = GalleryPage.objects.live().descendant_of(self).order_by('-first_published_at')
 
         # Update template context
         context = super(GalleryIndexPage, self).get_context(request)

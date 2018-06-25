@@ -15,7 +15,7 @@
           uuid: this.options.uuid,
           editable: this.options.editable,
           label: 'Blockquote',
-          icon: 'fa fa-quote-left',
+          icon: 'fab fa-quote-left',
           command: null
         });
 
@@ -46,7 +46,7 @@
           uuid: this.options.uuid,
           editable: this.options.editable,
           label: 'Pull Out Quote',
-          icon: 'fa fa-stack-exchange',
+          icon: 'fab fa-stack-exchange',
           command: null
         });
         toolbar.append(button);

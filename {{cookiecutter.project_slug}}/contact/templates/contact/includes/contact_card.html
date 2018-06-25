@@ -1,49 +1,47 @@
 {% raw %}<ul class="h-card vcard list-style" style="margin-left: 0;">
-<li class="p-name fn org"><strong>{{ contact.name_organization }}</strong></li>
-{% if contact.address_1 %}
-<li class="p-street-address street-address">{{ contact.address_1 }}</li>
-{% endif %}
+	<li class="p-name fn org"><strong>{{ contact.name_organization }}</strong></li>
+	
+	{% if contact.address_1 %}
+		<li class="p-street-address street-address">{{ contact.address_1 }}</li>
+	{% endif %}
 
-{% if contact.address_2 %}
-<li class="p-street-address street-address">{{ contact.address_2 }}</li>
-{% endif %}
-
-{% if contact.city %}
-<li class="p-locallity locality">{{ contact.city }}</li>
-{% endif %}
-{% if contact.state %}
-<li class="p-region region">{{ contact.city }}</li>
-{% endif %}
-
-{% if contact.country %}
-<li class="p-country-name country-name">{{ contact.country }}</li>
-{% endif %}
-
-{% if contact.telephone %}
-<li class="p-tel tel">
-    <i class="fa fa-phone"></i>&nbsp;
-    {{ contact.telephone }}
-</li>
-{% endif %}
-
-{% if contact.telephone_2 %}
-<li class="p-tel tel">
-    <i class="fa fa-phone"></i>&nbsp;
-    {{ contact.telephone_2 }}
-</li>
-{% endif %}
-
-{% if contact.email %}
-<li class="p-email email">
-    <i class="fa fa-envelope"></i>
-    <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
-</li>
-{% endif %}
-
-{% if contact.email_2 %}
-<li class="p-email email">
-    <i class="fa fa-envelope"></i>
-    <a href="mailto:{{ contact.email_2 }}">{{ contact.email_2 }}</a>
-</li>
-{% endif %}
+	{% if contact.address_2 %}
+		<li class="p-street-address street-address">{{ contact.address_2 }}</li>
+	{% endif %}
+	
+	{% if contact.city %}
+		<li class="p-locallity locality">{{ contact.city }}</li>
+	{% endif %}
+	
+	{% if contact.state %}
+		<li class="p-region region">{{ contact.city }}</li>
+	{% endif %}
+	
+	{% if contact.country %}
+		<li class="p-country-name country-name">{{ contact.country }}</li>
+	{% endif %}
+	
+	{% if contact.telephone %}
+		<li class="p-tel tel">
+		    <a href="tel:{{ contact.telephone }}"><i class="fa fa-phone"></i>&nbsp;{{ contact.telephone }}</a>
+		</li>
+	{% endif %}
+	
+	{% if contact.telephone_2 %}
+		<li class="p-tel tel">
+		    <a href="tel:{{ contact.telephone_2 }}"><i class="fa fa-phone"></i>&nbsp;{{ contact.telephone_2 }}</a>
+		</li>
+	{% endif %}
+	
+	{% if contact.email %}
+		<li class="p-email email">
+		    <a href="mailto:{{ contact.email }}"><i class="fa fa-envelope"></i>&nbsp;{{ contact.email }}</a>
+		</li>
+	{% endif %}
+	
+	{% if contact.email_2 %}
+		<li class="p-email email">
+		    <a href="mailto:{{ contact.email_2 }}"><i class="fa fa-envelope"></i>&nbsp;{{ contact.email_2 }}</a>
+		</li>
+	{% endif %}
 </ul>{% endraw %}

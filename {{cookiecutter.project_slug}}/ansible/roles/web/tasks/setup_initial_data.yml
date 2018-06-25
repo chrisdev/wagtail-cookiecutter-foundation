@@ -90,4 +90,5 @@
       virtualenv="{{ virtualenvs_dir }}/{{project_name}}-env"
       command=copy_media
   tags:
-     - initial_data {% endraw %}
+     - initial_data 
+     - copy_media {% endraw %}

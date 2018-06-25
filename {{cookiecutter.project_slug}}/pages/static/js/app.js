@@ -1,21 +1,18 @@
  $(document).ready(function(){
 
-  $('.testimonials').bxSlider({
-    auto: true,
-    pager: false,
-    controls: false,
-    slideMargin:3,
-    speed: 2000,
-    pause: 6000,
+  $(document).ready(function() {
+    $('#faq .block-faq_question').click(function() {
+      $(this).next('.block-faq_answer').slideToggle(500);
+      $(this).toggleClass('close');
+    });
   });
-
-  $('.adverts').bxSlider({
-    minSlides: 3,
-    maxSlides: 3,
-    slideWidth: 210,
-    slideMargin: 15
+  
+  $('.reveal_modal').click(function(event) {
+    event.preventDefault();
+    $('#modal-content').empty();
+    var link = $(this).attr("href");
+    $('#modal-content').load(link + " .modal-content");
   });
-
 
   $(window).scroll(function () {
     if ($(this).scrollTop() > 100) {
@@ -31,4 +28,5 @@
     }, 600);
     return false;
   });
+
 });

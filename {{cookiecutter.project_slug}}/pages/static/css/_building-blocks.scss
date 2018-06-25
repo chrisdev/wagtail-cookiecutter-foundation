@@ -4,7 +4,8 @@ $emperor: #777;
 $static: static;
 
 // SOCIAL BAR
-$social-bar-position: left; // Change this value to `right` for changing sidebar's position.
+
+$social-bar-position: left; 
 $social-bar-transformation: rem-calc(140);
 $social-bar-width: rem-calc(180);
 $social-bar-background: #333333;
@@ -13,9 +14,9 @@ $social-icon-transition: all 0.3s ease-in-out;
 $social-icon-font-size: 1.1rem;
 $social-icon-padding: 0.5rem;
 
-// Source: https://designpieces.com/2012/12/social-media-colours-hex-and-rgb/
 $social-brand-facebook: #3b5998;
 $social-brand-twitter: #55acee;
+$social-brand-whatsapp: #43d854;
 $social-brand-linkedin: #007bb5;
 $social-brand-google: #3cba54;
 $social-brand-pinterest: #cb2027;
@@ -60,7 +61,7 @@ $social-brand-print: #777;
       color: inherit;
       background-color: inherit;
 
-      > .fa {
+      > .fab, .fa {
         padding: $social-icon-padding;
         width: 2rem;
         height: 2rem;
@@ -74,16 +75,16 @@ $social-brand-print: #777;
           margin-right: 0.5rem;
         }
 
-        &.fa-facebook {
+        &.fa-facebook-f {
           background-color: $social-brand-facebook;
         }
         &.fa-twitter {
           background-color: $social-brand-twitter;
         }
-        &.fa-linkedin {
+        &.fa-linkedin-in {
           background-color: $social-brand-linkedin;
         }
-        &.fa-google-plus {
+        &.fa-google-plus-g {
           background-color: $social-brand-google;
         }
         &.fa-pinterest-p {
@@ -127,7 +128,117 @@ $social-brand-print: #777;
     }
   }
 }
+
+$social-button-size: 1.8rem;
+$social-button-border-width: 0.125rem;
+$social-button-font-size: 1rem;
+$social-button-line-height: 1.6em;
+$social-button-border-radius: 1.6875rem;
+$social-button-transition: all 0.5s ease;
+$social-button-margin: 0.25rem;
+
+@mixin social-button($brand-color, $brand-icon) {
+  background: $brand-color;
+
+  &:before {
+    font-family: "FontAwesome";
+    content: $brand-icon;
+  }
+  &:hover,
+  &:focus {
+    color: $brand-color;
+    background: $white;
+    border-color: $brand-color;
+  }
+}
+
+.rounded-social-buttons {
+  padding: 10px 0;
+  text-align: center;
+
+  .social-button {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    width: $social-button-size;
+    height: $social-button-size;
+    border: $social-button-border-width solid transparent;
+    padding: 0;
+    text-decoration: none;
+    text-align: center;
+    color: $white;
+    font-size: $social-button-font-size;
+    font-weight: normal;
+    line-height: $social-button-line-height;
+    border-radius: $social-button-border-radius;
+    transition: $social-button-transition;
+    margin-right: $social-button-margin;
+    margin-bottom: $social-button-margin;
+
+    &:hover,
+    &:focus {
+      transform: rotate(360deg);
+    }
+
+    &.facebook {
+      @include social-button($social-brand-facebook, "\f09a")
+    }
+
+    &.twitter {
+      @include social-button($social-brand-twitter, "\f099")
+    }
+
+    &.linkedin {
+      @include social-button($social-brand-linkedin, "\f0e1")
+    }
+
+    &.whatsapp {
+      @include social-button($social-brand-whatsapp, "\f232")
+    }
+
+    &.pinterest {
+      @include social-button($social-brand-pinterest, "\f231")
+    }
+
+    &.mail {
+      @include social-button($social-brand-mail, "\f0e0")
+    }
+  }
+}
+
+
 // END SOCIAL BAR
+
+
+
+
+// HOMEPAGE SLIDER
+
+
+.fullscreen-image-slider {
+  border: 5px solid $white;
+  margin-bottom: 40px;
+  
+  .orbit-image {
+    width: 100%;
+  }
+
+  .orbit-caption {
+    bottom: 12px;
+    transform: translateY(50%);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    text-align: center;
+    color: $white;
+  }
+  
+  button, .button {background: rgba(0, 0, 0, 0.7);}
+}
+
+
+// END HOMEPAGE SLIDER
+
+
 
 
 
@@ -273,94 +384,111 @@ $social-brand-print: #777;
 
 
 // BLOG HEADER
-$large-article-header-color: $white;
-$large-article-header-height: rem-calc(500);
 
-.large-article-header {
-  background: no-repeat center;
-  background-size: cover;
-  height: 250px;
-  position: relative;
 
-  @include breakpoint(small only) {
-    height: ($large-article-header-height / 1.5);
-  }
-}
+.neat-article-container {
+  margin-top: 1.5rem;
 
-.large-article-header-content {
-  background: rgba(0,0,0, 0.65) url("/#{$static}/img/overlay.png") top center repeat;
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  height: 100%;
-  padding-top: 60px;
-  left: 0;
-  right: 0;
+  .neat-article-header {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
 
-  @include breakpoint(small only) {
-    bottom: rem-calc(20);
-  }
+    .article-header-author {
+      flex: 1 0 0;
 
-  .center-container {
-    width: 60%;
-    margin: 0 auto;
+      .author-name {
+        color: $emperor;
+        margin-bottom: 0;
+        font-size: 14px;
+      }
 
-    @include breakpoint(small only) {
-      width: 100%;
-      padding: 0 rem-calc(20);
+      .article-date-read {
+        color: $emperor;
+        margin-bottom: 0;
+        font-size: 14px;
+      }
     }
   }
 
-  .article-date {
-    color: $large-article-header-color;
-  }
-  .article-title {
-    h1 {
-      line-height: rem-calc(50);
-      color: $large-article-header-color;
+  .neat-article-title {
+    margin-top: 0rem;
+
+    .article-title {
+      color: $black;
       font-weight: 600;
+    }
+  }
+
+  .neat-article-image {
+    margin-top: 1.5rem;
+
+    .article-image {
+      width: 100%;
+
+      @include breakpoint(medium only) {
+        height: 40vh;
+      }
 
       @include breakpoint(small only) {
-        line-height: rem-calc(30);
+        height: 45vh;
       }
     }
   }
-  .article-details {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 
-    a {
-      color: $large-article-header-color;
-    }
-  }
-  .article-author {
-    display: flex;
-    align-items: center;
-    margin: $global-margin 0;
-    img {
-      border-radius: rem-calc(50);
-    }
-    a {
-      margin-left: $global-margin;
+  .neat-article-content {
+    margin-top: 2rem;
+
+    .article-content {
+      color: $emperor;
     }
   }
 }
 
-@include breakpoint(small only) {
-    .large-article-header {
-        .large-article-header-content {bottom: 0;}
-        .article-title {
-            h1 {
-              line-height: 2rem;
-              font-weight: 400;
-              font-size: 1.5rem;
-            }
-          }
-      }
-}
 
 // END BLOG HEADER
+
+
+
+
+// TAGS
+
+$tag-cloud-section-width: 800px;
+
+.tag-cloud-section {
+  max-width: $tag-cloud-section-width;
+  margin: 0 auto;
+}
+
+.tag-cloud {
+  margin: 1rem;
+  text-align: center;
+  list-style: none;
+
+  .tag-cloud-individual-tag {
+    @include label;
+    border-radius: 5000px;
+    background: $primary;
+    display: inline-block;
+    color: $white;
+    margin: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    .fa {
+      margin-left: 7px;
+      color: $white;
+    }
+
+    &:hover {
+      background: darken($primary, 10%);
+      transition: background-color .2s ease-in;
+    }
+  }
+}
+
+// END TAGS
+
 
 
 
@@ -372,22 +500,25 @@ $large-article-header-height: rem-calc(500);
  -ms-flex-align:start;
  align-items:flex-start;
  background: #fff;
- padding: 10px 15px;
+ padding: 15px;
  border:0;
  height:150px;
- width:500px;
+ width:400px;
  position:fixed;
  bottom:2.5rem;
  right:2.2rem;
  z-index: 9999;
  box-shadow:0 2px 20px 0 rgba(0,0,0,.13);
  border-radius:8px;
- transition:all .5s ease-in-out
+ transition:all .5s ease-in-out;
+ 
+ .button {border-radius: 5px;}
 }
 
 .notification-callout-alert img {
  transition:all .5s ease-in-out;
  margin-top: 20px;
+ margin-right: 10px;
 }
 
 @media screen and (max-width:39.9375em) {
@@ -408,7 +539,7 @@ $large-article-header-height: rem-calc(500);
 }
 .notification-callout-alert-content {
     .rich-text {
-     font-size:13px;
+     font-size:14px;
      color: #777;
      max-width:350px;
      line-height:19px;
@@ -454,7 +585,7 @@ $full-width-testimonial-vertical-padding: 1rem;
     @include breakpoint(small) {
       padding-left: 50px;
       padding-right: 50px;
-      font-size: 1.5em;
+      font-size: 1.3em;
     }
     
     @include breakpoint(medium) {
@@ -465,12 +596,13 @@ $full-width-testimonial-vertical-padding: 1rem;
     @include breakpoint(large) {
       padding-left: 180px;
       padding-right: 180px;
-      font-size: 1.8em;
+      font-size: 1.6em;
     }
     
     @include breakpoint(xlarge) {
-      padding-left: 300px;
-      padding-right: 300px;
+      padding-left: 200px;
+      padding-right: 200px;
+      font-size: 1.6em;
     }
   }
   

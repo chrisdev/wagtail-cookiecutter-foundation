@@ -2,100 +2,92 @@
 {% load {% endraw %}{{ cookiecutter.project_slug }}{% raw %}_utils wagtailcore_tags wagtailimages_tags %}
 
 {% block event_content %}
-{% include "utils/includes/social_share.html" %}
-<div class="row">
-  <div class="medium-12 columns">
-    <div class="card" style="margin-bottom: 0;">
-    	<div class="row">
-    	      <div class="medium-7 columns">
-    	        {% if self.feed_image %}
-    	        {% image self.feed_image fill-1200x880 %}
-    	        {% endif %}
-    	      </div>
-    	      <div class="medium-5 columns">
-    	        <br>
-    	        <h4><strong>{{ self.title }}</strong></h4>
+	{% include "utils/includes/social_share.html" %}
+	
+	<div class="medium-12 cell">
+    	<div class="card" style="margin-bottom: 0;">
+    		<div class="grid-x grid-padding-x">
+    	      	<div class="medium-7 cell">
+    	        	{% if self.feed_image %}
+    	        		{% image self.feed_image fill-1200x880 %}
+    	        	{% endif %}
+    	      	</div>
+    	      	<div class="medium-5 cell">
+    	        	<br>
+    	        	<h4><strong>{{ self.title }}</strong></h4>
     	
-    	        <p>Date: <strong>{{ self.date_from|date:"j F Y" }}</strong>
+    	        	<p>Date: <strong>{{ self.date_from|date:"j F Y" }}</strong>
+    	          		{% if self.date_to %}
+    	          			- <strong>{{ self.date_to|date:"j F Y" }}</strong>
+    	          		{% endif %}
+    	        	</p>
     	
-    	          {% if self.date_to %}
-    	          - <strong>{{ self.date_to|date:"j F Y" }}</strong>
-    	          {% endif %}
-    	        </p>
+	    	        <p>
+	    	          {% if self.time_from %}
+	    	          Time: <strong>{{ self.time_from|time_display }}</strong>
+	    	          {% endif %}
+	    	
+	    	          {% if self.time_to %}
+	    	          - <strong>{{ self.time_to|time_display }}</strong>
+	    	          {% endif %}
+	    	        </p>
     	
-    	        <p>
-    	          {% if self.time_from %}
-    	          Time: <strong>{{ self.time_from|time_display }}</strong>
-    	          {% endif %}
-    	
-    	          {% if self.time_to %}
-    	          - <strong>{{ self.time_to|time_display }}</strong>
-    	          {% endif %}
-    	        </p>
-    	
-    	        {% if self.location %}
-    	        <p class="hide-for-small-only">Location: <strong><a href="http://maps.google.com/?q={{ self.location }}" target="_blank">{{ self.location }}</a></strong></p>
+    	        	{% if self.location %}
+    	        		<p class="hide-for-small-only">Location: <strong><a href="http://maps.google.com/?q={{ self.location }}" target="_blank">{{ self.location }}</a></strong></p>
     	        
-    	        <div class="show-for-small-only">
-    	        	<p>Location: <strong>{{ self.location }}</strong></p>
-    	        	<div class="row">
-    	            	<div class="small-6 columns">
-    	            		<a class="button small" href="waze://?q={{ self.location }}" style="width: 100%; border-radius: 3px;">Open with Waze</a></strong>
-    	            	</div>
-    	            	<div class="small-6 columns">
-    	            		<a class="button small" href="http://maps.google.com/?q={{ self.location }}" target="_blank" style="width: 100%; border-radius: 3px;">Open with Google Maps</a>
-    	            	</div>
-    	            </div>
-    	        </div>
-    	        {% endif %}
-    	        
+    	        		<div class="show-for-small-only">
+    	        			<p>Location: <strong>{{ self.location }}</strong></p>
+		    	        	<div class="grid-x grid-padding-x">
+		    	            	<div class="small-6 cell">
+		    	            		<a class="button small" href="waze://?q={{ self.location }}" style="width: 100%; border-radius: 3px;">Open with Waze</a></strong>
+		    	            	</div>
+		    	            	<div class="small-6 cell">
+		    	            		<a class="button small" href="http://maps.google.com/?q={{ self.location }}" target="_blank" style="width: 100%; border-radius: 3px;">Open with Google Maps</a>
+		    	            	</div>
+		    	            </div>
+    	        		</div>
+    	        	{% endif %}
     	
-    	        {% if self.cost %}
-    	        <p>Cost: <strong>{{ self.cost|safe }}</strong></p>
-    	        {% endif %}
+    	        	{% if self.cost %}
+    	        		<p>Cost: <strong>{{ self.cost|safe }}</strong></p>
+    	        	{% endif %}
     	
-    	        {% if self.audience %}
-    	        <p>Audience: <strong>{{ self.get_audience_display }}</strong></p>
-    	        {% endif %}
+    	        	{% if self.audience %}
+    	        		<p>Audience: <strong>{{ self.get_audience_display }}</strong></p>
+    	        	{% endif %}
     	
-    	        {% if self.signup_link %}
-    	        <p>Sign up: <a href="{{ self.signup_link }}">{{ self.signup_link }}</a></p>
-    	        {% endif %}
+    	        	{% if self.signup_link %}
+    	        		<p>Sign up: <a href="{{ self.signup_link }}">{{ self.signup_link }}</a></p>
+    	        	{% endif %}
     	
-    	
-    	        <p class="add" style="margin-bottom: 0;"><a id="calendar" class='button tiny radius' style="border-radius: 3px;" href= "{{ self.url }}?format=ical"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Add to calendar</a></p>
-    	      </div>
-    	 </div>
-    </div>
-  </div>
-  <div class="medium-12 columns">
-    <p>{% include "events/includes/events_body.html" with body=self.body only %}</p>
+    	        	<p class="add" style="margin-bottom: 0;"><a id="calendar" class='button tiny radius' style="border-radius: 3px;" href= "{{ self.url }}?format=ical"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Add to calendar</a></p>
+    	      	</div>
+    	 	</div>
+    	</div>
+	</div>
+  	<div class="medium-12 cell">
+    	<p>{% include "events/includes/events_body.html" with body=self.body only %}</p>
 
-    {% with self.speakers.all as speakers %}
-    {% if speakers %}
-    <h5 style="text-align: center;">Speaker</h5>
-    {% for speaker in speakers %}
-    {% cycle '<div class="row">' '' '' %} {# Open row div before first speaker then every 3 loops #}
-    <div id="speaker" class="medium-4 columns end" style="text-align: center;">
-      {% if speaker.link %}
-      <a href="{{ speaker.link }}">
-        {% endif %}
+    	{% with self.speakers.all as speakers %}
+    		{% if speakers %}
+    			<h5 style="text-align: center;">Speaker</h5>
+    			{% for speaker in speakers %}
+    				{% cycle '<div class="grid-x grid-padding-x">' '' '' %} {# Open row div before first speaker then every 3 loops #}
+    					<div id="speaker" class="medium-4 cell end" style="text-align: center;">
+      						{% if speaker.link %}<a href="{{ speaker.link }}">{% endif %}
 
-        {% if speaker.image %}
-        {% image speaker.image height-140 %}
-        {% endif %}
+        					{% if speaker.image %}
+        						{% image speaker.image height-140 %}
+        					{% endif %}
 
-        <h6>{{ speaker.name_display }}</h6>
+        					<h6>{{ speaker.name_display }}</h6>
 
-        {% if speaker.link %}
-      </a>
-      {% endif %}
-    </div>
-    {% cycle '' '' '</div>' %} {# Close row div before every 3rd speaker #}
-    {% endfor %}
-    {% if not speakers|length|divisibleby:'3' %}</div>{% endif %} {# Last close of row div if speakers list not exactly divisble by 3 #}
-    {% endif %}
-    {% endwith %}
-  </div>
-</div>
+        					{% if speaker.link %}</a>{% endif %}
+    					</div>
+    				{% cycle '' '' '</div>' %} {# Close row div before every 3rd speaker #}
+    			{% endfor %}
+    			{% if not speakers|length|divisibleby:'3' %}</div>{% endif %} {# Last close of row div if speakers list not exactly divisble by 3 #}
+    		{% endif %}
+		{% endwith %}
+	</div>
 {% endblock %}{% endraw %}

@@ -1,18 +1,18 @@
 from django.db import models
 
-from wagtail.wagtailcore import blocks
-from wagtail.wagtailcore.models import Page, Orderable
-from wagtail.wagtailcore.fields import RichTextField, StreamField
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailimages.blocks import ImageChooserBlock
-from wagtailmarkdown.fields import MarkdownBlock
-from wagtail.wagtailimages.models import Image
-from wagtail.wagtailsnippets.models import register_snippet
+from wagtail.core import blocks
+from wagtail.core.models import Page, Orderable
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.images.blocks import ImageChooserBlock
+from wagtailmarkdown.blocks import MarkdownBlock
+from wagtail.images.models import Image
+from wagtail.snippets.models import register_snippet
 from modelcluster.fields import ParentalKey
-from wagtail.wagtailadmin.edit_handlers import (
+from wagtail.admin.edit_handlers import (
     FieldPanel, MultiFieldPanel, InlinePanel, PageChooserPanel,
     StreamFieldPanel)
-from wagtail.wagtailsearch import index
+from wagtail.search import index
 from utils.models import LinkFields, RelatedLink, CarouselItem
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 
@@ -23,9 +23,8 @@ class SocialMediaSettings(BaseSetting):
         help_text='Your Facebook page URL', null=True, blank=True)
     instagram = models.URLField(
         max_length=255, help_text='Your Instagram URL', null=True, blank=True)
-    twitter_name = models.CharField(
-        max_length=255, help_text='Your Twitter Username without @',
-        null=True, blank=True)
+    twitter = models.URLField(
+        max_length=255, help_text='Your Twitter URL', null=True, blank=True)
     youtube = models.URLField(
         help_text='Your YouTube Channel URL', null=True, blank=True)
     linkedin = models.URLField(
@@ -282,7 +281,8 @@ class ContentBlock(LinkFields):
         Page,
         related_name='contentblocks',
         null=True,
-        blank=True
+        blank=True,
+        on_delete=models.SET_NULL
     )
     title = models.CharField(max_length=255)
     body = RichTextField()
@@ -297,7 +297,7 @@ class ContentBlock(LinkFields):
         MultiFieldPanel(LinkFields.panels, "Link"),
     ]
 
-    def __unicode__(self):
+    def __str__(self):
         return u"{0}[{1}]".format(self.title, self.slug)
 
 register_snippet(ContentBlock)
@@ -308,7 +308,8 @@ class Testimonial(LinkFields):
         Page,
         related_name='testimonials',
         null=True,
-        blank=True
+        blank=True,
+        on_delete=models.SET_NULL
     )
     name = models.CharField(max_length=150)
     photo = models.ForeignKey(
@@ -324,7 +325,7 @@ class Testimonial(LinkFields):
         MultiFieldPanel(LinkFields.panels, "Link"),
     ]
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 register_snippet(Testimonial)
@@ -335,7 +336,8 @@ class Advert(LinkFields):
         Page,
         related_name='adverts',
         null=True,
-        blank=True
+        blank=True,
+        on_delete=models.SET_NULL,
     )
     title = models.CharField(max_length=150, null=True)
     image = models.ForeignKey(
@@ -353,7 +355,7 @@ class Advert(LinkFields):
         MultiFieldPanel(LinkFields.panels, "Link"),
     ]
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
 register_snippet(Advert)

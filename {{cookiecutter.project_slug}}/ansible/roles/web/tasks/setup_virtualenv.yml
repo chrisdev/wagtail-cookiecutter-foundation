@@ -1,10 +1,9 @@
 {% raw %}---
 - name: Install packages via pip
-  pip: name={{ item }}
+  pip: name={{ item }} executable=pip3
   become_user: root 
   become: true
   with_items:
-    - virtualenv
     - virtualenvwrapper
   tags:
       - web
@@ -22,14 +21,19 @@
       - web
       - venv
 
-- name: Add virtualenvwrapper init to the bash profile
+- name: Set Python3 as the virtualenvwrapper python 
+  lineinfile: dest=/home/{{ deploy_user }}/.profile line="export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3"
+  tags:
+      - web
+      - venv
+- name:  Init virtualenvwrapper on login
   lineinfile: dest=/home/{{ deploy_user }}/.profile line="source /usr/local/bin/virtualenvwrapper.sh"
   tags:
       - web
       - venv
 
 - name: create the project virtualenv
-  command: virtualenv {{ virtualenvs_dir }}/{{ project_name }}-env --no-site-packages
+  command: python3 -m venv {{ virtualenvs_dir }}/{{ project_name }}-env 
   args:
       creates: "{{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate"
   tags:
@@ -82,4 +86,4 @@
   tags:
       - web
       - venv 
-      - postactivate {% endraw %}
+      - postactivate {% endraw %} 

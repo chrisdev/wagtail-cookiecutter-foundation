@@ -4,45 +4,47 @@
 {% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
 
 {% block content %}
-<div id="intro">
-  <div class="row">
-    <div class="medium-10 medium-centered columns">
-      <center>
-          <h3>{{ self.title_text|richtext }}</h3>
-          {{ self.body|richtext }}
-      </center>
-      <div id="carousel">
-        {% include "pages/includes/bx_carousel.html" with carousel_items=self.carousel_items.all only  %}
-      </div>
-    </div>
-  </div>
-</div>
+	<div id="intro">
+  		<div class="grid-x grid-padding-x align-center">
+    		<div class="medium-9 cells">
+      			<center>
+          			<h3>{{ self.title_text|richtext }}</h3>
+          			{{ self.body|richtext }}
+      			</center>
+      			
+      			<div id="carousel">
+        			{% include "pages/includes/orbit_carousel.html" with carousel_items=self.carousel_items.all only  %}
+      			</div>
+    		</div>
+  		</div>
+	</div>
 
-<div id="section">
-  <div id="icons" class="row text-center">
-    <div class="medium-11 medium-centered columns">
-        <h3>Featuring</h3>
-        <br>
-        <div class="medium-up-3 small-up-1" data>
-          {% for block in self.content_items.all %}
-          <div class="column" style="margin-bottom: 25px;">
-            <a href="{{ block.link }}" target="_blank">
-              {% if block.image %}
-                <div class="text-center">
-                {% image block.image fill-70x70 %}
-                </div>
-              {% endif %}
-              <h5>{{ block.title}}</h5>
-              <div class="card-section" style="padding: 5px;">
-                {{ block.content|richtext }}
-              </div>
-            </a>
-          </div>
-          {% endfor %}
-        </div>
-     </div>
-  </div>
-</div>
-{% adverts %}
+	<div id="section">
+		<div class="grid-container">
+	  		<div id="icons" class="grid-x grid-padding-x text-center">
+	    		<div class="medium-12 cell">
+	    			<h3>Featuring</h3>
+	    		</div>
+	    		<br>
+	  			{% for block in self.content_items.all %}
+	  				<div class="medium-4 cell" style="margin-bottom: 25px;">
+	    				<a href="{{ block.link }}" target="_blank">
+	      					{% if block.image %}
+	        					<div class="text-center">
+	        						{% image block.image fill-70x70 %}
+	        					</div>
+	      					{% endif %}
+	      					<h5>{{ block.title}}</h5>
+	      					<div class="card-section" style="padding: 5px;">
+	        					{{ block.content|richtext }}
+	      					</div>
+	    				</a>
+	  				</div>
+	  			{% endfor %}
+	  		</div>
+	  	</div>
+	</div>
+
+	{% adverts %}
 
 {% endblock %}{% endraw %}

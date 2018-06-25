@@ -1,8 +1,7 @@
 {% raw %}{% load wagtailcore_tags wagtailimages_tags %}
 
-<div class="medium-8 medium-centered columns">
 {% for blog in blogs %}
-    <div id="article" class="column">
+    <div id="article">
         <article class="blog">
             <a href="{% pageurl blog %}">
             	<div class="card">
@@ -28,5 +27,4 @@
     </div>
 {% empty %}
     No blogs found
-{% endfor %}
-</div>{% endraw %}
+{% endfor %}{% endraw %}

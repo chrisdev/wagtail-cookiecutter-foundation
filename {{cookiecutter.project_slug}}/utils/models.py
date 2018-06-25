@@ -1,11 +1,11 @@
 from django.db import models
 
-from wagtail.wagtailadmin.edit_handlers import (
+from wagtail.admin.edit_handlers import (
     FieldPanel, MultiFieldPanel, PageChooserPanel
 )
-from wagtail.wagtailcore.fields import RichTextField
-from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
-from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
+from wagtail.core.fields import RichTextField
+from wagtail.documents.edit_handlers import DocumentChooserPanel
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 
 class LinkFields(models.Model):
@@ -14,12 +14,14 @@ class LinkFields(models.Model):
         'wagtailcore.Page',
         null=True,
         blank=True,
+        on_delete=models.SET_NULL,
         related_name='+'
     )
     link_document = models.ForeignKey(
         'wagtaildocs.Document',
         null=True,
         blank=True,
+        on_delete=models.SET_NULL,
         related_name='+'
     )
 

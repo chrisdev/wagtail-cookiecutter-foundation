@@ -15,12 +15,12 @@
         </a>
         
         <div class="reveal testimonial" id="{{t.name|slice:":4"}}" data-reveal>
-          {{ t.text|richtext }}
-          <br>
-          <h6 style="float: right;"><strong>{{t.name}}</strong></h6>
-          <button class="close-button" data-close aria-label="Close modal" type="button" style="background: transparent;">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        	{{ t.text|richtext }}
+          	<br>
+          	<h6 style="float: right;"><strong>{{t.name}}</strong></h6>
+          	<button class="close-button" data-close aria-label="Close modal" type="button" style="background: transparent;">
+            	<span aria-hidden="true">&times;</span>
+          	</button>
         </div> 
     {% endfor %}
 {% endif %}{% endraw %}

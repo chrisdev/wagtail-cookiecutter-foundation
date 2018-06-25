@@ -3,39 +3,33 @@
 {% block body_class %}{{ self.get_verbose_name|slugify }}{% endblock %}
 
 {% block content %}
-
-<div id="content" class="row">
-  <div class="medium-12 columns">
-    <center>
-      <h3>{{ self.title }}</h3>
-      {{ self.intro|richtext }}
-    </center>
-
-    {% if pages|length %}
-    <div>
-      <div class="medium-up-3 small-up-1" data-equalizer id="documents-index">
-        {% for page in pages %}
-        <div class="column text-center" data-equalizer-watch>
-          <a href="{{ page.url }}">
-           <div class="card" style="border-radius: 5px; padding: 20px;">
-             <div class="card-section">
-              <i class="fa fa-file fa-4x" style="margin-bottom: 10px;"></i>
-              <center>
-                <h6 style="margin-bottom: 0;"><strong>{{ page.title }}</strong></h6>
-              </center>
-            </div>
-          </div>
-        </a>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-  {% else %}
-  <p>
-    Whoops, we don't have any document galleries that match right now.
-  </p>
-  {% endif %}
-
-</div>
-</div>
+	<div id="content" class="grid-container">
+		<div class="grid-x grid-padding-x align-center">
+			<div class="medium-12 cell">
+		    	<center>
+		    		<h3>{{ self.title }}</h3>
+		      		{{ self.intro|richtext }}
+		    	</center>
+		
+		    	{% if pages|length %}
+		    		<div id="documents-index" class="product grid-x grid-padding-x medium-up-3" data-equalizer>
+		        		{% for page in pages %}
+		        			<div class="cell text-center" data-equalizer-watch>
+		          				<a href="{{ page.url }}">
+		           					<div class="card text-center">
+		             					<div class="card-section" style="padding: 30px;">
+		              						<i class="fa fa-file fa-4x" style="margin-bottom: 10px;"></i>
+		                					<h6 style="margin-bottom: 0;"><strong>{{ page.title }}</strong></h6>
+		            					</div>
+		          					</div>
+		        				</a>
+		      				</div>
+		      			{% endfor %}
+		    		</div>
+		  		{% else %}
+		  			<p>Whoops, we don't have any document galleries that match right now.</p>
+		  		{% endif %}
+		  	</div>
+		</div>
+	</div>
 {% endblock %}{% endraw %}

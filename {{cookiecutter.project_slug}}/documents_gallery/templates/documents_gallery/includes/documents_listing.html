@@ -1,17 +1,17 @@
 {% raw %}{% load wagtailcore_tags %}
 
 {% for document in documents %}
-<h6>
-  <a href="{{ document.url }}">
-    {% if document.file_extension == 'pdf' %}
-    <i class="fa fa-file-pdf-o"></i>
-    {% elif document.file_extension == 'docx' or 'doc' %}
-    <i class="fa fa-file-word-o"></i>
-    {% else %}
-    <i class="fa fa-file"></i>
-    {% endif %}
-    &nbsp;
-    {{ document.title }}
-  </a>
-</h6>
+	<h6>
+  		<a href="{{ document.url }}">
+    		{% if document.file_extension == 'pdf' %}
+    			<i class="fa fa-file-pdf-o"></i>
+    		{% elif document.file_extension == 'docx' or 'doc' %}
+    			<i class="fa fa-file-word-o"></i>
+    		{% else %}
+    			<i class="fa fa-file"></i>
+    		{% endif %}
+    		&nbsp;
+    		{{ document.title }}
+  		</a>
+	</h6>
 {% endfor %}{% endraw %}

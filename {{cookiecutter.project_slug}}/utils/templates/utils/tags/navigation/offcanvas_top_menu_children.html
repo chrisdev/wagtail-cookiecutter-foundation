@@ -1,13 +1,13 @@
 {% raw %}{% load wagtailcore_tags navigation_tags %}
-{% for child in menuitems_children %}
-<li>
-  <a href="{% pageurl child %}">{{ child.title }}</a>
 
-  {% if child.show_dropdown %}
-  <ul class="menu vertical nested">
-    <li><a href="{% pageurl child %}">{{ child.title }}</a></li>
-    {% top_menu_children parent=child %}
-  </ul>
-  {% endif %}
-</li>
+{% for child in menuitems_children %}
+	<li>
+  		<a href="{% pageurl child %}">{{ child.title }}</a>
+  		{% if child.show_dropdown %}
+  			<ul class="menu vertical nested">
+    			<li><a href="{% pageurl child %}">{{ child.title }}</a></li>
+    			{% top_menu_children parent=child %}
+  			</ul>
+  		{% endif %}
+	</li>
 {% endfor %}{% endraw %}

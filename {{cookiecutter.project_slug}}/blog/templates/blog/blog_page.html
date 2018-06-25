@@ -1,5 +1,5 @@
 {% raw %}{% extends "blog/blog_base.html" %}
-{% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags gravatar %}
+{% load wagtailcore_tags wagtailimages_tags wagtailroutablepage_tags %}
 
 {% block canonical_url %}
     <link rel="amphtml" href="{{ request.site.root_url }}{% routablepageurl page "amp" %}" />
@@ -8,48 +8,26 @@
 {% block breadcrumbs %}{% endblock %}
 
 {% block content %}
-
-{% if self.feed_image %}
-{% image self.feed_image original as feed_image %}
-<div class="row expanded collapse">
-  <div class="column">
-    <div class="large-article-header" style="background-image:url('{{ feed_image.url }}')">
-      <div class="large-article-header-content">
-        <div class="center-container">
-          <div class="article-date">
-            <p>Published on <strong>{{ self.date }}</strong></p>
-          </div>
-          <div class="article-title">
-            <h1>{{ self.title }}</h1>
-          </div>
-          {% comment %}
-          <div class="article-details">
-            <div class="article-author">
-              <img src="{% gravatar_url user.email 50 %}" width="50"/>
-              <a>By: {{ user.first_name }} {{ user.last_name }}</a>
-            </div>
-          </div>
-          {% endcomment %}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-{% endif %}
-
-
-<article id="blog_post" class="row">
-  <div class="medium-11 medium-centered columns">
-      <br>
-      {% include "utils/includes/social_share.html" %}
-      
-      {% if self.feed_image %}{% else %}
-      {% include "blog/includes/blog_header.html" %}
-      {% endif %}
-      {% include "blog/includes/blog_body.html" with body=self.body only %}
-      <br>
-      {% include "utils/includes/related_links.html" with related_links=self.related_links.all only %}
-  </div>
-</article>
-{% endblock %}
-{% endraw %}
+	{% include "utils/includes/social_share.html" %}
+	
+	<div class="neat-article-container">
+		{% include "blog/includes/blog_header.html" %}
+		  
+		{% if self.feed_image %}
+			{% image self.feed_image fill-1200x400 as feed_image %}
+		  	<div class="neat-article-image">
+		    	<img class="article-image" src="{{ feed_image.url }}">
+		  	</div>
+		{% endif %}
+		
+		<div class="grid-container">  
+			<div class="grid-x grid-padding-x align-center neat-article-content">
+				<div class="medium-9 cell">
+					<div class="article-content">
+				    	{% include "blog/includes/blog_body.html" with body=self.body only %}
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}{% endraw %}

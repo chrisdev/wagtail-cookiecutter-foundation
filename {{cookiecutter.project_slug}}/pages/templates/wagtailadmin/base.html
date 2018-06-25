@@ -3,6 +3,7 @@
 {% get_settings %}
 
 {% if settings.pages.SiteBranding.logo %}
-{% block branding_logo %}
-    {% image settings.pages.SiteBranding.logo width-80 %}
-{% endblock %}{% endif %}{% endraw %}
+	{% block branding_logo %}
+    	{% image settings.pages.SiteBranding.logo width-80 %}
+	{% endblock %}
+{% endif %}{% endraw %}

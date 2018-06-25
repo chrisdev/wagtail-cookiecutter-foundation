@@ -4,9 +4,11 @@
 {% block title %}Site is Temporarily Down{% endblock %}
 
 {% block content %}
-<div id="content" class="row">
-  <div class="medium-7 medium-centered columns pad" style="text-align: center;">
-    <img src="{% static 'img/500.png' %}">
-  </div>
-</div>
+	<div id="content" class="grid-container">
+		<div class="grid-x grid-padding-x align-center">
+			<div id="standard_page" class="medium-7 cell text-center">
+				<img src="{% static 'img/500.png' %}">
+			</div>
+		</div>
+	</div>
 {% endblock %}{% endraw %}

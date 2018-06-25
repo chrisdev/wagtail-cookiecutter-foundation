@@ -1,7 +1,8 @@
 @charset 'utf-8';
 
 @import 'css/settings';
-@import 'libs/foundation-sites/scss/foundation';
+@import 'node_modules/foundation-sites/scss/foundation';
+@import 'node_modules/motion-ui/src/motion-ui';
 @import 'css/building-blocks';
 @import 'css/print';
 
@@ -10,9 +11,8 @@
 // @include foundation-flex-grid;
 @include foundation-xy-grid-classes;
 @include foundation-typography;
-@include foundation-button;
 @include foundation-forms;
-// @include foundation-range-input;
+@include foundation-button;
 @include foundation-accordion;
 @include foundation-accordion-menu;
 @include foundation-badge;
@@ -33,8 +33,6 @@
 @include foundation-orbit;
 @include foundation-pagination;
 @include foundation-progress-bar;
-// @include foundation-progress-element;
-// @include foundation-meter-element;
 @include foundation-slider;
 @include foundation-sticky;
 @include foundation-reveal;
@@ -49,13 +47,14 @@
 @include foundation-float-classes;
 @include foundation-flex-classes;
 // @include foundation-prototype-classes;
+@include motion-ui-transitions;
+// @include motion-ui-animations;
 
 
 // Colors
 
 $primary: map-get($foundation-palette, primary);
 $secondary: map-get($foundation-palette, secondary);
-$primary-dark: #303F9F;
 $off-white : #F8F8FA;
 $emperor: #777777;
 $dark-metal: #222222;
@@ -83,21 +82,25 @@ $static: static;
 $body-font-color: $emperor;
 
 body {background: $white;}
+.grid-container {max-width: 70rem;}
 .pad {padding: 20px 0;}
 a {color: $primary;}
 a:hover {color: $secondary;}
 button, .button {background: $primary;}
-button:hover, .button:hover {background: $primary-dark;}
+button:hover, .button:hover {background: darken($primary, 10%);}
 hr {border-color: $light-gray;}
 
 #social_bar {
   padding: 3px 0;
-  background: $primary-dark;
+  background: darken($primary, 10%);
   text-align: right;
   a {color: $white; margin-right: 8px; font-size: 17px;}
 }
 
-.title-bar {background: $primary;}
+.title-bar {
+	background: $primary;
+	a, a:hover {color: $white;}
+}
 .top-bar {
     @include breakpoint(medium) {
         background: $primary;
@@ -106,16 +109,16 @@ hr {border-color: $light-gray;}
         li {font-size: 13px;}
         li a:hover{background-color:$secondary;}
         li.menu-text{font-size: 18px; color: $white;a:hover{background: transparent;}}
-        .menu li:not(.menu-text) a {padding: 13px 16px;}
+        .menu li:not(.menu-text) a {padding: 1rem;}
         .menu .is-active > a {
             background: $secondary;
             color: $white;
         }
         ul, .dropdown.menu .submenu {background: $primary; border: 0px;}
         .dropdown.menu .submenu {border-top: 3px solid $secondary;}
-        .top-bar-right {margin-top: 1px;}
         .dropdown.menu .is-dropdown-submenu-parent a::after {border-color: transparent $white transparent transparent; border-style: solid;}
-        .dropdown.menu.medium-horizontal li.is-dropdown-submenu-parent a::after {border-color: $white transparent transparent;}
+        .dropdown.menu.medium-horizontal li.is-dropdown-submenu-parent a {padding: 1rem;}
+        .dropdown.menu.medium-horizontal li.is-dropdown-submenu-parent a::after {border: 0;}
         .is-drilldown-submenu-parent>a::after {border-color: transparent transparent transparent $white;}
         .js-drilldown-back::before {border-color: transparent $white transparent transparent;}
         .has-form {
@@ -149,7 +152,7 @@ hr {border-color: $light-gray;}
     .is-drilldown {
         margin-top: 40px;
         .drilldown a {background: $off-white; color: $primary; padding: 1rem; border-bottom: 1px solid #f2f2f2;}
-        .drilldown a:hover {background: $white; color: $primary-dark;}
+        .drilldown a:hover {background: $white; color: darken($primary, 10%);}
         .drilldown .is-drilldown-submenu-parent a::after {border-color: transparent transparent transparent $primary;}
         .drilldown .js-drilldown-back a::before {border-color: transparent $primary transparent transparent;}
         .is-drilldown-submenu {background: $off-white;}
@@ -166,7 +169,7 @@ hr {border-color: $light-gray;}
 .off-canvas.is-transition-overlap {z-index: 99999;}
 
 .breadcrumbs {
-  margin: 20px 0;
+  margin: 10px 0;
   background: $off-white;
   border-radius: 15px;
   padding: 15px;
@@ -175,22 +178,7 @@ hr {border-color: $light-gray;}
 
 .list-style {li{list-style: none;}}
 
-.share-buttons{list-style: none;padding: 0; margin:0 0 5px;}
-ul.share-buttons li{display: inline; margin-right: 10px;}
-ul.share-buttons .fa {min-width: 30px;}
-.share-buttons {
-  .button.expanded, .button.tiny{padding:6px 8px;font-size: 1.2rem; border-radius: 5px; color: $white;}
-  .button.expanded {margin-bottom: 0;}
-  .facebook {background: #3b5998;}
-  .twitter {background: #00aced;}
-  .google {background: #dd4b39;}
-  .linkedin {background: #007bb6;}
-  .pin {background: #cb2027;}
-  .mail {background: #00bf8f;}
-  .whatsapp {background: #43d854;}
-}
-
-#content {padding: 25px 0;min-height: 100vh;}
+#content {padding-top: 25px; padding-bottom: 25px; min-height: 100vh;}
 
 .card {
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
@@ -201,33 +189,6 @@ ul.share-buttons .fa {min-width: 30px;}
 #carousel {
   margin-top: 30px;
 }
-
-.bx-wrapper {
-  .bx-caption {
-    background: rgba(0,0,0,.8);
-    span {font-size: .9em;}
-    h5 {
-      font-size: 1.4rem;
-      font-weight: 500;
-      margin-bottom: 3px;
-    }
-    p {margin-bottom: .5rem;}
-    a {
-      float: right;
-      background: $primary;
-      color: $white;
-      font-size: 12px;
-      font-weight: 500;
-      padding: 3px 8px;
-      border-radius: 3px;
-    }
-  }
-}
-
-#carousel_business {
-  .bx-pager {display: none;}
-}
-
 
 #intro, #testimonials {
   padding: 50px 0 30px;
@@ -258,6 +219,11 @@ ul.share-buttons .fa {min-width: 30px;}
 #side_menu {
   h6.title{background: $primary; padding: 6px; color: $white;}
   hr:last-of-type {border: 0;}
+}
+
+
+#sidebar {
+	.social a{font-size: 18px; padding-right: 8px;}
 }
 
 
@@ -366,31 +332,6 @@ ul.share-buttons .fa {min-width: 30px;}
 }
 
 
-#testimonials {
-    padding: 10px;
-    .bx-wrapper {padding: 10px 0;background: transparent; border:0px; box-shadow: none; margin-bottom: 0;}
-    img{border-radius: 100%;}
-    h4{color: $white; font-weight: 700;line-height: 1;}
-    h6,p,li {color: $white;}
-    p{margin-top: 10px; margin-bottom: 10px; font-style: italic; font-size: 16px; font-weight: 400;}
-    h6{text-align: right;}     
-    blockquote {border-left: 0px;}
-}
-
-
-.tag-names li {
-  background: transparent;
-  border: 1px $primary solid;
-  border-radius: 2px;
-  color: $primary;
-  padding: 4px 8px;
-  font-size: 12px;
-  display:inline;
-  margin: 0px 3px;
-  a{color:$primary;};
-}
-
-
 #faq {
   .block-faq_answer {display:none;}
   .block-faq_question {
@@ -428,7 +369,7 @@ footer {
 
   a, h5{color: $white;}
 
-  .social a{font-size: 14px; padding-right: 4px;}
+  .social a{font-size: 20px; padding-right: 10px;}
   .menu li a {padding: 11px 8px 11px 0; font-size: 14px;}
   .menu li a:hover {color: $white;}
   .accordion-menu .is-accordion-submenu-parent:not(.has-submenu-toggle) > a::after {border-color: $white transparent transparent;}
@@ -451,7 +392,7 @@ footer {
   border: 0px;
   padding: 0;
   margin-bottom: 0px;
-
+  i {font-size: 14px;}
 }
 
 .scrollup {

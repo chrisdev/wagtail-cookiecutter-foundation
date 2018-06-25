@@ -1,34 +1,35 @@
 {% raw %}{% load wagtailcore_tags %}
+
 <div id="contact-info" class="row">
-  <div class="large-12 columns">
-    <ul style="margin-left: 0px;">
-      {% if contact.address_1 %}
-      <li><strong><i class="fa fa-map-marker"></i> Address</strong> - {{ contact.address_1 }}</li>
-      {% endif %}
+	<div class="large-12 columns">
+    	<ul style="margin-left: 0px;">
+      		{% if contact.address_1 %}
+      			<li><strong><i class="fa fa-map-marker"></i> Address</strong> - {{ contact.address_1 }}</li>
+      		{% endif %}
 
-      {% if contact.address_2 %}
-      <li><strong><i class="fa fa-map-marker"></i> Address</strong> - {{ contact.address_2 }}</li>
-      {% endif %}
-
-      {% if contact.city %}
-      <li><strong><i class="fa fa-map-marker"></i> City</strong> - {{ contact.city }}</li>
-      {% endif %}
-
-      {% if contact.country %}
-      <li><strong><i class="fa fa-map-marker"></i> Country</strong> - {{ contact.country }}</li>
-      {% endif %}
-
-      {% if contact.post_code %}
-      <li><strong><i class="fa fa-map-marker"></i> Postal Code</strong> - {{ contact.post_code }}</li>
-      {% endif %}
-
-      {% if contact.telephone %}
-      <li><strong><i class="fa fa-phone"></i> Telephone</strong> - {{ contact.telephone }}</li>
-      {% endif %}
-
-      {% if contact.email %}
-      <li><strong><i class="fa fa-envelope"></i> Email</strong> - <a href="mailto:{{ contact.email }}">{{ contact.email }}</a></li>
-      {% endif %}
-    </ul>
-  </div>
+			{% if contact.address_2 %}
+				<li><strong><i class="fa fa-map-marker"></i> Address</strong> - {{ contact.address_2 }}</li>
+			{% endif %}
+			
+			{% if contact.city %}
+				<li><strong><i class="fa fa-map-marker"></i> City</strong> - {{ contact.city }}</li>
+			{% endif %}
+			
+			{% if contact.country %}
+				<li><strong><i class="fa fa-map-marker"></i> Country</strong> - {{ contact.country }}</li>
+			{% endif %}
+			
+			{% if contact.post_code %}
+				<li><strong><i class="fa fa-map-marker"></i> Postal Code</strong> - {{ contact.post_code }}</li>
+			{% endif %}
+			
+			{% if contact.telephone %}
+				<li><strong><i class="fa fa-phone"></i> Telephone</strong> - {{ contact.telephone }}</li>
+			{% endif %}
+			
+			{% if contact.email %}
+				<li><strong><i class="fa fa-envelope"></i> Email</strong> - <a href="mailto:{{ contact.email }}">{{ contact.email }}</a></li>
+			{% endif %}
+    	</ul>
+  	</div>
 </div>{% endraw %}

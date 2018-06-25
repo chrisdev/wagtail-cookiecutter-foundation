@@ -7,6 +7,7 @@
 
 {% block schema %}
     {% image self.feed_image fill-100x100 as feed_img %}
+    
     <script type="application/ld+json">
       {
         "@context": "http://schema.org",
@@ -23,11 +24,11 @@
 {% endblock %}
 
 {% block content %}
-<div id="content" class="row">
-  <div class="medium-12 columns" role="content">
-    <article>
-      {{ body_html }}
-    </article>
-  </div>
-</div>
+	<div id="content" class="row">
+		<div class="medium-12 columns" role="content">
+	    	<article>
+				{{ body_html }}
+		    </article>
+		</div>
+	</div>
 {% endblock %}{% endraw %}

@@ -1,0 +1,35 @@
+{% raw %}{% load static pages_tags wagtailcore_tags wagtailimages_tags wagtailembeds_tags %}
+
+{% if carousel_items %}
+	<div class="fullscreen-image-slider">
+		<div class="orbit" role="region" aria-label="Homepage Slider" data-orbit>
+	        <ul class="orbit-container">
+	        	<button class="orbit-previous">
+	        		<span class="show-for-sr">Previous Slide</span>
+	        		<span class="nav fa fa-chevron-left"></span>
+	      		</button>
+	      		<button class="orbit-next">
+	        		<span class="show-for-sr">Next Slide</span>
+	        		<span class="nav fa fa-chevron-right"></span>
+	      		</button>
+	      		
+	      		{% for carousel_item in carousel_items %}
+		      		<li class="orbit-slide">
+		      			{% if carousel_item.link %}<a href="{{ carousel_item.link }}" target="_blank">{% endif %}
+		      			
+		      			{% image carousel_item.image width-1400 as carousel_imagedata %}
+		      			<img class="rsImg" src="{{ carousel_imagedata.url }}" title="{{ carousel_item.caption }}" alt="{{ carousel_imagedata.alt }}"/>
+		      			
+		      			{% if carousel_item.caption %}
+			        		<figcaption class="orbit-caption">
+			          			{{ carousel_item.caption|richtext }}
+			        		</figcaption>
+			        	{% endif %}
+			        	
+			        	{% if carousel_item.link %}</a>{% endif %}
+		      		</li>
+	      		{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endif %}{% endraw %}

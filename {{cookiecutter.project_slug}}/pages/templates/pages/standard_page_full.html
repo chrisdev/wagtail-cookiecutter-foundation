@@ -5,21 +5,23 @@
 
 {% block content %}
 
-{% include "pages/includes/feed_image_title.html" %}
+	{% include "pages/includes/feed_image_title.html" %}
 
-<div id="content" class="row">
-  <div id="standard_page" class="medium-10 medium-centered columns">
-    {% breadcrumbs %}
-    
-    {% if self.feed_image %}{% else %}
-        <center>
-            <h3>{{ self.title }}</h3>
-        </center>
-    {% endif %}
-    
-    {% include "pages/includes/standard_carousel.html" with image_items=self.image_items.all only %}
-
-    {% include "pages/includes/body.html" with body=self.body only %}
-  </div>
-</div>
+	<div id="content" class="grid-container">
+		<div class="grid-x grid-padding-x align-center">
+			<div id="standard_page" class="medium-10 cell">
+		    	{% breadcrumbs %}
+		    
+		    	{% if self.feed_image %}{% else %}
+		        	<center>
+		            	<h3>{{ self.title }}</h3>
+		        	</center>
+		    	{% endif %}
+		    
+		    	{% include "pages/includes/orbit_carousel.html" with image_items=self.image_items.all only %}
+		
+		    	{% include "pages/includes/body.html" with body=self.body only %}
+		  	</div>
+		</div>
+	</div>
 {% endblock %}{% endraw %}

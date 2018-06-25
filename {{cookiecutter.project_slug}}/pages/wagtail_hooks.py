@@ -1,15 +1,15 @@
-from django.core import urlresolvers
+from django.urls import reverse
 from django.utils.html import format_html, format_html_join
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
-from wagtail.wagtailcore import hooks
-from wagtail.wagtailadmin.menu import MenuItem
-from wagtail.wagtailcore.whitelist import attribute_rule, check_url
+from wagtail.core import hooks
+from wagtail.admin.menu import MenuItem
+from wagtail.core.whitelist import attribute_rule, check_url
 
 
 @hooks.register('register_settings_menu_item')
 def register_django_admin_menu_item():
-    return MenuItem(_('Django Admin'), urlresolvers.reverse('admin:index'),
+    return MenuItem(_('Django Admin'), reverse('admin:index'),
                     classnames='icon icon-cogs', order=700)
 
 
@@ -47,7 +47,7 @@ def editor_js():
 def editor_css():
     # Add extra CSS files to the admin like font-awesome
     css_files = [
-        'libs/font-awesome/css/font-awesome.min.css'
+        'node_modules/font-awesome/css/font-awesome.min.css'
     ]
 
     css_includes = format_html_join(
