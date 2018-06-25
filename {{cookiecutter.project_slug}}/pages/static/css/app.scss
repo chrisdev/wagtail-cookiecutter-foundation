@@ -190,33 +190,6 @@ hr {border-color: $light-gray;}
   margin-top: 30px;
 }
 
-.bx-wrapper {
-  .bx-caption {
-    background: rgba(0,0,0,.8);
-    span {font-size: .9em;}
-    h5 {
-      font-size: 1.4rem;
-      font-weight: 500;
-      margin-bottom: 3px;
-    }
-    p {margin-bottom: .5rem;}
-    a {
-      float: right;
-      background: $primary;
-      color: $white;
-      font-size: 12px;
-      font-weight: 500;
-      padding: 3px 8px;
-      border-radius: 3px;
-    }
-  }
-}
-
-#carousel_business {
-  .bx-pager {display: none;}
-}
-
-
 #intro, #testimonials {
   padding: 50px 0 30px;
   background: #5E9CD1;
@@ -356,18 +329,6 @@ hr {border-color: $light-gray;}
   #contact-info {
     li{list-style: none;}
   }
-}
-
-
-#testimonials {
-    padding: 10px;
-    .bx-wrapper {padding: 10px 0;background: transparent; border:0px; box-shadow: none; margin-bottom: 0;}
-    img{border-radius: 100%;}
-    h4{color: $white; font-weight: 700;line-height: 1;}
-    h6,p,li {color: $white;}
-    p{margin-top: 10px; margin-bottom: 10px; font-style: italic; font-size: 16px; font-weight: 400;}
-    h6{text-align: right;}     
-    blockquote {border-left: 0px;}
 }
 
 

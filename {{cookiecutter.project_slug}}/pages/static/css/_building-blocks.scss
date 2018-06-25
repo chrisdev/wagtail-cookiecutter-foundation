@@ -585,7 +585,7 @@ $full-width-testimonial-vertical-padding: 1rem;
     @include breakpoint(small) {
       padding-left: 50px;
       padding-right: 50px;
-      font-size: 1.5em;
+      font-size: 1.3em;
     }
     
     @include breakpoint(medium) {
@@ -596,12 +596,13 @@ $full-width-testimonial-vertical-padding: 1rem;
     @include breakpoint(large) {
       padding-left: 180px;
       padding-right: 180px;
-      font-size: 1.8em;
+      font-size: 1.6em;
     }
     
     @include breakpoint(xlarge) {
-      padding-left: 300px;
-      padding-right: 300px;
+      padding-left: 200px;
+      padding-right: 200px;
+      font-size: 1.6em;
     }
   }
   

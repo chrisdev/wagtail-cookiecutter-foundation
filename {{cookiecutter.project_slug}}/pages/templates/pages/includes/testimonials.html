@@ -11,29 +11,33 @@
              	 	</svg>
             	</div>
             	
-            	<ul class="testimonials" style="margin-left: 0; padding: 15px 0;" data-equalizer>
-	                {% for t in page_testimonials %}
-	                    <li data-equalizer-watch>
-	                        {% if t.link %}<a href="{{ t.link }}">{% endif %} 
-	                            <div class="full-width-testimonial-content text-center">
-	                              <h5 class="full-width-testimonial-text">{{ t.text|truncatewords:40|richtext }}</h5>
-	                              <p class="full-width-testimonial-source">{{t.name}}</p>
-	                            </div>
-	                        {% if t.link %}</a>{% endif %}
-	                    </li> 
-	                {% endfor %} 
-                
-	                {% for t in non_page_associated_testimonials %}
-	                    <li data-equalizer-watch>
-	                        {% if t.link %}<a href="{{ t.link }}">{% endif %} 
-	                            <div class="full-width-testimonial-content text-center">
-	                              <h5 class="full-width-testimonial-text">{{ t.text|truncatewords:40|richtext }}</h5>
-	                              <p class="full-width-testimonial-source">{{t.name}}</p>
-	                            </div>
-	                        {% if t.link %}</a>{% endif %}
-	                    </li> 
-	                {% endfor %}     
-            	</ul>
+            	<div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit>
+            	  <div class="orbit-wrapper">
+            	    <ul class="orbit-container text-center">
+            	      {% for t in page_testimonials %}
+        	          	<li class="orbit-slide">
+        	          		{% if t.link %}<a href="{{ t.link }}">{% endif %}
+        	          	  		<div>
+        	          	     		<h5 class="full-width-testimonial-text">{{ t.text|truncatewords:40|richtext }}</h5>
+        	          	      		<p class="full-width-testimonial-source">{{t.name}}</p>
+        	          	  		</div>
+        	          	  	{% if t.link %}</a>{% endif %}
+        	          	</li>
+        	          {% endfor %} 
+        	      
+        	          {% for t in non_page_associated_testimonials %}
+        	              <li class="orbit-slide">
+        	              	{% if t.link %}<a href="{{ t.link }}">{% endif %}
+        	                		<div>
+        	                   		<h5 class="full-width-testimonial-text">{{ t.text|truncatewords:40|richtext }}</h5>
+        	                    		<p class="full-width-testimonial-source">{{t.name}}</p>
+        	                		</div>
+        	                	{% if t.link %}</a>{% endif %}
+        	              </li> 
+        	          {% endfor %}
+            	    </ul>
+            	  </div>
+            	</div> 
         	</div>
     	</div>
 	</div>
