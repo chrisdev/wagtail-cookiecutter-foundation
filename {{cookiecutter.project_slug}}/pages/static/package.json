@@ -3,8 +3,7 @@
   "version": "0.0.0",
     "dependencies": {
       "foundation-sites": "~6.4.4-rc1",
-      "motion-ui": "~1.2.3",
-      "what-input": "~4.3.1"
+      "motion-ui": "~1.2.3"
     },
     "devDependencies": {},
     "engines": {
