@@ -114,7 +114,7 @@ hr {border-color: $light-gray;}
             background: $secondary;
             color: $white;
         }
-        ul, .dropdown.menu .submenu {background: $primary; border: 0px;}
+        ul, .dropdown.menu a {background: $primary; border: 0px;}
         .dropdown.menu .submenu {border-top: 3px solid $secondary;}
         .dropdown.menu .is-dropdown-submenu-parent a::after {border-color: transparent $white transparent transparent; border-style: solid;}
         .dropdown.menu.medium-horizontal li.is-dropdown-submenu-parent a {padding: 1rem;}
