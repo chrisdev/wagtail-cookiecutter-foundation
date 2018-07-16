@@ -6,8 +6,6 @@
 env.example
 env.production
 venv/
-static/
-media/
 ansible/.vagrant/
 ansible/{{ cookiecutter.project_slug }}_keystore/*
 ansible/group_vars/*
