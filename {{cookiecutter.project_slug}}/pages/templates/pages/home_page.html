@@ -4,45 +4,42 @@
 {% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
 
 {% block content %}
+	
 	<div id="intro">
-  		<div class="grid-x grid-padding-x align-center">
-    		<div class="medium-9 cells">
-      			<center>
-          			<h3>{{ self.title_text|richtext }}</h3>
-          			{{ self.body|richtext }}
-      			</center>
-      			
-      			<div id="carousel">
-        			{% include "pages/includes/orbit_carousel.html" with carousel_items=self.carousel_items.all only  %}
-      			</div>
-    		</div>
+  		
+  		<div class="orbit clean-hero-slider pad" role="region" aria-label="Restoration Appeal Good Shepherd Anglican Church Tunapuna" data-orbit>
+  		  <div class="orbit-wrapper">
+  		    <ul class="orbit-container">
+  		      {% for block in self.content_items.all %}
+  		      <li class="orbit-slide">
+  		      	<figure class="orbit-figure">
+  		      		<div class="grid-container">
+  			        	<div class="grid-x grid-padding-x grid-padding-y grid-margin-y align-middle">
+  			        		<div class="medium-6 cell text-center">
+  			        			{% image block.image fill-350x350 %}
+  			        		</div>
+  			        		<div class="medium-6 cell caption">
+  					            <h3>{{ block.title}}</h3>
+  					            {{ block.content|richtext }}
+  					            <a href="{{ block.link }}" class="button">Learn More</a>
+  					        </div>
+  					    </div>
+  					</div>
+  		        </figure>
+  		      </li>
+  		      {% endfor %}
+  		    </ul>
+  		  </div>
   		</div>
-	</div>
-
-	<div id="section">
-		<div class="grid-container">
-	  		<div id="icons" class="grid-x grid-padding-x text-center">
-	    		<div class="medium-12 cell">
-	    			<h3>Featuring</h3>
-	    		</div>
-	    		<br>
-	  			{% for block in self.content_items.all %}
-	  				<div class="medium-4 cell" style="margin-bottom: 25px;">
-	    				<a href="{{ block.link }}" target="_blank">
-	      					{% if block.image %}
-	        					<div class="text-center">
-	        						{% image block.image fill-70x70 %}
-	        					</div>
-	      					{% endif %}
-	      					<h5>{{ block.title}}</h5>
-	      					<div class="card-section" style="padding: 5px;">
-	        					{{ block.content|richtext }}
-	      					</div>
-	    				</a>
-	  				</div>
-	  			{% endfor %}
-	  		</div>
-	  	</div>
+  		
+  		<div class="grid-x grid-padding-x align-center">
+  			<div class="medium-9 cells">
+				<center>
+	  				<h3>{{ self.title_text|richtext }}</h3>
+	  				{{ self.body|richtext }}
+				</center>
+  			</div>
+  		</div>
 	</div>
 
 	{% adverts %}

@@ -241,6 +241,113 @@ $social-button-margin: 0.25rem;
 
 
 
+// CONTENT BLOCK SLIDER
+
+$off-white: #f8f8f8;
+$medium-height: 400px;
+$small-height: 80vh;
+
+.orbit-image {
+	padding: 10px 50px;
+}
+
+.clean-hero-slider {
+  .caption {
+    .rich-text p {
+      font-size: 1.6rem;
+      line-height: 1.25;
+      font-weight: 300;
+      
+      @include breakpoint(small only) {
+        font-size: 1.1rem;
+      }
+    }
+
+    h3 {
+      color: $primary;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+
+      @include breakpoint(medium) {
+        font-size: 2.5rem;
+        font-weight: normal;
+      }
+    }
+    
+    .button {border-radius: 3px;}
+    
+    @include breakpoint(small only) {
+      padding: 1rem ;
+      text-align: center;
+    }
+  }
+  
+  .orbit-slide {
+
+    @include breakpoint(medium) {
+      padding-bottom: 0;
+    }
+    
+    @media screen and (min-width:40.063em) and (max-width:60em) {
+    	height: $medium-height;
+    }
+    
+    @include breakpoint(small only) {
+      height: $small-height;
+    }
+    
+    height: $medium-height;
+  }
+
+  .orbit-controls {
+   i {font-size: 24px;}
+    button {
+      background: $primary;
+      padding: 0.5rem;
+
+      &:hover {
+        background: $primary;
+        color: $white;
+      }
+    }
+
+    .orbit-previous {
+      @include breakpoint(medium) {
+        left: 0;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+    }
+
+    .orbit-next {
+      @include breakpoint(medium) {
+        right: 0;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+      }
+    }
+  }
+
+  ul.orbit-container {
+    max-height: $medium-height;
+    
+    @include breakpoint(small only) {
+      max-height: $small-height;
+    }
+  }
+
+  li.orbit-slide {
+    max-height: none !important;
+  }
+}
+
+
+
+// END CONTENT BLOCK SLIDER
+
+
+
 
 // PAGE HERO
 
