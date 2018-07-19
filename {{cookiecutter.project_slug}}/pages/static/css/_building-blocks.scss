@@ -275,7 +275,7 @@ $small-height: 80vh;
       }
     }
     
-    .button {border-radius: 3px;}
+    .button {border-radius: 3px; color: $white;}
     
     @include breakpoint(small only) {
       padding: 1rem ;

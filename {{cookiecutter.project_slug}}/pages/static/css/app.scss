@@ -206,6 +206,7 @@ hr {border-color: $light-gray;}
 	
 	@include breakpoint(small only) {
 	    background-attachment: unset;
+	    img{max-height: 300px;}
 	}
 }
 
