@@ -114,7 +114,7 @@ hr {border-color: $light-gray;}
             background: $secondary;
             color: $white;
         }
-        ul, .dropdown.menu .submenu {background: $primary; border: 0px;}
+        ul, .dropdown.menu a {background: $primary; border: 0px;}
         .dropdown.menu .submenu {border-top: 3px solid $secondary;}
         .dropdown.menu .is-dropdown-submenu-parent a::after {border-color: transparent $white transparent transparent; border-style: solid;}
         .dropdown.menu.medium-horizontal li.is-dropdown-submenu-parent a {padding: 1rem;}
@@ -191,14 +191,23 @@ hr {border-color: $light-gray;}
 }
 
 #intro, #testimonials {
-  padding: 50px 0 30px;
+  padding: 40px 0 30px;
   background: #5E9CD1;
 
   h3, p {color: $white;}
 
   h3 {font-weight: 500;line-height: 1;}
+}
 
-  .rich-text{margin-bottom: 20px;}
+#intro {
+	background: url('/#{$static}/img/bg.jpg') 100% no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	
+	@include breakpoint(small only) {
+	    background-attachment: unset;
+	    img{max-height: 300px;}
+	}
 }
 
 #testimonials, #media {

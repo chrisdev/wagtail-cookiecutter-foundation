@@ -1,9 +1,9 @@
 -r base.txt
 
-#django-debug-toolbar==1.9.1
-django-extensions==2.0.7
+django-debug-toolbar==1.9.1
+django-extensions==2.1.0
 
 #wagtail-bakery==0.2.0
 
 livereload==2.5.2
-selenium==3.12.0
+selenium==3.13.0
