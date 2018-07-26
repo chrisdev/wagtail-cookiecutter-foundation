@@ -69,16 +69,19 @@
   	          		</div>
   	
   	          		<div id="sitemap" class="medium-3 cell hide-for-small-only">
-  	            		<h5><strong>Explore Our Site</strong></h5>
-  	            		{% site_menu parent=site_root calling_page=self %}
-  	          		</div>
-  	
-  	          		<div class="medium-4 cell hide-for-small-only">
-  	            		{% if contact.post_code %}
-  	            			{% get_google_maps_key as google_maps_key %}
-  	            			<img src="https://maps.googleapis.com/maps/api/staticmap?center={{ contact.post_code }}&zoom=13&size=300x280&maptype=roadmap&sensor=false&markers=color:green|{{ contact.post_code }}{% if google_maps_key %}&key={{ google_maps_key }}{% endif %}"/>
-  	            		{% endif %}
-  	          		</div>
+	            		<h5><strong>Explore Our Site</strong></h5>
+	            		{% site_menu parent=site_root calling_page=self %}
+	          		</div>
+	          		
+	          		<div class="medium-1 cell">
+	          			&nbsp;
+	          		</div>
+	
+	          		<div class="medium-4 cell text-center hide-for-small-only">
+	            		<a href="https://www.google.com/maps/place/chrisdev/" target="_blank">
+	            			<img src="{% static 'img/map.png' %}" alt="" style="border: 5px solid #fff;" />
+	            		</a>
+	          		</div>
   	        	</div>
   	        </div>
   	    	<div id="copyright">

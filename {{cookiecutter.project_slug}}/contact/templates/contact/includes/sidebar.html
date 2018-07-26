@@ -1,4 +1,4 @@
-{% raw %}{% load {% endraw %}{{ cookiecutter.project_slug }}{% raw %}_utils settings_tags %}
+{% raw %}{% load static {% endraw %}{{ cookiecutter.project_slug }}{% raw %}_utils settings_tags %}
 
 {% get_contact_fields as contact %}
 {% include "contact/includes/contact_card.html" with contact=contact only %}
@@ -11,7 +11,6 @@
 
 <hr>
 
-{% if contact.post_code %}
-	{% get_google_maps_key as google_maps_key %}
-	<img src="https://maps.googleapis.com/maps/api/staticmap?center={{ contact.post_code }}&zoom=13&size=300x200&maptype=roadmap&sensor=false&markers=color:green|{{ contact.post_code }}{% if google_maps_key %}&key={{ google_maps_key }}{% endif %}" />
-{% endif %}{% endraw %}
+<a href="https://www.google.com/maps/place/chrisdev/" target="_blank">
+	<img src="{% static 'img/map.png' %}" alt="" style="border: 5px solid #fff;" />
+</a>{% endraw %}
