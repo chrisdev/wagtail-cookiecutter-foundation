@@ -1,7 +1,7 @@
 ---
 - include: setup_vcs_repo.yml 
 - include: setup_virtualenv.yml
-- include: setup_bower.yml
+- include: setup_npm.yml
 - include: setup_redis.yml
 - include: setup_django.yml
 - include: setup_initial_data.yml
