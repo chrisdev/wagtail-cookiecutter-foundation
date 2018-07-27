@@ -1,15 +1,5 @@
 {% raw %}---
 # This Playbook based on https://certbot.eff.org 2017-11-06
-- name: Apt Key
-  apt_key:
-    url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x8C47BE8E75BCA694'
-    state: 'present'
-    become: yes
-    become_user: root
-    tags:
-        - le
-        - ssl
-
 - name: add pyton software properites
   apt: name=software-properties-common state=latest update_cache=yes cache_valid_time=3600
   become: yes
@@ -78,11 +68,10 @@
 - name: Generate CSR, Sign and Download using letsencrypt apt package
   become: yes
   become_user: root
-  command: certbot  certonly   
+  command: certbot  certonly --agree-tos  
   tags:
       - le
       - ssl
-      - le_debug
  
 - name: Generate stronger DHE parameters
   become: yes

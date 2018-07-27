@@ -11,7 +11,7 @@
        pkg={{ item }}
        state=installed
   with_items:
-      - postgresql-9.5
+      - postgresql
       - libpq-dev
       - postgresql-client-common
       - python-psycopg2
@@ -43,6 +43,7 @@
   postgresql_user: db={{ django_env.DB_NAME }}
                    name={{ django_env.DB_USER }}
                    password={{ django_env.DB_PASSWD }}
+                   encrypted=yes
                    priv=ALL
                    state=present 
   tags:
