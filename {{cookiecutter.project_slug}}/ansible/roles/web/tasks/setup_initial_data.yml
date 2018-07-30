@@ -33,6 +33,7 @@
   postgresql_user: db="{{ django_env.DB_NAME }}"
                 name="{{ django_env.DB_USER }}"
                 password={{ django_env.DB_PASSWD }}
+                encrypted=yes
                 priv=ALL
                 state=present 
                 role_attr_flags=CREATEDB,SUPERUSER
@@ -41,7 +42,7 @@
      - initial_data 
 
 - name: Create a database backup folder! Used later for backups 
-  file: path="{{ sites_dir }}/{{ project_name }}/database_backups/"
+  file: path="{{ sites_dir }}/{{ project_name }}/database_backup/"
         owner="{{ deploy_user }}"
         group="{{ deploy_user }}"
         state=directory
@@ -49,12 +50,12 @@
       - initial_data 
 
 - name: Copy the initial_data.sql up to host
-  copy: src=files/initial_data.sql dest="{{ sites_dir }}/{{ project_name }}/database_backups/initial_data.sql"
+  copy: src=files/initial_data.sql dest="{{ sites_dir }}/{{ project_name }}/database_backup/initial_data.sql"
   tags:
       - initial_data 
 
 - name: Restore the database
-  shell: "/usr/bin/psql  {{django_env.DB_NAME}} -f {{ sites_dir }}/{{ project_name }}/database_backups/initial_data.sql"
+  shell: "/usr/bin/psql  {{django_env.DB_NAME}} -f {{ sites_dir }}/{{ project_name }}/database_backup/initial_data.sql"
   environment:  
     PGHOST: "{{ django_env.DB_HOST }}" 
     PGUSER: "{{ django_env.DB_USER }}" 
@@ -63,7 +64,7 @@
       - initial_data 
 
 
-- name: Initial data contains a user with weak credentials remove it
+- name: Initial data contains a superuser with weak credentials remove it
   django_manage: 
       app_path="{{ sites_dir }}/{{ project_name }}"
       settings="{{ project_name }}.settings.production"
@@ -80,7 +81,6 @@
   args:
      chdir: "{{ sites_dir }}/{{ project_name }}"
   tags:
-     - django
      - initial_data 
 
 - name: Copy media  

@@ -16,7 +16,6 @@
   with_items:
     - nodejs 
     - npm
-    - nodejs-legacy
   tags:
     - node
     - npm 
