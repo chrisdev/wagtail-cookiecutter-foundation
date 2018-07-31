@@ -48,6 +48,12 @@ def check_paths(paths):
             assert match is None, msg.format(path)
 
 
+@pytest.fixture(params=['deploy_user_name', 'use_letsencrypt'])
+def feature_context(request, context):
+    context.update({request.param: 'y'})
+    return context
+
+
 def test_default_configuration(cookies, context):
     result = cookies.bake(extra_context=context)
     assert result.exit_code == 0
