@@ -46,7 +46,6 @@ class DjangoCookieTestCase(unittest.TestCase):
             "production_host_name": "example.org",
             "use_ssl_in_production": "true",
             "staging_host_name": "staging.example.org",
-            "use_vagrant_staging": "true"
         }
 
         if extra_context:

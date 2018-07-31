@@ -54,8 +54,8 @@
 
       	<footer class="hide-for-print">
   	  		<div class="grid-container">
-  	        	<div class="grid-x grid-padding-x">
-  	          		<div id="contact-us" class="medium-4 cell">
+  	        	<div class="grid-x grid-padding-x align-spaced">
+  	          		<div id="contact-us" class="medium-3 cell">
   	            		<h5><strong>Get in Contact</strong></h5>
   	            		{% get_contact_fields as contact %}
   	            		{% include "contact/includes/contact_card.html" with contact=contact only %}
@@ -71,10 +71,6 @@
   	          		<div id="sitemap" class="medium-3 cell hide-for-small-only">
 	            		<h5><strong>Explore Our Site</strong></h5>
 	            		{% site_menu parent=site_root calling_page=self %}
-	          		</div>
-	          		
-	          		<div class="medium-1 cell">
-	          			&nbsp;
 	          		</div>
 	
 	          		<div class="medium-4 cell text-center hide-for-small-only">

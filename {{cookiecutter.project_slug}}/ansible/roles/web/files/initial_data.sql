@@ -3243,7 +3243,7 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$100000$PgiXaFsIoaUm$EfE/MY2r65PNDDr7OfKl/8oasyDiUn8vY4d4kndTQsU=	2018-07-30 12:53:57.241094-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
+1	pbkdf2_sha256$100000$PgiXaFsIoaUm$EfE/MY2r65PNDDr7OfKl/8oasyDiUn8vY4d4kndTQsU=	2018-07-31 09:57:36.22344-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
 \.
 
 
@@ -3708,6 +3708,7 @@ hzwc6ny9pettf5hcou8xbl1ec75fu84b	ZmExY2Y1ZGVlNDQ4MjgzMzBmYzBhYzkzZDNmYzY1OGVkYzJ
 x20zr5cqrt8u3ytj3mt5w62sooovd5kx	YzI1N2FjZjk5ZmM2OTJmODM1YTFjYTlkMDE4YTJhZDkzNmIzN2I1OTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1ODU5NDBjYWY3YWFlYWUyYzU3YmExNmQ3MTY4YTEyYjRmYjRhNzk4In0=	2018-07-30 14:48:46.580627-04
 d4i3tqdrphturkjci5nsyrftgwpwid9x	YzI1N2FjZjk5ZmM2OTJmODM1YTFjYTlkMDE4YTJhZDkzNmIzN2I1OTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1ODU5NDBjYWY3YWFlYWUyYzU3YmExNmQ3MTY4YTEyYjRmYjRhNzk4In0=	2018-08-06 13:28:55.000736-04
 omo3aa06g27ddxsv8vr38ymmyd1fl1ze	YzI1N2FjZjk5ZmM2OTJmODM1YTFjYTlkMDE4YTJhZDkzNmIzN2I1OTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1ODU5NDBjYWY3YWFlYWUyYzU3YmExNmQ3MTY4YTEyYjRmYjRhNzk4In0=	2018-08-13 12:53:57.349455-04
+czshsmqgxpzsf8l2n231dmlhif2n6zn0	YzI1N2FjZjk5ZmM2OTJmODM1YTFjYTlkMDE4YTJhZDkzNmIzN2I1OTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1ODU5NDBjYWY3YWFlYWUyYzU3YmExNmQ3MTY4YTEyYjRmYjRhNzk4In0=	2018-08-14 09:57:36.338059-04
 \.
 
 
@@ -4385,7 +4386,7 @@ COPY public.wagtailimages_image (id, title, file, width, height, created_at, foc
 12	chrisdev logo	original_images/chrisdevf_favicon.png	500	500	2017-10-10 10:30:40.591611-04	\N	\N	\N	\N	1	\N	1
 13	linode.png	original_images/linode.png	469	469	2018-07-23 13:37:56.187143-04	\N	\N	\N	\N	1	\N	1
 14	bulding-blocks.png	original_images/bulding-blocks.png	500	500	2018-07-23 13:47:44.849-04	\N	\N	\N	\N	1	\N	1
-9	wagtail.jpg	original_images/wagtail.jpg	1300	500	2016-07-20 03:38:06.614054-04	692	233	966	297	1	60370	1
+9	wagtail.jpg	original_images/wagtail.jpg	1300	500	2016-07-20 03:38:06.614054-04	690	240	1022	408	1	60370	1
 \.
 
 
@@ -4465,6 +4466,10 @@ COPY public.wagtailimages_rendition (id, file, width, height, focal_point_key, i
 69	images/wagtail.dc192bde.fill-1200x600.jpg	1000	500	dc192bde	9	fill-1200x600
 70	images/wagtail.dc192bde.fill-1200x400.jpg	1200	400	dc192bde	9	fill-1200x400
 71	images/wagtail.dc192bde.fill-1200x200.jpg	1200	200	dc192bde	9	fill-1200x200
+72	images/wagtail.dc192bde.fill-1200x880.jpg	682	500	dc192bde	9	fill-1200x880
+73	images/wagtail.0c87d1ac.fill-1200x600.jpg	1001	500	0c87d1ac	9	fill-1200x600
+74	images/wagtail.36977faf.fill-1200x600.jpg	1000	500	36977faf	9	fill-1200x600
+75	images/wagtail.36977faf.fill-1200x400.jpg	1200	400	36977faf	9	fill-1200x400
 \.
 
 
@@ -4786,7 +4791,7 @@ SELECT pg_catalog.setval('public.photo_gallery_gallerypagetag_id_seq', 3, true);
 -- Name: postgres_search_indexentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.postgres_search_indexentry_id_seq', 65, true);
+SELECT pg_catalog.setval('public.postgres_search_indexentry_id_seq', 69, true);
 
 
 --
@@ -4933,7 +4938,7 @@ SELECT pg_catalog.setval('public.wagtailimages_image_id_seq', 14, true);
 -- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.wagtailimages_rendition_id_seq', 71, true);
+SELECT pg_catalog.setval('public.wagtailimages_rendition_id_seq', 75, true);
 
 
 --

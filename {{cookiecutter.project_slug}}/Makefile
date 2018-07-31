@@ -15,7 +15,7 @@ help:
 	@echo "  func_test                run functional tests"
 	@echo "  static_site              generate a static site from the project"
 	@echo "  pre_task                 ensures that python deps are installed on host server"
-	@echo "  deploy_user              create the deploy user fetch deployment keys. Defaults to production DEPLOY_ENV=vagrant/staging"
+	@echo "  deploy_user              create the deploy user fetch deployment keys.
 	@echo "  provision                provision the production server Defaults to production DEPLOY_ENV=staging"
 	@echo "  deploy                   provision the staging server Defaults to production DEPLOY_ENV=staging"
 	@echo "  livereload               Start Server with livereload functionality"
@@ -138,20 +138,11 @@ pre_task:
 	)
 
 deploy_user:
-ifeq ($(DEPLOY_ENV), vagrant)
-	$(call ECHO_BLUE, Create the deploy user for vagrant based staging VM)
-	(\
-		cd ansible; \
-		vagrant up; \
-		$(PLAYBOOK) -c paramiko -i staging vagrant_staging_setup.yml --ask-pass --sudo -u vagrant; \
-	)
-else
 	$(call ECHO_BLUE, Create the deploy user for based $(DEPLOY_ENV) )
 	(\
 		cd ansible; \
 		$(PLAYBOOK) -i $(DEPLOY_ENV) provision.yml --tags user; \
 	)
-endif
 
 provision:
 	$(call ECHO_BLUE, Provision the $(DEPLOY_ENV) server )
