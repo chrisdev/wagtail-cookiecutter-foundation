@@ -67,7 +67,6 @@ front-end framework. A demo of a default project generated from this cookiecutte
    references/project_settings
    references/ansible/index
    references/using_make
-   references/vagrant
 
 
 .. _contributing:
