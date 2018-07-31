@@ -60,8 +60,6 @@ def test_default_configuration(cookies, context):
     check_paths(paths)
 
 
-@pytest.fixture(params=['use_vagrant_staging',
-                        'deploy_user_name', 'use_letsencrypt'])
 def feature_context(request, context):
     context.update({request.param: 'y'})
     return context

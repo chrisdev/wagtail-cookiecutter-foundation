@@ -50,7 +50,6 @@ You'll be prompted for some values. Provide them, then a Django project will be 
     use_django_cachalot [n]: 
     use_wagalytics_app [n]: 
     staging_host_name [wagtail-staging.chrisdev.com]: 
-    use_vagrant_staging [True]: 
     deploy_user_name [django]: 
     database_user_name [django]: 
     django_admin_user [my_wagtail_admin]: 
