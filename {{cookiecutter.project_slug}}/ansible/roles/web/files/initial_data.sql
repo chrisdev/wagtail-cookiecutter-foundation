@@ -4058,47 +4058,47 @@ COPY public.photo_gallery_gallerypagetag (id, content_object_id, tag_id) FROM st
 --
 
 COPY public.postgres_search_indexentry (id, object_id, body, content_type_id, autocomplete) FROM stdin;
-2	1	'document':1A 'document.doc':2A	3	
-3	2	'document':1A 'example.docx':2A	3	
-4	3	'document':1A 'sample.pdf':2A	3	
-5	1	'ansible.png':1A	2	
-6	2	'digital_ocean.png':1A	2	
-7	3	'foundation.jpg':2A 'photo':1A	2	
-8	4	'placeholder_person.png':1A	2	
-9	5	'photo':1A 'postgresql.jpg':2A	2	
-10	6	'postgresql.png':1A	2	
-11	7	'photo':1A 'sass.jpg':2A	2	
-12	8	'sass.png':1A	2	
-14	10	'wagtail.png':1A	2	
-15	11	'yeti.png':1A	2	
-16	1	'root':1B	1	
-1	16	'blog':1B 'index':2B	43	
-22	17	'1':3,225B '2':134 'ac':30,44,103,166,219 'ad':149 'adipisc':10 'aenean':116 'aliquam':85 'amet':8,23,182,209 'ant':81,167,198 'aptent':146 'arcu':55 'bibendum':176 'blandit':74 'blog':223B 'class':145 'commodo':177 'congu':57 'consectetur':9 'consequat':76 'conubia':153 'conval':107 'cras':123 'curabitur':69 'dapibus':19 'diam':66,126 'dignissim':121 'dolor':6,26,144,160,214 'donec':52,178 'dui':48,158,222 'efficitur':216 'egesta':61,140 'eget':42,60,63,92,119,175 'elit':11,101 'enim':31,37,210 'est':139 'et':25,33,82,113,163,185 'etiam':93 'eu':20,204 'ex':15 'facilisi':39 'fame':165 'faucibus':28,171,179 'feli':72,108 'fermentum':83 'feugiat':67,89 'fringilla':68 'fusc':109 'gravida':35,192 'head':2,133 'hendrerit':79,80 'himenaeo':157 'iaculi':91 'id':73,117,138,206 'imperdiet':104 'incepto':156 'interdum':17,162,184 'ipsum':5,168,180 'justo':18,90 'lacus':118,174,202 'lectus':125 'libero':45,51 'litora':150 'loborti':13,102,211 'lorem':4,87 'luctus':212 'malesuada':70,164,197 'massa':137,218 'matti':195 'mauri':71,84 'metus':161 'morbi':196 'nequ':96,129,191 'nibh':43,115 'nisi':193,199 'non':29,95 'nostra':154 'nulla':56 'nullam':213 'nunc':41,172 'odio':75,120 'orci':14,112 'ornar':94,188 'page':224B 'pellentesqu':205,220 'per':152,155 'phasellus':99 'placerat':47 'porttitor':173 'praesent':12,135 'primi':169 'pulvinar':128,221 'purus':215 'quam':100 'qui':49 'quisqu':189 'risus':24,59,207 'sagitti':124,186 'sapien':34,40,64 'scelerisqu':106 'sed':32,88,142,159 'sem':183 'semper':114 'sit':7,22,181,208 'sociosqu':148 'sodal':194 'sollicitudin':36 'taciti':147 'tempor':27 'tempus':46 'test':1,132 'tincidunt':54 'torquent':151 'tortor':187 'tristiqu':190 'turpi':50 'ultric':98 'ultrici':203 'ut':62,65,78,127 'varius':86 'vehicula':111 'vel':53,200 'venenati':122,130,201 'vestibulum':21 'vita':77,105,143 'volutpat':141	47	
-20	6	'ac':117,139 'accumsan':46 'adipisc':9 'aenean':63 'aliquam':11 'aliquet':174 'amet':7,20,116,144 'ant':104 'auctor':66 'blandit':17 'consectetur':8 'consequat':133 'curabitur':82 'cursus':59 'dapibus':48,96 'diam':31,37,98,110,196 'dictum':54 'dolor':5,128,135 'donec':51,76 'dui':79,171 'egesta':122 'eget':78,177,191 'eleifend':137 'elementum':16,160 'elit':10 'enim':21 'erat':173 'ero':136,148 'et':12,109,127 'eu':14,47,69,166 'euismod':114 'ex':141 'facilisi':62 'faucibus':67 'fermentum':58,189 'feugiat':50,77 'fringilla':167 'fusc':108 'gravida':150 'hendrerit':153 'id':33,105,170 'imperdiet':83 'integ':152 'interdum':39 'ipsum':4,112,184 'justo':65 'lacinia':42 'laoreet':163 'lectus':90 'leo':24,34 'libero':118 'ligula':121,187 'lorem':3,165 'luctus':106 'magna':91,161 'massa':23,43 'matti':27 'mauri':13,120 'maximus':186 'mi':40 'molesti':151 'molli':154 'morbi':89,99,162 'nec':38,73,149 'nibh':15,60,75,131 'nisi':138 'nisl':71,172 'non':125 'nulla':142,168 'nunc':41,45 'odio':49,155,164 'ornar':25 'page':2B 'phasellus':32 'placerat':35,55 'porttitor':56,130,157,192 'porttutor':199 'posuer':134,183 'proin':119,129 'pulvinar':113 'quam':53,86,180,193 'qui':111,132,197 'quisqu':22 'rhoncus':81 'risus':68 'sagitti':88 'sed':158,181 'semper':70,140 'sit':6,19,115,143 'sodal':103 'sollicitudin':97 'standard':1B 'suscipit':74,102 'tempor':126 'tempus':87,124 'tortor':84,176 'tristiqu':44,188 'turpi':94 'ullamcorp':178 'urna':101,145 'ut':72,85,93,146,159,185,190 'varius':18,52,179,195 'vehicula':29,36 'vel':100 'velit':107 'venenati':147,169,182 'vestibulum':30 'vita':28,156 'vivamus':57 'viverra':92,198	37	
-23	18	'2':110B 'accumsan':44 'adipisc':7 'aenean':61 'aliquam':9 'amet':5,18 'ant':102 'auctor':64 'blandit':15 'blog':108B 'consectetur':6 'curabitur':80 'cursus':57 'dapibus':46,94 'diam':29,35,96 'dictum':52 'dolor':3 'donec':49,74 'dui':77 'eget':76 'elementum':14 'elit':8 'enim':19 'et':10 'eu':12,45,67 'facilisi':60 'faucibus':65 'fermentum':56 'feugiat':48,75 'head':107 'id':31,103 'imperdiet':81 'interdum':37 'ipsum':2 'justo':63 'lacinia':40 'lectus':88 'leo':22,32 'lorem':1 'luctus':104 'magna':89 'massa':21,41 'matti':25 'mauri':11 'mi':38 'morbi':87,97 'nec':36,71 'nibh':13,58,73 'nisl':69 'nunc':39,43 'odio':47 'ornar':23 'page':109B 'phasellus':30 'placerat':33,53 'porttitor':54 'quam':51,84 'quisqu':20 'rhoncus':79 'risus':66 'sagitti':86 'semper':68 'sit':4,17 'sodal':101 'sollicitudin':95 'suscipit':72,100 'tempus':85 'test':106 'tortor':82 'tristiqu':42 'turpi':92 'urna':99 'ut':70,83,91 'varius':16,50 'vehicula':27,34 'vel':98 'velit':105 'vestibulum':28 'vita':26 'vivamus':55 'viverra':90	47	
-24	19	'1':108 '2':111 '3':114B 'accumsan':44 'adipisc':7 'aenean':61 'aliquam':9 'amet':5,18 'ant':102 'auctor':64 'blandit':15 'blog':112B 'consectetur':6 'curabitur':80 'cursus':57 'dapibus':46,94 'diam':29,35,96 'dictum':52 'dolor':3 'donec':49,74 'dui':77 'eget':76 'elementum':14 'elit':8 'enim':19 'et':10 'eu':12,45,67 'facilisi':60 'faucibus':65 'fermentum':56 'feugiat':48,75 'head':107,110 'id':31,103 'imperdiet':81 'interdum':37 'ipsum':2 'justo':63 'lacinia':40 'lectus':88 'leo':22,32 'lorem':1 'luctus':104 'magna':89 'massa':21,41 'matti':25 'mauri':11 'mi':38 'morbi':87,97 'nec':36,71 'nibh':13,58,73 'nisl':69 'nunc':39,43 'odio':47 'ornar':23 'page':113B 'phasellus':30 'placerat':33,53 'porttitor':54 'quam':51,84 'quisqu':20 'rhoncus':79 'risus':66 'sagitti':86 'semper':68 'sit':4,17 'sodal':101 'sollicitudin':95 'suscipit':72,100 'tempus':85 'test':106,109 'tortor':82 'tristiqu':42 'turpi':92 'urna':99 'ut':70,83,91 'varius':16,50 'vehicula':27,34 'vel':98 'velit':105 'vestibulum':28 'vita':26 'vivamus':55 'viverra':90	47	
-25	12	'event':1B 'index':2B	49	
-18	4	'index':2B 'standard':1B	34	
-17	3	'homepag':1B	4	
-13	9	'photo':2A 'wagtail.jpg':1A	2	
-26	13	'1':70B 'ac':62 'adipisc':9 'aliquam':35 'amet':7,65 'ant':16 'blandit':49,66 'chrisdev':1 'consectetur':8 'conval':58 'cubilia':26 'cura':27 'curabitur':28 'dolor':5 'donec':34 'dui':44 'elit':10,47 'enim':51 'et':23 'eu':37 'event':68B 'facilisi':42,56 'faucibus':20,33,55 'fusc':40 'gravida':46 'headquat':2 'imperdiet':30 'ipsum':4,17 'lacus':31 'lorem':3 'luctus':22 'metus':57 'molli':50 'nisi':36 'orci':21 'page':69B 'pellentesqu':11 'pharetra':53 'porttitor':12,41 'posuer':25,29 'primi':18 'public':67 'qui':52 'sapien':43 'sed':48 'sit':6,64 'sollicitudin':61 'turpi':63 'ullamcorp':13,14 'ultric':24 'ut':32 'varius':38 'venenati':59 'vestibulum':15,39,60 'vivamus':54	54	
-27	14	'2':4B 'event':2B 'none':1 'page':3B	54	
-28	15	'3':4B 'event':2B 'none':1 'page':3B	54	
-29	24	'contact':1B 'us':2B	58	
-30	7	'index':2B 'person':1B	60	
-31	8	'1':3B 'page':2B 'person':1B	64	
-32	9	'2':3B 'page':2B 'person':1B	64	
-33	10	'3':3B 'page':2B 'person':1B	64	
-34	11	'4':3B 'page':2B 'person':1B	64	
-35	22	'galleri':2B 'photo':1B	65	
-36	23	'galleri':2B 'sampl':1B	67	
-37	20	'document':1B 'galleri':2B	73	
-38	21	'document':2B 'sampl':1B	75	
-19	5	'ac':119,141 'accumsan':48 'adipisc':11 'aenean':65 'aliquam':13 'aliquet':176 'amet':9,22,118,146 'ant':106 'auctor':68 'blandit':19 'consectetur':10 'consequat':135 'curabitur':84 'cursus':61 'dapibus':50,98 'diam':33,39,100,112,198 'dictum':56 'dolor':7,130,137 'donec':53,78 'dui':81,173 'egesta':124 'eget':80,179,193 'eleifend':139 'elementum':18,162 'elit':12 'enim':23 'erat':175 'ero':138,150 'et':14,111,129 'eu':16,49,71,168 'euismod':116 'ex':143 'facilisi':64 'faucibus':69 'fermentum':60,191 'feugiat':52,79 'fringilla':169 'fusc':110 'gravida':152 'hendrerit':155 'id':35,107,172 'imperdiet':85 'integ':154 'interdum':41 'ipsum':6,114,186 'justo':67 'lacinia':44 'laoreet':165 'lectus':92 'leo':26,36 'libero':120 'ligula':123,189 'lorem':5,167 'luctus':108 'magna':93,163 'massa':25,45 'matti':29 'mauri':15,122 'maximus':188 'mi':42 'molesti':153 'molli':156 'morbi':91,101,164 'nec':40,75,151 'nibh':17,62,77,133 'nisi':140 'nisl':73,174 'non':127 'nulla':144,170 'nunc':43,47 'odio':51,157,166 'ornar':27 'page':2B 'phasellus':34 'placerat':37,57 'porttitor':58,132,159,194 'porttutor':201 'posuer':136,185 'proin':121,131 'pulvinar':115 'quam':55,88,182,195 'qui':113,134,199 'quisqu':24 'rhoncus':83 'risus':70 'sagitti':90 'sed':160,183 'semper':72,142 'sidebar':4B 'sit':8,21,117,145 'sodal':105 'sollicitudin':99 'standard':1B 'suscipit':76,104 'tempor':128 'tempus':89,126 'tortor':86,178 'tristiqu':46,190 'turpi':96 'ullamcorp':180 'urna':103,147 'ut':74,87,95,148,161,187,192 'varius':20,54,181,197 'vehicula':31,38 'vel':102 'velit':109 'venenati':149,171,184 'vestibulum':32 'vita':30,158 'vivamus':59 'viverra':94,200 'w/o':3B	37	
-43	12	'chrisdev':1A 'logo':2A	2	
-49	27	'testimoni':1B	83	
-54	13	'linode.png':1A	2	
-58	14	'bulding-blocks.png':1A	2	
+17	3		4	'homepag':1B
+18	4		34	'index':2B 'standard':1B
+1	16		43	'blog':1B 'index':2B
+22	17	'ac':27,41,100,160,213 'ad':143 'adipisc':7 'aenean':113 'aliquam':82 'amet':5,20,176,203 'ant':78,161,192 'aptent':140 'arcu':52 'bibendum':170 'blandit':71 'class':139 'commodo':171 'congu':54 'consectetur':6 'consequat':73 'conubia':147 'conval':104 'cras':120 'curabitur':66 'dapibus':16 'diam':63,123 'dignissim':118 'dolor':3,23,138,154,208 'donec':49,172 'dui':45,152,216 'efficitur':210 'egesta':58,134 'eget':39,57,60,89,116,169 'elit':8,98 'enim':28,34,204 'est':133 'et':22,30,79,110,157,179 'etiam':90 'eu':17,198 'ex':12 'facilisi':36 'fame':159 'faucibus':25,165,173 'feli':69,105 'fermentum':80 'feugiat':64,86 'fringilla':65 'fusc':106 'gravida':32,186 'hendrerit':76,77 'himenaeo':151 'iaculi':88 'id':70,114,132,200 'imperdiet':101 'incepto':150 'interdum':14,156,178 'ipsum':2,162,174 'justo':15,87 'lacus':115,168,196 'lectus':122 'libero':42,48 'litora':144 'loborti':10,99,205 'lorem':1,84 'luctus':206 'malesuada':67,158,191 'massa':131,212 'matti':189 'mauri':68,81 'metus':155 'morbi':190 'nequ':93,126,185 'nibh':40,112 'nisi':187,193 'non':26,92 'nostra':148 'nulla':53 'nullam':207 'nunc':38,166 'odio':72,117 'orci':11,109 'ornar':91,182 'pellentesqu':199,214 'per':146,149 'phasellus':96 'placerat':44 'porttitor':167 'praesent':9,129 'primi':163 'pulvinar':125,215 'purus':209 'quam':97 'qui':46 'quisqu':183 'risus':21,56,201 'sagitti':121,180 'sapien':31,37,61 'scelerisqu':103 'sed':29,85,136,153 'sem':177 'semper':111 'sit':4,19,175,202 'sociosqu':142 'sodal':188 'sollicitudin':33 'taciti':141 'tempor':24 'tempus':43 'tincidunt':51 'torquent':145 'tortor':181 'tristiqu':184 'turpi':47 'ultric':95 'ultrici':197 'ut':59,62,75,124 'varius':83 'vehicula':108 'vel':50,194 'venenati':119,127,195 'vestibulum':18 'vita':74,102,137 'volutpat':135	47	'1':3B 'blog':1B 'page':2B
+25	12		49	'event':1B 'index':2B
+2	1		3	'document':2A 'document.doc':1A
+3	2		3	'document':2A 'example.docx':1A
+4	3		3	'document':2A 'sample.pdf':1A
+5	1		2	'ansible.png':1A
+6	2		2	'digital_ocean.png':1A
+7	3		2	'foundation.jpg':1A 'photo':2A
+8	4		2	'placeholder_person.png':1A
+9	5		2	'photo':2A 'postgresql.jpg':1A
+10	6		2	'postgresql.png':1A
+11	7		2	'photo':2A 'sass.jpg':1A
+12	8		2	'sass.png':1A
+13	9		2	'photo':2A 'wagtail.jpg':1A
+14	10		2	'wagtail.png':1A
+15	11		2	'yeti.png':1A
+16	1		1	'root':1B
+19	5	'ac':115,137 'accumsan':44 'adipisc':7 'aenean':61 'aliquam':9 'aliquet':172 'amet':5,18,114,142 'ant':102 'auctor':64 'blandit':15 'consectetur':6 'consequat':131 'curabitur':80 'cursus':57 'dapibus':46,94 'diam':29,35,96,108,194 'dictum':52 'dolor':3,126,133 'donec':49,74 'dui':77,169 'egesta':120 'eget':76,175,189 'eleifend':135 'elementum':14,158 'elit':8 'enim':19 'erat':171 'ero':134,146 'et':10,107,125 'eu':12,45,67,164 'euismod':112 'ex':139 'facilisi':60 'faucibus':65 'fermentum':56,187 'feugiat':48,75 'fringilla':165 'fusc':106 'gravida':148 'hendrerit':151 'id':31,103,168 'imperdiet':81 'integ':150 'interdum':37 'ipsum':2,110,182 'justo':63 'lacinia':40 'laoreet':161 'lectus':88 'leo':22,32 'libero':116 'ligula':119,185 'lorem':1,163 'luctus':104 'magna':89,159 'massa':21,41 'matti':25 'mauri':11,118 'maximus':184 'mi':38 'molesti':149 'molli':152 'morbi':87,97,160 'nec':36,71,147 'nibh':13,58,73,129 'nisi':136 'nisl':69,170 'non':123 'nulla':140,166 'nunc':39,43 'odio':47,153,162 'ornar':23 'phasellus':30 'placerat':33,53 'porttitor':54,128,155,190 'porttutor':197 'posuer':132,181 'proin':117,127 'pulvinar':111 'quam':51,84,178,191 'qui':109,130,195 'quisqu':20 'rhoncus':79 'risus':66 'sagitti':86 'sed':156,179 'semper':68,138 'sit':4,17,113,141 'sodal':101 'sollicitudin':95 'suscipit':72,100 'tempor':124 'tempus':85,122 'tortor':82,174 'tristiqu':42,186 'turpi':92 'ullamcorp':176 'urna':99,143 'ut':70,83,91,144,157,183,188 'varius':16,50,177,193 'vehicula':27,34 'vel':98 'velit':105 'venenati':145,167,180 'vestibulum':28 'vita':26,154 'vivamus':55 'viverra':90,196	37	'page':2B 'sidebar':4B 'standard':1B 'w/o':3B
+20	6	'ac':115,137 'accumsan':44 'adipisc':7 'aenean':61 'aliquam':9 'aliquet':172 'amet':5,18,114,142 'ant':102 'auctor':64 'blandit':15 'consectetur':6 'consequat':131 'curabitur':80 'cursus':57 'dapibus':46,94 'diam':29,35,96,108,194 'dictum':52 'dolor':3,126,133 'donec':49,74 'dui':77,169 'egesta':120 'eget':76,175,189 'eleifend':135 'elementum':14,158 'elit':8 'enim':19 'erat':171 'ero':134,146 'et':10,107,125 'eu':12,45,67,164 'euismod':112 'ex':139 'facilisi':60 'faucibus':65 'fermentum':56,187 'feugiat':48,75 'fringilla':165 'fusc':106 'gravida':148 'hendrerit':151 'id':31,103,168 'imperdiet':81 'integ':150 'interdum':37 'ipsum':2,110,182 'justo':63 'lacinia':40 'laoreet':161 'lectus':88 'leo':22,32 'libero':116 'ligula':119,185 'lorem':1,163 'luctus':104 'magna':89,159 'massa':21,41 'matti':25 'mauri':11,118 'maximus':184 'mi':38 'molesti':149 'molli':152 'morbi':87,97,160 'nec':36,71,147 'nibh':13,58,73,129 'nisi':136 'nisl':69,170 'non':123 'nulla':140,166 'nunc':39,43 'odio':47,153,162 'ornar':23 'phasellus':30 'placerat':33,53 'porttitor':54,128,155,190 'porttutor':197 'posuer':132,181 'proin':117,127 'pulvinar':111 'quam':51,84,178,191 'qui':109,130,195 'quisqu':20 'rhoncus':79 'risus':66 'sagitti':86 'sed':156,179 'semper':68,138 'sit':4,17,113,141 'sodal':101 'sollicitudin':95 'suscipit':72,100 'tempor':124 'tempus':85,122 'tortor':82,174 'tristiqu':42,186 'turpi':92 'ullamcorp':176 'urna':99,143 'ut':70,83,91,144,157,183,188 'varius':16,50,177,193 'vehicula':27,34 'vel':98 'velit':105 'venenati':145,167,180 'vestibulum':28 'vita':26,154 'vivamus':55 'viverra':90,196	37	'page':2B 'standard':1B
+49	27		83	'testimoni':1B
+23	18	'accumsan':44 'adipisc':7 'aenean':61 'aliquam':9 'amet':5,18 'ant':102 'auctor':64 'blandit':15 'consectetur':6 'curabitur':80 'cursus':57 'dapibus':46,94 'diam':29,35,96 'dictum':52 'dolor':3 'donec':49,74 'dui':77 'eget':76 'elementum':14 'elit':8 'enim':19 'et':10 'eu':12,45,67 'facilisi':60 'faucibus':65 'fermentum':56 'feugiat':48,75 'id':31,103 'imperdiet':81 'interdum':37 'ipsum':2 'justo':63 'lacinia':40 'lectus':88 'leo':22,32 'lorem':1 'luctus':104 'magna':89 'massa':21,41 'matti':25 'mauri':11 'mi':38 'morbi':87,97 'nec':36,71 'nibh':13,58,73 'nisl':69 'nunc':39,43 'odio':47 'ornar':23 'phasellus':30 'placerat':33,53 'porttitor':54 'quam':51,84 'quisqu':20 'rhoncus':79 'risus':66 'sagitti':86 'semper':68 'sit':4,17 'sodal':101 'sollicitudin':95 'suscipit':72,100 'tempus':85 'tortor':82 'tristiqu':42 'turpi':92 'urna':99 'ut':70,83,91 'varius':16,50 'vehicula':27,34 'vel':98 'velit':105 'vestibulum':28 'vita':26 'vivamus':55 'viverra':90	47	'2':3B 'blog':1B 'page':2B
+26	13	'ac':63 'adipisc':10 'aliquam':36 'amet':8,66 'ant':17 'blandit':50,67 'chrisdev':2 'consectetur':9 'conval':59 'cubilia':27 'cura':28 'curabitur':29 'dolor':6 'donec':35 'dui':45 'elit':11,48 'enim':52 'et':24 'eu':38 'facilisi':43,57 'faucibus':21,34,56 'fusc':41 'gravida':47 'headquat':3 'imperdiet':31 'ipsum':5,18 'lacus':32 'lorem':4 'luctus':23 'metus':58 'molli':51 'nisi':37 'orci':22 'pellentesqu':12 'pharetra':54 'porttitor':13,42 'posuer':26,30 'primi':19 'public':1 'qui':53 'sapien':44 'sed':49 'sit':7,65 'sollicitudin':62 'turpi':64 'ullamcorp':14,15 'ultric':25 'ut':33 'varius':39 'venenati':60 'vestibulum':16,40,61 'vivamus':55	54	'1':3B 'event':1B 'page':2B
+27	14	'none':1	54	'2':3B 'event':1B 'page':2B
+29	24		58	'contact':1B 'us':2B
+30	7		60	'index':2B 'person':1B
+31	8		64	'1':3B 'page':2B 'person':1B
+32	9		64	'2':3B 'page':2B 'person':1B
+33	10		64	'3':3B 'page':2B 'person':1B
+34	11		64	'4':3B 'page':2B 'person':1B
+35	22		65	'galleri':2B 'photo':1B
+36	23		67	'galleri':2B 'sampl':1B
+37	20		73	'document':1B 'galleri':2B
+38	21		75	'document':2B 'sampl':1B
+43	12		2	'chrisdev':1A 'logo':2A
+54	13		2	'linode.png':1A
+58	14		2	'bulding-blocks.png':1A
+24	19	'accumsan':44 'adipisc':7 'aenean':61 'aliquam':9 'amet':5,18 'ant':102 'auctor':64 'blandit':15 'consectetur':6 'curabitur':80 'cursus':57 'dapibus':46,94 'diam':29,35,96 'dictum':52 'dolor':3 'donec':49,74 'dui':77 'eget':76 'elementum':14 'elit':8 'enim':19 'et':10 'eu':12,45,67 'facilisi':60 'faucibus':65 'fermentum':56 'feugiat':48,75 'id':31,103 'imperdiet':81 'interdum':37 'ipsum':2 'justo':63 'lacinia':40 'lectus':88 'leo':22,32 'lorem':1 'luctus':104 'magna':89 'massa':21,41 'matti':25 'mauri':11 'mi':38 'morbi':87,97 'nec':36,71 'nibh':13,58,73 'nisl':69 'nunc':39,43 'odio':47 'ornar':23 'phasellus':30 'placerat':33,53 'porttitor':54 'quam':51,84 'quisqu':20 'rhoncus':79 'risus':66 'sagitti':86 'semper':68 'sit':4,17 'sodal':101 'sollicitudin':95 'suscipit':72,100 'tempus':85 'tortor':82 'tristiqu':42 'turpi':92 'urna':99 'ut':70,83,91 'varius':16,50 'vehicula':27,34 'vel':98 'velit':105 'vestibulum':28 'vita':26 'vivamus':55 'viverra':90	47	'3':3B 'blog':1B 'page':2B
+28	15	'none':1	54	'3':3B 'event':1B 'page':2B
 \.
 
 
@@ -4799,7 +4799,7 @@ SELECT pg_catalog.setval('public.photo_gallery_gallerypagetag_id_seq', 3, true);
 -- Name: postgres_search_indexentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.postgres_search_indexentry_id_seq', 69, true);
+SELECT pg_catalog.setval('public.postgres_search_indexentry_id_seq', 110, true);
 
 
 --
