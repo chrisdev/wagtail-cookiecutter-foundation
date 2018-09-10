@@ -38,9 +38,8 @@
             				{% endif %}
             		</li>
             	{% endfor %}
-            	{% comment %}
           		<li class="has-form show-for-small-only" style="background: transparent;">
-            		<form action ="{% url 'wagtailsearch_search' %}" method="get">
+            		<form action ="{% url 'search' %}" method="get">
               			<div class="row collapse">
                 			<div class="small-8 columns">
                   				<input class="field" type="text" placeholder="Search" name="q"{% if query_string %} value="{{ query_string }}"{% endif %}>
@@ -51,7 +50,6 @@
               			</div>
             		</form>
           		</li>
-          		{% endcomment %}
         	</ul>
       	</div>
     </div>

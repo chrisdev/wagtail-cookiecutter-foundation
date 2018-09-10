@@ -12,7 +12,7 @@
 		    	</div>
 				
 				<div class="medium-5 cell">
-		    		<form action="{% url 'wagtailsearch_search' %}" method="get" style="margin-bottom: 15px;">
+		    		<form action="{% url 'search' %}" method="get" style="margin-bottom: 15px;">
 		      			<div class="row collapse">
 		        			<div class="medium-10 small-8 columns">
 		          				<input type="text" name="q" {% if query_string %} value="{{ query_string }}"{% endif %}>
