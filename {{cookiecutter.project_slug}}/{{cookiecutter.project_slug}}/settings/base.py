@@ -55,18 +55,19 @@ INSTALLED_APPS = (
     'taggit',
     'modelcluster',
     
-    'utils',
-    'pages',
+    'foundation_formtags',
+    'wagtail_feeds',
+    
     'blog',
-    'events',
     'contact',
+    'documents_gallery',
+    'events',
+    'pages',
     'people',
     'photo_gallery',
     'products',
-    'documents_gallery',
-
-    'foundation_formtags',
-    'wagtail_feeds',
+    'search',
+    'utils',
     
     'wagtail.contrib.routable_page',
     'wagtail.contrib.sitemaps',
@@ -214,8 +215,6 @@ LOGIN_URL = 'wagtailadmin_login'
 LOGIN_REDIRECT_URL = 'wagtailadmin_home'
 
 WAGTAIL_SITE_NAME = "{{ cookiecutter.project_name }}"
-
-WAGTAILSEARCH_RESULTS_TEMPLATE = 'utils/tags/search/search_results.html'
 
 # Good for sites having less than a million pages.
 # Use Elasticsearch as the search backend for extra performance search results
