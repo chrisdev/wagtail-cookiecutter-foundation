@@ -38,6 +38,7 @@
             				{% endif %}
             		</li>
             	{% endfor %}
+            	{% comment %}
           		<li class="has-form show-for-small-only" style="background: transparent;">
             		<form action ="{% url 'wagtailsearch_search' %}" method="get">
               			<div class="row collapse">
@@ -50,6 +51,7 @@
               			</div>
             		</form>
           		</li>
+          		{% endcomment %}
         	</ul>
       	</div>
     </div>
