@@ -50,8 +50,6 @@ To get started we assume the following dependencies are installed on your develo
     pip
     virtualenv/pyvenv/virtualenvwrapper
     PostgreSQL
-    Bower
-    
 
 Get Cookiecutter ::
 
