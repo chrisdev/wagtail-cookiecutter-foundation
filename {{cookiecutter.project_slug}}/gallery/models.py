@@ -9,7 +9,7 @@ from wagtail.core.models import Page
 from wagtail.images.models import Image
 
 from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.images.blocks import ImageChooserBlock
+
 
 IMAGE_ORDER_TYPES = (
     (1, 'Image title'),
@@ -38,7 +38,6 @@ class GalleryIndex(Page):
         help_text=_('How many images there should be on one page.')
     )
     order_images_by = models.IntegerField(choices=IMAGE_ORDER_TYPES, default=1)
-    
     feed_image = models.ForeignKey(
         Image,
         help_text="An optional image to represent the page",
@@ -55,7 +54,7 @@ class GalleryIndex(Page):
         FieldPanel('order_images_by'),
     ]
     
-    promote_panels = [
+    promote_panels = Page.promote_panels + [
         MultiFieldPanel(Page.promote_panels, "Common page configuration"),
         ImageChooserPanel('feed_image'),
     ]
@@ -94,8 +93,6 @@ def get_gallery_images(collection, page=None, tags=None):
                 images = images.order_by('title')
             elif page.order_images_by == 1:
                 images = images.order_by('-created_at')
-    except Exception as e:
-        pass
     if images and tags:
         images = images.filter(tags__name__in=tags).distinct()
     return images
