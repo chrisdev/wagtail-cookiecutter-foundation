@@ -54,7 +54,7 @@ class GalleryIndex(Page):
         FieldPanel('order_images_by'),
     ]
     
-    promote_panels = Page.promote_panels + [
+    promote_panels = [
         MultiFieldPanel(Page.promote_panels, "Common page configuration"),
         ImageChooserPanel('feed_image'),
     ]
@@ -93,6 +93,8 @@ def get_gallery_images(collection, page=None, tags=None):
                 images = images.order_by('title')
             elif page.order_images_by == 1:
                 images = images.order_by('-created_at')
+    except Exception as e:
+        pass
     if images and tags:
         images = images.filter(tags__name__in=tags).distinct()
     return images
