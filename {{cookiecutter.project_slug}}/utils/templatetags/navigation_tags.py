@@ -114,7 +114,7 @@ def secondary_menu_grid(context, calling_page=None):
     if calling_page:
         pages = calling_page.get_children().filter(
             live=True,
-            show_in_menus=True
+            show_in_menus=False
         )
 
         # If no children, get siblings instead

@@ -3,11 +3,13 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from wagtail.admin.edit_handlers import FieldPanel
+from wagtail.admin.edit_handlers import FieldPanel, MultiFieldPanel
 from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page
 from wagtail.images.models import Image
 
+from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.images.blocks import ImageChooserBlock
 
 IMAGE_ORDER_TYPES = (
     (1, 'Image title'),
@@ -31,17 +33,31 @@ class GalleryIndex(Page):
         help_text=_('Show images in this collection in the gallery view.')
     )
     images_per_page = models.IntegerField(
-        default=8,
+        default=10,
         verbose_name=_('Images per page'),
         help_text=_('How many images there should be on one page.')
     )
     order_images_by = models.IntegerField(choices=IMAGE_ORDER_TYPES, default=1)
+    
+    feed_image = models.ForeignKey(
+        Image,
+        help_text="An optional image to represent the page",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
 
     content_panels = Page.content_panels + [
         FieldPanel('intro', classname='full title'),
         FieldPanel('collection'),
         FieldPanel('images_per_page', classname='full title'),
         FieldPanel('order_images_by'),
+    ]
+    
+    promote_panels = [
+        MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+        ImageChooserPanel('feed_image'),
     ]
 
     @property
