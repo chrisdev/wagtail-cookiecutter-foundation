@@ -2,7 +2,7 @@
 
 Contributions
 ``````````````
-- `Lendl Smith <https://github.com/chrisdev>`_
+- `Lendl Smith <https://github.com/ilendl2>`_
 - `Parbhat Puri  <https://parbhatpuri.com/>`_
 - `Sule Marshall <https://github.com/suledev>`_
 - `Fygul Hether  <https://github.com/fygul>`_

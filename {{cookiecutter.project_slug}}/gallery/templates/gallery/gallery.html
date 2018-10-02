@@ -1,0 +1,13 @@
+{% raw %}{% load static wagtailimages_tags gallery_tags %}
+
+<div class="grid-x grid-padding-x small-up-2 medium-up-5" data-equalizer>
+  {% for img in gallery_images %}
+  	{% image img fill-350x300 as img_thumb %}
+  	{% image img original as gallery_imagedata %}
+  	<div class="cell" data-equalizer-watch>
+  		<a class="thumbnail" href="{{ gallery_imagedata.url }}" data-lightbox="{{ self.title }}">
+  			<img src="{{ img_thumb.url }}" alt="{{ gallery_imagedata.alt }}"/>
+  		</a>
+  	</div>
+  {% endfor %}
+</div>{% endraw %}
