@@ -1,7 +1,7 @@
 Creating Photo Gallery
 ~~~~~~~~~~~~~~~~~~~~~~
 
-You first need to create a collection by going to Settings > Collections  
+You first need to create a collection by selecting **Collections** from the main navigation on the left and clicking **Add A Collection**. 
 
 .. image:: ../_static/images/photo_gallery_collections.png
 
