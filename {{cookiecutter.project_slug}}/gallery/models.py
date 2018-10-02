@@ -1,3 +1,4 @@
+import logging
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db import models
@@ -93,7 +94,7 @@ def get_gallery_images(collection, page=None, tags=None):
             elif page.order_images_by == 1:
                 images = images.order_by('-created_at')
     except Exception as e:
-        pass
+        logging.exception(e)
     if images and tags:
         images = images.filter(tags__name__in=tags).distinct()
     return images
