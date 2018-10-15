@@ -1,4 +1,4 @@
-Django==2.1.2
+Django==2.0.8
 wagtail==2.2.2
 wagtailfontawesome==1.1.3
 celery==4.2.1
@@ -12,5 +12,5 @@ libsass==0.14.5
 psycopg2-binary==2.7.5 
 wand==0.4.4
 wagtail-markdown==0.5
-bleach==3.0.1
+bleach==3.0.2
 {% if cookiecutter.use_wagalytics_app == 'y' %}wagalytics==0.7 {% endif %}
