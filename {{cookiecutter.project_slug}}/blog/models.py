@@ -74,6 +74,7 @@ class BlogIndexPage(Page):
         context['blogs'] = blogs
         return context
 
+
 BlogIndexPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('intro', classname="full"),
