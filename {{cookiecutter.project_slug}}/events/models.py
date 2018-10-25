@@ -78,6 +78,7 @@ class EventIndexPage(Page):
             ).distinct().order_by('name')
             return context
 
+
 EventIndexPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('intro', classname="full"),
@@ -183,6 +184,7 @@ class EventPage(Page):
                 return HttpResponse(message, content_type='text/plain')
         else:
             return super(EventPage, self).serve(request)
+
 
 EventPage.content_panels = [
     FieldPanel('title', classname="full title"),

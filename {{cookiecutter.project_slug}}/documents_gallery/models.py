@@ -125,6 +125,7 @@ class DocumentsPage(Page):
     class Meta:
         verbose_name = "Documents Page"
 
+
 DocumentsPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('tags'),
