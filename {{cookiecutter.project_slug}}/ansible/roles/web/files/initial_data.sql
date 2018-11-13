@@ -3256,6 +3256,84 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 251	Can add Photo Gallery	84	add_galleryindex
 252	Can change Photo Gallery	84	change_galleryindex
 253	Can delete Photo Gallery	84	delete_galleryindex
+254	Can view log entry	6	view_logentry
+255	Can view permission	7	view_permission
+256	Can view group	8	view_group
+257	Can view user	9	view_user
+258	Can view content type	10	view_contenttype
+259	Can view session	11	view_session
+260	Can view Tag	12	view_tag
+261	Can view Tagged Item	13	view_taggeditem
+262	Can view RSS feed setting	76	view_rssfeedssettings
+263	Can view blog index page	43	view_blogindexpage
+264	Can view blog index page related link	42	view_blogindexpagerelatedlink
+265	Can view blog page	47	view_blogpage
+266	Can view blog page carousel item	44	view_blogpagecarouselitem
+267	Can view blog page related link	45	view_blogpagerelatedlink
+268	Can view blog page tag	46	view_blogpagetag
+269	Can view contact form field	57	view_contactformfield
+270	Can view contact page	58	view_contactpage
+271	Can view form field	55	view_formfield
+272	Can view form page	56	view_formpage
+273	Can view Documents Index Page	73	view_documentsindexpage
+274	Can view Documents Page	75	view_documentspage
+275	Can view documents page tag	74	view_documentspagetag
+276	Can view event index page	49	view_eventindexpage
+277	Can view event index page related link	48	view_eventindexpagerelatedlink
+278	Can view event page	54	view_eventpage
+279	Can view event page carousel item	50	view_eventpagecarouselitem
+280	Can view event page related link	51	view_eventpagerelatedlink
+281	Can view event page speaker	52	view_eventpagespeaker
+282	Can view event page tag	53	view_eventpagetag
+283	Can view Photo Gallery	84	view_galleryindex
+284	Can view content block	38	view_contentblock
+285	Can view faqs page	41	view_faqspage
+286	Can view Homepage	4	view_homepage
+287	Can view home page carousel item	31	view_homepagecarouselitem
+288	Can view home page content item	30	view_homepagecontentitem
+289	Can view home page related link	32	view_homepagerelatedlink
+290	Can view standard index page	34	view_standardindexpage
+291	Can view standard index page related link	33	view_standardindexpagerelatedlink
+292	Can view standard page	37	view_standardpage
+293	Can view standard page carousel item	35	view_standardpagecarouselitem
+294	Can view standard page related link	36	view_standardpagerelatedlink
+295	Can view testimonial	39	view_testimonial
+296	Can view advert	40	view_advert
+297	Can view social media settings	29	view_socialmediasettings
+298	Can view video gallery page	81	view_videogallerypage
+299	Can view video gallery page carousel item	80	view_videogallerypagecarouselitem
+300	Can view site branding	82	view_sitebranding
+301	Can view testimonial page	83	view_testimonialpage
+302	Can view person index page	60	view_personindexpage
+303	Can view person index page related link	59	view_personindexpagerelatedlink
+304	Can view person page	64	view_personpage
+305	Can view person page related link	61	view_personpagerelatedlink
+306	Can view person page tag	62	view_personpagetag
+307	Can view person role	63	view_personrole
+308	Can view product index page	69	view_productindexpage
+309	Can view product index page related link	68	view_productindexpagerelatedlink
+310	Can view product page	72	view_productpage
+311	Can view product page related link	70	view_productpagerelatedlink
+312	Can view product page tag	71	view_productpagetag
+313	Can view search promotion	14	view_searchpromotion
+314	Can view index entry	77	view_indexentry
+315	Can view form submission	15	view_formsubmission
+316	Can view redirect	16	view_redirect
+317	Can view embed	17	view_embed
+318	Can view user profile	18	view_userprofile
+319	Can view document	3	view_document
+320	Can view image	2	view_image
+321	Can view rendition	20	view_rendition
+322	Can view query	21	view_query
+323	Can view Query Daily Hits	22	view_querydailyhits
+324	Can view page	1	view_page
+325	Can view group page permission	25	view_grouppagepermission
+326	Can view page revision	24	view_pagerevision
+327	Can view page view restriction	26	view_pageviewrestriction
+328	Can view site	23	view_site
+329	Can view collection	27	view_collection
+330	Can view group collection permission	28	view_groupcollectionpermission
+331	Can view collection view restriction	78	view_collectionviewrestriction
 \.
 
 
@@ -3677,6 +3755,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 191	wagtailimages	0021_image_file_hash	2018-09-10 11:40:29.677299-04
 192	wagtailredirects	0006_redirect_increase_max_length	2018-09-10 11:40:29.787821-04
 193	gallery	0001_initial	2018-10-01 13:17:34.036654-04
+194	admin	0003_logentry_add_action_flag_choices	2018-11-12 11:56:24.767709-04
 \.
 
 
@@ -4604,7 +4683,7 @@ SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 14, true);
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.auth_permission_id_seq', 253, true);
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 331, true);
 
 
 --
@@ -4688,7 +4767,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 84, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 193, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 194, true);
 
 
 --
