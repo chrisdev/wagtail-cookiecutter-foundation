@@ -11,6 +11,32 @@ from wagtail.images.models import Image
 
 from wagtail.images.edit_handlers import ImageChooserPanel
 
+class PhotoGalleryIndexPage(Page):
+    intro = RichTextField(blank=True)
+    feed_image = models.ForeignKey(
+        Image,
+        help_text="An optional image to represent the page",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    indexed_fields = ('intro', )
+    
+    class Meta:
+        verbose_name = _('Photo Gallery Index')
+
+PhotoGalleryIndexPage.content_panels = [
+    FieldPanel('title', classname="full title"),
+    FieldPanel('intro', classname="full"),
+]
+
+PhotoGalleryIndexPage.promote_panels = [
+    MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+    ImageChooserPanel('feed_image'),
+]
+
 
 IMAGE_ORDER_TYPES = (
     (1, 'Image title'),
@@ -34,7 +60,7 @@ class GalleryIndex(Page):
         help_text=_('Show images in this collection in the gallery view.')
     )
     images_per_page = models.IntegerField(
-        default=10,
+        default=20,
         verbose_name=_('Images per page'),
         help_text=_('How many images there should be on one page.')
     )

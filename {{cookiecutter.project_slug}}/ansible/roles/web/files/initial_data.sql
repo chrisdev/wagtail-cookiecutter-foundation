@@ -864,6 +864,17 @@ CREATE TABLE public.gallery_galleryindex (
 
 
 --
+-- Name: gallery_photogalleryindexpage; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.gallery_photogalleryindexpage (
+    page_ptr_id integer NOT NULL,
+    intro text NOT NULL,
+    feed_image_id integer
+);
+
+
+--
 -- Name: pages_advert; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3334,6 +3345,10 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 329	Can view collection	27	view_collection
 330	Can view group collection permission	28	view_groupcollectionpermission
 331	Can view collection view restriction	78	view_collectionviewrestriction
+332	Can add Photo Gallery Index	85	add_photogalleryindexpage
+333	Can change Photo Gallery Index	85	change_photogalleryindexpage
+334	Can delete Photo Gallery Index	85	delete_photogalleryindexpage
+335	Can view Photo Gallery Index	85	view_photogalleryindexpage
 \.
 
 
@@ -3342,7 +3357,7 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$100000$PgiXaFsIoaUm$EfE/MY2r65PNDDr7OfKl/8oasyDiUn8vY4d4kndTQsU=	2018-10-01 13:45:39.152233-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
+1	pbkdf2_sha256$120000$YdgmDgyQI5uU$+8gaLkVNkO3X8AcGOYa5VeacaK93+cUPNDOWllFTV/c=	2018-11-22 12:52:33.521563-04	t	admin	Christopher	Clarke	cclarke@chrisdev.com	t	t	2016-07-20 03:27:16.7876-04
 \.
 
 
@@ -3554,6 +3569,7 @@ COPY public.django_content_type (id, app_label, model) FROM stdin;
 82	pages	sitebranding
 83	pages	testimonialpage
 84	gallery	galleryindex
+85	gallery	photogalleryindexpage
 \.
 
 
@@ -3756,6 +3772,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 192	wagtailredirects	0006_redirect_increase_max_length	2018-09-10 11:40:29.787821-04
 193	gallery	0001_initial	2018-10-01 13:17:34.036654-04
 194	admin	0003_logentry_add_action_flag_choices	2018-11-12 11:56:24.767709-04
+195	gallery	0002_auto_20181122_1651	2018-11-22 12:51:48.165715-04
 \.
 
 
@@ -3817,6 +3834,7 @@ omo3aa06g27ddxsv8vr38ymmyd1fl1ze	YzI1N2FjZjk5ZmM2OTJmODM1YTFjYTlkMDE4YTJhZDkzNmI
 czshsmqgxpzsf8l2n231dmlhif2n6zn0	YzI1N2FjZjk5ZmM2OTJmODM1YTFjYTlkMDE4YTJhZDkzNmIzN2I1OTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1ODU5NDBjYWY3YWFlYWUyYzU3YmExNmQ3MTY4YTEyYjRmYjRhNzk4In0=	2018-08-14 09:57:36.338059-04
 2d30znkvseo697dush3kk2224k04wps9	YzI1N2FjZjk5ZmM2OTJmODM1YTFjYTlkMDE4YTJhZDkzNmIzN2I1OTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1ODU5NDBjYWY3YWFlYWUyYzU3YmExNmQ3MTY4YTEyYjRmYjRhNzk4In0=	2018-10-15 13:18:17.887621-04
 ws290rfo1vsojlxcjw3s8u9tpjzxq2jh	YzI1N2FjZjk5ZmM2OTJmODM1YTFjYTlkMDE4YTJhZDkzNmIzN2I1OTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1ODU5NDBjYWY3YWFlYWUyYzU3YmExNmQ3MTY4YTEyYjRmYjRhNzk4In0=	2018-10-15 13:45:39.29231-04
+0n5qu5qcs4a5ea7vrig5m6dy8njod1u6	ZDM4MWU0Zjg1MzdmNTMwMjI3ODRlNTA2ZWM0NTZjYWM3NTRiM2RiMjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJiODE1N2FhMDQxMjk4NmI4MTQxYTJhNDZiZjQwYmVjZTM1ODdiNDY1In0=	2018-12-06 12:52:33.709706-04
 \.
 
 
@@ -3916,7 +3934,18 @@ COPY public.events_eventpagetag (id, content_object_id, tag_id) FROM stdin;
 --
 
 COPY public.gallery_galleryindex (page_ptr_id, intro, images_per_page, order_images_by, collection_id, feed_image_id) FROM stdin;
-29		10	1	2	3
+29		20	1	2	3
+31		20	1	2	9
+32		20	1	2	3
+\.
+
+
+--
+-- Data for Name: gallery_photogalleryindexpage; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.gallery_photogalleryindexpage (page_ptr_id, intro, feed_image_id) FROM stdin;
+30		\N
 \.
 
 
@@ -4009,7 +4038,6 @@ COPY public.pages_socialmediasettings (id, facebook, instagram, youtube, linkedi
 
 COPY public.pages_standardindexpage (page_ptr_id, subtitle, intro, feed_image_id, template_string) FROM stdin;
 4		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit amet enim. Quisque massa leo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus velit.</p>	\N	pages/standard_index_page.html
-28			\N	pages/standard_index_page_grid.html
 \.
 
 
@@ -4182,11 +4210,11 @@ COPY public.postgres_search_indexentry (id, object_id, body, content_type_id, au
 19	5	'ac':115,137 'accumsan':44 'adipisc':7 'aenean':61 'aliquam':9 'aliquet':172 'amet':5,18,114,142 'ant':102 'auctor':64 'blandit':15 'consectetur':6 'consequat':131 'curabitur':80 'cursus':57 'dapibus':46,94 'diam':29,35,96,108,194 'dictum':52 'dolor':3,126,133 'donec':49,74 'dui':77,169 'egesta':120 'eget':76,175,189 'eleifend':135 'elementum':14,158 'elit':8 'enim':19 'erat':171 'ero':134,146 'et':10,107,125 'eu':12,45,67,164 'euismod':112 'ex':139 'facilisi':60 'faucibus':65 'fermentum':56,187 'feugiat':48,75 'fringilla':165 'fusc':106 'gravida':148 'hendrerit':151 'id':31,103,168 'imperdiet':81 'integ':150 'interdum':37 'ipsum':2,110,182 'justo':63 'lacinia':40 'laoreet':161 'lectus':88 'leo':22,32 'libero':116 'ligula':119,185 'lorem':1,163 'luctus':104 'magna':89,159 'massa':21,41 'matti':25 'mauri':11,118 'maximus':184 'mi':38 'molesti':149 'molli':152 'morbi':87,97,160 'nec':36,71,147 'nibh':13,58,73,129 'nisi':136 'nisl':69,170 'non':123 'nulla':140,166 'nunc':39,43 'odio':47,153,162 'ornar':23 'phasellus':30 'placerat':33,53 'porttitor':54,128,155,190 'porttutor':197 'posuer':132,181 'proin':117,127 'pulvinar':111 'quam':51,84,178,191 'qui':109,130,195 'quisqu':20 'rhoncus':79 'risus':66 'sagitti':86 'sed':156,179 'semper':68,138 'sit':4,17,113,141 'sodal':101 'sollicitudin':95 'suscipit':72,100 'tempor':124 'tempus':85,122 'tortor':82,174 'tristiqu':42,186 'turpi':92 'ullamcorp':176 'urna':99,143 'ut':70,83,91,144,157,183,188 'varius':16,50,177,193 'vehicula':27,34 'vel':98 'velit':105 'venenati':145,167,180 'vestibulum':28 'vita':26,154 'vivamus':55 'viverra':90,196	37	'page':2B 'sidebar':4B 'standard':1B 'w/o':3B
 20	6	'ac':115,137 'accumsan':44 'adipisc':7 'aenean':61 'aliquam':9 'aliquet':172 'amet':5,18,114,142 'ant':102 'auctor':64 'blandit':15 'consectetur':6 'consequat':131 'curabitur':80 'cursus':57 'dapibus':46,94 'diam':29,35,96,108,194 'dictum':52 'dolor':3,126,133 'donec':49,74 'dui':77,169 'egesta':120 'eget':76,175,189 'eleifend':135 'elementum':14,158 'elit':8 'enim':19 'erat':171 'ero':134,146 'et':10,107,125 'eu':12,45,67,164 'euismod':112 'ex':139 'facilisi':60 'faucibus':65 'fermentum':56,187 'feugiat':48,75 'fringilla':165 'fusc':106 'gravida':148 'hendrerit':151 'id':31,103,168 'imperdiet':81 'integ':150 'interdum':37 'ipsum':2,110,182 'justo':63 'lacinia':40 'laoreet':161 'lectus':88 'leo':22,32 'libero':116 'ligula':119,185 'lorem':1,163 'luctus':104 'magna':89,159 'massa':21,41 'matti':25 'mauri':11,118 'maximus':184 'mi':38 'molesti':149 'molli':152 'morbi':87,97,160 'nec':36,71,147 'nibh':13,58,73,129 'nisi':136 'nisl':69,170 'non':123 'nulla':140,166 'nunc':39,43 'odio':47,153,162 'ornar':23 'phasellus':30 'placerat':33,53 'porttitor':54,128,155,190 'porttutor':197 'posuer':132,181 'proin':117,127 'pulvinar':111 'quam':51,84,178,191 'qui':109,130,195 'quisqu':20 'rhoncus':79 'risus':66 'sagitti':86 'sed':156,179 'semper':68,138 'sit':4,17,113,141 'sodal':101 'sollicitudin':95 'suscipit':72,100 'tempor':124 'tempus':85,122 'tortor':82,174 'tristiqu':42,186 'turpi':92 'ullamcorp':176 'urna':99,143 'ut':70,83,91,144,157,183,188 'varius':16,50,177,193 'vehicula':27,34 'vel':98 'velit':105 'venenati':145,167,180 'vestibulum':28 'vita':26,154 'vivamus':55 'viverra':90,196	37	'page':2B 'standard':1B
 49	27		83	'testimoni':1B
-17	3		4	'homepag':1B
 7	3		2	'foundation.jpg':1A 'photo':2A
 9	5		2	'photo':2A 'postgresql.jpg':1A
 13	9		2	'photo':2A 'wagtail.jpg':1A
 11	7		2	'photo':2A 'sass.jpg':1A
+17	3		4	'homepag':1B
 23	18	'accumsan':44 'adipisc':7 'aenean':61 'aliquam':9 'amet':5,18 'ant':102 'auctor':64 'blandit':15 'consectetur':6 'curabitur':80 'cursus':57 'dapibus':46,94 'diam':29,35,96 'dictum':52 'dolor':3 'donec':49,74 'dui':77 'eget':76 'elementum':14 'elit':8 'enim':19 'et':10 'eu':12,45,67 'facilisi':60 'faucibus':65 'fermentum':56 'feugiat':48,75 'id':31,103 'imperdiet':81 'interdum':37 'ipsum':2 'justo':63 'lacinia':40 'lectus':88 'leo':22,32 'lorem':1 'luctus':104 'magna':89 'massa':21,41 'matti':25 'mauri':11 'mi':38 'morbi':87,97 'nec':36,71 'nibh':13,58,73 'nisl':69 'nunc':39,43 'odio':47 'ornar':23 'phasellus':30 'placerat':33,53 'porttitor':54 'quam':51,84 'quisqu':20 'rhoncus':79 'risus':66 'sagitti':86 'semper':68 'sit':4,17 'sodal':101 'sollicitudin':95 'suscipit':72,100 'tempus':85 'tortor':82 'tristiqu':42 'turpi':92 'urna':99 'ut':70,83,91 'varius':16,50 'vehicula':27,34 'vel':98 'velit':105 'vestibulum':28 'vita':26 'vivamus':55 'viverra':90	47	'2':3B 'blog':1B 'page':2B
 26	13	'ac':63 'adipisc':10 'aliquam':36 'amet':8,66 'ant':17 'blandit':50,67 'chrisdev':2 'consectetur':9 'conval':59 'cubilia':27 'cura':28 'curabitur':29 'dolor':6 'donec':35 'dui':45 'elit':11,48 'enim':52 'et':24 'eu':38 'facilisi':43,57 'faucibus':21,34,56 'fusc':41 'gravida':47 'headquat':3 'imperdiet':31 'ipsum':5,18 'lacus':32 'lorem':4 'luctus':23 'metus':58 'molli':51 'nisi':37 'orci':22 'pellentesqu':12 'pharetra':54 'porttitor':13,42 'posuer':26,30 'primi':19 'public':1 'qui':53 'sapien':44 'sed':49 'sit':7,65 'sollicitudin':62 'turpi':64 'ullamcorp':14,15 'ultric':25 'ut':33 'varius':39 'venenati':60 'vestibulum':16,40,61 'vivamus':55	54	'1':3B 'event':1B 'page':2B
 27	14	'none':1	54	'2':3B 'event':1B 'page':2B
@@ -4203,8 +4231,10 @@ COPY public.postgres_search_indexentry (id, object_id, body, content_type_id, au
 58	14		2	'bulding-blocks.png':1A
 24	19	'accumsan':44 'adipisc':7 'aenean':61 'aliquam':9 'amet':5,18 'ant':102 'auctor':64 'blandit':15 'consectetur':6 'curabitur':80 'cursus':57 'dapibus':46,94 'diam':29,35,96 'dictum':52 'dolor':3 'donec':49,74 'dui':77 'eget':76 'elementum':14 'elit':8 'enim':19 'et':10 'eu':12,45,67 'facilisi':60 'faucibus':65 'fermentum':56 'feugiat':48,75 'id':31,103 'imperdiet':81 'interdum':37 'ipsum':2 'justo':63 'lacinia':40 'lectus':88 'leo':22,32 'lorem':1 'luctus':104 'magna':89 'massa':21,41 'matti':25 'mauri':11 'mi':38 'morbi':87,97 'nec':36,71 'nibh':13,58,73 'nisl':69 'nunc':39,43 'odio':47 'ornar':23 'phasellus':30 'placerat':33,53 'porttitor':54 'quam':51,84 'quisqu':20 'rhoncus':79 'risus':66 'sagitti':86 'semper':68 'sit':4,17 'sodal':101 'sollicitudin':95 'suscipit':72,100 'tempus':85 'tortor':82 'tristiqu':42 'turpi':92 'urna':99 'ut':70,83,91 'varius':16,50 'vehicula':27,34 'vel':98 'velit':105 'vestibulum':28 'vita':26 'vivamus':55 'viverra':90	47	'3':3B 'blog':1B 'page':2B
 28	15	'none':1	54	'3':3B 'event':1B 'page':2B
-112	28		34	'galleri':2B 'photo':1B
 115	29		84	'1':2B 'galleri':1B
+137	31		84	'2':2B 'galleri':1B
+131	30		85	'galleri':2B 'photo':1B
+146	32		84	'3':2B 'galleri':1B
 \.
 
 
@@ -4359,7 +4389,6 @@ COPY public.wagtailcore_page (id, path, depth, numchild, title, slug, live, has_
 10	0001000100020003	4	0	Person Page 3	person-page-3	t	f	/home/person-index/person-page-3/		t		\N	\N	f	64	1	f	2016-07-20 03:54:52.366369-04	2016-07-20 03:54:52.464716-04	\N	2016-07-20 03:54:52.366369-04	Person Page 3
 7	000100010002	3	4	Person Index	person-index	t	f	/home/person-index/		t		\N	\N	f	60	1	f	2016-07-20 03:52:02.385824-04	2016-07-20 03:52:02.470385-04	\N	2016-07-20 03:52:02.385824-04	Person Index
 11	0001000100020004	4	0	Person Page 4	person-page-4	t	f	/home/person-index/person-page-4/		t		\N	\N	f	64	1	f	2016-07-20 03:55:24.424289-04	2016-07-20 03:55:24.520241-04	\N	2016-07-20 03:55:24.424289-04	Person Page 4
-24	000100010007	3	0	Contact Us	contact-us	t	f	/home/contact-us/		t		\N	\N	f	58	1	f	2016-07-20 04:33:22.946592-04	2016-07-20 04:32:19.773581-04	\N	2016-07-20 04:33:22.946592-04	Contact Us
 17	0001000100040001	4	0	Blog Page 1	blog-page-1	t	f	/home/blog-index/blog-page-1/		t		\N	\N	f	47	1	f	2016-09-20 08:31:13.370445-04	2016-07-20 04:13:43.63026-04	\N	2016-09-20 08:31:13.370445-04	Blog Page 1
 18	0001000100040002	4	0	Blog Page 2	blog-page-2	t	f	/home/blog-index/blog-page-2/		t		\N	\N	f	47	1	f	2016-09-20 08:38:28.178672-04	2016-07-20 04:15:09.479097-04	\N	2016-09-20 08:38:28.178672-04	Blog Page 2
 19	0001000100040003	4	0	Blog Page 3	blog-page-3	t	f	/home/blog-index/blog-page-3/		t		\N	\N	f	47	1	f	2016-09-20 08:39:24.91435-04	2016-07-20 04:17:15.679154-04	\N	2016-09-20 08:39:24.91435-04	Blog Page 3
@@ -4367,12 +4396,15 @@ COPY public.wagtailcore_page (id, path, depth, numchild, title, slug, live, has_
 5	0001000100010001	4	0	Standard Page w/o Sidebar	standard-page-wo-sidebar	t	f	/home/standard-index/standard-page-wo-sidebar/		t		\N	\N	f	37	1	f	2017-06-06 09:21:53.664968-04	2016-07-20 03:48:57.449331-04	\N	2017-06-06 09:21:53.664968-04	Standard Page w/o Sidebar
 6	0001000100010002	4	0	Standard Page	standard-page	t	f	/home/standard-index/standard-page/		t		\N	\N	f	37	1	f	2017-06-06 09:22:33.296026-04	2016-07-20 03:50:19.479521-04	\N	2017-06-06 09:22:33.296026-04	Standard Page
 4	000100010001	3	2	Standard Index	standard-index	t	f	/home/standard-index/		t		\N	\N	f	34	1	f	2017-11-02 12:04:54.025129-04	2016-07-20 03:46:10.958228-04	43	2017-11-02 12:04:54.895424-04	Standard Index
-27	000100010008	3	0	Testimonials	testimonials	t	f	/home/testimonials/		f		\N	\N	f	83	1	f	2017-11-02 14:14:43.001594-04	2017-11-02 14:14:43.872807-04	44	2017-11-02 14:14:43.872807-04	Testimonials
+27	000100010009	3	0	Testimonials	testimonials	t	f	/home/testimonials/		f		\N	\N	f	83	1	f	2017-11-02 14:14:43.001594-04	2017-11-02 14:14:43.872807-04	44	2017-11-02 14:14:43.872807-04	Testimonials
+24	000100010008	3	0	Contact Us	contact-us	t	f	/home/contact-us/		t		\N	\N	f	58	1	f	2016-07-20 04:33:22.946592-04	2016-07-20 04:32:19.773581-04	\N	2016-07-20 04:33:22.946592-04	Contact Us
+20	000100010007	3	1	Documents Gallery	documents-gallery	t	f	/home/documents-gallery/		t		\N	\N	f	73	1	f	2016-07-20 04:22:02.975756-04	2016-07-20 04:22:03.069215-04	\N	2016-07-20 04:22:02.975756-04	Documents Gallery
+21	0001000100070001	4	0	Sample Documents	sample-documents	t	f	/home/documents-gallery/sample-documents/		t		\N	\N	f	75	1	f	2016-07-20 04:24:12.663501-04	2016-07-20 04:24:12.780898-04	\N	2016-07-20 04:24:12.663501-04	Sample Documents
 3	00010001	2	8	Homepage	home	t	f	/home/		t		\N	\N	f	4	\N	f	2018-07-23 13:49:19.976012-04	2016-07-20 03:37:34.678451-04	48	2018-07-23 13:49:22.985947-04	Homepage
-20	000100010006	3	1	Documents Gallery	documents-gallery	t	f	/home/documents-gallery/		t		\N	\N	f	73	1	f	2016-07-20 04:22:02.975756-04	2016-07-20 04:22:03.069215-04	\N	2016-07-20 04:22:02.975756-04	Documents Gallery
-21	0001000100060001	4	0	Sample Documents	sample-documents	t	f	/home/documents-gallery/sample-documents/		t		\N	\N	f	75	1	f	2016-07-20 04:24:12.663501-04	2016-07-20 04:24:12.780898-04	\N	2016-07-20 04:24:12.663501-04	Sample Documents
-28	000100010005	3	1	Photo Gallery	photo-gallery	t	f	/home/photo-gallery/		t		\N	\N	f	34	1	f	2018-10-01 13:20:40.976158-04	2018-10-01 13:20:42.906012-04	49	2018-10-01 13:20:42.906012-04	Photo Gallery
-29	0001000100050001	4	0	Gallery 1	gallery-1	t	f	/home/photo-gallery/gallery-1/		f		\N	\N	f	84	1	f	2018-10-01 13:50:15.644077-04	2018-10-01 13:22:03.213483-04	52	2018-10-01 13:50:17.032441-04	Gallery 1
+29	0001000100060001	4	0	Gallery 1	gallery-1	t	f	/home/photo-gallery/gallery-1/		f		\N	\N	f	84	1	f	2018-11-22 12:57:26.936959-04	2018-10-01 13:22:03.213483-04	54	2018-11-22 12:57:29.004225-04	Gallery 1
+31	0001000100060002	4	0	Gallery 2	gallery-2	t	f	/home/photo-gallery/gallery-2/		f		\N	\N	f	84	1	f	2018-11-22 13:01:40.588524-04	2018-11-22 12:58:16.929262-04	56	2018-11-22 13:01:43.743515-04	Gallery 2
+30	000100010006	3	3	Photo Gallery	photo-gallery	t	f	/home/photo-gallery/		t		\N	\N	f	85	1	f	2018-11-22 13:02:08.944725-04	2018-11-22 12:54:14.812165-04	57	2018-11-22 13:02:16.523831-04	Photo Gallery
+32	0001000100060003	4	0	Gallery 3	gallery-3	t	f	/home/photo-gallery/gallery-3/		f		\N	\N	f	84	1	f	2018-11-22 13:06:08.96771-04	2018-11-22 13:06:08.96771-04	62	2018-11-22 13:06:08.96771-04	Gallery 3
 \.
 
 
@@ -4423,10 +4455,19 @@ COPY public.wagtailcore_pagerevision (id, submitted_for_moderation, created_at, 
 45	f	2018-07-16 14:50:55.408854-04	{"pk": 3, "path": "00010001", "depth": 2, "numchild": 8, "title": "Homepage", "draft_title": "Homepage", "slug": "home", "content_type": 4, "live": true, "has_unpublished_changes": false, "url_path": "/home/", "owner": null, "seo_title": "", "show_in_menus": true, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2016-07-20T07:37:34.678Z", "last_published_at": "2016-07-20T07:45:12.484Z", "latest_revision_created_at": "2016-07-20T07:45:12.484Z", "live_revision": null, "title_text": "<h3>Welcome to Wagtail Cookiecutter Foundation</h3>", "body": "<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>", "feed_image": null, "content_items": [{"pk": 1, "sort_order": 0, "link_external": "http://foundation.zurb.com/", "link_page": null, "link_document": null, "page": 3, "image": 11, "title": "Foundation 6", "content": "<p>The most advanced responsive front-end framework in the world.</p>", "summary": "<p><br/></p>", "slug": "foundation"}, {"pk": 2, "sort_order": 1, "link_external": "https://wagtail.io/", "link_page": null, "link_document": null, "page": 3, "image": 10, "title": "Wagtail", "content": "<p>Wagtail is an open source CMS written in Python and built on the Django framework.</p>", "summary": "", "slug": "Wagtail"}, {"pk": 3, "sort_order": 2, "link_external": "https://www.ansible.com/", "link_page": null, "link_document": null, "page": 3, "image": 1, "title": "Ansible", "content": "<p>The simplest way to automate website Provisioning and Deployment</p>", "summary": "", "slug": "ansible"}, {"pk": 4, "sort_order": 3, "link_external": "http://sass-lang.com/", "link_page": null, "link_document": null, "page": 3, "image": 8, "title": "Sass", "content": "<p>The most mature, stable, and powerful professional grade CSS extension language in the world.</p>", "summary": "", "slug": "sass"}, {"pk": 5, "sort_order": 4, "link_external": "https://www.postgresql.org/", "link_page": null, "link_document": null, "page": 3, "image": 6, "title": "PostgreSQL", "content": "<p>A powerful, open source object-relational database system that has earned it a strong reputation for reliability, feature robustness, and performance.</p>", "summary": "", "slug": "postgresql"}, {"pk": 6, "sort_order": 5, "link_external": "https://www.digitalocean.com/", "link_page": null, "link_document": null, "page": 3, "image": 2, "title": "Digital Ocean", "content": "<p>Providing developers with a reliable, easy-to-use cloud computing platform of virtual servers</p>", "summary": "", "slug": "digital-ocean"}], "carousel_items": [{"pk": 1, "sort_order": 0, "link_external": "", "link_page": null, "link_document": null, "image": 3, "embed_url": "", "caption": "", "page": 3}, {"pk": 2, "sort_order": 1, "link_external": "", "link_page": null, "link_document": null, "image": 9, "embed_url": "", "caption": "", "page": 3}, {"pk": 3, "sort_order": 2, "link_external": "", "link_page": null, "link_document": null, "image": 5, "embed_url": "", "caption": "", "page": 3}, {"pk": 4, "sort_order": 3, "link_external": "", "link_page": null, "link_document": null, "image": 7, "embed_url": "", "caption": "", "page": 3}], "related_links": []}	\N	3	1
 47	f	2018-07-23 13:47:51.299361-04	{"pk": 3, "path": "00010001", "depth": 2, "numchild": 8, "title": "Homepage", "draft_title": "Homepage", "slug": "home", "content_type": 4, "live": true, "has_unpublished_changes": false, "url_path": "/home/", "owner": null, "seo_title": "", "show_in_menus": true, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2016-07-20T07:37:34.678Z", "last_published_at": "2018-07-23T17:38:05.877Z", "latest_revision_created_at": "2018-07-23T17:38:03.601Z", "live_revision": 46, "title_text": "<h3>Welcome to Wagtail Cookiecutter Foundation</h3>", "body": "<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>", "feed_image": null, "content_items": [{"pk": 1, "sort_order": 0, "link_external": "http://foundation.zurb.com/", "link_page": null, "link_document": null, "page": 3, "image": 11, "title": "Foundation 6", "content": "<p>The most advanced responsive front-end framework in the world.</p>", "summary": "<p><br/></p>", "slug": "foundation"}, {"pk": 2, "sort_order": 1, "link_external": "https://wagtail.io/", "link_page": null, "link_document": null, "page": 3, "image": 10, "title": "Wagtail", "content": "<p>Wagtail is an open source CMS written in Python and built on the Django framework.</p>", "summary": "", "slug": "Wagtail"}, {"pk": 3, "sort_order": 2, "link_external": "https://www.ansible.com/", "link_page": null, "link_document": null, "page": 3, "image": 1, "title": "Ansible", "content": "<p>The simplest way to automate website Provisioning and Deployment</p>", "summary": "", "slug": "ansible"}, {"pk": 4, "sort_order": 3, "link_external": "http://sass-lang.com/", "link_page": null, "link_document": null, "page": 3, "image": 8, "title": "Sass", "content": "<p>The most mature, stable, and powerful professional grade CSS extension language in the world.</p>", "summary": "", "slug": "sass"}, {"pk": 5, "sort_order": 4, "link_external": "https://www.postgresql.org/", "link_page": null, "link_document": null, "page": 3, "image": 6, "title": "PostgreSQL", "content": "<p>A powerful, open source object-relational database system that has earned it a strong reputation for reliability, feature robustness, and performance.</p>", "summary": "", "slug": "postgresql"}, {"pk": 6, "sort_order": 5, "link_external": "https://www.digitalocean.com/", "link_page": null, "link_document": null, "page": 3, "image": 2, "title": "Digital Ocean", "content": "<p>Providing developers with a reliable, easy-to-use cloud computing platform of virtual servers</p>", "summary": "", "slug": "digital-ocean"}, {"pk": 7, "sort_order": 6, "link_external": "https://www.linode.com/", "link_page": null, "link_document": null, "page": 3, "image": 13, "title": "Linone", "content": "<p>Instantly deploy and get High performance SSD Linux servers for all of your infrastructure needs.</p>", "summary": "", "slug": "linode"}, {"pk": null, "sort_order": 7, "link_external": "https://foundation.zurb.com/building-blocks/", "link_page": null, "link_document": null, "page": 3, "image": 14, "title": "Foundation Building Blocks", "content": "<p>A Library of Foundation UI Components. These \\nHTML, CSS and JS snippets can be plugged into any Foundation project to \\nbuild faster.</p>", "summary": "", "slug": "building-blocks"}], "carousel_items": [{"pk": 1, "sort_order": 0, "link_external": "", "link_page": null, "link_document": null, "image": 3, "embed_url": "", "caption": "", "page": 3}, {"pk": 2, "sort_order": 1, "link_external": "", "link_page": null, "link_document": null, "image": 9, "embed_url": "", "caption": "", "page": 3}, {"pk": 3, "sort_order": 2, "link_external": "", "link_page": null, "link_document": null, "image": 5, "embed_url": "", "caption": "", "page": 3}, {"pk": 4, "sort_order": 3, "link_external": "", "link_page": null, "link_document": null, "image": 7, "embed_url": "", "caption": "", "page": 3}], "related_links": []}	\N	3	1
 48	f	2018-07-23 13:49:19.976012-04	{"pk": 3, "path": "00010001", "depth": 2, "numchild": 8, "title": "Homepage", "draft_title": "Homepage", "slug": "home", "content_type": 4, "live": true, "has_unpublished_changes": false, "url_path": "/home/", "owner": null, "seo_title": "", "show_in_menus": true, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2016-07-20T07:37:34.678Z", "last_published_at": "2018-07-23T17:47:52.630Z", "latest_revision_created_at": "2018-07-23T17:47:51.299Z", "live_revision": 47, "title_text": "<h3>Welcome to Wagtail Cookiecutter Foundation</h3>", "body": "<p>A cookiecutter template for Wagtail CMS featuring Zurb Foundation front-end framework.</p>", "feed_image": null, "content_items": [{"pk": 1, "sort_order": 0, "link_external": "http://foundation.zurb.com/", "link_page": null, "link_document": null, "page": 3, "image": 11, "title": "Foundation 6", "content": "<p>The most advanced responsive front-end framework in the world.</p>", "summary": "<p><br/></p>", "slug": "foundation"}, {"pk": 2, "sort_order": 1, "link_external": "https://wagtail.io/", "link_page": null, "link_document": null, "page": 3, "image": 10, "title": "Wagtail", "content": "<p>Wagtail is an open source CMS written in Python and built on the Django framework.</p>", "summary": "", "slug": "Wagtail"}, {"pk": 4, "sort_order": 2, "link_external": "http://sass-lang.com/", "link_page": null, "link_document": null, "page": 3, "image": 8, "title": "Sass", "content": "<p>The most mature, stable, and powerful professional grade CSS extension language in the world.</p>", "summary": "", "slug": "sass"}, {"pk": 8, "sort_order": 3, "link_external": "https://foundation.zurb.com/building-blocks/", "link_page": null, "link_document": null, "page": 3, "image": 14, "title": "Foundation Building Blocks", "content": "<p>A Library of Foundation UI Components. These \\nHTML, CSS and JS snippets can be plugged into any Foundation project to \\nbuild faster.</p>", "summary": "", "slug": "building-blocks"}, {"pk": 3, "sort_order": 4, "link_external": "https://www.ansible.com/", "link_page": null, "link_document": null, "page": 3, "image": 1, "title": "Ansible", "content": "<p>The simplest way to automate website Provisioning and Deployment</p>", "summary": "", "slug": "ansible"}, {"pk": 5, "sort_order": 5, "link_external": "https://www.postgresql.org/", "link_page": null, "link_document": null, "page": 3, "image": 6, "title": "PostgreSQL", "content": "<p>A powerful, open source object-relational database system that has earned it a strong reputation for reliability, feature robustness, and performance.</p>", "summary": "", "slug": "postgresql"}, {"pk": 6, "sort_order": 6, "link_external": "https://www.digitalocean.com/", "link_page": null, "link_document": null, "page": 3, "image": 2, "title": "Digital Ocean", "content": "<p>Providing developers with a reliable, easy-to-use cloud computing platform of virtual servers</p>", "summary": "", "slug": "digital-ocean"}, {"pk": 7, "sort_order": 7, "link_external": "https://www.linode.com/", "link_page": null, "link_document": null, "page": 3, "image": 13, "title": "Linode", "content": "<p>Instantly deploy and get High performance SSD Linux servers for all of your infrastructure needs.</p>", "summary": "", "slug": "linode"}], "carousel_items": [], "related_links": []}	\N	3	1
-49	f	2018-10-01 13:20:40.976158-04	{"pk": 28, "path": "000100010009", "depth": 3, "numchild": 0, "title": "Photo Gallery", "draft_title": "Photo Gallery", "slug": "photo-gallery", "content_type": 34, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery/", "owner": 1, "seo_title": "", "show_in_menus": true, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "subtitle": "", "intro": "", "template_string": "pages/standard_index_page_grid.html", "feed_image": null, "related_links": []}	\N	28	1
-52	f	2018-10-01 13:50:15.644077-04	{"pk": 29, "path": "0001000100050001", "depth": 4, "numchild": 0, "title": "Gallery 1", "draft_title": "Gallery 1", "slug": "gallery-1", "content_type": 84, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery/gallery-1/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2018-10-01T17:22:03.213Z", "last_published_at": "2018-10-01T17:49:24.725Z", "latest_revision_created_at": "2018-10-01T17:49:22.994Z", "live_revision": 51, "intro": "", "collection": 2, "images_per_page": 10, "order_images_by": 1, "feed_image": 3}	\N	29	1
-50	f	2018-10-01 13:21:59.869521-04	{"pk": 29, "path": "0001000100090001", "depth": 4, "numchild": 0, "title": "Gallery 1", "draft_title": "Gallery 1", "slug": "gallery-1", "content_type": 84, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery/gallery-1/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "intro": "", "collection": 1, "images_per_page": 10, "order_images_by": 1, "feed_image": 9}	\N	29	1
+56	f	2018-11-22 13:01:40.588524-04	{"pk": 31, "path": "0001000100060002", "depth": 4, "numchild": 0, "title": "Gallery 2", "draft_title": "Gallery 2", "slug": "gallery-2", "content_type": 84, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery-new/gallery-2/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2018-11-22T16:58:16.929Z", "last_published_at": "2018-11-22T16:58:16.929Z", "latest_revision_created_at": "2018-11-22T16:58:14.616Z", "live_revision": 55, "intro": "", "collection": 2, "images_per_page": 20, "order_images_by": 1, "feed_image": 9}	\N	31	1
 51	f	2018-10-01 13:49:22.994651-04	{"pk": 29, "path": "0001000100050001", "depth": 4, "numchild": 0, "title": "Gallery 1", "draft_title": "Gallery 1", "slug": "gallery-1", "content_type": 84, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery/gallery-1/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2018-10-01T17:22:03.213Z", "last_published_at": "2018-10-01T17:22:03.213Z", "latest_revision_created_at": "2018-10-01T17:21:59.869Z", "live_revision": 50, "intro": "", "collection": 1, "images_per_page": 10, "order_images_by": 1, "feed_image": 3}	\N	29	1
+50	f	2018-10-01 13:21:59.869521-04	{"pk": 29, "path": "0001000100090001", "depth": 4, "numchild": 0, "title": "Gallery 1", "draft_title": "Gallery 1", "slug": "gallery-1", "content_type": 84, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery/gallery-1/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "intro": "", "collection": 1, "images_per_page": 10, "order_images_by": 1, "feed_image": 9}	\N	29	1
+52	f	2018-10-01 13:50:15.644077-04	{"pk": 29, "path": "0001000100050001", "depth": 4, "numchild": 0, "title": "Gallery 1", "draft_title": "Gallery 1", "slug": "gallery-1", "content_type": 84, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery/gallery-1/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2018-10-01T17:22:03.213Z", "last_published_at": "2018-10-01T17:49:24.725Z", "latest_revision_created_at": "2018-10-01T17:49:22.994Z", "live_revision": 51, "intro": "", "collection": 2, "images_per_page": 10, "order_images_by": 1, "feed_image": 3}	\N	29	1
+54	f	2018-11-22 12:57:26.936959-04	{"pk": 29, "path": "0001000100090001", "depth": 4, "numchild": 0, "title": "Gallery 1", "draft_title": "Gallery 1", "slug": "gallery-1", "content_type": 84, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery-new/gallery-1/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2018-10-01T17:22:03.213Z", "last_published_at": "2018-10-01T17:50:17.032Z", "latest_revision_created_at": "2018-10-01T17:50:15.644Z", "live_revision": 52, "intro": "", "collection": 2, "images_per_page": 20, "order_images_by": 1, "feed_image": 3}	\N	29	1
+55	f	2018-11-22 12:58:14.616407-04	{"pk": 31, "path": "0001000100090002", "depth": 4, "numchild": 0, "title": "Gallery 2", "draft_title": "Gallery 2", "slug": "gallery-2", "content_type": 84, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery-new/gallery-2/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "intro": "", "collection": 2, "images_per_page": 20, "order_images_by": 1, "feed_image": 9}	\N	31	1
+57	f	2018-11-22 13:02:08.944725-04	{"pk": 30, "path": "000100010006", "depth": 3, "numchild": 2, "title": "Photo Gallery", "draft_title": "Photo Gallery", "slug": "photo-gallery", "content_type": 85, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery-new/", "owner": 1, "seo_title": "", "show_in_menus": true, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2018-11-22T16:54:14.812Z", "last_published_at": "2018-11-22T16:54:14.812Z", "latest_revision_created_at": "2018-11-22T16:54:12.834Z", "live_revision": 53, "intro": "", "feed_image": null}	\N	30	1
+53	f	2018-11-22 12:54:12.834613-04	{"pk": 30, "path": "000100010009", "depth": 3, "numchild": 0, "title": "Photo Gallery", "draft_title": "Photo Gallery", "slug": "photo-gallery-new", "content_type": 85, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery-new/", "owner": 1, "seo_title": "", "show_in_menus": true, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "intro": "", "feed_image": null}	\N	30	1
+58	f	2018-10-01 13:49:22.994651-04	{"pk": 32, "path": "0001000100050001", "depth": 4, "numchild": 0, "title": "Gallery 1", "draft_title": "Gallery 1", "slug": "gallery-1", "content_type": 84, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery/gallery-1/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2018-10-01T17:22:03.213Z", "last_published_at": "2018-10-01T17:22:03.213Z", "latest_revision_created_at": "2018-10-01T17:21:59.869Z", "live_revision": 50, "intro": "", "collection": 1, "images_per_page": 10, "order_images_by": 1, "feed_image": 3}	\N	32	1
+59	f	2018-10-01 13:21:59.869521-04	{"pk": 32, "path": "0001000100090001", "depth": 4, "numchild": 0, "title": "Gallery 1", "draft_title": "Gallery 1", "slug": "gallery-1", "content_type": 84, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery/gallery-1/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "intro": "", "collection": 1, "images_per_page": 10, "order_images_by": 1, "feed_image": 9}	\N	32	1
+60	f	2018-10-01 13:50:15.644077-04	{"pk": 32, "path": "0001000100050001", "depth": 4, "numchild": 0, "title": "Gallery 1", "draft_title": "Gallery 1", "slug": "gallery-1", "content_type": 84, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery/gallery-1/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2018-10-01T17:22:03.213Z", "last_published_at": "2018-10-01T17:49:24.725Z", "latest_revision_created_at": "2018-10-01T17:49:22.994Z", "live_revision": 51, "intro": "", "collection": 2, "images_per_page": 10, "order_images_by": 1, "feed_image": 3}	\N	32	1
+61	f	2018-11-22 12:57:26.936959-04	{"pk": 32, "path": "0001000100090001", "depth": 4, "numchild": 0, "title": "Gallery 1", "draft_title": "Gallery 1", "slug": "gallery-1", "content_type": 84, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery-new/gallery-1/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2018-10-01T17:22:03.213Z", "last_published_at": "2018-10-01T17:50:17.032Z", "latest_revision_created_at": "2018-10-01T17:50:15.644Z", "live_revision": 52, "intro": "", "collection": 2, "images_per_page": 20, "order_images_by": 1, "feed_image": 3}	\N	32	1
+62	f	2018-11-22 13:06:08.96771-04	{"pk": 32, "path": "0001000100060003", "depth": 4, "numchild": 0, "title": "Gallery 3", "draft_title": "Gallery 1", "slug": "gallery-3", "content_type": 84, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery/gallery-3/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2018-10-01T17:22:03.213Z", "last_published_at": "2018-11-22T16:57:29.004Z", "latest_revision_created_at": "2018-11-22T16:57:26.936Z", "live_revision": 54, "intro": "", "collection": 2, "images_per_page": 20, "order_images_by": 1, "feed_image": 3}	\N	32	1
 \.
 
 
@@ -4683,7 +4724,7 @@ SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 14, true);
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.auth_permission_id_seq', 331, true);
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 335, true);
 
 
 --
@@ -4760,14 +4801,14 @@ SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1, false);
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.django_content_type_id_seq', 84, true);
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 85, true);
 
 
 --
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 194, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 195, true);
 
 
 --
@@ -4935,7 +4976,7 @@ SELECT pg_catalog.setval('public.photo_gallery_gallerypagetag_id_seq', 3, true);
 -- Name: postgres_search_indexentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.postgres_search_indexentry_id_seq', 130, true);
+SELECT pg_catalog.setval('public.postgres_search_indexentry_id_seq', 148, true);
 
 
 --
@@ -5019,14 +5060,14 @@ SELECT pg_catalog.setval('public.wagtailcore_grouppagepermission_id_seq', 6, tru
 -- Name: wagtailcore_page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.wagtailcore_page_id_seq', 29, true);
+SELECT pg_catalog.setval('public.wagtailcore_page_id_seq', 32, true);
 
 
 --
 -- Name: wagtailcore_pagerevision_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.wagtailcore_pagerevision_id_seq', 52, true);
+SELECT pg_catalog.setval('public.wagtailcore_pagerevision_id_seq', 62, true);
 
 
 --
@@ -5422,6 +5463,14 @@ ALTER TABLE ONLY public.events_eventpagetag
 
 ALTER TABLE ONLY public.gallery_galleryindex
     ADD CONSTRAINT gallery_galleryindex_pkey PRIMARY KEY (page_ptr_id);
+
+
+--
+-- Name: gallery_photogalleryindexpage gallery_photogalleryindexpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.gallery_photogalleryindexpage
+    ADD CONSTRAINT gallery_photogalleryindexpage_pkey PRIMARY KEY (page_ptr_id);
 
 
 --
@@ -6407,6 +6456,13 @@ CREATE INDEX gallery_galleryindex_collection_id_f3527005 ON public.gallery_galle
 --
 
 CREATE INDEX gallery_galleryindex_feed_image_id_026d6012 ON public.gallery_galleryindex USING btree (feed_image_id);
+
+
+--
+-- Name: gallery_photogalleryindexpage_feed_image_id_a5e0841c; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX gallery_photogalleryindexpage_feed_image_id_a5e0841c ON public.gallery_photogalleryindexpage USING btree (feed_image_id);
 
 
 --
@@ -7771,6 +7827,22 @@ ALTER TABLE ONLY public.gallery_galleryindex
 
 ALTER TABLE ONLY public.gallery_galleryindex
     ADD CONSTRAINT gallery_galleryindex_page_ptr_id_10f1b9bb_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: gallery_photogalleryindexpage gallery_photogallery_feed_image_id_a5e0841c_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.gallery_photogalleryindexpage
+    ADD CONSTRAINT gallery_photogallery_feed_image_id_a5e0841c_fk_wagtailim FOREIGN KEY (feed_image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: gallery_photogalleryindexpage gallery_photogallery_page_ptr_id_2e10e2e7_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.gallery_photogalleryindexpage
+    ADD CONSTRAINT gallery_photogallery_page_ptr_id_2e10e2e7_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
