@@ -11,6 +11,7 @@ from wagtail.images.models import Image
 
 from wagtail.images.edit_handlers import ImageChooserPanel
 
+
 class PhotoGalleryIndexPage(Page):
     intro = RichTextField(blank=True)
     feed_image = models.ForeignKey(
@@ -23,7 +24,7 @@ class PhotoGalleryIndexPage(Page):
     )
 
     indexed_fields = ('intro', )
-    
+
     class Meta:
         verbose_name = _('Photo Gallery Index')
 
