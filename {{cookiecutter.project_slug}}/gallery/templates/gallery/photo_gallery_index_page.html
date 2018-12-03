@@ -1,0 +1,24 @@
+{% raw %}{% extends "base.html" %}
+{% load wagtailcore_tags navigation_tags wagtailimages_tags %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+
+<div id="content" class="grid-container">
+	<div class="grid-x grid-padding-x align-center">
+	    <div class="medium-10 cell">
+			<center>
+		    	<h3>{{ self.title }}</h3>
+		    </center>
+
+      		{% include "pages/includes/intro.html" with intro=self.intro only %}
+      
+      		<br>
+      
+      		{% gallery_menu_grid calling_page=self %}
+      	</div>
+	</div>
+</div>
+
+{% endblock %}{% endraw %}
