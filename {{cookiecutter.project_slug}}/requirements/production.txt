@@ -1,5 +1,5 @@
 -r base.txt
 django-celery==3.2.2
-django-redis-cache==1.8.0
+django-redis-cache==1.8.1
 gunicorn==19.9.0
 redis==2.10.6
