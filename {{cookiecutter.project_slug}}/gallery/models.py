@@ -24,17 +24,17 @@ class PhotoGalleryIndexPage(Page):
     )
 
     indexed_fields = ('intro')
-    
+
     @property
     def galleries(self):
         galleries = GalleryIndex.objects.live().descendant_of(self)
-        galleries = galleries.order_by('first_published_at')
-        
+        galleries = galleries.order_by('-first_published_at')
+
         return galleries
 
     def get_context(self, request):
         galleries = self.galleries
-        
+
         page = request.GET.get('page')
         paginator = Paginator(galleries, 16)
         try:
@@ -43,11 +43,11 @@ class PhotoGalleryIndexPage(Page):
             galleries = paginator.page(1)
         except EmptyPage:
             galleries = paginator.page(paginator.num_pages)
-        
+
         context = super(PhotoGalleryIndexPage, self).get_context(request)
         context['galleries'] = galleries
         return context
-    
+
     class Meta:
         verbose_name = _('Photo Gallery Index')
 

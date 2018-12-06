@@ -16,23 +16,26 @@
 		<br>
 		  
 		{% if galleries %}
-			<div class="grid-x grid-padding-x medium-up-4" data-equalizer>
-		        {% for gallery in galleries %}
-		            <div class="cell">
-		                <a href="{% pageurl gallery %}">
-		                    <div class="card">
-		                        {% if gallery.feed_image %}
-		                            {% image gallery.feed_image fill-1200x700 %}
-		                        {% endif %}
-		                        <div class="card-section text-center" style="padding: 8px;">
-		                            <h5>{{ gallery.title }}</h5>
-		                        </div>
-		                    </div>
-		                </a>
-		            </div>
-		        {% endfor %}
-		    </div>
+			<div class="medium-12 cell">
+				<div class="grid-x grid-padding-x medium-up-4" data-equalizer>
+			        {% for gallery in galleries %}
+			            <div class="cell">
+			                <a href="{% pageurl gallery %}">
+			                    <div class="card">
+			                        {% if gallery.feed_image %}
+			                            {% image gallery.feed_image fill-1200x700 %}
+			                        {% endif %}
+			                        <div class="card-section text-center" style="padding: 8px;">
+			                            <h5>{{ gallery.title }}</h5>
+			                        </div>
+			                    </div>
+			                </a>
+			            </div>
+			        {% endfor %}
+			    </div>
+			</div>
 		{% endif %}
+		
 
 		{% if galleries.has_other_pages %}
 			<div class="medium-12 cell hide-for-print">
