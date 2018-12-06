@@ -17,6 +17,6 @@ _________________________
 Adding Gallery Page
 ___________________
 
-* Next add a Photo Gallery Page within the Photo Gallery Index and select the Collection.
+* Next add a Photo Gallery within the Photo Gallery Index and select the Collection.
 
 .. image:: ../_static/images/photo_gallery_page.png
