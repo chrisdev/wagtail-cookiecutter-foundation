@@ -7,18 +7,56 @@
 
 <div id="content" class="grid-container">
 	<div class="grid-x grid-padding-x align-center">
-	    <div class="medium-10 cell">
-			<center>
-		    	<h3>{{ self.title }}</h3>
-		    </center>
+		<center>
+	    	<h3>{{ self.title }}</h3>
+	    </center>
 
-      		{% include "pages/includes/intro.html" with intro=self.intro only %}
-      
-      		<br>
-      
-      		{% gallery_menu_grid calling_page=self %}
-      	</div>
-	</div>
+		{% include "pages/includes/intro.html" with intro=self.intro only %}
+
+		<br>
+		  
+		{% if galleries %}
+			<div class="grid-x grid-padding-x medium-up-4" data-equalizer>
+		        {% for gallery in galleries %}
+		            <div class="cell">
+		                <a href="{% pageurl gallery %}">
+		                    <div class="card">
+		                        {% if gallery.feed_image %}
+		                            {% image gallery.feed_image fill-1200x700 %}
+		                        {% endif %}
+		                        <div class="card-section text-center" style="padding: 8px;">
+		                            <h5>{{ gallery.title }}</h5>
+		                        </div>
+		                    </div>
+		                </a>
+		            </div>
+		        {% endfor %}
+		    </div>
+		{% endif %}
+
+		{% if galleries.has_other_pages %}
+			<div class="medium-12 cell hide-for-print">
+				<ul class="pagination text-center" role="navigation" aria-label="Pagination">
+					{% if galleries.has_previous %}
+						<li class="pagination-previous">
+	  					<a href="?page={{ galleries.previous_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Previous page">Previous</a>
+	  				</li>
+	  			{% else %}
+						<li class="pagination-previous disabled">Previous</li>
+					{% endif %}
+					
+					<li class="unavailable">Page {{ galleries.number }} of {{ galleries.paginator.num_pages }}</li>
+	
+					{% if galleries.has_next %}
+						<li class="pagination-next">
+	  					<a href="?page={{ galleries.next_page_number }}{% for key,value in request.GET.items %}{% ifnotequal key 'page' %}&amp;{{ key }}={{ value }}{% endifnotequal %}{% endfor %}" aria-label="Next page">Next</a>
+	  				</li>
+	  			{% else %}
+						<li class="pagination-next disabled">Next</li>
+					{% endif %}
+				</ul>
+			</div>
+		{% endif %}
+  	</div>
 </div>
-
 {% endblock %}{% endraw %}

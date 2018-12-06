@@ -131,21 +131,6 @@ def secondary_menu_grid(context, calling_page=None):
 
 
 @register.inclusion_tag(
-    'utils/tags/navigation/secondary_menu_grid.html', takes_context=True)
-def gallery_menu_grid(context, calling_page=None):
-    pages = []
-    if calling_page:
-        pages = calling_page.get_children().filter(
-            live=True,
-        )
-
-    return {
-        'pages': pages,
-        'request': context['request'],
-    }
-
-
-@register.inclusion_tag(
     'utils/tags/navigation/breadcrumbs.html', takes_context=True)
 def breadcrumbs(context):
     self = context.get('self')
