@@ -1,5 +1,8 @@
 from .base import *  # flake8: noqa
-
+{% if cookiecutter.use_sentry == 'y' %}
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+{% endif %}
 
 DEBUG = env.bool('DJANGO_DEBUG', default=False)
 
@@ -22,7 +25,7 @@ ALLOWED_HOSTS = [env("DJANGO_ALLOWED_HOST_NAME"), ]
 DATABASES['default'] = env.db('PROD_DATABASE_URL')
 
 INSTALLED_APPS += (
-    "wagtail.contrib.frontend_cache",
+    'wagtail.contrib.frontend_cache',
     'gunicorn',
 )
 
@@ -74,6 +77,14 @@ EMAIL_HOST = env("EMAIL_HOST")
 EMAIL_HOST_USER = env('EMAIL_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_PASSWD')
 EMAIL_PORT = 587
+
+{% if cookiecutter.use_sentry == 'y' %}
+# SENTRY CONFIGURATION
+sentry_sdk.init(
+    dsn= env('SENTRY_DSN'),
+    integrations=[DjangoIntegration()]
+)
+{% endif %}
 
 # LOGGING CONFIGURATION
 # Sends an email to site admins on every HTTP 500 error when DEBUG=False.
