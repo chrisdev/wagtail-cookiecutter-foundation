@@ -1,5 +1,5 @@
 cookiecutter==1.6.0
-flake8==3.0.4
+flake8==3.7.3
 sh==1.12.14
 virtualenv==16.2.0
 Sphinx==1.8.2
