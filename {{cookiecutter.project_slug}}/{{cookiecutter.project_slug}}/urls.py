@@ -20,7 +20,10 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^django-admin/', (admin.site.urls)),
-
+    {% if cookiecutter.use_accounts == 'y' %}
+    url(r'^users/', include('users.urls')),
+    url(r'^accounts/', include('allauth.urls')),
+    {% endif %}
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^search/$', search_views.search, name='search'),
     url(r'^documents/', include(wagtaildocs_urls)),

@@ -10,6 +10,7 @@
     "timezone": "UTC",
     "production_host_name" : "wagtail.chrisdev.com",
     "version": "0.1.0",
+    "use_accounts": "n",
     "use_letsencrypt": "y",
     "use_celery": "y",
     "use_sentry": "n",

@@ -19,6 +19,11 @@ env = environ.Env()
 root = environ.Path(__file__) - 3
 PROJECT_ROOT = root()
 
+{% if cookiecutter.use_accounts == 'y' %}
+ROOT_DIR = environ.Path(__file__) - 3
+APPS_DIR = ROOT_DIR.path('pages')
+{% endif %}
+
 environ.Env.read_env(root('.env'))
 
 # Absolute filesystem path to the Django project directory:
@@ -54,10 +59,10 @@ INSTALLED_APPS = (
     'compressor',
     'taggit',
     'modelcluster',
-    
+
     'foundation_formtags',
     'wagtail_feeds',
-    
+
     'blog',
     'contact',
     'documents_gallery',
@@ -68,7 +73,7 @@ INSTALLED_APPS = (
     'products',
     'search',
     'utils',
-    
+
     'wagtail.contrib.routable_page',
     'wagtail.contrib.sitemaps',
     'wagtail.contrib.search_promotions',
@@ -87,7 +92,14 @@ INSTALLED_APPS = (
     'wagtail.core',
     'wagtailfontawesome',
     'wagtailmarkdown',
-    {% if cookiecutter.use_wagalytics_app == 'y' %}'wagalytics', {% endif %}
+
+    {% if cookiecutter.use_wagalytics_app == 'y' %}'wagalytics',{% endif %}
+    {% if cookiecutter.use_accounts == 'y' %}'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'users',
+    {% endif %}
 )
 
 MIDDLEWARE = (
@@ -100,7 +112,7 @@ MIDDLEWARE = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'wagtail.core.middleware.SiteMiddleware',
-    'wagtail.contrib.redirects.middleware.RedirectMiddleware',   
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 )
 
 
@@ -116,7 +128,14 @@ MANAGERS = ADMINS
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        {% if cookiecutter.use_accounts == 'y' %}
+        'DIRS': [
+            str(APPS_DIR.path('templates')),
+        ],
+        {% else %}
         'DIRS': [],
+        {% endif %}
+
         'APP_DIRS': True,
         'OPTIONS': {
             'debug': DEBUG,
@@ -132,6 +151,54 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = '{{ cookiecutter.project_slug }}.wsgi.application'
+
+{% if cookiecutter.use_accounts == 'y' %}
+# PASSWORD VALIDATION
+# https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
+# ------------------------------------------------------------------------------
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
+SITE_ID = 1
+
+# AUTHENTICATION CONFIGURATION
+# ------------------------------------------------------------------------------
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+# Some really nice defaults
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
+ACCOUNT_ADAPTER = 'users.adapters.AccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'users.adapters.SocialAccountAdapter'
+
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
+
+# Custom user app defaults
+# Select the correct user model
+AUTH_USER_MODEL = 'users.User'
+LOGIN_REDIRECT_URL = 'users:redirect'
+LOGIN_URL = 'account_login'
+{% endif %}
 
 WAGTAILADMIN_RICH_TEXT_EDITORS = {
     'default': {

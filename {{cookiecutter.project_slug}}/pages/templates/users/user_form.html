@@ -1,0 +1,53 @@
+{% raw %}{% extends "base.html" %}
+{% load foundation_formtags %}
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block content %}
+<div id="content" class="grid-container">
+  <div class="grid-x grid-padding-x align-center">
+    <div class="medium-5 cell">
+      <center><h3>Your Profile - {{ user.username }}</h3></center>
+      <form method="post" action="{% url 'users:update' %}">
+          {% csrf_token %}
+
+          <div class="form grid-x grid-padding-x">
+            <div class="medium-12 cell">
+                {% render_field form.name %}
+            </div>
+
+            <div class="medium-6 cell">
+                {% render_field form.job %}
+            </div>
+
+            <div class="medium-6 cell">
+                {% render_field form.organisation %}
+            </div>
+
+            <div class="medium-6 cell">
+                {% render_field form.city %}
+            </div>
+
+            <div class="medium-6 cell">
+                {% render_field form.state %}
+            </div>
+
+            <div class="medium-12 cell">
+                {% render_field form.address %}
+            </div>
+
+            <div class="medium-6 cell">
+                {% render_field form.country_of_residence %}
+            </div>
+
+            <div class="medium-6 cell">
+                {% render_field form.country_of_nationality %}
+            </div>
+          </div>
+
+          <button type="submit" class="button large">Update</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}{% endraw %}

@@ -1,4 +1,4 @@
-{% raw %}{% load wagtailcore_tags navigation_tags wagtailsettings_tags static %}
+{% raw %}{% load wagtailcore_tags navigation_tags i18n wagtailsettings_tags static %}
 {% get_settings %}
 {% get_site_root as site_root %}
 
@@ -26,7 +26,7 @@
         	<ul class="vertical medium-horizontal menu" data-responsive-menu="drilldown medium-dropdown">
           		<li class="{% if calling_page.url == site_root %} is-active{% endif %}"><a href="{% pageurl site_root %}">Home</a></li>
           		{% for menuitem in menuitems %}
-          			<li class="{% if menuitem.show_dropdown %}has-submenu{% endif %} {% if calling_page.url == menuitem.url %}is-active{% endif %}">
+          			<li class="{% if menuitem.show_dropdown %}has-submenu{% endif %}">
             			<a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
             				{% if menuitem.show_dropdown %}
             					<ul class="submenu menu vertical" data-submenu>
@@ -38,6 +38,47 @@
             				{% endif %}
             		</li>
             	{% endfor %}
+							{% if request.user.is_authenticated %}
+              <li class="is-dropdown-submenu-parent">
+                <a href="#">
+                  <i class="fa fa-user"></i> &nbsp;{{ request.user.username }}
+                </a>
+                <ul class="menu vertical">
+									<li>
+                    <a href="{% url 'users:detail' %}"><i class="fa fa-id-card"></i> Dashboard</a>
+                  </li>
+                  <li>
+										<a href="{% url 'users:update' %}"><i class="fa fa-pencil-alt"></i> Edit Profile</a>
+									</li>
+                  <li>
+										<a href="{% url 'account_email' %}"><i class="fa fa-envelope"></i> Email Settings</a>
+                  <li>
+                  <li>
+										<a href="{% url 'account_change_password' %}"><i class="fa fa-key"></i> Change Passsword</a>
+                  <li>
+                  {% if request.user.is_superuser %}
+                  <li>
+										<a href="/admin"><i class="fa fa-user"></i> Admin</a>
+									</li>
+                  {% endif %}
+                  <li>
+                    <hr style="margin:0">
+                    <a href="{% url 'account_logout' %}"><i class="fa fa-sign-out-alt"></i> {% trans "Sign out" %}</a>
+                  </li>
+                </ul>
+              </li>
+              {% else %}
+              <li>
+                <a id="sign-up-link" href="{% url 'account_signup' %}">
+									<i class="fa fa-edit"></i> {% trans "Sign Up" %}
+								</a>
+              </li>
+              <li>
+                <a id="log-in-link" href="{% url 'account_login' %}">
+                  <i class="fa fa-sign-in-alt"></i> {% trans "Login" %}
+								</a>
+              </li>
+              {% endif %}
           		<li class="has-form show-for-small-only" style="background: transparent;">
             		<form action ="{% url 'search' %}" method="get">
               			<div class="row collapse">

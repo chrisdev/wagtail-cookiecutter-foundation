@@ -1,0 +1,17 @@
+{% raw %}{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+
+{% block title %}Dashboard: {{ object.username }}{% endblock %}
+
+{% block content %}
+
+  <div id="content" class="grid-container text-center">
+    <div class="grid-x grid-padding-x">
+      <div class="medium-12 columns">
+        <h2>Welcome {% if object.name %}{{ object.name }}{% else %}{{ object.username }}</h2>
+        <a class="button large" href="{% url 'users:update' %}">Complete profile</a>{% endif %}
+      </div>
+    </div>
+  </div>
+
+{% endblock %}{% endraw %}

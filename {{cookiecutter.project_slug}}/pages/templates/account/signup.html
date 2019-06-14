@@ -1,0 +1,23 @@
+{% raw %}{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load foundation_formtags %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block inner %}
+<h1>{% trans "Sign Up" %}</h1>
+
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {{ form|as_foundation }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button class="button expanded" type="submit">{% trans "Sign Up" %} &raquo;</button>
+</form>
+
+<hr>
+<p>{% blocktrans %}Have an account? <a href="{{ login_url }}">Sign in »</a>{% endblocktrans %}</p>
+
+{% endblock %}{% endraw %}
