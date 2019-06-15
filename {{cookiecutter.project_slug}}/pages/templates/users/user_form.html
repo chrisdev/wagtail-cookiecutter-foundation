@@ -7,7 +7,7 @@
   <div id="content" class="grid-container">
     <div class="grid-x grid-padding-x align-center">
       <div class="medium-5 cell">
-        <center><h3>Your Profile - {{ user.username }}</h3></center>
+        <center><h3>Your Profile</h3></center>
         <form method="post" action="{% url 'users:update' %}">
           {% csrf_token %}
           <div class="form grid-x grid-padding-x">
