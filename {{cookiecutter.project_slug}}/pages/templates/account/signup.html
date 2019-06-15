@@ -4,7 +4,7 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block inner %}
-  <h1>{% trans "Sign Up" %}</h1>
+  <h2>{% trans "Sign Up" %}</h2>
 
   <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
     {% csrf_token %}

@@ -365,9 +365,9 @@ hr {border-color: $light-gray;}
 
 
 form {
-  [type="text"], [type="password"], [type="date"], [type="datetime"], [type="datetime-local"], [type="month"], [type="week"], [type="email"], [type="number"], [type="search"], [type="tel"], [type="time"], [type="url"], [type="color"], textarea {border-radius: 4px;}
+  [type="text"], [type="password"], [type="date"], [type="datetime"], [type="datetime-local"], [type="month"], [type="week"], [type="email"], [type="number"], [type="search"], [type="tel"], [type="time"], [type="url"], [type="color"], select, textarea {border-radius: 4px;}
 
-  textarea {max-height: 60px;}
+  textarea {max-height: 80px;}
 }
 
 
