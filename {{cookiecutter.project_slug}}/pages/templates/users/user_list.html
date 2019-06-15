@@ -3,11 +3,10 @@
 {% block title %}Members{% endblock %}
 
 {% block content %}
-<div id="content" class="grid-container">
-  <div class="grid-x grid-padding-x align-center">
-    <div class="medium-5 cell">
-      <h2>Users</h2>
-      <div>
+  <div id="content" class="grid-container">
+    <div class="grid-x grid-padding-x align-center">
+      <div class="medium-5 cell">
+        <h2>Users</h2>
         {% for user in user_list %}
           <div class="callout secondary">
             <a href="{% url 'users:detail' user.username %}" class="list-group-item">
@@ -18,5 +17,4 @@
       </div>
     </div>
   </div>
-</div>
 {% endblock %}{% endraw %}
