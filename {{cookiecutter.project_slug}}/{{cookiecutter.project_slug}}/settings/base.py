@@ -18,11 +18,7 @@ env = environ.Env()
 
 root = environ.Path(__file__) - 3
 PROJECT_ROOT = root()
-
-{% if cookiecutter.use_accounts == 'y' %}
-ROOT_DIR = environ.Path(__file__) - 3
-APPS_DIR = ROOT_DIR.path('pages')
-{% endif %}
+{% if cookiecutter.use_accounts == 'y' %}APPS_DIR = root.path('pages'){% endif %}
 
 environ.Env.read_env(root('.env'))
 
@@ -51,9 +47,10 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sessions',
     'django.contrib.sitemaps',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
 
     'compressor',
@@ -92,10 +89,8 @@ INSTALLED_APPS = (
     'wagtail.core',
     'wagtailfontawesome',
     'wagtailmarkdown',
-
     {% if cookiecutter.use_wagalytics_app == 'y' %}'wagalytics',{% endif %}
-    {% if cookiecutter.use_accounts == 'y' %}'django.contrib.sites',
-    'allauth',
+    {% if cookiecutter.use_accounts == 'y' %}'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'users',
@@ -128,14 +123,7 @@ MANAGERS = ADMINS
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        {% if cookiecutter.use_accounts == 'y' %}
-        'DIRS': [
-            str(APPS_DIR.path('templates')),
-        ],
-        {% else %}
-        'DIRS': [],
-        {% endif %}
-
+        {% if cookiecutter.use_accounts == 'y' %}'DIRS': [ str(APPS_DIR.path('templates')),],{% else %}'DIRS': [],{% endif %}
         'APP_DIRS': True,
         'OPTIONS': {
             'debug': DEBUG,
@@ -193,10 +181,9 @@ SOCIALACCOUNT_ADAPTER = 'users.adapters.SocialAccountAdapter'
 
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
-# Custom user app defaults
 # Select the correct user model
 AUTH_USER_MODEL = 'users.User'
-LOGIN_REDIRECT_URL = 'users:redirect'
+LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'account_login'
 {% endif %}
 
