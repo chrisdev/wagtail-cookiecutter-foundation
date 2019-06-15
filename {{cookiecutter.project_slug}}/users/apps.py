@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 
 class UsersConfig(AppConfig):
-    name = 'wagtail_conference.users'
+    name = 'users'
     verbose_name = "Users"
 
     def ready(self):
