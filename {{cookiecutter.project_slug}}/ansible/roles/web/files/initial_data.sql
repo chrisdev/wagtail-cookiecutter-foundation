@@ -90,7 +90,7 @@ ALTER SEQUENCE public.account_emailconfirmation_id_seq OWNED BY public.account_e
 
 CREATE TABLE public.auth_group (
     id integer NOT NULL,
-    name character varying(80) NOT NULL
+    name character varying(150) NOT NULL
 );
 
 
@@ -3998,6 +3998,8 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 206	products	0007_productindexpage_feed_image	2019-06-14 15:22:32.297001-04
 207	products	0008_auto_20180607_1804	2019-06-14 15:22:32.683834-04
 208	wagtailembeds	0005_specify_thumbnail_url_max_length	2019-06-15 10:28:16.740922-04
+209	auth	0010_alter_group_name_max_length	2019-06-16 09:02:04.668488-04
+210	auth	0011_update_proxy_permissions	2019-06-16 09:02:04.894813-04
 \.
 
 
@@ -4956,7 +4958,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 86, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 208, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 210, true);
 
 
 --
