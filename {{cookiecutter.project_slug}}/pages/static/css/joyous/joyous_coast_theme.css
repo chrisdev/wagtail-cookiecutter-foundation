@@ -26,7 +26,7 @@
 .joy-cal__heading {
     padding:               5px;
     border-radius:         5px 5px 0 0;
-    background:            #36454f;
+    background:            #3e50b4;
     color:                 white;
     border:                none;
     text-align:            center;
@@ -59,7 +59,7 @@ a.joy-cal__period-ctrl {
     border-top:            none;
     border-left:           none;
     border-right:          1px dotted #aaa;
-    border-bottom:         2px solid #36454f;
+    border-bottom:         2px solid #3e50b4;
     font-weight:           400;
 }
 
@@ -128,7 +128,7 @@ a.joy-cal__period-ctrl {
 }
 
 .joy-cal__date {
-    color:                 #36454f;
+    color:                 #3e50b4;
     line-height:           normal;
     font-family:           Tahoma, Geneva, sans-serif;
     font-size:             20px;
@@ -154,7 +154,7 @@ a.joy-cal__period-ctrl {
 }
 
 a.joy-days-events__event {
-    color:                 #36454f;
+    color:                 #3e50b4;
 }
 
 a.joy-days-events__event:active {
@@ -215,7 +215,7 @@ a.joy-cal__read-more {
 /*-----------------------------------------------------------------------*/
 
 .joy-minical {
-    color:                 #36454f;
+    color:                 #3e50b4;
     font-size:             12px;
     line-height:           12px;
     border-collapse:       collapse;
@@ -283,15 +283,15 @@ a.joy-cal__read-more {
 }
 
 a.joy-minical__date--event-link {
-    color:                 #36454f;
+    color:                 #3e50b4;
     font-weight:           bold;
-    text-decoration:       none; 
-    border-bottom:         1px dotted #36454f;
+    text-decoration:       none;
+    border-bottom:         1px dotted #3e50b4;
     background:            transparent;
 }
 
 a.joy-minical__date--event-link:hover {
-    border-bottom:         1px solid #36454f;
+    border-bottom:         1px solid #3e50b4;
 }
 
 .joy-minical__date--holiday,
@@ -371,7 +371,7 @@ a.joy-img-link {
 }
 
 .joy-ev-related {
-    border-top:            1px solid #36454f;
+    border-top:            1px solid #3e50b4;
     padding:               30px 20px 20px 20px;
 }
 
@@ -409,7 +409,7 @@ a.joy-ev-related__overrides:hover strong  {
 
 .joy-this-week {
     font-size:             12px;
-    background:            white;   
+    background:            white;
     border-radius:         5px;
     box-shadow:            0 4px 10px rgba(150, 150, 150, 0.2);
 }
@@ -438,7 +438,7 @@ a.joy-ev-related__overrides:hover strong  {
 .joy-this-week__weekday {
     font-size:             14px;
     font-weight:           bold;
-    color:                 #36454f;
+    color:                 #3e50b4;
 }
 
 .joy-this-week__date {
