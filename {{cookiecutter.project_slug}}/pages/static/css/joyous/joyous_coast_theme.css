@@ -77,17 +77,17 @@ a.joy-cal__period-ctrl {
 }
 
 .joy-cal__day--yesterday {
-    border-right:          1px solid #ffb442;
+    border-right:          1px solid #ff3f80;
 }
 
 .joy-cal__day--lastweek {
-    border-bottom:          1px solid #ffb442;
+    border-bottom:          1px solid #ff3f80;
 }
 
 .joy-cal__day--today {
-    background:            #ffb442;
-    border-right:          1px solid #ffb442;
-    border-bottom:         1px solid #ffb442;
+    background:            #ff3f80;
+    border-right:          1px solid #ff3f80;
+    border-bottom:         1px solid #ff3f80;
 }
 
 .joy-cal__heading:last-child,
@@ -274,8 +274,8 @@ a.joy-cal__read-more {
 }
 
 .joy-minical__day-title--today {
-    background:            #ffb442;
-    background:            radial-gradient(circle at center, #ffb442 0%,#ffb442 50%,transparent 60%);
+    background:            #ff3f80;
+    background:            radial-gradient(circle at center, #ff3f80 0%,#ff3f80 50%,transparent 60%);
 }
 
 .joy-minical__date--event {
@@ -429,7 +429,7 @@ a.joy-ev-related__overrides:hover strong  {
 }
 
 .joy-this-week__day--today {
-    background:            #ffb442;
+    background:            #ff3f80;
 }
 
 .joy-this-week__day-title {

@@ -30,6 +30,8 @@ a.joy-view-choices__link {
     text-align:            center;
     font-weight:           400;
     border:                2px solid #ff3f80;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .joy-cal__period-heading {
@@ -56,9 +58,9 @@ a.joy-cal__period-ctrl {
     padding:               5px 0;
     background:            #3e50b4;
     color:                 #fff;
-    border-style:          solid;
+    border-style:          dotted;
     border-width:          2px 1px;
-    border-color:          #000;
+    border-color:          #ccc;
     font-weight:           400;
     text-align:            center;
     font-size:             17px;
@@ -72,15 +74,15 @@ a.joy-cal__period-ctrl {
 }
 
 .joy-cal__no-day {
-    border:                none;
+    border:                1px dotted #ccc;
 }
 
 .joy-cal__day {
     background:            #3e50b4;
     padding:               2px 1px 2px 6px;
     border-width:          1px;
-    border-style:          solid;
-    border-color:          #000;
+    border-style:          dotted;
+    border-color:          #ccc;
 }
 
 .joy-cal--monthly .joy-cal__day--first,
@@ -95,8 +97,8 @@ a.joy-cal__period-ctrl {
 
 .joy-cal--weekly .joy-cal__day--today {
     background:            #2f222b;
-    background:            radial-gradient(closest-corner at 40% 25%,
-                                           #2f222b 0%,#180611 160%);
+    background:            radial-gradient(closest-corner at 50% 55%,
+                                           #ff3f80 0%,#000 160%);
 }
 
 .joy-cal__day-title {
