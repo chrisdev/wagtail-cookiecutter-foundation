@@ -1,0 +1,521 @@
+/*-----------------------------------------------------------------------*/
+/* Joyous Calendar Theme */
+/*-----------------------------------------------------------------------*/
+
+.joy-view-choices {
+    font-weight:           normal;
+}
+
+a.joy-view-choices__link {
+    display:               inline-block;
+    color:                 #bc929e;
+}
+
+.joy-cal {
+    color:                 white;
+    border-collapse:       separate;
+}
+
+.joy-cal__head {
+    line-height:           normal;
+    font-family:           Tahoma, Geneva, sans-serif;
+    font-size:             24px;
+    font-weight:           400;
+}
+
+.joy-cal__heading {
+    padding:               5px;
+    background:            #580f23;
+    color:                 #f6ffff;
+    text-align:            center;
+    font-weight:           400;
+    border:                2px solid #580f23;
+}
+
+.joy-cal__period-heading {
+}
+
+a.joy-cal__period-ctrl {
+    color:                 white;
+    text-decoration:       none;
+    font-family:           Verdana, sans-serif;
+    font-weight:           bold;
+    font-size:             19px;
+}
+
+.joy-cal__month-name {
+}
+
+.joy-cal__week-name {
+}
+
+.joy-cal__year-number {
+}
+
+.joy-cal__weekday {
+    padding:               5px 0;
+    background:            #080609;
+    border-style:          solid;
+    border-width:          2px;
+    border-color:          #3a373c #070408 #060208 #281f22;
+    font-weight:           400;
+}
+
+.joy-cal__weekday:first-child {
+    border-left:            2px solid #3a373c;
+}
+
+.joy-cal__body {
+}
+
+.joy-cal__no-day {
+    border:                none;
+}
+
+.joy-cal__day {
+    background:            #080609;
+    padding:               2px 1px 2px 6px;
+    border-width:          2px;
+    border-style:          solid;
+    border-color:          #3a373c #070408 #060208 #281f22;
+}
+
+.joy-cal--monthly .joy-cal__day--first,
+.joy-cal__day:first-child {
+    border-left:            2px solid #3a373c;
+}
+
+.joy-cal__day--today {
+    background:            #2f222b;
+    background:            radial-gradient(closest-corner at 45% 40%,
+                                           #3a2b40 0%,#2f222b 10%,#180611 100%);
+}
+
+.joy-cal--weekly .joy-cal__day--today {
+    background:            #2f222b;
+    background:            radial-gradient(closest-corner at 40% 25%,
+                                           #2f222b 0%,#180611 160%);
+}
+
+.joy-cal__day-title {
+}
+
+.joy-cal__holiday-name {
+    font-size:             14px;
+    line-height:           15px;
+    color:                 #ff1d3c;
+    font-family:           Tahoma, Geneva, sans-serif;
+    font-size:             20px;
+    line-height:           20px;
+    font-weight:           400;
+}
+
+.joy-cal--weekly .joy-cal__holiday-name {
+}
+
+.joy-cal__date {
+    color:                 #ffffef;
+    line-height:           normal;
+    font-family:           Tahoma, Geneva, sans-serif;
+    font-size:             20px;
+    font-weight:           400;
+}
+
+.joy-cal--weekly .joy-cal__date {
+}
+
+.joy-cal__date--holiday {
+    color:                 #ff1d3c;
+}
+
+.joy-days-events {
+}
+
+.joy-days-events__event {
+}
+
+a.joy-days-events__event {
+    color:                 white;
+}
+
+a.joy-days-events__event:active {
+    background:            transparent;
+}
+
+.joy-days-events__event-time {
+    font-size:             9px;
+}
+
+.joy-days-events__event-title {
+    font-family:           Tahoma, Geneva, sans-serif;
+    font-size:             12px;
+    line-height:           normal;
+    font-weight:           bold;
+}
+
+.joy-days-events__event-text {
+    font-family:           Tahoma, Geneva, sans-serif;
+    font-size:             12px;
+    line-height:           normal;
+}
+
+a.joy-cal__read-more {
+    color:                 white;
+    font-size:             18px;
+    line-height:           18px;
+    font-weight:           bold;
+}
+
+.joy-overlay {
+    background:            rgba(6, 2, 8, 0.1);
+}
+
+.joy-popup__outer {
+}
+
+.joy-popup__content {
+    background:            #080609;
+    padding:               2px 1px 2px 6px;
+    border-width:          2px;
+    border-style:          solid;
+    border-color:          #3a373c #070408 #060208 #281f22;
+    box-shadow:            1px 1px 5px 1px rgba(100, 100, 100, 0.2);
+}
+
+a.joy-popup__close {
+    color:                 white;
+    line-height:           20px;
+    text-decoration:       none;
+    outline:               0;
+}
+
+.joy-export {
+    font-size:             11px;
+    color:                 #aaa;
+}
+
+/*-----------------------------------------------------------------------*/
+/* Joyous MiniCalendar */
+/*-----------------------------------------------------------------------*/
+
+.joy-minical {
+    color:                 white;
+    font-size:             12px;
+    line-height:           12px;
+    border-collapse:       collapse;
+}
+
+.joy-minical__heading {
+    background:            #580f23;
+    color:                 #f6ffff;
+    padding:               5px;
+    font-weight:           bold;
+    text-align:            center;
+}
+
+.joy-minical__month-heading {
+    display:               inline-block;
+    padding:               0 0 0 4ex;
+    text-align:            left;
+}
+
+.joy-minical__month-name {
+    display:               inline-block;
+    width:                 10ex;
+}
+
+.joy-minical__year-number {
+    display:               inline-block;
+    width:                 6ex;
+}
+
+.joy-minical__month-nav {
+    display:               inline-block;
+    padding:               0 4ex 0 0;
+    float:                 right;
+}
+
+a.joy-minical__prev,
+a.joy-minical__next {
+    color:                 white;
+}
+
+.joy-minical__weekday {
+    padding:               5px;
+    background:            #080609;
+    font-weight:           bold;
+}
+
+.joy-minical__weekday--sun, {
+}
+
+.joy-minical__day {
+    background:            #080609;
+    min-width:             36px;
+    border:                none;
+}
+
+.joy-minical__body {
+    background:            #080609;
+}
+
+.joy-minical__day-title {
+    margin:                0;
+    padding:               8px 8px 9px 8px;
+    float:                 right;
+}
+
+.joy-minical__date--event {
+    color:                white;
+    font-weight:           bold;
+}
+
+a.joy-minical__date--event-link {
+    color:                white;
+    font-weight:           bold;
+    text-decoration:       none; 
+    border-bottom:         1px dotted white;
+    background:            transparent;
+}
+
+a.joy-minical__date--event-link:hover {
+    border-bottom:         1px solid white;
+}
+
+.joy-minical__day-title--today {
+    background:            #9ae4e7;
+    background:            radial-gradient(circle at center,
+                                           #f6ffff 0%, #9ae4e7 50%,transparent 60%);
+}
+
+.joy-minical__day-title--today .joy-minical__date {
+    color:                   #3a373c;
+}
+
+.joy-minical__day-title--today a.joy-minical__date--event-link {
+    color:                   #3a373c;
+    font-weight:           bold;
+    text-decoration:       none; 
+    border-bottom:         1px dotted #3a373c;
+    background:            transparent;
+}
+
+.joy-minical__day-title--today a.joy-minical__date--event-link:hover {
+    border-bottom:         1px solid #3a373c;
+}
+
+.joy-minical__date--holiday {
+    color:                 #ff1d3c;
+}
+
+a.joy-minical__date--holiday {
+    color:                 #ff1d3c;
+    background:            transparent;
+    border-bottom:         1px dotted #ff1d3c;
+}
+
+a.joy-minical__date--holiday:hover {
+    border-bottom:         1px solid #ff1d3c;
+}
+
+/*-----------------------------------------------------------------------*/
+/* Joyous Events Theme */
+/*-----------------------------------------------------------------------*/
+
+.joy-ev-status {
+    color:                #d70606;
+    font-weight:          bold;
+}
+
+.joy-ev-item {
+    margin:                0 0 0 0;
+    padding:               0px 0px 20px 0px;
+}
+
+.joy-field {
+    margin:                0 0 0 0;
+    padding:               2px 0px 2px 0px;
+}
+
+a.joy-img-link {
+}
+
+.joy-img-link__img {
+    border-radius:         4px;
+    margin-bottom:         4px;
+}
+
+.joy-img__img {
+    border-radius:         4px;
+    margin-bottom:         4px;
+}
+
+.joy-img__img {
+
+}
+
+.joy-ev-who {
+    font-size:            16px;
+    font-weight:          bold;
+}
+
+.joy-ev-when,
+.joy-ev-next-on,
+.joy-ev-where {
+    font-size:             17px;
+}
+
+.joy-ev-from-when {
+    font-size:             15px;
+}
+
+.joy-ev-extra {
+    margin:                16px -10px;
+    padding:               16px 10px 10px 10px;
+    border:                1px solid #ff6600;
+    border-radius:         4px;
+}
+
+.joy-ev-related {
+    border-top:            1px solid #36454f;
+    padding:               30px 20px 20px 20px;
+}
+
+.joy-ev-related__item {
+     padding:               2px 10px 1px 44px;
+     margin:                0 0 10px 0;
+     display:               block;
+     min-height:            28px;
+}
+
+.joy-ev-related__link {
+    font-weight:           bold;
+    font-size:             18px;
+}
+
+a.joy-ev-related__overrides {
+    text-decoration:       none;
+}
+
+a.joy-ev-related__overrides strong {
+    font-weight:           bold;
+    font-size:             18px;
+}
+
+a.joy-ev-related__overrides:hover strong  {
+    text-decoration:       underline;
+}
+
+.joy-ev-details {
+    padding-top:           16px;
+}
+
+/*-----------------------------------------------------------------------*/
+/* Events This Week*/
+/*-----------------------------------------------------------------------*/
+
+.joy-this-week {
+    font-size:             12px;
+    background:            #080609;
+    color:                 white;   
+    border-radius:         0px;
+    border-width:          2px;
+    border-style:          solid;
+    border-color:          #3a373c #070408 #060208 #281f22;
+    box-shadow:            1px 1px 5px 1px rgba(100, 100, 100, 0.2);
+}
+
+.joy-this-week__title {
+    font-weight:           bold;
+    font-size:             18px;
+    text-align:            center;
+    background:            #580f23;
+    color:                 white;
+}
+
+.joy-this-week__day {
+}
+
+.joy-this-week__day--in-past {
+}
+
+.joy-this-week__day--today {
+    background:            #2f222b;
+    background:            radial-gradient(closest-corner at 40% 25%,
+                                           #2f222b 0%,#180611 160%);
+}
+
+.joy-this-week__day-title {
+}
+
+.joy-this-week__weekday {
+    color:                 #ffffef;
+    font-size:             14px;
+    font-weight:           bold;
+}
+
+.joy-this-week__date {
+    font-size:             14px;
+    color:                 #aaa;
+}
+
+.joy-this-week__days-events {
+    display:               inline-block;
+    width:                 200px;
+    padding:               3px 0 0 0;
+}
+
+.joy-this-week__holiday-name {
+    color:                 #d70606;
+}
+
+.joy-this-week__cal {
+}
+
+a.joy-this-week__cal-link {
+    color:                 #bc929e;
+}
+
+/*-----------------------------------------------------------------------*/
+/* Pagination */
+/*-----------------------------------------------------------------------*/
+
+.joy-pg {
+    display:               block;
+    margin:                0;
+    text-align:            center;
+}
+
+.joy-pg__page {
+    margin-top:            2px;
+}
+
+.joy-pg__ctrl {
+    float:                 none;
+    border:                none;
+}
+
+.joy-pg__num {
+    float:                 none;
+    padding:               6px 8px;
+    background:            #380110;
+    border-width:          2px;
+    border-style:          solid;
+    border-color:          #3a373c #070408 #060208 #281f22;
+}
+
+a.joy-pg__num {
+    color:                 #f6ffff;
+}
+
+a.joy-pg__ctrl {
+    color:                 #bc929e;
+}
+
+.joy-pg__ctrl--disabled {
+    color:                 #3a373c;
+}
+
+.joy-pg__num--active {
+    background:            #7a253c;
+}

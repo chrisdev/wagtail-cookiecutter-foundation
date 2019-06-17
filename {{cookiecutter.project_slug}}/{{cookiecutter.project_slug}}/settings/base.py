@@ -59,6 +59,7 @@ INSTALLED_APPS = (
 
     'foundation_formtags',
     'wagtail_feeds',
+    'ls.joyous',
 
     'blog',
     'contact',
@@ -78,6 +79,7 @@ INSTALLED_APPS = (
     'wagtail.contrib.settings',
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
+    'wagtail.contrib.modeladmin',
     'wagtail.embeds',
     'wagtail.sites',
     'wagtail.users',
