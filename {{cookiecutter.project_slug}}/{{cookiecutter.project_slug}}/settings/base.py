@@ -64,7 +64,6 @@ INSTALLED_APPS = (
     'blog',
     'contact',
     'documents_gallery',
-    'events',
     'gallery',
     'pages',
     'people',

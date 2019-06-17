@@ -1,4 +1,5 @@
-{% raw %}{% if request.user.is_authenticated %}
+{% raw %}{% load i18n %}
+{% if request.user.is_authenticated %}
 <li class="is-dropdown-submenu-parent">
   <a href="#">
     <i class="fa fa-user"></i> &nbsp;{{ request.user.username }}

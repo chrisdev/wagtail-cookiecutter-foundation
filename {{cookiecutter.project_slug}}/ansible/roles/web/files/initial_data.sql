@@ -3,7 +3,7 @@
 --
 
 -- Dumped from database version 9.6.13
--- Dumped by pg_dump version 11.3
+-- Dumped by pg_dump version 10.8
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -15,6 +15,20 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
 
 SET default_tablespace = '';
 
@@ -854,6 +868,165 @@ CREATE TABLE public.gallery_photogalleryindexpage (
     page_ptr_id integer NOT NULL,
     intro text NOT NULL,
     feed_image_id integer
+);
+
+
+--
+-- Name: joyous_calendarpage; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.joyous_calendarpage (
+    page_ptr_id integer NOT NULL,
+    intro text NOT NULL,
+    default_view character varying(15) NOT NULL,
+    view_choices character varying(255) NOT NULL
+);
+
+
+--
+-- Name: joyous_cancellationpage; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.joyous_cancellationpage (
+    page_ptr_id integer NOT NULL,
+    except_date date NOT NULL,
+    cancellation_title character varying(255) NOT NULL,
+    cancellation_details text NOT NULL,
+    overrides_id integer
+);
+
+
+--
+-- Name: joyous_eventcategory; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.joyous_eventcategory (
+    id integer NOT NULL,
+    code character varying(4) NOT NULL,
+    name character varying(80) NOT NULL
+);
+
+
+--
+-- Name: joyous_eventcategory_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.joyous_eventcategory_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: joyous_eventcategory_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.joyous_eventcategory_id_seq OWNED BY public.joyous_eventcategory.id;
+
+
+--
+-- Name: joyous_extrainfopage; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.joyous_extrainfopage (
+    page_ptr_id integer NOT NULL,
+    except_date date NOT NULL,
+    extra_information text NOT NULL,
+    overrides_id integer,
+    extra_title character varying(255) NOT NULL
+);
+
+
+--
+-- Name: joyous_grouppage; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.joyous_grouppage (
+    page_ptr_id integer NOT NULL,
+    content text NOT NULL
+);
+
+
+--
+-- Name: joyous_multidayeventpage; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.joyous_multidayeventpage (
+    page_ptr_id integer NOT NULL,
+    time_from time without time zone,
+    time_to time without time zone,
+    location character varying(255) NOT NULL,
+    details text NOT NULL,
+    website character varying(200) NOT NULL,
+    date_from date NOT NULL,
+    date_to date NOT NULL,
+    category_id integer,
+    group_page_id integer,
+    image_id integer,
+    tz character varying(63) NOT NULL,
+    uid character varying(255) NOT NULL
+);
+
+
+--
+-- Name: joyous_postponementpage; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.joyous_postponementpage (
+    cancellationpage_ptr_id integer NOT NULL,
+    time_from time without time zone,
+    time_to time without time zone,
+    location character varying(255) NOT NULL,
+    details text NOT NULL,
+    website character varying(200) NOT NULL,
+    postponement_title character varying(255) NOT NULL,
+    date date NOT NULL,
+    category_id integer,
+    image_id integer,
+    num_days integer NOT NULL
+);
+
+
+--
+-- Name: joyous_recurringeventpage; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.joyous_recurringeventpage (
+    page_ptr_id integer NOT NULL,
+    time_from time without time zone,
+    time_to time without time zone,
+    location character varying(255) NOT NULL,
+    details text NOT NULL,
+    website character varying(200) NOT NULL,
+    repeat character varying(255) NOT NULL,
+    category_id integer,
+    group_page_id integer,
+    image_id integer,
+    tz character varying(63) NOT NULL,
+    uid character varying(255) NOT NULL,
+    num_days integer NOT NULL
+);
+
+
+--
+-- Name: joyous_simpleeventpage; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.joyous_simpleeventpage (
+    page_ptr_id integer NOT NULL,
+    time_from time without time zone,
+    time_to time without time zone,
+    location character varying(255) NOT NULL,
+    details text NOT NULL,
+    website character varying(200) NOT NULL,
+    date date NOT NULL,
+    category_id integer,
+    group_page_id integer,
+    image_id integer,
+    tz character varying(63) NOT NULL,
+    uid character varying(255) NOT NULL
 );
 
 
@@ -2840,6 +3013,13 @@ ALTER TABLE ONLY public.events_eventpagetag ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: joyous_eventcategory id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_eventcategory ALTER COLUMN id SET DEFAULT nextval('public.joyous_eventcategory_id_seq'::regclass);
+
+
+--
 -- Name: pages_advert id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3585,6 +3765,58 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 339	Can change product page tag	86	change_productpagetag
 340	Can delete product page tag	86	delete_productpagetag
 341	Can view product page tag	86	view_productpagetag
+342	Can add calendar page	87	add_calendarpage
+343	Can change calendar page	87	change_calendarpage
+344	Can delete calendar page	87	delete_calendarpage
+345	Can view calendar page	87	view_calendarpage
+346	Can add cancellation	88	add_cancellationpage
+347	Can change cancellation	88	change_cancellationpage
+348	Can delete cancellation	88	delete_cancellationpage
+349	Can view cancellation	88	view_cancellationpage
+350	Can add event category	89	add_eventcategory
+351	Can change event category	89	change_eventcategory
+352	Can delete event category	89	delete_eventcategory
+353	Can view event category	89	view_eventcategory
+354	Can add extra event information	90	add_extrainfopage
+355	Can change extra event information	90	change_extrainfopage
+356	Can delete extra event information	90	delete_extrainfopage
+357	Can view extra event information	90	view_extrainfopage
+358	Can add group page	91	add_grouppage
+359	Can change group page	91	change_grouppage
+360	Can delete group page	91	delete_grouppage
+361	Can view group page	91	view_grouppage
+362	Can add multiday event page	92	add_multidayeventpage
+363	Can change multiday event page	92	change_multidayeventpage
+364	Can delete multiday event page	92	delete_multidayeventpage
+365	Can view multiday event page	92	view_multidayeventpage
+366	Can add recurring event page	93	add_recurringeventpage
+367	Can change recurring event page	93	change_recurringeventpage
+368	Can delete recurring event page	93	delete_recurringeventpage
+369	Can view recurring event page	93	view_recurringeventpage
+370	Can add event page	94	add_simpleeventpage
+371	Can change event page	94	change_simpleeventpage
+372	Can delete event page	94	delete_simpleeventpage
+373	Can view event page	94	view_simpleeventpage
+374	Can add postponement	95	add_postponementpage
+375	Can change postponement	95	change_postponementpage
+376	Can delete postponement	95	delete_postponementpage
+377	Can view postponement	95	view_postponementpage
+378	Can add general calendar page	96	add_generalcalendarpage
+379	Can change general calendar page	96	change_generalcalendarpage
+380	Can delete general calendar page	96	delete_generalcalendarpage
+381	Can view general calendar page	96	view_generalcalendarpage
+382	Can add specific calendar page	97	add_specificcalendarpage
+383	Can change specific calendar page	97	change_specificcalendarpage
+384	Can delete specific calendar page	97	delete_specificcalendarpage
+385	Can view specific calendar page	97	view_specificcalendarpage
+386	Can add postponement	98	add_reschedulemultidayeventpage
+387	Can change postponement	98	change_reschedulemultidayeventpage
+388	Can delete postponement	98	delete_reschedulemultidayeventpage
+389	Can view postponement	98	view_reschedulemultidayeventpage
+390	Can add multiday recurring event page	99	add_multidayrecurringeventpage
+391	Can change multiday recurring event page	99	change_multidayrecurringeventpage
+392	Can delete multiday recurring event page	99	delete_multidayrecurringeventpage
+393	Can view multiday recurring event page	99	view_multidayrecurringeventpage
 \.
 
 
@@ -3782,6 +4014,19 @@ COPY public.django_content_type (id, app_label, model) FROM stdin;
 84	products	productpage
 85	products	productpagerelatedlink
 86	products	productpagetag
+87	joyous	calendarpage
+88	joyous	cancellationpage
+89	joyous	eventcategory
+90	joyous	extrainfopage
+91	joyous	grouppage
+92	joyous	multidayeventpage
+93	joyous	recurringeventpage
+94	joyous	simpleeventpage
+95	joyous	postponementpage
+96	joyous	generalcalendarpage
+97	joyous	specificcalendarpage
+98	joyous	reschedulemultidayeventpage
+99	joyous	multidayrecurringeventpage
 \.
 
 
@@ -4000,6 +4245,21 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 208	wagtailembeds	0005_specify_thumbnail_url_max_length	2019-06-15 10:28:16.740922-04
 209	auth	0010_alter_group_name_max_length	2019-06-16 09:02:04.668488-04
 210	auth	0011_update_proxy_permissions	2019-06-16 09:02:04.894813-04
+211	joyous	0001_initial	2019-06-17 11:06:16.070477-04
+212	joyous	0002_auto_20180228_1449	2019-06-17 11:06:17.35379-04
+213	joyous	0003_extrainfopage_extra_title	2019-06-17 11:06:17.799362-04
+214	joyous	0004_auto_20180425_2355	2019-06-17 11:06:19.063161-04
+215	joyous	0005_auto_20180522_1158	2019-06-17 11:06:31.457002-04
+216	joyous	0006_generalcalendarpage_specificcalendarpage	2019-06-17 11:06:31.697352-04
+217	joyous	0007_add_uid	2019-06-17 11:06:36.74327-04
+218	joyous	0008_populate_uid	2019-06-17 11:06:40.892236-04
+219	joyous	0009_alter_uid_notnull	2019-06-17 11:06:43.874019-04
+220	joyous	0010_auto_20180920_1210	2019-06-17 11:06:46.476742-04
+221	joyous	0011_auto_20180921_0700	2019-06-17 11:06:47.380477-04
+222	joyous	0012_auto_20181231_1827	2019-06-17 11:06:49.327784-04
+223	joyous	0013_auto_20190221_1152	2019-06-17 11:07:23.552449-04
+224	joyous	0014_auto_20190328_0652	2019-06-17 11:07:25.981277-04
+225	joyous	0015_auto_20190409_0645	2019-06-17 11:07:27.431655-04
 \.
 
 
@@ -4011,6 +4271,7 @@ COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
 nc4uejin9fc642db438s68u25qvcj3jh	OWRiNzhjYjZiMGU5MzAxOTFiNzAyNjI4ZWI4ZDRjN2M1YTdlOTZkYjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxYWZiMzQzZDZiYmI1MmU4MTAwMjBlMTNlYjc0OGEwMWY3MzA3NzJjIiwiX3Nlc3Npb25fZXhwaXJ5IjowfQ==	2019-06-28 14:00:34.242739-04
 efrnd5ubzblt3bgyydi39anync23nt5p	OWRiNzhjYjZiMGU5MzAxOTFiNzAyNjI4ZWI4ZDRjN2M1YTdlOTZkYjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxYWZiMzQzZDZiYmI1MmU4MTAwMjBlMTNlYjc0OGEwMWY3MzA3NzJjIiwiX3Nlc3Npb25fZXhwaXJ5IjowfQ==	2019-06-28 15:24:10.449329-04
 78wuhcdywmc469mu5znrxrfjz087lt4v	OWRiNzhjYjZiMGU5MzAxOTFiNzAyNjI4ZWI4ZDRjN2M1YTdlOTZkYjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxYWZiMzQzZDZiYmI1MmU4MTAwMjBlMTNlYjc0OGEwMWY3MzA3NzJjIiwiX3Nlc3Npb25fZXhwaXJ5IjowfQ==	2019-06-29 10:15:58.262388-04
+lmy3y317fnxh2napvjaebxs4ajr3sxps	NzBmNWE4ZjY5ZjA1MjIwYWEyZjNkZjM3ZjcxYmI2ZjQ3YTMyMDc5NDp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1M2VlNzJjYjU3MTM3NzNjZmY4MmI2MWJkY2Y1NTkwZDEyMDFmMjVmIn0=	2019-07-01 11:18:03.435799-04
 \.
 
 
@@ -4056,7 +4317,6 @@ COPY public.documents_gallery_documentspagetag (id, content_object_id, tag_id) F
 --
 
 COPY public.events_eventindexpage (page_ptr_id, intro, feed_image_id) FROM stdin;
-12		\N
 \.
 
 
@@ -4073,9 +4333,6 @@ COPY public.events_eventindexpagerelatedlink (id, sort_order, link_external, tit
 --
 
 COPY public.events_eventpage (page_ptr_id, date_from, date_to, time_from, time_to, audience, location, body, cost, signup_link, feed_image_id) FROM stdin;
-13	2022-06-01	\N	\N	\N	\N	ChrisDev	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \nplacerat porttitor.</p>	\N		12
-14	2022-06-10	\N	\N	\N	\N	ChrisDev	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \nplacerat porttitor.</p>	\N		5
-15	2022-06-10	\N	\N	\N	\N	ChrisDev	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \nplacerat porttitor.</p>	\N		8
 \.
 
 
@@ -4129,6 +4386,80 @@ COPY public.gallery_galleryindex (page_ptr_id, intro, images_per_page, order_ima
 
 COPY public.gallery_photogalleryindexpage (page_ptr_id, intro, feed_image_id) FROM stdin;
 20		\N
+\.
+
+
+--
+-- Data for Name: joyous_calendarpage; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.joyous_calendarpage (page_ptr_id, intro, default_view, view_choices) FROM stdin;
+28		M	L,W,M
+\.
+
+
+--
+-- Data for Name: joyous_cancellationpage; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.joyous_cancellationpage (page_ptr_id, except_date, cancellation_title, cancellation_details, overrides_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: joyous_eventcategory; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.joyous_eventcategory (id, code, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: joyous_extrainfopage; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.joyous_extrainfopage (page_ptr_id, except_date, extra_information, overrides_id, extra_title) FROM stdin;
+\.
+
+
+--
+-- Data for Name: joyous_grouppage; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.joyous_grouppage (page_ptr_id, content) FROM stdin;
+\.
+
+
+--
+-- Data for Name: joyous_multidayeventpage; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.joyous_multidayeventpage (page_ptr_id, time_from, time_to, location, details, website, date_from, date_to, category_id, group_page_id, image_id, tz, uid) FROM stdin;
+\.
+
+
+--
+-- Data for Name: joyous_postponementpage; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.joyous_postponementpage (cancellationpage_ptr_id, time_from, time_to, location, details, website, postponement_title, date, category_id, image_id, num_days) FROM stdin;
+\.
+
+
+--
+-- Data for Name: joyous_recurringeventpage; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.joyous_recurringeventpage (page_ptr_id, time_from, time_to, location, details, website, repeat, category_id, group_page_id, image_id, tz, uid, num_days) FROM stdin;
+\.
+
+
+--
+-- Data for Name: joyous_simpleeventpage; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.joyous_simpleeventpage (page_ptr_id, time_from, time_to, location, details, website, date, category_id, group_page_id, image_id, tz, uid) FROM stdin;
+29	09:00:00	\N	ChrisDev			2019-06-29	\N	\N	12	UTC	3f56be10-6d0c-44ba-ab9b-cdf64054a19a
 \.
 
 
@@ -4347,8 +4678,6 @@ COPY public.people_personrole (id, name) FROM stdin;
 --
 
 COPY public.postgres_search_indexentry (id, object_id, body, content_type_id, autocomplete) FROM stdin;
-47	12		20	'event':1B 'index':2B
-1	3		4	'homepag':1B
 23	4		32	'index':2B 'standard':1B
 26	5	'ac':115,137 'accumsan':44 'adipisc':7 'aenean':61 'aliquam':9 'aliquet':172 'amet':5,18,114,142 'ant':102 'auctor':64 'blandit':15 'consectetur':6 'consequat':131 'curabitur':80 'cursus':57 'dapibus':46,94 'diam':29,35,96,108,194 'dictum':52 'dolor':3,126,133 'donec':49,74 'dui':77,169 'egesta':120 'eget':76,175,189 'eleifend':135 'elementum':14,158 'elit':8 'enim':19 'erat':171 'ero':134,146 'et':10,107,125 'eu':12,45,67,164 'euismod':112 'ex':139 'facilisi':60 'faucibus':65 'fermentum':56,187 'feugiat':48,75 'fringilla':165 'fusc':106 'gravida':148 'hendrerit':151 'id':31,103,168 'imperdiet':81 'integ':150 'interdum':37 'ipsum':2,110,182 'justo':63 'lacinia':40 'laoreet':161 'lectus':88 'leo':22,32 'libero':116 'ligula':119,185 'lorem':1,163 'luctus':104 'magna':89,159 'massa':21,41 'matti':25 'mauri':11,118 'maximus':184 'mi':38 'molesti':149 'molli':152 'morbi':87,97,160 'nec':36,71,147 'nibh':13,58,73,129 'nisi':136 'nisl':69,170 'non':123 'nulla':140,166 'nunc':39,43 'odio':47,153,162 'ornar':23 'phasellus':30 'placerat':33,53 'porttitor':54,128,155,190 'porttutor':197 'posuer':132,181 'proin':117,127 'pulvinar':111 'quam':51,84,178,191 'qui':109,130,195 'quisqu':20 'rhoncus':79 'risus':66 'sagitti':86 'sed':156,179 'semper':68,138 'sit':4,17,113,141 'sodal':101 'sollicitudin':95 'suscipit':72,100 'tempor':124 'tempus':85,122 'tortor':82,174 'tristiqu':42,186 'turpi':92 'ullamcorp':176 'urna':99,143 'ut':70,83,91,144,157,183,188 'varius':16,50,177,193 'vehicula':27,34 'vel':98 'velit':105 'venenati':145,167,180 'vestibulum':28 'vita':26,154 'vivamus':55 'viverra':90,196	34	'page':2B 'sidebar':4B 'standard':1B 'w/o':3B
 32	7		76	'index':2B 'person':1B
@@ -4383,13 +4712,13 @@ COPY public.postgres_search_indexentry (id, object_id, body, content_type_id, au
 111	2		3	'doc':2A 'example.docx':1A
 112	3		3	'doc':2A 'sample.pdf':1A
 66	17	'ac':27,41,100,160,213 'ad':143 'adipisc':7 'aenean':113 'aliquam':82 'amet':5,20,176,203 'ant':78,161,192 'aptent':140 'arcu':52 'bibendum':170 'blandit':71 'class':139 'commodo':171 'congu':54 'consectetur':6 'consequat':73 'conubia':147 'conval':104 'cras':120 'curabitur':66 'dapibus':16 'diam':63,123 'dignissim':118 'dolor':3,23,138,154,208 'donec':49,172 'dui':45,152,216 'efficitur':210 'egesta':58,134 'eget':39,57,60,89,116,169 'elit':8,98 'enim':28,34,204 'est':133 'et':22,30,79,110,157,179 'etiam':90 'eu':17,198 'ex':12 'facilisi':36 'fame':159 'faucibus':25,165,173 'feli':69,105 'fermentum':80 'feugiat':64,86 'fringilla':65 'fusc':106 'gravida':32,186 'hendrerit':76,77 'himenaeo':151 'iaculi':88 'id':70,114,132,200 'imperdiet':101 'incepto':150 'interdum':14,156,178 'ipsum':2,162,174 'justo':15,87 'lacus':115,168,196 'lectus':122 'libero':42,48 'litora':144 'loborti':10,99,205 'lorem':1,84 'luctus':206 'malesuada':67,158,191 'massa':131,212 'matti':189 'mauri':68,81 'metus':155 'morbi':190 'nequ':93,126,185 'nibh':40,112 'nisi':187,193 'non':26,92 'nostra':148 'nulla':53 'nullam':207 'nunc':38,166 'odio':72,117 'orci':11,109 'ornar':91,182 'pellentesqu':199,214 'per':146,149 'phasellus':96 'placerat':44 'porttitor':167 'praesent':9,129 'primi':163 'pulvinar':125,215 'purus':209 'quam':97 'qui':46 'quisqu':183 'risus':21,56,201 'sagitti':121,180 'sapien':31,37,61 'scelerisqu':103 'sed':29,85,136,153 'sem':177 'semper':111 'sit':4,19,175,202 'sociosqu':142 'sodal':188 'sollicitudin':33 'taciti':141 'tempor':24 'tempus':43 'tincidunt':51 'torquent':145 'tortor':181 'tristiqu':184 'turpi':47 'ultric':95 'ultrici':197 'ut':59,62,75,124 'varius':83 'vehicula':108 'vel':50,194 'venenati':119,127,195 'vestibulum':18 'vita':74,102,137 'volutpat':135	63	'1':3B 'blog':1B 'page':2B
+1	3		4	'homepag':1B
 69	18	'ac':27,41,100,160,213 'ad':143 'adipisc':7 'aenean':113 'aliquam':82 'amet':5,20,176,203 'ant':78,161,192 'aptent':140 'arcu':52 'bibendum':170 'blandit':71 'class':139 'commodo':171 'congu':54 'consectetur':6 'consequat':73 'conubia':147 'conval':104 'cras':120 'curabitur':66 'dapibus':16 'diam':63,123 'dignissim':118 'dolor':3,23,138,154,208 'donec':49,172 'dui':45,152,216 'efficitur':210 'egesta':58,134 'eget':39,57,60,89,116,169 'elit':8,98 'enim':28,34,204 'est':133 'et':22,30,79,110,157,179 'etiam':90 'eu':17,198 'ex':12 'facilisi':36 'fame':159 'faucibus':25,165,173 'feli':69,105 'fermentum':80 'feugiat':64,86 'fringilla':65 'fusc':106 'gravida':32,186 'hendrerit':76,77 'himenaeo':151 'iaculi':88 'id':70,114,132,200 'imperdiet':101 'incepto':150 'interdum':14,156,178 'ipsum':2,162,174 'justo':15,87 'lacus':115,168,196 'lectus':122 'libero':42,48 'litora':144 'loborti':10,99,205 'lorem':1,84 'luctus':206 'malesuada':67,158,191 'massa':131,212 'matti':189 'mauri':68,81 'metus':155 'morbi':190 'nequ':93,126,185 'nibh':40,112 'nisi':187,193 'non':26,92 'nostra':148 'nulla':53 'nullam':207 'nunc':38,166 'odio':72,117 'orci':11,109 'ornar':91,182 'pellentesqu':199,214 'per':146,149 'phasellus':96 'placerat':44 'porttitor':167 'praesent':9,129 'primi':163 'pulvinar':125,215 'purus':209 'quam':97 'qui':46 'quisqu':183 'risus':21,56,201 'sagitti':121,180 'sapien':31,37,61 'scelerisqu':103 'sed':29,85,136,153 'sem':177 'semper':111 'sit':4,19,175,202 'sociosqu':142 'sodal':188 'sollicitudin':33 'taciti':141 'tempor':24 'tempus':43 'tincidunt':51 'torquent':145 'tortor':181 'tristiqu':184 'turpi':47 'ultric':95 'ultrici':197 'ut':59,62,75,124 'varius':83 'vehicula':108 'vel':50,194 'venenati':119,127,195 'vestibulum':18 'vita':74,102,137 'volutpat':135	63	'2':3B 'blog':1B 'page':2B
 76	19	'ac':27,41,100,160,213 'ad':143 'adipisc':7 'aenean':113 'aliquam':82 'amet':5,20,176,203 'ant':78,161,192 'aptent':140 'arcu':52 'bibendum':170 'blandit':71 'class':139 'commodo':171 'congu':54 'consectetur':6 'consequat':73 'conubia':147 'conval':104 'cras':120 'curabitur':66 'dapibus':16 'diam':63,123 'dignissim':118 'dolor':3,23,138,154,208 'donec':49,172 'dui':45,152,216 'efficitur':210 'egesta':58,134 'eget':39,57,60,89,116,169 'elit':8,98 'enim':28,34,204 'est':133 'et':22,30,79,110,157,179 'etiam':90 'eu':17,198 'ex':12 'facilisi':36 'fame':159 'faucibus':25,165,173 'feli':69,105 'fermentum':80 'feugiat':64,86 'fringilla':65 'fusc':106 'gravida':32,186 'hendrerit':76,77 'himenaeo':151 'iaculi':88 'id':70,114,132,200 'imperdiet':101 'incepto':150 'interdum':14,156,178 'ipsum':2,162,174 'justo':15,87 'lacus':115,168,196 'lectus':122 'libero':42,48 'litora':144 'loborti':10,99,205 'lorem':1,84 'luctus':206 'malesuada':67,158,191 'massa':131,212 'matti':189 'mauri':68,81 'metus':155 'morbi':190 'nequ':93,126,185 'nibh':40,112 'nisi':187,193 'non':26,92 'nostra':148 'nulla':53 'nullam':207 'nunc':38,166 'odio':72,117 'orci':11,109 'ornar':91,182 'pellentesqu':199,214 'per':146,149 'phasellus':96 'placerat':44 'porttitor':167 'praesent':9,129 'primi':163 'pulvinar':125,215 'purus':209 'quam':97 'qui':46 'quisqu':183 'risus':21,56,201 'sagitti':121,180 'sapien':31,37,61 'scelerisqu':103 'sed':29,85,136,153 'sem':177 'semper':111 'sit':4,19,175,202 'sociosqu':142 'sodal':188 'sollicitudin':33 'taciti':141 'tempor':24 'tempus':43 'tincidunt':51 'torquent':145 'tortor':181 'tristiqu':184 'turpi':47 'ultric':95 'ultrici':197 'ut':59,62,75,124 'varius':83 'vehicula':108 'vel':50,194 'venenati':119,127,195 'vestibulum':18 'vita':74,102,137 'volutpat':135	63	'3':3B 'blog':1B 'page':2B
-50	13	'accumsan':46 'adipisc':9 'aliquam':11 'amet':7,20 'blandit':17 'chrisdev':2 'consectetur':8 'dapibus':48 'diam':31,37 'dictum':54 'dolor':5 'donec':51 'elementum':16 'elit':10 'enim':21 'et':12 'eu':14,47 'feugiat':50 'id':33 'interdum':39 'ipsum':4 'lacinia':42 'leo':24,34 'lorem':3 'massa':23,43 'matti':27 'mauri':13 'mi':40 'nec':38 'nibh':15 'none':1 'nunc':41,45 'odio':49 'ornar':25 'phasellus':32 'placerat':35,55 'porttitor':56 'quam':53 'quisqu':22 'sit':6,19 'tristiqu':44 'varius':18,52 'vehicula':29,36 'vestibulum':30 'vita':28	22	'1':3B 'event':1B 'page':2B
-53	14	'accumsan':46 'adipisc':9 'aliquam':11 'amet':7,20 'blandit':17 'chrisdev':2 'consectetur':8 'dapibus':48 'diam':31,37 'dictum':54 'dolor':5 'donec':51 'elementum':16 'elit':10 'enim':21 'et':12 'eu':14,47 'feugiat':50 'id':33 'interdum':39 'ipsum':4 'lacinia':42 'leo':24,34 'lorem':3 'massa':23,43 'matti':27 'mauri':13 'mi':40 'nec':38 'nibh':15 'none':1 'nunc':41,45 'odio':49 'ornar':25 'phasellus':32 'placerat':35,55 'porttitor':56 'quam':53 'quisqu':22 'sit':6,19 'tristiqu':44 'varius':18,52 'vehicula':29,36 'vestibulum':30 'vita':28	22	'2':3B 'event':1B 'page':2B
-58	15	'accumsan':46 'adipisc':9 'aliquam':11 'amet':7,20 'blandit':17 'chrisdev':2 'consectetur':8 'dapibus':48 'diam':31,37 'dictum':54 'dolor':5 'donec':51 'elementum':16 'elit':10 'enim':21 'et':12 'eu':14,47 'feugiat':50 'id':33 'interdum':39 'ipsum':4 'lacinia':42 'leo':24,34 'lorem':3 'massa':23,43 'matti':27 'mauri':13 'mi':40 'nec':38 'nibh':15 'none':1 'nunc':41,45 'odio':49 'ornar':25 'phasellus':32 'placerat':35,55 'porttitor':56 'quam':53 'quisqu':22 'sit':6,19 'tristiqu':44 'varius':18,52 'vehicula':29,36 'vestibulum':30 'vita':28	22	'3':3B 'event':1B 'page':2B
 29	6	'ac':115,137 'accumsan':44 'adipisc':7 'aenean':61 'aliquam':9 'aliquet':172 'amet':5,18,114,142 'ant':102 'auctor':64 'blandit':15 'consectetur':6 'consequat':131 'curabitur':80 'cursus':57 'dapibus':46,94 'diam':29,35,96,108,194 'dictum':52 'dolor':3,126,133 'donec':49,74 'dui':77,169 'egesta':120 'eget':76,175,189 'eleifend':135 'elementum':14,158 'elit':8 'enim':19 'erat':171 'ero':134,146 'et':10,107,125 'eu':12,45,67,164 'euismod':112 'ex':139 'facilisi':60 'faucibus':65 'fermentum':56,187 'feugiat':48,75 'fringilla':165 'fusc':106 'gravida':148 'hendrerit':151 'id':31,103,168 'imperdiet':81 'integ':150 'interdum':37 'ipsum':2,110,182 'justo':63 'lacinia':40 'laoreet':161 'lectus':88 'leo':22,32 'libero':116 'ligula':119,185 'lorem':1,163 'luctus':104 'magna':89,159 'massa':21,41 'matti':25 'mauri':11,118 'maximus':184 'mi':38 'molesti':149 'molli':152 'morbi':87,97,160 'nec':36,71,147 'nibh':13,58,73,129 'nisi':136 'nisl':69,170 'non':123 'nulla':140,166 'nunc':39,43 'odio':47,153,162 'ornar':23 'phasellus':30 'placerat':33,53 'porttitor':54,128,155,190 'porttutor':197 'posuer':132,181 'proin':117,127 'pulvinar':111 'quam':51,84,178,191 'qui':109,130,195 'quisqu':20 'rhoncus':79 'risus':66 'sagitti':86 'sed':156,179 'semper':68,138 'sit':4,17,113,141 'sodal':101 'sollicitudin':95 'suscipit':72,100 'tempor':124 'tempus':85,122 'tortor':82,174 'tristiqu':42,186 'turpi':92 'ullamcorp':176 'urna':99,143 'ut':70,83,91,144,157,183,188 'varius':16,50,177,193 'vehicula':27,34 'vel':98 'velit':105 'venenati':145,167,180 'vestibulum':28 'vita':26,154 'vivamus':55 'viverra':90,196	34	'page':2B 'standard':1B
 172	1		1	'root':1B
+174	28		87	'calendar':1B
+178	29	'chrisdev':1	94	'1':2B 'event':1B
 \.
 
 
@@ -4493,7 +4822,7 @@ COPY public.taggit_taggeditem (id, object_id, content_type_id, tag_id) FROM stdi
 
 COPY public.users_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, name, address, city, state, country_of_residence, country_of_nationality, job, organisation, tos) FROM stdin;
 2	pbkdf2_sha256$120000$eI7ZxMYHPEta$pC9LVzvOUaSSUhGht5MTX3/aeNh35T+auNFppYfgUio=	\N	f	cclarke			cclarke@chrisdev.com	f	t	2019-06-14 11:07:05.778726-04					TT	TT			t
-1	pbkdf2_sha256$120000$s2XUK55K829X$0cuTIlGPkXkOG/FA8hxrTSe9NO4dEa/+7GPy/CAH+dA=	2019-06-15 10:15:58.143527-04	t	admin	Lendl	Smith	lendl.smith@gmail.com	t	t	2019-06-14 11:02:31.218591-04					TT	TT			t
+1	pbkdf2_sha256$150000$RNEjbWQhtHSq$dPS14A7lL8Tw6cxCQhgqM0vwwrWfvYSuZAzLdRRkgwY=	2019-06-17 11:18:03.28913-04	t	admin	Lendl	Smith	lendl.smith@gmail.com	t	t	2019-06-14 11:02:31.218591-04					TT	TT			t
 \.
 
 
@@ -4584,31 +4913,29 @@ COPY public.wagtailcore_grouppagepermission (id, permission_type, group_id, page
 
 COPY public.wagtailcore_page (id, path, depth, numchild, title, slug, live, has_unpublished_changes, url_path, seo_title, show_in_menus, search_description, go_live_at, expire_at, expired, content_type_id, owner_id, locked, latest_revision_created_at, first_published_at, live_revision_id, last_published_at, draft_title) FROM stdin;
 1	0001	1	1	Root	root	t	f	/		f		\N	\N	f	1	\N	f	\N	\N	\N	\N	Root
-13	0001000100030001	4	0	Events Page 1	events-page-1	t	f	/home/event-index/events-page-1/		f		\N	\N	f	22	1	f	2019-06-14 15:43:18.218601-04	2019-06-14 15:43:18.626532-04	17	2019-06-14 15:43:18.626532-04	Events Page 1
-18	0001000100040002	4	0	Blog Page 2	blog-page-2	t	f	/home/blog-index/blog-page-2/		t		\N	\N	f	63	1	f	2019-06-14 15:48:00.255415-04	2019-06-14 15:47:14.624055-04	30	2019-06-14 15:48:00.528744-04	Blog Page 2
 5	0001000100010001	4	0	Standard Page w/o Sidebar	standard-page-wo-sidebar	t	f	/home/standard-index/standard-page-wo-sidebar/		t		\N	\N	f	34	1	f	2019-06-14 15:37:20.036076-04	2019-06-14 15:37:20.534408-04	6	2019-06-14 15:37:20.534408-04	Standard Page w/o Sidebar
 6	0001000100010002	4	0	Standard Page	standard-page	t	f	/home/standard-index/standard-page/		t		\N	\N	f	34	1	f	2019-06-14 15:38:18.85825-04	2019-06-14 15:38:19.137801-04	7	2019-06-14 15:38:19.137801-04	Standard Page
-17	0001000100040001	4	0	Blog Page 1	blog-page-1	t	f	/home/blog-index/blog-page-1/		t		\N	\N	f	63	1	f	2019-06-14 15:48:27.193927-04	2019-06-14 15:47:02.49669-04	31	2019-06-14 15:48:27.620541-04	Blog Page 1
-14	0001000100030002	4	0	Events Page 2	events-page-2	t	f	/home/event-index/events-page-2/		f		\N	\N	f	22	1	f	2019-06-14 15:43:54.089002-04	2019-06-14 15:43:32.192461-04	20	2019-06-14 15:43:54.565563-04	Events Page 2
 8	0001000100020001	4	0	Person Page 1	person-page-1	t	f	/home/person-index/person-page-1/		f		\N	\N	f	78	1	f	2019-06-14 15:39:53.919791-04	2019-06-14 15:39:54.276647-04	9	2019-06-14 15:39:54.276647-04	Person Page 1
-12	000100010003	3	3	Event Index	event-index	t	f	/home/event-index/		t		\N	\N	f	20	1	f	2019-06-14 15:41:35.810539-04	2019-06-14 15:41:36.195449-04	16	2019-06-14 15:41:36.195449-04	Event Index
 9	0001000100020002	4	0	Person Page 2	person-page-2	t	f	/home/person-index/person-page-2/		f		\N	\N	f	78	1	f	2019-06-14 15:40:08.950077-04	2019-06-14 15:40:08.950077-04	11	2019-06-14 15:40:08.950077-04	Person Page 2
-16	000100010004	3	3	Blog Index	blog-index	t	f	/home/blog-index/		t		\N	\N	f	61	1	f	2019-06-14 15:45:09.09709-04	2019-06-14 15:45:09.376355-04	26	2019-06-14 15:45:09.376355-04	Blog Index
 10	0001000100020003	4	0	Person Page 3	person-page-3	t	f	/home/person-index/person-page-3/		f		\N	\N	f	78	1	f	2019-06-14 15:40:22.068617-04	2019-06-14 15:40:22.068617-04	13	2019-06-14 15:40:22.068617-04	Person Page 3
 7	000100010002	3	4	Person Index	person-index	t	f	/home/person-index/		t		\N	\N	f	76	1	f	2019-06-14 15:39:23.78899-04	2019-06-14 15:39:24.358993-04	8	2019-06-14 15:39:24.358993-04	Person Index
 11	0001000100020004	4	0	Person Page 4	person-page-4	t	f	/home/person-index/person-page-4/		f		\N	\N	f	78	1	f	2019-06-14 15:40:41.298604-04	2019-06-14 15:40:41.298604-04	15	2019-06-14 15:40:41.298604-04	Person Page 4
-22	0001000100050002	4	0	Gallery 2	gallery-2	t	f	/home/photo-gallery/gallery-2/		f		\N	\N	f	74	1	f	2019-06-14 15:51:46.496343-04	2019-06-14 15:51:29.693357-04	40	2019-06-14 15:51:46.759257-04	Gallery 2
-15	0001000100030003	4	0	Events Page 3	events-page-3	t	f	/home/event-index/events-page-3/		f		\N	\N	f	22	1	f	2019-06-14 15:44:25.679476-04	2019-06-14 15:44:07.550178-04	25	2019-06-14 15:44:26.14098-04	Events Page 3
-19	0001000100040003	4	0	Blog Page 3	blog-page-3	t	f	/home/blog-index/blog-page-3/		t		\N	\N	f	63	1	f	2019-06-14 15:49:05.1093-04	2019-06-14 15:48:39.004445-04	35	2019-06-14 15:49:05.41499-04	Blog Page 3
-25	000100010006	3	1	Documents Gallery	documents-gallery	t	f	/home/documents-gallery/		t		\N	\N	f	71	1	f	2019-06-14 15:54:06.60246-04	2019-06-14 15:54:07.054704-04	49	2019-06-14 15:54:07.054704-04	Documents Gallery
-23	0001000100050003	4	0	Gallery 3	gallery-3	t	f	/home/photo-gallery/gallery-3/		f		\N	\N	f	74	1	f	2019-06-14 15:52:15.105215-04	2019-06-14 15:51:57.430389-04	43	2019-06-14 15:52:15.362927-04	Gallery 3
-21	0001000100050001	4	0	Gallery 1	gallery-1	t	f	/home/photo-gallery/gallery-1/		f		\N	\N	f	74	1	f	2019-06-14 15:51:18.993173-04	2019-06-14 15:51:19.21253-04	37	2019-06-14 15:51:19.21253-04	Gallery 1
-26	0001000100060001	4	0	Sample Documents	sample-documents	t	f	/home/documents-gallery/sample-documents/		f		\N	\N	f	72	1	f	2019-06-14 15:54:39.054947-04	2019-06-14 15:54:39.438012-04	50	2019-06-14 15:54:39.438012-04	Sample Documents
-20	000100010005	3	4	Photo Gallery	photo-gallery	t	f	/home/photo-gallery/		t		\N	\N	f	75	1	f	2019-06-14 15:50:47.794336-04	2019-06-14 15:50:47.979554-04	36	2019-06-14 15:50:47.979554-04	Photo Gallery
-3	00010001	2	7	Homepage	home	t	f	/home/		f		\N	\N	f	4	\N	f	2019-06-14 15:35:33.799951-04	2019-06-14 11:05:51.293545-04	4	2019-06-14 15:35:35.04048-04	Homepage
-24	0001000100050004	4	0	Gallery 4	gallery-4	t	f	/home/photo-gallery/gallery-4/		f		\N	\N	f	74	1	f	2019-06-14 15:52:49.01129-04	2019-06-14 15:52:28.376159-04	48	2019-06-14 15:52:49.456708-04	Gallery 4
-27	000100010007	3	0	Contact Us	contact-us	t	f	/home/contact-us/		f		\N	\N	f	68	1	f	2019-06-14 15:58:05.505996-04	2019-06-14 15:58:05.941292-04	51	2019-06-14 15:58:05.941292-04	Contact Us
 4	000100010001	3	2	Standard Index	standard-index	t	f	/home/standard-index/		t		\N	\N	f	32	1	f	2019-06-14 15:58:42.206048-04	2019-06-14 15:36:19.792176-04	52	2019-06-14 15:58:42.41514-04	Standard Index
+18	0001000100050002	4	0	Blog Page 2	blog-page-2	t	f	/home/blog-index/blog-page-2/		t		\N	\N	f	63	1	f	2019-06-14 15:48:00.255415-04	2019-06-14 15:47:14.624055-04	30	2019-06-14 15:48:00.528744-04	Blog Page 2
+3	00010001	2	7	Homepage	home	t	f	/home/		f		\N	\N	f	4	\N	f	2019-06-14 15:35:33.799951-04	2019-06-14 11:05:51.293545-04	4	2019-06-14 15:35:35.04048-04	Homepage
+17	0001000100050001	4	0	Blog Page 1	blog-page-1	t	f	/home/blog-index/blog-page-1/		t		\N	\N	f	63	1	f	2019-06-14 15:48:27.193927-04	2019-06-14 15:47:02.49669-04	31	2019-06-14 15:48:27.620541-04	Blog Page 1
+27	000100010008	3	0	Contact Us	contact-us	t	f	/home/contact-us/		f		\N	\N	f	68	1	f	2019-06-14 15:58:05.505996-04	2019-06-14 15:58:05.941292-04	51	2019-06-14 15:58:05.941292-04	Contact Us
+25	000100010007	3	1	Documents Gallery	documents-gallery	t	f	/home/documents-gallery/		t		\N	\N	f	71	1	f	2019-06-14 15:54:06.60246-04	2019-06-14 15:54:07.054704-04	49	2019-06-14 15:54:07.054704-04	Documents Gallery
+26	0001000100070001	4	0	Sample Documents	sample-documents	t	f	/home/documents-gallery/sample-documents/		f		\N	\N	f	72	1	f	2019-06-14 15:54:39.054947-04	2019-06-14 15:54:39.438012-04	50	2019-06-14 15:54:39.438012-04	Sample Documents
+22	0001000100060002	4	0	Gallery 2	gallery-2	t	f	/home/photo-gallery/gallery-2/		f		\N	\N	f	74	1	f	2019-06-14 15:51:46.496343-04	2019-06-14 15:51:29.693357-04	40	2019-06-14 15:51:46.759257-04	Gallery 2
+23	0001000100060003	4	0	Gallery 3	gallery-3	t	f	/home/photo-gallery/gallery-3/		f		\N	\N	f	74	1	f	2019-06-14 15:52:15.105215-04	2019-06-14 15:51:57.430389-04	43	2019-06-14 15:52:15.362927-04	Gallery 3
+21	0001000100060001	4	0	Gallery 1	gallery-1	t	f	/home/photo-gallery/gallery-1/		f		\N	\N	f	74	1	f	2019-06-14 15:51:18.993173-04	2019-06-14 15:51:19.21253-04	37	2019-06-14 15:51:19.21253-04	Gallery 1
+20	000100010006	3	4	Photo Gallery	photo-gallery	t	f	/home/photo-gallery/		t		\N	\N	f	75	1	f	2019-06-14 15:50:47.794336-04	2019-06-14 15:50:47.979554-04	36	2019-06-14 15:50:47.979554-04	Photo Gallery
+24	0001000100060004	4	0	Gallery 4	gallery-4	t	f	/home/photo-gallery/gallery-4/		f		\N	\N	f	74	1	f	2019-06-14 15:52:49.01129-04	2019-06-14 15:52:28.376159-04	48	2019-06-14 15:52:49.456708-04	Gallery 4
+16	000100010005	3	3	Blog Index	blog-index	t	f	/home/blog-index/		t		\N	\N	f	61	1	f	2019-06-14 15:45:09.09709-04	2019-06-14 15:45:09.376355-04	26	2019-06-14 15:45:09.376355-04	Blog Index
+19	0001000100050003	4	0	Blog Page 3	blog-page-3	t	f	/home/blog-index/blog-page-3/		t		\N	\N	f	63	1	f	2019-06-14 15:49:05.1093-04	2019-06-14 15:48:39.004445-04	35	2019-06-14 15:49:05.41499-04	Blog Page 3
+28	000100010004	3	1	Calendar	calendar	t	f	/home/calendar/		t		\N	\N	f	87	1	f	2019-06-17 11:23:22.820909-04	2019-06-17 11:23:23.39821-04	53	2019-06-17 11:23:23.39821-04	Calendar
+29	0001000100040001	4	0	Events 1	events-1	t	f	/home/calendar/events-1/		f		\N	\N	f	94	1	f	2019-06-17 11:32:10.673548-04	2019-06-17 11:32:12.687681-04	54	2019-06-17 11:32:12.687681-04	Events 1
 \.
 
 
@@ -4627,22 +4954,12 @@ COPY public.wagtailcore_pagerevision (id, submitted_for_moderation, created_at, 
 6	f	2019-06-14 15:37:20.036076-04	{"pk": 5, "path": "0001000100010001", "depth": 4, "numchild": 0, "title": "Standard Page w/o Sidebar", "draft_title": "Standard Page w/o Sidebar", "slug": "standard-page-wo-sidebar", "content_type": 34, "live": true, "has_unpublished_changes": false, "url_path": "/home/standard-index/standard-page-wo-sidebar/", "owner": 1, "seo_title": "", "show_in_menus": true, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "subtitle": "", "intro": "", "body": "[{\\"type\\": \\"paragraph\\", \\"value\\": \\"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\\\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\\\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\\\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\\\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\\\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\\\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\\\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\\\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\\\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\\\nvelit.</p>\\", \\"id\\": \\"65155708-260d-4dd5-9219-77e7a61786f2\\"}, {\\"type\\": \\"image\\", \\"value\\": 12, \\"id\\": \\"77af103d-805d-4d09-90a6-afcb3d72c234\\"}, {\\"type\\": \\"paragraph\\", \\"value\\": \\"<p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin \\\\nmauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, \\\\nnibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex \\\\nnulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer \\\\nhendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi \\\\nlaoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, \\\\naliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere \\\\nipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In\\\\n varius diam quis viverra porttutor.</p>\\", \\"id\\": \\"fcd72929-e61a-4983-8b8a-5d664ce2ae4b\\"}]", "template_string": "pages/standard_page_full.html", "feed_image": null, "carousel_items": [], "related_links": []}	\N	5	1
 7	f	2019-06-14 15:38:18.85825-04	{"pk": 6, "path": "0001000100010002", "depth": 4, "numchild": 0, "title": "Standard Page", "draft_title": "Standard Page", "slug": "standard-page", "content_type": 34, "live": true, "has_unpublished_changes": false, "url_path": "/home/standard-index/standard-page/", "owner": 1, "seo_title": "", "show_in_menus": true, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "subtitle": "", "intro": "", "body": "[{\\"type\\": \\"paragraph\\", \\"value\\": \\"<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\\\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\\\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\\\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\\\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\\\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\\\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\\\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\\\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\\\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\\\nvelit.</p>\\", \\"id\\": \\"1684d7df-cdbf-4c00-9f70-d109bff6357a\\"}, {\\"type\\": \\"image\\", \\"value\\": 5, \\"id\\": \\"72a8d14f-8750-4e1b-93ca-5f832d353aa4\\"}, {\\"type\\": \\"paragraph\\", \\"value\\": \\"<p>Fusce et diam quis ipsum pulvinar euismod sit amet ac libero. Proin \\\\nmauris ligula, egestas at tempus non, tempor et dolor. Proin porttitor, \\\\nnibh quis consequat posuere, dolor eros eleifend nisi, ac semper ex \\\\nnulla sit amet urna. Ut venenatis eros nec gravida molestie. Integer \\\\nhendrerit mollis odio vitae porttitor. Sed ut elementum magna. Morbi \\\\nlaoreet odio lorem, eu fringilla nulla venenatis id. Duis nisl erat, \\\\naliquet in tortor eget, ullamcorper varius quam. Sed venenatis posuere \\\\nipsum, ut maximus ligula tristique fermentum. Ut eget porttitor quam. In\\\\n varius diam quis viverra porttutor.</p>\\", \\"id\\": \\"1f2b4b3e-8a11-4b94-bd57-67961ba65993\\"}]", "template_string": "pages/standard_page.html", "feed_image": null, "carousel_items": [], "related_links": []}	\N	6	1
 8	f	2019-06-14 15:39:23.78899-04	{"pk": 7, "path": "000100010002", "depth": 3, "numchild": 0, "title": "Person Index", "draft_title": "Person Index", "slug": "person-index", "content_type": 76, "live": true, "has_unpublished_changes": false, "url_path": "/home/person-index/", "owner": 1, "seo_title": "", "show_in_menus": true, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "subtitle": "", "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor.</p>", "feed_image": null, "related_links": []}	\N	7	1
-16	f	2019-06-14 15:41:35.810539-04	{"pk": 12, "path": "000100010003", "depth": 3, "numchild": 0, "title": "Event Index", "draft_title": "Event Index", "slug": "event-index", "content_type": 20, "live": true, "has_unpublished_changes": false, "url_path": "/home/event-index/", "owner": 1, "seo_title": "", "show_in_menus": true, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "intro": "", "feed_image": null, "related_links": []}	\N	12	1
 26	f	2019-06-14 15:45:09.09709-04	{"pk": 16, "path": "000100010004", "depth": 3, "numchild": 0, "title": "Blog Index", "draft_title": "Blog Index", "slug": "blog-index", "content_type": 61, "live": true, "has_unpublished_changes": false, "url_path": "/home/blog-index/", "owner": 1, "seo_title": "", "show_in_menus": true, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "intro": "", "feed_image": null, "related_links": []}	\N	16	1
 43	f	2019-06-14 15:52:15.105215-04	{"pk": 23, "path": "0001000100050003", "depth": 4, "numchild": 0, "title": "Gallery 3", "draft_title": "Gallery 3", "slug": "gallery-3", "content_type": 74, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery/gallery-3/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2019-06-14T19:51:57.430Z", "last_published_at": "2019-06-14T19:51:57.430Z", "latest_revision_created_at": "2019-06-14T19:51:57.430Z", "live_revision": 42, "intro": "", "collection": 2, "images_per_page": 20, "order_images_by": 1, "feed_image": 8}	\N	23	1
 12	f	2019-06-14 15:39:53.919791-04	{"pk": 10, "path": "0001000100020001", "depth": 4, "numchild": 0, "title": "Person Page 1", "draft_title": "Person Page 1", "slug": "person-page-1", "content_type": 78, "live": true, "has_unpublished_changes": false, "url_path": "/home/person-index/person-page-1/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "name_organization": "", "telephone": "", "telephone_2": "", "email": "", "email_2": "", "address_1": "", "address_2": "", "city": "", "country": "", "post_code": "", "role": null, "intro": "", "biography": "<p>\\n  \\t\\t<p><p>Lorem ipsum dolor sit amet, consectetur \\nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \\namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \\nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \\nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \\nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \\nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \\nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\\n ante id, luctus velit.</p><p>Fusce et diam quis ipsum pulvinar euismod \\nsit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor \\net dolor. Proin porttitor, nibh quis consequat posuere, dolor eros \\neleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec \\ngravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut \\nelementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis \\nid. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed\\n venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget\\n porttitor quam. In varius diam quis viverra porttutor.</p></p>\\n\\t</p>", "image": 7, "feed_image": null, "related_links": [], "tagged_items": []}	\N	10	1
 13	f	2019-06-14 15:40:22.068617-04	{"pk": 10, "path": "0001000100020003", "depth": 4, "numchild": 0, "title": "Person Page 3", "draft_title": "Person Page 1", "slug": "person-page-3", "content_type": 78, "live": true, "has_unpublished_changes": false, "url_path": "/home/person-index/person-page-3/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2019-06-14T19:39:54.276Z", "last_published_at": "2019-06-14T19:39:54.276Z", "latest_revision_created_at": "2019-06-14T19:39:53.919Z", "live_revision": 9, "name_organization": "", "telephone": "", "telephone_2": "", "email": "", "email_2": "", "address_1": "", "address_2": "", "city": "", "country": "", "post_code": "", "role": null, "intro": "", "biography": "<p>\\n  \\t\\t<p><p>Lorem ipsum dolor sit amet, consectetur \\nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \\namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \\nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \\nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \\nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \\nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \\nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\\n ante id, luctus velit.</p><p>Fusce et diam quis ipsum pulvinar euismod \\nsit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor \\net dolor. Proin porttitor, nibh quis consequat posuere, dolor eros \\neleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec \\ngravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut \\nelementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis \\nid. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed\\n venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget\\n porttitor quam. In varius diam quis viverra porttutor.</p></p>\\n\\t</p>", "image": 7, "feed_image": null, "related_links": [], "tagged_items": []}	\N	10	1
 14	f	2019-06-14 15:39:53.919791-04	{"pk": 11, "path": "0001000100020001", "depth": 4, "numchild": 0, "title": "Person Page 1", "draft_title": "Person Page 1", "slug": "person-page-1", "content_type": 78, "live": true, "has_unpublished_changes": false, "url_path": "/home/person-index/person-page-1/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "name_organization": "", "telephone": "", "telephone_2": "", "email": "", "email_2": "", "address_1": "", "address_2": "", "city": "", "country": "", "post_code": "", "role": null, "intro": "", "biography": "<p>\\n  \\t\\t<p><p>Lorem ipsum dolor sit amet, consectetur \\nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \\namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \\nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \\nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \\nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \\nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \\nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\\n ante id, luctus velit.</p><p>Fusce et diam quis ipsum pulvinar euismod \\nsit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor \\net dolor. Proin porttitor, nibh quis consequat posuere, dolor eros \\neleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec \\ngravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut \\nelementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis \\nid. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed\\n venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget\\n porttitor quam. In varius diam quis viverra porttutor.</p></p>\\n\\t</p>", "image": 7, "feed_image": null, "related_links": [], "tagged_items": []}	\N	11	1
 15	f	2019-06-14 15:40:41.298604-04	{"pk": 11, "path": "0001000100020004", "depth": 4, "numchild": 0, "title": "Person Page 4", "draft_title": "Person Page 1", "slug": "person-page-4", "content_type": 78, "live": true, "has_unpublished_changes": false, "url_path": "/home/person-index/person-page-4/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2019-06-14T19:39:54.276Z", "last_published_at": "2019-06-14T19:39:54.276Z", "latest_revision_created_at": "2019-06-14T19:39:53.919Z", "live_revision": 9, "name_organization": "", "telephone": "", "telephone_2": "", "email": "", "email_2": "", "address_1": "", "address_2": "", "city": "", "country": "", "post_code": "", "role": null, "intro": "", "biography": "<p>\\n  \\t\\t<p><p>Lorem ipsum dolor sit amet, consectetur \\nadipiscing elit. Aliquam et mauris eu nibh elementum blandit varius sit \\namet enim. Quisque massa leo, ornare in mattis vitae, vehicula \\nvestibulum diam. Phasellus id leo placerat, vehicula diam nec, interdum \\nmi. Nunc lacinia massa tristique nunc accumsan, eu dapibus odio feugiat.\\n Donec varius quam dictum placerat porttitor. Vivamus fermentum cursus \\nnibh in facilisis. Aenean in justo auctor, faucibus risus eu, semper \\nnisl. Ut nec suscipit nibh. Donec feugiat eget dui in rhoncus. Curabitur\\n imperdiet tortor ut quam tempus sagittis. Morbi lectus magna, viverra \\nut turpis a, dapibus sollicitudin diam. Morbi vel urna suscipit, sodales\\n ante id, luctus velit.</p><p>Fusce et diam quis ipsum pulvinar euismod \\nsit amet ac libero. Proin mauris ligula, egestas at tempus non, tempor \\net dolor. Proin porttitor, nibh quis consequat posuere, dolor eros \\neleifend nisi, ac semper ex nulla sit amet urna. Ut venenatis eros nec \\ngravida molestie. Integer hendrerit mollis odio vitae porttitor. Sed ut \\nelementum magna. Morbi laoreet odio lorem, eu fringilla nulla venenatis \\nid. Duis nisl erat, aliquet in tortor eget, ullamcorper varius quam. Sed\\n venenatis posuere ipsum, ut maximus ligula tristique fermentum. Ut eget\\n porttitor quam. In varius diam quis viverra porttutor.</p></p>\\n\\t</p>", "image": 7, "feed_image": null, "related_links": [], "tagged_items": []}	\N	11	1
-17	f	2019-06-14 15:43:18.218601-04	{"pk": 13, "path": "0001000100030001", "depth": 4, "numchild": 0, "title": "Events Page 1", "draft_title": "Events Page 1", "slug": "events-page-1", "content_type": 22, "live": true, "has_unpublished_changes": false, "url_path": "/home/event-index/events-page-1/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "date_from": "2022-06-01", "date_to": null, "time_from": null, "time_to": null, "audience": null, "location": "ChrisDev", "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor.</p>", "cost": null, "signup_link": "", "feed_image": 12, "carousel_items": [], "related_links": [], "speakers": [], "tagged_items": []}	\N	13	1
-18	f	2019-06-14 15:43:18.218601-04	{"pk": 14, "path": "0001000100030001", "depth": 4, "numchild": 0, "title": "Events Page 1", "draft_title": "Events Page 1", "slug": "events-page-1", "content_type": 22, "live": true, "has_unpublished_changes": false, "url_path": "/home/event-index/events-page-1/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "date_from": "2022-06-01", "date_to": null, "time_from": null, "time_to": null, "audience": null, "location": "ChrisDev", "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor.</p>", "cost": null, "signup_link": "", "feed_image": 12, "carousel_items": [], "related_links": [], "speakers": [], "tagged_items": []}	\N	14	1
-19	f	2019-06-14 15:43:32.192461-04	{"pk": 14, "path": "0001000100030002", "depth": 4, "numchild": 0, "title": "Events Page 2", "draft_title": "Events Page 1", "slug": "events-page-2", "content_type": 22, "live": true, "has_unpublished_changes": false, "url_path": "/home/event-index/events-page-2/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2019-06-14T19:43:18.626Z", "last_published_at": "2019-06-14T19:43:18.626Z", "latest_revision_created_at": "2019-06-14T19:43:18.218Z", "live_revision": 17, "date_from": "2022-06-01", "date_to": null, "time_from": null, "time_to": null, "audience": null, "location": "ChrisDev", "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor.</p>", "cost": null, "signup_link": "", "feed_image": 12, "carousel_items": [], "related_links": [], "speakers": [], "tagged_items": []}	\N	14	1
-20	f	2019-06-14 15:43:54.089002-04	{"pk": 14, "path": "0001000100030002", "depth": 4, "numchild": 0, "title": "Events Page 2", "draft_title": "Events Page 2", "slug": "events-page-2", "content_type": 22, "live": true, "has_unpublished_changes": false, "url_path": "/home/event-index/events-page-2/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2019-06-14T19:43:32.192Z", "last_published_at": "2019-06-14T19:43:32.192Z", "latest_revision_created_at": "2019-06-14T19:43:32.192Z", "live_revision": 19, "date_from": "2022-06-10", "date_to": null, "time_from": null, "time_to": null, "audience": null, "location": "ChrisDev", "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor.</p>", "cost": null, "signup_link": "", "feed_image": 5, "carousel_items": [], "related_links": [], "speakers": [], "tagged_items": []}	\N	14	1
-25	f	2019-06-14 15:44:25.679476-04	{"pk": 15, "path": "0001000100030003", "depth": 4, "numchild": 0, "title": "Events Page 3", "draft_title": "Events Page 3", "slug": "events-page-3", "content_type": 22, "live": true, "has_unpublished_changes": false, "url_path": "/home/event-index/events-page-3/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2019-06-14T19:44:07.550Z", "last_published_at": "2019-06-14T19:44:07.550Z", "latest_revision_created_at": "2019-06-14T19:44:07.550Z", "live_revision": 24, "date_from": "2022-06-10", "date_to": null, "time_from": null, "time_to": null, "audience": null, "location": "ChrisDev", "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor.</p>", "cost": null, "signup_link": "", "feed_image": 8, "carousel_items": [], "related_links": [], "speakers": [], "tagged_items": []}	\N	15	1
-24	f	2019-06-14 15:44:07.550178-04	{"pk": 15, "path": "0001000100030003", "depth": 4, "numchild": 0, "title": "Events Page 3", "draft_title": "Events Page 2", "slug": "events-page-3", "content_type": 22, "live": true, "has_unpublished_changes": false, "url_path": "/home/event-index/events-page-3/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2019-06-14T19:43:32.192Z", "last_published_at": "2019-06-14T19:43:54.565Z", "latest_revision_created_at": "2019-06-14T19:43:54.089Z", "live_revision": 20, "date_from": "2022-06-10", "date_to": null, "time_from": null, "time_to": null, "audience": null, "location": "ChrisDev", "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor.</p>", "cost": null, "signup_link": "", "feed_image": 5, "carousel_items": [], "related_links": [], "speakers": [], "tagged_items": []}	\N	15	1
-23	f	2019-06-14 15:43:54.089002-04	{"pk": 15, "path": "0001000100030002", "depth": 4, "numchild": 0, "title": "Events Page 2", "draft_title": "Events Page 2", "slug": "events-page-2", "content_type": 22, "live": true, "has_unpublished_changes": false, "url_path": "/home/event-index/events-page-2/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2019-06-14T19:43:32.192Z", "last_published_at": "2019-06-14T19:43:32.192Z", "latest_revision_created_at": "2019-06-14T19:43:32.192Z", "live_revision": 19, "date_from": "2022-06-10", "date_to": null, "time_from": null, "time_to": null, "audience": null, "location": "ChrisDev", "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor.</p>", "cost": null, "signup_link": "", "feed_image": 5, "carousel_items": [], "related_links": [], "speakers": [], "tagged_items": []}	\N	15	1
-22	f	2019-06-14 15:43:32.192461-04	{"pk": 15, "path": "0001000100030002", "depth": 4, "numchild": 0, "title": "Events Page 2", "draft_title": "Events Page 1", "slug": "events-page-2", "content_type": 22, "live": true, "has_unpublished_changes": false, "url_path": "/home/event-index/events-page-2/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2019-06-14T19:43:18.626Z", "last_published_at": "2019-06-14T19:43:18.626Z", "latest_revision_created_at": "2019-06-14T19:43:18.218Z", "live_revision": 17, "date_from": "2022-06-01", "date_to": null, "time_from": null, "time_to": null, "audience": null, "location": "ChrisDev", "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor.</p>", "cost": null, "signup_link": "", "feed_image": 12, "carousel_items": [], "related_links": [], "speakers": [], "tagged_items": []}	\N	15	1
-21	f	2019-06-14 15:43:18.218601-04	{"pk": 15, "path": "0001000100030001", "depth": 4, "numchild": 0, "title": "Events Page 1", "draft_title": "Events Page 1", "slug": "events-page-1", "content_type": 22, "live": true, "has_unpublished_changes": false, "url_path": "/home/event-index/events-page-1/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "date_from": "2022-06-01", "date_to": null, "time_from": null, "time_to": null, "audience": null, "location": "ChrisDev", "body": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor.</p>", "cost": null, "signup_link": "", "feed_image": 12, "carousel_items": [], "related_links": [], "speakers": [], "tagged_items": []}	\N	15	1
 38	f	2019-06-14 15:51:18.993173-04	{"pk": 22, "path": "0001000100050001", "depth": 4, "numchild": 0, "title": "Gallery 1", "draft_title": "Gallery 1", "slug": "gallery-1", "content_type": 74, "live": true, "has_unpublished_changes": false, "url_path": "/home/photo-gallery/gallery-1/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "intro": "", "collection": 2, "images_per_page": 20, "order_images_by": 1, "feed_image": 12}	\N	22	1
 29	f	2019-06-14 15:47:14.624055-04	{"pk": 18, "path": "0001000100040002", "depth": 4, "numchild": 0, "title": "Blog Page 2", "draft_title": "Blog Page 1", "slug": "blog-page-2", "content_type": 63, "live": true, "has_unpublished_changes": false, "url_path": "/home/blog-index/blog-page-2/", "owner": 1, "seo_title": "", "show_in_menus": true, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": "2019-06-14T19:47:02.496Z", "last_published_at": "2019-06-14T19:47:02.496Z", "latest_revision_created_at": "2019-06-14T19:47:02.196Z", "live_revision": 27, "intro": "<p><p>Lorem ipsum dolor sit amet, \\nconsectetur adipiscing elit. Praesent lobortis orci ex, a interdum justo\\n dapibus eu. Vestibulum sit amet risus et dolor tempor faucibus non ac \\nenim. Sed et sapien gravida, sollicitudin enim at, facilisis sapien. \\nNunc eget nibh ac libero tempus placerat. Duis quis turpis libero. Donec\\n vel tincidunt arcu. Nulla congue at risus eget egestas.</p><p>Ut eget \\nsapien ut diam feugiat fringilla. Curabitur malesuada mauris felis, id \\nblandit odio consequat vitae. Ut hendrerit hendrerit ante et fermentum. \\nMauris aliquam varius lorem, sed feugiat justo iaculis eget. Etiam \\nornare non neque at ultrices. Phasellus quam elit, lobortis ac imperdiet\\n vitae, scelerisque convallis felis. Fusce a vehicula orci, et semper \\nnibh. Aenean id lacus eget odio dignissim venenatis. Cras sagittis \\nlectus diam, ut pulvinar neque venenatis in.</p></p>\\n          \\t\\tLorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent \\nlobortis orci ex, a interdum justo dapibus eu. Vestibulum sit amet risus\\n et dolor tempor faucibus non ac enim. Sed et sapien gravida, \\nsollicitudin enim at, facilisis sapien. Nunc eget nibh ac libero tempus \\nplacerat. Duis quis turpis libero. Donec vel tincidunt arcu. Nulla \\ncongue at risus eget egestas.", "body": "[{\\"type\\": \\"paragraph\\", \\"value\\": \\"<p><p>Lorem ipsum dolor sit amet, \\\\nconsectetur adipiscing elit. Praesent lobortis orci ex, a interdum justo\\\\n dapibus eu. Vestibulum sit amet risus et dolor tempor faucibus non ac \\\\nenim. Sed et sapien gravida, sollicitudin enim at, facilisis sapien. \\\\nNunc eget nibh ac libero tempus placerat. Duis quis turpis libero. Donec\\\\n vel tincidunt arcu. Nulla congue at risus eget egestas.</p><p>Ut eget \\\\nsapien ut diam feugiat fringilla. Curabitur malesuada mauris felis, id \\\\nblandit odio consequat vitae. Ut hendrerit hendrerit ante et fermentum. \\\\nMauris aliquam varius lorem, sed feugiat justo iaculis eget. Etiam \\\\nornare non neque at ultrices. Phasellus quam elit, lobortis ac imperdiet\\\\n vitae, scelerisque convallis felis. Fusce a vehicula orci, et semper \\\\nnibh. Aenean id lacus eget odio dignissim venenatis. Cras sagittis \\\\nlectus diam, ut pulvinar neque venenatis in.</p></p>\\\\n          \\\\t\\\\t\\\\n              \\\\t\\\\t<p><p>Lorem ipsum dolor sit amet, \\\\nconsectetur adipiscing elit. Praesent lobortis orci ex, a interdum justo\\\\n dapibus eu. Vestibulum sit amet risus et dolor tempor faucibus non ac \\\\nenim. Sed et sapien gravida, sollicitudin enim at, facilisis sapien. \\\\nNunc eget nibh ac libero tempus placerat. Duis quis turpis libero. Donec\\\\n vel tincidunt arcu. Nulla congue at risus eget egestas.</p><p>Ut eget \\\\nsapien ut diam feugiat fringilla. Curabitur malesuada mauris felis, id \\\\nblandit odio consequat vitae. Ut hendrerit hendrerit ante et fermentum. \\\\nMauris aliquam varius lorem, sed feugiat justo iaculis eget. Etiam \\\\nornare non neque at ultrices. Phasellus quam elit, lobortis ac imperdiet\\\\n vitae, scelerisque convallis felis. Fusce a vehicula orci, et semper \\\\nnibh. Aenean id lacus eget odio dignissim venenatis. Cras sagittis \\\\nlectus diam, ut pulvinar neque venenatis in.</p></p>\\\\n          \\\\t\\\\t\\\\n              \\\\t\\\\t<p><p>Lorem ipsum dolor sit amet, \\\\nconsectetur adipiscing elit. Praesent lobortis orci ex, a interdum justo\\\\n dapibus eu. Vestibulum sit amet risus et dolor tempor faucibus non ac \\\\nenim. Sed et sapien gravida, sollicitudin enim at, facilisis sapien. \\\\nNunc eget nibh ac libero tempus placerat. Duis quis turpis libero. Donec\\\\n vel tincidunt arcu. Nulla congue at risus eget egestas.</p><p>Ut eget \\\\nsapien ut diam feugiat fringilla. Curabitur malesuada mauris felis, id \\\\nblandit odio consequat vitae. Ut hendrerit hendrerit ante et fermentum. \\\\nMauris aliquam varius lorem, sed feugiat justo iaculis eget. Etiam \\\\nornare non neque at ultrices. Phasellus quam elit, lobortis ac imperdiet\\\\n vitae, scelerisque convallis felis. Fusce a vehicula orci, et semper \\\\nnibh. Aenean id lacus eget odio dignissim venenatis. Cras sagittis \\\\nlectus diam, ut pulvinar neque venenatis in.</p></p>\\\\n          \\\\t\\\\t\\\\n              \\\\t\\\\t<p><p>Lorem ipsum dolor sit amet, \\\\nconsectetur adipiscing elit. Praesent lobortis orci ex, a interdum justo\\\\n dapibus eu. Vestibulum sit amet risus et dolor tempor faucibus non ac \\\\nenim. Sed et sapien gravida, sollicitudin enim at, facilisis sapien. \\\\nNunc eget nibh ac libero tempus placerat. Duis quis turpis libero. Donec\\\\n vel tincidunt arcu. Nulla congue at risus eget egestas.</p><p>Ut eget \\\\nsapien ut diam feugiat fringilla. Curabitur malesuada mauris felis, id \\\\nblandit odio consequat vitae. Ut hendrerit hendrerit ante et fermentum. \\\\nMauris aliquam varius lorem, sed feugiat justo iaculis eget. Etiam \\\\nornare non neque at ultrices. Phasellus quam elit, lobortis ac imperdiet\\\\n vitae, scelerisque convallis felis. Fusce a vehicula orci, et semper \\\\nnibh. Aenean id lacus eget odio dignissim venenatis. Cras sagittis \\\\nlectus diam, ut pulvinar neque venenatis in.</p></p>\\\\n          \\\\t\\\\tLorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent \\\\nlobortis orci ex, a interdum justo dapibus eu. Vestibulum sit amet risus\\\\n et dolor tempor faucibus non ac enim. Sed et sapien gravida, \\\\nsollicitudin enim at, facilisis sapien. Nunc eget nibh ac libero tempus \\\\nplacerat. Duis quis turpis libero. Donec vel tincidunt arcu. Nulla \\\\ncongue at risus eget egestas.\\", \\"id\\": \\"68c44c93-1225-4fe0-b4dc-1a25cf8e41ff\\"}, {\\"type\\": \\"paragraph\\", \\"value\\": \\"<p>Ut eget sapien ut diam feugiat fringilla. Curabitur malesuada mauris \\\\nfelis, id blandit odio consequat vitae. Ut hendrerit hendrerit ante et \\\\nfermentum. Mauris aliquam varius lorem, sed feugiat justo iaculis eget. \\\\nEtiam ornare non neque at ultrices. Phasellus quam elit, lobortis ac \\\\nimperdiet vitae, scelerisque convallis felis. Fusce a vehicula orci, et \\\\nsemper nibh. Aenean id lacus eget odio dignissim venenatis. Cras \\\\nsagittis lectus diam, ut pulvinar neque venenatis in.</p>\\", \\"id\\": \\"5f1ff927-c1d7-43df-b714-048e3faa4354\\"}, {\\"type\\": \\"image\\", \\"value\\": 12, \\"id\\": \\"1b960d50-3fdc-44ec-864d-23a0998ac5c0\\"}, {\\"type\\": \\"paragraph\\", \\"value\\": \\"<p>Praesent a massa id est egestas volutpat sed vitae dolor. Class aptent \\\\ntaciti sociosqu ad litora torquent per conubia nostra, per inceptos \\\\nhimenaeos. Duis sed dolor metus. Interdum et malesuada fames ac ante \\\\nipsum primis in faucibus. Nunc porttitor lacus eget bibendum commodo. \\\\nDonec faucibus ipsum sit amet sem interdum, et sagittis tortor ornare. \\\\nQuisque tristique neque gravida nisi sodales mattis. Morbi malesuada \\\\nante nisi, vel venenatis lacus ultricies eu. Pellentesque id risus sit \\\\namet enim lobortis luctus. Nullam dolor purus, efficitur in massa ac, \\\\npellentesque pulvinar dui.</p>\\", \\"id\\": \\"416d47f8-c062-4a44-8d08-ed816bf0c7a7\\"}]", "date": "2019-06-14", "feed_image": 12, "carousel_items": [], "related_links": [], "tagged_items": [{"pk": 3, "tag": 1, "content_object": 18}, {"pk": 4, "tag": 2, "content_object": 18}]}	\N	18	1
 28	f	2019-06-14 15:47:02.196136-04	{"pk": 18, "path": "0001000100040001", "depth": 4, "numchild": 0, "title": "Blog Page 1", "draft_title": "Blog Page 1", "slug": "blog-page-1", "content_type": 63, "live": true, "has_unpublished_changes": false, "url_path": "/home/blog-index/blog-page-1/", "owner": 1, "seo_title": "", "show_in_menus": true, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "intro": "<p><p>Lorem ipsum dolor sit amet, \\nconsectetur adipiscing elit. Praesent lobortis orci ex, a interdum justo\\n dapibus eu. Vestibulum sit amet risus et dolor tempor faucibus non ac \\nenim. Sed et sapien gravida, sollicitudin enim at, facilisis sapien. \\nNunc eget nibh ac libero tempus placerat. Duis quis turpis libero. Donec\\n vel tincidunt arcu. Nulla congue at risus eget egestas.</p><p>Ut eget \\nsapien ut diam feugiat fringilla. Curabitur malesuada mauris felis, id \\nblandit odio consequat vitae. Ut hendrerit hendrerit ante et fermentum. \\nMauris aliquam varius lorem, sed feugiat justo iaculis eget. Etiam \\nornare non neque at ultrices. Phasellus quam elit, lobortis ac imperdiet\\n vitae, scelerisque convallis felis. Fusce a vehicula orci, et semper \\nnibh. Aenean id lacus eget odio dignissim venenatis. Cras sagittis \\nlectus diam, ut pulvinar neque venenatis in.</p></p>\\n          \\t\\tLorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent \\nlobortis orci ex, a interdum justo dapibus eu. Vestibulum sit amet risus\\n et dolor tempor faucibus non ac enim. Sed et sapien gravida, \\nsollicitudin enim at, facilisis sapien. Nunc eget nibh ac libero tempus \\nplacerat. Duis quis turpis libero. Donec vel tincidunt arcu. Nulla \\ncongue at risus eget egestas.", "body": "[{\\"type\\": \\"paragraph\\", \\"value\\": \\"<p><p>Lorem ipsum dolor sit amet, \\\\nconsectetur adipiscing elit. Praesent lobortis orci ex, a interdum justo\\\\n dapibus eu. Vestibulum sit amet risus et dolor tempor faucibus non ac \\\\nenim. Sed et sapien gravida, sollicitudin enim at, facilisis sapien. \\\\nNunc eget nibh ac libero tempus placerat. Duis quis turpis libero. Donec\\\\n vel tincidunt arcu. Nulla congue at risus eget egestas.</p><p>Ut eget \\\\nsapien ut diam feugiat fringilla. Curabitur malesuada mauris felis, id \\\\nblandit odio consequat vitae. Ut hendrerit hendrerit ante et fermentum. \\\\nMauris aliquam varius lorem, sed feugiat justo iaculis eget. Etiam \\\\nornare non neque at ultrices. Phasellus quam elit, lobortis ac imperdiet\\\\n vitae, scelerisque convallis felis. Fusce a vehicula orci, et semper \\\\nnibh. Aenean id lacus eget odio dignissim venenatis. Cras sagittis \\\\nlectus diam, ut pulvinar neque venenatis in.</p></p>\\\\n          \\\\t\\\\t\\\\n              \\\\t\\\\t<p><p>Lorem ipsum dolor sit amet, \\\\nconsectetur adipiscing elit. Praesent lobortis orci ex, a interdum justo\\\\n dapibus eu. Vestibulum sit amet risus et dolor tempor faucibus non ac \\\\nenim. Sed et sapien gravida, sollicitudin enim at, facilisis sapien. \\\\nNunc eget nibh ac libero tempus placerat. Duis quis turpis libero. Donec\\\\n vel tincidunt arcu. Nulla congue at risus eget egestas.</p><p>Ut eget \\\\nsapien ut diam feugiat fringilla. Curabitur malesuada mauris felis, id \\\\nblandit odio consequat vitae. Ut hendrerit hendrerit ante et fermentum. \\\\nMauris aliquam varius lorem, sed feugiat justo iaculis eget. Etiam \\\\nornare non neque at ultrices. Phasellus quam elit, lobortis ac imperdiet\\\\n vitae, scelerisque convallis felis. Fusce a vehicula orci, et semper \\\\nnibh. Aenean id lacus eget odio dignissim venenatis. Cras sagittis \\\\nlectus diam, ut pulvinar neque venenatis in.</p></p>\\\\n          \\\\t\\\\t\\\\n              \\\\t\\\\t<p><p>Lorem ipsum dolor sit amet, \\\\nconsectetur adipiscing elit. Praesent lobortis orci ex, a interdum justo\\\\n dapibus eu. Vestibulum sit amet risus et dolor tempor faucibus non ac \\\\nenim. Sed et sapien gravida, sollicitudin enim at, facilisis sapien. \\\\nNunc eget nibh ac libero tempus placerat. Duis quis turpis libero. Donec\\\\n vel tincidunt arcu. Nulla congue at risus eget egestas.</p><p>Ut eget \\\\nsapien ut diam feugiat fringilla. Curabitur malesuada mauris felis, id \\\\nblandit odio consequat vitae. Ut hendrerit hendrerit ante et fermentum. \\\\nMauris aliquam varius lorem, sed feugiat justo iaculis eget. Etiam \\\\nornare non neque at ultrices. Phasellus quam elit, lobortis ac imperdiet\\\\n vitae, scelerisque convallis felis. Fusce a vehicula orci, et semper \\\\nnibh. Aenean id lacus eget odio dignissim venenatis. Cras sagittis \\\\nlectus diam, ut pulvinar neque venenatis in.</p></p>\\\\n          \\\\t\\\\t\\\\n              \\\\t\\\\t<p><p>Lorem ipsum dolor sit amet, \\\\nconsectetur adipiscing elit. Praesent lobortis orci ex, a interdum justo\\\\n dapibus eu. Vestibulum sit amet risus et dolor tempor faucibus non ac \\\\nenim. Sed et sapien gravida, sollicitudin enim at, facilisis sapien. \\\\nNunc eget nibh ac libero tempus placerat. Duis quis turpis libero. Donec\\\\n vel tincidunt arcu. Nulla congue at risus eget egestas.</p><p>Ut eget \\\\nsapien ut diam feugiat fringilla. Curabitur malesuada mauris felis, id \\\\nblandit odio consequat vitae. Ut hendrerit hendrerit ante et fermentum. \\\\nMauris aliquam varius lorem, sed feugiat justo iaculis eget. Etiam \\\\nornare non neque at ultrices. Phasellus quam elit, lobortis ac imperdiet\\\\n vitae, scelerisque convallis felis. Fusce a vehicula orci, et semper \\\\nnibh. Aenean id lacus eget odio dignissim venenatis. Cras sagittis \\\\nlectus diam, ut pulvinar neque venenatis in.</p></p>\\\\n          \\\\t\\\\tLorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent \\\\nlobortis orci ex, a interdum justo dapibus eu. Vestibulum sit amet risus\\\\n et dolor tempor faucibus non ac enim. Sed et sapien gravida, \\\\nsollicitudin enim at, facilisis sapien. Nunc eget nibh ac libero tempus \\\\nplacerat. Duis quis turpis libero. Donec vel tincidunt arcu. Nulla \\\\ncongue at risus eget egestas.\\", \\"id\\": \\"68c44c93-1225-4fe0-b4dc-1a25cf8e41ff\\"}, {\\"type\\": \\"paragraph\\", \\"value\\": \\"<p>Ut eget sapien ut diam feugiat fringilla. Curabitur malesuada mauris \\\\nfelis, id blandit odio consequat vitae. Ut hendrerit hendrerit ante et \\\\nfermentum. Mauris aliquam varius lorem, sed feugiat justo iaculis eget. \\\\nEtiam ornare non neque at ultrices. Phasellus quam elit, lobortis ac \\\\nimperdiet vitae, scelerisque convallis felis. Fusce a vehicula orci, et \\\\nsemper nibh. Aenean id lacus eget odio dignissim venenatis. Cras \\\\nsagittis lectus diam, ut pulvinar neque venenatis in.</p>\\", \\"id\\": \\"5f1ff927-c1d7-43df-b714-048e3faa4354\\"}, {\\"type\\": \\"image\\", \\"value\\": 12, \\"id\\": \\"1b960d50-3fdc-44ec-864d-23a0998ac5c0\\"}, {\\"type\\": \\"paragraph\\", \\"value\\": \\"<p>Praesent a massa id est egestas volutpat sed vitae dolor. Class aptent \\\\ntaciti sociosqu ad litora torquent per conubia nostra, per inceptos \\\\nhimenaeos. Duis sed dolor metus. Interdum et malesuada fames ac ante \\\\nipsum primis in faucibus. Nunc porttitor lacus eget bibendum commodo. \\\\nDonec faucibus ipsum sit amet sem interdum, et sagittis tortor ornare. \\\\nQuisque tristique neque gravida nisi sodales mattis. Morbi malesuada \\\\nante nisi, vel venenatis lacus ultricies eu. Pellentesque id risus sit \\\\namet enim lobortis luctus. Nullam dolor purus, efficitur in massa ac, \\\\npellentesque pulvinar dui.</p>\\", \\"id\\": \\"416d47f8-c062-4a44-8d08-ed816bf0c7a7\\"}]", "date": "2019-06-14", "feed_image": 12, "carousel_items": [], "related_links": [], "tagged_items": [{"pk": 3, "tag": 1, "content_object": 18}, {"pk": 4, "tag": 2, "content_object": 18}]}	\N	18	1
@@ -4669,6 +4986,8 @@ COPY public.wagtailcore_pagerevision (id, submitted_for_moderation, created_at, 
 50	f	2019-06-14 15:54:39.054947-04	{"pk": 26, "path": "0001000100060001", "depth": 4, "numchild": 0, "title": "Sample Documents", "draft_title": "Sample Documents", "slug": "sample-documents", "content_type": 72, "live": true, "has_unpublished_changes": false, "url_path": "/home/documents-gallery/sample-documents/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "feed_image": null, "tagged_items": [{"pk": 1, "tag": 3, "content_object": 26}]}	\N	26	1
 51	f	2019-06-14 15:58:05.505996-04	{"pk": 27, "path": "000100010007", "depth": 3, "numchild": 0, "title": "Contact Us", "draft_title": "Contact Us", "slug": "contact-us", "content_type": 68, "live": true, "has_unpublished_changes": false, "url_path": "/home/contact-us/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "name_organization": "ChrisDev", "telephone": "+1 868-773-4644", "telephone_2": "", "email": "cclarke@chrisdev.com", "email_2": "", "address_1": "A3 St Benedicts Gardens", "address_2": "", "city": "Tunapuna", "country": "Trinidad", "post_code": "", "to_address": "cclarke@chrisdev.com", "from_address": "support@chrisdev.com", "subject": "Website Contact Form", "intro": "", "thank_you_text": "<p>Thanks for reaching out<br/></p>", "feed_image": null, "form_fields": [{"pk": 1, "sort_order": 0, "label": "Name", "field_type": "singleline", "required": true, "choices": "", "default_value": "", "help_text": "", "page": 27}, {"pk": 2, "sort_order": 1, "label": "Email", "field_type": "singleline", "required": true, "choices": "", "default_value": "", "help_text": "", "page": 27}, {"pk": 3, "sort_order": 2, "label": "Subject", "field_type": "singleline", "required": true, "choices": "", "default_value": "", "help_text": "", "page": 27}, {"pk": 4, "sort_order": 3, "label": "Message", "field_type": "multiline", "required": true, "choices": "", "default_value": "", "help_text": "", "page": 27}]}	\N	27	1
 5	f	2019-06-14 15:36:19.536258-04	{"pk": 4, "path": "000100010001", "depth": 3, "numchild": 0, "title": "Standard Index", "draft_title": "Standard Index", "slug": "standard-index", "content_type": 32, "live": true, "has_unpublished_changes": false, "url_path": "/home/standard-index/", "owner": 1, "seo_title": "", "show_in_menus": true, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "subtitle": "", "intro": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam et \\nmauris eu nibh elementum blandit varius sit amet enim. Quisque massa \\nleo, ornare in mattis vitae, vehicula vestibulum diam. Phasellus id leo \\nplacerat, vehicula diam nec, interdum mi. Nunc lacinia massa tristique \\nnunc accumsan, eu dapibus odio feugiat. Donec varius quam dictum \\nplacerat porttitor. Vivamus fermentum cursus nibh in facilisis. Aenean \\nin justo auctor, faucibus risus eu, semper nisl. Ut nec suscipit nibh. \\nDonec feugiat eget dui in rhoncus. Curabitur imperdiet tortor ut quam \\ntempus sagittis. Morbi lectus magna, viverra ut turpis a, dapibus \\nsollicitudin diam. Morbi vel urna suscipit, sodales ante id, luctus \\nvelit.</p>", "template_string": "pages/standard_index_page.html", "feed_image": 12, "related_links": []}	\N	4	1
+53	f	2019-06-17 11:23:22.820909-04	{"pk": 28, "path": "000100010008", "depth": 3, "numchild": 0, "title": "Calendar", "draft_title": "Calendar", "slug": "calendar", "content_type": 87, "live": true, "has_unpublished_changes": false, "url_path": "/home/calendar/", "owner": 1, "seo_title": "", "show_in_menus": true, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "intro": "", "view_choices": "L,W,M", "default_view": "M"}	\N	28	1
+54	f	2019-06-17 11:32:10.673548-04	{"pk": 29, "path": "0001000100040001", "depth": 4, "numchild": 0, "title": "Events 1", "draft_title": "Events 1", "slug": "events-1", "content_type": 94, "live": true, "has_unpublished_changes": false, "url_path": "/home/calendar/events-1/", "owner": 1, "seo_title": "", "show_in_menus": false, "search_description": "", "go_live_at": null, "expire_at": null, "expired": false, "locked": false, "first_published_at": null, "last_published_at": null, "latest_revision_created_at": null, "live_revision": null, "uid": "3f56be10-6d0c-44ba-ab9b-cdf64054a19a", "category": null, "image": 12, "time_from": "09:00:00", "time_to": null, "tz": "UTC", "group_page": null, "details": "", "location": "ChrisDev", "website": "", "date": "2019-06-29"}	\N	29	1
 \.
 
 
@@ -4820,6 +5139,7 @@ COPY public.wagtailimages_rendition (id, file, width, height, focal_point_key, f
 68	images/postgresql.max-800x600.png	512	512		max-800x600	9
 69	images/digital_ocean.original_pjO15CT.png	512	512		original	4
 70	images/digital_ocean.max-800x600.png	512	512		max-800x600	4
+71	images/wagtail.width-350.jpg	350	134		width-350	12
 \.
 
 
@@ -4895,7 +5215,7 @@ SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 14, true);
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.auth_permission_id_seq', 341, true);
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 393, true);
 
 
 --
@@ -4951,14 +5271,14 @@ SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1, false);
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.django_content_type_id_seq', 86, true);
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 99, true);
 
 
 --
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 210, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 225, true);
 
 
 --
@@ -5008,6 +5328,13 @@ SELECT pg_catalog.setval('public.events_eventpagespeaker_id_seq', 1, false);
 --
 
 SELECT pg_catalog.setval('public.events_eventpagetag_id_seq', 1, false);
+
+
+--
+-- Name: joyous_eventcategory_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.joyous_eventcategory_id_seq', 1, false);
 
 
 --
@@ -5126,7 +5453,7 @@ SELECT pg_catalog.setval('public.people_personrole_id_seq', 1, false);
 -- Name: postgres_search_indexentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.postgres_search_indexentry_id_seq', 172, true);
+SELECT pg_catalog.setval('public.postgres_search_indexentry_id_seq', 180, true);
 
 
 --
@@ -5259,14 +5586,14 @@ SELECT pg_catalog.setval('public.wagtailcore_grouppagepermission_id_seq', 6, tru
 -- Name: wagtailcore_page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.wagtailcore_page_id_seq', 27, true);
+SELECT pg_catalog.setval('public.wagtailcore_page_id_seq', 29, true);
 
 
 --
 -- Name: wagtailcore_pagerevision_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.wagtailcore_pagerevision_id_seq', 52, true);
+SELECT pg_catalog.setval('public.wagtailcore_pagerevision_id_seq', 54, true);
 
 
 --
@@ -5322,7 +5649,7 @@ SELECT pg_catalog.setval('public.wagtailimages_image_id_seq', 14, true);
 -- Name: wagtailimages_rendition_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.wagtailimages_rendition_id_seq', 70, true);
+SELECT pg_catalog.setval('public.wagtailimages_rendition_id_seq', 71, true);
 
 
 --
@@ -5670,6 +5997,86 @@ ALTER TABLE ONLY public.gallery_galleryindex
 
 ALTER TABLE ONLY public.gallery_photogalleryindexpage
     ADD CONSTRAINT gallery_photogalleryindexpage_pkey PRIMARY KEY (page_ptr_id);
+
+
+--
+-- Name: joyous_calendarpage joyous_calendarpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_calendarpage
+    ADD CONSTRAINT joyous_calendarpage_pkey PRIMARY KEY (page_ptr_id);
+
+
+--
+-- Name: joyous_cancellationpage joyous_cancellationpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_cancellationpage
+    ADD CONSTRAINT joyous_cancellationpage_pkey PRIMARY KEY (page_ptr_id);
+
+
+--
+-- Name: joyous_eventcategory joyous_eventcategory_code_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_eventcategory
+    ADD CONSTRAINT joyous_eventcategory_code_key UNIQUE (code);
+
+
+--
+-- Name: joyous_eventcategory joyous_eventcategory_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_eventcategory
+    ADD CONSTRAINT joyous_eventcategory_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: joyous_extrainfopage joyous_extrainfopage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_extrainfopage
+    ADD CONSTRAINT joyous_extrainfopage_pkey PRIMARY KEY (page_ptr_id);
+
+
+--
+-- Name: joyous_grouppage joyous_grouppage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_grouppage
+    ADD CONSTRAINT joyous_grouppage_pkey PRIMARY KEY (page_ptr_id);
+
+
+--
+-- Name: joyous_multidayeventpage joyous_multidayeventpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_multidayeventpage
+    ADD CONSTRAINT joyous_multidayeventpage_pkey PRIMARY KEY (page_ptr_id);
+
+
+--
+-- Name: joyous_postponementpage joyous_postponementpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_postponementpage
+    ADD CONSTRAINT joyous_postponementpage_pkey PRIMARY KEY (cancellationpage_ptr_id);
+
+
+--
+-- Name: joyous_recurringeventpage joyous_recurringeventpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_recurringeventpage
+    ADD CONSTRAINT joyous_recurringeventpage_pkey PRIMARY KEY (page_ptr_id);
+
+
+--
+-- Name: joyous_simpleeventpage joyous_simpleeventpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_simpleeventpage
+    ADD CONSTRAINT joyous_simpleeventpage_pkey PRIMARY KEY (page_ptr_id);
 
 
 --
@@ -6742,6 +7149,146 @@ CREATE INDEX gallery_galleryindex_feed_image_id_026d6012 ON public.gallery_galle
 --
 
 CREATE INDEX gallery_photogalleryindexpage_feed_image_id_a5e0841c ON public.gallery_photogalleryindexpage USING btree (feed_image_id);
+
+
+--
+-- Name: joyous_cancellationpage_overrides_id_dd65c498; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_cancellationpage_overrides_id_dd65c498 ON public.joyous_cancellationpage USING btree (overrides_id);
+
+
+--
+-- Name: joyous_eventcategory_code_c956fd3a_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_eventcategory_code_c956fd3a_like ON public.joyous_eventcategory USING btree (code varchar_pattern_ops);
+
+
+--
+-- Name: joyous_extrainfopage_overrides_id_504a3667; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_extrainfopage_overrides_id_504a3667 ON public.joyous_extrainfopage USING btree (overrides_id);
+
+
+--
+-- Name: joyous_multidayeventpage_category_id_49c850c5; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_multidayeventpage_category_id_49c850c5 ON public.joyous_multidayeventpage USING btree (category_id);
+
+
+--
+-- Name: joyous_multidayeventpage_group_page_id_1c4ff29c; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_multidayeventpage_group_page_id_1c4ff29c ON public.joyous_multidayeventpage USING btree (group_page_id);
+
+
+--
+-- Name: joyous_multidayeventpage_image_id_1ca84448; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_multidayeventpage_image_id_1ca84448 ON public.joyous_multidayeventpage USING btree (image_id);
+
+
+--
+-- Name: joyous_multidayeventpage_uid_991f7af6; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_multidayeventpage_uid_991f7af6 ON public.joyous_multidayeventpage USING btree (uid);
+
+
+--
+-- Name: joyous_multidayeventpage_uid_991f7af6_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_multidayeventpage_uid_991f7af6_like ON public.joyous_multidayeventpage USING btree (uid varchar_pattern_ops);
+
+
+--
+-- Name: joyous_postponementpage_category_id_589f353c; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_postponementpage_category_id_589f353c ON public.joyous_postponementpage USING btree (category_id);
+
+
+--
+-- Name: joyous_postponementpage_image_id_d5aa5059; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_postponementpage_image_id_d5aa5059 ON public.joyous_postponementpage USING btree (image_id);
+
+
+--
+-- Name: joyous_recurringeventpage_category_id_96630039; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_recurringeventpage_category_id_96630039 ON public.joyous_recurringeventpage USING btree (category_id);
+
+
+--
+-- Name: joyous_recurringeventpage_group_page_id_398b4ca4; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_recurringeventpage_group_page_id_398b4ca4 ON public.joyous_recurringeventpage USING btree (group_page_id);
+
+
+--
+-- Name: joyous_recurringeventpage_image_id_92d01cbf; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_recurringeventpage_image_id_92d01cbf ON public.joyous_recurringeventpage USING btree (image_id);
+
+
+--
+-- Name: joyous_recurringeventpage_uid_45274760; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_recurringeventpage_uid_45274760 ON public.joyous_recurringeventpage USING btree (uid);
+
+
+--
+-- Name: joyous_recurringeventpage_uid_45274760_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_recurringeventpage_uid_45274760_like ON public.joyous_recurringeventpage USING btree (uid varchar_pattern_ops);
+
+
+--
+-- Name: joyous_simpleeventpage_category_id_7a376bea; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_simpleeventpage_category_id_7a376bea ON public.joyous_simpleeventpage USING btree (category_id);
+
+
+--
+-- Name: joyous_simpleeventpage_group_page_id_10253052; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_simpleeventpage_group_page_id_10253052 ON public.joyous_simpleeventpage USING btree (group_page_id);
+
+
+--
+-- Name: joyous_simpleeventpage_image_id_5abc3f53; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_simpleeventpage_image_id_5abc3f53 ON public.joyous_simpleeventpage USING btree (image_id);
+
+
+--
+-- Name: joyous_simpleeventpage_uid_c7afa8a1; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_simpleeventpage_uid_c7afa8a1 ON public.joyous_simpleeventpage USING btree (uid);
+
+
+--
+-- Name: joyous_simpleeventpage_uid_c7afa8a1_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_simpleeventpage_uid_c7afa8a1_like ON public.joyous_simpleeventpage USING btree (uid varchar_pattern_ops);
 
 
 --
@@ -8139,6 +8686,174 @@ ALTER TABLE ONLY public.gallery_photogalleryindexpage
 
 ALTER TABLE ONLY public.gallery_photogalleryindexpage
     ADD CONSTRAINT gallery_photogallery_page_ptr_id_2e10e2e7_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_calendarpage joyous_calendarpage_page_ptr_id_80e75669_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_calendarpage
+    ADD CONSTRAINT joyous_calendarpage_page_ptr_id_80e75669_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_cancellationpage joyous_cancellationp_overrides_id_dd65c498_fk_joyous_re; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_cancellationpage
+    ADD CONSTRAINT joyous_cancellationp_overrides_id_dd65c498_fk_joyous_re FOREIGN KEY (overrides_id) REFERENCES public.joyous_recurringeventpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_cancellationpage joyous_cancellationp_page_ptr_id_7170b246_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_cancellationpage
+    ADD CONSTRAINT joyous_cancellationp_page_ptr_id_7170b246_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_extrainfopage joyous_extrainfopage_overrides_id_504a3667_fk_joyous_re; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_extrainfopage
+    ADD CONSTRAINT joyous_extrainfopage_overrides_id_504a3667_fk_joyous_re FOREIGN KEY (overrides_id) REFERENCES public.joyous_recurringeventpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_extrainfopage joyous_extrainfopage_page_ptr_id_027068bf_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_extrainfopage
+    ADD CONSTRAINT joyous_extrainfopage_page_ptr_id_027068bf_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_grouppage joyous_grouppage_page_ptr_id_eacc8735_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_grouppage
+    ADD CONSTRAINT joyous_grouppage_page_ptr_id_eacc8735_fk_wagtailcore_page_id FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_multidayeventpage joyous_multidayevent_category_id_49c850c5_fk_joyous_ev; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_multidayeventpage
+    ADD CONSTRAINT joyous_multidayevent_category_id_49c850c5_fk_joyous_ev FOREIGN KEY (category_id) REFERENCES public.joyous_eventcategory(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_multidayeventpage joyous_multidayevent_group_page_id_1c4ff29c_fk_joyous_gr; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_multidayeventpage
+    ADD CONSTRAINT joyous_multidayevent_group_page_id_1c4ff29c_fk_joyous_gr FOREIGN KEY (group_page_id) REFERENCES public.joyous_grouppage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_multidayeventpage joyous_multidayevent_image_id_1ca84448_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_multidayeventpage
+    ADD CONSTRAINT joyous_multidayevent_image_id_1ca84448_fk_wagtailim FOREIGN KEY (image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_multidayeventpage joyous_multidayevent_page_ptr_id_38cda9dd_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_multidayeventpage
+    ADD CONSTRAINT joyous_multidayevent_page_ptr_id_38cda9dd_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_postponementpage joyous_postponementp_cancellationpage_ptr_59e8079c_fk_joyous_ca; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_postponementpage
+    ADD CONSTRAINT joyous_postponementp_cancellationpage_ptr_59e8079c_fk_joyous_ca FOREIGN KEY (cancellationpage_ptr_id) REFERENCES public.joyous_cancellationpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_postponementpage joyous_postponementp_category_id_589f353c_fk_joyous_ev; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_postponementpage
+    ADD CONSTRAINT joyous_postponementp_category_id_589f353c_fk_joyous_ev FOREIGN KEY (category_id) REFERENCES public.joyous_eventcategory(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_postponementpage joyous_postponementp_image_id_d5aa5059_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_postponementpage
+    ADD CONSTRAINT joyous_postponementp_image_id_d5aa5059_fk_wagtailim FOREIGN KEY (image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_recurringeventpage joyous_recurringeven_category_id_96630039_fk_joyous_ev; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_recurringeventpage
+    ADD CONSTRAINT joyous_recurringeven_category_id_96630039_fk_joyous_ev FOREIGN KEY (category_id) REFERENCES public.joyous_eventcategory(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_recurringeventpage joyous_recurringeven_group_page_id_398b4ca4_fk_joyous_gr; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_recurringeventpage
+    ADD CONSTRAINT joyous_recurringeven_group_page_id_398b4ca4_fk_joyous_gr FOREIGN KEY (group_page_id) REFERENCES public.joyous_grouppage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_recurringeventpage joyous_recurringeven_image_id_92d01cbf_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_recurringeventpage
+    ADD CONSTRAINT joyous_recurringeven_image_id_92d01cbf_fk_wagtailim FOREIGN KEY (image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_recurringeventpage joyous_recurringeven_page_ptr_id_fc885e93_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_recurringeventpage
+    ADD CONSTRAINT joyous_recurringeven_page_ptr_id_fc885e93_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_simpleeventpage joyous_simpleeventpa_category_id_7a376bea_fk_joyous_ev; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_simpleeventpage
+    ADD CONSTRAINT joyous_simpleeventpa_category_id_7a376bea_fk_joyous_ev FOREIGN KEY (category_id) REFERENCES public.joyous_eventcategory(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_simpleeventpage joyous_simpleeventpa_group_page_id_10253052_fk_joyous_gr; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_simpleeventpage
+    ADD CONSTRAINT joyous_simpleeventpa_group_page_id_10253052_fk_joyous_gr FOREIGN KEY (group_page_id) REFERENCES public.joyous_grouppage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_simpleeventpage joyous_simpleeventpa_image_id_5abc3f53_fk_wagtailim; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_simpleeventpage
+    ADD CONSTRAINT joyous_simpleeventpa_image_id_5abc3f53_fk_wagtailim FOREIGN KEY (image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_simpleeventpage joyous_simpleeventpa_page_ptr_id_69eba7d0_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_simpleeventpage
+    ADD CONSTRAINT joyous_simpleeventpa_page_ptr_id_69eba7d0_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

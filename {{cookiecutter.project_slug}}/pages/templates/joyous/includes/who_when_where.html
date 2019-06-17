@@ -1,0 +1,7 @@
+{% raw %}{% load wagtailcore_tags joyous_tags %}
+{% if event.group %}
+<div class="event-group-page">
+  <a href="{% pageurl event.group %}">{{ event.group.title }}</a>
+</div>
+{% endif %}
+{% include "joyous/includes/when_where.html" %}{% endraw %}

@@ -1,0 +1,17 @@
+{% raw %}{% load wagtailcore_tags joyous_tags i18n %}
+  <div class="joy-ev-when joy-field">
+    <i class="far fa-calendar-alt"></i> {{ event.when }}
+  </div>
+  {% with event_from_when=event.postponed_from_when %}
+    {% if event_from_when %}
+      <div class="joy-ev-from-when joy-field">
+        {{ event_from_when }}
+      </div>
+    {% endif %}
+  {% endwith %}
+  {% next_on event as event_next_on %}
+  {% if event_next_on %}
+    <div class="joy-ev-next-on joy-field">
+      {% blocktrans %}Next on {{ event_next_on }}{% endblocktrans %}
+    </div>
+  {% endif %}{% endraw %}
