@@ -1,0 +1,14 @@
+{% raw %}{% extends "joyous/calendar_list_base.html" %}
+{% load wagtailcore_tags i18n %}
+
+{% block view_choices %}
+{% include "joyous/includes/events_view_choices.html" with listLink=_("Past Events") %}
+{% endblock view_choices %}
+
+{% block cal_view_class %}joy-cal-list--upcoming{% endblock %}
+
+{% block cal_subtitle %}
+<div class="joy-title joy-title--list">
+  <h2>&nbsp;</h2>
+</div>
+{% endblock cal_subtitle %}{% endraw %}
