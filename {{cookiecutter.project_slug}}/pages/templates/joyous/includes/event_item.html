@@ -1,9 +1,9 @@
 {% raw %}{% load wagtailcore_tags wagtailimages_tags %}
 
 <div class="cell joy-ev-item">
-  <div class="card">
-    <div class="joy-title joy-title--item" style="padding: 10px;">
-      <center><h4 style="margin-bottom: 0;"><a class="joy-title__link" href="{{ url }}">{{ title }}</a></h4></center>
+  <div class="card" style="border-radius: 5px; border: 0;">
+    <div class="joy-title joy-title--item" style="padding: 5px;">
+      <center><h5 style="margin-bottom: 0;"><a class="joy-title__link" href="{{ url }}">{{ title }}</a></h5></center>
     </div>
     {% if event.image %}
     <a class="joy-img-link joy-field" href="{{ url }}">{% image event.image width-350 %}</a>
