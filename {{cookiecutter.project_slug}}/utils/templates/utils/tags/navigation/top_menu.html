@@ -38,7 +38,9 @@
             				{% endif %}
             		</li>
             	{% endfor %}
+							{% comment %}
 							{% include "utils/tags/navigation/account.html" %}
+							{% endcomment %}
           		<li class="has-form show-for-small-only" style="background: transparent;">
             		<form action ="{% url 'search' %}" method="get">
               			<div class="row collapse">
