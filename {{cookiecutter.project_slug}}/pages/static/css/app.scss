@@ -111,7 +111,16 @@ hr {border-color: $light-gray;}
   padding: 3px 0;
   background: darken($primary, 10%);
   text-align: right;
-  a {color: $white; margin-right: 8px; font-size: 17px;}
+  a {color: $white; margin-right: 8px; font-size: 13px;}
+  i {font-size: 17px;}
+  .dropdown-pane {
+    background: $primary;
+    text-align: left;
+    li {list-style: none; padding: 10px 0;}
+  }
+  hr {margin: 8px 0;}
+  #user, #sign-up-link {margin-left: 40px;}
+  #log-in-link {margin-left: 15px;}
 }
 
 .title-bar {

@@ -8,6 +8,9 @@
 	<div id="social_bar">
   		<div class="grid-container" style="max-width: 100%;">
     		{% include "contact/includes/social.html" %}
+				{% comment %}
+				{% include "utils/tags/navigation/account.html" %}
+				{% endcomment %}
   		</div>
 	</div>
 
@@ -38,9 +41,6 @@
             				{% endif %}
             		</li>
             	{% endfor %}
-							{% comment %}
-							{% include "utils/tags/navigation/account.html" %}
-							{% endcomment %}
           		<li class="has-form show-for-small-only" style="background: transparent;">
             		<form action ="{% url 'search' %}" method="get">
               			<div class="row collapse">

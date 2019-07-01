@@ -1,7 +1,6 @@
 {% raw %}{% load i18n %}
 {% if request.user.is_authenticated %}
-<li class="is-dropdown-submenu-parent">
-  <a href="#">
+  <a id="user" type="button" data-toggle="admin-dropdown">
     <i class="fa fa-user"></i>&nbsp;
     {% if request.user.name %}
       {{ request.user.name }}
@@ -9,7 +8,7 @@
       {{ request.user.username }}
     {% endif %}
   </a>
-  <ul class="menu vertical">
+  <div class="dropdown-pane" id="admin-dropdown" data-dropdown data-auto-focus="true">
     <li>
       <a href="{% url 'users:detail' %}"><i class="fa fa-id-card"></i>&nbsp; Dashboard</a>
     </li>
@@ -18,30 +17,26 @@
     </li>
     <li>
       <a href="{% url 'account_email' %}"><i class="fa fa-envelope"></i>&nbsp; Email Settings</a>
-    <li>
+    </li>
     <li>
       <a href="{% url 'account_change_password' %}"><i class="fa fa-key"></i>&nbsp; Change Passsword</a>
-    <li>
+    </li>
     {% if request.user.is_superuser %}
     <li>
       <a href="/admin"><i class="fa fa-user"></i>&nbsp; Admin</a>
     </li>
     {% endif %}
+    <hr>
     <li>
-      <hr style="margin:0">
       <a href="{% url 'account_logout' %}"><i class="fa fa-sign-out-alt"></i>&nbsp; {% trans "Sign out" %}</a>
     </li>
-  </ul>
-</li>
+  </div>
 {% else %}
-<li>
   <a id="sign-up-link" href="{% url 'account_signup' %}">
     <i class="fa fa-edit"></i>&nbsp; {% trans "Sign Up" %}
   </a>
-</li>
-<li>
-  <a id="log-in-link" href="{% url 'account_login' %}">
+
+  <a id="log-in-link" href="{% url 'account_login' %}" >
     <i class="fa fa-sign-in-alt"></i>&nbsp; {% trans "Login" %}
   </a>
-</li>
 {% endif %}{% endraw %}

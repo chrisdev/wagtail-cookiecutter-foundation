@@ -5,6 +5,9 @@
 <div id="social_bar" class="hide-for-print">
 	<div class="grid-container" style="max-width: 100%;">
     	{% include "contact/includes/social.html" %}
+			{% comment %}
+			{% include "utils/tags/navigation/account.html" %}
+			{% endcomment %}
   	</div>
 </div>
 
@@ -21,20 +24,17 @@
     	</button>
     	<ul class="vertical menu" data-drilldown>
       		<li><a href="{% pageurl site_root %}">Home</a></li>
-  			{% for menuitem in menuitems %}
-      			<li>
-        			<a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
-        				{% if menuitem.show_dropdown %}
-        					<ul class="menu vertical nested">
-          						<li><a href="{% pageurl menuitem %}">{{ menuitem.title }}</a></li>
-          						{% offcanvas_top_menu_children parent=menuitem %}
-        					</ul>
-        				{% endif %}
-      			</li>
-  			{% endfor %}
-				{% comment %}
-				{% include "utils/tags/navigation/offcanvas_account.html" %}
-				{% endcomment %}
+	  			{% for menuitem in menuitems %}
+	      			<li>
+	        			<a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
+	        				{% if menuitem.show_dropdown %}
+	        					<ul class="menu vertical nested">
+	          						<li><a href="{% pageurl menuitem %}">{{ menuitem.title }}</a></li>
+	          						{% offcanvas_top_menu_children parent=menuitem %}
+	        					</ul>
+	        				{% endif %}
+	      			</li>
+	  			{% endfor %}
     	</ul>
   	</div>
 </div>{% endraw %}
