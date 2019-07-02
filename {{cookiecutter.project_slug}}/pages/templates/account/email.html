@@ -18,11 +18,11 @@
             <input id="email_radio_{{forloop.counter}}" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{%endif %} value="{{emailaddress.email}}"/>
             {{ emailaddress.email }}
             {% if emailaddress.verified %}
-              <span class="verified">{% trans "Verified" %}</span>
+              <span class="label success verified"><i class="fas fa-check"></i> {% trans "Verified" %}</span>
             {% else %}
-              <span class="unverified">{% trans "Unverified" %}</span>
+              <span class="label alert unverified"><i class="fas fa-times"></i> {% trans "Unverified" %}</span>
             {% endif %}
-            {% if emailaddress.primary %}<span class="primary">{% trans "Primary" %}</span>{% endif %}
+            {% if emailaddress.primary %}<span class="label primary"><i class="fas fa-user-check"></i> {% trans "Primary" %}</span>{% endif %}
           </label>
         </div>
         {% endfor %}
