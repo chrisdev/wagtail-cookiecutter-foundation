@@ -8,7 +8,7 @@
       {{ request.user.username }}
     {% endif %}
   </a>
-  <div class="dropdown-pane" id="admin-dropdown" data-dropdown data-auto-focus="true">
+  <div class="dropdown-pane small" id="admin-dropdown" data-dropdown data-hover="true" data-hover-pane="true">
     <li>
       <a href="{% url 'users:detail' %}"><i class="fa fa-id-card"></i>&nbsp; Dashboard</a>
     </li>

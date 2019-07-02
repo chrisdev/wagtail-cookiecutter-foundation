@@ -112,13 +112,14 @@ hr {border-color: $light-gray;}
   background: darken($primary, 10%);
   text-align: right;
   a {color: $white; margin-right: 8px; font-size: 13px;}
-  i {font-size: 17px;}
+  i {font-size: 16px;}
   .dropdown-pane {
     background: $primary;
+    padding: 0 10px;
     text-align: left;
     li {list-style: none; padding: 10px 0;}
   }
-  hr {margin: 8px 0;}
+  hr {margin: 0;}
   #user, #sign-up-link {margin-left: 40px;}
   #log-in-link {margin-left: 15px;}
 }
