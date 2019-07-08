@@ -4,7 +4,10 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block inner %}
-  <h2>{% trans "Sign Up" %}</h2>
+  <center>
+    <h2>{% trans "Sign Up" %}</h2>
+    <p>{% blocktrans %}Have an account? <a href="{{ login_url }}">Sign in »</a>{% endblocktrans %}</p>
+  </center>
 
   <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
     {% csrf_token %}
@@ -14,8 +17,4 @@
     {% endif %}
     <button class="button expanded" type="submit">{% trans "Sign Up" %} &raquo;</button>
   </form>
-
-  <hr>
-
-  <p>{% blocktrans %}Have an account? <a href="{{ login_url }}">Sign in »</a>{% endblocktrans %}</p>
 {% endblock %}{% endraw %}

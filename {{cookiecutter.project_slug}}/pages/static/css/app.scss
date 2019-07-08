@@ -394,9 +394,24 @@ hr {border-color: $light-gray;}
 
 
 form {
-  [type="text"], [type="password"], [type="date"], [type="datetime"], [type="datetime-local"], [type="month"], [type="week"], [type="email"], [type="number"], [type="search"], [type="tel"], [type="time"], [type="url"], [type="color"], select, textarea {border-radius: 4px;}
+  [type="text"], [type="password"], [type="date"],
+  [type="datetime"], [type="datetime-local"], [type="month"],
+  [type="week"], [type="email"], [type="number"],
+  [type="search"], [type="tel"], [type="time"],
+  [type="url"], [type="color"], select, textarea {
+    background: #f5f8fa;
+    border: 1px solid #cbd6e2;
+    border-radius: 3px;
+  }
+
+  input:hover {
+    border-color: rgba(62,80,180,.5);
+    box-shadow: 0 0 4px 1px rgba(62,80,180,.3),0 0 0 1px #00d0e4;
+  }
 
   textarea {max-height: 80px;}
+
+  .button, button {border-radius: 3px;}
 }
 
 

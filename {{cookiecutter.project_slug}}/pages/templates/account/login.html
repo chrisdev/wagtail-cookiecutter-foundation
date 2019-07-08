@@ -4,8 +4,10 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block inner %}
-  <h2>{% trans "Sign In" %}</h2>
-  <p>{% trans "Welcome back!" %}</p>
+  <center>
+    <h2>{% trans "Sign In" %}</h2>
+    <p>{% blocktrans %}Don't have an account? <a href="{{ signup_url }}">Sign up »</a> {% endblocktrans %}</p>
+  </center>
 
   {% get_providers as socialaccount_providers %}
 
@@ -35,10 +37,6 @@
         <a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
       </div>
     </form>
-
-    <hr>
-
-    <p>{% blocktrans %}Don't have an account? <a href="{{ signup_url }}">Sign up »</a> {% endblocktrans %}</p>
 
   {% endif %}
 {% endblock %}{% endraw %}
