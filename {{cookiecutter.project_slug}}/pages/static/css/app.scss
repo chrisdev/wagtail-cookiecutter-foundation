@@ -103,7 +103,7 @@ body {background: $white;}
 .pad {padding: 20px 0;}
 a {color: $primary;}
 a:hover {color: $secondary;}
-button, .button {background: $primary;}
+button, .button {background: $primary; border-radius: 2px;}
 button:hover, .button:hover {background: darken($primary, 10%);}
 hr {border-color: $light-gray;}
 
