@@ -3,12 +3,13 @@
 
 {% block head_title %}{% trans "Account" %}{% endblock %}
 
+{% block user_title %}
+  <h3>{% trans "E-mail Addresses" %}</h3>
+  <h6>{% trans 'E-mail addresses associated with your account:' %}</h6>
+{% endblock %}
+
 {% block inner %}
-  <h2>{% trans "E-mail Addresses" %}</h2>
-
   {% if user.emailaddress_set.all %}
-    <p>{% trans 'E-mail addresses associated with your account:' %}</p>
-
     <form action="{% url 'account_email' %}" class="email_list" method="post">
       {% csrf_token %}
       <fieldset class="blockLabels">
@@ -33,9 +34,9 @@
 
         <br>
         <div class="button-group">
-          <button class="button primary" type="submit" name="action_primary" >{% trans 'Make Primary' %}</button>
-          <button class="button success" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</button>
-          <button class="button alert" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
+          <button class="button primary tiny" type="submit" name="action_primary" >{% trans 'Make Primary' %}</button>
+          <button class="button success tiny" type="submit" name="action_send" >{% trans 'Re-send Verification' %}</button>
+          <button class="button alert tiny" type="submit" name="action_remove" >{% trans 'Remove' %}</button>
         </div>
       </fieldset>
     </form>
@@ -48,7 +49,7 @@
 
   <hr>
 
-  <h3>{% trans "Add E-mail Address" %}</h3>
+  <h4>{% trans "Add E-mail Address" %}</h4>
 
   <form method="post" action="{% url 'account_email' %}" class="add_email">
     {% csrf_token %}

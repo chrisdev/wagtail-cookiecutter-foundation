@@ -3,12 +3,12 @@
 
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
-{% block inner %}
-  <center>
-    <h2>{% trans "Sign In" %}</h2>
-    <p>{% blocktrans %}Don't have an account? <a href="{{ signup_url }}">Sign up »</a> {% endblocktrans %}</p>
-  </center>
+{% block user_title %}
+  <h3>{% trans "Sign In" %}</h3>
+  <h6>{% blocktrans %}Don't have an account? <a href="{{ signup_url }}">Sign up »</a> {% endblocktrans %}</h6>
+{% endblock %}
 
+{% block inner %}
   {% get_providers as socialaccount_providers %}
 
   {% if socialaccount_providers %}

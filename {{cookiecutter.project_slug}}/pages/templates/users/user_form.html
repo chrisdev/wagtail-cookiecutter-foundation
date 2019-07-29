@@ -1,13 +1,24 @@
 {% raw %}{% extends "base.html" %}
 {% load foundation_formtags %}
 
-{% block title %}{{ user.username }}{% endblock %}
+{% block title %}Your Profile - {% if user.name %}{{ user.name }}{% else %}{{ user.username }}{% endif %}{% endblock %}
+
+{% block callout %}
+  <div class="callout accounts">
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x align-center pad">
+        <div class="medium-7 text-center cell">
+          <h3>Your Profile</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
 
 {% block content %}
   <div id="content" class="grid-container">
     <div class="grid-x grid-padding-x align-center">
       <div class="medium-5 cell">
-        <center><h3>Your Profile</h3></center>
         <form method="post" action="{% url 'users:update' %}">
           {% csrf_token %}
           <div class="form grid-x grid-padding-x">
@@ -27,16 +38,10 @@
               {% render_field form.city %}
             </div>
             <div class="medium-6 cell">
-              {% render_field form.state %}
-            </div>
-            <div class="medium-6 cell">
               {% render_field form.country_of_residence %}
             </div>
-            <div class="medium-6 cell">
-              {% render_field form.country_of_nationality %}
-            </div>
           </div>
-          <button type="submit" class="button large">Update</button>
+          <button type="submit" class="button medium">Update</button>
         </form>
       </div>
     </div>

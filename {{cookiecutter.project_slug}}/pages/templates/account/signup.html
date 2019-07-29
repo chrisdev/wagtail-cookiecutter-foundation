@@ -3,12 +3,12 @@
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
-{% block inner %}
-  <center>
-    <h2>{% trans "Sign Up" %}</h2>
-    <p>{% blocktrans %}Have an account? <a href="{{ login_url }}">Sign in »</a>{% endblocktrans %}</p>
-  </center>
+{% block user_title %}
+  <h3>{% trans "Sign Up" %}</h3>
+  <h6>{% blocktrans %}Have an account? <a href="{{ login_url }}">Sign in »</a>{% endblocktrans %}</h6>
+{% endblock %}
 
+{% block inner %}
   <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
     {% csrf_token %}
     {{ form|as_foundation }}

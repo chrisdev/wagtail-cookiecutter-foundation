@@ -9,7 +9,7 @@ class AccountAdapter(DefaultAccountAdapter):
         return getattr(settings, 'ACCOUNT_ALLOW_REGISTRATION', True)
 
     def get_login_redirect_url(self, request):
-        path = "/"
+        path = "/users/dashboard/"
         return path.format(username=request.user.username)
 
 class SocialAccountAdapter(DefaultSocialAccountAdapter):

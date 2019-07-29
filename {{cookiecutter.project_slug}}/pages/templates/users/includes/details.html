@@ -1,0 +1,53 @@
+{% raw %}<div id="banner">
+  {% if object.name %}
+    <h4>{{object.name}}</h4>
+  {% else %}
+    <h4>{{object.username}}</h4>
+  {% endif %}
+</div>
+
+<div id="info">
+  <h6><strong>Profile Info</strong></h6>
+
+  {% if object.name %}
+    <label>Name</label>
+    <p>{{object.name}}</p>
+  {% else %}
+    <label>Username</label>
+    <p>{{object.username}}</p>
+  {% endif %}
+
+  {% if object.organisation %}
+    <label>Organisation</label>
+    <p>{{ object.organisation }}</p>
+  {% endif %}
+
+  {% if object.job %}
+    <label>Job Title</label>
+    <p>{{ object.job }}</p>
+  {% endif %}
+
+  {% if object.email %}
+    <label>Email</label>
+    <p><a href="mailto:{{ object.email }}">{{ object.email }}</a></p>
+  {% endif %}
+
+  {% if object.address %}
+    <label>Address</label>
+    <p>{{ object.address }}</p>
+  {% endif %}
+
+  {% if object.city %}
+    <label>City</label>
+    <p>{{ object.city }}</p>
+  {% endif %}
+
+  {% if object.country_of_residence %}
+    <label>Country</label>
+    <p>{{ object.country_of_residence.name }}</p>
+  {% endif %}
+
+  <center>
+    <a class="button" href="{% url 'users:update' %}"><i class="far fa-edit"></i> Edit Profile</a>
+  </center>
+</div>{% endraw %}

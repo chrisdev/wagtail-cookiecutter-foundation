@@ -5,8 +5,7 @@ from django.urls import reverse
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
 from django.shortcuts import get_object_or_404
 
-from django.contrib.auth.mixins import LoginRequiredMixin
-
+from braces.views import LoginRequiredMixin, StaffuserRequiredMixin
 from .models import User
 
 
@@ -45,5 +44,5 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         return User.objects.get(username=self.request.user.username)
 
 
-class UserListView(LoginRequiredMixin, ListView):
+class UserListView(StaffuserRequiredMixin, LoginRequiredMixin, ListView):
     model = User

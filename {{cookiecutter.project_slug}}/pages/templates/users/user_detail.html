@@ -1,68 +1,52 @@
 {% raw %}{% extends "base.html" %}
 {% load static wagtailcore_tags %}
 
-{% block title %}Dashboard: {{ object.username }}{% endblock %}
+{% block title %}Dashboard - {% if object.name %}{{ object.name }}{% else %}{{ object.username }}{% endif %}{% endblock %}
 
-{% block content %}
-  <div id="content" class="grid-container">
-    <div class="grid-x grid-padding-x align-center pad">
-      {% if object.name %}
-        <div class="medium-7 cell">
-          <div class="card-profile-stats">
-            <div class="card-profile-stats-intro">
-              <div class="grid-x grid-padding-x align-middle">
-                <div class="medium-4 cell">
-                  <img class="card-profile-stats-intro-pic" src="https://mhcd.org/wp-content/uploads/2017/12/placeholder-man.png" width="250" alt="profile-image" />
+{% block callout %}
+  {% if object.name %}
+    <div class="callout accounts">
+      <div class="grid-container">
+        <div class="grid-x grid-padding-x align-center pad">
+          <div class="medium-11 cell">
+            <div class="grid-x grid-padding-x">
+              <div class="medium-7 cell">
+                <h3>{{ object.name }}'s Dashboard</h3>
+              </div>
+              <div class="medium-5 cell">
+                <p>
+                  <a class="button" data-toggle="user_profile"><i class="fa fa-user"></i> View Profile</a>
+                <p>
+                <div class="cell">
+                  <div class="off-canvas-wrapper">
+                    <div class="off-canvas medium position-right" id="user_profile" data-off-canvas>
+                      {% include "users/includes/details.html" %}
+                      <button class="close-button" aria-label="Close menu" type="button" data-close>
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div class="medium-8 cell card-profile-stats-intro-content">
-                  <h3>{{ object.name }}</h3>
-                  {% if object.organisation %}
-                  <h6 style="margin-bottom: 10px;">{% if object.job %}{{ object.job }} at <strong>{% endif %}{{ object.organisation }}</strong></h6>
-                  {% endif %}
-                  <a class="button tiny" href="{% url 'users:update' %}"><i class="fa fa-pencil-alt"></i> Edit Profile</a>
-                </div>
-              </div>
-            </div>
-
-            <hr />
-
-            <!--<div class="card-profile-stats-container">
-              <div class="card-profile-stats-statistic">
-                <a href="#">
-                  <span class="stat">0</span>
-                  <p>Stat</p>
-                </a>
-              </div>
-              <div class="card-profile-stats-statistic">
-                <a href="#">
-                  <span class="stat">0</span>
-                  <p>Stat</p>
-                </a>
-              </div>
-              <div class="card-profile-stats-statistic">
-                <a href="#">
-                  <span class="stat">0</span>
-                  <p>Stat</p>
-                </a>
-              </div>
-            </div>-->
-
-            <div class="card-profile-stats-more">
-              <p class="card-profile-stats-more-link"><a href="#">More Info <br><i class="fa fa-angle-down" aria-hidden="true"></i></a></p>
-              <div class="card-profile-stats-more-content">
-                <center>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem libero fugit, pariatur maxime! Optio enim, deserunt quia molestiae fugiat delectus, dolore et esse nostrum, quod autem necessitatibus fugit soluta repellendus.</p>
-                </center>
               </div>
             </div>
           </div>
         </div>
-      {% else %}
-        <div class="medium-12 cell text-center">
-          <h2>Welcome <strong>{{ object.username }}</strong></h2>
-          <a class="button medium" href="{% url 'users:update' %}"><i class="fa fa-pencil-alt"></i> Complete Your Profile</a>
-        </div>
-      {% endif %}
+      </div>
     </div>
-  </div>
+  {% else %}
+    <div class="callout accounts">
+      <div class="grid-container">
+        <div class="grid-x grid-padding-x align-center pad">
+          <div class="medium-8 text-center cell">
+            <h2>Welcome <strong>{{ object.username }}</strong></h2>
+            <a class="button medium" href="{% url 'users:update' %}"><i class="fa fa-pencil-alt"></i> Complete Your Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <div id="content"></div>
 {% endblock %}{% endraw %}

@@ -4,6 +4,7 @@
 @import 'node_modules/foundation-sites/scss/foundation';
 @import 'node_modules/motion-ui/src/motion-ui';
 @import 'css/building-blocks';
+@import 'css/accounts';
 @import 'css/print';
 
 // Global styles
@@ -395,6 +396,22 @@ hr {border-color: $light-gray;}
   input.button{border-top-right-radius: 5px; border-bottom-right-radius: 5px;color: $white;padding-top: 11px;}
 }
 
+select {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  -o-appearance: none !important;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%28138, 138, 138%29'></polygon></svg>") !important;
+  background-origin: content-box !important;
+  background-position: right -1rem center !important;
+  background-repeat: no-repeat !important;
+  background-size: 9px 6px !important;
+}
+
+[type="search"], select {
+  background: #f5f8fa !important;
+  border: 1px solid #cbd6e2 !important;
+  border-radius: 3px !important;
+}
 
 form {
   [type="text"], [type="password"], [type="date"],
