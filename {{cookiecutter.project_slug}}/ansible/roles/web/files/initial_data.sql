@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.13
--- Dumped by pg_dump version 10.8
+-- Dumped from database version 9.6.14
+-- Dumped by pg_dump version 11.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -15,20 +15,6 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
-
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
 
 SET default_tablespace = '';
 
@@ -2051,7 +2037,7 @@ CREATE TABLE public.users_user (
     is_active boolean NOT NULL,
     date_joined timestamp with time zone NOT NULL,
     name character varying(255) NOT NULL,
-    address text NOT NULL,
+    address character varying(255) NOT NULL,
     city character varying(255) NOT NULL,
     state character varying(255) NOT NULL,
     country_of_residence character varying(2) NOT NULL,
@@ -4260,6 +4246,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 223	joyous	0013_auto_20190221_1152	2019-06-17 11:07:23.552449-04
 224	joyous	0014_auto_20190328_0652	2019-06-17 11:07:25.981277-04
 225	joyous	0015_auto_20190409_0645	2019-06-17 11:07:27.431655-04
+226	users	0002_auto_20190718_1416	2019-07-29 16:08:26.095271-04
 \.
 
 
@@ -5292,7 +5279,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 99, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 225, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 226, true);
 
 
 --
