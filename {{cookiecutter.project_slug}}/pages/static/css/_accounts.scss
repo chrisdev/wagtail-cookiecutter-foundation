@@ -43,7 +43,7 @@ $static: static;
     color: $white;
   }
   #banner {
-    background-image: linear-gradient(to right, $primary, $success-color);
+    background-image: linear-gradient(to right, $primary, darken($primary, 10%));
     h4 {color: $white; text-align: center;}
     padding: 15px;
   }
