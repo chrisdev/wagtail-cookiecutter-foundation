@@ -1,12 +1,10 @@
-from .base import *  # flake8: noqa
-{% if cookiecutter.use_sentry == 'y' %}
+# flake8: noqa
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 sentry_sdk.init(
     dsn= env('SENTRY_DSN'),
     integrations=[DjangoIntegration()]
 )
-{% endif %}
 
 DEBUG = env.bool('DJANGO_DEBUG', default=False)
 
@@ -75,7 +73,7 @@ CACHES = {
     }
 }
 
-DEFAULT_FROM_EMAIL =  env('EMAIL_FROM')
+DEFAULT_FROM_EMAIL = env('EMAIL_FROM')
 EMAIL_USE_TLS = True
 EMAIL_HOST = env("EMAIL_HOST")
 EMAIL_HOST_USER = env('EMAIL_USER')

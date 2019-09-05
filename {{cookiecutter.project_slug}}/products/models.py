@@ -71,6 +71,7 @@ class ProductIndexPage(Page):
         context['products'] = products
         return context
 
+
 ProductIndexPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('subtitle'),
@@ -120,6 +121,7 @@ class ProductPage(Page):
     )
 
     indexed_fields = ('title', 'intro', 'biography')
+
 
 ProductPage.content_panels = [
     FieldPanel('title', classname="title"),

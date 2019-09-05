@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.conf import settings
 from allauth.account.adapter import DefaultAccountAdapter
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
@@ -11,6 +10,7 @@ class AccountAdapter(DefaultAccountAdapter):
     def get_login_redirect_url(self, request):
         path = "/users/dashboard/"
         return path.format(username=request.user.username)
+
 
 class SocialAccountAdapter(DefaultSocialAccountAdapter):
     def is_open_for_signup(self, request, sociallogin):

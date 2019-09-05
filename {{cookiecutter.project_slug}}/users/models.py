@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from __future__ import unicode_literals, absolute_import
 
 from django.contrib.auth.models import AbstractUser
@@ -22,7 +21,7 @@ class User(AbstractUser):
     country_of_residence = CountryField(_('Country'), default='TT')
     country_of_nationality = CountryField(_('Country of Nationality'), default='TT', blank=True,)
     job = models.CharField(_('Job Title or Occupation'), default='', blank=True, max_length=255)
-    organisation = models.CharField(_('Organisation'), default='',  blank=True, max_length=255)
+    organisation = models.CharField(_('Organisation'), default='', blank=True, max_length=255)
     tos = models.BooleanField(_('I have read and agree with the terms ' + 'of Service'), default=True)
 
     def __str__(self):

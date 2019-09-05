@@ -76,7 +76,7 @@ update_modules:
 		. $(VIRTUALENV_NAME)/bin/activate; \
 		$ wagtail updatemodulepaths; \
 	)
-	
+
 runserver:
 	( \
 		. $(VIRTUALENV_NAME)/bin/activate; \

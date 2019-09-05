@@ -1,5 +1,4 @@
 from django import template
-from datetime import date
 from wagtail.documents.models import Document
 from contact.models import ContactPage
 from blog.models import BlogPage

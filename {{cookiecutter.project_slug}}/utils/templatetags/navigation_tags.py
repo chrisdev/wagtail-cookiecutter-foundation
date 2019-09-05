@@ -166,7 +166,7 @@ def offcanvas_top_menu(context, parent, calling_page=None):
 @register.inclusion_tag(
     'utils/tags/navigation/offcanvas_top_menu_children.html',
     takes_context=True
-    )
+)
 def offcanvas_top_menu_children(context, parent):
     menuitems_children = parent.get_children()
     menuitems_children = menuitems_children.filter(

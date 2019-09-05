@@ -88,8 +88,6 @@ INSTALLED_APPS = (
     'wagtail.search',
     'wagtail.admin',
     'wagtail.core',
-    'wagtailfontawesome',
-    'wagtailmarkdown',
     {% if cookiecutter.use_wagalytics_app == 'y' %}'wagalytics',{% endif %}
     {% if cookiecutter.use_accounts == 'y' %}'allauth',
     'allauth.account',

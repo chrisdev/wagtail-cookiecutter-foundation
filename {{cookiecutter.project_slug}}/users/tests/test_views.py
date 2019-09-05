@@ -1,6 +1,7 @@
 from django.test import RequestFactory, TestCase
 from ..views import UserRedirectView, UserUpdateView
 
+
 class BaseUserTestCase(TestCase):
     def setUp(self):
         self.user = self.make_user()
