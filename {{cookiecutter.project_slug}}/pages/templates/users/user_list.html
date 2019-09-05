@@ -1,0 +1,74 @@
+{% raw %}{% extends "base.html" %}
+{% load static i18n %}
+{% block title %}Members{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
+{% endblock %}
+
+{% block callout %}
+  <div class="callout accounts">
+    <div class="grid-container">
+      <div class="grid-x grid-padding-x align-center pad">
+        <div class="medium-7 text-center cell">
+          <h3>Users</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <div id="content" class="grid-container">
+    <div class="grid-x grid-padding-x align-center">
+      <div class="medium-6 cell">
+        <table class="users">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for object in user_list %}
+              <tr>
+                <td data-label="Name">{{ object.name }}</td>
+                <td data-label="Username">{{ object.username }}</td>
+                <td data-label="Email"><a href="mailto:{{ user.email }}">{{ object.email }}</a></td>
+                <td data-label="Edit / Delete">
+                  <center>
+                    <a data-toggle="{{ object.username }}"><i class="far fa-eye"></i></a>
+                  </center>
+                  <div class="cell">
+                    <div class="off-canvas-wrapper">
+                      <div class="off-canvas medium position-right" id="{{ object.username }}" data-off-canvas>
+                        {% include "users/includes/details.html" %}
+                        <button class="close-button" aria-label="Close menu" type="button" data-close>
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready( function () {
+      $('.users').DataTable({
+        "pageLength": 100,
+        responsive: true
+      });
+    });
+  </script>
+{% endblock %}{% endraw %}

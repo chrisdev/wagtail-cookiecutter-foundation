@@ -1,12 +1,11 @@
 {% raw %}{% extends "base.html" %}
-{% load static wagtailcore_tags wagtailimages_tags {% endraw %}{{ cookiecutter.project_slug }}{% raw %}_utils %}
+{% load static wagtailcore_tags wagtailimages_tags joyous_tags {% endraw %}{{ cookiecutter.project_slug }}{% raw %}_utils %}
 
 {% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
 
 {% block content %}
-	
+
 	<div id="intro">
-  		
   		<div class="orbit clean-hero-slider pad" role="region" aria-label="Homepage Slider" data-orbit>
   		  <div class="orbit-wrapper">
   		    <ul class="orbit-container">
@@ -31,13 +30,13 @@
   		    </ul>
   		  </div>
   		</div>
-  		
+
   		<div class="grid-x grid-padding-x align-center">
   			<div class="medium-9 cells">
-				<center>
+					<center>
 	  				<h3>{{ self.title_text|richtext }}</h3>
 	  				{{ self.body|richtext }}
-				</center>
+					</center>
   			</div>
   		</div>
 	</div>

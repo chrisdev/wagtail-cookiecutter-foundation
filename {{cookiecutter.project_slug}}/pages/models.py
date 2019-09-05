@@ -5,7 +5,6 @@ from wagtail.core.models import Page, Orderable
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.images.blocks import ImageChooserBlock
-from wagtailmarkdown.blocks import MarkdownBlock
 from wagtail.images.models import Image
 from wagtail.snippets.models import register_snippet
 from modelcluster.fields import ParentalKey
@@ -100,6 +99,7 @@ class HomePage(Page):
     class Meta:
         verbose_name = "Homepage"
 
+
 HomePage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('title_text', classname="full"),
@@ -145,6 +145,7 @@ class StandardIndexPage(Page):
     def template(self):
         return self.template_string
 
+
 StandardIndexPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('subtitle', classname="full title"),
@@ -179,7 +180,6 @@ class StandardPage(Page):
     body = StreamField([
         ('paragraph', blocks.RichTextBlock()),
         ('image', ImageChooserBlock()),
-        ('markdown', MarkdownBlock(icon="code")),
         ('html', blocks.RawHTMLBlock()),
     ])
     template_string = models.CharField(
@@ -300,6 +300,7 @@ class ContentBlock(LinkFields):
     def __str__(self):
         return u"{0}[{1}]".format(self.title, self.slug)
 
+
 register_snippet(ContentBlock)
 
 
@@ -327,6 +328,7 @@ class Testimonial(LinkFields):
 
     def __str__(self):
         return self.name
+
 
 register_snippet(Testimonial)
 
@@ -358,6 +360,7 @@ class Advert(LinkFields):
     def __str__(self):
         return self.title
 
+
 register_snippet(Advert)
 
 
@@ -368,6 +371,7 @@ class FaqsPage(Page):
         ('faq_question', blocks.CharBlock(classname="full title")),
         ('faq_answer', blocks.RichTextBlock()),
     ])
+
 
 FaqsPage.content_panels = [
     FieldPanel('title', classname="full title"),

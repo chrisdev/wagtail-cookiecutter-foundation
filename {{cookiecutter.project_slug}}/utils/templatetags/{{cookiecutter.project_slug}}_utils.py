@@ -1,9 +1,7 @@
 from django import template
-from datetime import date
 from wagtail.documents.models import Document
 from contact.models import ContactPage
 from blog.models import BlogPage
-from events.models import EventPage
 from pages.models import Testimonial, Advert
 
 register = template.Library()
@@ -49,20 +47,6 @@ def more_news(context, count=2):
     blogs = BlogPage.objects.filter(live=True).order_by('-date')
     return {
         'blogs': blogs[:count],
-        # required by the pageurl tag that we want to use within this template
-        'request': context['request'],
-    }
-
-
-@register.inclusion_tag('events/includes/event_listing.html',
-                        takes_context=True)
-def upcoming_events(context, count=3):
-
-    events = EventPage.objects.filter(live=True)
-    events = events.filter(date_from__gte=date.today())
-    events = events.all().order_by('date_from')
-    return {
-        'events': events[:count],
         # required by the pageurl tag that we want to use within this template
         'request': context['request'],
     }

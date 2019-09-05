@@ -72,6 +72,7 @@ class PersonIndexPage(Page):
         context['persons'] = persons
         return context
 
+
 PersonIndexPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('subtitle'),
@@ -132,6 +133,7 @@ class PersonPage(Page, ContactFields):
     )
 
     indexed_fields = ('title', 'intro', 'biography')
+
 
 PersonPage.content_panels = [
     FieldPanel('title', classname="title"),

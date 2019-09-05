@@ -1,0 +1,26 @@
+{% raw %}{% load wagtailcore_tags joyous_tags i18n %}
+<div class="event-when">
+  <i class="far fa-calendar-alt"></i> {{ event.when }}
+</div>
+{% if event.postponed_from_when %}
+<div class="event-postponed-from">
+  {{ event.postponed_from_when }}
+</div>
+{% endif %}
+{% next_on event as event_next_on %}
+{% if event_next_on %}
+<div class="event-next-on">
+  {% blocktrans %}Next on {{ event_next_on }}{% endblocktrans %}
+</div>
+{% endif %}
+{% if event.location %}
+<div class="event-location">
+  <i class="fas fa-map-marker"></i> {{ event.location }}
+  {% location_gmap event.location %}
+</div>
+{% endif %}
+{% if event.website %}
+<div class="event-website">
+  <a href="{{ event.website }}" target="_blank"><i class="fas fa-link"></i> {{ event.website }}</a>
+</div>
+{% endif %}{% endraw %}

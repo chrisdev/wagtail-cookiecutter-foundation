@@ -51,6 +51,7 @@ class PhotoGalleryIndexPage(Page):
     class Meta:
         verbose_name = _('Photo Gallery Index')
 
+
 PhotoGalleryIndexPage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('intro', classname="full"),

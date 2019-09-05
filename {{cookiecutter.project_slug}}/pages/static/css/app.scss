@@ -4,49 +4,69 @@
 @import 'node_modules/foundation-sites/scss/foundation';
 @import 'node_modules/motion-ui/src/motion-ui';
 @import 'css/building-blocks';
+@import 'css/accounts';
 @import 'css/print';
 
+// Global styles
 @include foundation-global-styles;
+@include foundation-forms;
+@include foundation-typography;
+
+// Grids (choose one)
+@include foundation-xy-grid-classes;
 @include foundation-grid;
 // @include foundation-flex-grid;
-@include foundation-xy-grid-classes;
-@include foundation-typography;
-@include foundation-forms;
+
+// Generic components
 @include foundation-button;
-@include foundation-accordion;
-@include foundation-accordion-menu;
-@include foundation-badge;
-@include foundation-breadcrumbs;
 @include foundation-button-group;
-@include foundation-callout;
-@include foundation-card;
 @include foundation-close-button;
-@include foundation-menu;
-@include foundation-menu-icon;
-@include foundation-drilldown-menu;
-@include foundation-dropdown;
-@include foundation-dropdown-menu;
-@include foundation-responsive-embed;
 @include foundation-label;
-@include foundation-media-object;
-@include foundation-off-canvas;
-@include foundation-orbit;
-@include foundation-pagination;
 @include foundation-progress-bar;
 @include foundation-slider;
-@include foundation-sticky;
-@include foundation-reveal;
 @include foundation-switch;
 @include foundation-table;
+
+// Basic components
+@include foundation-badge;
+@include foundation-breadcrumbs;
+@include foundation-callout;
+@include foundation-card;
+@include foundation-dropdown;
+@include foundation-pagination;
+@include foundation-tooltip;
+
+// Containers
+@include foundation-accordion;
+@include foundation-media-object;
+@include foundation-orbit;
+@include foundation-responsive-embed;
 @include foundation-tabs;
 @include foundation-thumbnail;
+
+// Menu-based containers
+@include foundation-menu;
+@include foundation-menu-icon;
+@include foundation-accordion-menu;
+@include foundation-drilldown-menu;
+@include foundation-dropdown-menu;
+
+// Layout components
+@include foundation-off-canvas;
+@include foundation-reveal;
+@include foundation-sticky;
 @include foundation-title-bar;
-@include foundation-tooltip;
 @include foundation-top-bar;
-@include foundation-visibility-classes;
+
+// Helpers
 @include foundation-float-classes;
 @include foundation-flex-classes;
+@include foundation-visibility-classes;
 // @include foundation-prototype-classes;
+
+// Motion UI
+// @include motion-ui-transitions;
+// @include motion-ui-animations;
 
 
 // Colors
@@ -84,7 +104,7 @@ body {background: $white;}
 .pad {padding: 20px 0;}
 a {color: $primary;}
 a:hover {color: $secondary;}
-button, .button {background: $primary;}
+button, .button {background: $primary; border-radius: 2px;}
 button:hover, .button:hover {background: darken($primary, 10%);}
 hr {border-color: $light-gray;}
 
@@ -92,7 +112,19 @@ hr {border-color: $light-gray;}
   padding: 3px 0;
   background: darken($primary, 10%);
   text-align: right;
-  a {color: $white; margin-right: 8px; font-size: 17px;}
+  a {color: $white; margin-right: 8px; font-size: 12.5px;}
+  i {font-size: 14px;}
+  .dropdown-pane {
+    background-image:linear-gradient(to bottom, darken($primary, 10%), $primary);
+    border: 0;
+    border-radius: 3px;
+    padding: 0 10px;
+    text-align: right;
+    li {list-style: none; padding: 6px 0;}
+  }
+  hr {margin: 0;}
+  #user, #sign-up-link {margin-left: 40px;}
+  #log-in-link {margin-left: 15px;}
 }
 
 .title-bar {
@@ -180,7 +212,8 @@ hr {border-color: $light-gray;}
 #content {padding-top: 25px; padding-bottom: 25px; min-height: 100vh;}
 
 .card {
-  box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 10px 1px rgba(0,0,0,.21);
+  border: 0;
   transform: translate3d(0px, 0px, 0px);
   transition: box-shadow 0.2s cubic-bezier(0, 0.2, 0.4, 1) 0s;
 }
@@ -202,7 +235,7 @@ hr {border-color: $light-gray;}
 	background: url('/#{$static}/img/bg.jpg') 100% no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
-	
+
 	@include breakpoint(small only) {
 		padding-top: 10px;
 	    background-attachment: unset;
@@ -363,11 +396,42 @@ hr {border-color: $light-gray;}
   input.button{border-top-right-radius: 5px; border-bottom-right-radius: 5px;color: $white;padding-top: 11px;}
 }
 
+select {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  -o-appearance: none !important;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%28138, 138, 138%29'></polygon></svg>") !important;
+  background-origin: content-box !important;
+  background-position: right -1rem center !important;
+  background-repeat: no-repeat !important;
+  background-size: 9px 6px !important;
+}
 
-.contact-form {
-  [type="text"], [type="password"], [type="date"], [type="datetime"], [type="datetime-local"], [type="month"], [type="week"], [type="email"], [type="number"], [type="search"], [type="tel"], [type="time"], [type="url"], [type="color"], textarea {border-radius: 4px;}
+[type="search"], select {
+  background: #f5f8fa !important;
+  border: 1px solid #cbd6e2 !important;
+  border-radius: 3px !important;
+}
 
-  textarea {max-height: 60px;}
+form {
+  [type="text"], [type="password"], [type="date"],
+  [type="datetime"], [type="datetime-local"], [type="month"],
+  [type="week"], [type="email"], [type="number"],
+  [type="search"], [type="tel"], [type="time"],
+  [type="url"], [type="color"], select, textarea {
+    background: #f5f8fa;
+    border: 1px solid #cbd6e2;
+    border-radius: 3px;
+  }
+
+  input:hover {
+    border-color: rgba(62,80,180,.5);
+    box-shadow: 0 0 4px 1px rgba(62,80,180,.3),0 0 0 1px #00d0e4;
+  }
+
+  textarea {max-height: 80px;}
+
+  .button, button {border-radius: 3px;}
 }
 
 

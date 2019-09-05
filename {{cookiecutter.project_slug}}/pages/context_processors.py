@@ -6,6 +6,6 @@ def site_url(request):
     site = get_current_site(request)
 
     return {
-        'site_url':  "{}://{}".format(scheme, site.domain),
+        'site_url': "{}://{}".format(scheme, site.domain),
         'site_name': site.name
     }

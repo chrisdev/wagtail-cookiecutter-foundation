@@ -2,8 +2,8 @@
   "name": "{{ cookiecutter.project_slug }}",
   "version": "0.0.0",
     "dependencies": {
-      "foundation-sites": "6.5.0-rc.4",
-      "motion-ui": "~2.0.3"
+      "foundation-sites": "^6.5.3",
+      "motion-ui": "^2.0.3"
     },
     "devDependencies": {},
     "engines": {

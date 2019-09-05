@@ -5,7 +5,7 @@ $static: static;
 
 // SOCIAL BAR
 
-$social-bar-position: left; 
+$social-bar-position: left;
 $social-bar-transformation: rem-calc(140);
 $social-bar-width: rem-calc(180);
 $social-bar-background: #333333;
@@ -25,14 +25,14 @@ $social-brand-print: #777;
 
 .sticky-social-bar {
   padding: 0;
-  margin: 0; 
+  margin: 0;
   top: 50%;
   z-index: 9999;
   transform: translateY(-50%);
   width: $social-bar-width;
   background-color: $social-bar-background;
   position: fixed;
-	
+
   @if $social-bar-position == left {
 	  left: $social-bar-transformation * -1;
   }
@@ -218,7 +218,7 @@ $social-button-margin: 0.25rem;
 .fullscreen-image-slider {
   border: 5px solid $white;
   margin-bottom: 40px;
-  
+
   .orbit-image {
     width: 100%;
   }
@@ -231,7 +231,7 @@ $social-button-margin: 0.25rem;
     text-align: center;
     color: $white;
   }
-  
+
   button, .button {background: rgba(0, 0, 0, 0.7);}
 }
 
@@ -257,7 +257,7 @@ $small-height: 80vh;
       font-size: 1.6rem;
       line-height: 1.25;
       font-weight: 300;
-      
+
       @include breakpoint(small only) {
         font-size: 1.1rem;
       }
@@ -274,29 +274,29 @@ $small-height: 80vh;
         font-weight: normal;
       }
     }
-    
+
     .button {border-radius: 3px; color: $white;}
-    
+
     @include breakpoint(small only) {
       padding: 1rem ;
       text-align: center;
     }
   }
-  
+
   .orbit-slide {
 
     @include breakpoint(medium) {
       padding-bottom: 0;
     }
-    
+
     @media screen and (min-width:40.063em) and (max-width:60em) {
     	height: $medium-height;
     }
-    
+
     @include breakpoint(small only) {
       height: $small-height;
     }
-    
+
     height: $medium-height;
   }
 
@@ -331,7 +331,7 @@ $small-height: 80vh;
 
   ul.orbit-container {
     max-height: $medium-height;
-    
+
     @include breakpoint(small only) {
       max-height: $small-height;
     }
@@ -353,7 +353,7 @@ $small-height: 80vh;
 
 .hero-section {
   background: linear-gradient(
-    rgba(0, 0, 0, 0.3), 
+    rgba(0, 0, 0, 0.3),
     rgba(0, 0, 0, 0.4)
   );
   background-position: top center;
@@ -374,7 +374,7 @@ $small-height: 80vh;
 .hero-section.page {
 	.hero-content {
 		background: linear-gradient(
-		  rgba(0, 0, 0, 0.7), 
+		  rgba(0, 0, 0, 0.7),
 		  rgba(0, 0, 0, 0.8)
 		);
 		width: 100%;
@@ -599,7 +599,7 @@ $tag-cloud-section-width: 800px;
 
 
 
-// CALLOUT NOTIFICATION 
+// CALLOUT NOTIFICATION
 
 .notification-callout-alert {
  display:-ms-flexbox;
@@ -618,7 +618,7 @@ $tag-cloud-section-width: 800px;
  box-shadow:0 2px 20px 0 rgba(0,0,0,.13);
  border-radius:8px;
  transition:all .5s ease-in-out;
- 
+
  .button {border-radius: 5px;}
 }
 
@@ -654,14 +654,14 @@ $tag-cloud-section-width: 800px;
      p {margin-bottom: 0;}
      }
 }
- 
- // END CALLOUT NOTIFICATION
- 
- 
- 
 
-// TESTIMONIAL 
- 
+ // END CALLOUT NOTIFICATION
+
+
+
+
+// TESTIMONIAL
+
 $full-width-testimonial-quote-color: $white;
 $full-width-testimonial-vertical-padding: 1rem;
 
@@ -680,7 +680,7 @@ $full-width-testimonial-vertical-padding: 1rem;
 }
 .full-width-testimonial-section {
   padding-top: $full-width-testimonial-vertical-padding;
-  
+
   .full-width-testimonial-text {
     font-weight: 300;
     color: #ffffff;
@@ -688,31 +688,31 @@ $full-width-testimonial-vertical-padding: 1rem;
     padding-right: 30px;
     // Adjust margin-top for line spacing
     margin-top: -5px;
-    
+
     @include breakpoint(small) {
       padding-left: 50px;
       padding-right: 50px;
       font-size: 1.3em;
     }
-    
+
     @include breakpoint(medium) {
       padding-left: 100px;
       padding-right: 100px;
     }
-    
+
     @include breakpoint(large) {
       padding-left: 180px;
       padding-right: 180px;
       font-size: 1.6em;
     }
-    
+
     @include breakpoint(xlarge) {
       padding-left: 200px;
       padding-right: 200px;
       font-size: 1.6em;
     }
   }
-  
+
   .full-width-testimonial-source {
     font-size: 1.2em;
     font-weight: 600;
@@ -721,12 +721,12 @@ $full-width-testimonial-vertical-padding: 1rem;
     letter-spacing: 1.5px;
     padding-bottom: 0;
     margin-bottom: 0.2em;
-    
+
     @include breakpoint(small) {
       font-size: 1.0em;
     }
   }
-  
+
   .full-width-testimonial-source-context {
     display: block;
     font-size: 0.9em;
@@ -734,12 +734,12 @@ $full-width-testimonial-vertical-padding: 1rem;
     color: #ffffff;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-  
+
     @include breakpoint(small) {
       font-size: 0.8em;
     }
   }
-  
+
   .slick-slider {
     margin-bottom: 0px;
   }
@@ -755,50 +755,50 @@ $full-width-testimonial-vertical-padding: 1rem;
 .full-width-testimonial-content {
   width: 100%;
 }
- 
+
 // END TESTIMONIAL
 
 
 
 
 // TESTIMONIAL LIST
-  
+
   .featured-testimonials-section {
     padding: 1rem;
-  
+
     .featured-testimonials-container {
       .orbit-previous {
         color: $black;
         left: -1rem;
       }
-  
+
       .orbit-next {
         color: $black;
         right: -1rem;
       }
   }
-  
+
     .testimonial {
       display: flex;
       align-items: center;
       margin: 2.5rem 1rem;
     }
-  
+
     .profile-pic {
       max-width: 100px;
       border-radius: 50%;
-  
+
     }
-    
+
     h6 {color: $white;}
-  
+
     p {
       margin-left: 2rem;
       margin-bottom: 0rem;
       padding: .5rem;
       position: relative;
       color: $emperor;
-  
+
       &::before {
         content: "“";
         font-size: 4rem;
@@ -807,7 +807,7 @@ $full-width-testimonial-vertical-padding: 1rem;
         top: -2.5rem;
         left: -1.5rem;
       }
-  
+
       &::after {
         content: "”";
         font-size: 4rem;
@@ -816,13 +816,13 @@ $full-width-testimonial-vertical-padding: 1rem;
         bottom: -4rem;
         right: -.5rem;
       }
-  
+
       @include breakpoint(small only){
         margin-left: 0;
       }
     }
   }
-  
+
   .reveal.testimonial {
       padding: 2rem;
       border-radius: 5px;
@@ -833,7 +833,7 @@ $full-width-testimonial-vertical-padding: 1rem;
           padding: .5rem;
           position: relative;
           color: $secondary;
-      
+
           &::before {
             content: "“";
             font-size: 4rem;
@@ -842,7 +842,7 @@ $full-width-testimonial-vertical-padding: 1rem;
             top: -2.5rem;
             left: -1.5rem;
           }
-      
+
           &::after {
             content: "”";
             font-size: 4rem;
@@ -851,14 +851,14 @@ $full-width-testimonial-vertical-padding: 1rem;
             bottom: -4rem;
             right: -.5rem;
           }
-      
+
           @include breakpoint(small only){
             margin-left: 0;
           }
         }
   }
-  
-// END TESTIMONIAL LIST 
+
+// END TESTIMONIAL LIST
 
 
 
@@ -944,3 +944,85 @@ $card-user-profile-text-color: $body-font-color;
 }
 
 // END PRODUCT CARD
+
+
+
+
+// PROFILE CARD
+
+.card-profile-stats {
+  border-radius: 5px;
+  margin: 0 0 1.25rem;
+  box-shadow: 1px 1px 10px 1px rgba(0,0,0,.21);
+  padding: 1.25rem;
+  background: $white;
+
+  h3 {color: $primary; margin-bottom: 2px;}
+
+  .card-profile-stats-intro {
+    text-align: center;
+
+    .card-profile-stats-intro-pic {
+      border-radius: 50%;
+      margin: 0 0 1.25rem;
+    }
+
+    .card-profile-stats-intro-content {
+      p:last-child {
+        margin: 0;
+      }
+    }
+  }
+
+  .card-profile-stats-container {
+    text-align: center;
+
+    .card-profile-stats-statistic {
+      margin: 0 0 1.25rem;
+
+      p:last-child {
+        margin: 0;
+      }
+    }
+  }
+
+  .card-profile-stats-more {
+    .card-profile-stats-more-link {
+      margin: 0;
+      text-align: center;
+      font-size: 1.5rem;
+      padding: 0.5rem;
+      cursor: pointer;
+      font-size: 15px;
+
+      a {color: $secondary;}
+    }
+
+    .card-profile-stats-more-content {
+      display: none;
+    }
+  }
+}
+
+
+
+/* Large and up */
+@include breakpoint(large) {
+  .card-profile-stats {
+    .card-profile-stats-intro {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      text-align: left;
+    }
+
+    .card-profile-stats-container {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+
+}
+
+// END PROFILE CARD

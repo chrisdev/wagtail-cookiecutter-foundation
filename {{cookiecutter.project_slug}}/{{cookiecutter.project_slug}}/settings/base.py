@@ -18,6 +18,7 @@ env = environ.Env()
 
 root = environ.Path(__file__) - 3
 PROJECT_ROOT = root()
+{% if cookiecutter.use_accounts == 'y' %}APPS_DIR = root.path('pages'){% endif %}
 
 environ.Env.read_env(root('.env'))
 
@@ -46,29 +47,30 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sessions',
     'django.contrib.sitemaps',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
 
     'compressor',
     'taggit',
     'modelcluster',
-    
+
     'foundation_formtags',
     'wagtail_feeds',
-    
+    'ls.joyous',
+
     'blog',
     'contact',
     'documents_gallery',
-    'events',
     'gallery',
     'pages',
     'people',
     'products',
     'search',
     'utils',
-    
+
     'wagtail.contrib.routable_page',
     'wagtail.contrib.sitemaps',
     'wagtail.contrib.search_promotions',
@@ -76,6 +78,7 @@ INSTALLED_APPS = (
     'wagtail.contrib.settings',
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
+    'wagtail.contrib.modeladmin',
     'wagtail.embeds',
     'wagtail.sites',
     'wagtail.users',
@@ -85,9 +88,12 @@ INSTALLED_APPS = (
     'wagtail.search',
     'wagtail.admin',
     'wagtail.core',
-    'wagtailfontawesome',
-    'wagtailmarkdown',
-    {% if cookiecutter.use_wagalytics_app == 'y' %}'wagalytics', {% endif %}
+    {% if cookiecutter.use_wagalytics_app == 'y' %}'wagalytics',{% endif %}
+    {% if cookiecutter.use_accounts == 'y' %}'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'users',
+    {% endif %}
 )
 
 MIDDLEWARE = (
@@ -100,7 +106,7 @@ MIDDLEWARE = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'wagtail.core.middleware.SiteMiddleware',
-    'wagtail.contrib.redirects.middleware.RedirectMiddleware',   
+    'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 )
 
 
@@ -116,7 +122,7 @@ MANAGERS = ADMINS
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        {% if cookiecutter.use_accounts == 'y' %}'DIRS': [ str(APPS_DIR.path('templates')),],{% else %}'DIRS': [],{% endif %}
         'APP_DIRS': True,
         'OPTIONS': {
             'debug': DEBUG,
@@ -132,6 +138,54 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = '{{ cookiecutter.project_slug }}.wsgi.application'
+
+{% if cookiecutter.use_accounts == 'y' %}
+# PASSWORD VALIDATION
+# https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
+# ------------------------------------------------------------------------------
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+# See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
+SITE_ID = 1
+
+# AUTHENTICATION CONFIGURATION
+# ------------------------------------------------------------------------------
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+# Some really nice defaults
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = 'account_login'
+
+ACCOUNT_ALLOW_REGISTRATION = env.bool('DJANGO_ACCOUNT_ALLOW_REGISTRATION', True)
+ACCOUNT_ADAPTER = 'users.adapters.AccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'users.adapters.SocialAccountAdapter'
+
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
+
+# Select the correct user model
+AUTH_USER_MODEL = 'users.User'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'account_login'
+{% endif %}
 
 WAGTAILADMIN_RICH_TEXT_EDITORS = {
     'default': {

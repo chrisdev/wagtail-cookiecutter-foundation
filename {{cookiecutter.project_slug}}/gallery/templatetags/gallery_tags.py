@@ -18,7 +18,7 @@ def gallery(collection=None, tags=None, image_limit=None):
         images = get_gallery_images(collection, tags=tags.split() if tags else None)
         if image_limit:
             images = images[:int(image_limit)]
-    except:
+    except Exception:
         pass
     return {'gallery_images': images}
 

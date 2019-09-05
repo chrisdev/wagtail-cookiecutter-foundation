@@ -1,0 +1,52 @@
+{% raw %}{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+
+{% block title %}Dashboard - {% if object.name %}{{ object.name }}{% else %}{{ object.username }}{% endif %}{% endblock %}
+
+{% block callout %}
+  {% if object.name %}
+    <div class="callout accounts">
+      <div class="grid-container">
+        <div class="grid-x grid-padding-x align-center pad">
+          <div class="medium-11 cell">
+            <div class="grid-x grid-padding-x">
+              <div class="medium-7 cell">
+                <h3>{{ object.name }}'s Dashboard</h3>
+              </div>
+              <div class="medium-5 cell">
+                <p>
+                  <a class="button" data-toggle="user_profile"><i class="fa fa-user"></i> View Profile</a>
+                <p>
+                <div class="cell">
+                  <div class="off-canvas-wrapper">
+                    <div class="off-canvas medium position-right" id="user_profile" data-off-canvas>
+                      {% include "users/includes/details.html" %}
+                      <button class="close-button" aria-label="Close menu" type="button" data-close>
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <div class="callout accounts">
+      <div class="grid-container">
+        <div class="grid-x grid-padding-x align-center pad">
+          <div class="medium-8 text-center cell">
+            <h2>Welcome <strong>{{ object.username }}</strong></h2>
+            <a class="button medium" href="{% url 'users:update' %}"><i class="fa fa-pencil-alt"></i> Complete Your Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <div id="content"></div>
+{% endblock %}{% endraw %}

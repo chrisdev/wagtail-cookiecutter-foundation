@@ -1,4 +1,4 @@
-from .base import *  # flake8: noqa
+# flake8: noqa
 
 from selenium.common.exceptions import NoSuchElementException
 

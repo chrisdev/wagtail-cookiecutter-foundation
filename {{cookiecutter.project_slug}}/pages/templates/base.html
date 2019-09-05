@@ -11,13 +11,13 @@
     	<meta name="viewport" content="width=device-width, initial-scale=1" />
     	<link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}"/>
     	{% block canonical_url %}{% endblock %}
-	
+
 		{% block cdn_css %}
 			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" />
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/css/lightbox.min.css" />
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/2.0.3/motion-ui.min.css" />
 		{% endblock %}
-	
+
 		{% compress css %}
 			<link rel="stylesheet" type="text/x-scss" href="{% static 'css/app.scss' %}">
 		{% endcompress %}
@@ -32,7 +32,7 @@
     		{% include "utils/includes/twitter_cards.html" %}
     	{% endblock %}
 
-		{% block google_analytics %}
+      {% block google_analytics %}
     		{% include "utils/includes/google_analytics.html" %}
     	{% endblock %}
 	</head>
@@ -49,9 +49,11 @@
       		{% breadcrumbs %}
       	{% endblock %}
 
+        {% block callout %}{% endblock %}
+
       	{% block content %}{% endblock %}
 
-      	<a href="#" class="scrollup"><img src="{% static 'img/top.png' %}"></i></a>
+      	<a href="#" class="scrollup"><img src="{% static 'img/top.png' %}"></a>
 
       	<footer class="hide-for-print">
   	  		<div class="grid-container">
@@ -60,20 +62,20 @@
   	            		<h5><strong>Get in Contact</strong></h5>
   	            		{% get_contact_fields as contact %}
   	            		{% include "contact/includes/contact_card.html" with contact=contact only %}
-  	
+
   	            		<br>
-  	
+
   	            		<h5><strong>Follow Us</strong></h5>
   	            		<div class="social">
   	            			{% include "contact/includes/social.html" %}
   	            		</div>
   	          		</div>
-  	
+
   	          		<div id="sitemap" class="medium-3 cell hide-for-small-only">
 	            		<h5><strong>Explore Our Site</strong></h5>
 	            		{% site_menu parent=site_root calling_page=self %}
 	          		</div>
-	
+
 	          		<div class="medium-4 cell text-center hide-for-small-only">
 	            		<a href="https://www.google.com/maps/place/chrisdev/" target="_blank">
 	            			<img src="{% static 'img/map.png' %}" alt="" style="border: 5px solid #fff;" />
@@ -87,15 +89,15 @@
   	      		</div>
   	    	</div>
   	  	</footer>
+      </div>
     </div>
-  </div>
 
 		{% block cdn_js %}
   			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   			<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.10.0/js/lightbox.min.js"></script>
   			<script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/5.1.0/what-input.min.js"></script>
   		{% endblock %}
-  
+
   		{% compress js %}
   			<script src="{% static 'node_modules/foundation-sites/dist/js/foundation.min.js' %}"></script>
   			<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
@@ -106,7 +108,7 @@
     			$(document).foundation();
   			</script>
   		{% endblock %}
-  
+
   		{% block extra_js %}{% endblock %}
 	</body>
 </html>{% endraw %}

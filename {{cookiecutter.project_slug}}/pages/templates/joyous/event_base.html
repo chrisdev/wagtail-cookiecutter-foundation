@@ -1,0 +1,54 @@
+{% raw %}{% extends "joyous/joyous_base.html" %}
+{% load wagtailcore_tags wagtailimages_tags i18n %}
+
+{% block content %}
+  <div class="grid-container content">
+    {% block event_status %}
+      {% if page.status %}
+        <div class="joy-ev-status">
+          {{ page.status_text }}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block event_title %}
+      <div class="joy-title joy-title--page">
+        <h2>{{ page.title }}</h2>
+      </div>
+    {% endblock %}
+
+    {% block event_image %}
+      {% if page.image %}
+        <div class="joy-img">
+          {% image page.image width-350 class="joy-img__img" %}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block event_who %}
+      {% include "joyous/includes/who.html" with event=page %}
+    {% endblock %}
+
+    {% block event_when %}
+      {% include "joyous/includes/when.html" with event=page %}
+    {% endblock %}
+
+    {% block event_where %}
+      {% include "joyous/includes/where.html" with event=page %}
+    {% endblock %}
+
+    {% block event_details %}
+      <div class="joy-ev-details joy-field">
+        {{ page.details|richtext }}
+      </div>
+    {% endblock %}
+
+    {% block event_footer %}
+      <div class="joy-export">
+        <a href="{{ request.path }}?format=google" class="button medium" target="_blank">{% trans "Google Calendar" %}</a>
+        &nbsp;&nbsp;&nbsp;
+        <a href="{{ request.path }}?format=ical" class="button medium secondary">{% trans "Export iCal" %}</a>
+      </div>
+    {% endblock %}
+  </div>
+{% endblock %}{% endraw %}

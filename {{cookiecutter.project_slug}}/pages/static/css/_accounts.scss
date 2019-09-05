@@ -1,0 +1,122 @@
+$primary: map-get($foundation-palette, primary);
+$secondary: map-get($foundation-palette, secondary);
+$emperor: #777;
+$static: static;
+
+// CALLOUT
+
+.callout.accounts {
+  background: $off-white;
+  border: 0;
+  border-bottom: 1px solid #cbd6e2;
+  h3, h4 {color: $primary;}
+  p {margin-bottom: 0; text-align: right;}
+  .button {margin-right: 10px; margin-bottom: 0; border-width: 1px;}
+  .button.hollow {border-width: 1px;}
+  .button.alert {color: $white;}
+
+  @include breakpoint(small only){
+    p {text-align: left;}
+    .button {padding: 8px; font-size: 14px;}
+  }
+}
+
+// OFF CALLOUT
+
+
+
+
+
+// OFF CANVAS
+
+.off-canvas-wrapper {
+  .medium {width: 350px;}
+  .large {width: 500px;}
+  .position-right {
+    box-shadow: -3px 0 8px 0 rgba(66,91,118,.21);
+    background: $white;
+  }
+  button.close-button {
+    background: transparent;
+    right: 0.5rem;
+    top: 0.1rem;
+    color: $white;
+  }
+  #banner {
+    background-image: linear-gradient(to right, $primary, darken($primary, 10%));
+    h4 {color: $white; text-align: center;}
+    padding: 15px;
+  }
+  #info {
+    padding: 15px;
+    h6 {margin-bottom: 20px;}
+    label {font-size: 12px; color: #516f90; font-weight: 400;}
+    .fa-edit, .fa-trash-alt {color: $white;}
+    p {text-align: left !important; margin-bottom: 1rem; color: #212529; font-size: 14px;}
+  }
+
+  .js-off-canvas-overlay {background: rgba(0, 0, 0, 0.5);}
+  @include breakpoint(small only){
+    .medium, .large {width: 100%;}
+  }
+}
+// END OFF CANVAS
+
+
+
+
+
+// TABLE
+
+table.dataTable {
+  thead {
+    background: rgba(0, 77, 128, 0.04) !important;
+    th {border-bottom: 1px solid #dee2e6 !important; text-transform: uppercase; font-size: 12px;}
+  }
+  th, td {
+    padding: 20px 10px !important;
+    font-size: 14px;
+    color: #212529;
+    border-top: 1px solid #dee2e6;
+  }
+  th {padding: 12px 10px !important;}
+  tr:hover {background: #f0f4f7 !important;}
+
+  .fa-trash-alt {color: $alert-color;}
+  .fa-edit {color: $primary;}
+  .fa-eye {color: $success-color;}
+  .fa-edit, .fa-trash-alt, .fa-eye {font-weight: 500; font-size: 15px; margin: 0 2px;}
+}
+
+table.dataTable.no-footer {
+  border-bottom: 1px solid #dee2e6 !important;
+  margin-bottom: 20px;
+}
+
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+  color: #212529 !important;
+  font-size: 14px !important;
+}
+
+// END TABLE
+
+
+
+
+
+// DASHBOARD
+
+#dashboard {
+  .card {
+    padding: 15px;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 10px 1px rgba(0,0,0,.1);
+    border-radius: 3px;
+
+    @include breakpoint(small only){
+      margin-bottom: 20px;
+  	}
+  }
+}
+
+// END DASHBOARD

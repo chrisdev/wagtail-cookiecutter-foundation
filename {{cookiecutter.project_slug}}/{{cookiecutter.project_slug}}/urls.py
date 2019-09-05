@@ -1,3 +1,4 @@
+# flake8: noqa
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.conf import settings
@@ -20,12 +21,13 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^django-admin/', (admin.site.urls)),
-
+    url(r'^users/', include('users.urls')),
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^search/$', search_views.search, name='search'),
     url(r'^documents/', include(wagtaildocs_urls)),
 
-    url('^sitemap\.xml$', sitemap),
+    url('^sitemap.xml$', sitemap),
     url(r'^blog/feed/basic$', BasicFeed(), name='basic_feed'),
     url(r'^blog/feed/extended$', ExtendedFeed(), name='extended_feed'),
 

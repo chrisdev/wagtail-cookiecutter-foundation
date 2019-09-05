@@ -42,7 +42,7 @@ HOST ?= localhost:8000
 DEPLOY_ENV = production
 
 virtualenv:
-	python3 -m venv $(VIRTUALENV_NAME)
+	python3.7 -m venv $(VIRTUALENV_NAME)
 
 requirements:
 	( \
@@ -76,7 +76,7 @@ update_modules:
 		. $(VIRTUALENV_NAME)/bin/activate; \
 		$ wagtail updatemodulepaths; \
 	)
-	
+
 runserver:
 	( \
 		. $(VIRTUALENV_NAME)/bin/activate; \

@@ -1,4 +1,4 @@
-{% raw %}{% load wagtailcore_tags navigation_tags wagtailsettings_tags static %}
+{% raw %}{% load wagtailcore_tags navigation_tags i18n wagtailsettings_tags static %}
 {% get_settings %}
 {% get_site_root as site_root %}
 
@@ -8,6 +8,9 @@
 	<div id="social_bar">
   		<div class="grid-container" style="max-width: 100%;">
     		{% include "contact/includes/social.html" %}
+				{% comment %}
+				{% include "utils/tags/navigation/account.html" %}
+				{% endcomment %}
   		</div>
 	</div>
 
@@ -26,7 +29,7 @@
         	<ul class="vertical medium-horizontal menu" data-responsive-menu="drilldown medium-dropdown">
           		<li class="{% if calling_page.url == site_root %} is-active{% endif %}"><a href="{% pageurl site_root %}">Home</a></li>
           		{% for menuitem in menuitems %}
-          			<li class="{% if menuitem.show_dropdown %}has-submenu{% endif %} {% if calling_page.url == menuitem.url %}is-active{% endif %}">
+          			<li class="{% if menuitem.show_dropdown %}has-submenu{% endif %}">
             			<a href="{% pageurl menuitem %}">{{ menuitem.title }}</a>
             				{% if menuitem.show_dropdown %}
             					<ul class="submenu menu vertical" data-submenu>
