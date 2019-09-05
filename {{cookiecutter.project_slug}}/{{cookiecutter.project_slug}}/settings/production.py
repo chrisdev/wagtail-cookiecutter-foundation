@@ -1,10 +1,14 @@
 # flake8: noqa
+from .base import *
+
+{% if cookiecutter.use_sentry == 'y' %}
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 sentry_sdk.init(
     dsn= env('SENTRY_DSN'),
     integrations=[DjangoIntegration()]
 )
+{% endif %}
 
 DEBUG = env.bool('DJANGO_DEBUG', default=False)
 

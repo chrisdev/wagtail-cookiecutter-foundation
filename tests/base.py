@@ -21,7 +21,7 @@ class DjangoCookieTestCase(unittest.TestCase):
         used by other tests cases
         """
         # Construct the cookiecutter search pattern
-        pattern = "{{(\s?cookiecutter)[.](.*?)}}"
+        pattern = r'{{(\s?cookiecutter)[.](.*?)}}'
         re_obj = re.compile(pattern)
 
         # Assert that no match is found in any of the files
