@@ -62,8 +62,11 @@
 - name: Add the renewal cronjob to the system
   become: yes
   become_user: root
-  cron: name="LE certificate renewal" minute="30" hour="2,7"
-        job="/usr/bin/certbot renew --pre-hook "service nginx stop" --post-hook "service nginx start""
+  cron:
+    name: "LE certificate renewal"
+    minute: "30"
+    hour: "2,7"
+    job: "/usr/bin/certbot renew --pre-hook "service nginx stop" --post-hook "service nginx start"
   when: use_ssl|bool and cert_stat.stat.exists
   tags:
     - ssl
