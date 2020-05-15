@@ -9,7 +9,7 @@ django-libsass==0.7
 django-redis==4.10.0
 libsass==0.16.1
 psycopg2-binary==2.7.7
-wand==0.5.0
+wand==0.6.0
 bleach==3.1.0
 ls.joyous==0.9.0
 {% if cookiecutter.use_wagalytics_app == 'y' %}wagalytics==0.8.1 {% endif %}
