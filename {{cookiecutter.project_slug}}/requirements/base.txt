@@ -16,3 +16,15 @@ ls.joyous==0.9.0
 {% if cookiecutter.use_accounts == 'y' %}django-countries==5.3.3
 django-allauth==0.39.1
 django-braces==1.13.0{% endif %}
+django-mptt==0.11.0
+django-leaflet==0.26.0
+django-geojson==2.12.0
+idigbio==0.8.5
+xlrd==1.2.0
+django-import-export==2.0.2
+django-ckeditor==5.9.0
+django-map-widgets==0.2.3
+unicodecsv==0.14.1
+wagtailgeowidget==5.0.2
+fastkml==0.11
+lxml==4.5.0
