@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.14
--- Dumped by pg_dump version 11.4
+-- Dumped from database version 9.6.18
+-- Dumped by pg_dump version 10.13
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -15,6 +15,20 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
 
 SET default_tablespace = '';
 
@@ -2353,6 +2367,8 @@ CREATE TABLE public.wagtailcore_page (
     live_revision_id integer,
     last_published_at timestamp with time zone,
     draft_title character varying(255) NOT NULL,
+    locked_at timestamp with time zone,
+    locked_by_id integer,
     CONSTRAINT wagtailcore_page_depth_check CHECK ((depth >= 0)),
     CONSTRAINT wagtailcore_page_numchild_check CHECK ((numchild >= 0))
 );
@@ -2689,6 +2705,36 @@ CREATE SEQUENCE public.wagtailimages_rendition_id_seq
 --
 
 ALTER SEQUENCE public.wagtailimages_rendition_id_seq OWNED BY public.wagtailimages_rendition.id;
+
+
+--
+-- Name: wagtailimages_uploadedimage; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtailimages_uploadedimage (
+    id integer NOT NULL,
+    file character varying(200) NOT NULL,
+    uploaded_by_user_id integer
+);
+
+
+--
+-- Name: wagtailimages_uploadedimage_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.wagtailimages_uploadedimage_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wagtailimages_uploadedimage_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.wagtailimages_uploadedimage_id_seq OWNED BY public.wagtailimages_uploadedimage.id;
 
 
 --
@@ -3321,6 +3367,13 @@ ALTER TABLE ONLY public.wagtailimages_rendition ALTER COLUMN id SET DEFAULT next
 
 
 --
+-- Name: wagtailimages_uploadedimage id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailimages_uploadedimage ALTER COLUMN id SET DEFAULT nextval('public.wagtailimages_uploadedimage_id_seq'::regclass);
+
+
+--
 -- Name: wagtailredirects_redirect id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3803,6 +3856,10 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 391	Can change multiday recurring event page	99	change_multidayrecurringeventpage
 392	Can delete multiday recurring event page	99	delete_multidayrecurringeventpage
 393	Can view multiday recurring event page	99	view_multidayrecurringeventpage
+394	Can add uploaded image	100	add_uploadedimage
+395	Can change uploaded image	100	change_uploadedimage
+396	Can delete uploaded image	100	delete_uploadedimage
+397	Can view uploaded image	100	view_uploadedimage
 \.
 
 
@@ -4013,6 +4070,7 @@ COPY public.django_content_type (id, app_label, model) FROM stdin;
 97	joyous	specificcalendarpage
 98	joyous	reschedulemultidayeventpage
 99	joyous	multidayrecurringeventpage
+100	wagtailimages	uploadedimage
 \.
 
 
@@ -4247,6 +4305,13 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 224	joyous	0014_auto_20190328_0652	2019-06-17 11:07:25.981277-04
 225	joyous	0015_auto_20190409_0645	2019-06-17 11:07:27.431655-04
 226	users	0002_auto_20190718_1416	2019-07-29 16:08:26.095271-04
+227	taggit	0003_taggeditem_add_unique_index	2020-06-08 10:00:19.179468-04
+228	wagtailcore	0042_index_on_pagerevision_approved_go_live_at	2020-06-08 10:00:19.291856-04
+229	wagtailcore	0043_lock_fields	2020-06-08 10:00:19.639856-04
+230	wagtailcore	0044_add_unlock_grouppagepermission	2020-06-08 10:00:19.988095-04
+231	wagtailcore	0045_assign_unlock_grouppagepermission	2020-06-08 10:00:20.380754-04
+232	wagtailforms	0004_add_verbose_name_plural	2020-06-08 10:00:20.562208-04
+233	wagtailimages	0022_uploadedimage	2020-06-08 10:00:20.72458-04
 \.
 
 
@@ -4894,6 +4959,7 @@ COPY public.wagtailcore_grouppagepermission (id, permission_type, group_id, page
 4	add	2	1
 5	edit	2	1
 6	lock	1	1
+7	unlock	1	1
 \.
 
 
@@ -4901,32 +4967,32 @@ COPY public.wagtailcore_grouppagepermission (id, permission_type, group_id, page
 -- Data for Name: wagtailcore_page; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.wagtailcore_page (id, path, depth, numchild, title, slug, live, has_unpublished_changes, url_path, seo_title, show_in_menus, search_description, go_live_at, expire_at, expired, content_type_id, owner_id, locked, latest_revision_created_at, first_published_at, live_revision_id, last_published_at, draft_title) FROM stdin;
-1	0001	1	1	Root	root	t	f	/		f		\N	\N	f	1	\N	f	\N	\N	\N	\N	Root
-5	0001000100010001	4	0	Standard Page w/o Sidebar	standard-page-wo-sidebar	t	f	/home/standard-index/standard-page-wo-sidebar/		t		\N	\N	f	34	1	f	2019-06-14 15:37:20.036076-04	2019-06-14 15:37:20.534408-04	6	2019-06-14 15:37:20.534408-04	Standard Page w/o Sidebar
-6	0001000100010002	4	0	Standard Page	standard-page	t	f	/home/standard-index/standard-page/		t		\N	\N	f	34	1	f	2019-06-14 15:38:18.85825-04	2019-06-14 15:38:19.137801-04	7	2019-06-14 15:38:19.137801-04	Standard Page
-8	0001000100020001	4	0	Person Page 1	person-page-1	t	f	/home/person-index/person-page-1/		f		\N	\N	f	78	1	f	2019-06-14 15:39:53.919791-04	2019-06-14 15:39:54.276647-04	9	2019-06-14 15:39:54.276647-04	Person Page 1
-9	0001000100020002	4	0	Person Page 2	person-page-2	t	f	/home/person-index/person-page-2/		f		\N	\N	f	78	1	f	2019-06-14 15:40:08.950077-04	2019-06-14 15:40:08.950077-04	11	2019-06-14 15:40:08.950077-04	Person Page 2
-10	0001000100020003	4	0	Person Page 3	person-page-3	t	f	/home/person-index/person-page-3/		f		\N	\N	f	78	1	f	2019-06-14 15:40:22.068617-04	2019-06-14 15:40:22.068617-04	13	2019-06-14 15:40:22.068617-04	Person Page 3
-7	000100010002	3	4	Person Index	person-index	t	f	/home/person-index/		t		\N	\N	f	76	1	f	2019-06-14 15:39:23.78899-04	2019-06-14 15:39:24.358993-04	8	2019-06-14 15:39:24.358993-04	Person Index
-11	0001000100020004	4	0	Person Page 4	person-page-4	t	f	/home/person-index/person-page-4/		f		\N	\N	f	78	1	f	2019-06-14 15:40:41.298604-04	2019-06-14 15:40:41.298604-04	15	2019-06-14 15:40:41.298604-04	Person Page 4
-4	000100010001	3	2	Standard Index	standard-index	t	f	/home/standard-index/		t		\N	\N	f	32	1	f	2019-06-14 15:58:42.206048-04	2019-06-14 15:36:19.792176-04	52	2019-06-14 15:58:42.41514-04	Standard Index
-18	0001000100050002	4	0	Blog Page 2	blog-page-2	t	f	/home/blog-index/blog-page-2/		t		\N	\N	f	63	1	f	2019-06-14 15:48:00.255415-04	2019-06-14 15:47:14.624055-04	30	2019-06-14 15:48:00.528744-04	Blog Page 2
-3	00010001	2	7	Homepage	home	t	f	/home/		f		\N	\N	f	4	\N	f	2019-06-14 15:35:33.799951-04	2019-06-14 11:05:51.293545-04	4	2019-06-14 15:35:35.04048-04	Homepage
-17	0001000100050001	4	0	Blog Page 1	blog-page-1	t	f	/home/blog-index/blog-page-1/		t		\N	\N	f	63	1	f	2019-06-14 15:48:27.193927-04	2019-06-14 15:47:02.49669-04	31	2019-06-14 15:48:27.620541-04	Blog Page 1
-27	000100010008	3	0	Contact Us	contact-us	t	f	/home/contact-us/		f		\N	\N	f	68	1	f	2019-06-14 15:58:05.505996-04	2019-06-14 15:58:05.941292-04	51	2019-06-14 15:58:05.941292-04	Contact Us
-25	000100010007	3	1	Documents Gallery	documents-gallery	t	f	/home/documents-gallery/		t		\N	\N	f	71	1	f	2019-06-14 15:54:06.60246-04	2019-06-14 15:54:07.054704-04	49	2019-06-14 15:54:07.054704-04	Documents Gallery
-26	0001000100070001	4	0	Sample Documents	sample-documents	t	f	/home/documents-gallery/sample-documents/		f		\N	\N	f	72	1	f	2019-06-14 15:54:39.054947-04	2019-06-14 15:54:39.438012-04	50	2019-06-14 15:54:39.438012-04	Sample Documents
-22	0001000100060002	4	0	Gallery 2	gallery-2	t	f	/home/photo-gallery/gallery-2/		f		\N	\N	f	74	1	f	2019-06-14 15:51:46.496343-04	2019-06-14 15:51:29.693357-04	40	2019-06-14 15:51:46.759257-04	Gallery 2
-23	0001000100060003	4	0	Gallery 3	gallery-3	t	f	/home/photo-gallery/gallery-3/		f		\N	\N	f	74	1	f	2019-06-14 15:52:15.105215-04	2019-06-14 15:51:57.430389-04	43	2019-06-14 15:52:15.362927-04	Gallery 3
-21	0001000100060001	4	0	Gallery 1	gallery-1	t	f	/home/photo-gallery/gallery-1/		f		\N	\N	f	74	1	f	2019-06-14 15:51:18.993173-04	2019-06-14 15:51:19.21253-04	37	2019-06-14 15:51:19.21253-04	Gallery 1
-20	000100010006	3	4	Photo Gallery	photo-gallery	t	f	/home/photo-gallery/		t		\N	\N	f	75	1	f	2019-06-14 15:50:47.794336-04	2019-06-14 15:50:47.979554-04	36	2019-06-14 15:50:47.979554-04	Photo Gallery
-24	0001000100060004	4	0	Gallery 4	gallery-4	t	f	/home/photo-gallery/gallery-4/		f		\N	\N	f	74	1	f	2019-06-14 15:52:49.01129-04	2019-06-14 15:52:28.376159-04	48	2019-06-14 15:52:49.456708-04	Gallery 4
-16	000100010005	3	3	Blog Index	blog-index	t	f	/home/blog-index/		t		\N	\N	f	61	1	f	2019-06-14 15:45:09.09709-04	2019-06-14 15:45:09.376355-04	26	2019-06-14 15:45:09.376355-04	Blog Index
-19	0001000100050003	4	0	Blog Page 3	blog-page-3	t	f	/home/blog-index/blog-page-3/		t		\N	\N	f	63	1	f	2019-06-14 15:49:05.1093-04	2019-06-14 15:48:39.004445-04	35	2019-06-14 15:49:05.41499-04	Blog Page 3
-29	0001000100040001	4	0	Event 1	event-1	t	f	/home/calendar/event-1/		f		\N	\N	f	94	1	f	2019-06-17 13:10:51.173843-04	2019-06-17 11:32:12.687681-04	56	2019-06-17 13:10:53.444724-04	Event 1
-28	000100010004	3	2	Calendar	calendar	t	f	/home/calendar/		t		\N	\N	f	87	1	f	2019-06-17 11:23:22.820909-04	2019-06-17 11:23:23.39821-04	53	2019-06-17 11:23:23.39821-04	Calendar
-30	0001000100040002	4	0	Event 2	event-2	t	f	/home/calendar/event-2/		f		\N	\N	f	94	1	f	2019-06-17 13:12:06.62998-04	2019-06-17 13:11:24.470969-04	61	2019-06-17 13:12:09.15968-04	Event 2
+COPY public.wagtailcore_page (id, path, depth, numchild, title, slug, live, has_unpublished_changes, url_path, seo_title, show_in_menus, search_description, go_live_at, expire_at, expired, content_type_id, owner_id, locked, latest_revision_created_at, first_published_at, live_revision_id, last_published_at, draft_title, locked_at, locked_by_id) FROM stdin;
+1	0001	1	1	Root	root	t	f	/		f		\N	\N	f	1	\N	f	\N	\N	\N	\N	Root	\N	\N
+5	0001000100010001	4	0	Standard Page w/o Sidebar	standard-page-wo-sidebar	t	f	/home/standard-index/standard-page-wo-sidebar/		t		\N	\N	f	34	1	f	2019-06-14 15:37:20.036076-04	2019-06-14 15:37:20.534408-04	6	2019-06-14 15:37:20.534408-04	Standard Page w/o Sidebar	\N	\N
+6	0001000100010002	4	0	Standard Page	standard-page	t	f	/home/standard-index/standard-page/		t		\N	\N	f	34	1	f	2019-06-14 15:38:18.85825-04	2019-06-14 15:38:19.137801-04	7	2019-06-14 15:38:19.137801-04	Standard Page	\N	\N
+8	0001000100020001	4	0	Person Page 1	person-page-1	t	f	/home/person-index/person-page-1/		f		\N	\N	f	78	1	f	2019-06-14 15:39:53.919791-04	2019-06-14 15:39:54.276647-04	9	2019-06-14 15:39:54.276647-04	Person Page 1	\N	\N
+9	0001000100020002	4	0	Person Page 2	person-page-2	t	f	/home/person-index/person-page-2/		f		\N	\N	f	78	1	f	2019-06-14 15:40:08.950077-04	2019-06-14 15:40:08.950077-04	11	2019-06-14 15:40:08.950077-04	Person Page 2	\N	\N
+10	0001000100020003	4	0	Person Page 3	person-page-3	t	f	/home/person-index/person-page-3/		f		\N	\N	f	78	1	f	2019-06-14 15:40:22.068617-04	2019-06-14 15:40:22.068617-04	13	2019-06-14 15:40:22.068617-04	Person Page 3	\N	\N
+7	000100010002	3	4	Person Index	person-index	t	f	/home/person-index/		t		\N	\N	f	76	1	f	2019-06-14 15:39:23.78899-04	2019-06-14 15:39:24.358993-04	8	2019-06-14 15:39:24.358993-04	Person Index	\N	\N
+11	0001000100020004	4	0	Person Page 4	person-page-4	t	f	/home/person-index/person-page-4/		f		\N	\N	f	78	1	f	2019-06-14 15:40:41.298604-04	2019-06-14 15:40:41.298604-04	15	2019-06-14 15:40:41.298604-04	Person Page 4	\N	\N
+4	000100010001	3	2	Standard Index	standard-index	t	f	/home/standard-index/		t		\N	\N	f	32	1	f	2019-06-14 15:58:42.206048-04	2019-06-14 15:36:19.792176-04	52	2019-06-14 15:58:42.41514-04	Standard Index	\N	\N
+18	0001000100050002	4	0	Blog Page 2	blog-page-2	t	f	/home/blog-index/blog-page-2/		t		\N	\N	f	63	1	f	2019-06-14 15:48:00.255415-04	2019-06-14 15:47:14.624055-04	30	2019-06-14 15:48:00.528744-04	Blog Page 2	\N	\N
+3	00010001	2	7	Homepage	home	t	f	/home/		f		\N	\N	f	4	\N	f	2019-06-14 15:35:33.799951-04	2019-06-14 11:05:51.293545-04	4	2019-06-14 15:35:35.04048-04	Homepage	\N	\N
+17	0001000100050001	4	0	Blog Page 1	blog-page-1	t	f	/home/blog-index/blog-page-1/		t		\N	\N	f	63	1	f	2019-06-14 15:48:27.193927-04	2019-06-14 15:47:02.49669-04	31	2019-06-14 15:48:27.620541-04	Blog Page 1	\N	\N
+27	000100010008	3	0	Contact Us	contact-us	t	f	/home/contact-us/		f		\N	\N	f	68	1	f	2019-06-14 15:58:05.505996-04	2019-06-14 15:58:05.941292-04	51	2019-06-14 15:58:05.941292-04	Contact Us	\N	\N
+25	000100010007	3	1	Documents Gallery	documents-gallery	t	f	/home/documents-gallery/		t		\N	\N	f	71	1	f	2019-06-14 15:54:06.60246-04	2019-06-14 15:54:07.054704-04	49	2019-06-14 15:54:07.054704-04	Documents Gallery	\N	\N
+26	0001000100070001	4	0	Sample Documents	sample-documents	t	f	/home/documents-gallery/sample-documents/		f		\N	\N	f	72	1	f	2019-06-14 15:54:39.054947-04	2019-06-14 15:54:39.438012-04	50	2019-06-14 15:54:39.438012-04	Sample Documents	\N	\N
+22	0001000100060002	4	0	Gallery 2	gallery-2	t	f	/home/photo-gallery/gallery-2/		f		\N	\N	f	74	1	f	2019-06-14 15:51:46.496343-04	2019-06-14 15:51:29.693357-04	40	2019-06-14 15:51:46.759257-04	Gallery 2	\N	\N
+23	0001000100060003	4	0	Gallery 3	gallery-3	t	f	/home/photo-gallery/gallery-3/		f		\N	\N	f	74	1	f	2019-06-14 15:52:15.105215-04	2019-06-14 15:51:57.430389-04	43	2019-06-14 15:52:15.362927-04	Gallery 3	\N	\N
+21	0001000100060001	4	0	Gallery 1	gallery-1	t	f	/home/photo-gallery/gallery-1/		f		\N	\N	f	74	1	f	2019-06-14 15:51:18.993173-04	2019-06-14 15:51:19.21253-04	37	2019-06-14 15:51:19.21253-04	Gallery 1	\N	\N
+20	000100010006	3	4	Photo Gallery	photo-gallery	t	f	/home/photo-gallery/		t		\N	\N	f	75	1	f	2019-06-14 15:50:47.794336-04	2019-06-14 15:50:47.979554-04	36	2019-06-14 15:50:47.979554-04	Photo Gallery	\N	\N
+24	0001000100060004	4	0	Gallery 4	gallery-4	t	f	/home/photo-gallery/gallery-4/		f		\N	\N	f	74	1	f	2019-06-14 15:52:49.01129-04	2019-06-14 15:52:28.376159-04	48	2019-06-14 15:52:49.456708-04	Gallery 4	\N	\N
+16	000100010005	3	3	Blog Index	blog-index	t	f	/home/blog-index/		t		\N	\N	f	61	1	f	2019-06-14 15:45:09.09709-04	2019-06-14 15:45:09.376355-04	26	2019-06-14 15:45:09.376355-04	Blog Index	\N	\N
+19	0001000100050003	4	0	Blog Page 3	blog-page-3	t	f	/home/blog-index/blog-page-3/		t		\N	\N	f	63	1	f	2019-06-14 15:49:05.1093-04	2019-06-14 15:48:39.004445-04	35	2019-06-14 15:49:05.41499-04	Blog Page 3	\N	\N
+29	0001000100040001	4	0	Event 1	event-1	t	f	/home/calendar/event-1/		f		\N	\N	f	94	1	f	2019-06-17 13:10:51.173843-04	2019-06-17 11:32:12.687681-04	56	2019-06-17 13:10:53.444724-04	Event 1	\N	\N
+28	000100010004	3	2	Calendar	calendar	t	f	/home/calendar/		t		\N	\N	f	87	1	f	2019-06-17 11:23:22.820909-04	2019-06-17 11:23:23.39821-04	53	2019-06-17 11:23:23.39821-04	Calendar	\N	\N
+30	0001000100040002	4	0	Event 2	event-2	t	f	/home/calendar/event-2/		f		\N	\N	f	94	1	f	2019-06-17 13:12:06.62998-04	2019-06-17 13:11:24.470969-04	61	2019-06-17 13:12:09.15968-04	Event 2	\N	\N
 \.
 
 
@@ -5145,6 +5211,14 @@ COPY public.wagtailimages_rendition (id, file, width, height, focal_point_key, f
 
 
 --
+-- Data for Name: wagtailimages_uploadedimage; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtailimages_uploadedimage (id, file, uploaded_by_user_id) FROM stdin;
+\.
+
+
+--
 -- Data for Name: wagtailredirects_redirect; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -5216,7 +5290,7 @@ SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 14, true);
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.auth_permission_id_seq', 393, true);
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 397, true);
 
 
 --
@@ -5272,14 +5346,14 @@ SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1, false);
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.django_content_type_id_seq', 99, true);
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 100, true);
 
 
 --
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 226, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 233, true);
 
 
 --
@@ -5580,7 +5654,7 @@ SELECT pg_catalog.setval('public.wagtailcore_groupcollectionpermission_id_seq', 
 -- Name: wagtailcore_grouppagepermission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.wagtailcore_grouppagepermission_id_seq', 6, true);
+SELECT pg_catalog.setval('public.wagtailcore_grouppagepermission_id_seq', 7, true);
 
 
 --
@@ -5651,6 +5725,13 @@ SELECT pg_catalog.setval('public.wagtailimages_image_id_seq', 14, true);
 --
 
 SELECT pg_catalog.setval('public.wagtailimages_rendition_id_seq', 74, true);
+
+
+--
+-- Name: wagtailimages_uploadedimage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.wagtailimages_uploadedimage_id_seq', 1, false);
 
 
 --
@@ -6425,6 +6506,14 @@ ALTER TABLE ONLY public.taggit_tag
 
 
 --
+-- Name: taggit_taggeditem taggit_taggeditem_content_type_id_object_i_4bb97a8e_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taggit_taggeditem
+    ADD CONSTRAINT taggit_taggeditem_content_type_id_object_i_4bb97a8e_uniq UNIQUE (content_type_id, object_id, tag_id);
+
+
+--
 -- Name: taggit_taggeditem taggit_taggeditem_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6686,6 +6775,14 @@ ALTER TABLE ONLY public.wagtailimages_rendition
 
 ALTER TABLE ONLY public.wagtailimages_rendition
     ADD CONSTRAINT wagtailimages_rendition_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: wagtailimages_uploadedimage wagtailimages_uploadedimage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailimages_uploadedimage
+    ADD CONSTRAINT wagtailimages_uploadedimage_pkey PRIMARY KEY (id);
 
 
 --
@@ -7993,6 +8090,13 @@ CREATE INDEX wagtailcore_page_live_revision_id_930bd822 ON public.wagtailcore_pa
 
 
 --
+-- Name: wagtailcore_page_locked_by_id_bcb86245; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_page_locked_by_id_bcb86245 ON public.wagtailcore_page USING btree (locked_by_id);
+
+
+--
 -- Name: wagtailcore_page_owner_id_fbf7c332; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8018,6 +8122,13 @@ CREATE INDEX wagtailcore_page_slug_e7c11b8f ON public.wagtailcore_page USING btr
 --
 
 CREATE INDEX wagtailcore_page_slug_e7c11b8f_like ON public.wagtailcore_page USING btree (slug varchar_pattern_ops);
+
+
+--
+-- Name: wagtailcore_pagerevision_approved_go_live_at_e56afc67; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_pagerevision_approved_go_live_at_e56afc67 ON public.wagtailcore_pagerevision USING btree (approved_go_live_at);
 
 
 --
@@ -8151,6 +8262,13 @@ CREATE INDEX wagtailimages_rendition_filter_spec_1cba3201_like ON public.wagtail
 --
 
 CREATE INDEX wagtailimages_rendition_image_id_3e1fd774 ON public.wagtailimages_rendition USING btree (image_id);
+
+
+--
+-- Name: wagtailimages_uploadedimage_uploaded_by_user_id_85921689; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailimages_uploadedimage_uploaded_by_user_id_85921689 ON public.wagtailimages_uploadedimage USING btree (uploaded_by_user_id);
 
 
 --
@@ -9650,6 +9768,14 @@ ALTER TABLE ONLY public.wagtailcore_page
 
 
 --
+-- Name: wagtailcore_page wagtailcore_page_locked_by_id_bcb86245_fk_users_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_page
+    ADD CONSTRAINT wagtailcore_page_locked_by_id_bcb86245_fk_users_user_id FOREIGN KEY (locked_by_id) REFERENCES public.users_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
 -- Name: wagtailcore_page wagtailcore_page_owner_id_fbf7c332_fk_users_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9751,6 +9877,14 @@ ALTER TABLE ONLY public.wagtailimages_image
 
 ALTER TABLE ONLY public.wagtailimages_rendition
     ADD CONSTRAINT wagtailimages_rendit_image_id_3e1fd774_fk_wagtailim FOREIGN KEY (image_id) REFERENCES public.wagtailimages_image(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailimages_uploadedimage wagtailimages_upload_uploaded_by_user_id_85921689_fk_users_use; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailimages_uploadedimage
+    ADD CONSTRAINT wagtailimages_upload_uploaded_by_user_id_85921689_fk_users_use FOREIGN KEY (uploaded_by_user_id) REFERENCES public.users_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
