@@ -3,10 +3,11 @@
 from django.shortcuts import render
 from django.utils.translation import ugettext as _
 from django.views.decorators.vary import vary_on_headers
+from django.core.paginator import Paginator
 
-from wagtail.utils.pagination import paginate
-from wagtail.admin.forms import SearchForm
-from wagtail.admin.utils import PermissionPolicyChecker, popular_tags_for_model
+from wagtail.admin.forms.search import SearchForm
+from wagtail.admin.auth import PermissionPolicyChecker
+from wagtail.admin.models import popular_tags_for_model
 from wagtail.core.models import Collection
 from wagtail.images import get_image_model
 from wagtail.images.permissions import permission_policy
@@ -45,7 +46,8 @@ def index(request):
         except (ValueError, Collection.DoesNotExist):
             pass
 
-    paginator, images = paginate(request, images, per_page=32)
+    paginator = Paginator(images, per_page=32)
+    images = paginator.get_page(request.GET.get('p'))
 
     collections = permission_policy.collections_user_has_any_permission_for(
         request.user, ['add', 'change']
