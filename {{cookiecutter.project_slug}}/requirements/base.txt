@@ -12,7 +12,7 @@ psycopg2-binary==2.7.7
 wand==0.5.0
 bleach==3.1.0
 ls.joyous==1.1.0
-{% if cookiecutter.use_wagalytics_app == 'y' %}wagalytics==0.8.1 {% endif %}
 django-countries==5.3.3
 django-allauth==0.39.1
 django-braces==1.13.0
+{% if cookiecutter.use_wagalytics_app == 'y' %}wagalytics==0.8.1 {% endif %}
