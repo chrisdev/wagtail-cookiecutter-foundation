@@ -69,6 +69,7 @@ INSTALLED_APPS = (
     'people',
     'products',
     'search',
+    'users',
     'utils',
 
     'wagtail.contrib.routable_page',
@@ -88,12 +89,11 @@ INSTALLED_APPS = (
     'wagtail.search',
     'wagtail.admin',
     'wagtail.core',
-    {% if cookiecutter.use_wagalytics_app == 'y' %}'wagalytics',{% endif %}
-    {% if cookiecutter.use_accounts == 'y' %}'allauth',
+    'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'users',
-    {% endif %}
+    {% if cookiecutter.use_wagalytics_app == 'y' %}'wagalytics',{% endif %}
+
 )
 
 MIDDLEWARE = (
@@ -139,7 +139,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = '{{ cookiecutter.project_slug }}.wsgi.application'
 
-{% if cookiecutter.use_accounts == 'y' %}
 # PASSWORD VALIDATION
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
 # ------------------------------------------------------------------------------
@@ -185,7 +184,6 @@ ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'account_login'
-{% endif %}
 
 WAGTAILADMIN_RICH_TEXT_EDITORS = {
     'default': {
