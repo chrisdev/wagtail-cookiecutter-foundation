@@ -18,6 +18,7 @@ help:
 	@echo "  deploy_user              create the deploy user fetch deployment keys."
 	@echo "  provision                provision the production server Defaults to production DEPLOY_ENV=staging"
 	@echo "  deploy                   provision the staging server Defaults to production DEPLOY_ENV=staging"
+	@echo "  update_env               update env.production file"
 	@echo "  livereload               Start Server with livereload functionality"
 	@echo "  node_modules             Install Node modules"
 	@echo "  compress_images          Minify Images used in site"
@@ -158,6 +159,13 @@ deploy:
 		$(PLAYBOOK) -i $(DEPLOY_ENV) deploy.yml;  \
 	)
 
+update_env:
+	$(call ECHO_BLUE, deploy changes to the $(DEPLOY_ENV) env file )
+	(\
+		cd ansible; \
+		$(PLAYBOOK) -i $(DEPLOY_ENV) update_env.yml;  \
+	)
+	
 livereload:
 	$(call ECHO_BLUE,Starting server with livereload)
 	@echo '---------------------------'
