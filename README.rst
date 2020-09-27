@@ -57,7 +57,7 @@ Get Cookiecutter ::
 
 Now run it against this repo::
 
-    $ cookiecutter https://github.com/chrisdev/wagtail-cookiecutter-foundation.git
+    $ cookiecutter https://github.com/paleocore/wagtail-cookiecutter-foundation
 
 You'll be prompted for some values. Provide them as illustrated in the video below. 
 
