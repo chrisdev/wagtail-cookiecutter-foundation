@@ -1,32 +1,34 @@
----{% raw %}
+---
 - hosts: all
   user: django
   vars:
-    - backup_db: birdsong_restore.sql
+    - backup_db: initial_data.sql
     - media_folder: files/media/
 
   tasks:
 
     - name: Copy the database backup up to host
-      copy: src=files/{{ backup_db }} dest=/home/{{deploy_user}}/{{ backup_db }}
+      copy: src=roles/web/files/{{ backup_db }} dest=/home/{{deploy_user}}/{{ backup_db }}
       tags:
           - dbrestore
 
-    - name: Drop the default database 
+    - name: Drop the default database
       become_user: postgres
       become: true
       postgresql_db: name={{ django_env.DB_NAME }}
                     state=absent
       tags:
-         - dbrestore 
+         - dbrestore
 
     - name: drop database user
       become_user: postgres
       become: true
       postgresql_user: name={{ django_env.DB_USER }}
                        state=absent
+      tags:
+         - dbrestore
 
-    - name: Create a new db 
+    - name: Create a new db
       become_user: postgres
       become: true
       postgresql_db: name={{ django_env.DB_NAME }}
@@ -34,9 +36,9 @@
                     lc_collate='en_US.UTF-8'
                     lc_ctype='en_US.UTF-8'
                     template='template0'
-      state=present:
+                    state=present
       tags:
-         - dbrestore 
+         - dbrestore
 
     - name: Ensure user has access to the database
       become_user: postgres
@@ -45,20 +47,20 @@
                     name={{ django_env.DB_USER }}
                     password={{ django_env.DB_PASSWD }}
                     priv=ALL
-                    state=present 
+                    state=present
                     role_attr_flags=CREATEDB,SUPERUSER
 
       tags:
-         - dbrestore 
+         - dbrestore
 
     - name: Restore the database
       shell: /usr/bin/psql {{django_env.DB_NAME}} -f /home/{{deploy_user}}/{{ backup_db }}
       tags:
-         - dbrestore 
+         - dbrestore
 
 
-    - name: Sync the media folders 
-      synchronize: src={{ media_folder }} 
+    - name: Sync the media folders
+      synchronize: src={{ media_folder }}
                   dest="{{ sites_dir }}/{{ project_name }}/media"
       tags:
-         - rsync_media {% endraw %}
+         - rsync_media
