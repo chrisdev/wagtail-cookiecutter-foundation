@@ -1,4 +1,4 @@
----
+{% raw %}---
 - hosts: all
   user: django
   vars:
@@ -63,4 +63,4 @@
       synchronize: src={{ media_folder }}
                   dest="{{ sites_dir }}/{{ project_name }}/media"
       tags:
-         - rsync_media
+         - rsync_media{% endraw %}
