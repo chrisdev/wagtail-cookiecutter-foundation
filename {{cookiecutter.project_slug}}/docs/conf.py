@@ -123,7 +123,7 @@ if not on_rtd:  # only import and set the theme if we're building docs locally
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-html_logo = '_static/images/chrisdev_logo.png'
+html_logo = '_static/images/logo.png'
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -208,7 +208,7 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = '_static/images/chrisdev_logo.png'
+latex_logo = '_static/images/logo.png'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
@@ -270,7 +270,7 @@ texinfo_documents = [
 epub_title = u'{{ cookiecutter.project_name }}'
 epub_author = u'Christopher Clarke'
 epub_publisher = u'ChrisDev Limited'
-epub_copyright = u'2016, ChrisDev'
+epub_copyright = u'2020, ChrisDev'
 
 # The basename for the epub file. It defaults to the project name.
 #epub_basename = u'Managing Content with Wagtail CMS'
