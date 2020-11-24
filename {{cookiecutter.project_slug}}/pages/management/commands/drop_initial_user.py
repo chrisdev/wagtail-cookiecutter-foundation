@@ -6,6 +6,10 @@ from django.core.exceptions import ObjectDoesNotExist
 class Command(BaseCommand):
     def handle(self, **options):
         try:
-            User.objects.get(username='admin').delete()
+            AuthUser.objects.get(username='admin').delete()
         except ObjectDoesNotExist:
             print("Already Removed")
+        # hack to work with custom user.User rather the auth.User
+        except AttributeError:
+            from users.models import User as UserUser
+            UserUser.objects.get(username='admin').delet()
