@@ -58,7 +58,6 @@ INSTALLED_APPS = (
     'modelcluster',
 
     'foundation_formtags',
-    'wagtail_feeds',
     'ls.joyous',
 
     'blog',

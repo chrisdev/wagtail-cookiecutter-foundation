@@ -1,19 +1,9 @@
 {% raw %}---
-- name: Ensure that debug is set off for production 
+- name: Ensure that debug is set off for production
   lineinfile: dest={{ sites_dir }}/{{ project_name }}/.env
               regexp='^DJANGO_DEBUG' line='DJANGO_DEBUG=off'
   tags:
-      - django 
-
-- name: Run wagtailupdatemodules
-  shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
-          && wagtail updatemodulepaths 
-  environment: "{{ django_env }}"
-  args:
-     chdir: "{{ sites_dir }}/{{ project_name }}"
-  tags:
       - django
-      - updatemodules
 
 - name: Run Django migrations
   shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
@@ -23,7 +13,6 @@
      chdir: "{{ sites_dir }}/{{ project_name }}"
   tags:
       - django
-
 
 - name: Run Django collectstatic
   shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
