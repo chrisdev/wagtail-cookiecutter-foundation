@@ -12,9 +12,6 @@ from wagtail.contrib.sitemaps.views import sitemap
 
 from search import views as search_views
 
-from wagtail_feeds.feeds import (
-    BasicFeed, BasicJsonFeed, ExtendedFeed, ExtendedJsonFeed
-)
 
 admin.autodiscover()
 
