@@ -84,7 +84,7 @@ runserver:
 	)
 
 superuser:
-	echo "from django.contrib.auth.models import User; User.objects.create_superuser('superuser', 'superuser@example.com', 'pass')" | ./manage.py shell
+	echo "from {% if cookiecutter.use_accounts == 'y' %} users.models{% else %} django.contrib.auth.models{% endif %} import User; User.objects.create_superuser('superuser', 'superuser@example.com', 'pass')" | ./manage.py shell
 
 update: update_pip update_node_modules
 

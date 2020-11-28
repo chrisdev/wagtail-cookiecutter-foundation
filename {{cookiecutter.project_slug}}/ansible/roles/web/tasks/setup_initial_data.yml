@@ -1,5 +1,5 @@
 {% raw %}---
-- name: Drop the default database 
+- name: Drop the default database
   become_user: postgres
   become: true
   postgresql_db: name="{{ django_env.DB_NAME }}"
@@ -15,7 +15,7 @@
   tags:
      - initial_data
 
-- name: Create a new db 
+- name: Create a new db
   become_user: postgres
   become: true
   postgresql_db: name="{{ django_env.DB_NAME }}"
@@ -25,7 +25,7 @@
                 template='template0'
                 state=present
   tags:
-        - initial_data 
+        - initial_data
 
 - name: Ensure user has access to the database
   become_user: postgres
@@ -35,60 +35,60 @@
                 password={{ django_env.DB_PASSWD }}
                 encrypted=yes
                 priv=ALL
-                state=present 
+                state=present
                 role_attr_flags=CREATEDB,SUPERUSER
 
   tags:
-     - initial_data 
+     - initial_data
 
-- name: Create a database backup folder! Used later for backups 
+- name: Create a database backup folder! Used later for backups
   file: path="{{ sites_dir }}/{{ project_name }}/database_backup/"
         owner="{{ deploy_user }}"
         group="{{ deploy_user }}"
         state=directory
   tags:
-      - initial_data 
+      - initial_data
 
 - name: Copy the initial_data.sql up to host
   copy: src=files/initial_data.sql dest="{{ sites_dir }}/{{ project_name }}/database_backup/initial_data.sql"
   tags:
-      - initial_data 
+      - initial_data
 
 - name: Restore the database
   shell: "/usr/bin/psql  {{django_env.DB_NAME}} -f {{ sites_dir }}/{{ project_name }}/database_backup/initial_data.sql"
-  environment:  
-    PGHOST: "{{ django_env.DB_HOST }}" 
-    PGUSER: "{{ django_env.DB_USER }}" 
-    PGPASSWORD: "{{ django_env.DB_PASSWD }}" 
+  environment:
+    PGHOST: "{{ django_env.DB_HOST }}"
+    PGUSER: "{{ django_env.DB_USER }}"
+    PGPASSWORD: "{{ django_env.DB_PASSWD }}"
   tags:
-      - initial_data 
+      - initial_data
 
 
 - name: Initial data contains a superuser with weak credentials remove it
-  django_manage: 
+  django_manage:
       app_path="{{ sites_dir }}/{{ project_name }}"
       settings="{{ project_name }}.settings.production"
       virtualenv="{{ virtualenvs_dir }}/{{project_name}}-env"
       command=drop_initial_user
   tags:
-     - initial_data 
+     - initial_data
 
 #shell as we need to set the superuser password
-- name: Create Django SuperUser 
+- name: Create Django SuperUser
   shell: . {{ virtualenvs_dir }}/{{ project_name }}-env/bin/activate
-          && echo "from django.contrib.auth.models import User;User.objects.create_superuser(username='{{ django_env.DJANGO_ADMIN_USER }}', email='{{ django_env.DJANGO_ADMIN_EMAIL }}', password='{{ django_env.DJANGO_ADMIN_PASSWD }}')" | ./manage.py shell
+          && echo "from {{ user_model }} import User;User.objects.create_superuser(username='{{ django_env.DJANGO_ADMIN_USER }}', email='{{ django_env.DJANGO_ADMIN_EMAIL }}', password='{{ django_env.DJANGO_ADMIN_PASSWD }}')" | ./manage.py shell
   environment: "{{ django_env }}"
   args:
      chdir: "{{ sites_dir }}/{{ project_name }}"
   tags:
-     - initial_data 
+     - initial_data
 
-- name: Copy media  
-  django_manage: 
+- name: Copy media
+  django_manage:
       app_path="{{ sites_dir }}/{{ project_name }}"
       settings="{{ project_name }}.settings.production"
       virtualenv="{{ virtualenvs_dir }}/{{project_name}}-env"
       command=copy_media
   tags:
-     - initial_data 
+     - initial_data
      - copy_media {% endraw %}

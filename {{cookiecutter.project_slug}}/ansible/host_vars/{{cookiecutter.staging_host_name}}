@@ -1,13 +1,14 @@
 ---
 use_ssl: false
+user_model:{% if cookiecutter.use_accounts == 'y' %} users.models{% else %} django.contrib.auth.models{% endif %}
 django_env:
-    SECRET_KEY: your_secret_key 
+    SECRET_KEY: your_secret_key
     DJANGO_SETTINGS_MODULE: {{cookiecutter.project_slug}}.settings.production
     HOST_NAME: {{cookiecutter.staging_host_name}}
     DB_USER: django
     DB_PASSWD: change_db_password!!!
     DB_HOST: localhost
-    DB_NAME: {{ cookiecutter.project_slug }}_db 
+    DB_NAME: {{ cookiecutter.project_slug }}_db
     EMAIL_HOST: 'email_host'
     EMAIL_FROM: 'support@chrisdev.com'
     EMAIL_USER: 'email_user'

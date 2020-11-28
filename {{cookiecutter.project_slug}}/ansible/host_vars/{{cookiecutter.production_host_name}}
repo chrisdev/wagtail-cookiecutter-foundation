@@ -1,4 +1,5 @@
 use_ssl:{% if cookiecutter.use_letsencrypt == 'y' %} true{% else %} false{% endif %}
+user_model:{% if cookiecutter.use_accounts == 'y' %} users.models{% else %} django.contrib.auth.models{% endif %}
 {% if cookiecutter.use_letsencrypt == 'y' %}le_admin_email: '{{ cookiecutter.email }}'{% endif %}
 ansible_python_interpreter : /usr/bin/python3
 django_env:
