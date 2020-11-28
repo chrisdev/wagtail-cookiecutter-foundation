@@ -25,7 +25,7 @@ help:
 .PHONY: requirements
 
 
-develop_env: virtualenv requirements db initial_data update_modules migrate copy_media node_modules runserver
+develop_env: virtualenv requirements db initial_data migrate copy_media node_modules runserver
 
 # Command variables
 MANAGE_CMD = python manage.py
