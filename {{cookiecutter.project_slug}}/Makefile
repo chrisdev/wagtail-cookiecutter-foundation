@@ -71,12 +71,6 @@ copy_media:
 		$(MANAGE_CMD) copy_media; \
 	)
 
-update_modules:
-	( \
-		. $(VIRTUALENV_NAME)/bin/activate; \
-		$ wagtail updatemodulepaths; \
-	)
-
 runserver:
 	( \
 		. $(VIRTUALENV_NAME)/bin/activate; \
