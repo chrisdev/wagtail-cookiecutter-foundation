@@ -43,7 +43,7 @@ HOST ?= localhost:8000
 DEPLOY_ENV = production
 
 virtualenv:
-	python3.7 -m venv $(VIRTUALENV_NAME)
+	python3 -m venv $(VIRTUALENV_NAME)
 
 requirements:
 	( \
@@ -165,7 +165,7 @@ update_env:
 		cd ansible; \
 		$(PLAYBOOK) -i $(DEPLOY_ENV) update_env.yml;  \
 	)
-	
+
 livereload:
 	$(call ECHO_BLUE,Starting server with livereload)
 	@echo '---------------------------'
