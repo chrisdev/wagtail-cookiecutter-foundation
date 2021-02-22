@@ -13,7 +13,6 @@ help:
 	@echo "  superuser                Create superuser with name superuser and password pass"
 	@echo "  test                     run unit tests"
 	@echo "  func_test                run functional tests"
-	@echo "  static_site              generate a static site from the project"
 	@echo "  pre_task                 ensures that python deps are installed on host server"
 	@echo "  deploy_user              create the deploy user fetch deployment keys."
 	@echo "  provision                provision the production server Defaults to production DEPLOY_ENV=staging"
@@ -115,13 +114,6 @@ func_test:
 		. $(VIRTUALENV_NAME)/bin/activate; \
 		$(MANAGE_CMD) test functional_tests; \
 	)
-
-static_site:
-# Static Site generation
-	$(call ECHO_BLUE,Generating Static Site)
-	$(MANAGE_CMD) build
-	$(MANAGE_CMD) collectstatic
-	rsync -av static static_build/
 
 node_modules:
 # Install Node modules
