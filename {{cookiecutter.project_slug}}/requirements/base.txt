@@ -7,7 +7,7 @@ django-foundation-formtags==0.1.0
 django-wagtail-feeds==0.1.0
 django-libsass==0.7
 django-redis==4.10.0
-libsass==0.20.1
+libsass==0.21.0
 psycopg2-binary==2.7.7
 wand==0.5.0
 bleach==3.1.0
