@@ -1,6 +1,6 @@
 -r base.txt
 
-django-debug-toolbar==1.11
+django-debug-toolbar==3.2.2
 django-extensions==2.1.5
 
 #wagtail-bakery==0.2.0
