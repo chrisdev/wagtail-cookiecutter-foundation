@@ -1,11 +1,11 @@
 from django import template
-from wagtail.core.models import Page
+from wagtail.core.models import Page, Site
 register = template.Library()
 
 
 @register.simple_tag(takes_context=True)
 def get_site_root(context):
-    return context['request'].site.root_page
+    return Site.find_for_request(context['request']).root_page
 
 
 def has_menu_children(page):
@@ -114,7 +114,7 @@ def secondary_menu_grid(context, calling_page=None):
     if calling_page:
         pages = calling_page.get_children().filter(
             live=True,
-            show_in_menus=False
+            show_in_menus=True
         )
 
         # If no children, get siblings instead

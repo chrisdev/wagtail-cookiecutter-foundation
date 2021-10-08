@@ -4,8 +4,6 @@ import django.contrib.auth.models
 import django.contrib.auth.validators
 from django.db import migrations, models
 import django.utils.timezone
-import django_countries.fields
-
 
 class Migration(migrations.Migration):
 
@@ -34,8 +32,7 @@ class Migration(migrations.Migration):
                 ('address', models.TextField(default='', verbose_name='Address')),
                 ('city', models.CharField(default='', max_length=255, verbose_name='City or Town')),
                 ('state', models.CharField(blank=True, default='', max_length=255, verbose_name='State/Province')),
-                ('country_of_residence', django_countries.fields.CountryField(default='TT', max_length=2, verbose_name='Country of Residence')),
-                ('country_of_nationality', django_countries.fields.CountryField(default='TT', max_length=2, verbose_name='Country of Nationality')),
+                ('country_of_residence', models.CharField(default='', max_length=255, verbose_name='Country')),
                 ('job', models.CharField(default='', max_length=255, verbose_name='Job Title or Occupation')),
                 ('organisation', models.CharField(default='', max_length=255, verbose_name='Organisation')),
                 ('tos', models.BooleanField(default=True, verbose_name='I have read and agree with the terms of Service')),

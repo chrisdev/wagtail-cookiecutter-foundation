@@ -1,19 +1,19 @@
-Django==2.2.13
-wagtail==2.9
-celery==4.2.1
+Django==3.2.8
+wagtail==2.14.1
+celery==5.1.2
 django-compressor==2.4
-django-environ==0.4.5
+django-environ==0.7.0
 django-foundation-formtags==0.1.0
 django-wagtail-feeds==0.1.0
-django-libsass==0.7
-django-redis==4.10.0
-libsass==0.20.1
-psycopg2-binary==2.9
-wand==0.5.0
-bleach==3.1.0
-ls.joyous==1.1.0
-django-countries==5.3.3
-django-allauth==0.39.1
-django-braces==1.13.0
-Pillow==8.2.0
-{% if cookiecutter.use_wagalytics_app == 'y' %}wagalytics==0.8.1 {% endif %}
+django-libsass==0.9
+django-redis==5.0.0
+libsass==0.21.0
+psycopg2-binary==2.9.1
+wand==0.6.7
+bleach==4.1.0
+ls.joyous==1.4.0
+django-allauth==0.45.0
+django-braces==1.14.0
+six==1.16.0
+Unidecode==1.3.2
+{% if cookiecutter.use_wagalytics_app == 'y' %}wagalytics==1.3 {% endif %}

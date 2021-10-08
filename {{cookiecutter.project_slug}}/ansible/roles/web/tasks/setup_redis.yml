@@ -10,7 +10,7 @@
   apt: pkg=redis-server state=latest
   become_user: root
   become: true
-  when: ansible_distribution == 'Ubuntu' and (ansible_distribution_major_version == '16' or ansible_distribution_major_version == '18')
+  when: ansible_distribution == 'Ubuntu' and (ansible_distribution_major_version >= '16' or ansible_distribution_major_version == '18')
   tags:
      - redis
 
