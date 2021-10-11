@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.18
--- Dumped by pg_dump version 10.13
+-- Dumped from database version 9.6.23
+-- Dumped by pg_dump version 14.0
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -16,23 +16,7 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
 SET default_tablespace = '';
-
-SET default_with_oids = false;
 
 --
 -- Name: account_emailaddress; Type: TABLE; Schema: public; Owner: -
@@ -359,7 +343,8 @@ CREATE TABLE public.contact_contactformfield (
     choices text NOT NULL,
     default_value character varying(255) NOT NULL,
     help_text character varying(255) NOT NULL,
-    page_id integer NOT NULL
+    page_id integer NOT NULL,
+    clean_name character varying(255) NOT NULL
 );
 
 
@@ -420,7 +405,8 @@ CREATE TABLE public.contact_formfield (
     choices text NOT NULL,
     default_value character varying(255) NOT NULL,
     help_text character varying(255) NOT NULL,
-    page_id integer NOT NULL
+    page_id integer NOT NULL,
+    clean_name character varying(255) NOT NULL
 );
 
 
@@ -897,6 +883,49 @@ CREATE TABLE public.joyous_cancellationpage (
 
 
 --
+-- Name: joyous_closedfor; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.joyous_closedfor (
+    id integer NOT NULL,
+    name character varying(100) NOT NULL,
+    page_id integer NOT NULL
+);
+
+
+--
+-- Name: joyous_closedfor_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.joyous_closedfor_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: joyous_closedfor_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.joyous_closedfor_id_seq OWNED BY public.joyous_closedfor.id;
+
+
+--
+-- Name: joyous_closedforholidayspage; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.joyous_closedforholidayspage (
+    page_ptr_id integer NOT NULL,
+    all_holidays boolean NOT NULL,
+    cancellation_title character varying(255) NOT NULL,
+    cancellation_details text NOT NULL,
+    overrides_id integer
+);
+
+
+--
 -- Name: joyous_eventcategory; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -924,6 +953,20 @@ CREATE SEQUENCE public.joyous_eventcategory_id_seq
 --
 
 ALTER SEQUENCE public.joyous_eventcategory_id_seq OWNED BY public.joyous_eventcategory.id;
+
+
+--
+-- Name: joyous_extcancellationpage; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.joyous_extcancellationpage (
+    page_ptr_id integer NOT NULL,
+    cancellation_title character varying(255) NOT NULL,
+    cancellation_details text NOT NULL,
+    cancelled_from_date date NOT NULL,
+    cancelled_to_date date,
+    overrides_id integer
+);
 
 
 --
@@ -1695,7 +1738,9 @@ CREATE TABLE public.postgres_search_indexentry (
     object_id text NOT NULL,
     body tsvector NOT NULL,
     content_type_id integer NOT NULL,
-    autocomplete tsvector NOT NULL
+    autocomplete tsvector NOT NULL,
+    title tsvector NOT NULL,
+    title_norm double precision NOT NULL
 );
 
 
@@ -2044,7 +2089,7 @@ CREATE TABLE public.users_user (
     last_login timestamp with time zone,
     is_superuser boolean NOT NULL,
     username character varying(150) NOT NULL,
-    first_name character varying(30) NOT NULL,
+    first_name character varying(150) NOT NULL,
     last_name character varying(150) NOT NULL,
     email character varying(254) NOT NULL,
     is_staff boolean NOT NULL,
@@ -2054,11 +2099,11 @@ CREATE TABLE public.users_user (
     address character varying(255) NOT NULL,
     city character varying(255) NOT NULL,
     state character varying(255) NOT NULL,
-    country_of_residence character varying(2) NOT NULL,
     country_of_nationality character varying(2) NOT NULL,
     job character varying(255) NOT NULL,
     organisation character varying(255) NOT NULL,
-    tos boolean NOT NULL
+    tos boolean NOT NULL,
+    country character varying(255) NOT NULL
 );
 
 
@@ -2183,12 +2228,40 @@ ALTER SEQUENCE public.wagtail_feeds_rssfeedssettings_id_seq OWNED BY public.wagt
 
 
 --
+-- Name: wagtailadmin_admin; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtailadmin_admin (
+    id integer NOT NULL
+);
+
+
+--
+-- Name: wagtailadmin_admin_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.wagtailadmin_admin_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wagtailadmin_admin_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.wagtailadmin_admin_id_seq OWNED BY public.wagtailadmin_admin.id;
+
+
+--
 -- Name: wagtailcore_collection; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.wagtailcore_collection (
     id integer NOT NULL,
-    path character varying(255) COLLATE pg_catalog."C" NOT NULL,
+    path character varying(255) NOT NULL COLLATE pg_catalog."C",
     depth integer NOT NULL,
     numchild integer NOT NULL,
     name character varying(255) NOT NULL,
@@ -2278,6 +2351,116 @@ ALTER SEQUENCE public.wagtailcore_collectionviewrestriction_id_seq OWNED BY publ
 
 
 --
+-- Name: wagtailcore_comment; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtailcore_comment (
+    id integer NOT NULL,
+    text text NOT NULL,
+    contentpath text NOT NULL,
+    "position" text NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL,
+    resolved_at timestamp with time zone,
+    page_id integer NOT NULL,
+    resolved_by_id integer,
+    revision_created_id integer,
+    user_id integer NOT NULL
+);
+
+
+--
+-- Name: wagtailcore_comment_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.wagtailcore_comment_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wagtailcore_comment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.wagtailcore_comment_id_seq OWNED BY public.wagtailcore_comment.id;
+
+
+--
+-- Name: wagtailcore_commentreply; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtailcore_commentreply (
+    id integer NOT NULL,
+    text text NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    updated_at timestamp with time zone NOT NULL,
+    comment_id integer NOT NULL,
+    user_id integer NOT NULL
+);
+
+
+--
+-- Name: wagtailcore_commentreply_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.wagtailcore_commentreply_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wagtailcore_commentreply_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.wagtailcore_commentreply_id_seq OWNED BY public.wagtailcore_commentreply.id;
+
+
+--
+-- Name: wagtailcore_groupapprovaltask; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtailcore_groupapprovaltask (
+    task_ptr_id integer NOT NULL
+);
+
+
+--
+-- Name: wagtailcore_groupapprovaltask_groups; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtailcore_groupapprovaltask_groups (
+    id integer NOT NULL,
+    groupapprovaltask_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+--
+-- Name: wagtailcore_groupapprovaltask_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.wagtailcore_groupapprovaltask_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wagtailcore_groupapprovaltask_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.wagtailcore_groupapprovaltask_groups_id_seq OWNED BY public.wagtailcore_groupapprovaltask_groups.id;
+
+
+--
 -- Name: wagtailcore_groupcollectionpermission; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2340,12 +2523,41 @@ ALTER SEQUENCE public.wagtailcore_grouppagepermission_id_seq OWNED BY public.wag
 
 
 --
+-- Name: wagtailcore_locale; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtailcore_locale (
+    id integer NOT NULL,
+    language_code character varying(100) NOT NULL
+);
+
+
+--
+-- Name: wagtailcore_locale_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.wagtailcore_locale_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wagtailcore_locale_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.wagtailcore_locale_id_seq OWNED BY public.wagtailcore_locale.id;
+
+
+--
 -- Name: wagtailcore_page; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.wagtailcore_page (
     id integer NOT NULL,
-    path character varying(255) COLLATE pg_catalog."C" NOT NULL,
+    path character varying(255) NOT NULL COLLATE pg_catalog."C",
     depth integer NOT NULL,
     numchild integer NOT NULL,
     title character varying(255) NOT NULL,
@@ -2369,6 +2581,9 @@ CREATE TABLE public.wagtailcore_page (
     draft_title character varying(255) NOT NULL,
     locked_at timestamp with time zone,
     locked_by_id integer,
+    translation_key uuid NOT NULL,
+    locale_id integer NOT NULL,
+    alias_of_id integer,
     CONSTRAINT wagtailcore_page_depth_check CHECK ((depth >= 0)),
     CONSTRAINT wagtailcore_page_numchild_check CHECK ((numchild >= 0))
 );
@@ -2391,6 +2606,44 @@ CREATE SEQUENCE public.wagtailcore_page_id_seq
 --
 
 ALTER SEQUENCE public.wagtailcore_page_id_seq OWNED BY public.wagtailcore_page.id;
+
+
+--
+-- Name: wagtailcore_pagelogentry; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtailcore_pagelogentry (
+    id integer NOT NULL,
+    label text NOT NULL,
+    action character varying(255) NOT NULL,
+    data_json text NOT NULL,
+    "timestamp" timestamp with time zone NOT NULL,
+    content_changed boolean NOT NULL,
+    deleted boolean NOT NULL,
+    content_type_id integer,
+    page_id integer NOT NULL,
+    revision_id integer,
+    user_id integer
+);
+
+
+--
+-- Name: wagtailcore_pagelogentry_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.wagtailcore_pagelogentry_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wagtailcore_pagelogentry_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.wagtailcore_pagelogentry_id_seq OWNED BY public.wagtailcore_pagelogentry.id;
 
 
 --
@@ -2425,6 +2678,37 @@ CREATE SEQUENCE public.wagtailcore_pagerevision_id_seq
 --
 
 ALTER SEQUENCE public.wagtailcore_pagerevision_id_seq OWNED BY public.wagtailcore_pagerevision.id;
+
+
+--
+-- Name: wagtailcore_pagesubscription; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtailcore_pagesubscription (
+    id integer NOT NULL,
+    comment_notifications boolean NOT NULL,
+    page_id integer NOT NULL,
+    user_id integer NOT NULL
+);
+
+
+--
+-- Name: wagtailcore_pagesubscription_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.wagtailcore_pagesubscription_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wagtailcore_pagesubscription_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.wagtailcore_pagesubscription_id_seq OWNED BY public.wagtailcore_pagesubscription.id;
 
 
 --
@@ -2498,7 +2782,7 @@ CREATE TABLE public.wagtailcore_site (
     port integer NOT NULL,
     is_default_site boolean NOT NULL,
     root_page_id integer NOT NULL,
-    site_name character varying(255)
+    site_name character varying(255) NOT NULL
 );
 
 
@@ -2519,6 +2803,179 @@ CREATE SEQUENCE public.wagtailcore_site_id_seq
 --
 
 ALTER SEQUENCE public.wagtailcore_site_id_seq OWNED BY public.wagtailcore_site.id;
+
+
+--
+-- Name: wagtailcore_task; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtailcore_task (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    active boolean NOT NULL,
+    content_type_id integer NOT NULL
+);
+
+
+--
+-- Name: wagtailcore_task_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.wagtailcore_task_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wagtailcore_task_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.wagtailcore_task_id_seq OWNED BY public.wagtailcore_task.id;
+
+
+--
+-- Name: wagtailcore_taskstate; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtailcore_taskstate (
+    id integer NOT NULL,
+    status character varying(50) NOT NULL,
+    started_at timestamp with time zone NOT NULL,
+    finished_at timestamp with time zone,
+    content_type_id integer NOT NULL,
+    page_revision_id integer NOT NULL,
+    task_id integer NOT NULL,
+    workflow_state_id integer NOT NULL,
+    finished_by_id integer,
+    comment text NOT NULL
+);
+
+
+--
+-- Name: wagtailcore_taskstate_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.wagtailcore_taskstate_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wagtailcore_taskstate_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.wagtailcore_taskstate_id_seq OWNED BY public.wagtailcore_taskstate.id;
+
+
+--
+-- Name: wagtailcore_workflow; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtailcore_workflow (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    active boolean NOT NULL
+);
+
+
+--
+-- Name: wagtailcore_workflow_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.wagtailcore_workflow_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wagtailcore_workflow_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.wagtailcore_workflow_id_seq OWNED BY public.wagtailcore_workflow.id;
+
+
+--
+-- Name: wagtailcore_workflowpage; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtailcore_workflowpage (
+    page_id integer NOT NULL,
+    workflow_id integer NOT NULL
+);
+
+
+--
+-- Name: wagtailcore_workflowstate; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtailcore_workflowstate (
+    id integer NOT NULL,
+    status character varying(50) NOT NULL,
+    created_at timestamp with time zone NOT NULL,
+    current_task_state_id integer,
+    page_id integer NOT NULL,
+    requested_by_id integer,
+    workflow_id integer NOT NULL
+);
+
+
+--
+-- Name: wagtailcore_workflowstate_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.wagtailcore_workflowstate_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wagtailcore_workflowstate_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.wagtailcore_workflowstate_id_seq OWNED BY public.wagtailcore_workflowstate.id;
+
+
+--
+-- Name: wagtailcore_workflowtask; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtailcore_workflowtask (
+    id integer NOT NULL,
+    sort_order integer,
+    task_id integer NOT NULL,
+    workflow_id integer NOT NULL
+);
+
+
+--
+-- Name: wagtailcore_workflowtask_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.wagtailcore_workflowtask_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wagtailcore_workflowtask_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.wagtailcore_workflowtask_id_seq OWNED BY public.wagtailcore_workflowtask.id;
 
 
 --
@@ -2558,22 +3015,54 @@ ALTER SEQUENCE public.wagtaildocs_document_id_seq OWNED BY public.wagtaildocs_do
 
 
 --
+-- Name: wagtaildocs_uploadeddocument; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtaildocs_uploadeddocument (
+    id integer NOT NULL,
+    file character varying(200) NOT NULL,
+    uploaded_by_user_id integer
+);
+
+
+--
+-- Name: wagtaildocs_uploadeddocument_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.wagtaildocs_uploadeddocument_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wagtaildocs_uploadeddocument_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.wagtaildocs_uploadeddocument_id_seq OWNED BY public.wagtaildocs_uploadeddocument.id;
+
+
+--
 -- Name: wagtailembeds_embed; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.wagtailembeds_embed (
     id integer NOT NULL,
-    url character varying(200) NOT NULL,
+    url text NOT NULL,
     max_width smallint,
     type character varying(10) NOT NULL,
     html text NOT NULL,
     title text NOT NULL,
     author_name text NOT NULL,
     provider_name text NOT NULL,
-    thumbnail_url character varying(255),
+    thumbnail_url text NOT NULL,
     width integer,
     height integer,
-    last_updated timestamp with time zone NOT NULL
+    last_updated timestamp with time zone NOT NULL,
+    hash character varying(32) NOT NULL,
+    cache_until timestamp with time zone
 );
 
 
@@ -2874,7 +3363,8 @@ CREATE TABLE public.wagtailusers_userprofile (
     user_id integer NOT NULL,
     preferred_language character varying(10) NOT NULL,
     current_time_zone character varying(40) NOT NULL,
-    avatar character varying(100) NOT NULL
+    avatar character varying(100) NOT NULL,
+    updated_comments_notifications boolean NOT NULL
 );
 
 
@@ -3042,6 +3532,13 @@ ALTER TABLE ONLY public.events_eventpagespeaker ALTER COLUMN id SET DEFAULT next
 --
 
 ALTER TABLE ONLY public.events_eventpagetag ALTER COLUMN id SET DEFAULT nextval('public.events_eventpagetag_id_seq'::regclass);
+
+
+--
+-- Name: joyous_closedfor id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_closedfor ALTER COLUMN id SET DEFAULT nextval('public.joyous_closedfor_id_seq'::regclass);
 
 
 --
@@ -3262,6 +3759,13 @@ ALTER TABLE ONLY public.wagtail_feeds_rssfeedssettings ALTER COLUMN id SET DEFAU
 
 
 --
+-- Name: wagtailadmin_admin id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailadmin_admin ALTER COLUMN id SET DEFAULT nextval('public.wagtailadmin_admin_id_seq'::regclass);
+
+
+--
 -- Name: wagtailcore_collection id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3283,6 +3787,27 @@ ALTER TABLE ONLY public.wagtailcore_collectionviewrestriction_groups ALTER COLUM
 
 
 --
+-- Name: wagtailcore_comment id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_comment ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_comment_id_seq'::regclass);
+
+
+--
+-- Name: wagtailcore_commentreply id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_commentreply ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_commentreply_id_seq'::regclass);
+
+
+--
+-- Name: wagtailcore_groupapprovaltask_groups id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_groupapprovaltask_groups ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_groupapprovaltask_groups_id_seq'::regclass);
+
+
+--
 -- Name: wagtailcore_groupcollectionpermission id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3297,6 +3822,13 @@ ALTER TABLE ONLY public.wagtailcore_grouppagepermission ALTER COLUMN id SET DEFA
 
 
 --
+-- Name: wagtailcore_locale id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_locale ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_locale_id_seq'::regclass);
+
+
+--
 -- Name: wagtailcore_page id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3304,10 +3836,24 @@ ALTER TABLE ONLY public.wagtailcore_page ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: wagtailcore_pagelogentry id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_pagelogentry ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_pagelogentry_id_seq'::regclass);
+
+
+--
 -- Name: wagtailcore_pagerevision id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.wagtailcore_pagerevision ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_pagerevision_id_seq'::regclass);
+
+
+--
+-- Name: wagtailcore_pagesubscription id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_pagesubscription ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_pagesubscription_id_seq'::regclass);
 
 
 --
@@ -3332,10 +3878,52 @@ ALTER TABLE ONLY public.wagtailcore_site ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: wagtailcore_task id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_task ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_task_id_seq'::regclass);
+
+
+--
+-- Name: wagtailcore_taskstate id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_taskstate ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_taskstate_id_seq'::regclass);
+
+
+--
+-- Name: wagtailcore_workflow id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_workflow ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_workflow_id_seq'::regclass);
+
+
+--
+-- Name: wagtailcore_workflowstate id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_workflowstate ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_workflowstate_id_seq'::regclass);
+
+
+--
+-- Name: wagtailcore_workflowtask id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_workflowtask ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_workflowtask_id_seq'::regclass);
+
+
+--
 -- Name: wagtaildocs_document id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.wagtaildocs_document ALTER COLUMN id SET DEFAULT nextval('public.wagtaildocs_document_id_seq'::regclass);
+
+
+--
+-- Name: wagtaildocs_uploadeddocument id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtaildocs_uploadeddocument ALTER COLUMN id SET DEFAULT nextval('public.wagtaildocs_uploadeddocument_id_seq'::regclass);
 
 
 --
@@ -3455,6 +4043,10 @@ COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
 12	2	6
 13	1	7
 14	2	7
+15	1	398
+16	2	398
+17	1	399
+18	2	399
 \.
 
 
@@ -3860,6 +4452,72 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 395	Can change uploaded image	100	change_uploadedimage
 396	Can delete uploaded image	100	delete_uploadedimage
 397	Can view uploaded image	100	view_uploadedimage
+398	Can choose document	3	choose_document
+399	Can choose image	2	choose_image
+400	Can add closed for holidays	102	add_closedforholidayspage
+401	Can change closed for holidays	102	change_closedforholidayspage
+402	Can delete closed for holidays	102	delete_closedforholidayspage
+403	Can view closed for holidays	102	view_closedforholidayspage
+404	Can add closed for	103	add_closedfor
+405	Can change closed for	103	change_closedfor
+406	Can delete closed for	103	delete_closedfor
+407	Can view closed for	103	view_closedfor
+408	Can add extended cancellation	104	add_extcancellationpage
+409	Can change extended cancellation	104	change_extcancellationpage
+410	Can delete extended cancellation	104	delete_extcancellationpage
+411	Can view extended cancellation	104	view_extcancellationpage
+412	Can add uploaded document	105	add_uploadeddocument
+413	Can change uploaded document	105	change_uploadeddocument
+414	Can delete uploaded document	105	delete_uploadeddocument
+415	Can view uploaded document	105	view_uploadeddocument
+416	Can add task	106	add_task
+417	Can change task	106	change_task
+418	Can delete task	106	delete_task
+419	Can view task	106	view_task
+420	Can add Task state	107	add_taskstate
+421	Can change Task state	107	change_taskstate
+422	Can delete Task state	107	delete_taskstate
+423	Can view Task state	107	view_taskstate
+424	Can add workflow	108	add_workflow
+425	Can change workflow	108	change_workflow
+426	Can delete workflow	108	delete_workflow
+427	Can view workflow	108	view_workflow
+428	Can add Group approval task	101	add_groupapprovaltask
+429	Can change Group approval task	101	change_groupapprovaltask
+430	Can delete Group approval task	101	delete_groupapprovaltask
+431	Can view Group approval task	101	view_groupapprovaltask
+432	Can add Workflow state	109	add_workflowstate
+433	Can change Workflow state	109	change_workflowstate
+434	Can delete Workflow state	109	delete_workflowstate
+435	Can view Workflow state	109	view_workflowstate
+436	Can add workflow page	110	add_workflowpage
+437	Can change workflow page	110	change_workflowpage
+438	Can delete workflow page	110	delete_workflowpage
+439	Can view workflow page	110	view_workflowpage
+440	Can add workflow task order	111	add_workflowtask
+441	Can change workflow task order	111	change_workflowtask
+442	Can delete workflow task order	111	delete_workflowtask
+443	Can view workflow task order	111	view_workflowtask
+444	Can add page log entry	112	add_pagelogentry
+445	Can change page log entry	112	change_pagelogentry
+446	Can delete page log entry	112	delete_pagelogentry
+447	Can view page log entry	112	view_pagelogentry
+448	Can add locale	113	add_locale
+449	Can change locale	113	change_locale
+450	Can delete locale	113	delete_locale
+451	Can view locale	113	view_locale
+452	Can add comment	114	add_comment
+453	Can change comment	114	change_comment
+454	Can delete comment	114	delete_comment
+455	Can view comment	114	view_comment
+456	Can add comment reply	115	add_commentreply
+457	Can change comment reply	115	change_commentreply
+458	Can delete comment reply	115	delete_commentreply
+459	Can view comment reply	115	view_commentreply
+460	Can add page subscription	116	add_pagesubscription
+461	Can change page subscription	116	change_pagesubscription
+462	Can delete page subscription	116	delete_pagesubscription
+463	Can view page subscription	116	view_pagesubscription
 \.
 
 
@@ -3925,11 +4583,11 @@ COPY public.blog_blogpagetag (id, content_object_id, tag_id) FROM stdin;
 -- Data for Name: contact_contactformfield; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.contact_contactformfield (id, sort_order, label, field_type, required, choices, default_value, help_text, page_id) FROM stdin;
-1	0	Name	singleline	t				27
-2	1	Email	singleline	t				27
-3	2	Subject	singleline	t				27
-4	3	Message	multiline	t				27
+COPY public.contact_contactformfield (id, sort_order, label, field_type, required, choices, default_value, help_text, page_id, clean_name) FROM stdin;
+1	0	Name	singleline	t				27	name
+2	1	Email	singleline	t				27	email
+3	2	Subject	singleline	t				27	subject
+4	3	Message	multiline	t				27	message
 \.
 
 
@@ -3946,7 +4604,7 @@ COPY public.contact_contactpage (page_ptr_id, to_address, from_address, subject,
 -- Data for Name: contact_formfield; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.contact_formfield (id, sort_order, label, field_type, required, choices, default_value, help_text, page_id) FROM stdin;
+COPY public.contact_formfield (id, sort_order, label, field_type, required, choices, default_value, help_text, page_id, clean_name) FROM stdin;
 \.
 
 
@@ -4071,6 +4729,22 @@ COPY public.django_content_type (id, app_label, model) FROM stdin;
 98	joyous	reschedulemultidayeventpage
 99	joyous	multidayrecurringeventpage
 100	wagtailimages	uploadedimage
+101	wagtailcore	groupapprovaltask
+102	joyous	closedforholidayspage
+103	joyous	closedfor
+104	joyous	extcancellationpage
+105	wagtaildocs	uploadeddocument
+106	wagtailcore	task
+107	wagtailcore	taskstate
+108	wagtailcore	workflow
+109	wagtailcore	workflowstate
+110	wagtailcore	workflowpage
+111	wagtailcore	workflowtask
+112	wagtailcore	pagelogentry
+113	wagtailcore	locale
+114	wagtailcore	comment
+115	wagtailcore	commentreply
+116	wagtailcore	pagesubscription
 \.
 
 
@@ -4312,6 +4986,40 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 231	wagtailcore	0045_assign_unlock_grouppagepermission	2020-06-08 10:00:20.380754-04
 232	wagtailforms	0004_add_verbose_name_plural	2020-06-08 10:00:20.562208-04
 233	wagtailimages	0022_uploadedimage	2020-06-08 10:00:20.72458-04
+234	auth	0012_alter_user_first_name_max_length	2021-10-08 11:59:33.457107-04
+235	contact	0011_auto_20211008_1533	2021-10-08 11:59:33.914101-04
+236	joyous	0016_closedfor_closedforholidayspage	2021-10-08 11:59:34.735136-04
+237	joyous	0017_extcancellationpage	2021-10-08 11:59:35.053799-04
+238	postgres_search	0003_title	2021-10-08 11:59:35.15995-04
+239	postgres_search	0004_concat_index	2021-10-08 11:59:35.203142-04
+240	users	0003_auto_20211008_1555	2021-10-08 11:59:35.410515-04
+241	wagtailadmin	0002_admin	2021-10-08 11:59:35.425006-04
+242	wagtailadmin	0003_admin_managed	2021-10-08 11:59:35.449372-04
+243	wagtailcore	0046_site_name_remove_null	2021-10-08 11:59:35.670445-04
+244	wagtailcore	0047_add_workflow_models	2021-10-08 11:59:39.373638-04
+245	wagtailcore	0048_add_default_workflows	2021-10-08 11:59:39.842648-04
+246	wagtailcore	0049_taskstate_finished_by	2021-10-08 11:59:40.073703-04
+247	wagtailcore	0050_workflow_rejected_to_needs_changes	2021-10-08 11:59:41.695628-04
+248	wagtailcore	0051_taskstate_comment	2021-10-08 11:59:41.838047-04
+249	wagtailcore	0052_pagelogentry	2021-10-08 11:59:42.443566-04
+250	wagtailcore	0053_locale_model	2021-10-08 11:59:42.48498-04
+251	wagtailcore	0054_initial_locale	2021-10-08 11:59:42.841302-04
+252	wagtailcore	0055_page_locale_fields	2021-10-08 11:59:44.423127-04
+253	wagtailcore	0056_page_locale_fields_populate	2021-10-08 11:59:44.862203-04
+254	wagtailcore	0057_page_locale_fields_notnull	2021-10-08 11:59:45.646958-04
+255	wagtailcore	0058_page_alias_of	2021-10-08 11:59:46.060327-04
+256	wagtailcore	0059_apply_collection_ordering	2021-10-08 11:59:46.703149-04
+257	wagtailcore	0060_fix_workflow_unique_constraint	2021-10-08 11:59:47.445838-04
+258	wagtailcore	0061_change_promote_tab_helpt_text_and_verbose_names	2021-10-08 11:59:47.845393-04
+259	wagtailcore	0062_comment_models_and_pagesubscription	2021-10-08 11:59:50.047657-04
+260	wagtaildocs	0011_add_choose_permissions	2021-10-08 11:59:52.02883-04
+261	wagtaildocs	0012_uploadeddocument	2021-10-08 11:59:52.582898-04
+262	wagtailembeds	0006_add_embed_hash	2021-10-08 11:59:52.611251-04
+263	wagtailembeds	0007_populate_hash	2021-10-08 11:59:53.873371-04
+264	wagtailembeds	0008_allow_long_urls	2021-10-08 11:59:54.03611-04
+265	wagtailembeds	0009_embed_cache_until	2021-10-08 11:59:54.073763-04
+266	wagtailimages	0023_add_choose_permissions	2021-10-08 11:59:55.213387-04
+267	wagtailusers	0010_userprofile_updated_comments_notifications	2021-10-08 11:59:55.304527-04
 \.
 
 
@@ -4460,10 +5168,34 @@ COPY public.joyous_cancellationpage (page_ptr_id, except_date, cancellation_titl
 
 
 --
+-- Data for Name: joyous_closedfor; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.joyous_closedfor (id, name, page_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: joyous_closedforholidayspage; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.joyous_closedforholidayspage (page_ptr_id, all_holidays, cancellation_title, cancellation_details, overrides_id) FROM stdin;
+\.
+
+
+--
 -- Data for Name: joyous_eventcategory; Type: TABLE DATA; Schema: public; Owner: -
 --
 
 COPY public.joyous_eventcategory (id, code, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: joyous_extcancellationpage; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.joyous_extcancellationpage (page_ptr_id, cancellation_title, cancellation_details, cancelled_from_date, cancelled_to_date, overrides_id) FROM stdin;
 \.
 
 
@@ -4731,49 +5463,49 @@ COPY public.people_personrole (id, name) FROM stdin;
 -- Data for Name: postgres_search_indexentry; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.postgres_search_indexentry (id, object_id, body, content_type_id, autocomplete) FROM stdin;
-23	4		32	'index':2B 'standard':1B
-26	5	'ac':115,137 'accumsan':44 'adipisc':7 'aenean':61 'aliquam':9 'aliquet':172 'amet':5,18,114,142 'ant':102 'auctor':64 'blandit':15 'consectetur':6 'consequat':131 'curabitur':80 'cursus':57 'dapibus':46,94 'diam':29,35,96,108,194 'dictum':52 'dolor':3,126,133 'donec':49,74 'dui':77,169 'egesta':120 'eget':76,175,189 'eleifend':135 'elementum':14,158 'elit':8 'enim':19 'erat':171 'ero':134,146 'et':10,107,125 'eu':12,45,67,164 'euismod':112 'ex':139 'facilisi':60 'faucibus':65 'fermentum':56,187 'feugiat':48,75 'fringilla':165 'fusc':106 'gravida':148 'hendrerit':151 'id':31,103,168 'imperdiet':81 'integ':150 'interdum':37 'ipsum':2,110,182 'justo':63 'lacinia':40 'laoreet':161 'lectus':88 'leo':22,32 'libero':116 'ligula':119,185 'lorem':1,163 'luctus':104 'magna':89,159 'massa':21,41 'matti':25 'mauri':11,118 'maximus':184 'mi':38 'molesti':149 'molli':152 'morbi':87,97,160 'nec':36,71,147 'nibh':13,58,73,129 'nisi':136 'nisl':69,170 'non':123 'nulla':140,166 'nunc':39,43 'odio':47,153,162 'ornar':23 'phasellus':30 'placerat':33,53 'porttitor':54,128,155,190 'porttutor':197 'posuer':132,181 'proin':117,127 'pulvinar':111 'quam':51,84,178,191 'qui':109,130,195 'quisqu':20 'rhoncus':79 'risus':66 'sagitti':86 'sed':156,179 'semper':68,138 'sit':4,17,113,141 'sodal':101 'sollicitudin':95 'suscipit':72,100 'tempor':124 'tempus':85,122 'tortor':82,174 'tristiqu':42,186 'turpi':92 'ullamcorp':176 'urna':99,143 'ut':70,83,91,144,157,183,188 'varius':16,50,177,193 'vehicula':27,34 'vel':98 'velit':105 'venenati':145,167,180 'vestibulum':28 'vita':26,154 'vivamus':55 'viverra':90,196	34	'page':2B 'sidebar':4B 'standard':1B 'w/o':3B
-32	7		76	'index':2B 'person':1B
-35	8		78	'1':3B 'page':2B 'person':1B
-38	9		78	'2':3B 'page':2B 'person':1B
-41	10		78	'3':3B 'page':2B 'person':1B
-44	11		78	'4':3B 'page':2B 'person':1B
-3	1		2	'ansible.png':1A
-4	2		2	'bulding-blocks.png':1A
-5	3		2	'chrisdevf_favicon.png':1A
-6	4		2	'digital_ocean.png':1A
-7	5		2	'foundation.jpg':1A
-8	6		2	'linode.png':1A
-9	7		2	'placeholder_person.png':1A
-10	8		2	'postgresql.jpg':1A
-11	9		2	'postgresql.png':1A
-12	10		2	'sass.jpg':1A
-13	11		2	'sass.png':1A
-14	12		2	'wagtail.jpg':1A
-15	13		2	'wagtail.png':1A
-16	14		2	'yeti.png':1A
-63	16		61	'blog':1B 'index':2B
-125	27		68	'contact':1B 'us':2B
-119	25		71	'document':1B 'galleri':2B
-122	26		72	'document':2B 'sampl':1B
-89	20		75	'galleri':2B 'photo':1B
-92	21		74	'1':2B 'galleri':1B
-95	22		74	'2':2B 'galleri':1B
-100	23		74	'3':2B 'galleri':1B
-105	24		74	'4':2B 'galleri':1B
-110	1		3	'doc':2A 'document.doc':1A
-111	2		3	'doc':2A 'example.docx':1A
-112	3		3	'doc':2A 'sample.pdf':1A
-66	17	'ac':27,41,100,160,213 'ad':143 'adipisc':7 'aenean':113 'aliquam':82 'amet':5,20,176,203 'ant':78,161,192 'aptent':140 'arcu':52 'bibendum':170 'blandit':71 'class':139 'commodo':171 'congu':54 'consectetur':6 'consequat':73 'conubia':147 'conval':104 'cras':120 'curabitur':66 'dapibus':16 'diam':63,123 'dignissim':118 'dolor':3,23,138,154,208 'donec':49,172 'dui':45,152,216 'efficitur':210 'egesta':58,134 'eget':39,57,60,89,116,169 'elit':8,98 'enim':28,34,204 'est':133 'et':22,30,79,110,157,179 'etiam':90 'eu':17,198 'ex':12 'facilisi':36 'fame':159 'faucibus':25,165,173 'feli':69,105 'fermentum':80 'feugiat':64,86 'fringilla':65 'fusc':106 'gravida':32,186 'hendrerit':76,77 'himenaeo':151 'iaculi':88 'id':70,114,132,200 'imperdiet':101 'incepto':150 'interdum':14,156,178 'ipsum':2,162,174 'justo':15,87 'lacus':115,168,196 'lectus':122 'libero':42,48 'litora':144 'loborti':10,99,205 'lorem':1,84 'luctus':206 'malesuada':67,158,191 'massa':131,212 'matti':189 'mauri':68,81 'metus':155 'morbi':190 'nequ':93,126,185 'nibh':40,112 'nisi':187,193 'non':26,92 'nostra':148 'nulla':53 'nullam':207 'nunc':38,166 'odio':72,117 'orci':11,109 'ornar':91,182 'pellentesqu':199,214 'per':146,149 'phasellus':96 'placerat':44 'porttitor':167 'praesent':9,129 'primi':163 'pulvinar':125,215 'purus':209 'quam':97 'qui':46 'quisqu':183 'risus':21,56,201 'sagitti':121,180 'sapien':31,37,61 'scelerisqu':103 'sed':29,85,136,153 'sem':177 'semper':111 'sit':4,19,175,202 'sociosqu':142 'sodal':188 'sollicitudin':33 'taciti':141 'tempor':24 'tempus':43 'tincidunt':51 'torquent':145 'tortor':181 'tristiqu':184 'turpi':47 'ultric':95 'ultrici':197 'ut':59,62,75,124 'varius':83 'vehicula':108 'vel':50,194 'venenati':119,127,195 'vestibulum':18 'vita':74,102,137 'volutpat':135	63	'1':3B 'blog':1B 'page':2B
-1	3		4	'homepag':1B
-69	18	'ac':27,41,100,160,213 'ad':143 'adipisc':7 'aenean':113 'aliquam':82 'amet':5,20,176,203 'ant':78,161,192 'aptent':140 'arcu':52 'bibendum':170 'blandit':71 'class':139 'commodo':171 'congu':54 'consectetur':6 'consequat':73 'conubia':147 'conval':104 'cras':120 'curabitur':66 'dapibus':16 'diam':63,123 'dignissim':118 'dolor':3,23,138,154,208 'donec':49,172 'dui':45,152,216 'efficitur':210 'egesta':58,134 'eget':39,57,60,89,116,169 'elit':8,98 'enim':28,34,204 'est':133 'et':22,30,79,110,157,179 'etiam':90 'eu':17,198 'ex':12 'facilisi':36 'fame':159 'faucibus':25,165,173 'feli':69,105 'fermentum':80 'feugiat':64,86 'fringilla':65 'fusc':106 'gravida':32,186 'hendrerit':76,77 'himenaeo':151 'iaculi':88 'id':70,114,132,200 'imperdiet':101 'incepto':150 'interdum':14,156,178 'ipsum':2,162,174 'justo':15,87 'lacus':115,168,196 'lectus':122 'libero':42,48 'litora':144 'loborti':10,99,205 'lorem':1,84 'luctus':206 'malesuada':67,158,191 'massa':131,212 'matti':189 'mauri':68,81 'metus':155 'morbi':190 'nequ':93,126,185 'nibh':40,112 'nisi':187,193 'non':26,92 'nostra':148 'nulla':53 'nullam':207 'nunc':38,166 'odio':72,117 'orci':11,109 'ornar':91,182 'pellentesqu':199,214 'per':146,149 'phasellus':96 'placerat':44 'porttitor':167 'praesent':9,129 'primi':163 'pulvinar':125,215 'purus':209 'quam':97 'qui':46 'quisqu':183 'risus':21,56,201 'sagitti':121,180 'sapien':31,37,61 'scelerisqu':103 'sed':29,85,136,153 'sem':177 'semper':111 'sit':4,19,175,202 'sociosqu':142 'sodal':188 'sollicitudin':33 'taciti':141 'tempor':24 'tempus':43 'tincidunt':51 'torquent':145 'tortor':181 'tristiqu':184 'turpi':47 'ultric':95 'ultrici':197 'ut':59,62,75,124 'varius':83 'vehicula':108 'vel':50,194 'venenati':119,127,195 'vestibulum':18 'vita':74,102,137 'volutpat':135	63	'2':3B 'blog':1B 'page':2B
-76	19	'ac':27,41,100,160,213 'ad':143 'adipisc':7 'aenean':113 'aliquam':82 'amet':5,20,176,203 'ant':78,161,192 'aptent':140 'arcu':52 'bibendum':170 'blandit':71 'class':139 'commodo':171 'congu':54 'consectetur':6 'consequat':73 'conubia':147 'conval':104 'cras':120 'curabitur':66 'dapibus':16 'diam':63,123 'dignissim':118 'dolor':3,23,138,154,208 'donec':49,172 'dui':45,152,216 'efficitur':210 'egesta':58,134 'eget':39,57,60,89,116,169 'elit':8,98 'enim':28,34,204 'est':133 'et':22,30,79,110,157,179 'etiam':90 'eu':17,198 'ex':12 'facilisi':36 'fame':159 'faucibus':25,165,173 'feli':69,105 'fermentum':80 'feugiat':64,86 'fringilla':65 'fusc':106 'gravida':32,186 'hendrerit':76,77 'himenaeo':151 'iaculi':88 'id':70,114,132,200 'imperdiet':101 'incepto':150 'interdum':14,156,178 'ipsum':2,162,174 'justo':15,87 'lacus':115,168,196 'lectus':122 'libero':42,48 'litora':144 'loborti':10,99,205 'lorem':1,84 'luctus':206 'malesuada':67,158,191 'massa':131,212 'matti':189 'mauri':68,81 'metus':155 'morbi':190 'nequ':93,126,185 'nibh':40,112 'nisi':187,193 'non':26,92 'nostra':148 'nulla':53 'nullam':207 'nunc':38,166 'odio':72,117 'orci':11,109 'ornar':91,182 'pellentesqu':199,214 'per':146,149 'phasellus':96 'placerat':44 'porttitor':167 'praesent':9,129 'primi':163 'pulvinar':125,215 'purus':209 'quam':97 'qui':46 'quisqu':183 'risus':21,56,201 'sagitti':121,180 'sapien':31,37,61 'scelerisqu':103 'sed':29,85,136,153 'sem':177 'semper':111 'sit':4,19,175,202 'sociosqu':142 'sodal':188 'sollicitudin':33 'taciti':141 'tempor':24 'tempus':43 'tincidunt':51 'torquent':145 'tortor':181 'tristiqu':184 'turpi':47 'ultric':95 'ultrici':197 'ut':59,62,75,124 'varius':83 'vehicula':108 'vel':50,194 'venenati':119,127,195 'vestibulum':18 'vita':74,102,137 'volutpat':135	63	'3':3B 'blog':1B 'page':2B
-29	6	'ac':115,137 'accumsan':44 'adipisc':7 'aenean':61 'aliquam':9 'aliquet':172 'amet':5,18,114,142 'ant':102 'auctor':64 'blandit':15 'consectetur':6 'consequat':131 'curabitur':80 'cursus':57 'dapibus':46,94 'diam':29,35,96,108,194 'dictum':52 'dolor':3,126,133 'donec':49,74 'dui':77,169 'egesta':120 'eget':76,175,189 'eleifend':135 'elementum':14,158 'elit':8 'enim':19 'erat':171 'ero':134,146 'et':10,107,125 'eu':12,45,67,164 'euismod':112 'ex':139 'facilisi':60 'faucibus':65 'fermentum':56,187 'feugiat':48,75 'fringilla':165 'fusc':106 'gravida':148 'hendrerit':151 'id':31,103,168 'imperdiet':81 'integ':150 'interdum':37 'ipsum':2,110,182 'justo':63 'lacinia':40 'laoreet':161 'lectus':88 'leo':22,32 'libero':116 'ligula':119,185 'lorem':1,163 'luctus':104 'magna':89,159 'massa':21,41 'matti':25 'mauri':11,118 'maximus':184 'mi':38 'molesti':149 'molli':152 'morbi':87,97,160 'nec':36,71,147 'nibh':13,58,73,129 'nisi':136 'nisl':69,170 'non':123 'nulla':140,166 'nunc':39,43 'odio':47,153,162 'ornar':23 'phasellus':30 'placerat':33,53 'porttitor':54,128,155,190 'porttutor':197 'posuer':132,181 'proin':117,127 'pulvinar':111 'quam':51,84,178,191 'qui':109,130,195 'quisqu':20 'rhoncus':79 'risus':66 'sagitti':86 'sed':156,179 'semper':68,138 'sit':4,17,113,141 'sodal':101 'sollicitudin':95 'suscipit':72,100 'tempor':124 'tempus':85,122 'tortor':82,174 'tristiqu':42,186 'turpi':92 'ullamcorp':176 'urna':99,143 'ut':70,83,91,144,157,183,188 'varius':16,50,177,193 'vehicula':27,34 'vel':98 'velit':105 'venenati':145,167,180 'vestibulum':28 'vita':26,154 'vivamus':55 'viverra':90,196	34	'page':2B 'standard':1B
-172	1		1	'root':1B
-174	28		87	'calendar':1B
-178	29	'adipisc':8 'amet':6 'chrisdev':1 'consectetur':7 'consequat':25,49 'dolor':4 'donec':27 'elit':9 'enim':13,52 'erat':44 'euismod':19 'ex':24 'integ':14,34 'ipsum':3 'lacus':17,33,36 'ligula':20 'lorem':2,21 'malesuada':23 'mauri':18 'molesti':46 'nec':26 'non':31 'pellentesqu':10 'posuer':29 'pretium':41 'proin':43 'quam':45 'qui':47 'rutrum':32 'sit':5 'sollicitudin':50 'tellus':30 'tortor':37 'tristiqu':16 'ullamcorp':39 'vel':42,51 'velit':40 'vita':11,15 'viverra':48 'volutpat':12,35	94	'1':2B 'event':1B
-185	30	'adipisc':8 'amet':6 'chrisdev':1 'consectetur':7 'consequat':25,49 'dolor':4 'donec':27 'elit':9 'enim':13,52 'erat':44 'euismod':19 'ex':24 'integ':14,34 'ipsum':3 'lacus':17,33,36 'ligula':20 'lorem':2,21 'malesuada':23 'mauri':18 'molesti':46 'nec':26 'non':31 'pellentesqu':10 'posuer':29 'pretium':41 'proin':43 'quam':45 'qui':47 'rutrum':32 'sit':5 'sollicitudin':50 'tellus':30 'tortor':37 'tristiqu':16 'ullamcorp':39 'vel':42,51 'velit':40 'vita':11,15 'viverra':48 'volutpat':12,35	94	'2':2B 'event':1B
+COPY public.postgres_search_indexentry (id, object_id, body, content_type_id, autocomplete, title, title_norm) FROM stdin;
+23	4		32	'index':2B 'standard':1B		1
+26	5	'ac':115,137 'accumsan':44 'adipisc':7 'aenean':61 'aliquam':9 'aliquet':172 'amet':5,18,114,142 'ant':102 'auctor':64 'blandit':15 'consectetur':6 'consequat':131 'curabitur':80 'cursus':57 'dapibus':46,94 'diam':29,35,96,108,194 'dictum':52 'dolor':3,126,133 'donec':49,74 'dui':77,169 'egesta':120 'eget':76,175,189 'eleifend':135 'elementum':14,158 'elit':8 'enim':19 'erat':171 'ero':134,146 'et':10,107,125 'eu':12,45,67,164 'euismod':112 'ex':139 'facilisi':60 'faucibus':65 'fermentum':56,187 'feugiat':48,75 'fringilla':165 'fusc':106 'gravida':148 'hendrerit':151 'id':31,103,168 'imperdiet':81 'integ':150 'interdum':37 'ipsum':2,110,182 'justo':63 'lacinia':40 'laoreet':161 'lectus':88 'leo':22,32 'libero':116 'ligula':119,185 'lorem':1,163 'luctus':104 'magna':89,159 'massa':21,41 'matti':25 'mauri':11,118 'maximus':184 'mi':38 'molesti':149 'molli':152 'morbi':87,97,160 'nec':36,71,147 'nibh':13,58,73,129 'nisi':136 'nisl':69,170 'non':123 'nulla':140,166 'nunc':39,43 'odio':47,153,162 'ornar':23 'phasellus':30 'placerat':33,53 'porttitor':54,128,155,190 'porttutor':197 'posuer':132,181 'proin':117,127 'pulvinar':111 'quam':51,84,178,191 'qui':109,130,195 'quisqu':20 'rhoncus':79 'risus':66 'sagitti':86 'sed':156,179 'semper':68,138 'sit':4,17,113,141 'sodal':101 'sollicitudin':95 'suscipit':72,100 'tempor':124 'tempus':85,122 'tortor':82,174 'tristiqu':42,186 'turpi':92 'ullamcorp':176 'urna':99,143 'ut':70,83,91,144,157,183,188 'varius':16,50,177,193 'vehicula':27,34 'vel':98 'velit':105 'venenati':145,167,180 'vestibulum':28 'vita':26,154 'vivamus':55 'viverra':90,196	34	'page':2B 'sidebar':4B 'standard':1B 'w/o':3B		1
+32	7		76	'index':2B 'person':1B		1
+35	8		78	'1':3B 'page':2B 'person':1B		1
+38	9		78	'2':3B 'page':2B 'person':1B		1
+41	10		78	'3':3B 'page':2B 'person':1B		1
+44	11		78	'4':3B 'page':2B 'person':1B		1
+3	1		2	'ansible.png':1A		1
+4	2		2	'bulding-blocks.png':1A		1
+5	3		2	'chrisdevf_favicon.png':1A		1
+6	4		2	'digital_ocean.png':1A		1
+7	5		2	'foundation.jpg':1A		1
+8	6		2	'linode.png':1A		1
+9	7		2	'placeholder_person.png':1A		1
+10	8		2	'postgresql.jpg':1A		1
+11	9		2	'postgresql.png':1A		1
+12	10		2	'sass.jpg':1A		1
+13	11		2	'sass.png':1A		1
+14	12		2	'wagtail.jpg':1A		1
+15	13		2	'wagtail.png':1A		1
+16	14		2	'yeti.png':1A		1
+63	16		61	'blog':1B 'index':2B		1
+125	27		68	'contact':1B 'us':2B		1
+119	25		71	'document':1B 'galleri':2B		1
+122	26		72	'document':2B 'sampl':1B		1
+89	20		75	'galleri':2B 'photo':1B		1
+92	21		74	'1':2B 'galleri':1B		1
+95	22		74	'2':2B 'galleri':1B		1
+100	23		74	'3':2B 'galleri':1B		1
+105	24		74	'4':2B 'galleri':1B		1
+110	1		3	'doc':2A 'document.doc':1A		1
+111	2		3	'doc':2A 'example.docx':1A		1
+112	3		3	'doc':2A 'sample.pdf':1A		1
+66	17	'ac':27,41,100,160,213 'ad':143 'adipisc':7 'aenean':113 'aliquam':82 'amet':5,20,176,203 'ant':78,161,192 'aptent':140 'arcu':52 'bibendum':170 'blandit':71 'class':139 'commodo':171 'congu':54 'consectetur':6 'consequat':73 'conubia':147 'conval':104 'cras':120 'curabitur':66 'dapibus':16 'diam':63,123 'dignissim':118 'dolor':3,23,138,154,208 'donec':49,172 'dui':45,152,216 'efficitur':210 'egesta':58,134 'eget':39,57,60,89,116,169 'elit':8,98 'enim':28,34,204 'est':133 'et':22,30,79,110,157,179 'etiam':90 'eu':17,198 'ex':12 'facilisi':36 'fame':159 'faucibus':25,165,173 'feli':69,105 'fermentum':80 'feugiat':64,86 'fringilla':65 'fusc':106 'gravida':32,186 'hendrerit':76,77 'himenaeo':151 'iaculi':88 'id':70,114,132,200 'imperdiet':101 'incepto':150 'interdum':14,156,178 'ipsum':2,162,174 'justo':15,87 'lacus':115,168,196 'lectus':122 'libero':42,48 'litora':144 'loborti':10,99,205 'lorem':1,84 'luctus':206 'malesuada':67,158,191 'massa':131,212 'matti':189 'mauri':68,81 'metus':155 'morbi':190 'nequ':93,126,185 'nibh':40,112 'nisi':187,193 'non':26,92 'nostra':148 'nulla':53 'nullam':207 'nunc':38,166 'odio':72,117 'orci':11,109 'ornar':91,182 'pellentesqu':199,214 'per':146,149 'phasellus':96 'placerat':44 'porttitor':167 'praesent':9,129 'primi':163 'pulvinar':125,215 'purus':209 'quam':97 'qui':46 'quisqu':183 'risus':21,56,201 'sagitti':121,180 'sapien':31,37,61 'scelerisqu':103 'sed':29,85,136,153 'sem':177 'semper':111 'sit':4,19,175,202 'sociosqu':142 'sodal':188 'sollicitudin':33 'taciti':141 'tempor':24 'tempus':43 'tincidunt':51 'torquent':145 'tortor':181 'tristiqu':184 'turpi':47 'ultric':95 'ultrici':197 'ut':59,62,75,124 'varius':83 'vehicula':108 'vel':50,194 'venenati':119,127,195 'vestibulum':18 'vita':74,102,137 'volutpat':135	63	'1':3B 'blog':1B 'page':2B		1
+1	3		4	'homepag':1B		1
+69	18	'ac':27,41,100,160,213 'ad':143 'adipisc':7 'aenean':113 'aliquam':82 'amet':5,20,176,203 'ant':78,161,192 'aptent':140 'arcu':52 'bibendum':170 'blandit':71 'class':139 'commodo':171 'congu':54 'consectetur':6 'consequat':73 'conubia':147 'conval':104 'cras':120 'curabitur':66 'dapibus':16 'diam':63,123 'dignissim':118 'dolor':3,23,138,154,208 'donec':49,172 'dui':45,152,216 'efficitur':210 'egesta':58,134 'eget':39,57,60,89,116,169 'elit':8,98 'enim':28,34,204 'est':133 'et':22,30,79,110,157,179 'etiam':90 'eu':17,198 'ex':12 'facilisi':36 'fame':159 'faucibus':25,165,173 'feli':69,105 'fermentum':80 'feugiat':64,86 'fringilla':65 'fusc':106 'gravida':32,186 'hendrerit':76,77 'himenaeo':151 'iaculi':88 'id':70,114,132,200 'imperdiet':101 'incepto':150 'interdum':14,156,178 'ipsum':2,162,174 'justo':15,87 'lacus':115,168,196 'lectus':122 'libero':42,48 'litora':144 'loborti':10,99,205 'lorem':1,84 'luctus':206 'malesuada':67,158,191 'massa':131,212 'matti':189 'mauri':68,81 'metus':155 'morbi':190 'nequ':93,126,185 'nibh':40,112 'nisi':187,193 'non':26,92 'nostra':148 'nulla':53 'nullam':207 'nunc':38,166 'odio':72,117 'orci':11,109 'ornar':91,182 'pellentesqu':199,214 'per':146,149 'phasellus':96 'placerat':44 'porttitor':167 'praesent':9,129 'primi':163 'pulvinar':125,215 'purus':209 'quam':97 'qui':46 'quisqu':183 'risus':21,56,201 'sagitti':121,180 'sapien':31,37,61 'scelerisqu':103 'sed':29,85,136,153 'sem':177 'semper':111 'sit':4,19,175,202 'sociosqu':142 'sodal':188 'sollicitudin':33 'taciti':141 'tempor':24 'tempus':43 'tincidunt':51 'torquent':145 'tortor':181 'tristiqu':184 'turpi':47 'ultric':95 'ultrici':197 'ut':59,62,75,124 'varius':83 'vehicula':108 'vel':50,194 'venenati':119,127,195 'vestibulum':18 'vita':74,102,137 'volutpat':135	63	'2':3B 'blog':1B 'page':2B		1
+76	19	'ac':27,41,100,160,213 'ad':143 'adipisc':7 'aenean':113 'aliquam':82 'amet':5,20,176,203 'ant':78,161,192 'aptent':140 'arcu':52 'bibendum':170 'blandit':71 'class':139 'commodo':171 'congu':54 'consectetur':6 'consequat':73 'conubia':147 'conval':104 'cras':120 'curabitur':66 'dapibus':16 'diam':63,123 'dignissim':118 'dolor':3,23,138,154,208 'donec':49,172 'dui':45,152,216 'efficitur':210 'egesta':58,134 'eget':39,57,60,89,116,169 'elit':8,98 'enim':28,34,204 'est':133 'et':22,30,79,110,157,179 'etiam':90 'eu':17,198 'ex':12 'facilisi':36 'fame':159 'faucibus':25,165,173 'feli':69,105 'fermentum':80 'feugiat':64,86 'fringilla':65 'fusc':106 'gravida':32,186 'hendrerit':76,77 'himenaeo':151 'iaculi':88 'id':70,114,132,200 'imperdiet':101 'incepto':150 'interdum':14,156,178 'ipsum':2,162,174 'justo':15,87 'lacus':115,168,196 'lectus':122 'libero':42,48 'litora':144 'loborti':10,99,205 'lorem':1,84 'luctus':206 'malesuada':67,158,191 'massa':131,212 'matti':189 'mauri':68,81 'metus':155 'morbi':190 'nequ':93,126,185 'nibh':40,112 'nisi':187,193 'non':26,92 'nostra':148 'nulla':53 'nullam':207 'nunc':38,166 'odio':72,117 'orci':11,109 'ornar':91,182 'pellentesqu':199,214 'per':146,149 'phasellus':96 'placerat':44 'porttitor':167 'praesent':9,129 'primi':163 'pulvinar':125,215 'purus':209 'quam':97 'qui':46 'quisqu':183 'risus':21,56,201 'sagitti':121,180 'sapien':31,37,61 'scelerisqu':103 'sed':29,85,136,153 'sem':177 'semper':111 'sit':4,19,175,202 'sociosqu':142 'sodal':188 'sollicitudin':33 'taciti':141 'tempor':24 'tempus':43 'tincidunt':51 'torquent':145 'tortor':181 'tristiqu':184 'turpi':47 'ultric':95 'ultrici':197 'ut':59,62,75,124 'varius':83 'vehicula':108 'vel':50,194 'venenati':119,127,195 'vestibulum':18 'vita':74,102,137 'volutpat':135	63	'3':3B 'blog':1B 'page':2B		1
+29	6	'ac':115,137 'accumsan':44 'adipisc':7 'aenean':61 'aliquam':9 'aliquet':172 'amet':5,18,114,142 'ant':102 'auctor':64 'blandit':15 'consectetur':6 'consequat':131 'curabitur':80 'cursus':57 'dapibus':46,94 'diam':29,35,96,108,194 'dictum':52 'dolor':3,126,133 'donec':49,74 'dui':77,169 'egesta':120 'eget':76,175,189 'eleifend':135 'elementum':14,158 'elit':8 'enim':19 'erat':171 'ero':134,146 'et':10,107,125 'eu':12,45,67,164 'euismod':112 'ex':139 'facilisi':60 'faucibus':65 'fermentum':56,187 'feugiat':48,75 'fringilla':165 'fusc':106 'gravida':148 'hendrerit':151 'id':31,103,168 'imperdiet':81 'integ':150 'interdum':37 'ipsum':2,110,182 'justo':63 'lacinia':40 'laoreet':161 'lectus':88 'leo':22,32 'libero':116 'ligula':119,185 'lorem':1,163 'luctus':104 'magna':89,159 'massa':21,41 'matti':25 'mauri':11,118 'maximus':184 'mi':38 'molesti':149 'molli':152 'morbi':87,97,160 'nec':36,71,147 'nibh':13,58,73,129 'nisi':136 'nisl':69,170 'non':123 'nulla':140,166 'nunc':39,43 'odio':47,153,162 'ornar':23 'phasellus':30 'placerat':33,53 'porttitor':54,128,155,190 'porttutor':197 'posuer':132,181 'proin':117,127 'pulvinar':111 'quam':51,84,178,191 'qui':109,130,195 'quisqu':20 'rhoncus':79 'risus':66 'sagitti':86 'sed':156,179 'semper':68,138 'sit':4,17,113,141 'sodal':101 'sollicitudin':95 'suscipit':72,100 'tempor':124 'tempus':85,122 'tortor':82,174 'tristiqu':42,186 'turpi':92 'ullamcorp':176 'urna':99,143 'ut':70,83,91,144,157,183,188 'varius':16,50,177,193 'vehicula':27,34 'vel':98 'velit':105 'venenati':145,167,180 'vestibulum':28 'vita':26,154 'vivamus':55 'viverra':90,196	34	'page':2B 'standard':1B		1
+172	1		1	'root':1B		1
+174	28		87	'calendar':1B		1
+178	29	'adipisc':8 'amet':6 'chrisdev':1 'consectetur':7 'consequat':25,49 'dolor':4 'donec':27 'elit':9 'enim':13,52 'erat':44 'euismod':19 'ex':24 'integ':14,34 'ipsum':3 'lacus':17,33,36 'ligula':20 'lorem':2,21 'malesuada':23 'mauri':18 'molesti':46 'nec':26 'non':31 'pellentesqu':10 'posuer':29 'pretium':41 'proin':43 'quam':45 'qui':47 'rutrum':32 'sit':5 'sollicitudin':50 'tellus':30 'tortor':37 'tristiqu':16 'ullamcorp':39 'vel':42,51 'velit':40 'vita':11,15 'viverra':48 'volutpat':12,35	94	'1':2B 'event':1B		1
+185	30	'adipisc':8 'amet':6 'chrisdev':1 'consectetur':7 'consequat':25,49 'dolor':4 'donec':27 'elit':9 'enim':13,52 'erat':44 'euismod':19 'ex':24 'integ':14,34 'ipsum':3 'lacus':17,33,36 'ligula':20 'lorem':2,21 'malesuada':23 'mauri':18 'molesti':46 'nec':26 'non':31 'pellentesqu':10 'posuer':29 'pretium':41 'proin':43 'quam':45 'qui':47 'rutrum':32 'sit':5 'sollicitudin':50 'tellus':30 'tortor':37 'tristiqu':16 'ullamcorp':39 'vel':42,51 'velit':40 'vita':11,15 'viverra':48 'volutpat':12,35	94	'2':2B 'event':1B		1
 \.
 
 
@@ -4875,9 +5607,9 @@ COPY public.taggit_taggeditem (id, object_id, content_type_id, tag_id) FROM stdi
 -- Data for Name: users_user; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.users_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, name, address, city, state, country_of_residence, country_of_nationality, job, organisation, tos) FROM stdin;
-2	pbkdf2_sha256$120000$eI7ZxMYHPEta$pC9LVzvOUaSSUhGht5MTX3/aeNh35T+auNFppYfgUio=	\N	f	cclarke			cclarke@chrisdev.com	f	t	2019-06-14 11:07:05.778726-04					TT	TT			t
-1	pbkdf2_sha256$150000$RNEjbWQhtHSq$dPS14A7lL8Tw6cxCQhgqM0vwwrWfvYSuZAzLdRRkgwY=	2019-06-17 13:08:20.746166-04	t	admin	Lendl	Smith	lendl.smith@gmail.com	t	t	2019-06-14 11:02:31.218591-04					TT	TT			t
+COPY public.users_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, name, address, city, state, country_of_nationality, job, organisation, tos, country) FROM stdin;
+2	pbkdf2_sha256$120000$eI7ZxMYHPEta$pC9LVzvOUaSSUhGht5MTX3/aeNh35T+auNFppYfgUio=	\N	f	cclarke			cclarke@chrisdev.com	f	t	2019-06-14 11:07:05.778726-04					TT			t	
+1	pbkdf2_sha256$150000$RNEjbWQhtHSq$dPS14A7lL8Tw6cxCQhgqM0vwwrWfvYSuZAzLdRRkgwY=	2019-06-17 13:08:20.746166-04	t	admin	Lendl	Smith	lendl.smith@gmail.com	t	t	2019-06-14 11:02:31.218591-04					TT			t	
 \.
 
 
@@ -4903,6 +5635,14 @@ COPY public.users_user_user_permissions (id, user_id, permission_id) FROM stdin;
 
 COPY public.wagtail_feeds_rssfeedssettings (id, feed_app_label, feed_model_name, feed_title, feed_link, feed_description, feed_author_email, feed_author_link, feed_item_description_field, feed_item_content_field, site_id, feed_image_in_content, feed_item_date_field, is_feed_item_date_field_datetime) FROM stdin;
 1	\N	\N	\N	\N	\N	\N	\N	\N	\N	2	t		f
+\.
+
+
+--
+-- Data for Name: wagtailadmin_admin; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtailadmin_admin (id) FROM stdin;
 \.
 
 
@@ -4933,6 +5673,40 @@ COPY public.wagtailcore_collectionviewrestriction_groups (id, collectionviewrest
 
 
 --
+-- Data for Name: wagtailcore_comment; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtailcore_comment (id, text, contentpath, "position", created_at, updated_at, resolved_at, page_id, resolved_by_id, revision_created_id, user_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: wagtailcore_commentreply; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtailcore_commentreply (id, text, created_at, updated_at, comment_id, user_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: wagtailcore_groupapprovaltask; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtailcore_groupapprovaltask (task_ptr_id) FROM stdin;
+1
+\.
+
+
+--
+-- Data for Name: wagtailcore_groupapprovaltask_groups; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtailcore_groupapprovaltask_groups (id, groupapprovaltask_id, group_id) FROM stdin;
+1	1	1
+\.
+
+
+--
 -- Data for Name: wagtailcore_groupcollectionpermission; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -4945,6 +5719,10 @@ COPY public.wagtailcore_groupcollectionpermission (id, collection_id, group_id, 
 6	1	2	4
 7	1	1	5
 8	1	2	5
+9	1	1	398
+10	1	2	398
+11	1	1	399
+12	1	2	399
 \.
 
 
@@ -4964,35 +5742,52 @@ COPY public.wagtailcore_grouppagepermission (id, permission_type, group_id, page
 
 
 --
+-- Data for Name: wagtailcore_locale; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtailcore_locale (id, language_code) FROM stdin;
+1	en-gb
+\.
+
+
+--
 -- Data for Name: wagtailcore_page; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.wagtailcore_page (id, path, depth, numchild, title, slug, live, has_unpublished_changes, url_path, seo_title, show_in_menus, search_description, go_live_at, expire_at, expired, content_type_id, owner_id, locked, latest_revision_created_at, first_published_at, live_revision_id, last_published_at, draft_title, locked_at, locked_by_id) FROM stdin;
-1	0001	1	1	Root	root	t	f	/		f		\N	\N	f	1	\N	f	\N	\N	\N	\N	Root	\N	\N
-5	0001000100010001	4	0	Standard Page w/o Sidebar	standard-page-wo-sidebar	t	f	/home/standard-index/standard-page-wo-sidebar/		t		\N	\N	f	34	1	f	2019-06-14 15:37:20.036076-04	2019-06-14 15:37:20.534408-04	6	2019-06-14 15:37:20.534408-04	Standard Page w/o Sidebar	\N	\N
-6	0001000100010002	4	0	Standard Page	standard-page	t	f	/home/standard-index/standard-page/		t		\N	\N	f	34	1	f	2019-06-14 15:38:18.85825-04	2019-06-14 15:38:19.137801-04	7	2019-06-14 15:38:19.137801-04	Standard Page	\N	\N
-8	0001000100020001	4	0	Person Page 1	person-page-1	t	f	/home/person-index/person-page-1/		f		\N	\N	f	78	1	f	2019-06-14 15:39:53.919791-04	2019-06-14 15:39:54.276647-04	9	2019-06-14 15:39:54.276647-04	Person Page 1	\N	\N
-9	0001000100020002	4	0	Person Page 2	person-page-2	t	f	/home/person-index/person-page-2/		f		\N	\N	f	78	1	f	2019-06-14 15:40:08.950077-04	2019-06-14 15:40:08.950077-04	11	2019-06-14 15:40:08.950077-04	Person Page 2	\N	\N
-10	0001000100020003	4	0	Person Page 3	person-page-3	t	f	/home/person-index/person-page-3/		f		\N	\N	f	78	1	f	2019-06-14 15:40:22.068617-04	2019-06-14 15:40:22.068617-04	13	2019-06-14 15:40:22.068617-04	Person Page 3	\N	\N
-7	000100010002	3	4	Person Index	person-index	t	f	/home/person-index/		t		\N	\N	f	76	1	f	2019-06-14 15:39:23.78899-04	2019-06-14 15:39:24.358993-04	8	2019-06-14 15:39:24.358993-04	Person Index	\N	\N
-11	0001000100020004	4	0	Person Page 4	person-page-4	t	f	/home/person-index/person-page-4/		f		\N	\N	f	78	1	f	2019-06-14 15:40:41.298604-04	2019-06-14 15:40:41.298604-04	15	2019-06-14 15:40:41.298604-04	Person Page 4	\N	\N
-4	000100010001	3	2	Standard Index	standard-index	t	f	/home/standard-index/		t		\N	\N	f	32	1	f	2019-06-14 15:58:42.206048-04	2019-06-14 15:36:19.792176-04	52	2019-06-14 15:58:42.41514-04	Standard Index	\N	\N
-18	0001000100050002	4	0	Blog Page 2	blog-page-2	t	f	/home/blog-index/blog-page-2/		t		\N	\N	f	63	1	f	2019-06-14 15:48:00.255415-04	2019-06-14 15:47:14.624055-04	30	2019-06-14 15:48:00.528744-04	Blog Page 2	\N	\N
-3	00010001	2	7	Homepage	home	t	f	/home/		f		\N	\N	f	4	\N	f	2019-06-14 15:35:33.799951-04	2019-06-14 11:05:51.293545-04	4	2019-06-14 15:35:35.04048-04	Homepage	\N	\N
-17	0001000100050001	4	0	Blog Page 1	blog-page-1	t	f	/home/blog-index/blog-page-1/		t		\N	\N	f	63	1	f	2019-06-14 15:48:27.193927-04	2019-06-14 15:47:02.49669-04	31	2019-06-14 15:48:27.620541-04	Blog Page 1	\N	\N
-27	000100010008	3	0	Contact Us	contact-us	t	f	/home/contact-us/		f		\N	\N	f	68	1	f	2019-06-14 15:58:05.505996-04	2019-06-14 15:58:05.941292-04	51	2019-06-14 15:58:05.941292-04	Contact Us	\N	\N
-25	000100010007	3	1	Documents Gallery	documents-gallery	t	f	/home/documents-gallery/		t		\N	\N	f	71	1	f	2019-06-14 15:54:06.60246-04	2019-06-14 15:54:07.054704-04	49	2019-06-14 15:54:07.054704-04	Documents Gallery	\N	\N
-26	0001000100070001	4	0	Sample Documents	sample-documents	t	f	/home/documents-gallery/sample-documents/		f		\N	\N	f	72	1	f	2019-06-14 15:54:39.054947-04	2019-06-14 15:54:39.438012-04	50	2019-06-14 15:54:39.438012-04	Sample Documents	\N	\N
-22	0001000100060002	4	0	Gallery 2	gallery-2	t	f	/home/photo-gallery/gallery-2/		f		\N	\N	f	74	1	f	2019-06-14 15:51:46.496343-04	2019-06-14 15:51:29.693357-04	40	2019-06-14 15:51:46.759257-04	Gallery 2	\N	\N
-23	0001000100060003	4	0	Gallery 3	gallery-3	t	f	/home/photo-gallery/gallery-3/		f		\N	\N	f	74	1	f	2019-06-14 15:52:15.105215-04	2019-06-14 15:51:57.430389-04	43	2019-06-14 15:52:15.362927-04	Gallery 3	\N	\N
-21	0001000100060001	4	0	Gallery 1	gallery-1	t	f	/home/photo-gallery/gallery-1/		f		\N	\N	f	74	1	f	2019-06-14 15:51:18.993173-04	2019-06-14 15:51:19.21253-04	37	2019-06-14 15:51:19.21253-04	Gallery 1	\N	\N
-20	000100010006	3	4	Photo Gallery	photo-gallery	t	f	/home/photo-gallery/		t		\N	\N	f	75	1	f	2019-06-14 15:50:47.794336-04	2019-06-14 15:50:47.979554-04	36	2019-06-14 15:50:47.979554-04	Photo Gallery	\N	\N
-24	0001000100060004	4	0	Gallery 4	gallery-4	t	f	/home/photo-gallery/gallery-4/		f		\N	\N	f	74	1	f	2019-06-14 15:52:49.01129-04	2019-06-14 15:52:28.376159-04	48	2019-06-14 15:52:49.456708-04	Gallery 4	\N	\N
-16	000100010005	3	3	Blog Index	blog-index	t	f	/home/blog-index/		t		\N	\N	f	61	1	f	2019-06-14 15:45:09.09709-04	2019-06-14 15:45:09.376355-04	26	2019-06-14 15:45:09.376355-04	Blog Index	\N	\N
-19	0001000100050003	4	0	Blog Page 3	blog-page-3	t	f	/home/blog-index/blog-page-3/		t		\N	\N	f	63	1	f	2019-06-14 15:49:05.1093-04	2019-06-14 15:48:39.004445-04	35	2019-06-14 15:49:05.41499-04	Blog Page 3	\N	\N
-29	0001000100040001	4	0	Event 1	event-1	t	f	/home/calendar/event-1/		f		\N	\N	f	94	1	f	2019-06-17 13:10:51.173843-04	2019-06-17 11:32:12.687681-04	56	2019-06-17 13:10:53.444724-04	Event 1	\N	\N
-28	000100010004	3	2	Calendar	calendar	t	f	/home/calendar/		t		\N	\N	f	87	1	f	2019-06-17 11:23:22.820909-04	2019-06-17 11:23:23.39821-04	53	2019-06-17 11:23:23.39821-04	Calendar	\N	\N
-30	0001000100040002	4	0	Event 2	event-2	t	f	/home/calendar/event-2/		f		\N	\N	f	94	1	f	2019-06-17 13:12:06.62998-04	2019-06-17 13:11:24.470969-04	61	2019-06-17 13:12:09.15968-04	Event 2	\N	\N
+COPY public.wagtailcore_page (id, path, depth, numchild, title, slug, live, has_unpublished_changes, url_path, seo_title, show_in_menus, search_description, go_live_at, expire_at, expired, content_type_id, owner_id, locked, latest_revision_created_at, first_published_at, live_revision_id, last_published_at, draft_title, locked_at, locked_by_id, translation_key, locale_id, alias_of_id) FROM stdin;
+1	0001	1	1	Root	root	t	f	/		f		\N	\N	f	1	\N	f	\N	\N	\N	\N	Root	\N	\N	46dc318a-0633-4965-9715-c1ad25f1a904	1	\N
+5	0001000100010001	4	0	Standard Page w/o Sidebar	standard-page-wo-sidebar	t	f	/home/standard-index/standard-page-wo-sidebar/		t		\N	\N	f	34	1	f	2019-06-14 15:37:20.036076-04	2019-06-14 15:37:20.534408-04	6	2019-06-14 15:37:20.534408-04	Standard Page w/o Sidebar	\N	\N	b3b25b00-0700-4bf2-8cff-af58326f4b8e	1	\N
+6	0001000100010002	4	0	Standard Page	standard-page	t	f	/home/standard-index/standard-page/		t		\N	\N	f	34	1	f	2019-06-14 15:38:18.85825-04	2019-06-14 15:38:19.137801-04	7	2019-06-14 15:38:19.137801-04	Standard Page	\N	\N	83ab86f8-d7ce-4636-801f-766dd7c1405c	1	\N
+8	0001000100020001	4	0	Person Page 1	person-page-1	t	f	/home/person-index/person-page-1/		f		\N	\N	f	78	1	f	2019-06-14 15:39:53.919791-04	2019-06-14 15:39:54.276647-04	9	2019-06-14 15:39:54.276647-04	Person Page 1	\N	\N	e50fda0e-cc69-4104-b84a-80a17b2f82f7	1	\N
+9	0001000100020002	4	0	Person Page 2	person-page-2	t	f	/home/person-index/person-page-2/		f		\N	\N	f	78	1	f	2019-06-14 15:40:08.950077-04	2019-06-14 15:40:08.950077-04	11	2019-06-14 15:40:08.950077-04	Person Page 2	\N	\N	210a15e4-2c33-4d98-bd3e-0d8f38e55445	1	\N
+10	0001000100020003	4	0	Person Page 3	person-page-3	t	f	/home/person-index/person-page-3/		f		\N	\N	f	78	1	f	2019-06-14 15:40:22.068617-04	2019-06-14 15:40:22.068617-04	13	2019-06-14 15:40:22.068617-04	Person Page 3	\N	\N	c0b3d727-6728-4f27-8d1e-fa0afc52d771	1	\N
+7	000100010002	3	4	Person Index	person-index	t	f	/home/person-index/		t		\N	\N	f	76	1	f	2019-06-14 15:39:23.78899-04	2019-06-14 15:39:24.358993-04	8	2019-06-14 15:39:24.358993-04	Person Index	\N	\N	33d37957-a343-411f-934c-94974b7de909	1	\N
+11	0001000100020004	4	0	Person Page 4	person-page-4	t	f	/home/person-index/person-page-4/		f		\N	\N	f	78	1	f	2019-06-14 15:40:41.298604-04	2019-06-14 15:40:41.298604-04	15	2019-06-14 15:40:41.298604-04	Person Page 4	\N	\N	f1fbd3a6-3c75-47c9-a8c4-a4d6ac5a65cb	1	\N
+4	000100010001	3	2	Standard Index	standard-index	t	f	/home/standard-index/		t		\N	\N	f	32	1	f	2019-06-14 15:58:42.206048-04	2019-06-14 15:36:19.792176-04	52	2019-06-14 15:58:42.41514-04	Standard Index	\N	\N	568b75b9-fb53-4595-9f44-c28dbb39f747	1	\N
+18	0001000100050002	4	0	Blog Page 2	blog-page-2	t	f	/home/blog-index/blog-page-2/		t		\N	\N	f	63	1	f	2019-06-14 15:48:00.255415-04	2019-06-14 15:47:14.624055-04	30	2019-06-14 15:48:00.528744-04	Blog Page 2	\N	\N	1c7ab98a-ec6c-4f7f-9505-5e6ae07b60f2	1	\N
+3	00010001	2	7	Homepage	home	t	f	/home/		f		\N	\N	f	4	\N	f	2019-06-14 15:35:33.799951-04	2019-06-14 11:05:51.293545-04	4	2019-06-14 15:35:35.04048-04	Homepage	\N	\N	7d0d02de-cb65-42d0-aa63-2edac4a6c2fe	1	\N
+17	0001000100050001	4	0	Blog Page 1	blog-page-1	t	f	/home/blog-index/blog-page-1/		t		\N	\N	f	63	1	f	2019-06-14 15:48:27.193927-04	2019-06-14 15:47:02.49669-04	31	2019-06-14 15:48:27.620541-04	Blog Page 1	\N	\N	179a811c-d204-4b5b-a5ff-aefb69b79011	1	\N
+27	000100010008	3	0	Contact Us	contact-us	t	f	/home/contact-us/		f		\N	\N	f	68	1	f	2019-06-14 15:58:05.505996-04	2019-06-14 15:58:05.941292-04	51	2019-06-14 15:58:05.941292-04	Contact Us	\N	\N	2be235ba-57f9-4b6a-9544-023157239716	1	\N
+25	000100010007	3	1	Documents Gallery	documents-gallery	t	f	/home/documents-gallery/		t		\N	\N	f	71	1	f	2019-06-14 15:54:06.60246-04	2019-06-14 15:54:07.054704-04	49	2019-06-14 15:54:07.054704-04	Documents Gallery	\N	\N	d9f2648d-f983-4e10-9ffa-8ed0e600a096	1	\N
+26	0001000100070001	4	0	Sample Documents	sample-documents	t	f	/home/documents-gallery/sample-documents/		f		\N	\N	f	72	1	f	2019-06-14 15:54:39.054947-04	2019-06-14 15:54:39.438012-04	50	2019-06-14 15:54:39.438012-04	Sample Documents	\N	\N	fc822bce-7dce-463f-9906-eb4c14b6b57e	1	\N
+22	0001000100060002	4	0	Gallery 2	gallery-2	t	f	/home/photo-gallery/gallery-2/		f		\N	\N	f	74	1	f	2019-06-14 15:51:46.496343-04	2019-06-14 15:51:29.693357-04	40	2019-06-14 15:51:46.759257-04	Gallery 2	\N	\N	a4ed103d-f051-41bb-9eb0-53f340239d89	1	\N
+23	0001000100060003	4	0	Gallery 3	gallery-3	t	f	/home/photo-gallery/gallery-3/		f		\N	\N	f	74	1	f	2019-06-14 15:52:15.105215-04	2019-06-14 15:51:57.430389-04	43	2019-06-14 15:52:15.362927-04	Gallery 3	\N	\N	bd28d327-08ab-450c-bc9f-d2cd58a9e7ca	1	\N
+21	0001000100060001	4	0	Gallery 1	gallery-1	t	f	/home/photo-gallery/gallery-1/		f		\N	\N	f	74	1	f	2019-06-14 15:51:18.993173-04	2019-06-14 15:51:19.21253-04	37	2019-06-14 15:51:19.21253-04	Gallery 1	\N	\N	b4d0d79b-c334-4acc-961e-d9c1956b6af5	1	\N
+20	000100010006	3	4	Photo Gallery	photo-gallery	t	f	/home/photo-gallery/		t		\N	\N	f	75	1	f	2019-06-14 15:50:47.794336-04	2019-06-14 15:50:47.979554-04	36	2019-06-14 15:50:47.979554-04	Photo Gallery	\N	\N	05ff8592-64ee-4739-9ff3-bff1c717e0c1	1	\N
+24	0001000100060004	4	0	Gallery 4	gallery-4	t	f	/home/photo-gallery/gallery-4/		f		\N	\N	f	74	1	f	2019-06-14 15:52:49.01129-04	2019-06-14 15:52:28.376159-04	48	2019-06-14 15:52:49.456708-04	Gallery 4	\N	\N	72089d53-f690-4bb1-9dd5-ad32848cd024	1	\N
+16	000100010005	3	3	Blog Index	blog-index	t	f	/home/blog-index/		t		\N	\N	f	61	1	f	2019-06-14 15:45:09.09709-04	2019-06-14 15:45:09.376355-04	26	2019-06-14 15:45:09.376355-04	Blog Index	\N	\N	8de47018-9f0c-4af1-a7d1-edf9bc57d232	1	\N
+19	0001000100050003	4	0	Blog Page 3	blog-page-3	t	f	/home/blog-index/blog-page-3/		t		\N	\N	f	63	1	f	2019-06-14 15:49:05.1093-04	2019-06-14 15:48:39.004445-04	35	2019-06-14 15:49:05.41499-04	Blog Page 3	\N	\N	6892d346-e960-4dfd-9b1d-62aa3fcbbed1	1	\N
+29	0001000100040001	4	0	Event 1	event-1	t	f	/home/calendar/event-1/		f		\N	\N	f	94	1	f	2019-06-17 13:10:51.173843-04	2019-06-17 11:32:12.687681-04	56	2019-06-17 13:10:53.444724-04	Event 1	\N	\N	39003c10-6223-48f2-b4a1-83119f83bcf1	1	\N
+28	000100010004	3	2	Calendar	calendar	t	f	/home/calendar/		t		\N	\N	f	87	1	f	2019-06-17 11:23:22.820909-04	2019-06-17 11:23:23.39821-04	53	2019-06-17 11:23:23.39821-04	Calendar	\N	\N	07379a0e-39d3-4bc5-8ea8-8627d65190f4	1	\N
+30	0001000100040002	4	0	Event 2	event-2	t	f	/home/calendar/event-2/		f		\N	\N	f	94	1	f	2019-06-17 13:12:06.62998-04	2019-06-17 13:11:24.470969-04	61	2019-06-17 13:12:09.15968-04	Event 2	\N	\N	13f4cc27-2fe4-4860-a226-5d836238a128	1	\N
+\.
+
+
+--
+-- Data for Name: wagtailcore_pagelogentry; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtailcore_pagelogentry (id, label, action, data_json, "timestamp", content_changed, deleted, content_type_id, page_id, revision_id, user_id) FROM stdin;
 \.
 
 
@@ -5056,6 +5851,14 @@ COPY public.wagtailcore_pagerevision (id, submitted_for_moderation, created_at, 
 
 
 --
+-- Data for Name: wagtailcore_pagesubscription; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtailcore_pagesubscription (id, comment_notifications, page_id, user_id) FROM stdin;
+\.
+
+
+--
 -- Data for Name: wagtailcore_pageviewrestriction; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -5076,7 +5879,59 @@ COPY public.wagtailcore_pageviewrestriction_groups (id, pageviewrestriction_id, 
 --
 
 COPY public.wagtailcore_site (id, hostname, port, is_default_site, root_page_id, site_name) FROM stdin;
-2	localhost	80	t	3	\N
+2	localhost	80	t	3	
+\.
+
+
+--
+-- Data for Name: wagtailcore_task; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtailcore_task (id, name, active, content_type_id) FROM stdin;
+1	Moderators approval	t	101
+\.
+
+
+--
+-- Data for Name: wagtailcore_taskstate; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtailcore_taskstate (id, status, started_at, finished_at, content_type_id, page_revision_id, task_id, workflow_state_id, finished_by_id, comment) FROM stdin;
+\.
+
+
+--
+-- Data for Name: wagtailcore_workflow; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtailcore_workflow (id, name, active) FROM stdin;
+1	Moderators approval	t
+\.
+
+
+--
+-- Data for Name: wagtailcore_workflowpage; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtailcore_workflowpage (page_id, workflow_id) FROM stdin;
+1	1
+\.
+
+
+--
+-- Data for Name: wagtailcore_workflowstate; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtailcore_workflowstate (id, status, created_at, current_task_state_id, page_id, requested_by_id, workflow_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: wagtailcore_workflowtask; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtailcore_workflowtask (id, sort_order, task_id, workflow_id) FROM stdin;
+1	0	1	1
 \.
 
 
@@ -5092,10 +5947,18 @@ COPY public.wagtaildocs_document (id, title, file, created_at, uploaded_by_user_
 
 
 --
+-- Data for Name: wagtaildocs_uploadeddocument; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtaildocs_uploadeddocument (id, file, uploaded_by_user_id) FROM stdin;
+\.
+
+
+--
 -- Data for Name: wagtailembeds_embed; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.wagtailembeds_embed (id, url, max_width, type, html, title, author_name, provider_name, thumbnail_url, width, height, last_updated) FROM stdin;
+COPY public.wagtailembeds_embed (id, url, max_width, type, html, title, author_name, provider_name, thumbnail_url, width, height, last_updated, hash, cache_until) FROM stdin;
 \.
 
 
@@ -5254,7 +6117,7 @@ COPY public.wagtailsearchpromotions_searchpromotion (id, sort_order, description
 -- Data for Name: wagtailusers_userprofile; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.wagtailusers_userprofile (id, submitted_notifications, approved_notifications, rejected_notifications, user_id, preferred_language, current_time_zone, avatar) FROM stdin;
+COPY public.wagtailusers_userprofile (id, submitted_notifications, approved_notifications, rejected_notifications, user_id, preferred_language, current_time_zone, avatar, updated_comments_notifications) FROM stdin;
 \.
 
 
@@ -5283,14 +6146,14 @@ SELECT pg_catalog.setval('public.auth_group_id_seq', 2, true);
 -- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 14, true);
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 18, true);
 
 
 --
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.auth_permission_id_seq', 397, true);
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 463, true);
 
 
 --
@@ -5346,14 +6209,14 @@ SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1, false);
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.django_content_type_id_seq', 100, true);
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 116, true);
 
 
 --
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 233, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 267, true);
 
 
 --
@@ -5403,6 +6266,13 @@ SELECT pg_catalog.setval('public.events_eventpagespeaker_id_seq', 1, false);
 --
 
 SELECT pg_catalog.setval('public.events_eventpagetag_id_seq', 1, false);
+
+
+--
+-- Name: joyous_closedfor_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.joyous_closedfor_id_seq', 1, false);
 
 
 --
@@ -5623,6 +6493,13 @@ SELECT pg_catalog.setval('public.wagtail_feeds_rssfeedssettings_id_seq', 1, true
 
 
 --
+-- Name: wagtailadmin_admin_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.wagtailadmin_admin_id_seq', 1, false);
+
+
+--
 -- Name: wagtailcore_collection_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -5644,10 +6521,31 @@ SELECT pg_catalog.setval('public.wagtailcore_collectionviewrestriction_id_seq', 
 
 
 --
+-- Name: wagtailcore_comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.wagtailcore_comment_id_seq', 1, false);
+
+
+--
+-- Name: wagtailcore_commentreply_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.wagtailcore_commentreply_id_seq', 1, false);
+
+
+--
+-- Name: wagtailcore_groupapprovaltask_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.wagtailcore_groupapprovaltask_groups_id_seq', 1, true);
+
+
+--
 -- Name: wagtailcore_groupcollectionpermission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.wagtailcore_groupcollectionpermission_id_seq', 8, true);
+SELECT pg_catalog.setval('public.wagtailcore_groupcollectionpermission_id_seq', 12, true);
 
 
 --
@@ -5658,6 +6556,13 @@ SELECT pg_catalog.setval('public.wagtailcore_grouppagepermission_id_seq', 7, tru
 
 
 --
+-- Name: wagtailcore_locale_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.wagtailcore_locale_id_seq', 1, true);
+
+
+--
 -- Name: wagtailcore_page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -5665,10 +6570,24 @@ SELECT pg_catalog.setval('public.wagtailcore_page_id_seq', 30, true);
 
 
 --
+-- Name: wagtailcore_pagelogentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.wagtailcore_pagelogentry_id_seq', 1, false);
+
+
+--
 -- Name: wagtailcore_pagerevision_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtailcore_pagerevision_id_seq', 61, true);
+
+
+--
+-- Name: wagtailcore_pagesubscription_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.wagtailcore_pagesubscription_id_seq', 1, false);
 
 
 --
@@ -5693,10 +6612,52 @@ SELECT pg_catalog.setval('public.wagtailcore_site_id_seq', 2, true);
 
 
 --
+-- Name: wagtailcore_task_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.wagtailcore_task_id_seq', 1, true);
+
+
+--
+-- Name: wagtailcore_taskstate_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.wagtailcore_taskstate_id_seq', 1, false);
+
+
+--
+-- Name: wagtailcore_workflow_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.wagtailcore_workflow_id_seq', 1, true);
+
+
+--
+-- Name: wagtailcore_workflowstate_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.wagtailcore_workflowstate_id_seq', 1, false);
+
+
+--
+-- Name: wagtailcore_workflowtask_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.wagtailcore_workflowtask_id_seq', 1, true);
+
+
+--
 -- Name: wagtaildocs_document_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
 SELECT pg_catalog.setval('public.wagtaildocs_document_id_seq', 3, true);
+
+
+--
+-- Name: wagtaildocs_uploadeddocument_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.wagtaildocs_uploadeddocument_id_seq', 1, false);
 
 
 --
@@ -6098,6 +7059,30 @@ ALTER TABLE ONLY public.joyous_cancellationpage
 
 
 --
+-- Name: joyous_closedfor joyous_closedfor_page_id_name_0c62c37f_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_closedfor
+    ADD CONSTRAINT joyous_closedfor_page_id_name_0c62c37f_uniq UNIQUE (page_id, name);
+
+
+--
+-- Name: joyous_closedfor joyous_closedfor_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_closedfor
+    ADD CONSTRAINT joyous_closedfor_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: joyous_closedforholidayspage joyous_closedforholidayspage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_closedforholidayspage
+    ADD CONSTRAINT joyous_closedforholidayspage_pkey PRIMARY KEY (page_ptr_id);
+
+
+--
 -- Name: joyous_eventcategory joyous_eventcategory_code_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6111,6 +7096,14 @@ ALTER TABLE ONLY public.joyous_eventcategory
 
 ALTER TABLE ONLY public.joyous_eventcategory
     ADD CONSTRAINT joyous_eventcategory_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: joyous_extcancellationpage joyous_extcancellationpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_extcancellationpage
+    ADD CONSTRAINT joyous_extcancellationpage_pkey PRIMARY KEY (page_ptr_id);
 
 
 --
@@ -6586,6 +7579,14 @@ ALTER TABLE ONLY public.wagtail_feeds_rssfeedssettings
 
 
 --
+-- Name: wagtailadmin_admin wagtailadmin_admin_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailadmin_admin
+    ADD CONSTRAINT wagtailadmin_admin_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: wagtailcore_collection wagtailcore_collection_path_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6626,6 +7627,46 @@ ALTER TABLE ONLY public.wagtailcore_collectionviewrestriction
 
 
 --
+-- Name: wagtailcore_comment wagtailcore_comment_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_comment
+    ADD CONSTRAINT wagtailcore_comment_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: wagtailcore_commentreply wagtailcore_commentreply_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_commentreply
+    ADD CONSTRAINT wagtailcore_commentreply_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: wagtailcore_groupapprovaltask_groups wagtailcore_groupapprova_groupapprovaltask_id_gro_bb5ee7eb_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_groupapprovaltask_groups
+    ADD CONSTRAINT wagtailcore_groupapprova_groupapprovaltask_id_gro_bb5ee7eb_uniq UNIQUE (groupapprovaltask_id, group_id);
+
+
+--
+-- Name: wagtailcore_groupapprovaltask_groups wagtailcore_groupapprovaltask_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_groupapprovaltask_groups
+    ADD CONSTRAINT wagtailcore_groupapprovaltask_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: wagtailcore_groupapprovaltask wagtailcore_groupapprovaltask_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_groupapprovaltask
+    ADD CONSTRAINT wagtailcore_groupapprovaltask_pkey PRIMARY KEY (task_ptr_id);
+
+
+--
 -- Name: wagtailcore_groupcollectionpermission wagtailcore_groupcollect_group_id_collection_id_p_a21cefe9_uniq; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6658,6 +7699,22 @@ ALTER TABLE ONLY public.wagtailcore_grouppagepermission
 
 
 --
+-- Name: wagtailcore_locale wagtailcore_locale_language_code_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_locale
+    ADD CONSTRAINT wagtailcore_locale_language_code_key UNIQUE (language_code);
+
+
+--
+-- Name: wagtailcore_locale wagtailcore_locale_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_locale
+    ADD CONSTRAINT wagtailcore_locale_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: wagtailcore_page wagtailcore_page_path_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6674,11 +7731,43 @@ ALTER TABLE ONLY public.wagtailcore_page
 
 
 --
+-- Name: wagtailcore_page wagtailcore_page_translation_key_locale_id_9b041bad_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_page
+    ADD CONSTRAINT wagtailcore_page_translation_key_locale_id_9b041bad_uniq UNIQUE (translation_key, locale_id);
+
+
+--
+-- Name: wagtailcore_pagelogentry wagtailcore_pagelogentry_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_pagelogentry
+    ADD CONSTRAINT wagtailcore_pagelogentry_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: wagtailcore_pagerevision wagtailcore_pagerevision_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.wagtailcore_pagerevision
     ADD CONSTRAINT wagtailcore_pagerevision_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: wagtailcore_pagesubscription wagtailcore_pagesubscription_page_id_user_id_0cef73ed_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_pagesubscription
+    ADD CONSTRAINT wagtailcore_pagesubscription_page_id_user_id_0cef73ed_uniq UNIQUE (page_id, user_id);
+
+
+--
+-- Name: wagtailcore_pagesubscription wagtailcore_pagesubscription_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_pagesubscription
+    ADD CONSTRAINT wagtailcore_pagesubscription_pkey PRIMARY KEY (id);
 
 
 --
@@ -6722,6 +7811,70 @@ ALTER TABLE ONLY public.wagtailcore_site
 
 
 --
+-- Name: wagtailcore_task wagtailcore_task_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_task
+    ADD CONSTRAINT wagtailcore_task_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: wagtailcore_taskstate wagtailcore_taskstate_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_taskstate
+    ADD CONSTRAINT wagtailcore_taskstate_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: wagtailcore_workflow wagtailcore_workflow_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_workflow
+    ADD CONSTRAINT wagtailcore_workflow_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: wagtailcore_workflowpage wagtailcore_workflowpage_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_workflowpage
+    ADD CONSTRAINT wagtailcore_workflowpage_pkey PRIMARY KEY (page_id);
+
+
+--
+-- Name: wagtailcore_workflowstate wagtailcore_workflowstate_current_task_state_id_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_workflowstate
+    ADD CONSTRAINT wagtailcore_workflowstate_current_task_state_id_key UNIQUE (current_task_state_id);
+
+
+--
+-- Name: wagtailcore_workflowstate wagtailcore_workflowstate_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_workflowstate
+    ADD CONSTRAINT wagtailcore_workflowstate_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: wagtailcore_workflowtask wagtailcore_workflowtask_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_workflowtask
+    ADD CONSTRAINT wagtailcore_workflowtask_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: wagtailcore_workflowtask wagtailcore_workflowtask_workflow_id_task_id_4ec7a62b_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_workflowtask
+    ADD CONSTRAINT wagtailcore_workflowtask_workflow_id_task_id_4ec7a62b_uniq UNIQUE (workflow_id, task_id);
+
+
+--
 -- Name: wagtaildocs_document wagtaildocs_document_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6730,19 +7883,27 @@ ALTER TABLE ONLY public.wagtaildocs_document
 
 
 --
+-- Name: wagtaildocs_uploadeddocument wagtaildocs_uploadeddocument_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtaildocs_uploadeddocument
+    ADD CONSTRAINT wagtaildocs_uploadeddocument_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: wagtailembeds_embed wagtailembeds_embed_hash_c9bd8c9a_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailembeds_embed
+    ADD CONSTRAINT wagtailembeds_embed_hash_c9bd8c9a_uniq UNIQUE (hash);
+
+
+--
 -- Name: wagtailembeds_embed wagtailembeds_embed_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.wagtailembeds_embed
     ADD CONSTRAINT wagtailembeds_embed_pkey PRIMARY KEY (id);
-
-
---
--- Name: wagtailembeds_embed wagtailembeds_embed_url_max_width_8a2922d8_uniq; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.wagtailembeds_embed
-    ADD CONSTRAINT wagtailembeds_embed_url_max_width_8a2922d8_uniq UNIQUE (url, max_width);
 
 
 --
@@ -7257,10 +8418,31 @@ CREATE INDEX joyous_cancellationpage_overrides_id_dd65c498 ON public.joyous_canc
 
 
 --
+-- Name: joyous_closedfor_page_id_afc8f1bb; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_closedfor_page_id_afc8f1bb ON public.joyous_closedfor USING btree (page_id);
+
+
+--
+-- Name: joyous_closedforholidayspage_overrides_id_1a8dae55; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_closedforholidayspage_overrides_id_1a8dae55 ON public.joyous_closedforholidayspage USING btree (overrides_id);
+
+
+--
 -- Name: joyous_eventcategory_code_c956fd3a_like; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX joyous_eventcategory_code_c956fd3a_like ON public.joyous_eventcategory USING btree (code varchar_pattern_ops);
+
+
+--
+-- Name: joyous_extcancellationpage_overrides_id_2058af8a; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX joyous_extcancellationpage_overrides_id_2058af8a ON public.joyous_extcancellationpage USING btree (overrides_id);
 
 
 --
@@ -7810,10 +8992,24 @@ CREATE INDEX postgres_se_body_aaaa99_gin ON public.postgres_search_indexentry US
 
 
 --
+-- Name: postgres_se_title_b56f33_gin; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX postgres_se_title_b56f33_gin ON public.postgres_search_indexentry USING gin (title);
+
+
+--
 -- Name: postgres_search_indexentry_content_type_id_d805086f; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX postgres_search_indexentry_content_type_id_d805086f ON public.postgres_search_indexentry USING btree (content_type_id);
+
+
+--
+-- Name: postgres_search_indexentry_title_body_concat_search; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX postgres_search_indexentry_title_body_concat_search ON public.postgres_search_indexentry USING gin (((title || body)));
 
 
 --
@@ -7971,6 +9167,13 @@ CREATE INDEX taggit_taggeditem_tag_id_f4f5b767 ON public.taggit_taggeditem USING
 
 
 --
+-- Name: unique_in_progress_workflow; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX unique_in_progress_workflow ON public.wagtailcore_workflowstate USING btree (page_id) WHERE ((status)::text = ANY ((ARRAY['in_progress'::character varying, 'needs_changes'::character varying])::text[]));
+
+
+--
 -- Name: users_user_groups_group_id_9afc8d0e; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8034,6 +9237,62 @@ CREATE INDEX wagtailcore_collectionviewrestriction_groups_group_id_1823f2a3 ON p
 
 
 --
+-- Name: wagtailcore_comment_page_id_108444b5; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_comment_page_id_108444b5 ON public.wagtailcore_comment USING btree (page_id);
+
+
+--
+-- Name: wagtailcore_comment_resolved_by_id_a282aa0e; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_comment_resolved_by_id_a282aa0e ON public.wagtailcore_comment USING btree (resolved_by_id);
+
+
+--
+-- Name: wagtailcore_comment_revision_created_id_1d058279; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_comment_revision_created_id_1d058279 ON public.wagtailcore_comment USING btree (revision_created_id);
+
+
+--
+-- Name: wagtailcore_comment_user_id_0c577ca6; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_comment_user_id_0c577ca6 ON public.wagtailcore_comment USING btree (user_id);
+
+
+--
+-- Name: wagtailcore_commentreply_comment_id_afc7e027; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_commentreply_comment_id_afc7e027 ON public.wagtailcore_commentreply USING btree (comment_id);
+
+
+--
+-- Name: wagtailcore_commentreply_user_id_d0b3b9c3; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_commentreply_user_id_d0b3b9c3 ON public.wagtailcore_commentreply USING btree (user_id);
+
+
+--
+-- Name: wagtailcore_groupapprovalt_groupapprovaltask_id_9a9255ea; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_groupapprovalt_groupapprovaltask_id_9a9255ea ON public.wagtailcore_groupapprovaltask_groups USING btree (groupapprovaltask_id);
+
+
+--
+-- Name: wagtailcore_groupapprovaltask_groups_group_id_2e64b61f; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_groupapprovaltask_groups_group_id_2e64b61f ON public.wagtailcore_groupapprovaltask_groups USING btree (group_id);
+
+
+--
 -- Name: wagtailcore_groupcollectionpermission_collection_id_5423575a; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8069,6 +9328,20 @@ CREATE INDEX wagtailcore_grouppagepermission_page_id_710b114a ON public.wagtailc
 
 
 --
+-- Name: wagtailcore_locale_language_code_03149338_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_locale_language_code_03149338_like ON public.wagtailcore_locale USING btree (language_code varchar_pattern_ops);
+
+
+--
+-- Name: wagtailcore_page_alias_of_id_12945502; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_page_alias_of_id_12945502 ON public.wagtailcore_page USING btree (alias_of_id);
+
+
+--
 -- Name: wagtailcore_page_content_type_id_c28424df; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8087,6 +9360,13 @@ CREATE INDEX wagtailcore_page_first_published_at_2b5dd637 ON public.wagtailcore_
 --
 
 CREATE INDEX wagtailcore_page_live_revision_id_930bd822 ON public.wagtailcore_page USING btree (live_revision_id);
+
+
+--
+-- Name: wagtailcore_page_locale_id_3c7e30a6; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_page_locale_id_3c7e30a6 ON public.wagtailcore_page USING btree (locale_id);
 
 
 --
@@ -8125,6 +9405,55 @@ CREATE INDEX wagtailcore_page_slug_e7c11b8f_like ON public.wagtailcore_page USIN
 
 
 --
+-- Name: wagtailcore_pagelogentry_action_c2408198; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_pagelogentry_action_c2408198 ON public.wagtailcore_pagelogentry USING btree (action);
+
+
+--
+-- Name: wagtailcore_pagelogentry_action_c2408198_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_pagelogentry_action_c2408198_like ON public.wagtailcore_pagelogentry USING btree (action varchar_pattern_ops);
+
+
+--
+-- Name: wagtailcore_pagelogentry_content_changed_99f27ade; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_pagelogentry_content_changed_99f27ade ON public.wagtailcore_pagelogentry USING btree (content_changed);
+
+
+--
+-- Name: wagtailcore_pagelogentry_content_type_id_74e7708a; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_pagelogentry_content_type_id_74e7708a ON public.wagtailcore_pagelogentry USING btree (content_type_id);
+
+
+--
+-- Name: wagtailcore_pagelogentry_page_id_8464e327; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_pagelogentry_page_id_8464e327 ON public.wagtailcore_pagelogentry USING btree (page_id);
+
+
+--
+-- Name: wagtailcore_pagelogentry_revision_id_8043d103; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_pagelogentry_revision_id_8043d103 ON public.wagtailcore_pagelogentry USING btree (revision_id);
+
+
+--
+-- Name: wagtailcore_pagelogentry_user_id_604ccfd8; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_pagelogentry_user_id_604ccfd8 ON public.wagtailcore_pagelogentry USING btree (user_id);
+
+
+--
 -- Name: wagtailcore_pagerevision_approved_go_live_at_e56afc67; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8157,6 +9486,20 @@ CREATE INDEX wagtailcore_pagerevision_submitted_for_moderation_c682e44c ON publi
 --
 
 CREATE INDEX wagtailcore_pagerevision_user_id_2409d2f4 ON public.wagtailcore_pagerevision USING btree (user_id);
+
+
+--
+-- Name: wagtailcore_pagesubscription_page_id_a085e7a6; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_pagesubscription_page_id_a085e7a6 ON public.wagtailcore_pagesubscription USING btree (page_id);
+
+
+--
+-- Name: wagtailcore_pagesubscription_user_id_89d7def9; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_pagesubscription_user_id_89d7def9 ON public.wagtailcore_pagesubscription USING btree (user_id);
 
 
 --
@@ -8202,6 +9545,90 @@ CREATE INDEX wagtailcore_site_root_page_id_e02fb95c ON public.wagtailcore_site U
 
 
 --
+-- Name: wagtailcore_task_content_type_id_249ab8ba; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_task_content_type_id_249ab8ba ON public.wagtailcore_task USING btree (content_type_id);
+
+
+--
+-- Name: wagtailcore_taskstate_content_type_id_0a758fdc; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_taskstate_content_type_id_0a758fdc ON public.wagtailcore_taskstate USING btree (content_type_id);
+
+
+--
+-- Name: wagtailcore_taskstate_finished_by_id_13f98229; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_taskstate_finished_by_id_13f98229 ON public.wagtailcore_taskstate USING btree (finished_by_id);
+
+
+--
+-- Name: wagtailcore_taskstate_page_revision_id_9f52c88e; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_taskstate_page_revision_id_9f52c88e ON public.wagtailcore_taskstate USING btree (page_revision_id);
+
+
+--
+-- Name: wagtailcore_taskstate_task_id_c3677c34; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_taskstate_task_id_c3677c34 ON public.wagtailcore_taskstate USING btree (task_id);
+
+
+--
+-- Name: wagtailcore_taskstate_workflow_state_id_9239a775; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_taskstate_workflow_state_id_9239a775 ON public.wagtailcore_taskstate USING btree (workflow_state_id);
+
+
+--
+-- Name: wagtailcore_workflowpage_workflow_id_56f56ff6; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_workflowpage_workflow_id_56f56ff6 ON public.wagtailcore_workflowpage USING btree (workflow_id);
+
+
+--
+-- Name: wagtailcore_workflowstate_page_id_6c962862; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_workflowstate_page_id_6c962862 ON public.wagtailcore_workflowstate USING btree (page_id);
+
+
+--
+-- Name: wagtailcore_workflowstate_requested_by_id_4090bca3; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_workflowstate_requested_by_id_4090bca3 ON public.wagtailcore_workflowstate USING btree (requested_by_id);
+
+
+--
+-- Name: wagtailcore_workflowstate_workflow_id_1f18378f; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_workflowstate_workflow_id_1f18378f ON public.wagtailcore_workflowstate USING btree (workflow_id);
+
+
+--
+-- Name: wagtailcore_workflowtask_task_id_ce7716fe; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_workflowtask_task_id_ce7716fe ON public.wagtailcore_workflowtask USING btree (task_id);
+
+
+--
+-- Name: wagtailcore_workflowtask_workflow_id_b9717175; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_workflowtask_workflow_id_b9717175 ON public.wagtailcore_workflowtask USING btree (workflow_id);
+
+
+--
 -- Name: wagtaildocs_document_collection_id_23881625; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8213,6 +9640,27 @@ CREATE INDEX wagtaildocs_document_collection_id_23881625 ON public.wagtaildocs_d
 --
 
 CREATE INDEX wagtaildocs_document_uploaded_by_user_id_17258b41 ON public.wagtaildocs_document USING btree (uploaded_by_user_id);
+
+
+--
+-- Name: wagtaildocs_uploadeddocument_uploaded_by_user_id_8dd61a73; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtaildocs_uploadeddocument_uploaded_by_user_id_8dd61a73 ON public.wagtaildocs_uploadeddocument USING btree (uploaded_by_user_id);
+
+
+--
+-- Name: wagtailembeds_embed_cache_until_26c94bb0; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailembeds_embed_cache_until_26c94bb0 ON public.wagtailembeds_embed USING btree (cache_until);
+
+
+--
+-- Name: wagtailembeds_embed_hash_c9bd8c9a_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailembeds_embed_hash_c9bd8c9a_like ON public.wagtailembeds_embed USING btree (hash varchar_pattern_ops);
 
 
 --
@@ -8829,6 +10277,46 @@ ALTER TABLE ONLY public.joyous_cancellationpage
 
 ALTER TABLE ONLY public.joyous_cancellationpage
     ADD CONSTRAINT joyous_cancellationp_page_ptr_id_7170b246_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_closedfor joyous_closedfor_page_id_afc8f1bb_fk_joyous_cl; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_closedfor
+    ADD CONSTRAINT joyous_closedfor_page_id_afc8f1bb_fk_joyous_cl FOREIGN KEY (page_id) REFERENCES public.joyous_closedforholidayspage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_closedforholidayspage joyous_closedforholi_overrides_id_1a8dae55_fk_joyous_re; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_closedforholidayspage
+    ADD CONSTRAINT joyous_closedforholi_overrides_id_1a8dae55_fk_joyous_re FOREIGN KEY (overrides_id) REFERENCES public.joyous_recurringeventpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_closedforholidayspage joyous_closedforholi_page_ptr_id_e244935d_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_closedforholidayspage
+    ADD CONSTRAINT joyous_closedforholi_page_ptr_id_e244935d_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_extcancellationpage joyous_extcancellati_overrides_id_2058af8a_fk_joyous_re; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_extcancellationpage
+    ADD CONSTRAINT joyous_extcancellati_overrides_id_2058af8a_fk_joyous_re FOREIGN KEY (overrides_id) REFERENCES public.joyous_recurringeventpage(page_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: joyous_extcancellationpage joyous_extcancellati_page_ptr_id_a369b462_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.joyous_extcancellationpage
+    ADD CONSTRAINT joyous_extcancellati_page_ptr_id_a369b462_fk_wagtailco FOREIGN KEY (page_ptr_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -9712,6 +11200,78 @@ ALTER TABLE ONLY public.wagtailcore_collectionviewrestriction_groups
 
 
 --
+-- Name: wagtailcore_comment wagtailcore_comment_page_id_108444b5_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_comment
+    ADD CONSTRAINT wagtailcore_comment_page_id_108444b5_fk_wagtailcore_page_id FOREIGN KEY (page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_comment wagtailcore_comment_resolved_by_id_a282aa0e_fk_users_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_comment
+    ADD CONSTRAINT wagtailcore_comment_resolved_by_id_a282aa0e_fk_users_user_id FOREIGN KEY (resolved_by_id) REFERENCES public.users_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_comment wagtailcore_comment_revision_created_id_1d058279_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_comment
+    ADD CONSTRAINT wagtailcore_comment_revision_created_id_1d058279_fk_wagtailco FOREIGN KEY (revision_created_id) REFERENCES public.wagtailcore_pagerevision(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_comment wagtailcore_comment_user_id_0c577ca6_fk_users_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_comment
+    ADD CONSTRAINT wagtailcore_comment_user_id_0c577ca6_fk_users_user_id FOREIGN KEY (user_id) REFERENCES public.users_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_commentreply wagtailcore_commentr_comment_id_afc7e027_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_commentreply
+    ADD CONSTRAINT wagtailcore_commentr_comment_id_afc7e027_fk_wagtailco FOREIGN KEY (comment_id) REFERENCES public.wagtailcore_comment(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_commentreply wagtailcore_commentreply_user_id_d0b3b9c3_fk_users_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_commentreply
+    ADD CONSTRAINT wagtailcore_commentreply_user_id_d0b3b9c3_fk_users_user_id FOREIGN KEY (user_id) REFERENCES public.users_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_groupapprovaltask_groups wagtailcore_groupapp_group_id_2e64b61f_fk_auth_grou; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_groupapprovaltask_groups
+    ADD CONSTRAINT wagtailcore_groupapp_group_id_2e64b61f_fk_auth_grou FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_groupapprovaltask_groups wagtailcore_groupapp_groupapprovaltask_id_9a9255ea_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_groupapprovaltask_groups
+    ADD CONSTRAINT wagtailcore_groupapp_groupapprovaltask_id_9a9255ea_fk_wagtailco FOREIGN KEY (groupapprovaltask_id) REFERENCES public.wagtailcore_groupapprovaltask(task_ptr_id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_groupapprovaltask wagtailcore_groupapp_task_ptr_id_cfe58781_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_groupapprovaltask
+    ADD CONSTRAINT wagtailcore_groupapp_task_ptr_id_cfe58781_fk_wagtailco FOREIGN KEY (task_ptr_id) REFERENCES public.wagtailcore_task(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
 -- Name: wagtailcore_groupcollectionpermission wagtailcore_groupcol_collection_id_5423575a_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9752,6 +11312,14 @@ ALTER TABLE ONLY public.wagtailcore_grouppagepermission
 
 
 --
+-- Name: wagtailcore_page wagtailcore_page_alias_of_id_12945502_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_page
+    ADD CONSTRAINT wagtailcore_page_alias_of_id_12945502_fk_wagtailcore_page_id FOREIGN KEY (alias_of_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
 -- Name: wagtailcore_page wagtailcore_page_content_type_id_c28424df_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9765,6 +11333,14 @@ ALTER TABLE ONLY public.wagtailcore_page
 
 ALTER TABLE ONLY public.wagtailcore_page
     ADD CONSTRAINT wagtailcore_page_live_revision_id_930bd822_fk_wagtailco FOREIGN KEY (live_revision_id) REFERENCES public.wagtailcore_pagerevision(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_page wagtailcore_page_locale_id_3c7e30a6_fk_wagtailcore_locale_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_page
+    ADD CONSTRAINT wagtailcore_page_locale_id_3c7e30a6_fk_wagtailcore_locale_id FOREIGN KEY (locale_id) REFERENCES public.wagtailcore_locale(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -9784,6 +11360,14 @@ ALTER TABLE ONLY public.wagtailcore_page
 
 
 --
+-- Name: wagtailcore_pagelogentry wagtailcore_pageloge_content_type_id_74e7708a_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_pagelogentry
+    ADD CONSTRAINT wagtailcore_pageloge_content_type_id_74e7708a_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
 -- Name: wagtailcore_pagerevision wagtailcore_pagerevi_page_id_d421cc1d_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9797,6 +11381,22 @@ ALTER TABLE ONLY public.wagtailcore_pagerevision
 
 ALTER TABLE ONLY public.wagtailcore_pagerevision
     ADD CONSTRAINT wagtailcore_pagerevision_user_id_2409d2f4_fk_users_user_id FOREIGN KEY (user_id) REFERENCES public.users_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_pagesubscription wagtailcore_pagesubs_page_id_a085e7a6_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_pagesubscription
+    ADD CONSTRAINT wagtailcore_pagesubs_page_id_a085e7a6_fk_wagtailco FOREIGN KEY (page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_pagesubscription wagtailcore_pagesubscription_user_id_89d7def9_fk_users_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_pagesubscription
+    ADD CONSTRAINT wagtailcore_pagesubscription_user_id_89d7def9_fk_users_user_id FOREIGN KEY (user_id) REFERENCES public.users_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
@@ -9832,6 +11432,118 @@ ALTER TABLE ONLY public.wagtailcore_site
 
 
 --
+-- Name: wagtailcore_task wagtailcore_task_content_type_id_249ab8ba_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_task
+    ADD CONSTRAINT wagtailcore_task_content_type_id_249ab8ba_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_taskstate wagtailcore_taskstat_content_type_id_0a758fdc_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_taskstate
+    ADD CONSTRAINT wagtailcore_taskstat_content_type_id_0a758fdc_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_taskstate wagtailcore_taskstat_page_revision_id_9f52c88e_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_taskstate
+    ADD CONSTRAINT wagtailcore_taskstat_page_revision_id_9f52c88e_fk_wagtailco FOREIGN KEY (page_revision_id) REFERENCES public.wagtailcore_pagerevision(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_taskstate wagtailcore_taskstat_workflow_state_id_9239a775_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_taskstate
+    ADD CONSTRAINT wagtailcore_taskstat_workflow_state_id_9239a775_fk_wagtailco FOREIGN KEY (workflow_state_id) REFERENCES public.wagtailcore_workflowstate(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_taskstate wagtailcore_taskstate_finished_by_id_13f98229_fk_users_user_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_taskstate
+    ADD CONSTRAINT wagtailcore_taskstate_finished_by_id_13f98229_fk_users_user_id FOREIGN KEY (finished_by_id) REFERENCES public.users_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_taskstate wagtailcore_taskstate_task_id_c3677c34_fk_wagtailcore_task_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_taskstate
+    ADD CONSTRAINT wagtailcore_taskstate_task_id_c3677c34_fk_wagtailcore_task_id FOREIGN KEY (task_id) REFERENCES public.wagtailcore_task(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_workflowstate wagtailcore_workflow_current_task_state_i_3a1a0632_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_workflowstate
+    ADD CONSTRAINT wagtailcore_workflow_current_task_state_i_3a1a0632_fk_wagtailco FOREIGN KEY (current_task_state_id) REFERENCES public.wagtailcore_taskstate(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_workflowstate wagtailcore_workflow_page_id_6c962862_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_workflowstate
+    ADD CONSTRAINT wagtailcore_workflow_page_id_6c962862_fk_wagtailco FOREIGN KEY (page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_workflowpage wagtailcore_workflow_page_id_81e7bab6_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_workflowpage
+    ADD CONSTRAINT wagtailcore_workflow_page_id_81e7bab6_fk_wagtailco FOREIGN KEY (page_id) REFERENCES public.wagtailcore_page(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_workflowstate wagtailcore_workflow_requested_by_id_4090bca3_fk_users_use; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_workflowstate
+    ADD CONSTRAINT wagtailcore_workflow_requested_by_id_4090bca3_fk_users_use FOREIGN KEY (requested_by_id) REFERENCES public.users_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_workflowtask wagtailcore_workflow_task_id_ce7716fe_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_workflowtask
+    ADD CONSTRAINT wagtailcore_workflow_task_id_ce7716fe_fk_wagtailco FOREIGN KEY (task_id) REFERENCES public.wagtailcore_task(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_workflowstate wagtailcore_workflow_workflow_id_1f18378f_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_workflowstate
+    ADD CONSTRAINT wagtailcore_workflow_workflow_id_1f18378f_fk_wagtailco FOREIGN KEY (workflow_id) REFERENCES public.wagtailcore_workflow(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_workflowpage wagtailcore_workflow_workflow_id_56f56ff6_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_workflowpage
+    ADD CONSTRAINT wagtailcore_workflow_workflow_id_56f56ff6_fk_wagtailco FOREIGN KEY (workflow_id) REFERENCES public.wagtailcore_workflow(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailcore_workflowtask wagtailcore_workflow_workflow_id_b9717175_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_workflowtask
+    ADD CONSTRAINT wagtailcore_workflow_workflow_id_b9717175_fk_wagtailco FOREIGN KEY (workflow_id) REFERENCES public.wagtailcore_workflow(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
 -- Name: wagtaildocs_document wagtaildocs_document_collection_id_23881625_fk_wagtailco; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -9845,6 +11557,14 @@ ALTER TABLE ONLY public.wagtaildocs_document
 
 ALTER TABLE ONLY public.wagtaildocs_document
     ADD CONSTRAINT wagtaildocs_document_uploaded_by_user_id_17258b41_fk_users_use FOREIGN KEY (uploaded_by_user_id) REFERENCES public.users_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtaildocs_uploadeddocument wagtaildocs_uploaded_uploaded_by_user_id_8dd61a73_fk_users_use; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtaildocs_uploadeddocument
+    ADD CONSTRAINT wagtaildocs_uploaded_uploaded_by_user_id_8dd61a73_fk_users_use FOREIGN KEY (uploaded_by_user_id) REFERENCES public.users_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

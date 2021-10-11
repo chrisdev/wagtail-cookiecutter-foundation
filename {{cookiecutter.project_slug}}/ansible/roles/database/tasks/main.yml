@@ -2,7 +2,7 @@
 - name: update the apt-cache
   apt: update_cache=yes  cache_valid_time=36000
   become: yes
-  tags: 
+  tags:
       - pg_install
 
 - name: Install PostgreSQL
@@ -14,9 +14,9 @@
       - postgresql
       - libpq-dev
       - postgresql-client-common
-      - python-psycopg2
-  tags: 
-      - pg_install 
+      - python3-psycopg2
+  tags:
+      - pg_install
 
 - name: Ensure the PostgreSQL service is running
   service: name=postgresql state=started enabled=yes
@@ -24,7 +24,7 @@
   tags:
       - pg_install
 
-- name: Create the database for the project 
+- name: Create the database for the project
   become_user: postgres
   become: true
   postgresql_db: name={{ django_env.DB_NAME }}
@@ -45,11 +45,11 @@
                    password={{ django_env.DB_PASSWD }}
                    encrypted=yes
                    priv=ALL
-                   state=present 
+                   state=present
   tags:
       - pg_install
       - pgconfig
-            
+
 - name: Ensure user does not have unnecessary privileges
   become_user: postgres
   become: true

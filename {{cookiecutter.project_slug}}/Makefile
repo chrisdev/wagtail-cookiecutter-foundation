@@ -13,7 +13,6 @@ help:
 	@echo "  superuser                Create superuser with name superuser and password pass"
 	@echo "  test                     run unit tests"
 	@echo "  func_test                run functional tests"
-	@echo "  static_site              generate a static site from the project"
 	@echo "  pre_task                 ensures that python deps are installed on host server"
 	@echo "  deploy_user              create the deploy user fetch deployment keys."
 	@echo "  provision                provision the production server Defaults to production DEPLOY_ENV=staging"
@@ -26,7 +25,7 @@ help:
 .PHONY: requirements
 
 
-develop_env: virtualenv requirements db initial_data update_modules migrate copy_media node_modules runserver
+develop_env: virtualenv requirements db initial_data migrate copy_media node_modules runserver
 
 # Command variables
 MANAGE_CMD = python manage.py
@@ -43,7 +42,7 @@ HOST ?= localhost:8000
 DEPLOY_ENV = production
 
 virtualenv:
-	python3.7 -m venv $(VIRTUALENV_NAME)
+	python3 -m venv $(VIRTUALENV_NAME)
 
 requirements:
 	( \
@@ -116,13 +115,6 @@ func_test:
 		$(MANAGE_CMD) test functional_tests; \
 	)
 
-static_site:
-# Static Site generation
-	$(call ECHO_BLUE,Generating Static Site)
-	$(MANAGE_CMD) build
-	$(MANAGE_CMD) collectstatic
-	rsync -av static static_build/
-
 node_modules:
 # Install Node modules
 	npm install --prefix ./pages/static/
@@ -165,7 +157,7 @@ update_env:
 		cd ansible; \
 		$(PLAYBOOK) -i $(DEPLOY_ENV) update_env.yml;  \
 	)
-	
+
 livereload:
 	$(call ECHO_BLUE,Starting server with livereload)
 	@echo '---------------------------'

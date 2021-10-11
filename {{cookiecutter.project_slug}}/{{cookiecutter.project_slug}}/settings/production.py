@@ -16,9 +16,6 @@ TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 SECRET_KEY = env('DJANGO_SECRET_KEY')
 
-# Compress static files offline
-# http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
-
 COMPRESS_OFFLINE = True
 
 COMPRESS_CSS_FILTERS = [
