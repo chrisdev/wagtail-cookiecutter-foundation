@@ -8,12 +8,10 @@ django-wagtail-feeds==0.1.0
 django-libsass==0.9
 django-redis==5.0.0
 libsass==0.21.0
-psycopg2-binary==2.9.1
+psycopg2-binary==2.8.6
 wand==0.6.7
 bleach==4.1.0
 ls.joyous==1.4.0
 django-allauth==0.45.0
 django-braces==1.14.0
-six==1.16.0
-Unidecode==1.3.2
 {% if cookiecutter.use_wagalytics_app == 'y' %}wagalytics==1.3 {% endif %}
