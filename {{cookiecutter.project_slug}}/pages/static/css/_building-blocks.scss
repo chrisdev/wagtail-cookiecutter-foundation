@@ -1026,3 +1026,137 @@ $card-user-profile-text-color: $body-font-color;
 }
 
 // END PROFILE CARD
+
+
+
+// SOCIAL LOGIN
+
+$login-box-radius: $global-radius;
+$login-box-bg: $white;
+$login-box-shadow: 0 2px 4px rgba($black, 0.4);
+$login-box-inner-padding: 2.5rem;
+$login-box-social-bg: url('https://images.pexels.com/photos/179124/pexels-photo-179124.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb');
+$social-brand-facebook: #3b5998;
+$social-brand-twitter: #55acee;
+$social-brand-linkedin: #007bb5;
+$social-brand-youtube: #bb0000;
+$social-brand-instagram: #125688;
+$social-brand-pinterest: #cb2027;
+$social-brand-google-plus: #dd4b39;
+$social-brand-github: #000000;
+$social-brand-tumblr: #32506d;
+
+
+.login-box {
+  box-shadow: $login-box-shadow;
+  background: $login-box-bg;
+  border-radius: $login-box-radius;
+  overflow: hidden;
+
+  .or {
+    @include absolute-center;
+    @include badge;
+    font-size: 1.275rem;
+    background: $medium-gray;
+    box-shadow: $login-box-shadow;
+
+    @include breakpoint(small only) {
+      top: 85%;
+    }
+  }
+}
+
+.login-box-title {
+  font-weight: 300;
+  font-size: 1.875rem;
+  margin-bottom: 1.25rem;
+}
+
+.login-box-form-section,
+.login-box-social-section-inner {
+  padding: $login-box-inner-padding;
+}
+
+.login-box-social-section {
+  background: $login-box-social-bg;
+  background-size: cover;
+  background-position: center;
+}
+
+.login-box-input {
+  margin-bottom: 1.25rem;
+  height: 2rem;
+  border: 0;
+  padding-left: 0;
+  box-shadow: none;
+  border-bottom: 1px solid $primary-color;
+  font-weight: 400;
+}
+
+.login-box-input:focus {
+  color: $primary-color;
+  transition: 0.2s ease-in-out;
+  box-shadow: none;
+  border: 0;
+  border-bottom: 2px solid $primary-color;
+}
+
+.login-box-submit-button {
+  @include button(true, $primary-color, auto, auto, solid);
+  border-radius: $global-radius;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.login-box-submit-button:hover,
+.login-box-submit-button:focus {
+  box-shadow: $login-box-shadow;
+}
+
+.login-box-submit-button:active {
+  box-shadow: 0 1px 2px rgba($black, 0.4);
+}
+
+.login-box-social-button-facebook {
+  @include button(true, $social-brand-facebook, auto, auto, solid);
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+}
+
+.login-box-social-button-linkedin {
+  @include button(true, $social-brand-linkedin, auto, $white, solid);
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+}
+
+.login-box-social-button-twitter {
+  @include button(true, $social-brand-twitter, auto, $white, solid);
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+}
+
+.login-box-social-button-google {
+  @include button(true, $social-brand-google-plus, auto, $white, solid);
+  font-weight: 500;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+}
+
+[class*="login-box-social-button-"]:hover,
+[class*="login-box-social-button-"]:focus {
+  box-shadow: $login-box-shadow;
+}
+
+.login-box-social-headline {
+  display: block;
+  margin-bottom: rem-calc(40);
+  font-size: 1.875rem;
+  color: $white;
+  text-align: center;
+}
+
+
+// END SOCIAL LOGIN
