@@ -8,35 +8,55 @@
   <h6>{% blocktrans %}Don't have an account? <a href="{{ signup_url }}">Sign up »</a> {% endblocktrans %}</h6>
 {% endblock %}
 
-{% block inner %}
+{% block outter %}
   {% get_providers as socialaccount_providers %}
 
-  {% if socialaccount_providers %}
-    <p>{% blocktrans with site.name as site_name %}Please sign in with one of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a> for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+    {% if socialaccount_providers %}
 
-    <div class="socialaccount_ballot">
-      <ul class="socialaccount_providers">
-        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-      </ul>
-      <div class="login-or">{% trans 'or' %}</div>
-    </div>
-
-    {% include "socialaccount/snippets/login_extra.html" %}
-
-  {% else %}
-
-    <form class="login" method="POST" action="{% url 'account_login' %}">
-      {% csrf_token %}
-      {{ form|as_foundation }}
-      {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-      {% endif %}
-
-      <div>
-        <button class="button expanded" type="submit">{% trans "Sign In" %}</button>
-        <a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+      <div class="login-box">
+        <div class="row collapse expanded" data-equalizer>
+          <div class="small-12 medium-6 column small-order-2 medium-order-1" data-equalizer-watch>
+            <div class="login-box-form-section">
+              <h1 class="login-box-title">Log In</h1>
+              <form class="login" method="POST" action="{% url 'account_login' %}">
+                {% csrf_token %}
+                {{ form|as_foundation }}
+                {% if redirect_field_value %}
+                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <div>
+                  <button class="button expanded" type="submit">{% trans "Sign In" %}</button>
+                  <a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+                </div>
+              </form>
+            </div>
+            <div class="or">OR</div>
+          </div>
+          <div class="small-12 medium-6 column small-order-1 medium-order-2 login-box-social-section" data-equalizer-watch>
+            <div class="login-box-social-section-inner">
+              <span class="login-box-social-headline">Login in with<br />your social network</span>
+              {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+            </div>
+          </div>
+        </div>
       </div>
-    </form>
 
-  {% endif %}
+    {% else %}
+
+      <div class="medium-6 medium-centered">
+        <form class="login" method="POST" action="{% url 'account_login' %}">
+          {% csrf_token %}
+          {{ form|as_foundation }}
+          {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          {% endif %}
+
+          <div>
+            <button class="button expanded" type="submit">{% trans "Sign In" %}</button>
+            <a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+          </div>
+        </form>
+      </div>
+    {% endif %}
+
 {% endblock %}{% endraw %}

@@ -92,6 +92,10 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.linkedin',
     {% if cookiecutter.use_wagalytics_app == 'y' %}'wagalytics',{% endif %}
 
 )
@@ -200,6 +204,7 @@ DATABASES = {
 
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

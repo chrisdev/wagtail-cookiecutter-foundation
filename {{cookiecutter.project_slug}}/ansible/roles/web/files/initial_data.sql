@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.23
--- Dumped by pg_dump version 14.0
+-- Dumped from database version 9.6.24
+-- Dumped by pg_dump version 14.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -2552,6 +2552,44 @@ ALTER SEQUENCE public.wagtailcore_locale_id_seq OWNED BY public.wagtailcore_loca
 
 
 --
+-- Name: wagtailcore_modellogentry; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtailcore_modellogentry (
+    id integer NOT NULL,
+    label text NOT NULL,
+    action character varying(255) NOT NULL,
+    data_json text NOT NULL,
+    "timestamp" timestamp with time zone NOT NULL,
+    content_changed boolean NOT NULL,
+    deleted boolean NOT NULL,
+    object_id character varying(255) NOT NULL,
+    content_type_id integer,
+    user_id integer,
+    uuid uuid
+);
+
+
+--
+-- Name: wagtailcore_modellogentry_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.wagtailcore_modellogentry_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wagtailcore_modellogentry_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.wagtailcore_modellogentry_id_seq OWNED BY public.wagtailcore_modellogentry.id;
+
+
+--
 -- Name: wagtailcore_page; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2623,7 +2661,8 @@ CREATE TABLE public.wagtailcore_pagelogentry (
     content_type_id integer,
     page_id integer NOT NULL,
     revision_id integer,
-    user_id integer
+    user_id integer,
+    uuid uuid
 );
 
 
@@ -3292,6 +3331,40 @@ ALTER SEQUENCE public.wagtailsearch_editorspick_id_seq OWNED BY public.wagtailse
 
 
 --
+-- Name: wagtailsearch_indexentry; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wagtailsearch_indexentry (
+    id integer NOT NULL,
+    object_id character varying(50) NOT NULL,
+    title_norm double precision NOT NULL,
+    content_type_id integer NOT NULL,
+    autocomplete tsvector NOT NULL,
+    title tsvector NOT NULL,
+    body tsvector NOT NULL
+);
+
+
+--
+-- Name: wagtailsearch_indexentry_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.wagtailsearch_indexentry_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wagtailsearch_indexentry_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.wagtailsearch_indexentry_id_seq OWNED BY public.wagtailsearch_indexentry.id;
+
+
+--
 -- Name: wagtailsearch_query; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3829,6 +3902,13 @@ ALTER TABLE ONLY public.wagtailcore_locale ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
+-- Name: wagtailcore_modellogentry id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_modellogentry ALTER COLUMN id SET DEFAULT nextval('public.wagtailcore_modellogentry_id_seq'::regclass);
+
+
+--
 -- Name: wagtailcore_page id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3966,6 +4046,13 @@ ALTER TABLE ONLY public.wagtailimages_uploadedimage ALTER COLUMN id SET DEFAULT 
 --
 
 ALTER TABLE ONLY public.wagtailredirects_redirect ALTER COLUMN id SET DEFAULT nextval('public.wagtailredirects_redirect_id_seq'::regclass);
+
+
+--
+-- Name: wagtailsearch_indexentry id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailsearch_indexentry ALTER COLUMN id SET DEFAULT nextval('public.wagtailsearch_indexentry_id_seq'::regclass);
 
 
 --
@@ -4518,6 +4605,14 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 461	Can change page subscription	116	change_pagesubscription
 462	Can delete page subscription	116	delete_pagesubscription
 463	Can view page subscription	116	view_pagesubscription
+464	Can add index entry	117	add_indexentry
+465	Can change index entry	117	change_indexentry
+466	Can delete index entry	117	delete_indexentry
+467	Can view index entry	117	view_indexentry
+468	Can add model log entry	118	add_modellogentry
+469	Can change model log entry	118	change_modellogentry
+470	Can delete model log entry	118	delete_modellogentry
+471	Can view model log entry	118	view_modellogentry
 \.
 
 
@@ -4745,6 +4840,8 @@ COPY public.django_content_type (id, app_label, model) FROM stdin;
 114	wagtailcore	comment
 115	wagtailcore	commentreply
 116	wagtailcore	pagesubscription
+117	wagtailsearch	indexentry
+118	wagtailcore	modellogentry
 \.
 
 
@@ -5020,6 +5117,12 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 265	wagtailembeds	0009_embed_cache_until	2021-10-08 11:59:54.073763-04
 266	wagtailimages	0023_add_choose_permissions	2021-10-08 11:59:55.213387-04
 267	wagtailusers	0010_userprofile_updated_comments_notifications	2021-10-08 11:59:55.304527-04
+268	wagtailcore	0063_modellogentry	2022-01-11 14:22:03.041943-04
+269	wagtailcore	0064_log_timestamp_indexes	2022-01-11 14:22:03.244434-04
+270	wagtailcore	0065_log_entry_uuid	2022-01-11 14:22:03.454519-04
+271	wagtailcore	0066_collection_management_permissions	2022-01-11 14:22:03.657327-04
+272	wagtailsearch	0005_create_indexentry	2022-01-11 14:22:03.997062-04
+273	wagtailsearch	0006_customise_indexentry	2022-01-11 14:22:04.169169-04
 \.
 
 
@@ -5033,6 +5136,7 @@ efrnd5ubzblt3bgyydi39anync23nt5p	OWRiNzhjYjZiMGU5MzAxOTFiNzAyNjI4ZWI4ZDRjN2M1YTd
 78wuhcdywmc469mu5znrxrfjz087lt4v	OWRiNzhjYjZiMGU5MzAxOTFiNzAyNjI4ZWI4ZDRjN2M1YTdlOTZkYjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxYWZiMzQzZDZiYmI1MmU4MTAwMjBlMTNlYjc0OGEwMWY3MzA3NzJjIiwiX3Nlc3Npb25fZXhwaXJ5IjowfQ==	2019-06-29 10:15:58.262388-04
 lmy3y317fnxh2napvjaebxs4ajr3sxps	NzBmNWE4ZjY5ZjA1MjIwYWEyZjNkZjM3ZjcxYmI2ZjQ3YTMyMDc5NDp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1M2VlNzJjYjU3MTM3NzNjZmY4MmI2MWJkY2Y1NTkwZDEyMDFmMjVmIn0=	2019-07-01 11:18:03.435799-04
 quuva7y3n66mgbgk8g3xfe9oxkphdyas	NzBmNWE4ZjY5ZjA1MjIwYWEyZjNkZjM3ZjcxYmI2ZjQ3YTMyMDc5NDp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1M2VlNzJjYjU3MTM3NzNjZmY4MmI2MWJkY2Y1NTkwZDEyMDFmMjVmIn0=	2019-07-01 13:08:20.794646-04
+rkio9rwqjuoxczbsu7eaxar799txsyjg	.eJxVjMsOwiAQAP-FsyG8CotH7_0GsstSWzU0Ke3J-O-GpAe9zkzmLRIe-5yOVra0sLgKLS6_jDA_S-2CH1jvq8xr3beFZE_kaZscVy6v29n-DWZsc9_m4ANi8B4wAlnrtQvgFWniTEYVE9k4sJn1NAVGjjCAUS4aKggwiM8X0BE3gQ:1n7Lkm:MOYuOqTHd7huB2Rs3W-bmUukWF3176ksjHJKygsUPQ8	2022-01-25 14:20:16.648565-04
 \.
 
 
@@ -5609,7 +5713,7 @@ COPY public.taggit_taggeditem (id, object_id, content_type_id, tag_id) FROM stdi
 
 COPY public.users_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined, name, address, city, state, country_of_nationality, job, organisation, tos, country) FROM stdin;
 2	pbkdf2_sha256$120000$eI7ZxMYHPEta$pC9LVzvOUaSSUhGht5MTX3/aeNh35T+auNFppYfgUio=	\N	f	cclarke			cclarke@chrisdev.com	f	t	2019-06-14 11:07:05.778726-04					TT			t	
-1	pbkdf2_sha256$150000$RNEjbWQhtHSq$dPS14A7lL8Tw6cxCQhgqM0vwwrWfvYSuZAzLdRRkgwY=	2019-06-17 13:08:20.746166-04	t	admin	Lendl	Smith	lendl.smith@gmail.com	t	t	2019-06-14 11:02:31.218591-04					TT			t	
+1	pbkdf2_sha256$260000$soFX2z3xh2V7OgfRD4Qa9d$qUtMIeYd6eoAqHsD8qoL9QaDdZxgutwwNRYaKU0irgs=	2022-01-11 14:20:15.732455-04	t	admin	Lendl	Smith	lendl.smith@gmail.com	t	t	2019-06-14 11:02:31.218591-04					TT			t	
 \.
 
 
@@ -5751,6 +5855,14 @@ COPY public.wagtailcore_locale (id, language_code) FROM stdin;
 
 
 --
+-- Data for Name: wagtailcore_modellogentry; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtailcore_modellogentry (id, label, action, data_json, "timestamp", content_changed, deleted, object_id, content_type_id, user_id, uuid) FROM stdin;
+\.
+
+
+--
 -- Data for Name: wagtailcore_page; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -5787,7 +5899,7 @@ COPY public.wagtailcore_page (id, path, depth, numchild, title, slug, live, has_
 -- Data for Name: wagtailcore_pagelogentry; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.wagtailcore_pagelogentry (id, label, action, data_json, "timestamp", content_changed, deleted, content_type_id, page_id, revision_id, user_id) FROM stdin;
+COPY public.wagtailcore_pagelogentry (id, label, action, data_json, "timestamp", content_changed, deleted, content_type_id, page_id, revision_id, user_id, uuid) FROM stdin;
 \.
 
 
@@ -6090,6 +6202,14 @@ COPY public.wagtailredirects_redirect (id, old_path, is_permanent, redirect_link
 
 
 --
+-- Data for Name: wagtailsearch_indexentry; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.wagtailsearch_indexentry (id, object_id, title_norm, content_type_id, autocomplete, title, body) FROM stdin;
+\.
+
+
+--
 -- Data for Name: wagtailsearch_query; Type: TABLE DATA; Schema: public; Owner: -
 --
 
@@ -6153,7 +6273,7 @@ SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 18, true);
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.auth_permission_id_seq', 463, true);
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 471, true);
 
 
 --
@@ -6209,14 +6329,14 @@ SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1, false);
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.django_content_type_id_seq', 116, true);
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 118, true);
 
 
 --
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 267, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 273, true);
 
 
 --
@@ -6563,6 +6683,13 @@ SELECT pg_catalog.setval('public.wagtailcore_locale_id_seq', 1, true);
 
 
 --
+-- Name: wagtailcore_modellogentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.wagtailcore_modellogentry_id_seq', 1, false);
+
+
+--
 -- Name: wagtailcore_page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
@@ -6707,6 +6834,13 @@ SELECT pg_catalog.setval('public.wagtailredirects_redirect_id_seq', 1, false);
 --
 
 SELECT pg_catalog.setval('public.wagtailsearch_editorspick_id_seq', 1, false);
+
+
+--
+-- Name: wagtailsearch_indexentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.wagtailsearch_indexentry_id_seq', 1, false);
 
 
 --
@@ -7715,6 +7849,14 @@ ALTER TABLE ONLY public.wagtailcore_locale
 
 
 --
+-- Name: wagtailcore_modellogentry wagtailcore_modellogentry_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_modellogentry
+    ADD CONSTRAINT wagtailcore_modellogentry_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: wagtailcore_page wagtailcore_page_path_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7968,6 +8110,22 @@ ALTER TABLE ONLY public.wagtailredirects_redirect
 
 ALTER TABLE ONLY public.wagtailsearchpromotions_searchpromotion
     ADD CONSTRAINT wagtailsearch_editorspick_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: wagtailsearch_indexentry wagtailsearch_indexentry_content_type_id_object_i_bcd7ba73_uniq; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailsearch_indexentry
+    ADD CONSTRAINT wagtailsearch_indexentry_content_type_id_object_i_bcd7ba73_uniq UNIQUE (content_type_id, object_id);
+
+
+--
+-- Name: wagtailsearch_indexentry wagtailsearch_indexentry_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailsearch_indexentry
+    ADD CONSTRAINT wagtailsearch_indexentry_pkey PRIMARY KEY (id);
 
 
 --
@@ -9170,7 +9328,7 @@ CREATE INDEX taggit_taggeditem_tag_id_f4f5b767 ON public.taggit_taggeditem USING
 -- Name: unique_in_progress_workflow; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX unique_in_progress_workflow ON public.wagtailcore_workflowstate USING btree (page_id) WHERE ((status)::text = ANY ((ARRAY['in_progress'::character varying, 'needs_changes'::character varying])::text[]));
+CREATE UNIQUE INDEX unique_in_progress_workflow ON public.wagtailcore_workflowstate USING btree (page_id) WHERE ((status)::text = ANY (ARRAY[('in_progress'::character varying)::text, ('needs_changes'::character varying)::text]));
 
 
 --
@@ -9335,6 +9493,62 @@ CREATE INDEX wagtailcore_locale_language_code_03149338_like ON public.wagtailcor
 
 
 --
+-- Name: wagtailcore_modellogentry_action_d2d856ee; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_modellogentry_action_d2d856ee ON public.wagtailcore_modellogentry USING btree (action);
+
+
+--
+-- Name: wagtailcore_modellogentry_action_d2d856ee_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_modellogentry_action_d2d856ee_like ON public.wagtailcore_modellogentry USING btree (action varchar_pattern_ops);
+
+
+--
+-- Name: wagtailcore_modellogentry_content_changed_8bc39742; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_modellogentry_content_changed_8bc39742 ON public.wagtailcore_modellogentry USING btree (content_changed);
+
+
+--
+-- Name: wagtailcore_modellogentry_content_type_id_68849e77; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_modellogentry_content_type_id_68849e77 ON public.wagtailcore_modellogentry USING btree (content_type_id);
+
+
+--
+-- Name: wagtailcore_modellogentry_object_id_e0e7d4ef; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_modellogentry_object_id_e0e7d4ef ON public.wagtailcore_modellogentry USING btree (object_id);
+
+
+--
+-- Name: wagtailcore_modellogentry_object_id_e0e7d4ef_like; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_modellogentry_object_id_e0e7d4ef_like ON public.wagtailcore_modellogentry USING btree (object_id varchar_pattern_ops);
+
+
+--
+-- Name: wagtailcore_modellogentry_timestamp_9694521b; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_modellogentry_timestamp_9694521b ON public.wagtailcore_modellogentry USING btree ("timestamp");
+
+
+--
+-- Name: wagtailcore_modellogentry_user_id_0278d1bf; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_modellogentry_user_id_0278d1bf ON public.wagtailcore_modellogentry USING btree (user_id);
+
+
+--
 -- Name: wagtailcore_page_alias_of_id_12945502; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9444,6 +9658,13 @@ CREATE INDEX wagtailcore_pagelogentry_page_id_8464e327 ON public.wagtailcore_pag
 --
 
 CREATE INDEX wagtailcore_pagelogentry_revision_id_8043d103 ON public.wagtailcore_pagelogentry USING btree (revision_id);
+
+
+--
+-- Name: wagtailcore_pagelogentry_timestamp_deb774c4; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailcore_pagelogentry_timestamp_deb774c4 ON public.wagtailcore_pagelogentry USING btree ("timestamp");
 
 
 --
@@ -9748,6 +9969,27 @@ CREATE INDEX wagtailredirects_redirect_site_id_780a0e1e ON public.wagtailredirec
 
 
 --
+-- Name: wagtailsear_autocom_476c89_gin; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailsear_autocom_476c89_gin ON public.wagtailsearch_indexentry USING gin (autocomplete);
+
+
+--
+-- Name: wagtailsear_body_90c85d_gin; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailsear_body_90c85d_gin ON public.wagtailsearch_indexentry USING gin (body);
+
+
+--
+-- Name: wagtailsear_title_9caae0_gin; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailsear_title_9caae0_gin ON public.wagtailsearch_indexentry USING gin (title);
+
+
+--
 -- Name: wagtailsearch_editorspick_page_id_28cbc274; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9759,6 +10001,13 @@ CREATE INDEX wagtailsearch_editorspick_page_id_28cbc274 ON public.wagtailsearchp
 --
 
 CREATE INDEX wagtailsearch_editorspick_query_id_c6eee4a0 ON public.wagtailsearchpromotions_searchpromotion USING btree (query_id);
+
+
+--
+-- Name: wagtailsearch_indexentry_content_type_id_62ed694f; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX wagtailsearch_indexentry_content_type_id_62ed694f ON public.wagtailsearch_indexentry USING btree (content_type_id);
 
 
 --
@@ -11312,6 +11561,14 @@ ALTER TABLE ONLY public.wagtailcore_grouppagepermission
 
 
 --
+-- Name: wagtailcore_modellogentry wagtailcore_modellog_content_type_id_68849e77_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailcore_modellogentry
+    ADD CONSTRAINT wagtailcore_modellog_content_type_id_68849e77_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
 -- Name: wagtailcore_page wagtailcore_page_alias_of_id_12945502_fk_wagtailcore_page_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -11629,6 +11886,14 @@ ALTER TABLE ONLY public.wagtailredirects_redirect
 
 ALTER TABLE ONLY public.wagtailsearchpromotions_searchpromotion
     ADD CONSTRAINT wagtailsearch_editor_query_id_c6eee4a0_fk_wagtailse FOREIGN KEY (query_id) REFERENCES public.wagtailsearch_query(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: wagtailsearch_indexentry wagtailsearch_indexe_content_type_id_62ed694f_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wagtailsearch_indexentry
+    ADD CONSTRAINT wagtailsearch_indexe_content_type_id_62ed694f_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
