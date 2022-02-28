@@ -59,7 +59,7 @@ INSTALLED_APPS = (
 
     'foundation_formtags',
     'wagtail_feeds',
-    'ls.joyous',
+    #'ls.joyous',
 
     'blog',
     'contact',
