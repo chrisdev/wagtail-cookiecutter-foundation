@@ -74,7 +74,7 @@ INSTALLED_APPS = (
     'wagtail.contrib.routable_page',
     'wagtail.contrib.sitemaps',
     'wagtail.contrib.search_promotions',
-    'wagtail.contrib.postgres_search',
+    'wagtail.search.backends.database',
     'wagtail.contrib.settings',
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -276,7 +276,7 @@ WAGTAIL_SITE_NAME = "{{ cookiecutter.project_name }}"
 # Use Elasticsearch as the search backend for extra performance search results
 WAGTAILSEARCH_BACKENDS = {
     'default': {
-        'BACKEND': 'wagtail.contrib.postgres_search.backend',
+        'BACKEND': 'wagtail.search.backends.database',
     },
 }
 

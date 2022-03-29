@@ -4,9 +4,16 @@ from .base import *
 {% if cookiecutter.use_sentry == 'y' %}
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.celery import CeleryIntegration
+from sentry_sdk.integrations.redis import RedisIntegration
+
 sentry_sdk.init(
     dsn= env('SENTRY_DSN'),
-    integrations=[DjangoIntegration()]
+    integrations=[
+        DjangoIntegration(),
+        CeleryIntegration(),
+        RedisIntegration()
+    ],
 )
 {% endif %}
 
