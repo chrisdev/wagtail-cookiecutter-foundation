@@ -1,4 +1,4 @@
-# flake8: noqa
+{% if cookiecutter.use_sentry == 'y' %}from django.urls import path{% endif %}
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.conf import settings
@@ -10,6 +10,7 @@ from wagtail.core import urls as wagtail_urls
 from wagtail.images.views.serve import ServeView
 from wagtail.contrib.sitemaps.views import sitemap
 
+from pages import views
 from search import views as search_views
 
 from wagtail_feeds.feeds import (
@@ -18,16 +19,25 @@ from wagtail_feeds.feeds import (
 
 admin.autodiscover()
 
+{% if cookiecutter.use_sentry == 'y' %}
+def trigger_error(request):
+    division_by_zero = 1 / 0
+{% endif %}
 
 urlpatterns = [
+    {% if cookiecutter.use_sentry == 'y' %}path('sentry-debug/', trigger_error),{% endif %}
+
     url(r'^django-admin/', (admin.site.urls)),
+
     url(r'^users/', include('users.urls')),
     url(r'^accounts/', include('allauth.urls')),
+
     url(r'^admin/', include(wagtailadmin_urls)),
+
     url(r'^search/$', search_views.search, name='search'),
     url(r'^documents/', include(wagtaildocs_urls)),
-
     url('^sitemap.xml$', sitemap),
+
     url(r'^blog/feed/basic$', BasicFeed(), name='basic_feed'),
     url(r'^blog/feed/extended$', ExtendedFeed(), name='extended_feed'),
 
@@ -44,6 +54,7 @@ urlpatterns = [
     url(r'', include(wagtail_urls)),
 ]
 
+handler500 = 'pages.views.error_500'
 
 if settings.DEBUG:
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
