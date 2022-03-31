@@ -1,13 +1,13 @@
-cookiecutter==1.6.0
-flake8==3.7.8
-sh==1.12.14
-virtualenv==16.7.5
-Sphinx==2.2.0
-sphinx-rtd-theme==0.4.3
+cookiecutter==1.7.3
+flake8==4.0.1
+sh==1.14.2
+virtualenv==20.13.4
+Sphinx==4.5.0
+sphinx-rtd-theme==1.0.0
 
 # Testing
-pytest==4.6.11
+pytest==7.1.1
 pep8==1.7.1
-pyflakes==2.1.1
-tox==3.14.0
-pytest-cookies==0.4.0
+pyflakes==2.4.0
+tox==3.24.5
+pytest-cookies==0.6.1
