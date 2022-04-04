@@ -1,4 +1,4 @@
-{% raw %}{% extends "documents_gallery/base.html" %}
+{% raw %}{% extends "base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
 {% block body_class %}{{ self.get_verbose_name|slugify }}{% endblock %}
 
@@ -10,7 +10,7 @@
 		    		<h3>{{ self.title }}</h3>
 		      		{{ self.intro|richtext }}
 		    	</center>
-		
+
 		    	{% if pages|length %}
 		    		<div id="documents-index" class="product grid-x grid-padding-x medium-up-3" data-equalizer>
 		        		{% for page in pages %}

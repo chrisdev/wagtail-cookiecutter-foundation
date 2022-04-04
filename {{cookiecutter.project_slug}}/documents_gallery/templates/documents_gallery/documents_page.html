@@ -1,4 +1,4 @@
-{% raw %}{% extends "documents_gallery/base.html" %}
+{% raw %}{% extends "base.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}{{ self.get_verbose_name|slugify }}{% endblock %}
@@ -13,7 +13,7 @@
 			<div class="medium-12 cell">
 	    		<center><h3>{{ self.title }}</h3></center>
 	    	</div>
-						
+
 	    	<div class="medium-8 cell">
 		     	{% if documents %}
 		     		<table id="document-table">
@@ -24,7 +24,7 @@
 		         				<th>Download</th>
 		       				</tr>
 		     			</thead>
-		
+
 		     			<tbody>
 		      				{% for document in documents %}
 		      					<tr>
