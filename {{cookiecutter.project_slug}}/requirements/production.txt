@@ -2,4 +2,4 @@
 
 gunicorn==20.1.0
 django-redis==5.2.0
-{% if cookiecutter.use_sentry == 'y' %}sentry-sdk==1.5.8 {% endif %}
+{% if cookiecutter.use_sentry == 'y' %}sentry-sdk {% endif %}
