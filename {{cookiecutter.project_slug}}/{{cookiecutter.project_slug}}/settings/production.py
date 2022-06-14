@@ -4,15 +4,18 @@ from .base import *
 {% if cookiecutter.use_sentry == 'y' %}
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
-from sentry_sdk.integrations.celery import CeleryIntegration
-from sentry_sdk.integrations.redis import RedisIntegration
+#from sentry_sdk.integrations.celery import CeleryIntegration
+#from sentry_sdk.integrations.redis import RedisIntegration
+#from sentry_sdk.integrations.logging import ignore_logger
+
+#ignore_logger("django.security.DisallowedHost")
 
 sentry_sdk.init(
     dsn= env('SENTRY_DSN'),
     integrations=[
         DjangoIntegration(),
-        CeleryIntegration(),
-        RedisIntegration()
+        #CeleryIntegration(),
+        #RedisIntegration()
     ],
 )
 {% endif %}
