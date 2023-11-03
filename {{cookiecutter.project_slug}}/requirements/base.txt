@@ -8,7 +8,7 @@ django-wagtail-feeds==0.1.0
 django-libsass==0.9
 libsass==0.21.0
 psycopg2-binary==2.8.6
-wand==0.6.7
+wand==0.6.12
 bleach==4.1.0
 django-allauth==0.50.0
 django-braces==1.14.0
