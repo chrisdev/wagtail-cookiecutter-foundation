@@ -1,6 +1,6 @@
 Django==3.2.8
 wagtail==2.16.1
-celery==5.1.2
+celery==5.4.0
 django-compressor==2.4.1
 django-environ==0.7.0
 django-foundation-formtags==0.1.0
