@@ -3,5 +3,5 @@
 django-debug-toolbar==3.2.2
 django-extensions==2.1.5
 
-livereload==2.6.0
+livereload==2.7.0
 selenium==3.141.0
