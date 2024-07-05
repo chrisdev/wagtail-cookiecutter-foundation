@@ -1,6 +1,6 @@
 -r base.txt
 
-django-debug-toolbar==3.2.2
+django-debug-toolbar==4.4.5
 django-extensions==2.1.5
 
 livereload==2.6.0
