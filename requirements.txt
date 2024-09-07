@@ -1,7 +1,7 @@
 cookiecutter==1.7.3
 flake8==4.0.1
 sh==1.14.2
-virtualenv==20.13.4
+virtualenv==20.26.4
 Sphinx==4.5.0
 sphinx-rtd-theme==1.0.0
 
